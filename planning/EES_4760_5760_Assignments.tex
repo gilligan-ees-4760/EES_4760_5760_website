@@ -1,0 +1,1581 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Assignment Sheet},
+            pdfauthor={EES 4760/5760: Agent- and Individual-Based Computational Modeling},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Assignment Sheet}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{EES 4760/5760: Agent- and Individual-Based Computational Modeling}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{Spring, 2018}
+
+\usepackage{jglucida}
+\usepackage[margin=1in]{geometry} % set margins to 1 inch
+\usepackage{titling}%
+
+\let\newparagraph\paragraph
+\let\paragraph\oldparagraph
+\let\newsubparagraph\subparagraph
+\let\subparagraph\oldsubparagraph
+
+\usepackage{titlesec}%
+
+\let\paragraph\newparagraph
+\let\subparagraph\newsubparagraph
+
+\usepackage{fancyhdr}%
+\usepackage{lastpage}%
+\usepackage{qqq}
+\usepackage{siunitx}
+\usepackage{url}
+
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+%
+%
+\setlength{\droptitle}{-1in}
+
+\pretitle{\begin{center}\Large\bfseries}
+\posttitle{\par\end{center}\vskip 0.2em}
+\preauthor{\begin{center}%
+             \large\sffamily
+             \begin{tabular}[t]{c}}
+\postauthor{\end{tabular}\par\end{center}}
+\predate{\begin{center}\large\sffamily}
+\postdate{\par\end{center}}
+
+\titleformat*{\section}{\large\sffamily\bfseries}
+\titleformat*{\subsection}{\sffamily\bfseries}
+\titleformat*{\subsubsection}{\bfseries\scshape}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\lhead{}
+\rhead{}
+\chead{\scshape ees 4760/5760 Assignments}
+\lfoot{}
+\rfoot{}
+\cfoot{--\thepage\ of \pageref{LastPage}--}
+
+\begin{document}
+\maketitle
+
+\hypertarget{general-instructions-for-reading-assignments}{%
+\section{General instructions for reading
+assignments}\label{general-instructions-for-reading-assignments}}
+
+\begin{itemize}
+\item
+  Do the assigned reading \emph{before\/} you come to class on the date
+  for which it is assigned. If you have questions or find the ideas
+  presented in the readings confusing, I encourage you to ask questions
+  in class.
+\item
+  Download the list of errata for the textbook from
+  \url{https://ees4760.jgilligan.org/files/Railsback_Grimm_2012_Errata.pdf}.
+\item
+  Questions in the ``Reading Notes'' sections of the assignments are for
+  you to think about to make sure you understand the material, but you
+  do not have to write up your answers or turn them in.
+
+  You are responsible for all the assigned readings, but topics I have
+  highlighted in the reading notes are particularly important.
+\item
+  In addition to the questions I ask in the reading notes, look over the
+  ``Conclusions'' section at the end of each chapter in
+  \emph{Agent-Based Modeling} to check whether you understand the key
+  facts and concepts from the chapter.
+\end{itemize}
+
+\hypertarget{class-1-tue-jan.9-introduction}{%
+\section{Class \#1, Tue, Jan.~9:
+Introduction}\label{class-1-tue-jan.9-introduction}}
+
+\hypertarget{reading}{%
+\subsection{Reading:}\label{reading}}
+
+No new reading for today.
+
+\hypertarget{class-2-thu-jan.11-the-computer-modeling-cycle}{%
+\section{Class \#2, Thu, Jan.~11: The computer modeling
+cycle}\label{class-2-thu-jan.11-the-computer-modeling-cycle}}
+
+\hypertarget{homework-1-set-up-box-and-netlogo}{%
+\subsection{Homework \#1: Set up Box and
+NetLogo}\label{homework-1-set-up-box-and-netlogo}}
+
+\textbf{There is nothing for you to turn in}, but do the following two
+tasks to prepare for next week:
+
+\begin{itemize}
+\tightlist
+\item
+  Download NetLogo version 6.0.2 from
+  \url{https://ccl.northwestern.edu/netlogo/} and install it on your
+  computer.
+\item
+  Set up your Box account. Make a Box folder for your homework for this
+  course (call it \texttt{Lastname\_EES\_4760} (undergraduates) or
+  \texttt{Lastname\_EES\_5760} (graduate students), substituting your
+  own last name), and share it with me, giving me ``Editor'' role.
+\end{itemize}
+
+\hypertarget{reading-1}{%
+\subsection{Reading:}\label{reading-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 1.
+\item
+  Handout: Peter Tyson, ``Artificial Societies'' MIT Technology Review
+  \textbf{100}(3) 15--17 (Apr.~1, 1997) (posted online).
+\end{itemize}
+
+\hypertarget{reading-notes}{%
+\subsubsection{Reading Notes:}\label{reading-notes}}
+
+This reading sets the stage for answering the questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What is computational modeling and why is it useful in social and
+  natural science research?
+\item
+  What are agent based models? How are they different from other kinds
+  of models? What makes them useful for scientific research?
+\end{enumerate}
+
+The reading introduces the idea of a \textbf{modeling cycle}. You should
+understand the different steps in the modeling cycle. You should also
+think about why Railsback and Grimm describe modeling as a cycle, as
+opposed to a linear process with a start and stop.
+
+As to what makes agent-based modeling special, Steven Railsback and
+Volker Grimm are ecologists and \emph{Agent-Based Modeling} emphasizes
+aspects of agent-based modeling that are well suited for studying
+ecological systems. Others, such as social scientists, emphasize the
+aspects of agent-based modeling that are well suited for problems in
+social science. And still others, such as computer scientists, emphasize
+aspects of automated and autonomous things (ranging from packets of data
+on a network to swarms of robots or flying drones that need to
+coordinate their activities and avoid collisions). What all of these
+approaches have in common are their use of individuals or
+\textbf{agents} (what is an agent?), which inhabit some kind of space or
+\textbf{environment} (this could be physical space or an abstract space,
+such as a computer network). Agents \textbf{interact} with each other
+and with the environment, and they make \textbf{decisions} according to
+rules.
+
+The article ``Artificial Life'' gives you a feel for how an early
+agent-based model called ``Sugarscape'' was used as part of a very
+influential research project in the 1990s. Joshua Epstein and Robert
+Axtell who wrote Sugarscape are highly respected pioneers in agent-based
+modeling and the Sugarscape model set off a revolution in agent-based
+modeling by showing that a very simple model could reproduce complex
+phenomena that are observed in real societies. As you read through this
+article, think about what the different applications of agent-based
+models have in common. Do these suggest questions that you might be
+interested in exploring with agent-based models. Do you have questions,
+as you read this, about whether computer modeling can really tell you
+about real societies?
+
+Agent-based models are often used to examine \textbf{emergent}
+phenomena. Neither reading describes clearly what \emph{emergence}
+means. There is no simple definition, but during the semester we will
+pay a lot of attention to learning about emergence and trying to
+understand it. Do not worry if you don't understand emergence at this
+point. Emergence is difficult to put into words, and it's much easier to
+understand from experience. Over the course of the semester, we will
+work together to understand what emergence is and how to study it.
+
+You can download
+``\href{/files/reading/Tyson_1997_Artificial_Societies.pdf}{Artificial
+Societies}'' from Brightspace or
+\url{https://ees4760.jgilligan.org/files/reading/Tyson_1997_Artificial_Societies.pdf}.
+
+\hypertarget{class-3-tue-jan.16-introduction-to-netlogo}{%
+\section{Class \#3, Tue, Jan.~16: Introduction to
+NetLogo}\label{class-3-tue-jan.16-introduction-to-netlogo}}
+
+\hypertarget{homework-2-introducing-netlogo}{%
+\subsection{Homework \#2: Introducing
+NetLogo}\label{homework-2-introducing-netlogo}}
+
+Turn in the following homework on Box by 11:59 pm:
+
+\begin{itemize}
+\item
+  As you read along with Section 2.3, follow along on your computer and
+  build the \emph{Mushroom Hunt} model by typing in the code shown in
+  the textbook. The whole program is shown on pages 28--29. \textbf{Save
+  your model as \texttt{mushroom\_hunt.nlogo}}.
+
+  This exercise may seem very simple, but it is the first step toward
+  learning how to program NetLogo and it will be an important first step
+  toward writing your own models.
+
+  After you are done typing in your model, try running it.
+
+  \textbf{When you are done, make a subfolder called \texttt{HW\_2} in
+  your Box folder for this class, and upload your model.}
+\end{itemize}
+
+\hypertarget{notes-on-homework}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework}}
+
+I recommend getting together with a classmate and working together on
+this assignment. Since the assignment consists of typing code in and
+running it, do not worry about your work being identical to your
+partner's. However, I strongly recommend that you type everything in
+yourself because you will not learn if you just copy someone else's code
+or download the code from a source on the web.
+
+If you run into trouble and cannot make your model work, do not worry.
+Ask a classmate for help, or email me (and attach your \texttt{.nlogo}
+model file), or simply come to class on Tuesday with questions about the
+problems you had getting your model to work. Since your model file will
+be on Box, we will be able to discuss the problems in class.
+
+\hypertarget{reading-2}{%
+\subsection{Reading:}\label{reading-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 2.
+\end{itemize}
+
+\hypertarget{reading-notes-1}{%
+\subsubsection{Reading Notes:}\label{reading-notes-1}}
+
+Familiarize yourself with NetLogo. I recommend that you read through the
+chapter with NetLogo open on your computer. Feel free to play around
+with NetLogo and try things out. The homework consists of following the
+step-by-step creation of a model in section 2.3.
+
+\textbf{Errata for chapter 2:}
+
+\begin{itemize}
+\tightlist
+\item
+  On page 20, after you add the \texttt{setup} and \texttt{go} buttons
+  to the interface, but before you write the \texttt{go} procedure, when
+  you click the ``Check'' button, it will take you to the interface page
+  because the \texttt{go} button has an eror: the procedure \texttt{go}
+  does not exist yet. After you write the \texttt{go} procedure in the
+  Code tab, then the Check button will work as described in the book.
+\item
+  The first bullet on page 21 should read:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Just as we created the \texttt{setup} procedure (with two lines
+    saying \texttt{to\ setup} and \texttt{end}, write the ``skeleton''
+    of the \texttt{go} procedure.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{class-4-thu-jan.18-specifying-models-the-odd-protocol}{%
+\section{Class \#4, Thu, Jan.~18: Specifying models: The ODD
+protocol}\label{class-4-thu-jan.18-specifying-models-the-odd-protocol}}
+
+\hypertarget{homework-3-becoming-familiar-with-netlogo}{%
+\subsection{Homework \#3: Becoming familiar with
+NetLogo}\label{homework-3-becoming-familiar-with-netlogo}}
+
+This homework consists of reading and working through tutorials, so
+there is nothing to turn in.
+
+\begin{itemize}
+\tightlist
+\item
+  Everyone should do exercises 1--2 in Chapter 2 of Railsback \& Grimm.
+  This consists of reading and working through tutorials, so there is
+  nothing to turn in.
+\end{itemize}
+
+\hypertarget{reading-3}{%
+\subsection{Reading:}\label{reading-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 3.
+\end{itemize}
+
+\hypertarget{reading-notes-2}{%
+\subsubsection{Reading Notes:}\label{reading-notes-2}}
+
+You can download several useful documents related to the ODD protocol
+from the class web site:
+
+\begin{itemize}
+\tightlist
+\item
+  The journal article, \href{/files/odd/Grimm_2010_ODD_update.pdf}{V.
+  Grimm \emph{et al.} (2010). ``The ODD protocol: A review and first
+  update'' \emph{Ecological Modeling} \textbf{221}, 2760--68.}.
+  \url{https://ees4760.jgilligan.org/files/odd/Grimm_2010_ODD_update.pdf}
+\item
+  A Word document that provides
+  \href{/files/odd/Grimm_2010_odd_template.docx}{a template for writing
+  ODDs}:
+  \url{https://ees4760.jgilligan.org/files/odd/Grimm_2010_odd_template.docx}
+\item
+  Lists of scientific publications using agent-based and
+  individual-based models that either do or don't use the ODD protocol
+  (this appeared as \href{/files/odd/Grimm_2010_appendix_1.pdf}{Appendix
+  1} of the Grimm \emph{et al.} paper):
+  \url{https://ees4760.jgilligan.org/files/odd/Grimm_2010_appendix_1.pdf},
+  \url{https://ees4760.jgilligan.org/files/odd/ch3_ex1_pubs_with_no_ODD.pdf},
+  \url{https://ees4760.jgilligan.org/files/odd/ch3_ex2_pubs_with_ODD.pdf}.
+\end{itemize}
+
+\hypertarget{class-5-tue-jan.23-your-first-model}{%
+\section{Class \#5, Tue, Jan.~23: Your first
+model}\label{class-5-tue-jan.23-your-first-model}}
+
+\hypertarget{homework-4-experimenting-with-netlogo}{%
+\subsection{Homework \#4: Experimenting with
+NetLogo}\label{homework-4-experimenting-with-netlogo}}
+
+Make a folder called ``HW\_4'' in your Box folder and upload your work
+when you're done (Word or text files for the descriptions and ODD
+document, and \texttt{.nlogo} files for your NetLogo models).
+
+\begin{itemize}
+\item
+  Railsback \& Grimm, Chapter 2, exercises Exercises 3--4.
+
+  For exercise 4 in chapter 2, you will make seven sequential
+  modifications of the basic mushroom hunt model. Each step modifies the
+  previous one, so the last model will have all the modifications from
+  the bulleted list in Ex. 2.4. Save each model with a new name, such as
+  \texttt{ex\_2\_4a.nlogo}, \texttt{ex\_2\_4b.nlogo}, \dots,
+  \texttt{ex\_2\_4g.nlogo}
+\item
+  Railsback \& Grimm, Chapter 3 exercise 3.
+
+  Write your answers in any convenient text format (a simple text file,
+  a Word document, a \texttt{.pdf} file, or whatever suits you). Call
+  the file \texttt{ex\_3\_3.docx} (or \texttt{ex\_3\_3.pdf}, etc.).
+\end{itemize}
+
+\hypertarget{notes-on-homework-1}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-1}}
+
+My advice for Chapter 3, Exercise 3 is don't be too ambitious with your
+model, but keep it very simple. Don't worry about getting everything
+right. If there are things you don't feel sure about or don't know how
+to express, you should just write a parenthetical note in your ODD
+document commenting on your difficulty. Come to class prepared to talk
+about how this exercise went and where you felt confused about trying to
+specify your model.
+
+As always, I recommend working with another classmate or in a group,
+comparing your different ways of approaching the exercises, and
+discussing any difficulties together.
+
+\hypertarget{reading-4}{%
+\subsection{Reading:}\label{reading-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 4.
+\end{itemize}
+
+\hypertarget{reading-notes-3}{%
+\subsubsection{Reading Notes:}\label{reading-notes-3}}
+
+For the reading, read Chapter 4 in \emph{Agent-Based Modeling} first and
+focus mostly on this chapter.
+
+It is worth noting that the Sugarscape model you read about for Jan.~11
+is very similar to the hilltopping model. Sugarscape was part of a very
+influential research project in the 1990s, in which Joshua Epstein and
+Robert Axtell showed that a very simple model could reproduce complex
+biological and economic phenomena that are observed in real societies
+and ecosystems. You may find it interesting at this point to look back
+at the ``Artificial Societies'' article and to play with the Sugarscape
+model in NetLogo.
+
+You can downlload an
+\href{/files/models/chapter_04/butterfly_model_ODD.txt}{ODD for the
+butterfly model}, which is suitable to paste into the ``Info'' tab in
+NetLogo, from the class web site:
+\url{https://ees4760.jgilligan.org/files/models/chapter_04/butterfly_model_ODD.txt}
+
+\hypertarget{class-6-thu-jan.25-using-models-for-science}{%
+\section{Class \#6, Thu, Jan.~25: Using models for
+science}\label{class-6-thu-jan.25-using-models-for-science}}
+
+\hypertarget{reading-5}{%
+\subsection{Reading:}\label{reading-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 5.
+\end{itemize}
+
+\hypertarget{reading-notes-4}{%
+\subsubsection{Reading Notes:}\label{reading-notes-4}}
+
+This reading sets the stage for answering the big question, ``How can we
+use agent-based models to do science?'' There are several aspects to
+this question, which this chapter will introduce:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  How can we produce quantitative output from our models?
+\item
+  How can your models read and write data to and from files? (This is
+  important for connecting your model to other parts of your project)
+\item
+  How should we test our models to make sure they do what we think they
+  do? (More on this in Chapter 6)
+\item
+  Making your research reproducible by using version control and
+  documentation.
+\end{enumerate}
+
+A number of you like to use Excel or statistical analysis tools, such as
+\texttt{R}, \texttt{SPSS}, or \texttt{Stata}. The material in this
+chapter about importing and exporting data using text or \texttt{.csv}
+files will be very useful for this. By default, NetLogo only allows you
+to read in data in simple text files. However, if comes with some
+extensions that you can use to read in data from other common file
+formats, including \texttt{.csv} and ArcGIS shapefiles and raster (grid)
+files.
+
+If you want to read in data from csv files, you may want to look at the
+documentation for the \texttt{csv} extension to NetLogo. To use it, you
+just put the line \texttt{includes\ {[}csv{]}} as the first line of your
+model, and then use functions from the extension, such as
+\texttt{let\ data\ csv:from-file\ "myfile.csv"}.
+
+To read in date from ArcGIS files, look at the documentation for the
+\texttt{GIS} extension. You would put the line
+\texttt{extensions\ {[}\ gis\ {]}} as the first line of your model, and
+then use functions, such as \texttt{gis:load-dataset}, which can load
+vector shape files (\texttt{.shp}) and raster grid files (\texttt{.grd}
+or \texttt{.asc}). The GIS extension offers a lot of functions for
+working with vector and raster GIS data. If you're interested in using
+GIS data in your models, take a look at the GIS examples in the NetLogo
+model library.
+
+You can download the
+\href{/files/models/chapter_05/ElevationData.txt}{data file} with the
+elevations for the realistic butterfly model from
+\url{https://ees4760.jgilligan.org/files/models/chapter_05/ElevationData.txt}
+
+\textbf{Errata for Chapter 5:}
+
+\begin{itemize}
+\item
+  Page 68: Replace the statement
+
+\begin{verbatim}
+export-plot "Corridor width"
+    word "Corridor-output-for-q-" q
+\end{verbatim}
+
+  with this:
+
+\begin{verbatim}
+export-plot "Corridor width"
+    (word "Corridor-output-for-q-" q ".csv")
+\end{verbatim}
+
+  The revised statement appends the file extension ``\texttt{.csv}'' to
+  the file name created via the \texttt{word} primitive. Note that when
+  \texttt{word} is used to concatenate more than two values tovether, it
+  and all the values must be inside parentheses.
+\end{itemize}
+
+\hypertarget{class-7-tue-jan.30-testing-and-validating-models}{%
+\section{Class \#7, Tue, Jan.~30: Testing and validating
+models}\label{class-7-tue-jan.30-testing-and-validating-models}}
+
+\hypertarget{homework-5-science-with-models-butterfly-mating}{%
+\subsection{Homework \#5: Science with models: Butterfly
+mating}\label{homework-5-science-with-models-butterfly-mating}}
+
+Turn in the following homework on Box by 11:59 pm:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Everyone:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 4, Ex. 4.2, 4.4
+  \item
+    Railsback \& Grimm, Ch. 5, Ex. 5.1--5.5.
+  \end{itemize}
+\item
+  \textbf{Graduate Students:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 5, exercises 5.6--5.7.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{reading-6}{%
+\subsection{Reading:}\label{reading-6}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 6.
+\end{itemize}
+
+\hypertarget{reading-notes-5}{%
+\subsubsection{Reading Notes:}\label{reading-notes-5}}
+
+No one writes perfect programs. Errors in programs controlling medical
+equipment have killed people. Errors in computer models and data
+analysis code have not had such dire results, but have wasted lots of
+time for researchers and have caused public policy to proceed on
+incorrect assumptions. In many cases, these errors were uncovered only
+after a great deal of frustration because the original researchers would
+not share their computer codes with others who were suspicious of their
+results.
+
+You can never be certain that your model is correct, but the more
+aggressively you check for errors the more confident you can be that it
+does not have major problems.
+
+Two very important things you can do to ensure that your research does
+not suffer a similar fate are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Test your code. Assume your program has errors in it and make the
+  search for those errors a priority in your programming process. Some
+  things you can do in this regard are:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Write your code with tests that will help you find errors.
+  \item
+    Work with a partner: after one of you writes code, the other should
+    read it and check for errors.
+  \item
+    Break your program up into small chunks. It is easier to test and
+    find bugs if you are looking at a short block of code than if you
+    are looking at hundreds of lines of code.
+  \item
+    Independently reimplement submodels and check whether they agree
+    with the submodel you are using.
+  \end{itemize}
+\item
+  Publish your code. If you trust your results and believe they are
+  important enough to publish in a book or journal, then you should make
+  your code available (there are many free sites, such as github.com and
+  openabm.org where people can publish their models and other computer
+  code).
+
+  The more that other researchers can read your code, the greater the
+  probability that they will find any errors, and if you make it easy
+  for others to use your code, it will help science because other people
+  can build on your work, and it will help your reputation because when
+  other people use your model or other code they are likely to cite the
+  publication in which you first announced it, so your work will get
+  attention.
+
+  Many scholarly journals demand that you make your code available as a
+  condition for publishing your paper, and federal funding agencies are
+  increasingly requiring that any research funded by their grants must
+  make its code and data available to other researchers and the public.
+\end{enumerate}
+
+\textbf{The Marriage Model}
+
+The \href{/files/models/chapter_06/Marriage_age_model_ODD.pdf}{ODD for
+the marriage model} and a
+\href{files/models/chapter_06/Marriage_model_with_errors.nlogo}{NetLogo
+model} that implements the ODD, but with many errors, can be downloaded
+from the class web site:
+\url{https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_age_model_ODD.pdf},
+and
+\url{https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_model_with_errors.nlogo}.
+
+\textbf{Errata for chapter 6:}
+
+\begin{itemize}
+\item
+  Section 6.3.7, in the example \texttt{test} procesure: The syntax of
+  the \texttt{foreach} statement changed, starting with NetLogo version
+  6.0. This was because NetLogo introduced a new feature, called
+  ``anonymous procedures,'' which you can read about in the NetLogo User
+  Manual. This means that we need to change the code in the book for the
+  \texttt{go-back} test procedure. The new procedure should read:
+
+\begin{verbatim}
+ask turtles
+ [
+    set color blue ; Make the return path a different color
+    foreach path   ; See "foreach: executes once for each
+                   ; patch on the list, where next-patch is the
+                   ; patch currently being executed
+    [ next-patch ->
+      set heading towards next-patch
+      fd 1
+    ]
+ ]
+\end{verbatim}
+\item
+  Section 6.3.10, Figure 6.4: The column labels in the very top row of
+  the fiture's spreadsheet are wrong: what is labeled col. B should be
+  col. A, the column labeled O should be N, etc.. In the figure caption,
+  reference to col. N should be to the corrected col. M (which is
+  currently labeled N); and references to col. M should be to the
+  corrected col. N (currently labeled O).
+\item
+  Section 6.5, p.~91: Note that the ``social network'' of young people
+  can potentially include other people below the marriage age of 16.
+  Hence, it is possible for a person less than 16 to be selected as a
+  spouse and married.
+\end{itemize}
+
+\hypertarget{class-8-thu-feb.1-choosing-research-projects}{%
+\section{Class \#8, Thu, Feb.~1: Choosing Research
+Projects}\label{class-8-thu-feb.1-choosing-research-projects}}
+
+\hypertarget{homework-6-reproducing-a-model-from-its-odd}{%
+\subsection{Homework \#6: Reproducing a model from its
+ODD}\label{homework-6-reproducing-a-model-from-its-odd}}
+
+Turn in the following homework on Box by 11:59 pm:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Graduate Students:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Graduate students should do Railsback \& Grimm, Ex. 5.11
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{notes-on-homework-2}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-2}}
+
+\begin{itemize}
+\item
+  \textbf{Everyone:}
+\item
+  \textbf{Undergraduates:}
+\item
+  \textbf{Graduate Students:}You can download the journal article for
+  this exercise,
+  \href{/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf}{R.
+  Jovani \& V. Grimm. (2008) ``Breeding synchrony in colonial birds:
+  From local stress to global harmony'', \emph{Proc. Royal Soc. London
+  B} \textbf{275}, 1567--63} from the class web site,
+  \url{https://ees4760.jgilligan.org/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf}.
+
+  \textbf{Errata for homework exercise:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The parameter \texttt{SD} should have a value of 10.0, not 1.0.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{reading-7}{%
+\subsection{Reading:}\label{reading-7}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 7.
+\end{itemize}
+
+\hypertarget{reading-notes-6}{%
+\subsubsection{Reading Notes:}\label{reading-notes-6}}
+
+There is not very much reading for today. Read Chapter 7 of
+\emph{Agent-Based Modeling} carefully (it's very short) The point of
+this chapter is to help you get ideas for your term research project.
+
+Before class, I want you to read through the research project assignment
+and think about what you might want to do for a research project. We
+will spend class talking about possible research projects.
+
+\hypertarget{class-9-tue-feb.6-emergence}{%
+\section{Class \#9, Tue, Feb.~6:
+Emergence}\label{class-9-tue-feb.6-emergence}}
+
+\hypertarget{homework-7-research-project-proposal}{%
+\subsection{Homework \#7: Research project
+proposal}\label{homework-7-research-project-proposal}}
+
+Turn in the following homework on Box by 11:59 pm:
+
+\begin{itemize}
+\tightlist
+\item
+  Turn in a one-page research project proposal
+\end{itemize}
+
+\hypertarget{reading-8}{%
+\subsection{Reading:}\label{reading-8}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 8.
+\end{itemize}
+
+\hypertarget{reading-notes-7}{%
+\subsubsection{Reading Notes:}\label{reading-notes-7}}
+
+This is a major chapter. Emergence is one of the most important concepts
+in agent-based modeling, so pay close attention to the discussion in
+this chapter and think about how you can measure and assess emergence.
+
+This chapter also introduces a very important tool for doing experiments
+in NetLogo: \textbf{BehaviorSpace}. BehaviorSpace lets you repeatedly
+run a NetLogo model while varying the settings of any of the controls on
+your user interface. Where there is randomness (stochasticity) in the
+model, you can perform many runs at each set of control settings. This
+will let us perform \textbf{sensitivity analysis} to determine whether a
+certain emergent phenomenon we are investigating happens only for values
+of the parameters within a narrow range, or whether it happens over a
+wide range of the parameters. It will let us determine which parameters
+are most important for the phenomenon.
+
+For homework and your modeling projects you will use BehaviorSpace
+extensively. BehaviorSpace outputs large amounts of data to
+\texttt{.csv} files, which you can read into Excel, R, SPSS, or another
+tool where you can do statistical analysis and generate plots such as
+the ones in figures 8.3, 8.5, and 8.6.
+
+The format in which BehaviorSpace saves its data is very annoying to
+deal with in many tools. Indeed, it's almost impossible to do anything
+useful with it in Excel. Because of this, I have written a tool called
+\texttt{analyzeBehaviorspace} that can read the output of a
+BehaviorSpace run and allow you to interactively graph it and
+re-organize the data to make it more useful.
+
+You can either use this tool online in a web browser at
+\url{https://analyze-behaviorspace.jgilligan.org} or install it on your
+own computer. For details, see the description of
+\texttt{analyzeBehaviorspace} on the ``Reading Resources and Computing
+Tools for Research'' handout.
+
+As you read the chapter, be sure to try out the experiments with the
+birth-and-death model and the flocking model. Try reading the output of
+the behaviorspace runs into analyzeBehaviorspace (the web version or a
+local version installed on your computer), or your favorite statistical
+analysis software and try to generate plots similar to figures 8.3, 8.5,
+and 8.6.
+
+If you have time, try to play around with BehaviorSpace using those
+models (varying different parameters) or other models from the NetLogo
+library to explore the ways that changing parameters affects the models'
+behavior.
+
+\hypertarget{class-10-thu-feb.8-observation}{%
+\section{Class \#10, Thu, Feb.~8:
+Observation}\label{class-10-thu-feb.8-observation}}
+
+\hypertarget{homework-8-testing-and-debugging}{%
+\subsection{Homework \#8: Testing and
+Debugging}\label{homework-8-testing-and-debugging}}
+
+Turn in the following homework on Box by 11:59 pm:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Everyone:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 6, Ex. 6.2, 6.3, 6.5
+  \end{itemize}
+\item
+  \textbf{Graduate Students:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 6, Ex. 6.4, 6.7
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{reading-9}{%
+\subsection{Reading:}\label{reading-9}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 9.
+\end{itemize}
+
+\hypertarget{reading-notes-8}{%
+\subsubsection{Reading Notes:}\label{reading-notes-8}}
+
+In this chapter, we examine how to detect and record the properties of a
+model that we want to study.
+
+The article, D. Kornhauser,
+\href{http://jasss.soc.surrey.ac.uk/12/2/1.html}{U. Wilensky, and W.
+Rand. (2009). ``Design guidelines for agent-based model visualization,''
+\emph{Journal of Artificial Societies and Social Simulation}
+\textbf{12}, 1} is available online at
+\url{http://jasss.soc.surrey.ac.uk/12/2/1.html}.
+
+I have posted a
+\href{/files/models/chapter_09/ch9_ex8_Netlogo_exercises.pdf}{refresher
+guide} for NetLogo programming on the class web site at
+\url{https://ees4760.jgilligan.org/files/models/chapter_09/ch9_ex8_Netlogo_exercises.pdf}
+
+\textbf{Errata for Chapter 9:}
+
+\begin{itemize}
+\item
+  Section 9.3, p.~119: The discussion of histograms mentions potential
+  difficulties setting the \emph{x} axis to a useful range, so all the
+  bars are visible. One solution is to use the \texttt{set-plot-x-range}
+  primitive. For example, add this statement:
+
+\begin{verbatim}
+set-plot-x-range (min [elevation] of turtles) 
+    (max [elevation] of turtles)
+\end{verbatim}
+
+  just before the statement:
+
+\begin{verbatim}
+histogram [elevation] of turtles
+\end{verbatim}
+
+  Or, if the histogram should always start at zero:
+
+\begin{verbatim}
+set-plot-x-range 0 max [elevation] of turtles
+\end{verbatim}
+
+  (You may need to use primitives such as \texttt{ceiling} and
+  \texttt{precision} to convert the inputs to \texttt{set-plot-x-range}
+  to nice round numbers.)
+\end{itemize}
+
+\hypertarget{class-11-tue-feb.13-sensing}{%
+\section{Class \#11, Tue, Feb.~13:
+Sensing}\label{class-11-tue-feb.13-sensing}}
+
+\hypertarget{homework-9-analyzing-model-experiments}{%
+\subsection{Homework \#9: Analyzing model
+experiments}\label{homework-9-analyzing-model-experiments}}
+
+Turn in the following homework on Box by 11:59 pm:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Everyone:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 8, Ex. 8.1, 8.2
+  \item
+    Railsback \& Grimm, Ch. 9, Ex. 9.1, 9.3, 9.4
+  \end{itemize}
+\item
+  \textbf{Graduate Students:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 8, Ex. 8.3, 8.4
+  \item
+    Railsback \& Grimm, Ch. 9, Ex. 9.6
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{reading-10}{%
+\subsection{Reading:}\label{reading-10}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 10.
+\end{itemize}
+
+\hypertarget{reading-notes-9}{%
+\subsubsection{Reading Notes:}\label{reading-notes-9}}
+
+Important programming concepts in this chapter include:
+
+\begin{description}
+\tightlist
+\item[Links:]
+Agents interact with their physical environment (patches around them)
+and with other agents nearby, but they can also interact in social
+networks, which can be represented by links.
+\item[Variable scope:]
+Understand the differences between global variables, local variables,
+patch variables, agent variables, and link variables. Understand how an
+agent can get the value of a global variable or variables belonging to a
+certain patch or link or another agent.
+\item[Entity detection:]
+Understand different ways to detect which agents or patches meet certain
+conditions (e.g., within a certain distance, have a certain color, have
+the largest or smallest values of some variable, etc.).
+\end{description}
+
+The agents' interactions, both with their environment and with each
+other through sensing. Part of the design concepts section of a model's
+ODD consists of specifying what the agents can sense: They might be able
+to sense other agents within a certain distance. They might only be able
+to detect other agents if they are within a certain angle (e.g., the
+agent might be able to look forward, but might not be able to see behind
+itself unless it turns around). Agents might be able to detect certain
+qualities of one another (e.g., I can see how tall you are, but I can't
+see how much money you have).
+
+Agents can interact both spatially and through networks of links. You
+can create many kinds of links so that agents can belong to many
+networks (e.g., family, co-workers, members of a church congregation,
+etc.).
+
+Sensing involves two steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Detect which entities your agent (or patch) will sense.
+\item
+  Get the values of the sensed variables from those entities.
+\end{enumerate}
+
+Be sure to code the Business Investor model as you read section 10.4.
+You will use it in Chapter 11 and it will form the basis for one of the
+team projects you will present. The other team project will use the
+Telemarketer model from section 13.3. This would be a good time for you
+and your teammates to get started on your team projects.
+
+\textbf{Errata for Chapter 10:}
+
+\begin{itemize}
+\tightlist
+\item
+  Section 10.4, p.~140: The first statement in the first block of code
+  near the top of p.~140 should be:
+  \texttt{let\ potential-destinations\ ...} instead of
+  \texttt{set\ potential-destinations\ ...}.
+\end{itemize}
+
+\hypertarget{class-12-thu-feb.15-adaptive-behavior-and-objectives}{%
+\section{Class \#12, Thu, Feb.~15: Adaptive Behavior and
+Objectives}\label{class-12-thu-feb.15-adaptive-behavior-and-objectives}}
+
+\hypertarget{homework-10-programming-agent-sensing}{%
+\subsection{Homework \#10: Programming agent
+sensing}\label{homework-10-programming-agent-sensing}}
+
+Turn in the following homework on Box by 11:59 pm:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Everyone:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 10, Ex. 10.1, 10.2
+  \item
+    Railsback \& Grimm, Ch. 11, Ex. 11.1, 11.2
+  \end{itemize}
+\item
+  \textbf{Graduate Students:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 11, Ex. 11.3
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{reading-11}{%
+\subsection{Reading:}\label{reading-11}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 11.
+\end{itemize}
+
+\hypertarget{reading-notes-10}{%
+\subsubsection{Reading Notes:}\label{reading-notes-10}}
+
+Agents' behavior often consists of trying to achieve some
+\textbf{objective}.
+
+I have discussed the way that Adam Smith's ``invisible hand of the
+market'' is a kind of agent-based view of a nation's economy: Each
+person (agent) has an objective of trying to maximize his or her own
+wealth (that's the agent's \textbf{micromotive}), and in doing so, the
+population of agents manages unintentionally to maximize the total
+wealth of the nation (an emergent \textbf{macrobehavior} that results
+from the collective interactions of the agents and their micromotives).
+
+For Darwin, agents whose objectives are to survive and reproduce under
+changing environmental conditions achieve emergent phenomena of
+evolution and speciation.
+
+If we are going to program an agent-based model to simulate such an
+economy (we saw this in the Sugarscape models), you need to program your
+agents to try to achieve their objective (maximize their wealth). There
+are two approaches to this:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  You could program a sophisticated strategy into your agents.
+\item
+  You could program a simple strategy into your agents, but give them
+  the ability to learn from their experience and adapt their behavior
+  according to what they learn. (see section 11.3 for details and an
+  example)
+\end{enumerate}
+
+This chapter discusses different kinds of objectives you might have your
+agents employ. An important concept from decision theory and behavioral
+economics that might be new to you is \textbf{satisficing}. This term,
+introduced by Herbert Simon\footnote{Herbert Simon (1916--2001) was a
+  fascinating intellectual. Kind of a renaissance scholar, he made major
+  contributions to political science, economics, cognitive psychology,
+  and artificial intelligence. He won the Nobel Prize for economics in
+  1978. His publications have been cited more than 250,000 times and
+  even fifteen years after his death, they are still cited more than
+  10,000 times per year.} in 1956, refers to making decisions by
+choosing a ``good-enough'' option when it would take too much time and
+effort to determine which option is the absolute best. See section 11.4
+for details and an example.
+
+\hypertarget{class-13-tue-feb.20-prediction}{%
+\section{Class \#13, Tue, Feb.~20:
+Prediction}\label{class-13-tue-feb.20-prediction}}
+
+\hypertarget{reading-12}{%
+\subsection{Reading:}\label{reading-12}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 12.
+\end{itemize}
+
+\hypertarget{reading-notes-11}{%
+\subsubsection{Reading Notes:}\label{reading-notes-11}}
+
+In class, we will discuss the telemarketer model.
+
+For the teams working on the telemarketer model, the steps are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Build the model as described in the ODD.
+\item
+  Do the analyses in section 13.3.2
+\item
+  Next work on two extensions:
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \tightlist
+  \item
+    Mergers (section 13.5)
+  \item
+    Customers remember (section 13.6)
+  \end{enumerate}
+\end{enumerate}
+
+Before class on Thursday, everyone should read Chapter 13 and the ODD
+for the telemarketer model and be ready to discuss the model in class.
+This will be a chance for the teams working on the model to ask
+questions.
+
+\hypertarget{class-14-thu-feb.22-interaction}{%
+\section{Class \#14, Thu, Feb.~22:
+Interaction}\label{class-14-thu-feb.22-interaction}}
+
+\hypertarget{reading-13}{%
+\subsection{Reading:}\label{reading-13}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 13.
+\end{itemize}
+
+\hypertarget{reading-notes-12}{%
+\subsubsection{Reading Notes:}\label{reading-notes-12}}
+
+\textbf{Errata for Chapter 13:}
+
+\begin{itemize}
+\tightlist
+\item
+  Section 13.6, p.~180: Starting with version 5.0 of NetLogo, the
+  Programming Guide no longer says that putting items on a list using
+  \texttt{fput} is better (faster) than putting them on the end of the
+  list using \texttt{lput}. NetLogo's lists were reprogrammed to
+  eliminate this difference and improve the speed of adding and
+  accessing list items.
+\end{itemize}
+
+\hypertarget{class-15-tue-feb.27-team-presentations}{%
+\section{Class \#15, Tue, Feb.~27: Team
+Presentations}\label{class-15-tue-feb.27-team-presentations}}
+
+\hypertarget{reading-14}{%
+\subsection{Reading:}\label{reading-14}}
+
+No new reading for today.
+
+\hypertarget{class-16-thu-mar.1-research-project-odds}{%
+\section{Class \#16, Thu, Mar.~1: Research Project
+ODDs}\label{class-16-thu-mar.1-research-project-odds}}
+
+\hypertarget{reading-15}{%
+\subsection{Reading:}\label{reading-15}}
+
+No new reading for today.
+
+\hypertarget{class-17-tue-mar.13-prediction}{%
+\section{Class \#17, Tue, Mar.~13:
+Prediction}\label{class-17-tue-mar.13-prediction}}
+
+\hypertarget{reading-16}{%
+\subsection{Reading:}\label{reading-16}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 14.
+\end{itemize}
+
+\hypertarget{reading-notes-13}{%
+\subsubsection{Reading Notes:}\label{reading-notes-13}}
+
+A good example of asynchronous updating is the
+\href{/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo}{model
+of breeding synchrony}, described in
+\href{/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf}{Jovani
+and Grimm (2008)} and in Chapter 23, which I have posted on the class
+web site:
+\url{https://ees4760.jgilligan.org/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo}
+
+\textbf{Errata for Chapter 14:}
+
+\begin{itemize}
+\item
+  Section 14.2.3, p.~187: The \texttt{foreach} statement in the example
+  code for executing turtles in size order is not compatible with
+  NetLogo versions 6.0 and higher. For version 6.0.2, the statement
+  should be:
+
+\begin{verbatim}
+foreach sort-on [size] turtles
+[
+    next-turtle -> ask next-turtle [do-sales]
+]
+\end{verbatim}
+\item
+  Section 14.2.5, p.~189: This code statement:
+
+\begin{verbatim}
+while [count patches with [trigger-time > ticks] > 0] 
+\end{verbatim}
+
+  should of course be:
+
+\begin{verbatim}
+while [any? patches with [trigger-time > ticks] ] 
+\end{verbatim}
+
+  (This Mousetrap model also has a small flaw: it does not represent the
+  possibility that a trap scheduled to be triggered by one ball could be
+  triggered sooner by a different ball that is launched later but has a
+  shorter trajectory.)
+\end{itemize}
+
+\hypertarget{class-18-thu-mar.15-stochasticity}{%
+\section{Class \#18, Thu, Mar.~15:
+Stochasticity}\label{class-18-thu-mar.15-stochasticity}}
+
+\hypertarget{reading-17}{%
+\subsection{Reading:}\label{reading-17}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 15.
+\end{itemize}
+
+\hypertarget{class-19-tue-mar.20-collectives}{%
+\section{Class \#19, Tue, Mar.~20:
+Collectives}\label{class-19-tue-mar.20-collectives}}
+
+\hypertarget{reading-18}{%
+\subsection{Reading:}\label{reading-18}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 16.
+\end{itemize}
+
+\hypertarget{reading-notes-14}{%
+\subsubsection{Reading Notes:}\label{reading-notes-14}}
+
+\textbf{Errata for Chapter 16:}
+
+\begin{itemize}
+\item
+  Section 16.4.1, p.~213: The description of social status is not clear:
+  it assumes ages are real numbers instead of integers. It should read:
+
+  \_The social status of a dog can be (a) ``pup,'' meaning its age is
+  less than one;
+
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    ``yearling,'' with age of 1 year; (c) ``subordinate,'' meaning age
+    is 2 or greater but the dog is not an alpha; (d) ``alpha,'' the
+    dominant individual of its sex in a pack; and (e) ``disperser,''
+    meaning the dog currently belongs to a disperser group, not a
+    pack.\_
+  \end{enumerate}
+\item
+  Section 16.4.1, p.~213: The first bullet of the description of pack
+  formation should start ``Determine how many times the disperser group
+  meets another\ldots{}''
+\item
+  Section 16.4.1, Fig. 16.1: Be aware that this figure does not depict
+  the logistic function parameters in the Wild Dog model description.
+  The figure shows a probability of 0.5 when the number of dogs in the
+  population is 67\% of carrying capacity (40 out of 60), while the
+  model description says the probability is 0.5 when the population is
+  50\% of carrying capacity. To match the model description, the
+  figure's curve should go through X = 30, Y = 0.5.
+\item
+  Section 16.4.2, p.~217: Setting the dog's variable \texttt{my-pack} to
+  the pack that created it (via the statement
+  \texttt{set\ my-pack\ myself}) can cause a subtle error in the pack
+  formation submodel. Disperser groups cannot form a pack with other
+  disperser groups that originated in the same pack. In most people's
+  code, disperser groups use the value of \texttt{my-pack} from one of
+  their dogs to determine which pack they came from. The error can occur
+  when two disperser groups came from packs that have since died; when a
+  disperser dog's pack dies, NetLogo automatically changes its value of
+  \texttt{my-pack} to the keyword \texttt{nobody}. Because disperser
+  groups cannot form a new pack with another group that has the same
+  value of \texttt{my-pack}, groups whose packs have died cannot combine
+  with each other, even if they really came from two different packs. A
+  solution is to set \texttt{my-pack} to the unique \texttt{who} number
+  of the dog's pack. Instead of \texttt{set\ my-pack\ myself}, use
+  \texttt{set\ my-pack\ {[}who{]}\ of\ myself}. Use a similar statement
+  when new dogs are created in the reproduction submodel. Then change
+  the statements where a dog's value of \texttt{my-pack} is compared to
+  a pack, from (for example):
+
+\begin{verbatim}
+set pack-members dogs with [my-pack = myself]
+\end{verbatim}
+
+  to:
+
+\begin{verbatim}
+set pack-members dogs with [my-pack = [who] of myself]
+\end{verbatim}
+
+  And because \texttt{my-pack} now contains a who number instead of a
+  pack, one of the last lines in the
+  \texttt{create-disperser-group-from} code (page 220) needs to be
+  changed, from:
+
+\begin{verbatim}
+ask dogs-former-pack [set pack-members ... 
+\end{verbatim}
+
+  to:
+
+\begin{verbatim}
+ask pack dogs-former-pack [set pack-members ...
+\end{verbatim}
+
+  This error appears to have little effect on model results.
+\item
+  Section 16.4.3, Figure 16.2: The figure should look like
+
+  \begin{figure}
+  \centering
+  \includegraphics{../static/img/errata_fig_16_2.png}
+  \caption{Corrected Fig. 16.2}
+  \end{figure}
+\end{itemize}
+
+\hypertarget{class-20-thu-mar.22-patterns}{%
+\section{Class \#20, Thu, Mar.~22:
+Patterns}\label{class-20-thu-mar.22-patterns}}
+
+\hypertarget{reading-19}{%
+\subsection{Reading:}\label{reading-19}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 17--18.
+\end{itemize}
+
+\hypertarget{reading-notes-15}{%
+\subsubsection{Reading Notes:}\label{reading-notes-15}}
+
+You can download \href{/files/models/chapter_18/ch18_before_ODD.pdf}{the
+ODD for the BEFORE beech forest model}, which is described in section
+18.3, from the class web site:
+\url{https://ees4760.jgilligan.org/files/models/chapter_18/ch18_before_ODD.pdf}.
+
+I have also posted
+\href{/files/models/chapter_18/ch18_ex1_models_list.pdf}{a list of
+published models} in which observed patterns are important:
+\url{https://ees4760.jgilligan.org/files/models/chapter_18/ch18_ex1_models_list.pdf}
+
+\hypertarget{class-21-tue-mar.27-theory-development}{%
+\section{Class \#21, Tue, Mar.~27: Theory
+Development}\label{class-21-tue-mar.27-theory-development}}
+
+\hypertarget{reading-20}{%
+\subsection{Reading:}\label{reading-20}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 19.
+\end{itemize}
+
+\hypertarget{reading-notes-16}{%
+\subsubsection{Reading Notes:}\label{reading-notes-16}}
+
+There is an implementation of the
+\href{/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo}{wood hoopoe
+model}, suitable for Exercise 2, on the class web site:
+\url{https://ees4760.jgilligan.org/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo}
+
+\hypertarget{class-22-thu-mar.29-parameterization-and-calibration}{%
+\section{Class \#22, Thu, Mar.~29: Parameterization and
+Calibration}\label{class-22-thu-mar.29-parameterization-and-calibration}}
+
+\hypertarget{reading-21}{%
+\subsection{Reading:}\label{reading-21}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 20.
+\end{itemize}
+
+\hypertarget{reading-notes-17}{%
+\subsubsection{Reading Notes:}\label{reading-notes-17}}
+
+\textbf{Errata for Chapter 20:}
+
+\begin{itemize}
+\item
+  Section 20.5, p.~264: The first bullet of the description of the
+  simple trait for how subordinate adults decide whether to scout should
+  say, ``If there are no \emph{older} subordinate adults'' instead of
+  ``other subordinate adults''.
+\item
+  Section 20.7, Exercise 2: The model equation has parentheses in the
+  wrong place. It should be:
+  \[ N_t = N_{t-1} + r N_{t-1} [ 1 - (N_{t-1} / K)] - H_{t-1}\]
+\end{itemize}
+
+\hypertarget{class-23-tue-apr.3-parameterization-and-calibration-2}{%
+\section{Class \#23, Tue, Apr.~3: Parameterization and Calibration
+2}\label{class-23-tue-apr.3-parameterization-and-calibration-2}}
+
+\hypertarget{reading-22}{%
+\subsection{Reading:}\label{reading-22}}
+
+No new reading for today.
+
+\hypertarget{class-24-thu-apr.5-analyzing-abms}{%
+\section{Class \#24, Thu, Apr.~5: Analyzing
+ABMs}\label{class-24-thu-apr.5-analyzing-abms}}
+
+\hypertarget{reading-23}{%
+\subsection{Reading:}\label{reading-23}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 22.
+\end{itemize}
+
+\hypertarget{class-25-tue-apr.10-sensitivity-and-robustness}{%
+\section{Class \#25, Tue, Apr.~10: Sensitivity and
+Robustness}\label{class-25-tue-apr.10-sensitivity-and-robustness}}
+
+\hypertarget{reading-24}{%
+\subsection{Reading:}\label{reading-24}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 23.
+\end{itemize}
+
+\hypertarget{reading-notes-18}{%
+\subsubsection{Reading Notes:}\label{reading-notes-18}}
+
+You can download the \href{/files/models/chapter_23/}{model of breeding
+synchrony}Ch\_23\_4\_breeding\_synchrony.nlogo), described in
+\href{/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf}{Jovani
+and Grimm (2008)} and in section 23.4, from the class web site:
+\url{https://ees4760.jgilligan.org/files/models/chapter_23/)Ch_23_4_breeding_synchrony.nlogo}
+
+\hypertarget{class-26-thu-apr.12-looking-ahead-abms-beyond-this-course}{%
+\section{Class \#26, Thu, Apr.~12: Looking Ahead: ABMs Beyond this
+Course}\label{class-26-thu-apr.12-looking-ahead-abms-beyond-this-course}}
+
+\hypertarget{reading-25}{%
+\subsection{Reading:}\label{reading-25}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 24.
+\end{itemize}
+
+\hypertarget{class-27-tue-apr.17-presentations}{%
+\section{Class \#27, Tue, Apr.~17:
+Presentations}\label{class-27-tue-apr.17-presentations}}
+
+\hypertarget{reading-26}{%
+\subsection{Reading:}\label{reading-26}}
+
+No new reading for today.
+
+\hypertarget{class-28-thu-apr.19-presentations}{%
+\section{Class \#28, Thu, Apr.~19:
+Presentations}\label{class-28-thu-apr.19-presentations}}
+
+\hypertarget{reading-27}{%
+\subsection{Reading:}\label{reading-27}}
+
+No new reading for today.
+
+
+\end{document}

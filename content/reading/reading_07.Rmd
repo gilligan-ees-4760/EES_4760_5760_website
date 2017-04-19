@@ -1,0 +1,108 @@
+---
+title: Testing and validating models
+class_date: '2018-01-30'
+class_number: 7
+weight: 7
+slug: reading_07
+pubdate: '2018-01-01'
+date: '2018-01-30'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Homework
+
+Homework #5 is due today: Railsback & Grimm, Ch. 4, Ex. 4.2, 4.4 (everyone), Ch. 5, Ex. 5.1--5.5 (everyone), and Ex. 5.6--5.7 (grad. students). See the homework assignment sheet for details.
+
+## Reading:
+
+* Railsback & Grimm, Ch. 6.
+
+### Reading Notes:
+
+No one writes perfect programs. Errors in programs controlling medical equipment 
+have killed people. Errors in computer models and data analysis code have not had 
+such dire results, but have wasted lots of time for researchers and have caused 
+public policy to proceed on incorrect assumptions. In many cases, these errors 
+were uncovered only after a great deal of frustration because the original 
+researchers would not share their computer codes with others who were suspicious 
+of their results.
+
+You can never be certain that your model is correct, but the more aggressively 
+you check for errors the more confident you can be that it does not have major problems.
+
+Two very important things you can do to ensure that your research does not suffer 
+a similar fate are:
+
+1. Test your code. Assume your program has errors in it and make the search for 
+those errors a priority in your programming process.
+    Some things you can do in this regard are:
+      * Write your code with tests that will help you find errors.
+      * Work with a partner: after one of you writes code, the other should read 
+        it and check for errors.
+      * Break your program up into small chunks. It is easier to test and find 
+        bugs if you are looking at a short block of code than if you are looking 
+        at hundreds of lines of code.
+      * Independently reimplement submodels and check whether they agree with the 
+        submodel you are using.
+1. Publish your code. If you trust your results and believe they are important 
+   enough to publish in a book or journal, then you should make your code available 
+   (there are many free sites, such as github.com and openabm.org where people can 
+   publish their models and other computer code). 
+    
+      The more that other researchers can read your code, the greater the probability 
+      that they will find any errors, and if you make it easy for others to use your 
+      code, it will help science because other people can build on your work, and it 
+      will help your reputation because when other people use your model or other 
+      code they are likely to cite the publication in which you first announced 
+      it, so your work will get attention.
+    
+      Many scholarly journals demand that you make your code available as a 
+      condition for publishing your paper, and federal funding agencies are 
+      increasingly requiring that any research funded by their grants must make 
+      its code and data available to other researchers and the public.
+
+**The Marriage Model**
+
+The 
+[ODD for the marriage model](/files/models/chapter_06/Marriage_age_model_ODD.pdf) 
+and a 
+[NetLogo model](files/models/chapter_06/Marriage_model_with_errors.nlogo) 
+that implements the ODD, but with many errors, can be downloaded from the class web site: 
+<https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_age_model_ODD.pdf>, 
+and <https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_model_with_errors.nlogo>.
+
+
+**Errata for chapter 6:**
+
+* Section 6.3.7, in the example `test` procesure:
+  The syntax of the `foreach` statement changed, starting with NetLogo 
+  version 6.0. This was because NetLogo introduced a new feature, called 
+  "anonymous procedures," which you can read about in the NetLogo User Manual. 
+  This means that we need to change the code in the book for the `go-back` test 
+  procedure. The new procedure should read:
+  ```
+  ask turtles
+   [
+      set color blue ; Make the return path a different color
+      foreach path   ; See "foreach: executes once for each
+                     ; patch on the list, where next-patch is the
+                     ; patch currently being executed
+      [ next-patch ->
+        set heading towards next-patch
+        fd 1
+      ]
+   ]
+  ```
+
+* Section 6.3.10, Figure 6.4: 
+  The column labels in the very top row of the fiture's spreadsheet are wrong: 
+  what is labeled col. B should be col. A, the column labeled O should be N, etc.. 
+  In the figure caption, reference to col. N should be to the corrected
+  col. M (which is currently labeled N); and references to col. M should be to 
+  the corrected col. N (currently labeled O).
+
+* Section 6.5, p. 91: 
+  Note that the "social network" of young people can potentially include other
+  people below the marriage age of 16. Hence, it is possible for a person less
+  than 16 to be selected as a spouse and married.

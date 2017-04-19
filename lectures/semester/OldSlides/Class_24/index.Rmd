@@ -1,0 +1,147 @@
+---
+title: "Analyzing and Understanding ABMs"
+class_no: 24
+class_date: "Tuesday, Apr. 11"
+qrimage: qrcode.png
+qrbottom: '-90%'
+pageurl: "ees4760.jonathangilligan.org/Slides/Class_24"
+pdfurl: "ees4760.jonathangilligan.org/Slides/Class_24/EES_4760_5760_Class_24_Slides.pdf"
+course      : "EES 4760/5760"
+course_name : "Agent-Based & Individual-Based Computational Modeling"
+author      : "Jonathan Gilligan"
+semester    : Spring
+year        : 2017
+output:
+  revealjs.jg::revealjs_presentation
+---
+```{r utility_functions, cache = F, echo = F, eval = T, message=F, warning=F}
+knitr::opts_chunk$set(cache=TRUE, fig.height=10, fig.width=18, dpi=105,
+                      dev='png',fig.path='assets/fig/',cache.path='./cache/')
+
+find_semester_dir <- function(p = NULL) {
+  if (is.null(p)) p <- getwd()
+  p <- normalizePath(p)
+  if (file.exists(file.path(p,'semester.yml'))) {
+    return(p)
+  } else {
+    d <- dirname(p)
+    if (d == p) return(NA)
+    return(find_semester_dir(d))
+  }
+}
+
+semester.dir <- find_semester_dir()
+data.dir <- file.path(semester.dir, 'data')
+script.dir <- file.path(semester.dir,'util_scripts')
+
+source_semester_script <- function(script) {
+  script_file <- file.path(script.dir, script)
+  message("Running script", script_file)
+  source(script_file, chdir = T)
+}
+
+eval_in_sem_script_dir <- function(expr, loc = script.dir) {
+  this.dir <- getwd()
+  setwd(loc)
+  retval <- eval(expr)
+  setwd(this.dir)
+  invisible(retval)
+}
+
+library(magrittr)
+library(stringr)
+library(tidyverse)
+```
+# Schelling Model {#schelling-sec data-transition="fade-out" data-state="skip_slide"}
+
+## Schelling Model of Housing Segregation {#schelling data-transition="fade-in"}
+
+* Maybe the first Agent-Based Model.  [T.C. Schelling, "Dynamic Models of Segregation", _Journal of Mathematical Sociology_ **1**, 143--186 (1971)](https://www.uzh.ch/cmsssl/suz/dam/jcr:ffffffff-fad3-547b-ffff-ffff9a867c99/09.27-schelling-71.pdf), _Micromotives and Macrobehavior_ (WW Norton, 1978).
+
+* No computers. Schelling worked the model on a checkerboard.
+
+
+<https://ees4760.jonathangilligan.org/models/class_24/segregation.nlogo>{style="text-size:80%;"}
+
+## Model Overview
+
+> * Turtles represent households. 
+>     * Two colors of turtles: red and blue
+>     * Turtles have one state-variable: _happy?_ (true or false)
+> * There is a global variable _%-similar-wanted_ and a turtle is _happy?_ if 
+    at least this fraction of its neighbors have the same color as its own.
+> * At each tick, unhappy turtles move to a random empty patch.
+> * When all turtles are _happy?_, the model stops.
+
+
+# Experiments  {#experiment-sec data-transition="fade-out" data-state="skip_slide"}
+
+## Experiments  {#experiment data-transition="fade-in"}
+
+Vary _%-similar-wanted_ and the _density_ of turtles on the patches.
+
+## Suggestions:
+
+* Try extreme values of parameters:
+    * Set _density_ and _%-similar-wanted_ to different combinations near 
+      maximum, minimum, and in the middle.
+    * What do you see?
+
+## Extreme Values
+
+> * Set _density_ to 75% and set _%-similar-wanted_ to 95%
+> * Press __setup__ and then press __go__
+>     * What happens?
+> * Now, with __go__ still pushed, slowly reduce _%-similar-wanted_.
+>     * Now what happens?
+
+## Systematic experiment:
+
+> * Using Behaviorspace, create a new experiment to vary ___%-similar-wanted___
+>     * Set ___time limit__ to 1000
+>     * Set ___density___ to 75
+>     * Measure ___percent-similar___
+> * What do you see?
+> * Try adjusting both ___%-similar-wanted___ and ___density__
+
+
+## Visualizing Structures
+
+* Add the following to the procedure `to update-turtles`, after `set happy?`
+
+    ```
+    ifelse happy? [ set shape "square" ] [ set shape "square-x" ]
+    ```
+
+* Repeat the exercise of:
+    * set _density_ = 75% and _%-similar-wanted_ = 95%, 
+    * press ___setup__ and ___go___
+    * gradually reduce _%-similar-wanted_
+
+. . .
+
+* Is it easier to see the emerging patterns now?
+
+
+# Heuristics {#heuristic-sec data-transition="fade-out" data-state="skip_slide"}
+
+## Another Heuristic {#heuristics data-transition="fade-in"}
+
+* When you're at an interesting value for one parameter (e.g., _%-similar-wanted_ = 75%),
+  vary other paremters (_density_).
+
+## Other heuristics:
+
+> * Use several _currencies_ to evaluate models
+>     * Statistical analysis of spatial patterns and time-series
+>     * Analyze agent properties: Are they unimodal or multimodal 
+      (e.g., are turtles divided into distinct groups of rich/poor, healthy/sick, etc.,
+      or distributed continuously around one dominant value of state variables?)
+>     * Stability: Does system return quickly to steady state after it's disturbed?
+> * Simplify models: 
+>     * Make all patches the same
+>     * Make all turtles the same
+>     * Reduce places where you use stochasticity
+>     * Use fewer turtles and patches
+> * Explore unrealistic scenarios
+> * See book for heuristics for statistical analysis of model output...

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template -->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Jonathan Gilligan" />
+  <title>Introduction to Agent-Based Modeling</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+  <link rel="stylesheet" href="../../library/reveal.js-3.3.0/css/reveal.min.css"/>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+    div.qrbox {
+     position:fixed; 
+     bottom:-90%;
+     left:10px;
+     text-align:left; 
+     vertical-align:bottom;
+    }
+  </style>
+<!-- theme = solarized_jg -->
+<link rel="stylesheet" href="../../assets/css/theme/solarized_jg.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../library/reveal.js-3.3.0/css/print/pdf.css' : '../../library/reveal.js-3.3.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="../../library/reveal.js-3.3.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class='center' id='title' >
+    <h1 class="title">Introduction to Agent-Based Modeling</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based &amp; Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #1:
+       Tues. January 10
+      2017
+    </h3>
+        <div class="qrbox" id="qrbox">
+      <p style="font-size:30%">
+    <a href="https://ees4760.jonathangilligan.org/Slides/Class_01">
+  	<img src="qrcode.png" alt="https://ees4760.jonathangilligan.org/Slides/Class_01"/>
+  	</a>
+    	<br/>
+    	Live web page: <a href="https://ees4760.jonathangilligan.org/Slides/Class_01">https://ees4760.jonathangilligan.org/Slides/Class_01</a>
+  	
+  	</p>
+  	</div>
+    	<!-- end title slide -->
+</section>
+
+<section><section id="who-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Who Are You?</h1></section><section id="who-are-you" class="slide level2">
+<h2>Who Are You?</h2>
+<ol type="1">
+<li>Who are you? (Name, year, major)</li>
+<li>Computational skills (if any)
+<ul>
+<li>programming, statistical analysis, …</li>
+</ul></li>
+<li>What do you want to get from this class?</li>
+<li>Ask me a question about computational modeling</li>
+<li>Something interesting about yourself</li>
+</ol>
+</section></section>
+<section><section id="started-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Getting Started</h1></section><section id="started" class="slide level2" data-transition="fade-in">
+<h2>Getting Started</h2>
+<p>For Thursday:</p>
+<ul>
+<li>Download and install NetLogo on your computer.
+<ul>
+<li>URL in syllabus and assignment sheet</li>
+</ul></li>
+<li>Set up Box account
+<ul>
+<li>Details in syllabus and assignment sheet</li>
+<li><a href="https://vanderbilt.box.com" class="uri">https://vanderbilt.box.com</a></li>
+<li>Make folder for this class with your last name:
+<ul>
+<li><span color="purple">lastname</span>_EES_4760 or <span color="purple">lastname</span>_EES_5760</li>
+<li>Share it with me and Brandt Gibson as Editors</li>
+<li>Homework goes in subfolders:
+<ul>
+<li>HW_1, HW_2, …</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</section></section>
+<section><section id="abm-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Agent-Based Modeling</h1></section><section id="abm" class="slide level2" data-transition="fade-in">
+<h2>Agent-Based Modeling</h2>
+<ul>
+<li>Simulate individuals:
+<ul>
+<li>Autonomous</li>
+<li>Heterogeneous</li>
+<li>Quasi-local</li>
+<li>Bounded rationality</li>
+</ul></li>
+<li>Simulate environment</li>
+<li>Emphasize simplicity, minimal assumptions</li>
+<li><strong>Emergence:</strong> Large-scale phenomena arise from small-scale individual interactions
+<ul>
+<li>Interesting when large-scale is not easily predicted from small-scale</li>
+</ul></li>
+</ul>
+</section><section id="simple-experiments" class="slide level2">
+<h2>Simple Experiments</h2>
+<ul>
+<li>Play with economics
+<ul>
+<li>Simple agents trade with each other</li>
+<li>Confirm 1<sup>st</sup> welfare theorem:</li>
+</ul>
+<p>Trading leads to Pareto equilibrium</p>
+<ul>
+<li>Find conditions for satisfying theorem:
+<ul>
+<li>Not necessary for traders to be completely rational
+<ul>
+<li>How much rationality do you need?</li>
+</ul></li>
+<li>Equilibration can be slow</li>
+<li>Time-varying preferences can prevent equilibration</li>
+</ul></li>
+</ul></li>
+<li><p>Dynamics of agent-based models connect to nonlinear dynamics and chaos</p></li>
+</ul>
+</section><section id="economics-of-cooperation" class="slide level2">
+<h2>Economics of Cooperation</h2>
+<h3 id="game-theory">Game Theory</h3>
+<ul>
+<li><p>Prisoner’s Dilemma Game:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">A \ B</th>
+<th style="text-align: center;"><strong>B Cooperates</strong></th>
+<th style="text-align: center;"><strong>B Defects</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>A Cooperates</strong></td>
+<td style="text-align: center;">(3,3)</td>
+<td style="text-align: center;">(0,4)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>A Defects</strong></td>
+<td style="text-align: center;">(4,0)</td>
+<td style="text-align: center;">(1,1)</td>
+</tr>
+</tbody>
+</table></li>
+<li>Nash Equilibrium:
+<ul>
+<li>No matter what player A does, player B is better off defecting</li>
+<li>No matter what player B does, player A is better off defecting</li>
+<li><strong>End result:</strong> Both players end up worse off than if they had both cooperated.</li>
+</ul></li>
+</ul>
+</section><section id="iterated-prisoners-dilemma" class="slide level2">
+<h2>Iterated Prisoner’s Dilemma</h2>
+<ul>
+<li class="fragment">R. Axelrod (1981)</li>
+<li class="fragment">Tournament of algorithms</li>
+<li class="fragment">Winner: “tit-for-tat”</li>
+<li class="fragment">Evolutionary Game Theory:
+<ul>
+<li class="fragment">Basic principles of good strategies:
+<ul>
+<li class="fragment">Be nice</li>
+<li class="fragment">Be provocable</li>
+<li class="fragment">Don’t be too envious</li>
+<li class="fragment">Don’t be too clever</li>
+</ul></li>
+</ul></li>
+<li class="fragment">Nay &amp; Gilligan (2015)
+<ul>
+<li class="fragment">Real-world strategies involve randomness, unpredictability</li>
+</ul></li>
+</ul>
+</section></section>
+<section><section id="anasazi-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Artificial Anasazi</h1></section><section id="anasazi-intro" class="slide level2" data-transition="fade-in">
+<h2>Example: Artificial Anasazi</h2>
+<h3 id="axtell-dean-epstein-et-al.">Axtell, Dean, Epstein, <em>et al.</em></h3>
+<p><img src="assets/images/long_house_valley.jpg" alt="Long House Valley" height="800" /></p>
+<p>Long House Valley (flourished ca. 1800 BCE–1300 CE)</p>
+</section><section id="anasazi-modeling-environment" class="slide level2">
+<h2>Modeling Environment</h2>
+<p><img src="assets/images/anasazi_maps.png" alt="Artificial Anasazi Simulations" width="1800" /></p>
+</section><section id="anasazi-paleoclimate" class="slide level2" data-background="assets/images/paleoclimate.png" data-background-size="100% 100%">
+<h2><!--- ---></h2>
+</section><section id="constructing-anasazi-model" class="slide level2">
+<h2>Constructing model</h2>
+<ul>
+<li>Paleoclimate:
+<ul>
+<li>Assess different kinds of soil</li>
+<li>Assess tree rings, pollen, etc.</li>
+<li>Reconstruct drought severity index</li>
+</ul></li>
+<li>Society:
+<ul>
+<li>Archaeology gives #, location of households</li>
+</ul></li>
+<li>Make assumptions about:
+<ul>
+<li># people per household,</li>
+<li>Agriculture,</li>
+<li>…</li>
+</ul></li>
+<li>Devise rules for behavior:
+<ul>
+<li>Marriage, reproduction, migration, …</li>
+</ul></li>
+<li>Simulate years 800–1300</li>
+</ul>
+</section><section id="anasazi-initial-results" class="slide level2">
+<h2>Results</h2>
+<p><img src="assets/images/anasazi_output_1.png" alt="Artificial Ansazi model results" height="900" /></p>
+</section><section id="anasazi-results-comparison" class="slide level2">
+<h2>Comparison</h2>
+<div class="noborder">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Simulated</th>
+<th style="text-align: center;">Historical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="assets/images/anasazi_simulated.png" alt="Artificial Ansazi simulation" width="900" /></td>
+<td style="text-align: center;"><img src="assets/images/anasazi_historical.png" alt="Artificial Ansazi simulation" width="900" /></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><section id="anasazi-improvements" class="slide level2">
+<h2>Improvements</h2>
+<ul>
+<li>Make agents heterogeneous</li>
+<li>Fit parameters to historical data</li>
+</ul>
+</section><section id="anasazi-improved-results" class="slide level2">
+<h2>Results</h2>
+<p><img src="assets/images/anasazi_output_2.png" alt="Artificial Ansazi improved model results" height="900" /></p>
+</section></section>
+    </div>
+  </div>
+  <script src="../../library/reveal.js-3.3.0/lib/js/head.min.js"></script>
+  <script src="../../library/reveal.js-3.3.0/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../../library/reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../../library/reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../library/reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+
+<script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script>
+
+    
+    
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script>
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  <script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+  Reveal.addEventListener('slidechanged', function() {
+    if (Reveal.isFirstSlide()) {
+      qrbox.style.visibility="visible";
+    } else {
+      qrbox.style.visibility="hidden";
+      while (advance_fragment > 0) {
+        console.log('advancing fragment');
+        Reveal.nextFragment();
+        advance_fragment--;
+      }
+    }
+  }, false);
+  
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+  
+  Reveal.addEventListener('advance_fragment', function() {
+    console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+  </body>
+</html>

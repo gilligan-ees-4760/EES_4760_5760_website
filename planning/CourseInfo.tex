@@ -1,0 +1,106 @@
+\newif{\ifisbn}
+\isbnfalse
+
+\newcommand{\shortdept}{EES}
+\newcommand{\longdept}{EES}
+\newcommand{\coursenum}{4760/5760}
+\newcommand{\sectionnum}{}
+\newcommand{\shortcoursetitle}{Agent- and Individual-Based Computational Modeling}
+\newcommand{\longcoursetitle}{\shortcoursetitle}
+\newcommand{\semester}{Spring}
+\newcommand{\yeartaught}{2018}
+
+\newcommand{\Classroom}{SC 2200}
+\newcommand{\ClassMeetings}{Tuesday, Thursday 11:00--12:15, \Classroom}
+
+\newcommand{\ProfName}{Jonathan Gilligan}
+\newcommand{\ShortProfName}{J.\ Gilligan}
+\newcommand{\ProfTitle}{Prof.\ Gilligan}
+\newcommand{\ProfDescr}{Associate Professor of Earth \& Environmental Sciences}
+\newcommand{\ProfOffice}{Office: SC 5735 (Stevenson \#5, 7\textsuperscript{th} floor)}
+\newcommand{\ProfPhone}{Phone: 322-2420}
+\newcommand{\ProfEmail}{\href{mailto:jonathan.gilligan@vanderbilt.edu}%
+{\nolinkurl{jonathan.gilligan@vanderbilt.edu}}}
+
+\newcommand{\ProfOfficeHours}{Office Hours:
+    Mon.\ 10:30--11:30,
+    Thurs.\ 2:40--3:30,
+    or by appointment.
+}
+
+%
+\TAfalse
+\TAmaletrue
+\newcommand{\TaName}{\qqq}
+\newcommand{\TaTitle}{\TaHonorific~\qqq}
+\newcommand{\TaOffice}{\qqq}
+\newcommand{\TaOfficeLoc}{Office: \TaOffice}
+\newcommand{\TaOfficeHours}{Office Hours:
+    \qqq
+}
+\TaPhonefalse
+\ifTaPhone
+\newcommand{\TaPhone}{\qqq}
+\fi
+\newcommand{\TaEmail}{\qqq}
+
+\newcommand{\FinalExamDay}{Thursday}   %TODO: Final Exam Date & Time
+\newcommand{\ShortFinalExamDay}{Thurs.}   %TODO: Final Exam Date & Time
+\newcommand{\FinalExamMonth}{May} %TODO: Final Exam Date & Time
+\newcommand{\ShortFinalExamMonth}{May} %TODO: Final Exam Date & Time
+\newcommand{\FinalExamDate}{3}  %TODO: Final Exam Date & Time
+\newcommand{\FinalExamTime}{3:00--5:00~pm}  %TODO: Final Exam Date & Time
+\newcommand{\FinalExamStartTime}{3:00~pm}
+\newcommand{\FinalExamEndTime}{5:00~pm}
+\newcommand{\FinalExamRoom}{\Classroom\ (our regular classroom)}  %TODO: Final Exam Date & Time
+
+\newif\ifAltFinal
+\AltFinalfalse
+
+\ifAltFinal
+\newcommand{\AltFinalExamDay}{Friday}   %TODO: Alternate Final Exam Date & Time
+\newcommand{\ShortAltFinalExamDay}{Fri.}   %TODO: Alternate Final Exam Date & Time
+\newcommand{\AltFinalExamMonth}{April} %TODO: Alternate Final Exam Date & Time
+\newcommand{\ShortAltFinalExamMonth}{Apr.} %TODO: Final Exam Date & Time
+\newcommand{\AltFinalExamDate}{27}  %TODO: Alternate Final Exam Date & Time
+\newcommand{\AltFinalExamTime}{12:00--2:00~pm}  %TODO: Alternate Final Exam Date & Time
+\newcommand{\AltFinalExamStartTime}{12:00~pm}
+\newcommand{\AltFinalExamEndTime}{2:00~pm}
+\newcommand{\AltFinalExamRoom}{\FinalExamRoom}  %TODO: Alternate Final Exam Date & Time
+\fi
+
+\newcommand{\NetLogo}{{\sffamily\scshape NetLogo}}
+\newcommand{\NetLogoURL}{\url{http://ccl.northwestern.edu/netlogo/}}
+
+\iffalse
+\newcommand{\Epstein}{Growing Artificial Societies}
+\newcommand{\ShortEpstein}{Growing}
+\newcommand{\MedEpstein}{\Epstein}
+\newcommand{\LongEpstein}{Joshua M. Epstein \& Robert Axtell,
+	\emph{Growing Artificial Societies: Social Science from the Bottom Up\/}
+	(Brookings/MIT, 1996\ifisbn ; ISBN 978-0-262-55025-3\fi )%
+	}
+
+\newcommand{\Growing}{\Epstein}
+\newcommand{\ShortGrowing}{\ShortEpstein}
+\newcommand{\MedGrowing}{\MedEpstein}
+\newcommand{\LongGrowing}{\LongEpstein}
+\fi
+
+\newcommand{\Railsback}{Agent-Based and Individual-Based Modeling}
+\newcommand{\ShortRailsback}{Agent-Based Modeling}
+\newcommand{\MedRailsback}{\Railsback}
+\newcommand{\AltShortRailsback}{Railsback \& Grimm}
+\newcommand{\ShorttestRailsback}{AB\&IBM}
+\newcommand{\LongRailsback}{Steven F. Railsback \& Volker Grimm,
+    \emph{Agent-Based and Individual-Based Modeling: A Practical Introduction\/}
+    (Princeton University Press, 2012\ifisbn ; ISBN 978-0-691-13674-5\fi )%
+}
+\newcommand{\RailsbackURL}{\url{http://www.railsback-grimm-abm-book.com/index.html}}
+
+
+\newcommand{\AbmBook}{\Railsback}
+\newcommand{\ShortAbmBook}{\ShortRailsback}
+\newcommand{\MedAbmBook}{\MedRailsback}
+\newcommand{\LongAbmBook}{\LongRailsback}
+

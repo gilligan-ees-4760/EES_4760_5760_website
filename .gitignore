@@ -1,0 +1,17 @@
+*.Rproj
+.Rproj.user/
+.RData
+.DS_Store
+.Rhistory
+*.zip
+*.xlsx
+blogdown
+/docs/
+/public/
+.Rproj.user
+Corel Auto-Preserve/
+*.out
+*.log
+*.aux
+*.synctex.gz
+*-concordance.tex

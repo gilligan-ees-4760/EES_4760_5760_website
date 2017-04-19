@@ -1,0 +1,22 @@
+revealjs.jg::revealjs_presentation:
+    template: "./scaffold/html_template/template-revealjs-jg.html"
+    height: 1024
+    width: 1280
+    header_attributes: true
+    fancy_lists: true
+    definition_lists: true
+    self_contained: false
+    smart: true
+    center: false
+    theme: custom
+    custom_theme: solarized_jg
+    custom_theme_path: "./assets"
+    transition: slide
+    vertical: true
+    lib_dir: "./library"
+    reveal_location: "./library"
+    keep_md: false
+    clean: true
+    reveal_version: "3.3.0"
+    reveal_source: "default"
+    pandoc_args: ["--variable", "sf-math=true"]

@@ -1,0 +1,840 @@
+\documentclass[11pt,twoside]{jgsyllabus}
+\usepackage{booktabs}
+%\usepackage{tabularx}
+\usepackage{multirow}
+
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+\setlength{\aboverulesep}{0.2ex}
+\setlength{\belowrulesep}{0.2ex}
+\setlength{\extrarowheight}{0.1ex}
+\setlength{\heavyrulewidth}{1pt}
+\setlength{\lightrulewidth}{0.05pt}
+
+\newif\ifreading
+\readingtrue
+
+\iffalse
+\include{CourseInfo}
+\fi
+<<r setup, include=F>>=
+library(pacman)
+p_load(knitr)
+p_load(rprojroot)
+p_load(RSQLite)
+p_load(tidyverse, magrittr, lubridate)
+p_load(xtable)
+p_load(assertthat)
+@
+<<r import_schedule, include=F>>=
+chapterpages <- function(chapter, pages, textbook, handout) {
+  result = ''
+  if (handout) {
+    result = paste0(result, '\\ (Handout)')
+  }
+  if (!is.na(chapter)) {
+    result = paste0(result, ', Ch.~', chapter)
+  }
+  if (!is.na(pages)) {
+    result = paste0(result, ifelse(str_detect(pages, '[,- ]'), ', pp.~', ', p.~'))
+  }
+  result
+}
+
+format_reading_item <- function(df) {
+  df %>% rowwise() %>%
+    mutate(reading = str_c(
+      ifelse(rd_break_before, '\\\\',''),
+      short_latex_title,
+      chapterpages(chapter, pages, textbook, handout)
+    )) %>%
+    ungroup()
+}
+
+
+# calendar <- read_excel('../../Syllabus/Class Schedule.xlsx', 1)
+db_file <- find_rstudio_root_file('planning/EES_4760_5760.sqlite3')
+semester_db <- src_sqlite(db_file)
+
+text_codes <- semester_db %>% tbl("text_codes") %>% collect() %>%
+  mutate(latex_value = ifelse(is.na(latex_value), code_value, latex_value)) %>%
+  { set_names(.$latex_value, .$code_name) }
+
+calendar <- semester_db %>% tbl('calendar') %>%
+  left_join(tbl(semester_db, 'events'), by = 'event_id') %>%
+  collect() %>%
+  mutate(date = ymd(date),
+         latex_topic = ifelse(is.na(latex_topic), topic, latex_topic),
+         latex_event_descr = ifelse(is.na(latex_event_descr), event_descr, latex_event_descr))
+
+reading <- tbl(semester_db, 'reading_assignments') %>%
+  left_join(tbl(semester_db, 'reading_items'), by = 'reading_group') %>%
+  left_join(tbl(semester_db, 'reading_sources'), by = 'source_id') %>%
+  collect() %>%
+  arrange(reading_group, rd_item_id) %>%
+  mutate(textbook = ifelse(is.na(textbook), FALSE, as.logical(textbook)),
+         handout = ifelse(is.na(handout), FALSE, as.logical(handout)),
+         rd_break_before = ifelse(is.na(textbook), FALSE, as.logical(rd_break_before))) %>%
+  mutate(latex_title = ifelse(is.na(latex_title), markdown_title, latex_title),
+         short_latex_title = ifelse(is.na(short_latex_title), short_markdown_title, short_latex_title)) %>%
+  format_reading_item() %>%
+  select(reading_id, reading_group, reading) %>%
+  group_by(reading_id, reading_group) %>%
+  summarize(reading = str_c(reading, collapse = '; ')) %>%
+  ungroup() %>%
+  select(-reading_group)
+
+calendar <- calendar %>% collect() %>% left_join(reading, by = 'reading_id') %>%
+  arrange(class) %>%
+  select(class, date, topic = latex_topic, reading, event, event_descr = latex_event_descr)
+
+midterm <- calendar %>% filter(event %in% c('MIDTERM_TEST', 'MIDTERM_EXAM')) %>% select(class, date, topic, event)
+spring_break <- calendar %>% filter(event == 'SPRING_BREAK') %>% select(class, date, topic, event)
+final_exam <- calendar %>% filter(event == 'FINAL_EXAM') %>% select(class, date, topic, event)
+alt_final_exam <- calendar %>% filter(event == 'ALT_FINAL_EXAM') %>% select(class, date, topic, event)
+
+select_class <- function(calendar, class_no) {
+  class <- calendar %>% filter(class == class_no) %>% select(class, date, topic, reading) %>%
+    mutate(weekday = wday(date, label = TRUE), long.weekday = wday(date, label = TRUE, abbr = FALSE),
+           month = month(date, label = TRUE), long.month = month(date, label = TRUE, abbr = FALSE),
+           day = day(date))
+  as.list(class)
+}
+
+this_sheet <- 1
+this_sheet_revision <- NA
+first_class <- 1
+last_class <- NA
+
+if(is.na(first_class)) first_class <- min(calendar$class, na.rm = T)
+if (is.na(last_class)) last_class <- max(calendar$class, na.rm = T)
+
+first_date <- calendar %>% filter(class == first_class) %>% select(date) %>% unlist() %>% as_date()
+last_date <- calendar %>% filter(class == last_class) %>% select(date) %>% unlist() %>% as_date()
+
+year_taught <- year(first_date)
+
+format_sheet_number <- function() {
+  ifelse(is.null(this_sheet_revision), this_sheet,
+         paste0(this_sheet, " (", this_sheet_revision, ")"))
+}
+
+format_month <- function(d, abbr = TRUE) {
+  m <- month(d, label = TRUE, abbr = abbr)
+  if (abbr) m <- paste0(m, '.')
+  m
+}
+
+format_wday <- function(d, abbr = TRUE) {
+  wd <- wday(d, label = TRUE, abbr = abbr)
+  if (abbr) wd <- paste0(wd, '.')
+  wd
+}
+
+format_class_date <- function(d, abbr = TRUE) {
+  paste0(format_month(d, abbr = abbr), "~", day(d))
+}
+
+format_class_day_date <- function(d, abbr_month = TRUE, abbr_wday = TRUE) {
+  paste0(format_wday(d, abbr_wday), ", ",
+         format_month(d, abbr_month), "~", day(d))
+}
+
+format_date_range_by_class_no <- function(calendar, classes, abbr = TRUE) {
+  dates <- calendar %>% filter(class %in% na.omit(classes)) %>%
+    summarize(start = min(date, na.rm = T), stop = max(date, na.rm = T))
+  with(dates, {
+    output <- format_class_date(start, abbr)
+    if(start != stop) {
+      output <- paste0(str_trim(output), '--',
+             ifelse(month(stop) == month(start), day(stop),
+                    format_class_date(stop, abbr)))
+    }
+  output
+  })
+}
+
+format_date_range_by_topic_id <- function(calendar, topics, abbr = TRUE) {
+  dates <- calendar %>% filter(topic_id %in% topics) %>%
+    summarize(start = min(date, na.rm = T), stop = max(date, na.rm = T))
+  with(dates, {
+    output <- format_class_date(start, abbr)
+    if(start != stop) {
+      output <- paste0(str_trim(output), '--',
+             ifelse(month(stop) == month(start), day(stop),
+                    format_class_date(stop, abbr)))
+    }
+  })
+  output
+}
+
+format_date_range_by_event_id <- function(calendar, event_ids, abbr = TRUE) {
+  dates <- calendar %>% filter(event %in% event_ids) %>%
+    select(date) %>% summarize(start = min(date, na.rm = T), stop = max(date, na.rm = T))
+  with(dates, {
+    output <- format_class_date(start, abbr)
+    if(start != stop) {
+      output <- paste0(str_trim(output), '--',
+             ifelse(month(stop) == month(start), day(stop),
+                    format_class_date(stop, abbr)))
+    }
+  output
+  })
+}
+
+format_day_date_range_by_event_id <- function(calendar, event_ids, abbr_month = TRUE, abbr_wday = TRUE) {
+  dates <- calendar %>% filter(event %in% event_ids) %>%
+    select(date) %>% summarize(start = min(date, na.rm = T), stop = max(date, na.rm = T))
+  with(dates, {
+    output <- format_class_day_date(start, abbr_month, abbr_wday)
+    if (start != stop) {
+      output <- paste0(output, '--',
+                       format_class_day_date(stop, abbr_wday))
+    }
+  output})
+}
+
+
+append_newline_if_needed <- function(txt) {
+  txt <- str_trim(txt)
+  txt[str_detect(txt, '[^\n]$')] <- str_c(txt, '\n')
+  txt
+}
+
+expand_codes <- function(text, delim = c("<%", "%>")) {
+  invoke(knit_expand, .x = text_codes, text = text, delim = delim)
+}
+
+expand_code <- function(text) {
+  str_c("<%", text, "%>") %>% expand_codes()
+}
+
+make_section <- function(cal_entry) {
+  d <- cal_entry$date
+  paste0('\\section[',
+         format_class_date(d, abbr = TRUE),
+         ']{',
+         format_class_day_date(d, TRUE, TRUE),
+         ': ',
+         cal_entry$topic,
+         '}\n')
+}
+
+make_reading_assignment <- function(reading_entry) {
+  output <- '\\subsection{Reading}'
+  if (is.na(reading_entry$reading)) {
+    output <- paste(str_trim(output),
+                   'No new reading for today.',
+                   '', sep = '\n')
+  } else {
+    output <- paste(str_trim(output),
+                   '\\begin{itemize}',
+                   str_trim(reading_entry$reading),
+                   '\\end{itemize}',
+                   '', sep = '\n')
+  }
+    if (! is.na(reading_entry$extra_reading)) {
+    output <- paste(str_trim(output),
+                    '\\subsection{Optional Extra Reading}',
+                    '\\begin{itemize}',
+                    append_newline_if_needed(reading_entry$extra_reading),
+                    '\\end{itemize}',
+                    '', sep = '\n'
+    )
+  }
+  if (! is.na(reading_entry$reading_notes)) {
+    output <- with(reading_entry,
+                   paste(str_trim(output), '',
+                    ifelse(is.na(reading) & is.na(extra_reading),
+                           '\\subsection{Notes}',
+                           '\\subsection{Reading Notes}'),
+                    str_trim(reading_notes),
+                    '', sep = '\n'))
+  }
+  output
+}
+
+make_homework_assignment <- function(homework_entries) {
+  grad_hw <- homework_entries %>% filter(graduate_only & ! is.na(homework))
+  ugrad_hw <- homework_entries %>% filter(undergraduate_only & ! is.na(homework))
+  everyone_hw <- homework_entries %>% filter(!graduate_only & ! undergraduate_only & ! is.na(homework))
+  grad_notes <- homework_entries %>% filter(graduate_only & ! is.na(homework_notes))
+  ugrad_notes <- homework_entries %>% filter(undergraduate_only & ! is.na(homework_notes))
+  everyone_notes <- homework_entries %>% filter(!graduate_only & ! undergraduate_only & ! is.na(homework_notes))
+  output <- paste('\\subsection{Homework}',
+         'A the beginning of class today, turn in the following homework:',
+         '\\begin{itemize}',
+         '', sep = '\n')
+    if (nrow(ugrad_hw) > 0) {
+      output <- paste(str_trim(output),
+                       str_c('\\item \\textbf{Undergraduate Students:} ',
+                             str_trim(ugrad_hw$homework)),
+                      '', sep = '\n')
+    }
+    if (nrow(grad_hw) > 0) {
+      output <- paste(str_trim(output),
+                       str_c('\\item \\textbf{Graduate Students:} ',
+                             str_trim(grad_hw$homework)),
+                      '', sep = '\n')
+    }
+    if (nrow(everyone_hw) > 0) {
+      output <- paste0(str_trim(output),
+                       str_c('\\item \\textbf{Everyone:} ',
+                             str_trim(everyone_hw$homework)),
+                       '', sep = '\n')
+    }
+    output <- paste(str_trim(output),
+                    '\\end{itemize}',
+                    '', sep = '\n')
+
+    if (nrow(grad_notes) > 0 || nrow(ugrad_notes) > 0 || nrow(everyone_notes) > 0) {
+      output <- paste(str_trim(output),
+                      '\\subsection{Notes on Homework}\n',
+                      '', sep = '\n')
+      if (nrow(everyone_notes) > 0) {
+        output <- paste(str_trim(output),
+                        str_trim(everyone_notes$homework_notes),
+                        '', sep = '\n')
+      }
+      if (nrow(grad_notes) > 0 || nrow(ugrad_notes) > 0) {
+        output <- paste(str_trim(output),
+                        '\\begin{itemize}',
+                        '', sep = '\n')
+        if (nrow(ugrad_notes) > 0) {
+          output <- paste(str_trim(output),
+                          str_c('\\item \\textbf{Undergraduate Students:} ',
+                                str_trim(ugrad_notes$homework_notes)),
+                          '', sep = '\n')
+        }
+        if (nrow(grad_notes) > 0) {
+          output <- paste(str_trim(output),
+                          str_c('\\item \\textbf{Graduate Students:} ',
+                                str_trim(grad_notes$homework_notes)),
+                          '', sep = '\n')
+        }
+
+        output <- paste(str_trim(output),
+                        '\\end{itemize}',
+                        '', sep = '\n')
+      }
+    }
+    output
+}
+
+make_hw_section <- function(cal_entry) {
+  d <- cal_entry$date
+  homework <- homework_assignments %>% filter(homework_id == cal_entry$homework_id)
+  homework_topic <- homework$short_homework %>% str_trim() %>% str_c(collapse = "\n")
+  str_c('\\section[',
+         format_class_date(d, abbr = TRUE),
+         ']{',
+         format_class_day_date(d, TRUE, TRUE),
+         ': ',
+         str_c('Homework \\#', cal_entry$homework_num, ': ', homework_topic),
+         '}\n')
+}
+
+make_short_hw_assignment <- function(cal_entry) {
+  d <- cal_entry$date
+  homework <- homework_assignments %>% filter(homework_id == cal_entry$homework_id)
+  homework_topic <- homework$short_homework %>% str_trim() %>% str_c(collapse = "\n")
+  str_c( "\\subsection{Homework}",
+         str_c( "Homework \\#", cal_entry$homework_num, ": ", homework_topic,
+                " is due today.  See the homework assignment sheet for details."),
+         '', sep = '\n' )
+}
+
+
+make_notice <- function(notice_entries) {
+  if (length(notice_entries) > 1) {
+    output <- paste('\\subsection{Notices:}',
+                    '\\begin{itemize}',
+                    paste('\\item', notice_entries$notice,
+                          sep = ' ', collapse = '\n'),
+                    '\\end{itemize}',
+                    '', sep = '\n')
+  } else {
+    output <- paste('\\subsection{Notice:}',
+                    notice_entries$notice,
+                    '', sep = '\n')
+  }
+  output
+}
+
+format_assignment_entry <- function(class_no) {
+  cal_entry <- calendar %>% filter(class == class_no)
+  hw_entry <- homework_assignments %>% filter(class == class_no)
+
+  output <- make_hw_section(cal_entry)
+  if (cal_entry$has_homework) {
+    output <- paste(str_trim(output),
+                    make_homework_assignment(hw_entry),
+                    '', sep = '\n')
+  }
+  knit_expand(text = output, this_class_no = class_no,
+              this_class_date = cal_entry$date,
+              calendar = calendar,
+              delim = c('<%','%>'))
+}
+
+
+format_class_entry <- function(class_no) {
+  cal_entry <- calendar %>% filter(class == class_no)
+  hw_entry <- homework_assignments %>% filter(class == class_no)
+  reading_entry <- reading_assignments %>% filter(class == class_no)
+  notice_entry <- notices %>% filter(class == class_no)
+
+  output <- make_section(cal_entry)
+  if (cal_entry$has_notice) {
+    output <- paste(str_trim(output),
+                    make_notice(notice_entry),
+                    '', sep = '\n')
+  }
+  if (cal_entry$has_homework) {
+    if(FALSE) {
+      output <- paste(str_trim(output),
+                      make_homework_assignment(hw_entry),
+                      '', sep = '\n')
+    } else {
+      output <- paste(str_trim(output),
+                      make_short_hw_assignment(cal_entry),
+                      '', sep = '\n')
+    }
+  }
+  if (cal_entry$has_reading) {
+    output <-paste(str_trim(output),
+                   make_reading_assignment(reading_entry),
+                   '', sep = '\n')
+  } else {
+    # output <- paste0(str_trim(output),
+    #                  '\\subsection{Reading}',
+    #                  'No new reading for today.',
+    #                  '', sep = '\n')
+  }
+  knit_expand(text = output, this_class_no = class_no,
+              this_class_date = cal_entry$date,
+              calendar = calendar,
+              delim = c('<%','%>'))
+}
+
+@
+
+\SetupHandout
+\isbntrue
+
+\renewcommand{\LongCourseName}{\ShortCourseName}%
+
+\title{Syllabus\\
+\ShortCourseNumber: \LongCourseName}
+
+\fancyhead[L]{\bfseries\scshape \ShortCourseNumber\ Syllabus}
+
+%
+%
+%
+%
+%
+%
+\begin{document}
+\maketitle
+
+\iffalse
+\noindent
+\textbf{\large \textsc{Note:} This is a draft syllabus, subject to change.}
+
+\fi
+\section[Nuts \& Bolts]{Nuts and Bolts}
+\label{sec:NutsAndBolts}
+\subsection{Class Meetings}
+\ClassMeetings
+\subsection{Professor}
+\label{sec:Professor}
+\ProfName\\
+\ProfDescr\\
+\ProfOffice, \ProfPhone\\
+\ProfEmail\\
+\ProfOfficeHours
+%
+%To book time during my office hours, send me an email
+%or make an appointment on line via Google calendar at
+%\url{http://bit.ly/o9ka5e}
+\ifTA
+\subsection{Teaching Assistant}
+\label{sec:TA}
+\TaName\\
+\TaOfficeLoc\ifTaPhone , \TaPhone\fi\\
+\TaEmail\\
+\TaOfficeHours
+\medskip
+
+\noindent
+\TaTitle\ will be grading homework, so address questions about your homework grades
+to \TaAccusative.
+\fi
+
+\subsection{Email}
+\textbf{%
+If you want to communicate with
+\ifTA
+Professor Gilligan or \TaTitle,
+\else
+me,
+\fi
+be sure to begin the
+subject line of your email with ``{\scshape EES 4670}'' or ``{\scshape EES 5670}''.
+}%
+This helps assure
+that \ifTA we\else I\fi\ will see your message quickly and respond to it.
+
+I have set my email reader to flag all messages like this as important, so I
+will read them first. This also assures that I do not mistake your email for
+spam. I typically receive over 100 emails per day, so if you do not follow these
+instructions I may not notice your email.
+
+\medskip
+%\clearpage
+\section[Description]{Course Description}
+\subsection{Catalog Description}
+\textbf{\ShortCourseName.} Applications in natural, social, and behavioral
+sciences and engineering. Designing, programming, and documenting models.
+Using models for experiments. Examples from environmental science, ecology,
+economics, urban planning, and medicine. Familiarity with basic statistics and
+proficiency in algebra are expected.
+[3] (MNS)
+
+\subsection{Narrative Description}
+Agent-based and individual-based modeling has become a powerful tool for
+research in many fields, including anthropology, civil engineering,
+computer science, ecology, economics, epidemiology, marketing, medicine,
+political science, public policy, robotics, sociology, transportation, and
+urban planning.
+
+Agent-based modeling is used to study how individual agents (which can represent
+people, animals, plants, cars, robots, or packets of information in a
+communications network) making simple decisions can produce complex and
+unexpected collective behavior through their interactions. Agent-based models
+have been used to investigate racial segregation in American cities, traffic
+jams, adaptation to global warming, disease outbreaks, inflammatory response to
+wound infections, ecosystem dynamics, impacts of changing land-use on tropical
+rain forests, political instability, and market penetration of home solar-energy
+systems.
+
+This course will provide an introduction to agent and individual-based modeling.
+You will learn how to design, program, and document agent-based computational
+models using the free open-source \NetLogo\ environment. You will use these
+models scientifically to perform computational experiments and interpret the
+results.
+
+You do not need to have any prior knowledge of computer programming, but I do
+expect that you are familiar with basic statistics and algebra.
+We will use the \NetLogo\ environment for writing and running agent-based models.
+\NetLogo\ is a widely used system that is both powerful and easy to learn, so
+you can quickly start to program your own models.
+
+\iffalse
+\section[Goals]{Goals for the Course}
+My goals for this course are that at the end of the semester:
+\begin{itemize}
+    \item
+\end{itemize}
+\fi
+%
+%
+%
+%\clearpage
+\section[Structure]{Structure of the Course:}
+I divide the semester into three parts:
+\begin{enumerate}
+    \item \textbf{Introduction to Agent-Based Models and \NetLogo:} The first
+    part of the course introduces the basic concepts of computer modeling, what
+    agent-based models are, and how to use the \NetLogo\ environment to write
+    and run simple agent based models. I do not assume any prior experience with
+    programming or computer modeling, so this part of the course will give you
+    everything you need to get started.
+    \item \textbf{Designing Agent-Based Models:} Next, we study the essential
+    components of agent-based models and develop a systematic approach to
+    designing and implementing agent-based models that will be suitable for
+    doing real science. This section will use examples of real agent-based
+    models that have been used for published research.
+    \item \textbf{Using Models for Serious Research:} After mastering the
+    components that good models should have, we step back from the details and
+    work at a more strategic level to consider how we can design  and use models
+    to answer research questions in social and natural sciences.
+%    In this section, you will work on projects to design and program your own
+%    model, use it for computational experiments, and analyze and interpret the
+%    results.
+\end{enumerate}
+%
+%
+%
+\pagebreak
+\subsection{Reading Material}
+There is one required textbook.
+From time to time during the term, I will assign supplementary reading on the
+Internet or in handouts that I will post to the class web site.
+
+\subsubsection{Textbooks}
+\begin{itemize}
+	%
+	\item \LongRailsback.
+	% \item \LongGrowing
+\end{itemize}
+
+There is a companion web site to \emph{\Railsback}, \RailsbackURL, that has
+additional useful information.
+
+All textbooks have errors. The authors maintain a list of errors that have been
+reported to them and you can download it from the book's web site at
+\RailsbackURL\ or from the course web site at
+\url{https://ees4760.jgilligan.org/files/Railsback_Grimm_2012_Errata.pdf}.
+
+You can download the \NetLogo\ program from \NetLogoURL. It runs on Windows,
+Mac, and Linux systems.
+
+\subsubsection{Additional Resources}
+This course only scratches the surface of what is possible with agent-based
+models, and what researchers are doing with them.
+I have prepared a separate handout on additional reading and computational
+resources for doing research with agent-based models.
+This handout lists a number of helpful books, journals, web sites, and software
+tools that you may find useful or interesting if your want to learn more.
+
+\subsubsection{Class Web Site}
+In addition to Brightspace,
+I have set up a server at \url{https://ees4760.jgilligan.org}, where I post the
+web versions of class slides and interactive web-based applications to that can
+be useful for working with data output from agent-based modeling experiments.
+
+\subsubsection{Overview of reading assignments}
+I will give out detailed reading that give specific pages to read for each class
+and notes on important things you should understand.
+\textbf{I expect you to complete the reading before you come to class on the day
+for which the reading is assigned}, so you can participate in discussions of the
+assigned material and ask questions if there are things you don't understand.
+
+\subsection{Computer Software}
+For this class, we will write and execute agent-based models using the \NetLogo\
+modeling system. NetLogo is free software developed at Northwestern University.
+You can download it from \url{https://ccl.northwestern.edu/netlogo/}.
+\NetLogo\ is available for Windows, Mac OS X, and Linux.
+I have chosen it for this course because it is free, it runs on all the major
+operating systems, its programming language is very easy to learn; and it allows
+you to easily create a visual representation of your model.
+
+You should download \NetLogo\ version 6.0.2 from
+\url{http://ccl.northwestern.edu/netlogo/download.shtml}
+and install it on your computer.
+
+\NetLogo\ has been used widely both for education and also for research-grade
+modeling. However, no computer software is perfect and for some large or
+complicated models, NetLogo may be inadequate.
+There are a number of other
+open-source agent-based modeling systems that are more powerful than \NetLogo\
+and are better suited for large and complex models. However, these systems are
+much harder to learn and much harder for even experts to write models in.
+My experience is that for most modeling projects, you can get more done in a
+week with \NetLogo\ than in a month or more with the other systems I know of.
+
+%\clearpage
+\subsection{Graded Work}
+%
+%
+%
+\subsubsection[Grading]{Basis for Grading}
+\begin{center}
+	\begin{tabular}[t]{crr}
+		Class participation & 5\% &\\
+		Homework & 25\% &\\
+		Assigned Projects & 30\% &\\
+		Research Project & 40\% &
+%    Feedback to Other Students & 5\%
+	\end{tabular}
+\end{center}
+
+\textbf{\scshape Note:} Graduate student research projects will involve
+additional requirements and a longer final report than undergraduate projects,
+and graduate students will be assigned more homework exercises.
+
+\subsubsection{Homework}
+You will set up a Box folder for this course at \url{https://vanderbilt.box.com}
+and share it with me.
+Homework must be turned in electronically via the Box folder
+before class on the day it is due.
+%
+\subsubsection{Projects}
+You will do assigned team projects and one research project.
+On the team projects you will work with a partner or a small team to program
+and work with models.
+% You will do two assigned modeling projects and one research project.
+% Each modeling project will entail writing an ODD document for the model,
+% programming a model following the ODD specification you have written,
+run experiments with the model, write up the results, and make a short
+presentation to the class.
+
+For your research project, you will study an existing model, adapt it to
+investigate a new research question, run and analyze experiments using the
+model, write up the results, and make a presentation to the class.
+%, but you will be paired with other students with whom you will exchange
+% feedback as you develop your project.
+
+\subsubsection{Tests and Examinations}
+There will not be any tests or examinations in this course. Your grade will be
+based on class participation, homework, modeling projects, and in-class
+presentations.
+
+%
+% You may take either the regular or the alternate final exam (but not both).
+% You must tell me in advance which exam you will take. I will pass a sign-up
+% sheet in class during the last week of classes to sign up for which exam you
+% will take. If you do not choose on the sign-up sheet, you must take the
+% regular exam on \FinalExamDay, \FinalExamMonth.~\FinalExamDate.
+% \else
+% There will not be an alternate final exam.
+% \fi
+%
+% The final exam will be cumulative over all the material covered during the term.
+
+%\clearpage
+\section{Honor Code:}
+This course, like all courses at Vanderbilt, is conducted under the Honor Code.
+\begin{description}
+\item[Studying:] As you study for this class, I encourage you to to seek help from me%
+\ifTA
+, from \TaTitle,
+\else
+\
+\fi
+or from other classmates or friends.
+
+\item[Homework Assignments:] I encourage working together
+on homework assignments: you may talk with your friends and classmates about
+homework assignments, compare notes on how you are working a problem, and you
+may look at your classmates' work on homework assignments.
+But you must work through the problems yourself
+in the work you turn in:
+\textbf{Even if you have discussed the solution with others you must work
+through the steps yourself and express the answers in your own words. You may
+not simply copy someone else's answer.}
+
+\item[Team Assignments:] On some assignments, in which I explicitly direct you
+to work with others.
+These team assignments will contain instructions how the honor code applies.
+
+\item[Research Project:] The research project assignment will contain details
+about how the honor code applies to the research project.
+\end{description}
+
+If you ever
+have questions about how the Honor Code applies to your work
+in this course, please ask me.
+\textbf{Uncertainty about the Honor Code does not excuse a violation.}
+\section{Final Note:}
+I have made every effort to plan a busy, exciting, and instructive semester.
+I may find during the term that I need to revise the syllabus to give more time
+to some subjects or to pass more quickly over others rather than covering them
+in depth.
+Thus, while I will attempt to follow this syllabus as closely as I can,
+you should realize that it is subject to change during the semester.
+%
+%
+\iftrue
+% \pagebreak
+\include*{MeetYourProf}
+\fi
+%
+%
+%
+%
+%
+%
+%
+%\end{document}
+
+%\cleardoublepage
+\clearpage
+\appendix
+\setcounter{secnumdepth}{0}
+\newcommand{\maybehline}{\hline}%
+\setlength\extrarowheight{4pt}
+\section[Class Schedule]{Schedule of Classes
+\ifrevised
+	(Revised \RevisionDate)%
+\else
+	(Subject to Change)%
+\fi}
+
+\textbf{\scshape Important Note:} This schedule gives a rough indication of the
+reading for each day. See the assignment sheets posted on Brightspace
+and the course web site for the detailed daily assignments.
+
+\setlength{\aboverulesep}{0.2ex}
+\setlength{\belowrulesep}{0.2ex}
+\setlength{\extrarowheight}{0.1ex}
+\setlength{\heavyrulewidth}{0.5pt}
+\setlength{\lightrulewidth}{0.05pt}
+\begin{center}
+<<r class_schedule, echo=F, results='asis'>>=
+one_line_events <- c('FALL_BREAK','MIDTERM_TEST','MIDTERM_EXAM')
+
+finals <- bind_rows(final_exam, alt_final_exam) %>% arrange(date)
+which_final <- tail(finals, 1)$event
+delete_final <- head(finals,-1)$event
+schedule <- calendar %>%
+  arrange(date) %>%
+  mutate(wday = paste0(wday(date, label = T, abbr=T), '.,'), month = paste0(month(date, label = T, abbr=T), '.'),
+         day = day(date), short_reading = str_trim(reading), event = ifelse(is.na(event), '', event), foo = NA) %>%
+  select(wday, month, day, topic, short_reading = short_reading, event, foo)
+
+events <- schedule$event
+
+spring_break_rows <- which(events == 'SPRING_BREAK')
+special_rows <- which(events %in% one_line_events)
+
+if(FALSE) {
+  schedule_1 <- schedule[1:max(spring_break_rows),]
+} else {
+  schedule_1 <- schedule
+}
+
+schedule_1[special_rows,] <- schedule_1[special_rows,] %>%
+  mutate(topic = paste0('\\multicolumn{2}{l}{\\bfseries\\scshape\\large ', topic, '} & \\\\%'))
+schedule_1$topic[spring_break_rows] <- ''
+schedule_1$topic[min(spring_break_rows)] <- paste0('\\multicolumn{2}{l}{\\multirow{', length(spring_break_rows), '}{*}{\\bfseries\\scshape\\Large Spring Break}} & \\\\%')
+final_exam_row <- which(schedule_1$event == which_final)
+schedule_1$topic[final_exam_row] <- '\\multicolumn{2}{l}{\\bfseries\\scshape\\large Take-Home Final Exam Due} & \\\\%'
+schedule_1 <- schedule_1 %>% filter(! event %in% delete_final) %>% select(-event)
+
+ latex_schedule_1 <- schedule_1 %>% xtable(align = c("","l@{~}","c@{~}","r",">{\\raggedright}m{2.6in}",">{\\centering}m{2in}", "c")) %>%
+  print(print.results = FALSE, type = "latex",
+        booktabs = TRUE, floating = FALSE, latex.environment='center',
+        sanitize.text.function = identity,
+        include.colnames = F, include.rownames = F,
+        hline.after = discard(seq(-1,nrow(schedule_1)), ~.x %in% head(spring_break_rows,-1)),
+        add.to.row = list(pos = list(0),
+                          command = '\\multicolumn{3}{c}{\\bfseries Date} & \\multicolumn{1}{c}{\\bfseries Topic} &\\multicolumn{1}{c}{\\bfseries Reading} &\\\\\n')) %>% expand_codes()
+ cat(latex_schedule_1)
+@
+\end{center}
+%
+\iffalse
+\begin{center}
+<<r class_schedule_2, eval=F, echo=F, results='asis'>>=
+schedule_2 <- schedule[-(1:max(spring_break_rows)),]
+final_exam_row <- which(schedule_2$event == which_final)
+schedule_2$topic[final_exam_row] <- '\\multicolumn{2}{l}{\\bfseries\\scshape\\large Take-Home Final Exam Due} & \\\\%'
+schedule_2 <- schedule_2 %>% filter(! event %in% delete_final) %>% select(-event)
+
+schedule_2 %>% xtable(align = c("","l@{~}","c@{~}","r",">{\\raggedright}m{2.6in}",">{\\centering}m{2in}", "c")) %>%
+  print(print.results = FALSE, booktabs = TRUE, floating = FALSE,  latex.environment="center",
+        sanitize.text.function = identity, include.colnames = F, include.rownames = F,
+        hline.after = seq(-1,nrow(schedule_2)),
+        add.to.row = list(pos = list(0),
+                          command = '\\multicolumn{3}{c}{\\bfseries Date} & \\multicolumn{1}{c}{\\bfseries Topic} &\\multicolumn{1}{c}{\\bfseries Reading} &\\\\\n')) %>% expand_codes()
+
+@
+\end{center}
+\fi
+%
+\end{document}

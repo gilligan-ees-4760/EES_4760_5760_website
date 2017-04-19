@@ -1,0 +1,49 @@
+\usepackage{jglucida}
+\usepackage[margin=1in]{geometry} % set margins to 1 inch
+\usepackage{titling}%
+
+\let\newparagraph\paragraph
+\let\paragraph\oldparagraph
+\let\newsubparagraph\subparagraph
+\let\subparagraph\oldsubparagraph
+
+\usepackage{titlesec}%
+
+\let\paragraph\newparagraph
+\let\subparagraph\newsubparagraph
+
+\usepackage{fancyhdr}%
+\usepackage{lastpage}%
+\usepackage{qqq}
+\usepackage{siunitx}
+\usepackage{url}
+
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+%
+%
+\setlength{\droptitle}{-1in}
+
+\pretitle{\begin{center}\Large\bfseries}
+\posttitle{\par\end{center}\vskip 0.2em}
+\preauthor{\begin{center}%
+             \large\sffamily
+             \begin{tabular}[t]{c}}
+\postauthor{\end{tabular}\par\end{center}}
+\predate{\begin{center}\large\sffamily}
+\postdate{\par\end{center}}
+
+\titleformat*{\section}{\large\sffamily\bfseries}
+\titleformat*{\subsection}{\sffamily\bfseries}
+\titleformat*{\subsubsection}{\bfseries\scshape}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\lhead{}
+\rhead{}
+\chead{\scshape ees 4760/5760 Assignments}
+\lfoot{}
+\rfoot{}
+\cfoot{--\thepage\ of \pageref{LastPage}--}

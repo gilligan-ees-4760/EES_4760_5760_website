@@ -1,0 +1,26 @@
+---
+title: Interaction
+class_date: '2018-02-22'
+class_number: 14
+weight: 14
+slug: reading_14
+pubdate: '2018-01-01'
+date: '2018-02-22'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Reading:
+
+* Railsback & Grimm, Ch. 13.
+
+### Reading Notes:
+
+**Errata for Chapter 13:**
+
+* Section 13.6, p. 180:
+  Starting with version 5.0 of NetLogo, the Programming Guide no longer says 
+  that putting items on a list using `fput` is better (faster) than putting them 
+  on the end of the list using `lput`. 
+  NetLogo's lists were reprogrammed to eliminate this difference and improve the 
+  speed of adding and accessing list items.

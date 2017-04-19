@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template -->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Jonathan Gilligan" />
+  <title>Testing and Validating Models</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+  <link rel="stylesheet" href="../../library/reveal.js-3.3.0/css/reveal.min.css"/>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+    div.qrbox {
+     position:fixed;
+     bottom:-90%;
+     left:10px;
+     text-align:left;
+     vertical-align:bottom;
+    }
+  </style>
+<!-- theme = solarized_jg -->
+<link rel="stylesheet" href="../../assets/css/theme/solarized_jg.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../library/reveal.js-3.3.0/css/print/pdf.css' : '../../library/reveal.js-3.3.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="../../library/reveal.js-3.3.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class='center' id='title' >
+    <h1 class="title">Testing and Validating Models</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based &amp; Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #7:
+       Tues. January 31
+      2017
+    </h3>
+        <div class="qrbox" id="qrbox">
+      <p style="font-size:30%">
+    <a href="https://ees4760.jonathangilligan.org/Slides/Class_07">
+  	<img src="qrcode.png" alt="https://ees4760.jonathangilligan.org/Slides/Class_07"/>
+  	</a>
+    	<br/>
+    	Live web page: <a href="https://ees4760.jonathangilligan.org/Slides/Class_07">https://ees4760.jonathangilligan.org/Slides/Class_07</a>
+        	<br/>
+    	PDF slides: <a href="https://ees4760.jonathangilligan.org/Slides/Class_07/EES_4760_5760_Class_07_Slides.pdf">https://ees4760.jonathangilligan.org/Slides/Class_07/EES_4760_5760_Class_07_Slides.pdf</a>
+      	
+  	</p>
+  	</div>
+    	<!-- end title slide -->
+</section>
+
+<section><section id="org-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Organization</h1></section><section id="organization" class="slide level2" data-transition="fade-in">
+<h2>Organization</h2>
+<div style="text-align:left;">
+<ul>
+<li>Download marriage model from Blackboard or <a href="https://ees4760.jonathangilligan.org/models/class_07/marriage_model.nlogo" class="uri">https://ees4760.jonathangilligan.org/models/class_07/marriage_model.nlogo</a>
+<ul>
+<li>Marriage Model ODD is at <a href="https://ees4760.jonathangilligan.org/models/class_07/MarriageAgeModel-ODD_PrintVersion.pdf" class="uri">https://ees4760.jonathangilligan.org/models/class_07/MarriageAgeModel-ODD_PrintVersion.pdf</a></li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<div style="text-align:left;padding-top:50px;">
+<ul>
+<li>Team Projects:
+<ul>
+<li>Class Presentations March 2</li>
+<li>Choice of two projects:
+<ul>
+<li>Adaptive behavior (Business investor model, Ch. 10)</li>
+<li>Agent interactions (Telemarketer model, Ch. 13)</li>
+</ul></li>
+<li>Decide which one you want to do and choose a partner <br/>(undergrads with undergrads, grads with grads)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section></section>
+<section><section id="error-sec" class="titleslide slide level1 center"><h1>Finding and Fixing Errors</h1></section><section id="error-classes" class="slide level2 eighty">
+<h2>Classes of Errors</h2>
+<ul>
+<li><p>Typographical (typing <code>pxcor</code> when you mean <code>pycor</code>)</p></li>
+<li><p>Syntax</p></li>
+<li><p>Misunderstanding NetLogo language:</p>
+<div style="width:70%;">
+<pre><code>ask turtle 5 [
+  let neighbor-turtles turtles in-radius 2
+  ask neighbor-turtles [set color green]
+]</code></pre>
+</div>
+versus
+<div style="width:80%;">
+<pre><code>ask turtle 5 [
+  let neighbor-turtles turtles-on patches in-radius 2
+  ask neighbor-turtles [set color green]
+]</code></pre>
+</div></li>
+<li><p>Wrong display settings (wrapping)</p></li>
+<li><p>Run-time errors (e.g., division by zero, moving turtle out of world <br/>forgetting to initialize globals, turtles-own, or patches-own)</p></li>
+<li><p>Logic errors <strong><span style="color:#0000A0;">(hard to find)</span></strong></p></li>
+<li><p>Formulation errors <strong><span style="color:#0000A0;">(hard to find)</span></strong></p></li>
+</ul>
+</section><section id="finding-errors" class="slide level2">
+<h2>Finding Errors</h2>
+<ul>
+<li>Syntax checks</li>
+<li>Visual tests</li>
+<li>Print statements (highly recommended)
+<ul>
+<li><code>print</code>, <code>show</code>, <code>type</code>, <code>write</code>, …</li>
+<li><code>output-print</code>, <code>output-show</code>, … outputs to model output area instead of Command Center</li>
+<li><code>file-print</code>, <code>file-show</code>, … outputs to a file.
+<ul>
+<li>Must call <code>file-open</code> first</li>
+</ul></li>
+</ul></li>
+<li>Spot tests with monitors on interface</li>
+<li>Unit tests with <code>jg-tif.nls</code></li>
+</ul>
+</section><section id="chasing" class="slide level2">
+<h2>Chasing Down Errors</h2>
+<ul>
+<li>Stress tests
+<ul>
+<li>Run with many different extreme values using unit tests</li>
+</ul></li>
+<li>Code reviews (teamwork)</li>
+<li>Statistical analysis of output
+<ul>
+<li>BehaviorSpace</li>
+<li><code>file-open</code>, <code>file-print</code>, …</li>
+<li><code>export-plot</code></li>
+</ul></li>
+</ul>
+</section><section id="re-implementation" class="slide level2">
+<h2>Independent Re-Implementation of Submodels</h2>
+<ul>
+<li>If your model needs a tricky calculation:
+<ul>
+<li>Try it in another format: spreadsheet, scripting language (Python, R, Matlab, etc.)</li>
+<li>Compare to NetLogo results</li>
+</ul></li>
+</ul>
+</section></section>
+<section><section id="marriage-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Marriage Model</h1></section><section id="marriage-odd" class="slide level2" data-transition="fade-in">
+<h2>Marriage Model ODD</h2>
+<ul>
+<li><strong>Purpose:</strong> Describes social norms of age at which people marry</li>
+<li><strong>Entities, State-Variables, Scales:</strong> Agents are individual people.
+<ul>
+<li>Age (0–60), sex, marital status</li>
+<li>Social angle: describes location in social network
+<ul>
+<li>Social network like cylinder: coordinates are age and social angle</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="social-network" class="slide level2">
+<h2><!-- --></h2>
+<p><img src="assets/images/marriage_fig.jpg" alt="social network: age goes from 0–65, social angle goes from 0–360" height="900" /></p>
+</section></section>
+    </div>
+  </div>
+  <script src="../../library/reveal.js-3.3.0/lib/js/head.min.js"></script>
+  <script src="../../library/reveal.js-3.3.0/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../../library/reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../../library/reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../library/reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+
+<script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script>
+
+
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script>
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  <script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+  Reveal.addEventListener('slidechanged', function() {
+    if (Reveal.isFirstSlide()) {
+      qrbox.style.visibility="visible";
+    } else {
+      qrbox.style.visibility="hidden";
+      while (advance_fragment > 0) {
+        console.log('advancing fragment');
+        Reveal.nextFragment();
+        advance_fragment--;
+      }
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+  </body>
+</html>

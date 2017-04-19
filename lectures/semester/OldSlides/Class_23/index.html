@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template -->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Jonathan Gilligan" />
+  <title>Parameterization and Calibration</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+  <link rel="stylesheet" href="../../library/reveal.js-3.3.0/css/reveal.min.css"/>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+    div.qrbox {
+     position:fixed;
+     bottom:-90%;
+     left:10px;
+     text-align:left;
+     vertical-align:bottom;
+    }
+  </style>
+<!-- theme = solarized_jg -->
+<link rel="stylesheet" href="../../assets/css/theme/solarized_jg.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../library/reveal.js-3.3.0/css/print/pdf.css' : '../../library/reveal.js-3.3.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="../../library/reveal.js-3.3.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class='center' id='title' >
+    <h1 class="title">Parameterization and Calibration</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based &amp; Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #23:
+       Thursday, April 6
+      2017
+    </h3>
+        <div class="qrbox" id="qrbox">
+      <p style="font-size:30%">
+    <a href="https://ees4760.jonathangilligan.org/Slides/Class_23">
+  	<img src="qrcode.png" alt="https://ees4760.jonathangilligan.org/Slides/Class_23"/>
+  	</a>
+    	<br/>
+    	Live web page: <a href="https://ees4760.jonathangilligan.org/Slides/Class_23">https://ees4760.jonathangilligan.org/Slides/Class_23</a>
+        	<br/>
+    	PDF slides: <a href="https://ees4760.jonathangilligan.org/Slides/Class_23/EES_4760_5760_Class_23_Slides.pdf">https://ees4760.jonathangilligan.org/Slides/Class_23/EES_4760_5760_Class_23_Slides.pdf</a>
+      	
+  	</p>
+  	</div>
+    	<!-- end title slide -->
+</section>
+
+<section><section id="vocab-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Vocabulary:</h1></section><section id="vocab" class="slide level2" data-transition="fade-in">
+<h2>Vocabulary:</h2>
+<ul>
+<li><strong>Parameterization:</strong>
+<ul>
+<li>For many modelers, this means choosing values for parameters.
+<ul>
+<li>More parameters = more uncertainty (bad)</li>
+<li>Value parsimony</li>
+</ul></li>
+<li>For ABMs, it’s different:
+<ul>
+<li>Many submodels
+<ul>
+<li>Parameterize and test submodels separately</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Calibration</strong>
+<ul>
+<li>A special kind of parameterization</li>
+<li>Adjust a few important parameters to reproduce patterns observed in real system</li>
+</ul></li>
+</ul>
+</section></section>
+<section><section id="testing-calibrating-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Testing and Calibrating</h1></section><section id="testing-calibrating" class="slide level2" data-transition="fade-in">
+<h2>Testing and Calibrating</h2>
+<ul>
+<li>Test program: Has it been implemented correctly?</li>
+<li>Test submodels: Are they doing what you think they are doing?</li>
+<li>Verificaton: Is the model doing what it’s supposed to do?
+<ul>
+<li>Reproduce patterns, data, observations.</li>
+</ul></li>
+<li>Understanding: What’s going on? Why?</li>
+<li>Validation: Can we find new (independent, secondary) patterns in the model that we can test against new observations?</li>
+</ul>
+</section><section id="theoretical-models" class="slide level2">
+<h2>Theoretical Models</h2>
+<ul>
+<li>No data to calibrate from</li>
+<li>“Guesstimate” parameter values from what you do know.</li>
+<li>Perform sensitivity analysis to see how important it is to “get parameters right”</li>
+</ul>
+</section></section>
+<section><section id="challenge-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Challenge</h1></section><section id="challenge" class="slide level2" data-transition="fade-in">
+<h2>Challenge</h2>
+<ul>
+<li>Model and system are complex
+<ul>
+<li>We don’t know exactly what model is “supposed to do”</li>
+</ul></li>
+<li>Any pattern in the output could be a <em>bug</em> or a <em>feature</em></li>
+<li>Brute-force analysis does not work (you can’t try every possible value of each parameter)</li>
+<li><strong>We need a plan!</strong></li>
+</ul>
+</section></section>
+<section><section id="master-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Master Plan for Analysis</h1></section><section id="master-plan" class="slide level2" data-transition="fade-in">
+<h2>Master plan for analysis</h2>
+<h3 id="controlled-simulation-experiments">Controlled Simulation Experiments</h3>
+<ul>
+<li>Controlled = simplify</li>
+<li>If I kill all individuals, population should be 0</li>
+<li>If I double mortality rate, population should decrease</li>
+</ul>
+</section><section id="first-experiments" class="slide level2">
+<h2>First experiments</h2>
+<ul>
+<li>Explain your model to others</li>
+<li>Ask others to look at your model and code</li>
+<li>Graphical, numerical output of entities and state variables
+<ul>
+<li>Monitors, graphs, print output, save output to a file</li>
+<li>Use NetLogo inspect feature (right click on a patch or turtle)</li>
+</ul></li>
+<li>A step button to execute one step at a time</li>
+<li>See what happens</li>
+</ul>
+</section><section id="test-submodels-separately" class="slide level2">
+<h2>Test submodels separately</h2>
+<ul>
+<li>Create a separate testing model</li>
+<li>Make a controlled environment for your submodel</li>
+<li>For research: Document your testing, keep notes and files</li>
+</ul>
+</section></section>
+<section><section id="pattern-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Patterns</h1></section><section id="patterns" class="slide level2" data-transition="fade-in">
+<h2>Patterns</h2>
+<ul>
+<li>Low-level debugging (one line of code at a time) is too slow</li>
+<li>To speed things up, focus on <strong>patterns</strong></li>
+<li>Analysis means:
+<ul>
+<li>Tuning parameters,</li>
+<li>Turning submodels on and off</li>
+<li>Observe how patterns change.</li>
+</ul></li>
+<li>Examples:
+<ul>
+<li>Population after 48 days</li>
+<li>Total biomass</li>
+<li>Variance of turtle size</li>
+<li>Spatial patterns: are turtles bunched up or spread out?</li>
+<li>etc.</li>
+</ul></li>
+</ul>
+</section><section id="categorical-vs.best-fit" class="slide level2">
+<h2>Categorical vs. Best Fit</h2>
+<ul>
+<li>Best-fit: Numerical data, minimize difference.
+<ul>
+<li>Best when many real world systems always have same values.</li>
+</ul></li>
+<li>Categorical:
+<ul>
+<li>True/False, or ranges of values</li>
+<li>Best when real-world system has a lot of variation</li>
+</ul></li>
+</ul>
+</section><section id="dont-panic" class="slide level2">
+<h2>Don’t panic!</h2>
+<ul>
+<li>Finding good patterns to use is <strong>hard</strong>.</li>
+<li>You might need to test many patterns</li>
+<li>You will need multiple patterns</li>
+<li>It is hard work, but it can be fun</li>
+<li>Just as with real experiments, it is important to think creatively.</li>
+</ul>
+</section></section>
+<section><section id="woodhoopoe-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Example: Woodhoopoe Model</h1></section><section id="woodhoopoe" class="slide level2" data-transition="fade-in">
+<h2>Example: Woodhoopoe Model</h2>
+<ul>
+<li>Use “random scouting” submodel</li>
+<li>Parameters:
+<ul>
+<li>Survival probability (mortality)</li>
+<li>Scouting probability (<em>can’t be directly measured in real world</em>)</li>
+</ul></li>
+<li>Calibration Criteria
+<ul>
+<li>Variation in real groups, so <em>we’re not trying to reproduce a specific value</em>.
+<ul>
+<li>Categorical calibration</li>
+</ul></li>
+<li>Three patterns from field observations:
+<ol>
+<li><strong>Abundance:</strong> Total population in range 115–135 (25 patches)</li>
+<li><strong>Variation</strong> Standard deviation of population from one year to next in range 10–15</li>
+<li><strong>Vacancy</strong> On average, 15–30% of patches missing one or both alphas.</li>
+</ol></li>
+</ul></li>
+</ul>
+<p><a href="https://ees4760.jonathangilligan.org/models/class_23/Sect20-5_WoodHoopoes.nlogo" class="uri" style="font-size:80%;">https://ees4760.jonathangilligan.org/models/class_23/Sect20-5_WoodHoopoes.nlogo</a></p>
+</section><section id="behaviorspace-experiment" class="slide level2">
+<h2>Behaviorspace Experiment</h2>
+<ul>
+<li>Monitor <code>count turtles</code> and <code>count patches with [(count turtles-here with [is-alpha?]) &lt; 2]</code></li>
+<li>Run for 22 years (264 ticks)</li>
+<li>Vary <code>scout.prob</code> from 0.0–0.5 by 0.05</li>
+<li>Vary <code>survival.prob</code> from 0.95–1.00 by 0.005</li>
+<li>121 combinations</li>
+<li>Analyze behaviorspace output file:
+<ul>
+<li>Throw away first two years (warm-up)</li>
+<li>Look at month 11 (November, just before breeding)</li>
+</ul></li>
+</ul>
+</section><section class="slide level2">
+
+<p><img src="assets/fig/plot_cat_calibration-1.png" /></p>
+</section><section id="interpreting-results" class="slide level2">
+<h2>Interpreting results</h2>
+<p><img src="assets/fig/small_plot_cat_calibration-1.png" /></p>
+<ul>
+<li class="fragment">A few combinations reproduce all three patterns.</li>
+<li class="fragment">Abundance pattern only for <code>survival.prob</code> = 0.975–0.985</li>
+<li class="fragment">Vacancy pattern only for <code>survival.prob</code> = 0.975–0.990</li>
+</ul>
+</section><section class="slide level2">
+
+<p><img src="assets/fig/plot_nominal_calibration-1.png" /></p>
+</section><section id="next-steps" class="slide level2">
+<h2>Next steps</h2>
+<p><img src="assets/fig/small_plot_detailed_calibration-1.png" /></p>
+<ul>
+<li class="fragment">Explore region near <code>survival.prob</code> ∼ 0.975–0.985<br/>and <code>scout.prob</code> ∼ 0.05–0.40</li>
+<li class="fragment">Try changing scouting submodel.</li>
+</ul>
+</section><section id="detailed-calibration" class="slide level2">
+<h2>Detailed Calibration</h2>
+<p><img src="assets/fig/plot_detailed_calibration-1.png" /></p>
+</section><section id="satisfying-all-three-criteria" class="slide level2">
+<h2>Satisfying All Three Criteria</h2>
+<p><img src="assets/fig/plot_detailed_calibration_2-1.png" /></p>
+</section></section>
+    </div>
+  </div>
+  <script src="../../library/reveal.js-3.3.0/lib/js/head.min.js"></script>
+  <script src="../../library/reveal.js-3.3.0/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../../library/reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../../library/reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../library/reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+
+<script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script>
+
+
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script>
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  <script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+  Reveal.addEventListener('slidechanged', function() {
+    if (Reveal.isFirstSlide()) {
+      qrbox.style.visibility="visible";
+    } else {
+      qrbox.style.visibility="hidden";
+      while (advance_fragment > 0) {
+        console.log('advancing fragment');
+        Reveal.nextFragment();
+        advance_fragment--;
+      }
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+  </body>
+</html>

@@ -1,0 +1,312 @@
+---
+title: "Parameterization and Calibration"
+class_no: 23
+class_date: "Thursday, April 6"
+qrimage: qrcode.png
+qrbottom: '-90%'
+pageurl: "ees4760.jonathangilligan.org/Slides/Class_23"
+pdfurl: "ees4760.jonathangilligan.org/Slides/Class_23/EES_4760_5760_Class_23_Slides.pdf"
+course      : "EES 4760/5760"
+course_name : "Agent-Based & Individual-Based Computational Modeling"
+author      : "Jonathan Gilligan"
+semester    : Spring
+year        : 2017
+output:
+  revealjs.jg::revealjs_presentation
+---
+```{r utility_functions, cache = F, echo = F, eval = T, message=F, warning=F}
+knitr::opts_chunk$set(cache=TRUE, fig.height=10, fig.width=18, dpi=105,
+                      dev='png',fig.path='assets/fig/',cache.path='./cache/')
+
+find_semester_dir <- function(p = NULL) {
+  if (is.null(p)) p <- getwd()
+  p <- normalizePath(p)
+  if (file.exists(file.path(p,'semester.yml'))) {
+    return(p)
+  } else {
+    d <- dirname(p)
+    if (d == p) return(NA)
+    return(find_semester_dir(d))
+  }
+}
+
+semester.dir <- find_semester_dir()
+data.dir <- file.path(semester.dir, 'data')
+script.dir <- file.path(semester.dir,'util_scripts')
+
+source_semester_script <- function(script) {
+  script_file <- file.path(script.dir, script)
+  message("Running script", script_file)
+  source(script_file, chdir = T)
+}
+
+eval_in_sem_script_dir <- function(expr, loc = script.dir) {
+  this.dir <- getwd()
+  setwd(loc)
+  retval <- eval(expr)
+  setwd(this.dir)
+  invisible(retval)
+}
+
+library(magrittr)
+library(stringr)
+library(tidyverse)
+library(viridis)
+
+source_semester_script('lecture_utils.R')
+source('scripts/process_bs.R')
+```
+# Vocabulary: {#vocab-sec data-transition="fade-out" data-state="skip_slide"}
+
+## Vocabulary: {#vocab data-transition="fade-in"}
+
+* **Parameterization:** 
+    * For many modelers, this means choosing values for parameters.
+        * More parameters = more uncertainty (bad)
+        * Value parsimony
+    * For ABMs, it's different:
+        * Many submodels
+            * Parameterize and test submodels separately
+* **Calibration**
+    * A special kind of parameterization
+    * Adjust a few important parameters to reproduce patterns observed in real system
+
+# Testing and Calibrating  {#testing-calibrating-sec data-transition="fade-out" data-state="skip_slide"}
+
+## Testing and Calibrating {#testing-calibrating data-transition="fade-in"}
+
+* Test program: Has it been implemented correctly?
+* Test submodels: Are they doing what you think they are doing?
+* Verificaton: Is the model doing what it's supposed to do?
+    * Reproduce patterns, data, observations.
+* Understanding: What's going on? Why?
+* Validation: Can we find new (independent, secondary) patterns in the model
+  that we can test against new observations?
+
+## Theoretical Models
+
+* No data to calibrate from
+* "Guesstimate" parameter values from what you do know.
+* Perform sensitivity analysis to see how important it is to "get parameters right"
+
+
+# Challenge {#challenge-sec data-transition="fade-out" data-state="skip_slide"}
+
+## Challenge {#challenge data-transition="fade-in"}
+
+* Model and system are complex
+    * We don't know exactly what model is "supposed to do"
+* Any pattern in the output could be a *bug* or a *feature*
+* Brute-force analysis does not work (you can't try every possible value of each parameter)
+* **We need a plan!**
+
+# Master Plan for Analysis  {#master-sec data-transition="fade-out" data-state="skip_slide"}
+
+## Master plan for analysis {#master-plan data-transition="fade-in"}
+
+### Controlled Simulation Experiments
+
+* Controlled = simplify
+  * If I kill all individuals, population should be 0
+  * If I double mortality rate, population should decrease
+
+
+## First experiments
+
+* Explain your model to others
+* Ask others to look at your model and code
+* Graphical, numerical output of entities and state variables
+    * Monitors, graphs, print output, save output to a file
+    * Use NetLogo inspect feature (right click on a patch or turtle)
+* A step button to execute one step at a time
+* See what happens
+
+
+## Test submodels separately
+
+* Create a separate testing model
+* Make a controlled environment for your submodel
+* For research: Document your testing, keep notes and files
+
+# Patterns  {#pattern-sec data-transition="fade-out" data-state="skip_slide"}
+## Patterns {#patterns data-transition="fade-in"}
+
+* Low-level debugging (one line of code at a time) is too slow
+* To speed things up, focus on **patterns**
+* Analysis means:
+    * Tuning parameters, 
+    * Turning submodels on and off
+    * Observe how patterns change.
+* Examples:
+    * Population after 48 days
+    * Total biomass
+    * Variance of turtle size
+    * Spatial patterns: are turtles bunched up or spread out?
+    * etc.
+
+
+## Categorical vs. Best Fit
+
+* Best-fit: Numerical data, minimize difference.
+    * Best when many real world systems always have same values.
+* Categorical:
+    * True/False, or ranges of values
+    * Best when real-world system has a lot of variation
+
+
+## Don't panic!
+
+* Finding good patterns to use is **hard**.
+* You might need to test many patterns
+* You will need multiple patterns
+* It is hard work, but it can be fun
+* Just as with real experiments, it is important to think creatively.
+
+# Example: Woodhoopoe Model {#woodhoopoe-sec data-transition="fade-out" data-state="skip_slide"}
+
+## Example: Woodhoopoe Model {#woodhoopoe data-transition="fade-in"}
+
+* Use "random scouting" submodel
+* Parameters:
+    * Survival probability (mortality)
+    * Scouting probability (_can't be directly measured in real world_)
+* Calibration Criteria
+    * Variation in real groups, so _we're not trying to reproduce a specific value_.
+        * Categorical calibration
+    * Three patterns from field observations:
+        #. **Abundance:** Total population in range 115--135 (25 patches)
+        #. **Variation** Standard deviation of population from one year to next in range 10--15
+        #. **Vacancy** On average, 15--30% of patches missing one or both alphas.
+
+
+<https://ees4760.jonathangilligan.org/models/class_23/Sect20-5_WoodHoopoes.nlogo>{style="font-size:80%;"}
+
+## Behaviorspace Experiment
+
+* Monitor `count turtles` and `count patches with [(count turtles-here with [is-alpha?]) < 2]`
+* Run for 22 years (264 ticks)
+* Vary `scout.prob` from 0.0--0.5 by 0.05
+* Vary `survival.prob` from 0.95--1.00 by 0.005
+* 121 combinations
+* Analyze behaviorspace output file:
+    * Throw away first two years (warm-up)
+    * Look at month 11 (November, just before breeding)
+
+***
+```{r load_woodhoopoe, echo=F, eval=T, warning=F, message=F}
+calibration <- bs_data("data/Sect20-5_WoodHoopoes Calibration-table.csv")
+df <- calibration$data
+df <- df %>% rename(population = count.turtles,
+                    vacancies = count.patches.with.count.turtles.here.with.is.alpha.2.) %>%
+      filter(month == 11 & year >= 3)
+df_sum <- df %>% group_by(run, scout.prob, survival.prob) %>%
+  summarize(mean.pop = mean(population), sd.pop = sd(population),
+            vacancies = mean(vacancies) / 25.0) %>% ungroup() %>%
+  mutate(mean.abundance = (mean.pop >= 115 & mean.pop <= 135),
+         variation = (sd.pop >= 10 & sd.pop <= 15),
+         vacancy = (vacancies >= 0.15 & vacancies <= 0.30),
+         n.criteria = mean.abundance + variation + vacancy) %>%
+  group_by(scout.prob, survival.prob) %>%
+  summarize(mean.pop = mean(mean.pop), 
+            Abundance = sum(mean.abundance), Vacancy = sum(vacancy), Variation = sum(variation),
+            Criteria = 100 * mean(n.criteria >= 3)) %>%
+  ungroup()
+
+df_criteria <- df_sum %>%
+  gather(key = criterion, value = value, Abundance, Vacancy, Variation, Criteria)
+
+
+calibration2 <- bs_data("data/Sect20-5_WoodHoopoes Calibration2-table.csv")
+df2 <- calibration2$data
+df2 <- df2 %>% rename(population = count.turtles,
+                    vacancies = count.patches.with.count.turtles.here.with.is.alpha.2.) %>%
+      filter(month == 11 & year >= 3)
+df2_sum <- df2 %>% group_by(run, scout.prob, survival.prob) %>%
+  summarize(mean.pop = mean(population), sd.pop = sd(population),
+            vacancies = mean(vacancies) / 25.0) %>% ungroup() %>%
+  mutate(mean.abundance = (mean.pop >= 115 & mean.pop <= 135),
+         variation = (sd.pop >= 10 & sd.pop <= 15),
+         vacancy = (vacancies >= 0.15 & vacancies <= 0.30),
+         n.criteria = mean.abundance + variation + vacancy) %>%
+  group_by(scout.prob, survival.prob) %>%
+  summarize(mean.pop = mean(mean.pop), 
+            Abundance = sum(mean.abundance), Vacancy = sum(vacancy), Variation = sum(variation),
+            Criteria = 100 * mean(n.criteria >= 3)) %>%
+  ungroup()
+
+
+df2_criteria <- df2_sum %>%
+  gather(key = criterion, value = value, Abundance, Vacancy, Variation, Criteria)
+```
+```{r plot_cat_calibration, echo=F, include=T, message=F, warning=F}
+df_criteria %>% filter(criterion != 'Criteria') %>%
+  ggplot(aes(x = scout.prob, y = survival.prob)) +
+  geom_point(aes(shape = I(ifelse(value > 0, criterion, NA)),
+                 size = value)) +
+  scale_shape_manual(values = c(Abundance = 3, Variation = 0, Vacancy = 4),
+                     breaks = c("Abundance", "Variation", "Vacancy"),
+                     name = "Criterion") +
+  guides(size = "none") +
+  labs(x = "Scouting Probability", y = "Survival Probability") +
+  theme_grey(base_size = 20)
+```
+
+
+## Interpreting results
+
+```{r small_plot_cat_calibration, ref.label="plot_cat_calibration", echo=F, include=T, message=F, warning=F, fig.height=4, fig.width=8}
+```
+
+> * A few combinations reproduce all three patterns.
+> * Abundance pattern only for `survival.prob` = 0.975--0.985
+> * Vacancy pattern only for `survival.prob` = 0.975--0.990
+
+***
+```{r plot_nominal_calibration, echo=F,include=T, message=F, warning=F}
+ggplot(df_sum, aes(x = survival.prob, y = mean.pop, color = ordered(scout.prob))) +
+  geom_point(size = 3) + geom_line(alpha = 0.7) +
+  geom_hline(yintercept = c(115,135), color = "gray10") +
+  labs(x = "Survival Probability", y = "Mean Population") +
+  guides(colour = guide_legend(title = "Scouting Probability")) +
+  theme_grey(base_size = 20) +
+  theme(legend.position = c(0,1), legend.justification = c(0,1),
+        legend.background = element_blank())
+#        legend.background = element_rect(fill = "gray92"))
+```
+
+
+## Next steps
+```{r small_plot_detailed_calibration, ref.label="plot_cat_calibration", echo=F, include=T, message=F, warning=F, fig.height=4, fig.width=8}
+```
+
+> * Explore region near `survival.prob` &sim; 0.975--0.985<br/>and `scout.prob` &sim; 0.05--0.40
+> * Try changing scouting submodel.
+
+
+## Detailed Calibration
+
+```{r plot_detailed_calibration, echo=F, include=T, message=F, warning=F, fig.height=9}
+df2_criteria %>% filter(criterion != 'Criteria') %>%
+  ggplot(aes(x = scout.prob, y = survival.prob)) +
+  geom_point(aes(shape = I(ifelse(value > 0, criterion, NA)),
+                 size = value)) +
+  scale_shape_manual(values = c(Abundance = 3, Variation = 0, Vacancy = 4),
+                     breaks = c("Abundance", "Variation", "Vacancy"),
+                     name = "Criterion") +
+  guides(size = "none") +
+  labs(x = "Scouting Probability", y = "Survival Probability") +
+  theme_grey(base_size = 20)
+```
+
+## Satisfying All Three Criteria
+
+```{r plot_detailed_calibration_2, echo=F, include=T, message=F, warning=F, fig.height=9}
+df2_criteria %>% filter(criterion == 'Criteria') %>% 
+  ggplot(aes(x = scout.prob, y = survival.prob)) +
+  geom_point(aes(shape = I(ifelse(value > 0, 19, NA)), size = value, color = value)) +
+  scale_color_viridis(option="viridis", name = "% prob.", direction=-1) +
+  scale_size_area(name="% prob.", breaks = rev(seq(0,100,10))) +
+  guides(shape = "none") + 
+  labs(x = "Scouting Probability", y = "Survival Probability") +
+  theme_grey(base_size = 20)
+```

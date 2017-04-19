@@ -1,0 +1,17 @@
+---
+title: Analyzing ABMs
+class_date: '2018-04-05'
+class_number: 24
+weight: 24
+slug: reading_24
+pubdate: '2018-01-01'
+date: '2018-04-05'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Reading:
+
+* Railsback & Grimm, Ch. 22.
+
+

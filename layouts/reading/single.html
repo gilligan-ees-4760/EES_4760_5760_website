@@ -1,0 +1,30 @@
+
+{{ define "body" }}
+<body class="profile-page">
+  {{ partial "nav-fixed-top.html" . }}
+  <div class="wrapper">
+    <div class="header header-filter" style="background-image: url('{{ .Site.Params.background | relURL }}');">
+    </div>
+		<div class="main main-raised">
+			<div class="container">
+		  	<div class="section text-left">
+		  	  <h2 class="title text-center">{{ .Title }}</h2>
+		  	  <h3 class="text-center">Class #{{ .Params.class_number }} ({{dateFormat "Mon., Jan 2" .Params.class_date}})</h3>
+	            {{ .Content }}
+	            {{- if (or .PrevInSection .NextInSection) }}
+	            <div>
+	              {{- if .NextInSection }}
+	              <span class="pull-left"><a href="{{.NextInSection.URL}}"><i class="material-icons">arrow_back</i> Prev: Class #{{.NextInSection.Params.class_number}} "{{.NextInSection.Title}}"</a></span>
+	              {{ end -}}
+	              {{- if .PrevInSection }}
+	              <span class="pull-right"><a href="{{.PrevInSection.URL}}">Next: Class #{{.PrevInSection.Params.class_number}} "{{.PrevInSection.Title}}" <i class="material-icons">arrow_forward</i></a></span>
+	              {{ end -}}
+	            </div>
+	            {{ end -}}
+	      </div>
+      </div>
+		</div>
+    {{ partial "footer" . }}
+	</div>
+</body>
+{{ end }}

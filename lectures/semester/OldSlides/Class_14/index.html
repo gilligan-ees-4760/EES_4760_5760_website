@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template -->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Jonathan Gilligan" />
+  <title>Interaction and Telemarketers</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+  <link rel="stylesheet" href="../../library/reveal.js-3.3.0/css/reveal.min.css"/>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+    div.qrbox {
+     position:fixed;
+     bottom:-90%;
+     left:10px;
+     text-align:left;
+     vertical-align:bottom;
+    }
+  </style>
+<!-- theme = solarized_jg -->
+<link rel="stylesheet" href="../../assets/css/theme/solarized_jg.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../library/reveal.js-3.3.0/css/print/pdf.css' : '../../library/reveal.js-3.3.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="../../library/reveal.js-3.3.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class='center' id='title' >
+    <h1 class="title">Interaction and Telemarketers</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based &amp; Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #14:
+       Thurs. February 23
+      2017
+    </h3>
+        <div class="qrbox" id="qrbox">
+      <p style="font-size:30%">
+    <a href="https://ees4760.jonathangilligan.org/Slides/Class_14">
+  	<img src="qrcode.png" alt="https://ees4760.jonathangilligan.org/Slides/Class_14"/>
+  	</a>
+    	<br/>
+    	Live web page: <a href="https://ees4760.jonathangilligan.org/Slides/Class_14">https://ees4760.jonathangilligan.org/Slides/Class_14</a>
+        	<br/>
+    	PDF slides: <a href="https://ees4760.jonathangilligan.org/Slides/Class_14/EES_4760_5760_Class_14_Slides.pdf">https://ees4760.jonathangilligan.org/Slides/Class_14/EES_4760_5760_Class_14_Slides.pdf</a>
+      	
+  	</p>
+  	</div>
+    	<!-- end title slide -->
+</section>
+
+<section id="getting-started" class="slide level2">
+<h2>Getting Started</h2>
+<ul>
+<li>Download the following files:
+<ul>
+<li><p><a href="https://ees4760.jonathangilligan.org/models/class_14/jg-tif.nls" class="uri">https://ees4760.jonathangilligan.org/models/class_14/jg-tif.nls</a></p></li>
+<li><p><a href="https://ees4760.jonathangilligan.org/models/class_14/telemarketer_class_14.nlogo">https://ees4760.jonathangilligan.org/models/class_14/<br/>telemarketer_class_14.nlogo</a></p></li>
+<li><p><a href="https://ees4760.jonathangilligan.org/models/class_14/telemarketer_mergers_class_14.nlogo">https://ees4760.jonathangilligan.org/models/class_14/<br/>telemarketer_mergers_class_14.nlogo</a></p></li>
+<li><p><a href="https://ees4760.jonathangilligan.org/models/class_14/telemarketer_class_14%20vary_initial_telemarketers-table.csv">https://ees4760.jonathangilligan.org/models/class_14/<br/>telemarketer_class_14%20vary_initial_telemarketers-table.csv</a></p></li>
+<li><p><a href="https://ees4760.jonathangilligan.org/models/class_14/telemarketer_mergers_class_14%20vary_initial_telemarketers-table.csv">https://ees4760.jonathangilligan.org/models/class_14/<br/>telemarketer_mergers_class_14%20vary_initial_telemarketers-table.csv</a></p></li>
+</ul></li>
+</ul>
+</section>
+<section><section id="investor-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Business Investors</h1></section><section id="business-investors" class="slide level2 ninety">
+<h2>Business Investors</h2>
+<ul>
+<li><p>Expected utility function: <span class="math display">\[U = (W + PT) \times (1 - F)^T\]</span></p>
+<p>W = wealth, P = profit, F = risk of failure, T = time horizon</p></li>
+<li><p>How does this change as investors gain more wealth?</p></li>
+<li><p>Interactive app <a href="https://ees4760.jonathangilligan.org/contour" class="uri">https://ees4760.jonathangilligan.org/contour</a></p></li>
+</ul>
+<div style="padding-top:50px;">
+<iframe height="500" width="1800" src="https://ees4760.jonathangilligan.org/contour">
+Open app at <a href="https://ees4760.jonathangilligan.org/contour" class="uri">https://ees4760.jonathangilligan.org/contour</a>
+</iframe>
+</div>
+</section></section>
+<section><section id="telemarketer-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Telemarketer Model</h1></section><section id="telemarketer" class="slide level2" data-transition="fade-in">
+<h2>Telemarketer Model</h2>
+<ul>
+<li>Telemarketing firms interact
+<ul>
+<li>Telemarketer calls patches</li>
+<li>If patch has received a previous call that tick, it hangs up</li>
+<li>If patch has not received a previous call that tick, it buys something</li>
+<li>Interaction is indirect, mediated by patches</li>
+</ul></li>
+<li>Accounting:
+<ul>
+<li>Net profit = 2 × sales − 50 × size</li>
+<li>If balance &lt; 0, firm goes bankrupt</li>
+</ul></li>
+<li>Growth
+<ul>
+<li>If balance &gt; growth threshold, firm increases size proportional to excess balance</li>
+</ul></li>
+</ul>
+</section></section>
+<section><section id="tm-results-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Results</h1></section><section id="results" class="slide level2" data-transition="fade-in">
+<h2>Results</h2>
+<p><img src="assets/fig/time_series-1.png" /></p>
+</section><section id="tm-variation" class="slide level2">
+<h2>Variation</h2>
+<p><img src="assets/fig/time_series_bands-1.png" /></p>
+</section><section id="tm-median-weeks" class="slide level2">
+<h2>Median Weeks in Business</h2>
+<p><img src="assets/fig/median_lifetime-1.png" /></p>
+</section></section>
+<section><section id="merger-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Mergers</h1></section><section id="mergers" class="slide level2" data-transition="fade-in">
+<h2>Mergers</h2>
+<ul>
+<li>Instead of going bankrupt when the bank balance drops below 0, firms look for acquisition partner
+<ul>
+<li>Find a company that’s bigger and has enough money to pay off deficit.</li>
+<li>If it finds a parent, parent pays off deficit (child firm ends up with 0 balance)</li>
+<li>In future turns, child pays parent 50% of its net profits.</li>
+<li>In future, if child’s balance becomes negative:
+<ul>
+<li>If parent has enough money, it pays child’s deficit</li>
+<li>If parent does not have enough money, child dies.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="merger-results" class="slide level2">
+<h2>Results</h2>
+<p><img src="assets/fig/time_series_merger_bands-1.png" /></p>
+</section><section id="merger-variation" class="slide level2">
+<h2>Variation</h2>
+<p><img src="assets/fig/time_series_merger-1.png" /></p>
+</section><section id="merger-median-weeks" class="slide level2">
+<h2>Median Weeks in Business</h2>
+<p><img src="assets/fig/median_lifetime_merger-1.png" /></p>
+</section></section>
+    </div>
+  </div>
+  <script src="../../library/reveal.js-3.3.0/lib/js/head.min.js"></script>
+  <script src="../../library/reveal.js-3.3.0/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../../library/reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../../library/reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../library/reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+
+<script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script>
+
+
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script>
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  <script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+  Reveal.addEventListener('slidechanged', function() {
+    if (Reveal.isFirstSlide()) {
+      qrbox.style.visibility="visible";
+    } else {
+      qrbox.style.visibility="hidden";
+      while (advance_fragment > 0) {
+        console.log('advancing fragment');
+        Reveal.nextFragment();
+        advance_fragment--;
+      }
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+  </body>
+</html>

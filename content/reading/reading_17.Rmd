@@ -1,0 +1,50 @@
+---
+title: Prediction
+class_date: '2018-03-13'
+class_number: 17
+weight: 17
+slug: reading_17
+pubdate: '2018-01-01'
+date: '2018-03-13'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Reading:
+
+* Railsback & Grimm, Ch. 14.
+
+### Reading Notes:
+
+A good example of asynchronous updating is the 
+[model of breeding synchrony](/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo), 
+described in [Jovani and Grimm (2008)](/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf) 
+and in Chapter 23, which I have posted on the class web site: 
+<https://ees4760.jgilligan.org/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo>
+
+**Errata for Chapter 14:**
+
+* Section 14.2.3, p. 187:
+  The `foreach` statement in the example code for executing turtles in size order 
+  is not compatible with NetLogo versions 6.0 and higher. 
+  For version 6.0.2, the statement should be:
+  ```
+  foreach sort-on [size] turtles
+  [
+      next-turtle -> ask next-turtle [do-sales]
+  ]
+  ```
+
+* Section 14.2.5, p. 189:
+  This code statement: 
+  ```
+  while [count patches with [trigger-time > ticks] > 0] 
+  ```
+  should of course be: 
+  ```
+  while [any? patches with [trigger-time > ticks] ] 
+  ```
+  (This Mousetrap model also has a small flaw: it does not represent the 
+  possibility that a trap scheduled to be triggered by one ball could be 
+  triggered sooner by a different ball that is launched later but has a 
+  shorter trajectory.)

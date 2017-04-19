@@ -1,0 +1,42 @@
+revealjs.jg::revealjs_presentation:
+    template: "../../scaffold/html_template/template-revealjs-jg.html"
+    height: 1024
+    width: 1280
+    header_attributes: true
+    fancy_lists: true
+    definition_lists: true
+    self_contained: false
+    smart: true
+    center: false
+    theme: custom
+    custom_theme: solarized_jg
+    custom_theme_path: "/lecture_lib/assets"
+    transition: slide
+    vertical: true
+    lib_dir: "/lecture_lib/library"
+    keep_md: true
+    clean: true
+    reveal_version: "3.3.0"
+    reveal_source: "default"
+    md_extensions: "+tex_math_dollars+tex_math_single_backslash-autolink_bare_uris+fancy_lists"
+    pandoc_args: ["--variable", "sf-math=true"]
+    mathjax_scale: 100
+    tex_extensions: "mhchem"
+    tex_defs:
+      - {name: "COO", def: "\\ce{CO2}"}
+      - {name: "methane", def: "\\ce{CH4}"}
+      - {name: "degC", def: "^\\circ \\mathrm{C}"}
+      - {name: "degF", def: "^\\circ \\mathrm{F}"}
+      - {name: "water", def: "\\mathrm{H_2O}"}
+      - {name: "carb", def: "\\ce{CO3^2-}"}
+      - {name: "bicarb", def: "\\ce{HCO3-}"}
+      - {name: "carbonic", def: "\\ce{H2CO3}"}
+      - {name: "Hplus", def: "\\ce{H+}"}
+      - {name: "OH", def: "\\ce{OH-}"}
+      - {name: "silica", def: "\\ce{SiO2}"}
+      - {name: "calcite", def: "\\ce{CaCO3}"}
+      - {name: "Caplus", def: "\\ce{Ca^2+}"}
+      - {name: "silicate", def: "\\ce{SiO3^2-}"}
+      - {name: "CaSi", def: "\\ce{CaSiO3}"}
+      - {name: "pH", def: "p\\ce{H}"}
+      - {name: "permil", def: "\\unicode{x2030}"}

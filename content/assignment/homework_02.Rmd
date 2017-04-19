@@ -1,0 +1,29 @@
+---
+title: Introducing NetLogo
+due_date: '2018-01-16'
+assignment_number: 2
+weight: 2
+slug: homework_02
+pubdate: '2018-01-01'
+date: '2018-01-16'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Homework
+Turn in the following homework on Box by 11:59 pm:
+
+* As you read along with Section 2.3, follow along on your computer and build the _Mushroom Hunt_ model by typing in the code shown in the textbook. The whole program is shown on pages 28--29.
+  **Save your model as `mushroom_hunt.nlogo`**.
+
+  This exercise may seem very simple, but it is the first step toward learning how to program NetLogo and it will be an important first step toward writing your own models.
+
+  After you are done typing in your model, try running it.
+
+  **When you are done, make a subfolder called `HW_2` in your Box folder for this class, and upload your model.**
+
+### Notes on Homework:
+
+I recommend getting together with a classmate and working together on this assignment. Since the assignment consists of typing code in and running it, do not worry about your work being identical to your partner's. However, I strongly recommend that you type everything in yourself because you will not learn if you just copy someone else's code or download the code from a source on the web.
+
+If you run into trouble and cannot make your model work, do not worry. Ask a classmate for help, or email me (and attach your `.nlogo` model file), or simply come to class on Tuesday with questions about the problems you had getting your model to work. Since your model file will be on Box, we will be able to discuss the problems in class.

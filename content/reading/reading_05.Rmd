@@ -1,0 +1,27 @@
+---
+title: Your first model
+class_date: '2018-01-23'
+class_number: 5
+weight: 5
+slug: reading_05
+pubdate: '2018-01-01'
+date: '2018-01-23'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Homework
+
+Homework #4 is due today: Railsback & Grimm, Ch. 2, Ex. 3--4. and Ch. 3, Ex. 3. See the homework assignment sheet for details.
+
+## Reading:
+
+* Railsback & Grimm, Ch. 4.
+
+### Reading Notes:
+
+For the reading, read Chapter 4 in _Agent-Based Modeling_ first and focus mostly on this chapter. 
+
+It is worth noting that the Sugarscape model you read about for Jan. 11 is very similar to the hilltopping model. Sugarscape was part of a very influential research project in the 1990s, in which Joshua Epstein and Robert Axtell showed that a very simple model could reproduce complex biological and economic phenomena that are observed in real societies and ecosystems. You may find it interesting at this point to look back at the "Artificial Societies" article and to play with the Sugarscape model in NetLogo.
+
+You can downlload an [ODD for the butterfly model](/files/models/chapter_04/butterfly_model_ODD.txt), which is suitable to paste into the "Info" tab in NetLogo, from the class web site: <https://ees4760.jgilligan.org/files/models/chapter_04/butterfly_model_ODD.txt>

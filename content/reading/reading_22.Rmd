@@ -1,0 +1,27 @@
+---
+title: Parameterization and Calibration
+class_date: '2018-03-29'
+class_number: 22
+weight: 22
+slug: reading_22
+pubdate: '2018-01-01'
+date: '2018-03-29'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Reading:
+
+* Railsback & Grimm, Ch. 20.
+
+### Reading Notes:
+
+**Errata for Chapter 20:**
+
+* Section 20.5, p. 264:
+  The first bullet of the description of the simple trait for how subordinate adults decide whether to scout should say,
+  "If there are no _older_ subordinate adults" instead of "other subordinate adults".
+
+* Section 20.7, Exercise 2:
+  The model equation has parentheses in the wrong place. It should be:
+  $$ N_t = N_{t-1} + r N_{t-1} [ 1 - (N_{t-1} / K)] - H_{t-1}$$

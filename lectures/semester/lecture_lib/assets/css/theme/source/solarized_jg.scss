@@ -1,0 +1,286 @@
+/**
+ * Solarized Light JG theme for reveal.js.
+ * Author: Achim Staebler, Modified by Jonathan GIlligan
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro:400,700,400italic,700italic);
+
+/**
+ * Solarized colors by Ethan Schoonover
+ */
+html * {
+	color-profile: sRGB;
+	rendering-intent: auto;
+}
+
+// Solarized colors
+$base03:    #002b36;
+$base02:    #073642;
+$base01:    #586e75;
+$base00:    #657b83;
+$base0:     #839496;
+$base1:     #93a1a1;
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+$yellow:    #b58900;
+$orange:    #cb4b16;
+$red:       #dc322f;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
+
+// Override theme settings (see ../template/settings.scss)
+$mainColor: $base00;
+$headingColor: $base01;
+$headingTextShadow: none;
+$backgroundColor: $base3;
+$linkColor: $blue;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: $magenta;
+
+// Primary/body text
+$mainFont: 'Noto Sans', sans-serif;
+$mainFontSize: 52px;
+
+// Headings
+$headingFont: 'PT Sans', Impact, sans-serif;
+$headingLineHeight: 0.9;
+$headingTextTransform: none;
+
+$heading1TextShador: none;
+
+$codeFont: 'Anonymous Pro', monospace;
+$codeColor: $base0;
+$codeBackgroundColor: $base03;
+
+
+// Background generator
+// @mixin bodyBackground() {
+// 	@include radial-gradient( rgba($base3,1), rgba(lighten($base3, 20%),1) );
+// }
+
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal h1 {
+  margin-bottom: 50px;
+}
+
+.reveal .h3 {
+  margin-top: 10px;
+}
+
+.reveal .subtitle {
+  font-size: $mainFontSize;
+}
+
+.reveal .author {
+  font-size: 1.2em;
+  text-transform: none;
+}
+
+.reveal .date {
+  font-size: 0.8em;
+ }
+
+ .reveal blockquote {
+   box-shadow: none;
+ }
+
+ .reveal ol {
+ margin-left: 2em;
+ }
+
+ .reveal sub {
+ font-size: 60%;
+ }
+
+ .reveal sup {
+ font-size: 60%;
+ }
+
+.reveal pre {
+	display: block;
+	position: relative;
+	width: 90%;
+	margin: $blockMargin auto;
+
+	text-align: left;
+	font-size: 0.55em;
+	font-family: monospace;
+	line-height: 1.2em;
+
+	word-wrap: break-word;
+
+	box-shadow: 0;
+}
+.reveal code {
+	font-family: $codeFont;
+}
+
+.reveal pre code {
+  font-size: 1.3em;
+  line-height: 1.2em;
+	font-family: $codeFont;
+	color: $codeColor;
+	background-color: $codeBackgroundColor;
+	display: block;
+	padding: 5px;
+	max-height: 100%;
+	overflow: visible;
+	word-wrap: normal;
+}
+
+.reveal .slides .leftslide section,
+.reveal .slides .leftslide div,
+.reveal .leftslide p,
+.reveal .leftslide ul,
+.reveal .leftslide ol,
+.reveal .leftslide li,
+.reveal .leftslide blockquote
+{
+  text-align: left;
+}
+
+.reveal .leftslide h1,
+.reveal .leftslide h2,
+{
+  text-align: center;
+}
+
+
+.reveal .toptitle h1,
+.reveal .toptitle h2 {
+  top: 50px;
+  margin-bottom: 6in;
+  }
+
+.reveal .whitetitle h1,
+.reveal .whitetitle h2,
+.reveal .whitetitle h3,
+.reveal .whitetitle h4,
+.reveal .whitetitle h5 {
+  color: white;
+  }
+
+.reveal .yellowtitle h1,
+.reveal .yellowtitle h2,
+.reveal .yellowtitle h3,
+.reveal .yellowtitle h4,
+.reveal .yellowtitle h5 {
+  color: yellow;
+  }
+
+.reveal .blacktitle h1,
+.reveal .blacktitle h2,
+.reveal .blacktitle h3,
+.reveal .blacktitle h4,
+.reveal .blacktitle h5 {
+  color: black;
+  }
+
+.blacktext p,
+.blacktext li,
+.blacktext ul,
+.blacktext ol {
+  color: black;
+}
+
+.reveal .yellowtext p,
+.reveal .yellowtext li,
+.reveal .yellowtext ul,
+.reveal .yellowtext ol {
+  color: yellow;
+  }
+
+.reveal .ninety {
+  font-size: 90%;
+  }
+
+.reveal .eightyfive {
+  font-size: 85%;
+  }
+
+.reveal .eighty {
+  font-size: 80%;
+  }
+
+.reveal .seventyfive {
+  font-size: 75%;
+  }
+
+.reveal .seventy {
+  font-size: 75%;
+  }
+
+.reveal .slides section .fragment.hightlight-green.visible {
+  color: #4fa843;
+  font-weight: bold;
+  }
+
+.reveal .hidetitle h1,
+.reveal .hidetitle h2  {
+    display: none;
+}
+
+.reveal h1 { font-size: 2.0em; }
+.reveal h2 { font-size: 1.5em; }
+.reveal h3 { font-size: 1.25em; }
+.reveal h4 { font-size: 1em; }
+
+.reveal .slides>section,
+.reveal .slidex>section>section {
+  padding: 0px 0px;
+  }
+
+.reveal table {
+  border-width: 1px;
+  border-spacing: 2px;
+  border-style: dotted;
+  border-color: gray;
+  border-collapse: collapse;
+  font-size: 0.7em;
+}
+
+.reveal table th {
+  border-width: 1px;
+  padding-left: 10px;
+  padding-right: 25px;
+  font-weight: bold;
+  border-style: dotted;
+  border-color: gray;
+}
+
+.reveal table td {
+  border-width: 1px;
+  padding-left: 10px;
+  padding-right: 25px;
+  border-style: dotted;
+  border-color: gray;
+}
+
+.reveal table.noborder,
+.reveal table.noborder thead,
+.reveal table.noborder tbody,
+.reveal table.noborder th,
+.reveal table.noborder tr,
+.reveal table.noborder td {
+  border-style: none;
+}
+

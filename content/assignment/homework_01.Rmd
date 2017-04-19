@@ -1,0 +1,18 @@
+---
+title: Set up Box and NetLogo
+due_date: '2018-01-11'
+assignment_number: 1
+weight: 1
+slug: homework_01
+pubdate: '2018-01-01'
+date: '2018-01-11'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Homework
+**There is nothing for you to turn in**, but do the following two tasks to prepare for next week:
+
+* Download NetLogo version 6.0.2 from <https://ccl.northwestern.edu/netlogo/> and install it on your computer.
+* Set up your Box account. Make a Box folder for your homework for this course (call it `Lastname_EES_4760` (undergraduates) or `Lastname_EES_5760` (graduate students), substituting your own last name), and share it with me, giving me "Editor" role.
+

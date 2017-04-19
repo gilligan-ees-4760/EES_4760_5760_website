@@ -1,0 +1,95 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M5.217 10.23l1256.625 476.656-1248.697 532.050 243.827-504.328-251.755-504.379z",
+          "M287.508 10.23h637.264c101.695 0 184.136 82.44 184.136 184.136v629.387c0 101.695-82.44 184.136-184.136 184.136h-637.264c-101.695 0-184.136-82.44-184.136-184.136v-629.387c0-101.695 82.44-184.136 184.136-184.136z"
+        ],
+        "attrs": [
+          {},
+          {
+            "fill": "none",
+            "stroke": "rgb(0, 0, 0)",
+            "strokeLinejoin": "miter",
+            "strokeLinecap": "butt",
+            "strokeMiterlimit": "10",
+            "strokeWidth": 20.45954045954046
+          }
+        ],
+        "width": 1269,
+        "isMulticolor": false,
+        "isMulticolor2": true,
+        "grid": 0,
+        "tags": [
+          "netlogo_logo"
+        ]
+      },
+      "attrs": [
+        {},
+        {
+          "fill": "none",
+          "stroke": "rgb(0, 0, 0)",
+          "strokeLinejoin": "miter",
+          "strokeLinecap": "butt",
+          "strokeMiterlimit": "10",
+          "strokeWidth": 20.45954045954046
+        }
+      ],
+      "properties": {
+        "order": 4,
+        "id": 0,
+        "name": "netlogo_logo",
+        "prevSize": 32,
+        "code": 59648
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 0
+    }
+  ],
+  "height": 1024,
+  "metadata": {
+    "name": "netlogo",
+    "designer": "Jonathan Gilligan",
+    "license": "CC-BY"
+  },
+  "preferences": {
+    "showGlyphs": true,
+    "showCodes": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "icon-",
+      "metadata": {
+        "fontFamily": "netlogo",
+        "majorVersion": 1,
+        "minorVersion": 0,
+        "designer": "Jonathan Gilligan",
+        "license": "CC-BY",
+        "description": "Icon for NetLogo"
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false,
+      "showSelector": true,
+      "selector": "i",
+      "showMetrics": true,
+      "showMetadata": true,
+      "showVersion": true
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": true,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215
+    },
+    "historySize": 50
+  }
+}

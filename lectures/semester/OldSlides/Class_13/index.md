@@ -1,0 +1,139 @@
+# Adaptation Strategies
+Jonathan Gilligan  
+
+## Getting Started {.center}
+
+* I have put comments on your research projects in the Box folders.
+* Sit with your team partners
+* Download models:
+    * <https://ees4760.jonathangilligan.org/models/class_13/jg-tif.nls>
+    * <https://ees4760.jonathangilligan.org/models/class_13/BusinessInvestor.nlogo>
+  
+
+# Subsetting {#subset-sec data-transition="fade-out" data-state="skip_slide"}
+
+## Subsetting {#subset-exercises .eighty data-transition="fade-in"}
+
+* Open the BusinessInvestor model in NetLogo
+
+* Click `setup`
+
+* Turn all the turtles red
+
+* Turn turtle 5 green
+
+* Ask turtle 5 to identify all the patches that are exactly 2 patches away from the turtle's patch (not a 2-patch radius from turtle-2)
+
+  ![illustration](assets/images/selection.png){height=400}
+
+## Hints: {.seventy}
+
+* There are many ways to do this. Let's look at a way to do this with the `neighbors` primitive.
+
+* Hints: 
+
+    * Use `member?` primitive (`member <agent> <agent-set>`)
+
+    * Use `patch-set` primitive to turn an list of many patch-sets into a single patch-set
+
+* Suggestion: 
+
+    #. Start by turning all neighbor patches (patches exactly 1 patch away) blue
+
+    #. Next turn all patches within 2 patches blue
+    
+    #. Now turn all patches black again
+    
+    #. Now turn all patches within a 2-patch distance blue _except_ the turtle's patch
+    
+    #. Now turn all patches black again
+    
+    #. Now turn all patches within a 2-patch distance blue _except_ the turtle's patch and the patches 1 patch away.
+
+
+## A solution
+
+```
+ask turtle 5 [ 
+  ask (patch-set [neighbors] of [neighbors] of self) with                      
+    [not member? self [(patch-set neighbors patch-here)] of myself] 
+  [ 
+  set pcolor blue
+  ]
+]
+```
+
+* What does `self` refer to in `patch-set [neighbors] of [neighbors] of self`?
+* What does `self` refer to in `not member? self [(patch-set neighbors patch-here)] of myself`?
+
+## Links
+
+* Put a slider on the interface and call it `number-of-links`
+
+* Edit the chooser for `vision-mode` to add `links` as an option.
+
+* Edit `to initialize-turtle`:
+
+    ```
+    to initialize-turtle
+      move-to one-of patches with [ not any? turtles-here ]
+      set wealth 0
+      set size 0.8
+      color-turtle 1.0
+      create-links-to n-of number-of-links other turtles
+    end
+    ```
+
+## Links {.eighty}
+
+* Edit `to-report find-best-patch`:
+
+    ```
+    ifelse vision-mode = "radius" 
+    [
+      set candidates (patches in-radius sense-radius) with [ not any? turtles-here ]
+      set candidates (patch-set candidates patch-here)
+    ] 
+    [
+      ifelse vision-mode = "neighbors" 
+      [
+        set candidates neighbors with [ not any? turtles-here ]
+        set candidates (patch-set candidates patch-here)
+      ] 
+      [ 
+        ifelse vision-mode = "links" 
+        [
+          set candidates neighbors with [ not any? turtles-here ]
+          set candidates (patch-set candidates patch-here)
+          set candidates (patch-set candidates ([neighbors with [not any? turtles-here]] of out-link-neighbors) )             
+        ] 
+        [
+          error "Unknown vision-mode"
+        ]
+     ]
+    ]
+    ```
+
+## Expected Utility Function {.ninety}
+
+* Function: 
+  $$U = (W + PT) \times (1 - F)^T$$
+
+    W = wealth, P = profit, F = risk of failure, T = time horizon
+
+* How does this change as investors gain more wealth?
+
+* Interactive app <https://ees4760.jonathangilligan.org/contour>
+
+
+
+<div  style="padding-top:50px;">
+<iframe height=450 width=1800 src="https://ees4760.jonathangilligan.org/contour">
+Open app at <https://ees4760.jonathangilligan.org/contour>
+</iframe>
+</div>
+
+<!--
+# Work on team projects with partners {.center}
+-->
+

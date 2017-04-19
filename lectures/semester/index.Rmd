@@ -1,0 +1,87 @@
+---
+title       : Semester Overview
+course      : "EES 4760/5760"
+course_name : "Agent-Based & Individual-Based Computational Modeling"
+author      : "Jonathan Gilligan"
+semester    : Spring
+year        : 2017
+output: 
+  revealjs.jg::revealjs_presentation:
+    controls: true
+---
+```{r initialize, cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+message("now at 1")
+knitr::opts_chunk$set(cache=FALSE,echo=FALSE)
+message("now at 2")
+```
+```{r load_semester_info, cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE, results="hide"}
+message("now at 3")
+library(yaml)
+library(stringr)
+message("now at 4")
+site = yaml.load_file("semester.yml")
+message("now at 5")
+
+semester.dir <- '.'
+script.dir <- file.path(semester.dir,'util_scripts')
+data.dir <- file.path(semester.dir, 'data')
+message("now at 6")
+
+source_semester_script <- function(script) {
+  script_file <- file.path(script.dir, script)
+  source(script_file, chdir = TRUE)
+}
+message("now at 7")
+
+source_semester_script('rmd_header.R')
+message("now at 8")
+
+```
+
+## `r site$course`:<br/>`r site$course_name` {#navigation .seventy}
+
+### Navigation:
+
+<ul style="width:95%;">
+<li><b>Classes:</b></li>
+<ul style="height:600px; width:95%; overflow-x:hidden; overflow-y:scroll; white-space:normal;">
+
+```{r link_to_lectures, echo = FALSE, results = 'asis', cache=FALSE}
+files = dir('Slides', 'Class_*', full = TRUE)
+links <- c()
+
+last_lecture_file <- 'last_class.yml'
+if (file.exists(last_lecture_file)) {
+  last_lecture <- yaml.load_file(last_lecture_file)$last_lecture
+} else last_lecture <- NA
+for (f in files) {
+  rmdfile <- file.path(f, 'index.Rmd')
+  htmlfile <- sub('\\.Rmd$','.html',rmdfile)
+  url <- URLencode(htmlfile)
+  if (file.exists(rmdfile)) {
+    metadata <- grab_header(rmdfile)
+    num <- metadata$class_no
+    title <- metadata$title
+    class_date <- metadata$class_date
+    if (file.exists(htmlfile) && (is.na(last_lecture) || num <= last_lecture)) {
+      links = c(links, 
+                paste0('<li><a href="', url, '">Class #', num , '</a> (', 
+                       strip_year(class_date), '): "', gsub('<br */>',' ',title, ignore.case = TRUE), '"</li>'))
+    } else {
+      links = c(links, 
+                paste0('<li>Class #', num , ' (', 
+                       strip_year(class_date), '): <i>No slides</i> </li>'))
+    }
+  } else {
+    num <- str_extract(basename(f), '[0-9]+$') %>% as.integer()
+      links = c(links, 
+                paste0('<li>Class #', num , ': <i>No slides</i> </li>'))
+  }
+}
+writeLines(links)
+```
+</ul>
+&nbsp;<br/>
+</li>
+</ul>
+&nbsp;<br/>

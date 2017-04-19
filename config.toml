@@ -1,0 +1,97 @@
+baseurl = "https://www.ees4760.jgilligan.org"
+# baseurl = "https://ees-4760-5760.netlify.com"
+languageCode = "en-us"
+defaultContentLanguage = "en-us"
+title = "EES 4760/5760"
+theme = "material"
+#disqusShortname = ""
+# googleAnalytics = ""
+paginate = 10
+relativeurls = true
+publishDir = "public"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+[blackfriday]
+  smartypangs = true
+  latexDashes = true
+  smartDashes = true
+  hrefTargetBlank = true
+  angledQuotes = false
+  fractions = false
+
+[permalinks]
+  post = "/:year/:month/:slug/"
+  reading = "/reading/:slug"
+  assignment = "/assignment/:slug"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  archive = "archives"
+
+[author]
+  name = "Jonathan Gilligan"
+  bio = ""
+  job = "Associate Professor"
+  location = "Vanderbilt University"
+  gravatarEmail = "jonathan.gilligan@gmail.com"
+  # Your profile picture
+#  picture = ""
+  twitter = "jg_environ"
+
+# Menu Configuration
+[[menu.main]]
+  weight = 1
+  identifier = "home"
+  name = "Home"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-home\"></i>"
+  url = "/"
+[[menu.main]]
+  weight = 2
+  identifier = "overview"
+  name = "Overview"
+  pre = "<i class=\"fa fa-globe\"></i>"
+  url = "/overview"
+[[menu.main]]
+  weight = 3
+  identifier = "schedule"
+  name = "Schedule"
+  pre = "<i class=\"material-icons\">date_range</i>"
+  url = "/schedule"
+[[menu.main]]
+  weight = 4
+  identifier = "policies"
+  name = "Policies"
+  pre = "<i class=\"material-icons\">gavel</i>"
+  url = "/policies"
+[[menu.main]]
+  weight = 5
+  identifier = "downloads"
+  name = "Downloads"
+  pre = "<i class=\"material-icons\">get_app</i>"
+  url = "/downloads"
+[[menu.main]]
+  weight = 6
+  identifier = "tools"
+  name = "Tools"
+  pre = "<i class=\"material-icons\">build</i>"
+  url = "/tools"
+
+#[[menu.footer]]
+#  weight = 1
+#  identifier = "Berkeley"
+#  name = "UC Berkeley"
+#  pre = "<i class=\"material-icons\">pin_drop</i>"
+#  url = "https://data.berkeley.edu"
+[[menu.footer]]
+  weight = 2
+  identifier = "GitHub"
+  name = "Class Repos"
+  pre = "<i class=\"button-icon fa fa-2x fa-github\"></i>"
+  url = "https://github.com/gilligan-ees-4760"
+
+[params]
+  dateFormat = "January 2, 2006"
+  background = "img/course_banner_cropped.jpg"
+  math = "true"
+

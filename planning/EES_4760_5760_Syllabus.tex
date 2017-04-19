@@ -1,0 +1,505 @@
+\documentclass[11pt,twoside]{jgsyllabus}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{booktabs}
+%\usepackage{tabularx}
+\usepackage{multirow}
+
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+\setlength{\aboverulesep}{0.2ex}
+\setlength{\belowrulesep}{0.2ex}
+\setlength{\extrarowheight}{0.1ex}
+\setlength{\heavyrulewidth}{1pt}
+\setlength{\lightrulewidth}{0.05pt}
+
+\newif\ifreading
+\readingtrue
+
+\iffalse
+\include{CourseInfo}
+\fi
+
+
+
+\SetupHandout
+\isbntrue
+
+\renewcommand{\LongCourseName}{\ShortCourseName}%
+
+\title{Syllabus\\
+\ShortCourseNumber: \LongCourseName}
+
+\fancyhead[L]{\bfseries\scshape \ShortCourseNumber\ Syllabus}
+
+%
+%
+%
+%
+%
+%
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\maketitle
+
+\iffalse
+\noindent
+\textbf{\large \textsc{Note:} This is a draft syllabus, subject to change.}
+
+\fi
+\section[Nuts \& Bolts]{Nuts and Bolts}
+\label{sec:NutsAndBolts}
+\subsection{Class Meetings}
+\ClassMeetings
+\subsection{Professor}
+\label{sec:Professor}
+\ProfName\\
+\ProfDescr\\
+\ProfOffice, \ProfPhone\\
+\ProfEmail\\
+\ProfOfficeHours
+%
+%To book time during my office hours, send me an email
+%or make an appointment on line via Google calendar at
+%\url{http://bit.ly/o9ka5e}
+\ifTA
+\subsection{Teaching Assistant}
+\label{sec:TA}
+\TaName\\
+\TaOfficeLoc\ifTaPhone , \TaPhone\fi\\
+\TaEmail\\
+\TaOfficeHours
+\medskip
+
+\noindent
+\TaTitle\ will be grading homework, so address questions about your homework grades
+to \TaAccusative.
+\fi
+
+\subsection{Email}
+\textbf{%
+If you want to communicate with
+\ifTA
+Professor Gilligan or \TaTitle,
+\else
+me,
+\fi
+be sure to begin the
+subject line of your email with ``{\scshape EES 4670}'' or ``{\scshape EES 5670}''.
+}%
+This helps assure
+that \ifTA we\else I\fi\ will see your message quickly and respond to it.
+
+I have set my email reader to flag all messages like this as important, so I
+will read them first. This also assures that I do not mistake your email for
+spam. I typically receive over 100 emails per day, so if you do not follow these
+instructions I may not notice your email.
+
+\medskip
+%\clearpage
+\section[Description]{Course Description}
+\subsection{Catalog Description}
+\textbf{\ShortCourseName.} Applications in natural, social, and behavioral
+sciences and engineering. Designing, programming, and documenting models.
+Using models for experiments. Examples from environmental science, ecology,
+economics, urban planning, and medicine. Familiarity with basic statistics and
+proficiency in algebra are expected.
+[3] (MNS)
+
+\subsection{Narrative Description}
+Agent-based and individual-based modeling has become a powerful tool for
+research in many fields, including anthropology, civil engineering,
+computer science, ecology, economics, epidemiology, marketing, medicine,
+political science, public policy, robotics, sociology, transportation, and
+urban planning.
+
+Agent-based modeling is used to study how individual agents (which can represent
+people, animals, plants, cars, robots, or packets of information in a
+communications network) making simple decisions can produce complex and
+unexpected collective behavior through their interactions. Agent-based models
+have been used to investigate racial segregation in American cities, traffic
+jams, adaptation to global warming, disease outbreaks, inflammatory response to
+wound infections, ecosystem dynamics, impacts of changing land-use on tropical
+rain forests, political instability, and market penetration of home solar-energy
+systems.
+
+This course will provide an introduction to agent and individual-based modeling.
+You will learn how to design, program, and document agent-based computational
+models using the free open-source \NetLogo\ environment. You will use these
+models scientifically to perform computational experiments and interpret the
+results.
+
+You do not need to have any prior knowledge of computer programming, but I do
+expect that you are familiar with basic statistics and algebra.
+We will use the \NetLogo\ environment for writing and running agent-based models.
+\NetLogo\ is a widely used system that is both powerful and easy to learn, so
+you can quickly start to program your own models.
+
+\iffalse
+\section[Goals]{Goals for the Course}
+My goals for this course are that at the end of the semester:
+\begin{itemize}
+    \item
+\end{itemize}
+\fi
+%
+%
+%
+%\clearpage
+\section[Structure]{Structure of the Course:}
+I divide the semester into three parts:
+\begin{enumerate}
+    \item \textbf{Introduction to Agent-Based Models and \NetLogo:} The first
+    part of the course introduces the basic concepts of computer modeling, what
+    agent-based models are, and how to use the \NetLogo\ environment to write
+    and run simple agent based models. I do not assume any prior experience with
+    programming or computer modeling, so this part of the course will give you
+    everything you need to get started.
+    \item \textbf{Designing Agent-Based Models:} Next, we study the essential
+    components of agent-based models and develop a systematic approach to
+    designing and implementing agent-based models that will be suitable for
+    doing real science. This section will use examples of real agent-based
+    models that have been used for published research.
+    \item \textbf{Using Models for Serious Research:} After mastering the
+    components that good models should have, we step back from the details and
+    work at a more strategic level to consider how we can design  and use models
+    to answer research questions in social and natural sciences.
+%    In this section, you will work on projects to design and program your own
+%    model, use it for computational experiments, and analyze and interpret the
+%    results.
+\end{enumerate}
+%
+%
+%
+\pagebreak
+\subsection{Reading Material}
+There is one required textbook.
+From time to time during the term, I will assign supplementary reading on the
+Internet or in handouts that I will post to the class web site.
+
+\subsubsection{Textbooks}
+\begin{itemize}
+	%
+	\item \LongRailsback.
+	% \item \LongGrowing
+\end{itemize}
+
+There is a companion web site to \emph{\Railsback}, \RailsbackURL, that has
+additional useful information.
+
+All textbooks have errors. The authors maintain a list of errors that have been
+reported to them and you can download it from the book's web site at
+\RailsbackURL\ or from the course web site at
+\url{https://ees4760.jgilligan.org/files/Railsback_Grimm_2012_Errata.pdf}.
+
+You can download the \NetLogo\ program from \NetLogoURL. It runs on Windows,
+Mac, and Linux systems.
+
+\subsubsection{Additional Resources}
+This course only scratches the surface of what is possible with agent-based
+models, and what researchers are doing with them.
+I have prepared a separate handout on additional reading and computational
+resources for doing research with agent-based models.
+This handout lists a number of helpful books, journals, web sites, and software
+tools that you may find useful or interesting if your want to learn more.
+
+\subsubsection{Class Web Site}
+In addition to Brightspace,
+I have set up a server at \url{https://ees4760.jgilligan.org}, where I post the
+web versions of class slides and interactive web-based applications to that can
+be useful for working with data output from agent-based modeling experiments.
+
+\subsubsection{Overview of reading assignments}
+I will give out detailed reading that give specific pages to read for each class
+and notes on important things you should understand.
+\textbf{I expect you to complete the reading before you come to class on the day
+for which the reading is assigned}, so you can participate in discussions of the
+assigned material and ask questions if there are things you don't understand.
+
+\subsection{Computer Software}
+For this class, we will write and execute agent-based models using the \NetLogo\
+modeling system. NetLogo is free software developed at Northwestern University.
+You can download it from \url{https://ccl.northwestern.edu/netlogo/}.
+\NetLogo\ is available for Windows, Mac OS X, and Linux.
+I have chosen it for this course because it is free, it runs on all the major
+operating systems, its programming language is very easy to learn; and it allows
+you to easily create a visual representation of your model.
+
+You should download \NetLogo\ version 6.0.2 from
+\url{http://ccl.northwestern.edu/netlogo/download.shtml}
+and install it on your computer.
+
+\NetLogo\ has been used widely both for education and also for research-grade
+modeling. However, no computer software is perfect and for some large or
+complicated models, NetLogo may be inadequate.
+There are a number of other
+open-source agent-based modeling systems that are more powerful than \NetLogo\
+and are better suited for large and complex models. However, these systems are
+much harder to learn and much harder for even experts to write models in.
+My experience is that for most modeling projects, you can get more done in a
+week with \NetLogo\ than in a month or more with the other systems I know of.
+
+%\clearpage
+\subsection{Graded Work}
+%
+%
+%
+\subsubsection[Grading]{Basis for Grading}
+\begin{center}
+	\begin{tabular}[t]{crr}
+		Class participation & 5\% &\\
+		Homework & 25\% &\\
+		Assigned Projects & 30\% &\\
+		Research Project & 40\% &
+%    Feedback to Other Students & 5\%
+	\end{tabular}
+\end{center}
+
+\textbf{\scshape Note:} Graduate student research projects will involve
+additional requirements and a longer final report than undergraduate projects,
+and graduate students will be assigned more homework exercises.
+
+\subsubsection{Homework}
+You will set up a Box folder for this course at \url{https://vanderbilt.box.com}
+and share it with me.
+Homework must be turned in electronically via the Box folder
+before class on the day it is due.
+%
+\subsubsection{Projects}
+You will do assigned team projects and one research project.
+On the team projects you will work with a partner or a small team to program
+and work with models.
+% You will do two assigned modeling projects and one research project.
+% Each modeling project will entail writing an ODD document for the model,
+% programming a model following the ODD specification you have written,
+run experiments with the model, write up the results, and make a short
+presentation to the class.
+
+For your research project, you will study an existing model, adapt it to
+investigate a new research question, run and analyze experiments using the
+model, write up the results, and make a presentation to the class.
+%, but you will be paired with other students with whom you will exchange
+% feedback as you develop your project.
+
+\subsubsection{Tests and Examinations}
+There will not be any tests or examinations in this course. Your grade will be
+based on class participation, homework, modeling projects, and in-class
+presentations.
+
+%
+% You may take either the regular or the alternate final exam (but not both).
+% You must tell me in advance which exam you will take. I will pass a sign-up
+% sheet in class during the last week of classes to sign up for which exam you
+% will take. If you do not choose on the sign-up sheet, you must take the
+% regular exam on \FinalExamDay, \FinalExamMonth.~\FinalExamDate.
+% \else
+% There will not be an alternate final exam.
+% \fi
+%
+% The final exam will be cumulative over all the material covered during the term.
+
+%\clearpage
+\section{Honor Code:}
+This course, like all courses at Vanderbilt, is conducted under the Honor Code.
+\begin{description}
+\item[Studying:] As you study for this class, I encourage you to to seek help from me%
+\ifTA
+, from \TaTitle,
+\else
+\
+\fi
+or from other classmates or friends.
+
+\item[Homework Assignments:] I encourage working together
+on homework assignments: you may talk with your friends and classmates about
+homework assignments, compare notes on how you are working a problem, and you
+may look at your classmates' work on homework assignments.
+But you must work through the problems yourself
+in the work you turn in:
+\textbf{Even if you have discussed the solution with others you must work
+through the steps yourself and express the answers in your own words. You may
+not simply copy someone else's answer.}
+
+\item[Team Assignments:] On some assignments, in which I explicitly direct you
+to work with others.
+These team assignments will contain instructions how the honor code applies.
+
+\item[Research Project:] The research project assignment will contain details
+about how the honor code applies to the research project.
+\end{description}
+
+If you ever
+have questions about how the Honor Code applies to your work
+in this course, please ask me.
+\textbf{Uncertainty about the Honor Code does not excuse a violation.}
+\section{Final Note:}
+I have made every effort to plan a busy, exciting, and instructive semester.
+I may find during the term that I need to revise the syllabus to give more time
+to some subjects or to pass more quickly over others rather than covering them
+in depth.
+Thus, while I will attempt to follow this syllabus as closely as I can,
+you should realize that it is subject to change during the semester.
+%
+%
+\iftrue
+% \pagebreak
+\include*{MeetYourProf}
+\fi
+%
+%
+%
+%
+%
+%
+%
+%\end{document}
+
+%\cleardoublepage
+\clearpage
+\appendix
+\setcounter{secnumdepth}{0}
+\newcommand{\maybehline}{\hline}%
+\setlength\extrarowheight{4pt}
+\section[Class Schedule]{Schedule of Classes
+\ifrevised
+	(Revised \RevisionDate)%
+\else
+	(Subject to Change)%
+\fi}
+
+\textbf{\scshape Important Note:} This schedule gives a rough indication of the
+reading for each day. See the assignment sheets posted on Brightspace
+and the course web site for the detailed daily assignments.
+
+\setlength{\aboverulesep}{0.2ex}
+\setlength{\belowrulesep}{0.2ex}
+\setlength{\extrarowheight}{0.1ex}
+\setlength{\heavyrulewidth}{0.5pt}
+\setlength{\lightrulewidth}{0.05pt}
+\begin{center}
+% latex table generated in R 3.4.3 by xtable 1.8-2 package
+% Mon Jan 08 18:31:25 2018
+\begin{tabular}{l@{~}c@{~}r>{\raggedright}m{2.6in}>{\centering}m{2in}c}
+  \toprule
+  \multicolumn{3}{c}{\bfseries Date} & \multicolumn{1}{c}{\bfseries Topic} &\multicolumn{1}{c}{\bfseries Reading} &\\
+ \midrule
+Tue., & Jan. &   9 & Introduction &  &  \\ 
+   \midrule
+Thu., & Jan. &  11 & The computer modeling cycle & Railsback \& Grimm, Ch.~1; \\Artificial Societies\ (Handout) &  \\ 
+   \midrule
+Tue., & Jan. &  16 & Introduction to \NetLogo & Railsback \& Grimm, Ch.~2 &  \\ 
+   \midrule
+Thu., & Jan. &  18 & Specifying models: The ODD protocol & Railsback \& Grimm, Ch.~3 &  \\ 
+   \midrule
+Tue., & Jan. &  23 & Your first model & Railsback \& Grimm, Ch.~4 &  \\ 
+   \midrule
+Thu., & Jan. &  25 & Using models for science & Railsback \& Grimm, Ch.~5 &  \\ 
+   \midrule
+Tue., & Jan. &  30 & Testing and validating models & Railsback \& Grimm, Ch.~6 &  \\ 
+   \midrule
+Thu., & Feb. &   1 & Choosing Research Projects & Railsback \& Grimm, Ch.~7 &  \\ 
+   \midrule
+Tue., & Feb. &   6 & Emergence & Railsback \& Grimm, Ch.~8 &  \\ 
+   \midrule
+Thu., & Feb. &   8 & Observation & Railsback \& Grimm, Ch.~9 &  \\ 
+   \midrule
+Tue., & Feb. &  13 & Sensing & Railsback \& Grimm, Ch.~10 &  \\ 
+   \midrule
+Thu., & Feb. &  15 & Adaptive Behavior and Objectives & Railsback \& Grimm, Ch.~11 &  \\ 
+   \midrule
+Tue., & Feb. &  20 & Prediction & Railsback \& Grimm, Ch.~12 &  \\ 
+   \midrule
+Thu., & Feb. &  22 & Interaction & Railsback \& Grimm, Ch.~13 &  \\ 
+   \midrule
+Tue., & Feb. &  27 & Team Presentations &  &  \\ 
+   \midrule
+Thu., & Mar. &   1 & Research Project ODDs &  &  \\ 
+   \midrule
+Tue., & Mar. &   6 & \multicolumn{2}{l}{\multirow{2}{*}{\bfseries\scshape\Large Spring Break}} & \\% &  &  \\ 
+  Thu., & Mar. &   8 &  &  &  \\ 
+   \midrule
+Tue., & Mar. &  13 & Prediction & Railsback \& Grimm, Ch.~14 &  \\ 
+   \midrule
+Thu., & Mar. &  15 & Stochasticity & Railsback \& Grimm, Ch.~15 &  \\ 
+   \midrule
+Tue., & Mar. &  20 & Collectives & Railsback \& Grimm, Ch.~16 &  \\ 
+   \midrule
+Thu., & Mar. &  22 & Patterns & Railsback \& Grimm, Ch.~17--18 &  \\ 
+   \midrule
+Tue., & Mar. &  27 & Theory Development & Railsback \& Grimm, Ch.~19 &  \\ 
+   \midrule
+Thu., & Mar. &  29 & Parameterization and Calibration & Railsback \& Grimm, Ch.~20 &  \\ 
+   \midrule
+Tue., & Apr. &   3 & Parameterization and Calibration 2 &  &  \\ 
+   \midrule
+Thu., & Apr. &   5 & Analyzing ABMs & Railsback \& Grimm, Ch.~22 &  \\ 
+   \midrule
+Tue., & Apr. &  10 & Sensitivity and Robustness & Railsback \& Grimm, Ch.~23 &  \\ 
+   \midrule
+Thu., & Apr. &  12 & Looking Ahead: ABMs Beyond this Course & Railsback \& Grimm, Ch.~24 &  \\ 
+   \midrule
+Tue., & Apr. &  17 & Presentations &  &  \\ 
+   \midrule
+Thu., & Apr. &  19 & Presentations &  &  \\ 
+   \bottomrule
+\end{tabular}
+
+\end{center}
+%
+\iffalse
+\begin{center}
+
+\end{center}
+\fi
+%
+\end{document}

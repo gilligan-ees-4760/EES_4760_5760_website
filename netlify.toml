@@ -1,0 +1,5 @@
+# COMMENT: These are two rules with all the fields expanded
+[[redirects]]
+  from = "/analyzeBehaviorspace/*"
+  to = "https://analyze-behaviorspace.jgilligan.org/:splat"
+  status = 301

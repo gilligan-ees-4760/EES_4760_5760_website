@@ -1,0 +1,54 @@
+---
+title: Observation
+class_date: '2018-02-08'
+class_number: 10
+weight: 10
+slug: reading_10
+pubdate: '2018-01-01'
+date: '2018-02-08'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Homework
+
+Homework #8 is due today: Railsback & Grimm, Ch. 6, Ex. 6.2, 6.3, 6.5 (everyone) and Ex. 6.4, 6.7 (grad. students). See the homework assignment sheet for details.
+
+## Reading:
+
+* Railsback & Grimm, Ch. 9.
+
+### Reading Notes:
+
+In this chapter, we examine how to detect and record the properties of a model 
+that we want to study. 
+
+The article, D. Kornhauser, [U. Wilensky, and W. Rand. (2009). "Design guidelines 
+for agent-based model visualization," _Journal of Artificial Societies and Social 
+Simulation_ **12**, 1](http://jasss.soc.surrey.ac.uk/12/2/1.html) 
+is available online at <http://jasss.soc.surrey.ac.uk/12/2/1.html>.
+
+I have posted a [refresher guide](/files/models/chapter_09/ch9_ex8_Netlogo_exercises.pdf) 
+for NetLogo programming on the class web site at <https://ees4760.jgilligan.org/files/models/chapter_09/ch9_ex8_Netlogo_exercises.pdf>
+
+**Errata for Chapter 9:**
+
+* Section 9.3, p. 119: 
+  The discussion of histograms mentions potential difficulties setting the 
+  _x_ axis to a useful range, so all the bars are visible. One solution is to 
+  use the `set-plot-x-range` primitive. For example, add this statement:
+  ```
+  set-plot-x-range (min [elevation] of turtles) 
+      (max [elevation] of turtles)
+  ```
+  just before the statement: 
+  ```
+  histogram [elevation] of turtles
+  ```
+  Or, if the histogram should always
+  start at zero: 
+  ```
+  set-plot-x-range 0 max [elevation] of turtles
+  ```
+  (You may need to use primitives such as `ceiling` and `precision` to convert 
+  the inputs to `set-plot-x-range` to nice round numbers.)
