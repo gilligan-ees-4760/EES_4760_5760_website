@@ -39,7 +39,7 @@ For Thursday:
     - <https://vanderbilt.box.com>
     - Make folder for this class with your last name:
         - <span color="purple">lastname</span>_EES_4760 or <span color="purple">lastname</span>_EES_5760
-        - Share it with me and Brandt Gibson as Editors
+        - Share it with me as Editor
         - Homework goes in subfolders:
             - HW_1, HW_2, ...
 
