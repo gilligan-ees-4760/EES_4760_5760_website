@@ -4,6 +4,7 @@ lessons:
   lecture: /Slides/Class_01
 - date: '2018-01-11'
   title: The computer modeling cycle
+  lecture: /Slides/Class_02
   reading: /reading/reading_02
   assignment: homework_01
 - date: '2018-01-16'

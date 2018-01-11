@@ -1,7 +1,7 @@
 revealjs.jg::revealjs_presentation:
     template: "./scaffold/html_template/template-revealjs-jg.html"
-    height: 1024
-    width: 1280
+    height: 1080
+    width: 1920
     header_attributes: true
     fancy_lists: true
     definition_lists: true
