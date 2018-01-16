@@ -154,7 +154,7 @@ module.exports = function(grunt) {
         {
           cwd: 'lecture_lib/models/',
           src: ['**'],
-          dest: '../../static/lecture_lib/models',
+          dest: '../../static/models',
         },
         {
           cwd: 'Slides',
