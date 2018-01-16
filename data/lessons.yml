@@ -9,6 +9,7 @@ lessons:
   assignment: homework_01
 - date: '2018-01-16'
   title: Introduction to NetLogo
+  lecture: /Slides/Class_03
   reading: /reading/reading_03
   assignment: homework_02
 - date: '2018-01-18'
