@@ -152,6 +152,11 @@ module.exports = function(grunt) {
           dest: '../../static/lecture_lib/library/reveal.js-3.3.0/lib',
         },
         {
+          cwd: 'lecture_lib/models/',
+          src: ['**'],
+          dest: '../../static/lecture_lib/models',
+        },
+        {
           cwd: 'Slides',
           src: ['**', '!**/*.yml', '!**/*.Rmd', '!**/*.md'],
           dest: '../../static/Slides',
@@ -160,6 +165,10 @@ module.exports = function(grunt) {
 		},
 
 		watch: {
+		  sync: {
+		    files: [ 'lecture_lib/**', 'Slides/**'],
+		    tasks: 'sync'
+		  },
 			js: {
 				files: [ 'Gruntfile.js', 'lecture_lib/library/reveal.js-3.3.0/js/reveal.js' ],
 				tasks: 'js'
