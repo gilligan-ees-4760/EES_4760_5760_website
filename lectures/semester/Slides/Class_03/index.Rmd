@@ -720,7 +720,7 @@ end
 * Go to "Interface" tab
 * Click on "setup"
 * Click on "go"
-* You can download a copy of the model from <https://ees4760.jgilligan.org/models/class_03_example.nlogo>
+* You can download a copy of the model from <https://ees4760.jgilligan.org/models/class_03/class_03_example.nlogo>
 
 ## Monitoring and Interacting with a Model {#monitoring-interacting .seventy .leftslide}
 
