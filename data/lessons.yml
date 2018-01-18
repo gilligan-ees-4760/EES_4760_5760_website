@@ -14,6 +14,7 @@ lessons:
   assignment: homework_02
 - date: '2018-01-18'
   title: 'Specifying models: The ODD protocol'
+  lecture: /Slides/Class_04
   reading: /reading/reading_04
   assignment: homework_03
 - date: '2018-01-23'
