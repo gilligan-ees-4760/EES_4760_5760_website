@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template -->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Jonathan Gilligan" />
+  <title>Your First Model</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+  <link rel="stylesheet" href="/lecture_lib/library/reveal.js-3.3.0/css/reveal.min.css"/>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+  <style type="text/css">
+    div.qrbox {
+     position:fixed;
+     bottom:-90%;
+     left:10px;
+     text-align:left;
+     vertical-align:bottom;
+    }
+  </style>
+<!-- theme = solarized_jg -->
+<link rel="stylesheet" href="/lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/lecture_lib/library/reveal.js-3.3.0/css/print/pdf.css' : '/lecture_lib/library/reveal.js-3.3.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="/lecture_lib/library/reveal.js-3.3.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class='center' id='title' >
+    <h1 class="title">Your First Model</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based &amp; Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #5:
+       Tues. January 23
+      2018
+    </h3>
+        <div class="qrbox" id="qrbox">
+      <p style="font-size:30%">
+    <a href="https://ees4760.jgilligan.org/Slides/Class_05">
+  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/Slides/Class_05"/>
+  	</a>
+    	<br/>
+    	Live web page: <a href="https://ees4760.jgilligan.org/Slides/Class_05">https://ees4760.jgilligan.org/Slides/Class_05</a>
+    	<br/>
+    	PDF: <a href="https://ees4760.jgilligan.org/Slides/Class_05/EES_4760_5760_Class_05_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/Slides/Class_05/EES_4760_5760_Class_05_Slides.pdf</a>
+    	
+  	</p>
+  	</div>
+    	<!-- end title slide -->
+</section>
+
+<section><section id="homework-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Homework</h1></section><section id="homework" class="slide level2" data-transition="fade-in">
+<h2>Homework:</h2>
+<ul>
+<li class="fragment">In the mushroom hunt, were there always 80 red patches?</li>
+<li class="fragment">Any questions about modified mushroom hunt model?</li>
+<li class="fragment">Let’s talk about ODD exercise.</li>
+</ul>
+</section><section id="model-from-odd" class="slide level2">
+<h2>Writing a model from an ODD</h2>
+<ul>
+<li class="fragment">Questions about writing a model from Butterfly ODD?</li>
+<li class="fragment">Were there things the ODD was unclear about?</li>
+</ul>
+</section></section>
+<section><section id="digression-on-turtles" class="titleslide slide level1"><h1>Digression on Turtles</h1></section><section id="why-turtles" class="slide level2">
+<h2>Why “Turtles”?</h2>
+<div class="fragment">
+<p><img data-src="assets/images/Papert-Turtle-x640.jpg" alt="Original Turtle" style="height:900px;" /> <img data-src="assets/images/Papert-x640.jpg" alt="Seymour Papert" style="height:900px;" /></p>
+</div>
+</section></section>
+<section><section id="butterfly-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Butterfly Model</h1></section><section id="butterfly" class="slide level2 ninety leftlist" data-transition="fade">
+<h2>Enhancing the Butterfly model</h2>
+<ul>
+<li class="fragment">Download butterfly model from <a href="https://ees4760.jgilligan.org/models/class_05/butterfly_model_class_5.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_05/butterfly_model_class_5.nlogo</a></li>
+<li class="fragment">Put a slider for <em>q</em></li>
+<li class="fragment">Add patches-own variable to indicate whether it was visited.</li>
+</ul>
+<div class="fragment fade-in" style="max-height:100%;">
+<pre><code>patches-own
+[ 
+  elevation 
+  visited? ; question mark means it&#39;s a true/false variable
+]
+
+to setup
+[
+  ...
+  ask patches [
+    set visited? false
+    ...
+    ]
+  ...
+]</code></pre>
+</div>
+</section><section id="butterfly-2" class="slide level2 leftlist" data-transition="fade">
+<h2>Enhancing the Butterfly model</h2>
+<ul>
+<li>
+Put a slider for <em>q</em>
+</li>
+<li>
+Add patches-own variable to indicate whether it was visited.
+</li>
+<li class="fragment fade-in">
+Add turtles-own variable to remember the patch where it started.
+</li>
+<li class="fragment fade-in">
+Increase the number of butterflies to 50.
+</li>
+<li class="fragment fade-in">
+Stop butterfly from moving if it’s at the top of a hill.
+<ul>
+<li class="fragment fade-in">
+How can you tell whether it’s on the top?
+</li>
+</ul>
+</li>
+</ul>
+</section><section id="butterfly-3" class="slide level2" data-transition="fade-in">
+<h2>Enhancing the Butterfly model</h2>
+<ul>
+<li class="fragment">Write a reporter for corridor width<br/>
+<div style="border-top:20px;border-bottom:20px;">
+<p><span class="math display">\[ \text{Corridor width} = \frac{\text{# patches visited}}{\text{distance from start}} \]</span></p>
+</div></li>
+<li class="fragment">Put an <strong>observer</strong> on the interface</li>
+<li class="fragment">Define a reporter:</li>
+</ul>
+<div class="fragment">
+<pre><code>to-report corridor-width
+  let wid ... ; calculate corridor width
+  report wid
+end</code></pre>
+</div>
+</section></section>
+<section><section id="behaviorspace-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Behaviorspace</h1></section><section id="behaviorspace" class="slide level2" data-transition="fade-in">
+<h2>Running Experiments: BehaviorSpace</h2>
+<ul>
+<li class="fragment">Vary any parameter that has a control on the model’s interface</li>
+<li class="fragment"><p>Writes output to <code>.csv</code> spreadsheet file (table output is the most useful).</p>
+<p><img data-src="assets/images/behaviorspace_expt.png" alt="Behaviorspace experiment" style="height:800px;" /></p></li>
+</ul>
+</section><section id="behaviorspace-output" class="slide level2">
+<h2>Output from BehaviorSpace Experiments</h2>
+<ul>
+<li class="fragment"><p>Note: Data written in spreadsheet might be out of order.</p>
+<div class="stretch">
+<pre><code>&quot;BehaviorSpace results (NetLogo 5.3.1)&quot;
+&quot;jg_butterfly_1.nlogo&quot;
+&quot;vary-q&quot;
+&quot;01/25/2016 23:08:47:963 -0600&quot;
+&quot;min-pxcor&quot;,&quot;max-pxcor&quot;,&quot;min-pycor&quot;,&quot;max-pycor&quot;
+&quot;0&quot;,&quot;149&quot;,&quot;0&quot;,&quot;149&quot;
+&quot;[run number]&quot;,&quot;q&quot;,&quot;[step]&quot;,&quot;corridor-width&quot;
+&quot;4&quot;,&quot;0&quot;,&quot;999&quot;,&quot;424.71585264477375&quot;
+&quot;3&quot;,&quot;0&quot;,&quot;999&quot;,&quot;407.8948972331853&quot;
+&quot;2&quot;,&quot;0&quot;,&quot;999&quot;,&quot;402.16008464319225&quot;
+&quot;1&quot;,&quot;0&quot;,&quot;999&quot;,&quot;413.09183879201066&quot;
+&quot;5&quot;,&quot;0&quot;,&quot;999&quot;,&quot;380.4175502215263&quot;
+&quot;6&quot;,&quot;0&quot;,&quot;999&quot;,&quot;408.25117143183326&quot;
+&quot;7&quot;,&quot;0&quot;,&quot;999&quot;,&quot;431.37461560574894&quot;
+&quot;8&quot;,&quot;0&quot;,&quot;999&quot;,&quot;408.38259535508286&quot;
+&quot;9&quot;,&quot;0&quot;,&quot;999&quot;,&quot;421.7254402334981&quot;</code></pre>
+</div></li>
+</ul>
+</section><section id="analyzing-behaviorspace" class="slide level2">
+<h2>Analyzing Behaviorspace Output</h2>
+<ul>
+<li class="fragment">Behaviorspace output format is annoying
+<ul>
+<li class="fragment">Each line is some tick of some run</li>
+<li class="fragment">How to organize, and average over runs?</li>
+</ul></li>
+<li class="fragment">analyzeBehaviorspace app
+<ul>
+<li class="fragment">Works with Behaviorspace <strong>table</strong> output format.</li>
+<li class="fragment"><a href="https://analyze-behaviorspace.jgilligan.org" class="uri">https://analyze-behaviorspace.jgilligan.org</a></li>
+<li class="fragment">Or install on your own computer using R
+<ul>
+<li class="fragment">Instructions at <a href="https://github.com/jonathan-g/analyzeBehaviorspace" class="uri">https://github.com/jonathan-g/analyzeBehaviorspace</a></li>
+<li class="fragment">After installing:</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<pre><code>library(analyzeBehaviorspace)
+launch_abs()</code></pre>
+</div>
+</section></section>
+<section><section id="emergence-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Emergence</h1></section><section id="emergence" class="slide level2" data-transition="fade-in">
+<h2>Emergence</h2>
+<ul>
+<li class="fragment">A tricky concept.</li>
+<li class="fragment"><em>Growing Artificial Societies:</em> “stable macroscopic patterns arising from the local interaction of agents.”</li>
+<li class="fragment">Epstein ten years later: “I have always been uncomfortable with the vagueness and occasional mysticism surrounding this word.”</li>
+<li class="fragment">Epstein now prefers to talk about “<em>Generative</em> Social Science”</li>
+</ul>
+</section></section>
+    </div>
+  </div>
+  <script src="/lecture_lib/library/reveal.js-3.3.0/lib/js/head.min.js"></script>
+  <script src="/lecture_lib/library/reveal.js-3.3.0/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '/lecture_lib/library/reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '/lecture_lib/library/reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '/lecture_lib/library/reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+
+<script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"],
+                Macros: {
+                  permil: "\\unicode{x2030}",
+                  pH: "p\\ce{H}",
+                  CaSi: "\\ce{CaSiO3}",
+                  silicate: "\\ce{SiO3^2-}",
+                  Caplus: "\\ce{Ca^2+}",
+                  calcite: "\\ce{CaCO3}",
+                  silica: "\\ce{SiO2}",
+                  OH: "\\ce{OH-}",
+                  Hplus: "\\ce{H+}",
+                  carbonic: "\\ce{H2CO3}",
+                  bicarb: "\\ce{HCO3-}",
+                  carb: "\\ce{CO3^2-}",
+                  water: "\\mathrm{H_2O}",
+                  degF: "^\\circ \\mathrm{F}",
+                  degC: "^\\circ \\mathrm{C}",
+                  methane: "\\ce{CH4}",
+                  COO: "\\ce{CO2}"
+                },
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script>
+
+
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script>
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  <script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+  Reveal.addEventListener('slidechanged', function() {
+    if (Reveal.isFirstSlide()) {
+      qrbox.style.visibility="visible";
+    } else {
+      qrbox.style.visibility="hidden";
+      while (advance_fragment > 0) {
+        console.log('advancing fragment');
+        Reveal.nextFragment();
+        advance_fragment--;
+      }
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+  </body>
+</html>

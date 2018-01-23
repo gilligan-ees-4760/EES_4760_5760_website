@@ -19,6 +19,7 @@ lessons:
   assignment: homework_03
 - date: '2018-01-23'
   title: Your first model
+  lecture: /Slides/Class_05
   reading: /reading/reading_05
   assignment: homework_04
 - date: '2018-01-25'
