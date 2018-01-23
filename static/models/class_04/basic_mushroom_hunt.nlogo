@@ -1,105 +1,91 @@
 globals [
-  q
-  ]        ; q is the probability that a butterfly moves
-                     ; directly to the highest surrounding patch
-patches-own [
-  elevation
+  num-clusters
   ]
 turtles-own [
+  time-since-last-found
   ]
 
 to setup
+  ca
 
-  clear-all
+  set num-clusters 4
 
-  ; Assign an elevation to patches and color them by it
-  ask patches
+  ; create clusters of mushrooms.
+  ; mushrooms are represented as red patches.
+  ask n-of num-clusters patches
+  [
+    ask n-of 20 patches in-radius 5 with [pcolor != red]
     [
-       ; Patch elevation decreases linearly with distance from the center
-       ; of hills. Hills are at (30, 30) and (120, 100). The first hill is
-       ; 100 units high. The second hill is 50 units high.
+      set pcolor red
+    ]
+  ]
 
-      let elev1 100 - distancexy 30 30
-      let elev2 50 - distancexy 120 100
+  crt 2
+  [
+    set size 2
+    set color yellow
+    set time-since-last-found 999
+    pen-down
+  ]
 
-      ifelse elev1 > elev2
-         [set elevation elev1]
-         [set elevation elev2]
-
-      set pcolor scale-color green elevation 0 100
-    ]    ; end of "ask patches"
-
-  ;  Create just 1 butterfly for now
-  create-turtles 1
-   [
-     set size 2
-     set color red
-     ; Set initial location of butterflies
-     setxy 85 95
-     pen-down
-   ]
-
-   ; Initialize the "q" parameter
-   ; don't initialize here if we're using a slider
-   set q 0.4
-
-   reset-ticks
-
-end           ; of setup procedure
-
-to go  ;  This is the master schedule
-
-  ask turtles [move]
-
-  tick
-
-  ; stop when all the butterflies are at the summit, or
-  ; 1000 ticks, whichever comes first
-  if ticks >= 1000 [stop]
-
+  reset-ticks
 end
 
-to move  ; The butterfly move procedure, in turtle context
-         ; Decide whether to the highest
-         ; surrounding patch with probability q
-  ifelse random-float 1 < q
-    [ uphill elevation ]            ; Move uphill
-    [ move-to one-of neighbors ]    ; Otherwise move randomly
-end ; of move procedure
+to go
+  tick
+  ask turtles [search]
+end
+
+to search
+  ifelse time-since-last-found <= 20
+  [right (random 181) - 90]
+  [right (random 21) - 10]
+
+  fd 1
+
+  ifelse pcolor = red
+  [
+    set time-since-last-found 0
+    set pcolor yellow
+  ]
+  [
+    set time-since-last-found time-since-last-found + 1
+  ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
-211
+210
 10
-669
-469
+673
+474
 -1
 -1
-3.0
+7.0
 1
 10
 1
 1
 1
 0
-0
-0
-1
-0
-149
-0
-149
 1
 1
+1
+-32
+32
+-32
+32
+0
+0
 1
 ticks
 30.0
 
 BUTTON
-17
-23
-88
-56
-NIL
+15
+29
+80
+63
+Setup
 setup
 NIL
 1
@@ -112,11 +98,11 @@ NIL
 1
 
 BUTTON
-18
-62
-82
-96
-NIL
+16
+71
+80
+105
+Go
 go
 T
 1
@@ -128,54 +114,59 @@ NIL
 NIL
 1
 
+BUTTON
+95
+72
+158
+105
+step
+go
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
 @#$#@#$#@
-# Butterfly Model ODD Description
+## WHAT IS IT?
 
-This file describes the model of Pe’er et al. (2005). The description is taken from Section 3.4 of Railsback and Grimm (2012).
+(a general understanding of what the model is trying to show or explain)
 
-## Purpose
+## HOW IT WORKS
 
-The model was designed to explore questions about virtual corridors. Under what conditions do the interactions of butterfly hilltopping behavior and landscape topography lead to the emergence of virtual corridors, that is, relatively narrow paths along which many butterflies move? How does variability in the butterflies’ tendency to move uphill affect the emergence of virtual corridors?
+(what rules the agents use to create the overall behavior of the model)
 
-## Entities, State Variables, and Scales
+## HOW TO USE IT
 
-The model has two kinds of entities: butterflies and square patches of land. The patches make up a square grid landscape of 150 × 150 patches, and each patch has one state variable: its elevation. Butterflies are characterized only by their location, described as the patch they are on. Therefore, butterfly locations are in discrete units, the x- and y- coordinates of the center of their patch. Patch size and the length of one time step in the simulation are not specified because the model is generic, but when real landscapes are used, a patch corresponds to 25 × 25 m<sup>2</sup>. Simulations last for 1000 time steps; the length of one time step is not specified but should be about the time it takes a butterfly to move 25–35 m (the distance from one cell to one of its neighbor cells).
+(how to use the model, including a description of each of the items in the Interface tab)
 
-## Process Overview and Scheduling
+## THINGS TO NOTICE
 
-There is only one process in the model: movement of the butterflies. On each time step, each butterfly moves once. The order in which the butterflies execute this action is unimportant because there are no interactions among the butterflies.
+(suggested things for the user to notice while running the model)
 
-## Design Concepts
+## THINGS TO TRY
 
-The _basic principle_ addressed by this model is the concept of virtual corridors—pathways used by many individuals when there is nothing particularly beneficial about the habitat in them. This concept is addressed by seeing when corridors _emerge_ from two parts of the model: the adaptive movement behavior of butterflies and the landscape they move through. This _adaptive behavior_ is modeled via a simple empirical rule that reproduces the behavior observed in real butterflies: moving uphill. This behavior is based on the understanding (not included in the model) that moving uphill leads to mating, which conveys fitness (success at passing on genes, the presumed ultimate objective of organisms). Because the hilltopping behavior is assumed a priori to be the objective of the butterflies, the concepts of _Objectives_ and _Prediction_ are not explicitly considered. There is no _learning_ in the model.
+(suggested things for the user to try to do (move sliders, switches, etc.) with the model)
 
-_Sensing_ is important in this model: butterflies are assumed able to identify which of the surrounding patches has the highest elevation, but to use no information about elevation at further distances. (The field studies of Pe’er 2003 addressed this question of how far butterflies sense elevation differences.)
+## EXTENDING THE MODEL
 
-The model does not include _interaction_ among butterflies; in field studies, Pe’er (2003) found that real butterflies do interact (they sometimes stop to visit each other on the way uphill) but decided it is not important to include interaction in a model of virtual corridors.
+(suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
 
-_Stochasticity_ is used to represent two sources of variability in movement that are too complex to represent mechanistically. Real butterflies do not always move directly uphill, likely because of (1) limits in the ability of the butterflies to sense the highest area in their neighborhood, and (2) factors other than topography (e.g., flowers that need investigation along the way) that influence movement direction. This variability is represented by assuming butterflies do not move uphill every time step; sometimes they move randomly instead. Whether a butterfly moves directly uphill or randomly at any time step is modeled stochastically, using a parameter _q_ that is the probability of an individual moving directly uphillinstead of randomly.
+## NETLOGO FEATURES
 
-To allow _observation_ of virtual corridors, we will define a specific “corridor width” measure that characterizes the width of a butterfly’s path from its starting patch to a hilltop.
+(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
 
-## Initialization
+## RELATED MODELS
 
-The topography of the landscape (the elevation of each patch) is initialized when the model starts. Two kinds of landscapes are used in different versions of the model: (1) a simple artificial topography, and (2) the topography of a real study site, imported from a file containing elevation values for each patch. The butterflies are initialized by creating five hundred of them and setting their initial location to a single patch or small region.
-
-## Input Data
-
-The environment is assumed to be constant, so the model has no input data.
-
-## Submodels
-
-The movement submodel defines exactly how butterflies decide whether to move uphill or randomly. First, to “move uphill” is defined specifically as moving to the neighbor patch that has the highest elevation; if two patches have the same elevation, one is chosen randomly. “Move randomly” is defined as moving to one of the neighboring patches, with equal probability of choosing any patch. “Neighbor patches” are the eight patches surrounding the butterfly’s current patch. The decision of whether to move uphill or randomly is controlled by the parameter _q_, which ranges from 0.0 to 1.0 (_q_ is a global variable: all butterflies use the same value). On each time step, each butterfly draws a random number from a uniform distribution between 0.0 and 1.0. If this random number is less than _q_, the butterfly moves uphill; otherwise, the butterfly moves randomly.
+(models in the NetLogo Models Library and elsewhere which are of related interest)
 
 ## CREDITS AND REFERENCES
 
-Pe’er, G., Saltz, D. & Frank, K. 2005. Virtual corridors for conservation management. _Conservation Biology_, 19, 1997–2003.
-
-Pe’er, G. 2003. Spatial and behavioral determinants of butterfly movement patterns in topographically complex landscapes. Ph.D. thesis, Ben-Gurion University of the Negev.
-
-Railsback, S. & Grimm, V. 2012. _Agent-based and individual-based modeling: A practical introduction_. Princeton University Press, Princeton, NJ.
+(a reference to the model's URL on the web if it has one, as well as any other necessary credits, citations, and links)
 @#$#@#$#@
 default
 true
@@ -371,12 +362,19 @@ Polygon -7500403 true true 135 90 120 45 150 15 180 45 165 90
 
 sheep
 false
-0
-Rectangle -7500403 true true 151 225 180 285
-Rectangle -7500403 true true 47 225 75 285
-Rectangle -7500403 true true 15 75 210 225
-Circle -7500403 true true 135 75 150
-Circle -16777216 true false 165 76 116
+15
+Circle -1 true true 203 65 88
+Circle -1 true true 70 65 162
+Circle -1 true true 150 105 120
+Polygon -7500403 true false 218 120 240 165 255 165 278 120
+Circle -7500403 true false 214 72 67
+Rectangle -1 true true 164 223 179 298
+Polygon -1 true true 45 285 30 285 30 240 15 195 45 210
+Circle -1 true true 3 83 150
+Rectangle -1 true true 65 221 80 296
+Polygon -1 true true 195 285 210 285 210 240 240 210 195 210
+Polygon -7500403 true false 276 85 285 105 302 99 294 83
+Polygon -7500403 true false 219 85 210 105 193 99 201 83
 
 square
 false
@@ -462,6 +460,13 @@ Line -7500403 true 40 84 269 221
 Line -7500403 true 40 216 269 79
 Line -7500403 true 84 40 221 269
 
+wolf
+false
+0
+Polygon -16777216 true false 253 133 245 131 245 133
+Polygon -7500403 true true 2 194 13 197 30 191 38 193 38 205 20 226 20 257 27 265 38 266 40 260 31 253 31 230 60 206 68 198 75 209 66 228 65 243 82 261 84 268 100 267 103 261 77 239 79 231 100 207 98 196 119 201 143 202 160 195 166 210 172 213 173 238 167 251 160 248 154 265 169 264 178 247 186 240 198 260 200 271 217 271 219 262 207 258 195 230 192 198 210 184 227 164 242 144 259 145 284 151 277 141 293 140 299 134 297 127 273 119 270 105
+Polygon -7500403 true true -1 195 14 180 36 166 40 153 53 140 82 131 134 133 159 126 188 115 227 108 236 102 238 98 268 86 269 92 281 87 269 103 269 113
+
 x
 false
 0
@@ -472,20 +477,6 @@ NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
-<experiments>
-  <experiment name="vary-q-all-steps" repetitions="20" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <metric>corridor-width</metric>
-    <steppedValueSet variable="q" first="0" step="0.1" last="1"/>
-  </experiment>
-  <experiment name="vary-q-final-only" repetitions="20" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <metric>corridor-width</metric>
-    <steppedValueSet variable="q" first="0" step="0.1" last="1"/>
-  </experiment>
-</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
@@ -499,5 +490,5 @@ true
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
 @#$#@#$#@
-1
+0
 @#$#@#$#@

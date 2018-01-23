@@ -72,10 +72,10 @@ end
 GRAPHICS-WINDOW
 210
 10
-675
-496
-32
-32
+673
+474
+-1
+-1
 7.0
 1
 10
@@ -139,7 +139,7 @@ num-clusters
 num-clusters
 0
 20
-12
+12.0
 1
 1
 NIL
@@ -154,7 +154,7 @@ cluster-size
 cluster-size
 1
 50
-20
+20.0
 1
 1
 NIL
@@ -169,7 +169,7 @@ cluster-radius
 cluster-radius
 1
 20
-6
+6.0
 1
 1
 NIL
@@ -544,9 +544,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -562,7 +561,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 0
 @#$#@#$#@
