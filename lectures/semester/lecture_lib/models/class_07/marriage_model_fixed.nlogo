@@ -274,8 +274,8 @@ end
 GRAPHICS-WINDOW
 377
 10
-622
-761
+507
+739
 -1
 -1
 2.0
@@ -369,6 +369,7 @@ PENS
 
 @#$#@#$#@
 # MARRIAGE AGE MODEL
+
 Model formulated and implemented by S. F. Railsback
 
 This model is loosely based on the marriage age model of:
@@ -381,11 +382,13 @@ This NetLogo implementation intentionally includes some programming errors as a 
 #MODEL DESCRIPTION (ODD FORMAT)
 
 ## PURPOSE
+
 This model addresses social norms in the age at which people marry. These norms can be described by a graph showing what percent of people are married at each age. The model specifically explores the role of social networks (peer groups) in influencing marriage age. If we assume people are more likely to get married when more members of their social network are married, does that explain the typical distribution of age-at-marriage?
 
 The model could also be modified to investigate the effect of alternative social networks on marriage ages. If people are more affected by their younger, older, or closer peers, how does that affect when they marry? If people know of more or fewer potential marriage partners, how does it affect the age-at-marriage distribution?
 
 ## ENTITIES, STATE VARIABLES, AND SCALES
+
 The objects in this model represent people. People have two state variables to describe their location within a social network (described in the following paragraph). People also have variables for their age, sex, and marriage status.
 
 This model does not use geographic space, but instead represents a social network as a two-dimensional space, wrapped in one dimension so it acts like a cylinder. A person's social location (where they are in a circle of individuals, with people closer on the circle being more closely linked socially) is described via their angle (real numbers between 0 and 360 degrees) on the cylinder's surface. The NetLogo implementation represents this "social angle" as the Y coordinate of a world with max-ycor set to 360, so turtle Y coordinates range from -0.5 to 359.5. The X axis represents age, so an individual's X coordinate is equal to their age (0-60, in years). A person's close social network (people close in both social connection and age) is therefore its neighborhood on the social space.
@@ -393,6 +396,7 @@ This model does not use geographic space, but instead represents a social networ
 The model runs at a one-year time step. Simulations run for 200 years.
 
 ## PROCESS OVERVIEW AND SCHEDULING
+
 The model includes the following actions executed each time step.
 
 Aging and death: The age of all individuals is incremented. Individuals exceeding age 60 die.
@@ -404,6 +408,7 @@ Marriage: Marriagable individuals (those still single and age 16 or higher) deci
 Output: The marriage-at-age distribution is represented via a histogram showing the number of people married at each age, for the current population.
 
 ## DESIGN CONCEPTS
+
 _Emergence_: The model's primary output is the "age-at-marriage" distribution, which emerges from marriage decisions by individuals. These decisions are determined by (a) the social network and (b) the shape of the social pressure function.
 
 _Adaptive behavior_: The key individual decision is whether to marry each year. This decision is a deterministic function of (a) the fraction of the individual's social network who are already married, and (b) the availability of potential mates in the individual's social region. Individuals adapt their behavior in response to the fraction of peers who are married: as this fraction increases, they are more likely to marry. However, individuals do not adapt their social network in any way (e.g., by expanding the network with age or by being more linked to people of their own marital status).
@@ -428,11 +433,13 @@ The population of 1000 individuals is initialized with age selected randomly wit
 Initial social angle is set randomly to a value between 0.0 and 360.0.
 
 ## INPUT DATA
+
 No time-series inputs are used.
 
 ## SUBMODELS
 
-###Partner search and marriage:
+### Partner search and marriage:
+
 The fundamental behavioral assumption of this model is that people's efforts to marry increase as the fraction of their social network that is married increases. This assumption is implemented through the following steps.
 
 a. Identify the social network. An individual's social network is defined as the other individuals within a rectangular area on the social space (the NetLogo world). The social network's size is defined by two parameters, which are (in this version) the same for all individuals. In the x (age) dimension, the social network ranges +/- social-network-age-range from the individual's age. In the Y (social angle) dimension, the social network ranges +/- social-network-angle-range from the individual's angle. Default values of social-network-age-range and social-network-angle-range are 3 years and 20 degrees. Hence the social network of an individual with age 21 and social angle 280 deg. includes any individuals with ages between 18 and 24 and social anges 260 and 300.
@@ -461,7 +468,8 @@ d. Decide whether to marry. This is simply a stochastic function of social press
 
 e. Identify a partner. Partners are selected by randomly identifying a single individual of the opposite sex within the social network. If no such partners exist, the individual remains unmarried. If a partner is found, then both individuals are immediate assumed married and no longer available for selection by other single individuals.
 
-###Childbirth:
+### Childbirth:
+
 Childbirth rates are imposed to maintain a stable population size. Potential mothers are any female that is married (including newlyweds married in the current time step) and has age less than 40.
 
 Each yearly time step, 16 potential mothers are randomly chosen to each produce one child. If there are fewer than 16 potential mothers in the population, then they all produce a child.
@@ -753,9 +761,8 @@ false
 0
 Polygon -7566196 true true 270 75 225 30 30 225 75 270
 Polygon -7566196 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -771,7 +778,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 0
 @#$#@#$#@
