@@ -4,9 +4,7 @@ library(revealjs.jg)
 library(yaml)
 library(stringr)
 library(purrr)
-
-source('fix_rmd.R')
-source('fix_file_refs.R')
+library(rprojroot)
 
 find_semester_dir <- function(dir = '.', up = TRUE) {
   dir = normalizePath(path.expand(dir))
@@ -25,6 +23,15 @@ find_semester_dir <- function(dir = '.', up = TRUE) {
   }
   NULL
 }
+
+semester.dir <- find_semester_dir()
+data.dir <- file.path(semester.dir, 'data')
+script.dir <- file.path(semester.dir, 'util_scripts')
+
+setwd(semester.dir)
+
+source('fix_rmd.R')
+source('fix_file_refs.R')
 
 
 make_pageurl <- function(lecture_no, lecture_dir = 'Slides') {
@@ -235,6 +242,37 @@ build_lectures <- function (semester_dir = ".", last_lecture = NA, envir = paren
   #  return(invisible(list(pages = pages, site = site, tags = tags)))
 }
 
-semester.dir <- find_semester_dir()
-data.dir <- file.path(semester.dir, 'data')
-script.dir <- file.path(semester.dir, 'util_scripts')
+
+
+run_decktape <- function(class = NULL) {
+  if (is.null(class)) {
+    class_dir = getwd() %>% basename()
+    class = class_dir %>% str_extract("[0-9]+$") %>%
+      simplify() %>% as.integer()
+    dest_dir = "."
+  } else {
+    class = as.integer(class)
+    class_dir = sprintf("Class%02d", class)
+    dest_dir = file.path(semester.dir, "Slides", class_dir)
+  }
+  dest = file.path(dest_dir, sprintf("EES_4760_5760_Class_%02d_Slides.pdf", class))
+  slide_path = str_c("Slides/", class_dir)
+  output_yml = file.path(dest_dir, "_output.yml")
+  res = "1920x1080"
+  if (file.exists(output_yml)) {
+    y = yaml.load_file(output_yml)
+    params = y[["revealjs.jg::revealjs_presentation"]]
+    if (all (c("height", "width") %in% names(params))) {
+      h = params$height
+      w = params$width
+      res = str_c(w, "x", h)
+    }
+  }
+  cmd_line = str_c("decktape -s ", res, " reveal http://localhost:8000/", slide_path, " ", dest)
+  if (.Platform$OS.type == "windows") {
+    shell(cmd_line)
+  } else {
+  system(cmd_line)
+  }
+}
+

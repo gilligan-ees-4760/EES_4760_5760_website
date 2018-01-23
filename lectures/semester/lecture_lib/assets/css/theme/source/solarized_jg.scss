@@ -290,3 +290,11 @@ $codeBackgroundColor: $base03;
   border-style: none;
 }
 
+.reveal .leftlist ol,
+.reveal .leftlist ul {
+  width: 100%;
+}
+
+.reveal .stretch code {
+  max-height: 100%;
+}

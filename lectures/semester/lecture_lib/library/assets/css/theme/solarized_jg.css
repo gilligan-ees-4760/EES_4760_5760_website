@@ -472,3 +472,10 @@ body {
 .reveal table.noborder tr,
 .reveal table.noborder td {
   border-style: none; }
+
+.reveal .leftlist ol,
+.reveal .leftlist ul {
+  width: 100%; }
+
+.reveal .stretch code {
+  max-height: 100%; }
