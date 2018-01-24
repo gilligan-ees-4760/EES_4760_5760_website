@@ -1,0 +1,3 @@
+[submodule "themes/syllabus"]
+	path = themes/syllabus
+	url = https://gitlab.jgilligan.org/jg_web/hugo-syllabus.git
