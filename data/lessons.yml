@@ -24,6 +24,7 @@ lessons:
   assignment: homework_04
 - date: '2018-01-25'
   title: Using models for science
+  lecture: /Slides/Class_06
   reading: /reading/reading_06
 - date: '2018-01-30'
   title: Testing and validating models
@@ -36,10 +37,12 @@ lessons:
 - date: '2018-02-06'
   title: Emergence
   reading: /reading/reading_09
-  assignment: homework_07
 - date: '2018-02-08'
   title: Observation
   reading: /reading/reading_10
+  assignment: homework_07
+- date: '2018-02-09'
+  title: Project Proposal Due
   assignment: homework_08
 - date: '2018-02-13'
   title: Sensing
