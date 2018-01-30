@@ -28,6 +28,7 @@ lessons:
   reading: /reading/reading_06
 - date: '2018-01-30'
   title: Testing and validating models
+  lecture: /Slides/Class_07
   reading: /reading/reading_07
   assignment: homework_05
 - date: '2018-02-01'
