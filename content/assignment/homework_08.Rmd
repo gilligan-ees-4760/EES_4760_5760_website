@@ -1,19 +1,22 @@
 ---
-title: Research project proposal
-due_date: '2018-02-09'
-weight: 8
+title: Analyzing model experiments
+due_date: '2018-02-13'
+assignment_number: 8
+weight: 9
 slug: homework_08
 pubdate: '2018-01-01'
-date: '2018-02-09'
+date: '2018-02-13'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
-## Research Assignment Proposal
-Turn in the following homework on Box by 11:59 pm on Friday, Feb. 9:
+## Homework
+Turn in the following homework on Box by 11:59 pm:
 
-* Turn in a one-page research project proposal
-
-[Detailed project assignment](/assignment/ResearchProjectAssignment.pdf)
-<https://ees4760.jgilligan.org/assignment/ResearchProjectAssignment.pdf>
+* **Everyone:**
+  * Railsback & Grimm, Ch. 8, Ex. 8.1, 8.2
+  * Railsback & Grimm, Ch. 9, Ex. 9.1, 9.3, 9.4
+* **Graduate Students:**
+  * Railsback & Grimm, Ch. 8, Ex. 8.3, 8.4
+  * Railsback & Grimm, Ch. 9, Ex. 9.6
 

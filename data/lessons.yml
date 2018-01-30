@@ -31,7 +31,7 @@ lessons:
   reading: /reading/reading_07
   assignment: homework_05
 - date: '2018-02-01'
-  title: Choosing Research Projects
+  title: Choosing research projects
   reading: /reading/reading_08
   assignment: homework_06
 - date: '2018-02-06'
@@ -42,14 +42,14 @@ lessons:
   reading: /reading/reading_10
   assignment: homework_07
 - date: '2018-02-09'
-  title: Project Proposal Due
+  title: Semester project proposal due
   assignment: homework_08
 - date: '2018-02-13'
   title: Sensing
   reading: /reading/reading_11
   assignment: homework_09
 - date: '2018-02-15'
-  title: Adaptive Behavior and Objectives
+  title: Adaptive behavior and objectives
   reading: /reading/reading_12
   assignment: homework_10
 - date: '2018-02-20'
@@ -60,10 +60,10 @@ lessons:
   reading: /reading/reading_14
   assignment: model_analysis
 - date: '2018-02-27'
-  title: Team Presentations
+  title: Team presentations
   assignment: team_project
 - date: '2018-03-01'
-  title: Research Project ODDs
+  title: Discussion of research project ODDs
 - date: '2018-03-06'
   title: SPRING BREAK
 - date: '2018-03-08'
@@ -75,6 +75,7 @@ lessons:
   title: Stochasticity
   reading: /reading/reading_18
 - date: '2018-03-16'
+  title: Research project ODD due"
   assignment: project_odd
 - date: '2018-03-20'
   title: Collectives
@@ -83,23 +84,24 @@ lessons:
   title: Patterns
   reading: /reading/reading_20
 - date: '2018-03-27'
-  title: Theory Development
+  title: Theory development
   reading: /reading/reading_21
 - date: '2018-03-29'
-  title: Parameterization and Calibration
+  title: Parameterization and calibration 1
   reading: /reading/reading_22
 - date: '2018-03-30'
+  title: "Draft Model Code Due"
   assignment: draft_model_code
 - date: '2018-04-03'
-  title: Parameterization and Calibration 2
+  title: Parameterization and calibration 2
 - date: '2018-04-05'
   title: Analyzing ABMs
   reading: /reading/reading_24
 - date: '2018-04-10'
-  title: Sensitivity and Robustness
+  title: Sensitivity and robustness
   reading: /reading/reading_25
 - date: '2018-04-12'
-  title: 'Looking Ahead: ABMs Beyond this Course'
+  title: 'Looking ahead: ABMs beyond this course'
   reading: /reading/reading_26
 - date: '2018-04-17'
   title: Presentations
@@ -108,5 +110,5 @@ lessons:
   title: Presentations
   assignment: project_presentations
 - date: '2018-04-24'
-  title: "Final Paper Due"
+  title: "Final paper due"
   assignment: project_presentations
