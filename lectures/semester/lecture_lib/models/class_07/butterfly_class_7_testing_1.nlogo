@@ -52,9 +52,9 @@ to setup
      pen-down
    ]
 
-   if file-exists? "test_output.csv"
-   [ file-delete "test_output.csv" ]
-   file-open "test_output.csv"
+   if file-exists? "butterfly_test_output.csv"
+   [ file-delete "butterfly_test_output.csv" ]
+   file-open "butterfly_test_output.csv"
 
    reset-ticks
 end           ; of setup procedure

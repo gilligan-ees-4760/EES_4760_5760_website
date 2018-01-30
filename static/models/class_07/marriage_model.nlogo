@@ -59,8 +59,8 @@ to setup
    ]
 
   ; Clear the test output file, write column headings
-  if (file-exists? "TestOutput.csv") [carefully [file-delete "TestOutput.csv"] [print error-message]]
-  file-open "TestOutput.csv"
+  if (file-exists? "test_output.csv") [carefully [file-delete "test_output.csv"] [print error-message]]
+  file-open "test_output.csv"
       file-type "tick,"
       file-type "id,"
       file-type "age,"
@@ -89,7 +89,7 @@ to go
 
    ; Marriage
    ; First, open the test output file that is written to in "marry"
-   file-open "TestOutput.csv"
+   file-open "test_output.csv"
    ask turtles [marry]
    file-close
 

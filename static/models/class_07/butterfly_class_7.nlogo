@@ -233,7 +233,7 @@ q
 q
 0
 1
-1.0
+0.5
 0.01
 1
 NIL
@@ -286,7 +286,7 @@ CHOOSER
 initialization
 initialization
 "original" "edge" "corner" "random"
-1
+0
 
 OUTPUT
 20
@@ -659,6 +659,22 @@ NetLogo 6.0.2
     <metric>mean-elevation</metric>
     <enumeratedValueSet variable="initialization">
       <value value="&quot;edge&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="q" first="0" step="0.05" last="1"/>
+    <enumeratedValueSet variable="real-terrain">
+      <value value="true"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="optimize-mating-big" repetitions="100" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <metric>corridor-width</metric>
+    <metric>cluster-size</metric>
+    <metric>mean-elevation</metric>
+    <enumeratedValueSet variable="initialization">
+      <value value="&quot;edge&quot;"/>
+      <value value="&quot;corner&quot;"/>
+      <value value="&quot;random&quot;"/>
     </enumeratedValueSet>
     <steppedValueSet variable="q" first="0" step="0.05" last="1"/>
     <enumeratedValueSet variable="real-terrain">

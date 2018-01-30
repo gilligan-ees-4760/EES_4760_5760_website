@@ -252,7 +252,7 @@ run_decktape <- function(class = NULL) {
     dest_dir = "."
   } else {
     class = as.integer(class)
-    class_dir = sprintf("Class%02d", class)
+    class_dir = sprintf("Class_%02d", class)
     dest_dir = file.path(semester.dir, "Slides", class_dir)
   }
   dest = file.path(dest_dir, sprintf("EES_4760_5760_Class_%02d_Slides.pdf", class))

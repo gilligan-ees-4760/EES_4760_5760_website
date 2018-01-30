@@ -60,7 +60,7 @@ to go  ;  This is the master schedule
   ; we would select which plot to update by adding a line
   ;
   ; set-current-plot "corridor width" ; use the title of the plot to specify which one to use.
-  plot corridor-width
+  ; plot corridor-width
   tick
   ; stop when all the butterflies are at the summit, or
   ; 1000 ticks, whichever comes first
@@ -190,7 +190,7 @@ q
 q
 0
 1
-1.0
+0.46
 0.01
 1
 NIL
@@ -217,24 +217,6 @@ real-terrain
 0
 1
 -1000
-
-PLOT
-695
-10
-1165
-385
-corridor width
-Ticks
-Corridor width
-0.0
-1000.0
-0.0
-1.0
-true
-false
-"" ""
-PENS
-"default" 1.0 0 -16777216 true "" ""
 
 BUTTON
 920
@@ -286,6 +268,24 @@ NIL
 NIL
 NIL
 1
+
+PLOT
+695
+10
+1165
+200
+Elevation
+Ticks
+Mean elevation
+0.0
+1000.0
+0.0
+10.0
+true
+false
+"" "set-current-plot \"Elevation\"\nset-current-plot-pen \"elevation-pen\"\nplot mean [ elevation ] of turtles\ntype ticks\ntype \": \"\nprint mean [elevation] of turtles"
+PENS
+"elevation-pen" 1.0 0 -16777216 true "" ""
 
 @#$#@#$#@
 # Butterfly Model ODD Description
