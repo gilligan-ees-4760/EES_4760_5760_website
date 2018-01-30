@@ -1,0 +1,29 @@
+---
+title: Team Modeling Project
+due_date: '2018-02-27'
+weight: 12
+slug: team_project
+pubdate: '2018-01-01'
+date: '2018-02-27'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Team Modeling Project
+
+### Presentations:
+
+On Feb. 27, each team will give a 10-minute presentation on your modeling
+project
+
+## Write-up
+
+By 11:59 pm on Feb. 27, 
+each team should turn in a write-up on the procedures, results, and 
+interpretation of the textbook exercises associated with this project.
+Inlcude the NetLogo model or models that you used for the exercises.
+
+## Full Assignment Sheet
+
+The [full assignment sheet](/assignment/TeamProjectAssignment.pdf) is at
+<https://ees4760.jgilligan.org/assignment/TeamProjectAssignment.pdf>

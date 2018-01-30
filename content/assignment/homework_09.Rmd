@@ -1,9 +1,9 @@
 ---
 title: Analyzing model experiments
 due_date: '2018-02-13'
-assignment_number: 9
+assignment_number: 8
 weight: 9
-slug: homework_09
+slug: homework_08
 pubdate: '2018-01-01'
 date: '2018-02-13'
 output:

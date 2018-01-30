@@ -58,8 +58,10 @@ lessons:
 - date: '2018-02-22'
   title: Interaction
   reading: /reading/reading_14
+  assignment: model_analysis
 - date: '2018-02-27'
   title: Team Presentations
+  assignment: team_project
 - date: '2018-03-01'
   title: Research Project ODDs
 - date: '2018-03-06'
@@ -72,6 +74,8 @@ lessons:
 - date: '2018-03-15'
   title: Stochasticity
   reading: /reading/reading_18
+- date: '2018-03-16'
+  assignment: project_odd
 - date: '2018-03-20'
   title: Collectives
   reading: /reading/reading_19
@@ -84,6 +88,8 @@ lessons:
 - date: '2018-03-29'
   title: Parameterization and Calibration
   reading: /reading/reading_22
+- date: '2018-03-30'
+  assignment: draft_model_code
 - date: '2018-04-03'
   title: Parameterization and Calibration 2
 - date: '2018-04-05'
@@ -97,5 +103,10 @@ lessons:
   reading: /reading/reading_26
 - date: '2018-04-17'
   title: Presentations
+  assignment: project_presentations
 - date: '2018-04-19'
   title: Presentations
+  assignment: project_presentations
+- date: '2018-04-24'
+  title: "Final Paper Due"
+  assignment: project_presentations

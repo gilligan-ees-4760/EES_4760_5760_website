@@ -1,0 +1,25 @@
+---
+title: Research project draft model code
+due_date: '2018-03-29'
+weight: 14
+slug: draft_code
+pubdate: '2018-01-01'
+date: '2018-03-29'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Research Project Draft Model Code
+Turn in the following homework on Box by 11:59 pm on Thursday, Mar. 29:
+
+* Draft NetLogo code for your model. This does not need to be
+  perfect, but it should check without syntax errors and it shoudl run, even
+  if there are problems with its behavior.
+  The point is to check in on where you are with the coding so I can give you 
+  feedback.
+* A document describing what you're satisfied with and what problems you're 
+  struggling with.
+
+[Detailed project assignment](/assignment/ResearchProjectAssignment.pdf)
+<https://ees4760.jgilligan.org/assignment/ResearchProjectAssignment.pdf>
+

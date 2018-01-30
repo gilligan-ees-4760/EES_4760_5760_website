@@ -8,16 +8,31 @@
 		<div class="main main-raised">
 			<div class="container">
 		  	<div class="section text-left">
-		  	  <h2 class="title text-center">Homework #{{ .Params.assignment_number }}: {{ .Title }}</h2>
+		  	  <h2 class="title text-center">
+		  	    {{- if isset .Params "assignment_number" -}}
+		  	    Homework #{{ .Params.assignment_number }}: {{ end -}}
+		  	    {{ .Title }}</h2>
 		  	  <h3 class="text-center">Due {{dateFormat "Mon., Jan 2" .Params.due_date}}</h3>
 	            {{ .Content }}
 	            {{- if (or .PrevInSection .NextInSection) }}
 	            <div>
 	              {{- if .NextInSection }}
-	              <span class="pull-left"><a href="{{.NextInSection.URL}}"><i class="material-icons">arrow_back</i> Prev: HW #{{.NextInSection.Params.assignment_number}} "{{.NextInSection.Title}}"</a></span>
+	                <span class="pull-left"><a href="{{.NextInSection.URL}}"><i class="material-icons">arrow_back</i> Prev:
+	                {{ if isset .NextInSection.Params "assignment_number" -}}
+	                  HW #{{.NextInSection.Params.assignment_number}} "{{.NextInSection.Title}}"
+	                {{- else -}}
+	                  {{.NextInSection.Title}}
+	                {{- end -}}
+	                </a></span>
 	              {{ end -}}
 	              {{- if .PrevInSection }}
-	              <span class="pull-right"><a href="{{.PrevInSection.URL}}">Next: HW #{{.PrevInSection.Params.assignment_number}} "{{.PrevInSection.Title}}" <i class="material-icons">arrow_forward</i></a></span>
+	                <span class="pull-right"><a href="{{.PrevInSection.URL}}">Next:
+	                {{ if isset .PrevInSection.Params "assignment_number" -}}
+	                  HW #{{.PrevInSection.Params.assignment_number}} "{{.PrevInSection.Title}}"
+	                {{- else -}}
+  	                {{.PrevInSection.Title}}
+	                {{- end }}
+	                <i class="material-icons">arrow_forward</i></a></span>
 	              {{ end -}}
 	            </div>
 	            {{ end -}}
