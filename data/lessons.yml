@@ -44,15 +44,15 @@ lessons:
   assignment: homework_07
 - date: '2018-02-09'
   title: Semester project proposal due
-  assignment: homework_08
+  assignment: project_proposal
 - date: '2018-02-13'
   title: Sensing
   reading: /reading/reading_11
-  assignment: homework_09
+  assignment: homework_08
 - date: '2018-02-15'
   title: Adaptive behavior and objectives
   reading: /reading/reading_12
-  assignment: homework_10
+  assignment: homework_09
 - date: '2018-02-20'
   title: Prediction
   reading: /reading/reading_13
