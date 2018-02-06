@@ -1,11 +1,11 @@
 ---
 title: Adaptive Behavior and Objectives
-class_date: '2018-02-15'
+class_date: '2018-02-19'
 class_number: 12
 weight: 12
 slug: reading_12
 pubdate: '2018-01-01'
-date: '2018-02-15'
+date: '2018-02-19'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists

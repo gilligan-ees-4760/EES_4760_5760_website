@@ -63,7 +63,8 @@ $headingTextTransform: none;
 $heading1TextShador: none;
 
 $codeFont: 'Anonymous Pro', monospace;
-$codeColor: $base0;
+$inlineCodeColor: $blue;
+$codeColor: $cyan;
 $codeBackgroundColor: $base03;
 
 
@@ -132,6 +133,7 @@ $codeBackgroundColor: $base03;
 }
 .reveal code {
 	font-family: $codeFont;
+	color: $inlineCodeColor;
 }
 
 .reveal pre code {

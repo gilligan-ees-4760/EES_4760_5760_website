@@ -1,11 +1,11 @@
 ---
 title: Observation
-class_date: '2018-02-08'
+class_date: '2018-02-13'
 class_number: 10
 weight: 10
 slug: reading_10
 pubdate: '2018-01-01'
-date: '2018-02-08'
+date: '2018-02-13'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists

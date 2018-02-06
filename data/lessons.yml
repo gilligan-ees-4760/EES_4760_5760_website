@@ -37,20 +37,23 @@ lessons:
   assignment: homework_06
 - date: '2018-02-06'
   title: Emergence
+  lecture: /Slides/Class_09
   reading: /reading/reading_09
 - date: '2018-02-08'
-  title: Observation
-  reading: /reading/reading_10
-  assignment: homework_07
+  title: Class Cancelled
 - date: '2018-02-09'
   title: Semester project proposal due
   assignment: project_proposal
 - date: '2018-02-13'
+  title: Observation
+  reading: /reading/reading_10
+  assignment: homework_07
+- date: '2018-02-15'
   title: Sensing
   reading: /reading/reading_11
   assignment: homework_08
-- date: '2018-02-15'
-  title: Adaptive behavior and objectives
+- date: '2018-02-19'
+  title: Adaptive behavior and objectives (Make-up)
   reading: /reading/reading_12
   assignment: homework_09
 - date: '2018-02-20'

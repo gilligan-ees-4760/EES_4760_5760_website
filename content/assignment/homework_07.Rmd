@@ -1,11 +1,11 @@
 ---
 title: Testing and Debugging
-due_date: '2018-02-08'
+due_date: '2018-02-13'
 assignment_number: 7
-weight: 7
+weight: 8
 slug: homework_07
 pubdate: '2018-01-01'
-date: '2018-02-08'
+date: '2018-02-13'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists

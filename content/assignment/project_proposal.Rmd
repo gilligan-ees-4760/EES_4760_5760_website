@@ -1,7 +1,7 @@
 ---
 title: Research project proposal
 due_date: '2018-02-09'
-weight: 8
+weight: 7
 slug: project_proposal
 pubdate: '2018-01-01'
 date: '2018-02-09'
