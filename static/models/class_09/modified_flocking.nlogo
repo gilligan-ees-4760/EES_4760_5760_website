@@ -47,7 +47,8 @@ to find-flockmates  ;; turtle procedure
     [
       ifelse flock-type = "closest"
       [
-        set flockmates flockmates with-min [distance myself]
+        let min-dist min [distance myself] of other turtles
+        set flockmates other turtles with [distance myself = min-dist]
       ]
       [
         print (word "Error: unknown flock type " flock-type)
@@ -702,7 +703,10 @@ repeat 200 [ go ]
     <setup>setup</setup>
     <go>go</go>
     <timeLimit steps="500"/>
-    <metric>standard-deviation [ heading ] of turtles</metric>
+    <metric>count turtles with [any? flockmates]</metric>
+    <metric>mean [count flockmates] of turtles</metric>
+    <metric>mean [min [distance myself] of other turtles] of turtles</metric>
+    <metric>standard-deviation [heading] of turtles</metric>
     <enumeratedValueSet variable="vision">
       <value value="3"/>
     </enumeratedValueSet>
@@ -725,6 +729,36 @@ repeat 200 [ go ]
     </enumeratedValueSet>
     <enumeratedValueSet variable="max-separate-turn">
       <value value="1.5"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="bsaeline" repetitions="20" sequentialRunOrder="false" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="500"/>
+    <metric>count turtles with [any? flockmates]</metric>
+    <metric>mean [count flockmates] of turtles</metric>
+    <metric>mean [min [distance myself] of other turtles] of turtles</metric>
+    <metric>standard-deviation [heading] of turtles</metric>
+    <enumeratedValueSet variable="max-cohere-turn">
+      <value value="3"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-separate-turn">
+      <value value="1.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="flock-type">
+      <value value="&quot;vision range&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="vision">
+      <value value="3"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="minimum-separation">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="population">
+      <value value="300"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-align-turn">
+      <value value="5"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>
