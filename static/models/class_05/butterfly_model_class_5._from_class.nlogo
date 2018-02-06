@@ -8,12 +8,12 @@ patches-own [
   ]
 turtles-own [
   origin
-  finished?
+  stopped?
   ]
 
 to setup
 
-  ca
+  clear-all
 
   ; Assign an elevation to patches and color them by it
   ask patches
@@ -21,7 +21,7 @@ to setup
        ; Patch elevation decreases linearly with distance from the center
        ; of hills. Hills are at (30, 30) and (120, 100). The first hill is
        ; 100 units high. The second hill is 50 units high.
-
+      set visited? false
       let elev1 100 - distancexy 30 30
       let elev2 50 - distancexy 120 100
 
@@ -30,18 +30,17 @@ to setup
          [set elevation elev2]
 
       set pcolor scale-color green elevation 0 100
-      set visited? false
     ]    ; end of "ask patches"
 
   ;  Create just 1 butterfly for now
-  crt 50
+  create-turtles 50
    [
      set size 2
      set color red
      ; Set initial location of butterflies
      setxy 85 95
       set visited? true
-      set finished? false
+      set stopped? false
       set origin patch-here
      pen-down
    ]
@@ -56,22 +55,22 @@ end           ; of setup procedure
 
 to go  ;  This is the master schedule
 
-  ask turtles with [ not finished? ]
+  ask turtles with [ not stopped? ] 
   [move]
 
   tick
 
   ; stop when all the butterflies are at the summit, or
   ; 1000 ticks, whichever comes first
-  if (ticks >= 1000) or all? turtles [ finished? ] [stop]
+  if (ticks >= 1000) or all? turtles [ stopped? ] [stop]
 
 end
 
 to move  ; The butterfly move procedure, in turtle context
          ; Decide whether to the highest
          ; surrounding patch with probability q
-  ifelse at-top?
-  [ set finished? true ]
+  ifelse at-top?  
+  [ set stopped? true ]
   [
     ifelse random-float 1 < q
 	  [ uphill elevation ]            ; Move uphill
@@ -94,14 +93,10 @@ end
 ;
 to-report corridor-width
   let pcount count patches with [visited?]
-  let dist mean [distance origin] of turtles
+  let dist mean [distance initial-patch] of turtles
   ifelse dist = 0
   [report 1]
   [report pcount / dist]
-end
-
-to-report pct-finished
-  report 100 * (count turtles with [ finished? ]) / (count turtles)
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -169,12 +164,12 @@ SLIDER
 20
 109
 193
-142
+143
 q
 q
 0
 1
-0.53
+1.0
 0.01
 1
 NIL
@@ -183,11 +178,11 @@ HORIZONTAL
 MONITOR
 39
 162
-141
-207
-Percent finished
-word pct-finished \"%\"
-0
+137
+208
+Stopped turtles
+word (100 * (count turtles with [stopped?]) / (count turtles)) \"%\"
+17
 1
 11
 
@@ -195,7 +190,7 @@ MONITOR
 38
 224
 128
-269
+270
 NIL
 corridor-width
 2
@@ -547,11 +542,10 @@ NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="vary-q-all-steps" repetitions="20" runMetricsEveryStep="true">
+  <experiment name="vary-q-all-steps" repetitions="10" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
     <metric>corridor-width</metric>
-    <metric>pct-finished</metric>
     <steppedValueSet variable="q" first="0" step="0.1" last="1"/>
   </experiment>
   <experiment name="vary-q-final-only" repetitions="20" runMetricsEveryStep="false">
