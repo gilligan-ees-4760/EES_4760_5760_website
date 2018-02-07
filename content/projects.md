@@ -16,7 +16,7 @@ Presentations and write-ups due Feb. 27.
 | 2      |              | Business Investor |              | Jess Raff, Cameron de Wet, and Eva Biedron |
 | 3      |              | Business Investor |              | Benjamin Lee and Matt Park |
 | 4      |              | Telemarketer      |              | Kelsea Best and Jack Ding |
-| 5      |              | Telemarketer      |              | Rasul Dent and Faith Rovenholt |
+| 5      |              | Telemarketer      |              | Rasul Dent and Faith Rovenolt |
 | 6      |              | Telemarketer      |              | Bhavia Srivastava and Andrew Stanford |
 
 ## Individual Projects
