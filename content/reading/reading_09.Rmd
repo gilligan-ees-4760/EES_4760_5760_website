@@ -10,10 +10,6 @@ output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
-## Homework
-
-Homework #7 is due today: One-page research project proposal. See the homework assignment sheet for details.
-
 ## Reading:
 
 * Railsback & Grimm, Ch. 8.

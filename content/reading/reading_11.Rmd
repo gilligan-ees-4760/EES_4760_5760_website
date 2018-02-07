@@ -12,7 +12,7 @@ output:
 ---
 ## Homework
 
-Homework #9 is due today: Railsback & Grimm, Ch. 8, Ex. 8.1, 8.2 (everyone), Ch. 9, Ex. 9.1, 9.3, 9.4 (everyone), Ch. 8, Ex. 8.3, 8.4 (grad. students), and Ch. 9, Ex. 9.6 (grad. students). See the homework assignment sheet for details.
+Homework #8 is due today: Railsback & Grimm, Ch. 8, Ex. 8.1, 8.2 (everyone), Ch. 9, Ex. 9.1, 9.3, 9.4 (everyone), Ch. 8, Ex. 8.3, 8.4 (grad. students), and Ch. 9, Ex. 9.6 (grad. students). See the homework assignment sheet for details.
 
 ## Reading:
 

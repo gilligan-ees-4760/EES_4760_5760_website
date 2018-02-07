@@ -13,32 +13,23 @@ output:
 
 
 
-<div id="reading" class="section level2">
+<section id="reading" class="level2">
 <h2>Reading:</h2>
 <ul>
 <li>Railsback &amp; Grimm, Ch. 5.</li>
 </ul>
-<div id="reading-notes" class="section level3">
+<section id="reading-notes" class="level3">
 <h3>Reading Notes:</h3>
-<p>This reading sets the stage for answering the big question, “How can we use agent-based models to do science?”
-There are several aspects to this question, which this chapter will introduce:</p>
-<ol style="list-style-type: decimal">
+<p>This reading sets the stage for answering the big question, “How can we use agent-based models to do science?” There are several aspects to this question, which this chapter will introduce:</p>
+<ol type="1">
 <li>How can we produce quantitative output from our models?</li>
 <li>How can your models read and write data to and from files? (This is important for connecting your model to other parts of your project)</li>
 <li>How should we test our models to make sure they do what we think they do? (More on this in Chapter 6)</li>
 <li>Making your research reproducible by using version control and documentation.</li>
 </ol>
-<p>A number of you like to use Excel or statistical analysis tools, such as <code>R</code>, <code>SPSS</code>, or <code>Stata</code>. The material in this chapter about
-importing and exporting data using text or <code>.csv</code> files will be very useful for this.
-By default, NetLogo only allows you to read in data in simple text files. However, if comes with some extensions that you can use to read in
-data from other common file formats, including <code>.csv</code> and ArcGIS shapefiles and raster (grid) files.</p>
-<p>If you want to read in data from csv files, you may want to
-look at the documentation for the  extension to NetLogo. To use it, you just put the line <code>includes [csv]</code> as the first line of your
-model, and then use functions from the extension, such as <code>let data csv:from-file &quot;myfile.csv&quot;</code>.</p>
-<p>To read in date from ArcGIS files, look at the documentation for the  extension. You would put the line <code>extensions [ gis ]</code> as the
-first line of your model, and then use functions, such as <code>gis:load-dataset</code>, which can load vector shape files (<code>.shp</code>)
-and raster grid files (<code>.grd</code> or <code>.asc</code>). The GIS extension offers a lot of functions for working with vector and raster GIS data.
-If you’re interested in using GIS data in your models, take a look at the GIS examples in the NetLogo model library.</p>
+<p>A number of you like to use Excel or statistical analysis tools, such as <code>R</code>, <code>SPSS</code>, or <code>Stata</code>. The material in this chapter about importing and exporting data using text or <code>.csv</code> files will be very useful for this. By default, NetLogo only allows you to read in data in simple text files. However, if comes with some extensions that you can use to read in data from other common file formats, including <code>.csv</code> and ArcGIS shapefiles and raster (grid) files.</p>
+<p>If you want to read in data from csv files, you may want to look at the documentation for the  extension to NetLogo. To use it, you just put the line <code>includes [csv]</code> as the first line of your model, and then use functions from the extension, such as <code>let data csv:from-file &quot;myfile.csv&quot;</code>.</p>
+<p>To read in date from ArcGIS files, look at the documentation for the  extension. You would put the line <code>extensions [ gis ]</code> as the first line of your model, and then use functions, such as <code>gis:load-dataset</code>, which can load vector shape files (<code>.shp</code>) and raster grid files (<code>.grd</code> or <code>.asc</code>). The GIS extension offers a lot of functions for working with vector and raster GIS data. If you’re interested in using GIS data in your models, take a look at the GIS examples in the NetLogo model library.</p>
 <p>You can download the <a href="/files/models/chapter_05/ElevationData.txt">data file</a> with the elevations for the realistic butterfly model from <a href="https://ees4760.jgilligan.org/files/models/chapter_05/ElevationData.txt" class="uri">https://ees4760.jgilligan.org/files/models/chapter_05/ElevationData.txt</a></p>
 <p><strong>Errata for Chapter 5:</strong></p>
 <ul>
@@ -48,9 +39,7 @@ If you’re interested in using GIS data in your models, take a look at the GIS 
 <p>with this:</p>
 <pre><code>export-plot &quot;Corridor width&quot;
     (word &quot;Corridor-output-for-q-&quot; q &quot;.csv&quot;)</code></pre>
-<p>The revised statement appends the file extension “<code>.csv</code>” to the file name created via the <code>word</code> primitive.
-Note that when <code>word</code> is used to concatenate more than two values tovether, it and all the values must be
-inside parentheses.</p></li>
+<p>The revised statement appends the file extension “<code>.csv</code>” to the file name created via the <code>word</code> primitive. Note that when <code>word</code> is used to concatenate more than two values tovether, it and all the values must be inside parentheses.</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
