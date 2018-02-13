@@ -185,7 +185,7 @@ Some ways to observe your model include:
 
 # Plots and Histograms {#plot-sec data-transition="fade-out" data-state="skip_slide"}
 
-## Adding plots and histograms {#plots .eightyfive data-transition="fade-in"}
+## Adding plots and histograms {#plots .eighty data-transition="fade-in"}
 
 * Add three plots:
   * __Patch density__:
@@ -207,7 +207,7 @@ Some ways to observe your model include:
   * When you put plotting commands into your code:
     * You usually don't want to plot inside an `ask turtles` or `ask patches` command
     * Update plots once per tick (in `to go` or in a submodel called from `to go`)
-    * If you have multiple plots, be sure to use `select-plot` before plotting.
+    * If you have multiple plots, be sure to use `set-current-plot` before plotting.
 
 # Size and Shape {#shape-sec  data-transition="fade-out" data-state="skip_slide"}
 
