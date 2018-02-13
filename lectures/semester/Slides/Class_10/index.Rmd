@@ -124,7 +124,7 @@ Some ways to observe your model include:
   
   :::
   
-## Observations in the View {#obs-view-2 .leftslide}
+## Observations in the View {#obs-view-2 .leftslide .ninety}
 
 * Edit `update-display`:
 
@@ -134,7 +134,9 @@ Some ways to observe your model include:
     ifelse show-butterflies?
     [ ask turtles [show-turtle]]
     [ ask turtles [hide-turtle]]
-    if show-labels? [ ask turtles [set label elevation]]
+    ifelse show-labels? 
+    [ ask turtles [set label elevation]]
+    [ ask turtles [set label ""]]
   end
   ```
 
