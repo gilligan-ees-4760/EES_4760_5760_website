@@ -41,6 +41,7 @@ $violet:    #6c71c4;
 $blue:      #268bd2;
 $cyan:      #2aa198;
 $green:     #859900;
+$darkblue:  #134671;
 
 // Override theme settings (see ../template/settings.scss)
 $mainColor: $base00;
@@ -64,8 +65,8 @@ $heading1TextShador: none;
 
 $codeFont: 'Anonymous Pro', monospace;
 $inlineCodeColor: $blue;
-$codeColor: $cyan;
-$codeBackgroundColor: $base03;
+$codeColor: $darkblue;
+$codeBackgroundColor: #C0C0C0;
 
 
 // Background generator
