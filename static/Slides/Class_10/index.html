@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template -->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Jonathan Gilligan" />
+  <title>Observation</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+  <link rel="stylesheet" href="/lecture_lib/library/reveal.js-3.3.0/css/reveal.min.css"/>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+  <style type="text/css">
+    div.qrbox {
+     position:fixed;
+     bottom:-90%;
+     left:10px;
+     text-align:left;
+     vertical-align:bottom;
+    }
+  </style>
+<!-- theme = solarized_jg -->
+<link rel="stylesheet" href="/lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/lecture_lib/library/reveal.js-3.3.0/css/print/pdf.css' : '/lecture_lib/library/reveal.js-3.3.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="/lecture_lib/library/reveal.js-3.3.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class='center' id='title' >
+    <h1 class="title">Observation</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based &amp; Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #10:
+       Tues. February 13
+      2018
+    </h3>
+        <div class="qrbox" id="qrbox">
+      <p style="font-size:30%">
+    <a href="https://ees4760.jgilligan.org/Slides/Class_10">
+  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/Slides/Class_10"/>
+  	</a>
+    	<br/>
+    	Live web page: <a href="https://ees4760.jgilligan.org/Slides/Class_10">https://ees4760.jgilligan.org/Slides/Class_10</a>
+    	<br/>
+    	PDF: <a href="https://ees4760.jgilligan.org/Slides/Class_10/EES_4760_5760_Class_10_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/Slides/Class_10/EES_4760_5760_Class_10_Slides.pdf</a>
+    	
+  	</p>
+  	</div>
+    	<!-- end title slide -->
+</section>
+
+<section><section id="obs-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Observation</h1></section><section id="obs" class="slide level2 leftslide ninety" data-transition="fade-in">
+<h2>Observation</h2>
+<p>The <strong>observation</strong> design concept is about what you (the scientist) want to observe about your model in order to learn something relevant to your research question.</p>
+<p>Some ways to observe your model include:</p>
+<ul>
+<li>The model view</li>
+<li>Monitors on the interface</li>
+<li>Agent-monitors (<code>inspect-turtle</code>, <code>inspect-patch</code>, <code>watch-turtle</code>, <code>follow-turtle</code>)</li>
+<li>Set turtle or patch labels (<code>set label elevation</code> or <code>set plabel count turtles-here</code>)</li>
+<li>Set turtle or patch color (<code>set color blue</code> or <code>set pcolor green</code>)</li>
+<li>Set turtle shape or size (<code>set shape &quot;butterfly&quot;</code>, <code>set size 4</code>)</li>
+<li>Plots and histograms on the interface</li>
+<li>Output to output window, command center, or file (<code>print</code>, <code>show</code>, <code>type</code>, <code>write</code>, <code>file-print</code>, <code>output-print</code>, etc.)</li>
+<li>BehaviorSpace experiments</li>
+</ul>
+</section><section id="obs-butterfly" class="slide level2 leftslide ninety">
+<h2>Observing the Butterfly Model</h2>
+<ul>
+<li><p>Download butterfly model</p>
+<p><a href="https://ees4760.jgilligan.org/models/class_10/butterfly_class_10.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_10/butterfly_class_10.nlogo</a></p>
+<p>and elevation file</p>
+<p><a href="https://ees4760.jgilligan.org/models/class_10/ElevationData.txt" class="uri">https://ees4760.jgilligan.org/models/class_10/ElevationData.txt</a>,</p>
+<p>save them in the same folder, and open the butterfly model in NetLogo.</p></li>
+<li><p>Go to the code tab and look at <code>update-display</code> and <code>color-patches</code></p></li>
+</ul>
+</section></section>
+<section><section id="obs-view-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Observations in the View</h1></section><section id="obs-view" class="slide level2 leftslide ninetyfive" data-transition="fade-in">
+<h2>Observations in the View</h2>
+<ul>
+<li><p>Go to <code>move</code> and change</p>
+<div style="width:1500px;max-width:1500px;">
+<pre><code>ifelse random-float 1 &lt; q
+[ 
+  move-to max-one-of neighbors [elevation] ; Move uphill      
+]            
+[ 
+  move-to one-of neighbors ; Otherwise move randomly
+]    </code></pre>
+</div>
+<p>to</p>
+<div style="width:1500px;max-width:1500px;">
+<pre><code>ifelse random-float 1 &lt; q
+[ 
+  move-to max-one-of neighbors [elevation] ; Move uphill      
+  set color red
+]            
+[ 
+  move-to one-of neighbors ; Otherwise move randomly
+  set color blue
+]    </code></pre>
+</div></li>
+</ul>
+</section><section id="obs-view-2" class="slide level2 leftslide">
+<h2>Observations in the View</h2>
+<ul>
+<li><p>Edit <code>update-display</code>:</p>
+<pre><code>to update-display
+  color-patches
+  ifelse show-butterflies?
+  [ ask turtles [show-turtle]]
+  [ ask turtles [hide-turtle]]
+  if show-labels? [ ask turtles [set label elevation]]
+end</code></pre></li>
+<li>Set <code>num-butterflies</code> to 0 or 5, press <code>setup</code>, and run the model</li>
+<li>When you set <code>label</code> to a variable:
+<ul>
+<li>It gets the current value of the variable.</li>
+<li>It won’t update automatically when the variable changes.
+<ul>
+<li>So you have to update it by re-setting it:</li>
+<li>e.g., Update <code>label</code> in <code>update-display</code>, and call <code>update-display</code> every tick</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="obs-view-3" class="slide level2 leftslide ninety">
+<h2>Observations in the View</h2>
+<ul>
+<li><p>Edit <code>color-patches</code>:</p>
+<pre><code>to color-patches
+  ifelse patch-coloring = &quot;elevation&quot;
+  [
+    let max-elevation max [elevation] of patches
+    let min-elevation min [elevation] of patches
+    ask patches [ set pcolor scale-color green elevation min-elevation max-elevation]
+  ]
+  [
+    let max-turtles max [count turtles-here] of patches
+    let min-turtles 0
+    ask patches [ set pcolor scale-color cyan (count turtles-here) min-turtles max-turtles]            
+  ]
+end</code></pre></li>
+<li><p>Turn off <code>show-labels?</code> and set <code>num-butterflies</code> to 50</p></li>
+<li><p>Setup and run the model</p></li>
+<li><p>Clear the paths, turn <code>show-butterflies?</code> off, and press <code>update-display</code></p></li>
+</ul>
+</section></section>
+<section><section id="monitor-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Adding monitors</h1></section><section id="monitors" class="slide level2 ninetyfive" data-transition="fade-in">
+<h2>Adding monitors</h2>
+<ul>
+<li><p>Write a new reporter:</p>
+<pre><code>to-report fraction-crowded
+  let crowd-count sum [count turtles-here] of patches with [count turtles-here &gt;= 4]            
+  report crowd-count / num-butterflies
+end</code></pre></li>
+<li><p>Add 3 monitors to the interface:</p>
+<ul>
+<li><p><strong>Mean elevation</strong> gets reporter</p>
+<pre><code>mean [elevation] of turtles</code></pre></li>
+<li><p><strong>Mean turtles</strong> gets reporter</p>
+<pre><code>mean [count turtles-here] of patches with [any? turtles-here]</code></pre></li>
+<li><p><strong>Fraction crowded</strong> gets reporter</p>
+<pre><code>fraction-crowded</code></pre></li>
+</ul></li>
+</ul>
+</section><section id="monitoring-agents" class="slide level2">
+<h2>Monitoring agents</h2>
+<ul>
+<li class="fragment">Set <code>num-butterflies</code> to 10 and setup.</li>
+<li class="fragment">Right click your mouse near a turtle and choose “Inspect Patch”</li>
+<li class="fragment">In the patch-inspect window, right click on a turtle and choose “Inspect Turtle #”</li>
+<li class="fragment">In the turtle window, click “Watch me”</li>
+<li class="fragment">Click “step” a few times or let the model “go” for a while</li>
+<li class="fragment">Close the monitoring windows</li>
+<li class="fragment">Right click on the world and choose “Reset perspective”</li>
+<li class="fragment">Right click on a turtle and choose “Turtle #/Follow turtle #”</li>
+<li class="fragment">Click “step” several times, or “go”</li>
+<li class="fragment">Setup the model again</li>
+<li class="fragment">Type <code>inspect turtle 5</code> at the observer line.</li>
+<li class="fragment">Type <code>watch turtle 3</code> at the observer line.</li>
+</ul>
+</section></section>
+<section><section id="plot-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Plots and Histograms</h1></section><section id="plots" class="slide level2 eightyfive" data-transition="fade-in">
+<h2>Adding plots and histograms</h2>
+<ul>
+<li>Add three plots:
+<ul>
+<li><strong>Patch density</strong>:</li>
+<li>Edit default pen: set mode to “Bar”</li>
+<li>Set update command to <span style="background-color:#C0C0C0;padding-left:10px;padding-right:10px;"><code>histogram [count turtles-here] of patches</code></span>
+<ul>
+<li>Set X min = 1, X max = 20, Y min = 0, Y max = 10</li>
+<li>Set X label to “Turtles per patch”, Y label to “count”</li>
+</ul></li>
+<li><strong>Fraction crowded</strong>:
+<ul>
+<li>Set plot command to <span style="background-color:#C0C0C0;padding-left:10px;padding-right:10px;"><code>plot 100 * fraction-crowded</code></span></li>
+<li>Set Y min = 0, Y max = 100</li>
+<li>Set X label to “Tick”, Y label to “Percent”</li>
+</ul></li>
+<li><strong>Mean elevation</strong>:
+<ul>
+<li>Set plot command to <span style="background-color:#C0C0C0;padding-left:10px;padding-right:10px;"><code>plot mean [elevation] of turtles</code></span></li>
+<li>Set Y min = 500, Y max = 500</li>
+<li>Set X label to “Tick”, Y label to “Elevation”</li>
+</ul></li>
+<li>When you put plotting commands into your code:
+<ul>
+<li>You usually don’t want to plot inside an <code>ask turtles</code> or <code>ask patches</code> command</li>
+<li>Update plots once per tick (in <code>to go</code> or in a submodel called from <code>to go</code>)</li>
+<li>If you have multiple plots, be sure to use <code>select-plot</code> before plotting.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section></section>
+<section><section id="shape-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Size and Shape</h1></section><section id="shapes" class="slide level2 leftslide eighty" data-transition="fade-in">
+<h2>Setting turtle size and shape</h2>
+<ul>
+<li><p>Turtle shapes:</p>
+<p><img data-src="assets/images/shapes1.gif" alt="Built-in turtle shapes" style="vertical-align:top;" /> <img data-src="assets/images/shapes2.gif" alt="Extra shapes in library" width="350" /></p></li>
+<li><p>See <a href="https://ccl.northwestern.edu/netlogo/docs/shapes.html">Shapes Editor</a> in the NetLogo manual for details</p>
+<pre><code>ask turtles [set shape &quot;butterfly&quot;]</code></pre></li>
+</ul>
+</section></section>
+<section><section id="file-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>File output</h1></section><section id="files" class="slide level2 ninetyfive" data-transition="fade-in">
+<h2>File output</h2>
+<ul>
+<li><p>First open file (generally, check whether a file exists, and delete it). It’s also a good idea to write a header with the names of the columns.</p>
+<pre><code>if (file-exists? &quot;my_test_output.csv&quot;) 
+[
+  carefully
+    [ file-delete &quot;my_test_output.csv&quot; ]
+    [ print error-message ]
+]
+file-open &quot;my_test_output.csv&quot;
+file-type &quot;id,&quot;
+file-type &quot;tick,&quot;
+file-print &quot;elevation&quot;</code></pre></li>
+<li><p>Then at each tick, you could write data:</p>
+<pre><code>file-open &quot;my_test_output.csv&quot;
+ask turtles [
+  file-type word who &quot;,&quot;
+  file-type word ticks &quot;,&quot;
+  file-print elevation
+  ]</code></pre></li>
+</ul>
+</section><section id="file-close" class="slide level2">
+<h2>Closing files</h2>
+<ul>
+<li><p>When the model stops, you need to close the file.</p>
+<pre><code>to go
+...
+if ticks &gt; 500
+[
+  file-close-all
+  stop
+]</code></pre></li>
+</ul>
+</section><section id="multi-file" class="slide level2 leftslide">
+<h2>Multiple file output</h2>
+<p>You can have multiple files open at once. Switch between them using <code>file-open</code>.</p>
+<pre><code>file-open &quot;turtle_output.csv&quot;
+ask turtles [
+   file-type word who &quot;,&quot;
+   file-type word ticks &quot;,&quot;
+   file-print elevation
+   ]
+
+file-open &quot;summary_output.csv&quot;
+file-type word ticks &quot;,&quot;
+file-type word (mean [elevation] of turtles) &quot;,&quot;
+file-print 100 * fraction-crowded</code></pre>
+</section><section id="export" class="slide level2">
+<h2>Exporting to files</h2>
+<ul>
+<li><p>If you have plots, you can output the data from the plot to a file using <code>export-plot</code></p>
+<pre><code>export-plot &quot;Fraction crowded&quot; &quot;frac_crowded.csv&quot;</code></pre></li>
+<li><p>You can export the current state of your entire model (all turtles, patches, their turtles-own, patches-own variables, etc.) using <code>export-world</code></p>
+<ul>
+<li>You can import the world to restart your model where you left off using <code>import-world</code></li>
+</ul></li>
+<li><p>You can also export plots, world, etc. from the “File/Export” menu.</p></li>
+</ul>
+</section></section>
+<section><section id="full-model-sec" class="titleslide slide level1 center"><h1>Model with Observations</h1></section><section id="full-model" class="slide level2 center">
+<h2>Model with Observations</h2>
+<p>You can download the full model with different observations <br/>we have been discussing at</p>
+<p><a href="https://ees4760.jgilligan.org/models/class_10/butterfly_class_10_observing.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_10/butterfly_class_10_observing.nlogo</a></p>
+</section></section>
+    </div>
+  </div>
+  <script src="/lecture_lib/library/reveal.js-3.3.0/lib/js/head.min.js"></script>
+  <script src="/lecture_lib/library/reveal.js-3.3.0/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '/lecture_lib/library/reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '/lecture_lib/library/reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '/lecture_lib/library/reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+
+<script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"],
+                Macros: {
+                  permil: "\\unicode{x2030}",
+                  pH: "p\\ce{H}",
+                  CaSi: "\\ce{CaSiO3}",
+                  silicate: "\\ce{SiO3^2-}",
+                  Caplus: "\\ce{Ca^2+}",
+                  calcite: "\\ce{CaCO3}",
+                  silica: "\\ce{SiO2}",
+                  OH: "\\ce{OH-}",
+                  Hplus: "\\ce{H+}",
+                  carbonic: "\\ce{H2CO3}",
+                  bicarb: "\\ce{HCO3-}",
+                  carb: "\\ce{CO3^2-}",
+                  water: "\\mathrm{H_2O}",
+                  degF: "^\\circ \\mathrm{F}",
+                  degC: "^\\circ \\mathrm{C}",
+                  methane: "\\ce{CH4}",
+                  COO: "\\ce{CO2}"
+                },
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script>
+
+
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script>
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  <script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+  Reveal.addEventListener('slidechanged', function() {
+    if (Reveal.isFirstSlide()) {
+      qrbox.style.visibility="visible";
+    } else {
+      qrbox.style.visibility="hidden";
+      while (advance_fragment > 0) {
+        console.log('advancing fragment');
+        Reveal.nextFragment();
+        advance_fragment--;
+      }
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+  </body>
+</html>
