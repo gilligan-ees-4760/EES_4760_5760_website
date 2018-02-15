@@ -69,7 +69,7 @@
     	<!-- end title slide -->
 </section>
 
-<section><section id="obs-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Observation</h1></section><section id="obs" class="slide level2 leftslide ninety" data-transition="fade-in">
+<section><section id="obs-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Observation</h1></section><section id="obs" class="slide level2 leftslide ninety" data-transition="fade-in">
 <h2>Observation</h2>
 <p>The <strong>observation</strong> design concept is about what you (the scientist) want to observe about your model in order to learn something relevant to your research question.</p>
 <p>Some ways to observe your model include:</p>
@@ -95,7 +95,7 @@
 <li><p>Go to the code tab and look at <code>update-display</code> and <code>color-patches</code></p></li>
 </ul>
 </section></section>
-<section><section id="obs-view-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Observations in the View</h1></section><section id="obs-view" class="slide level2 leftslide ninetyfive" data-transition="fade-in">
+<section><section id="obs-view-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Observations in the View</h1></section><section id="obs-view" class="slide level2 leftslide ninetyfive" data-transition="fade-in">
 <h2>Observations in the View</h2>
 <ul>
 <li><p>Go to <code>move</code> and change</p>
@@ -121,7 +121,7 @@
 ]    </code></pre>
 </div></li>
 </ul>
-</section><section id="obs-view-2" class="slide level2 leftslide">
+</section><section id="obs-view-2" class="slide level2 leftslide ninety">
 <h2>Observations in the View</h2>
 <ul>
 <li><p>Edit <code>update-display</code>:</p>
@@ -130,7 +130,9 @@
   ifelse show-butterflies?
   [ ask turtles [show-turtle]]
   [ ask turtles [hide-turtle]]
-  if show-labels? [ ask turtles [set label elevation]]
+  ifelse show-labels? 
+  [ ask turtles [set label elevation]]
+  [ ask turtles [set label &quot;&quot;]]
 end</code></pre></li>
 <li>Set <code>num-butterflies</code> to 0 or 5, press <code>setup</code>, and run the model</li>
 <li>When you set <code>label</code> to a variable:
@@ -165,7 +167,7 @@ end</code></pre></li>
 <li><p>Clear the paths, turn <code>show-butterflies?</code> off, and press <code>update-display</code></p></li>
 </ul>
 </section></section>
-<section><section id="monitor-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Adding monitors</h1></section><section id="monitors" class="slide level2 ninetyfive" data-transition="fade-in">
+<section><section id="monitor-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Adding monitors</h1></section><section id="monitors" class="slide level2 ninetyfive" data-transition="fade-in">
 <h2>Adding monitors</h2>
 <ul>
 <li><p>Write a new reporter:</p>
@@ -200,7 +202,7 @@ end</code></pre></li>
 <li class="fragment">Type <code>watch turtle 3</code> at the observer line.</li>
 </ul>
 </section></section>
-<section><section id="plot-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Plots and Histograms</h1></section><section id="plots" class="slide level2 eighty" data-transition="fade-in">
+<section><section id="plot-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Plots and Histograms</h1></section><section id="plots" class="slide level2 eighty" data-transition="fade-in">
 <h2>Adding plots and histograms</h2>
 <ul>
 <li>Add three plots:
@@ -233,7 +235,7 @@ end</code></pre></li>
 </ul></li>
 </ul>
 </section></section>
-<section><section id="shape-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Size and Shape</h1></section><section id="shapes" class="slide level2 leftslide eighty" data-transition="fade-in">
+<section><section id="shape-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Size and Shape</h1></section><section id="shapes" class="slide level2 leftslide eighty" data-transition="fade-in">
 <h2>Setting turtle size and shape</h2>
 <ul>
 <li><p>Turtle shapes:</p>
@@ -242,7 +244,7 @@ end</code></pre></li>
 <pre><code>ask turtles [set shape &quot;butterfly&quot;]</code></pre></li>
 </ul>
 </section></section>
-<section><section id="file-sec" class="titleslide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>File output</h1></section><section id="files" class="slide level2 ninetyfive" data-transition="fade-in">
+<section><section id="file-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>File output</h1></section><section id="files" class="slide level2 ninetyfive" data-transition="fade-in">
 <h2>File output</h2>
 <ul>
 <li><p>First open file (generally, check whether a file exists, and delete it). It’s also a good idea to write a header with the names of the columns.</p>
@@ -302,7 +304,7 @@ file-print 100 * fraction-crowded</code></pre>
 <li><p>You can also export plots, world, etc. from the “File/Export” menu.</p></li>
 </ul>
 </section></section>
-<section><section id="full-model-sec" class="titleslide slide level1 center"><h1>Model with Observations</h1></section><section id="full-model" class="slide level2 center">
+<section><section id="full-model-sec" class="title-slide slide level1 center"><h1>Model with Observations</h1></section><section id="full-model" class="slide level2 center">
 <h2>Model with Observations</h2>
 <p>You can download the full model with different observations <br/>we have been discussing at</p>
 <p><a href="https://ees4760.jgilligan.org/models/class_10/butterfly_class_10_observing.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_10/butterfly_class_10_observing.nlogo</a></p>
