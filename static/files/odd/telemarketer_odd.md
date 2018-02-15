@@ -50,7 +50,9 @@ The fourth action is observer updates: outputs such as the number of telemarkete
 
 **Stochasticity.**  There are three stochastic elements of the model. First, telemarketers are placed at random locations, uniformly distributed, when the model is initialized. Second, telemarketers select the customers they call randomly from all the potential customers (see the Telemarketer sales submodel, below). Third, the order in which telemarketers make their calls is randomly shuffled each time step, to avoid bias from the advantage that first callers have.
 
-**Observation.** The primary outputs of interest can be observed via a plot of the number of telemarketers still in business. However, to understand how the system is working it is also useful to have a histogram of telemarketer sizes.  The number of telemarketers in business is output to a file each time step so that statistics on how long telemarketers stay in business (e.g., their median life span�the time at which half have failed) can be calculated at the end of a simulation.
+**Observation.** The primary outputs of interest can be observed via a plot of the number of telemarketers still in business. However, to understand how the system is working it is also useful to have a histogram of telemarketer sizes.  The number of telemarketers in business is output to a file each time step so that statistics on how long telemarketers stay in business (e.g., their median life span---the time at which half have failed) can be calculated at the end of a simulation.
+
+![Fig. 13.1](file:fig_13_1.jpg)
 
 ## DETAILS
 
