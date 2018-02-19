@@ -69,7 +69,17 @@
     	<!-- end title slide -->
 </section>
 
-<section><section id="announcement-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Announcements</h1></section><section id="announcements" class="slide level2 center" data-transition="fade-in">
+<section><section id="announcement-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Getting Started</h1></section><section id="getting-started" class="slide level2 center">
+<h2>Getting Started</h2>
+<ul>
+<li>Sit with your team partners</li>
+<li>Download models:
+<ul>
+<li><a href="https://ees4760.jonathangilligan.org/models/class_12/jg-tif.nls" class="uri">https://ees4760.jonathangilligan.org/models/class_12/jg-tif.nls</a></li>
+<li><a href="https://ees4760.jonathangilligan.org/models/class_12/class_12.nlogo" class="uri">https://ees4760.jonathangilligan.org/models/class_12/class_12.nlogo</a></li>
+</ul></li>
+</ul>
+</section><section id="announcements" class="slide level2 center" data-transition="fade-in">
 <h2>Announcements</h2>
 <ul>
 <li><p>Analysis of the published model: Due date extended to next Sunday (Feb. 25)</p></li>
@@ -78,23 +88,7 @@
 <li>Focus on working on your team project and individual project.</li>
 </ul></li>
 </ul>
-</section></section>
-<section><section id="homework-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Homework</h1></section><section id="homework-review" class="slide level2 center" data-transition="fade-in">
-<h2>Reviewing Homeworks</h2>
-<ul>
-<li>Homework 8.1, 8.2
-<ul>
-<li>Vary birth rate and carrying capacity in birth-rate models.</li>
-</ul></li>
-</ul>
-</section><section id="exercise-8.1" class="slide level2">
-<h2>Exercise 8.1</h2>
-<p><img data-src="assets/images/Ex_8_1_pl.png" width="900" /> <img data-src="assets/images/Ex_8_1_plb.png" width="900" /></p>
-</section><section id="exercise-8.2" class="slide level2">
-<h2>Exercise 8.2</h2>
-<p><img data-src="assets/images/Ex_8_2_pl.png" height="900" /></p>
-</section></section>
-<section><section id="sensing-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Sensing</h1></section><section id="sensing" class="slide level2 leftslide" data-transition="fade-in">
+</section><section id="sensing" class="slide level2 leftslide" data-transition="fade-in">
 <h2>Sensing</h2>
 <ul>
 <li class="fragment">Options for sensing:
@@ -146,6 +140,108 @@
 </ul></li>
 </ul>
 </section></section>
+<section><section id="subset-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Subsetting</h1></section><section id="subset-exercises" class="slide level2 eighty" data-transition="fade-in">
+<h2>Subsetting</h2>
+<ul>
+<li>Open the <code>Class_12</code> model in NetLogo</li>
+<li>Click <code>setup</code> and <code>set up turtle 5</code></li>
+<li>Turn all the turtles red</li>
+<li>Turn turtle 5 green</li>
+<li><p>Ask turtle 5 to identify all the patches that are exactly 2 patches away from the turtle’s patch (not a 2-patch radius from turtle-2)</p>
+<p><img data-src="assets/images/selection.png" alt="illustration" height="400" /></p></li>
+</ul>
+</section><section id="hints" class="slide level2 seventy">
+<h2>Hints:</h2>
+<ul>
+<li>There are many ways to do this. Let’s look at a way to do this with the <code>neighbors</code> primitive.</li>
+<li>Hints:
+<ul>
+<li>Use <code>member?</code> primitive (<code>member &lt;agent&gt; &lt;agent-set&gt;</code>)</li>
+<li>Use <code>patch-set</code> primitive to turn an list of many patch-sets into a single patch-set</li>
+</ul></li>
+<li>Suggestion:
+<ol>
+<li>Start by turning all neighbor patches (patches exactly 1 patch away) blue</li>
+<li>Next turn all patches within 2 patches blue</li>
+<li>Now turn all patches black again</li>
+<li>Now turn all patches within a 2-patch distance blue <em>except</em> the turtle’s patch</li>
+<li>Now turn all patches black again</li>
+<li>Now turn all patches within a 2-patch distance blue <em>except</em> the turtle’s patch and the patches 1 patch away.</li>
+</ol></li>
+</ul>
+</section><section id="a-solution" class="slide level2">
+<h2>A solution</h2>
+<pre><code>ask turtle 5 [ 
+  ask (patch-set [neighbors] of [neighbors] of self) with                      
+    [not member? self [(patch-set neighbors patch-here)] of myself] 
+  [ 
+  set pcolor blue
+  ]
+]</code></pre>
+<ul>
+<li>What does <code>self</code> refer to in <code>patch-set [neighbors] of [neighbors] of self</code>?</li>
+<li>What does <code>self</code> refer to in <code>not member? self [(patch-set neighbors patch-here)] of myself</code>?</li>
+</ul>
+</section><section id="links" class="slide level2">
+<h2>Links</h2>
+<ul>
+<li><p>Put a slider on the interface and call it <code>number-of-links</code></p></li>
+<li><p>Edit the chooser for <code>vision-mode</code> to add <code>links</code> as an option.</p></li>
+<li><p>Edit <code>to initialize-turtle</code>:</p>
+<pre><code>to initialize-turtle
+  move-to one-of patches with [ not any? turtles-here ]
+  set wealth 0
+  set size 0.8
+  color-turtle 1.0
+  create-links-to n-of number-of-links other turtles
+end</code></pre></li>
+</ul>
+</section><section id="links-1" class="slide level2 eighty">
+<h2>Links</h2>
+<ul>
+<li><p>Edit <code>to-report find-best-patch</code>:</p>
+<pre><code>ifelse vision-mode = &quot;radius&quot; 
+[
+  set candidates (patches in-radius sense-radius) with [ not any? turtles-here ]
+  set candidates (patch-set candidates patch-here)
+] 
+[
+  ifelse vision-mode = &quot;neighbors&quot; 
+  [
+    set candidates neighbors with [ not any? turtles-here ]
+    set candidates (patch-set candidates patch-here)
+  ] 
+  [ 
+    ifelse vision-mode = &quot;links&quot; 
+    [
+      set candidates neighbors with [ not any? turtles-here ]
+      set candidates (patch-set candidates patch-here)
+      set candidates (patch-set candidates ([neighbors with [not any? turtles-here]] of out-link-neighbors) )             
+    ] 
+    [
+      error &quot;Unknown vision-mode&quot;
+    ]
+ ]
+]</code></pre></li>
+</ul>
+</section></section>
+<section><section id="sensing-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Sensing</h1></section><section id="expected-utility-function" class="slide level2 ninety">
+<h2>Expected Utility Function</h2>
+<ul>
+<li><p>Function: <span class="math display">\[U = (W + PT) \times (1 - F)^T\]</span></p>
+<p>W = wealth, P = profit, F = risk of failure, T = time horizon</p></li>
+<li><p>How does this change as investors gain more wealth?</p></li>
+<li><p>Interactive app <a href="https://alo.ees.vanderbilt.edu/shiny/ees4760/contour/" class="uri">https://alo.ees.vanderbilt.edu/shiny/ees4760/contour/</a></p></li>
+</ul>
+<div style="padding-top:50px;">
+<iframe height="450" width="1800" src="https://alo.ees.vanderbilt.edu/shiny/ees4760/contour/">
+Open app at <a href="https://alo.ees.vanderbilt.edu/shiny/ees4760/contour/" class="uri">https://alo.ees.vanderbilt.edu/shiny/ees4760/contour/</a>
+</iframe>
+</div>
+<!--
+# Work on team projects with partners {.center}
+-->
+</section></section>
 <section><section id="adapt-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Adaptation</h1></section><section id="adaptation" class="slide level2" data-transition="fade-in">
 <h2>Adaptation and Objectives</h2>
 <ul>
@@ -193,6 +289,21 @@
 <ul>
 <li class="fragment">Do that action.</li>
 </ul></li>
+</ul>
+</section><section id="satisficing-1" class="slide level2">
+<h2>Satisficing</h2>
+<ul>
+<li>Make a new slider and call it <code>wealth-increase-threshold</code></li>
+<li><p>Make a satisfice function:</p>
+<pre><code>to satisfice
+  ; Move if expected wealth increase rate is below the threshold
+  ; Potential destinations do NOT include the current patch
+  if utility self &lt; wealth * (1 + wealth-increase-threshold)
+  [
+    let potential-destinations neighbors with [not any? turtles-here]
+    if any? potential-destinations [ move-to one-of potential-destinations]
+  ]
+end</code></pre></li>
 </ul>
 </section></section>
     </div>
