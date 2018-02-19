@@ -10,7 +10,8 @@ output:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Analysis of Published Model
-Turn in the following on before class on Thursday, Feb. 22:
+Turn in the following ~~before class on Thursday, Feb. 22:~~ 
+**Extension:** by the end of the day (i.e., before midnight) Sunday Feb. 25.
 
 * Writeup of the published model you will use for your semester research 
   project. See the details in the 

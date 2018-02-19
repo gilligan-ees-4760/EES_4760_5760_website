@@ -13,37 +13,73 @@ output:
 
 
 
-<section id="homework" class="level2">
+<div id="homework" class="section level2">
 <h2>Homework</h2>
 <p>Homework #5 is due today: Railsback &amp; Grimm, Ch. 4, Ex. 4.2, 4.4 (everyone), Ch. 5, Ex. 5.1–5.5 (everyone), and Ex. 5.6–5.7 (grad. students). See the homework assignment sheet for details.</p>
-</section>
-<section id="reading" class="level2">
+</div>
+<div id="reading" class="section level2">
 <h2>Reading:</h2>
 <ul>
 <li>Railsback &amp; Grimm, Ch. 6.</li>
 </ul>
-<section id="reading-notes" class="level3">
+<div id="reading-notes" class="section level3">
 <h3>Reading Notes:</h3>
-<p>No one writes perfect programs. Errors in programs controlling medical equipment have killed people. Errors in computer models and data analysis code have not had such dire results, but have wasted lots of time for researchers and have caused public policy to proceed on incorrect assumptions. In many cases, these errors were uncovered only after a great deal of frustration because the original researchers would not share their computer codes with others who were suspicious of their results.</p>
-<p>You can never be certain that your model is correct, but the more aggressively you check for errors the more confident you can be that it does not have major problems.</p>
-<p>Two very important things you can do to ensure that your research does not suffer a similar fate are:</p>
-<ol type="1">
-<li>Test your code. Assume your program has errors in it and make the search for those errors a priority in your programming process. Some things you can do in this regard are:
+<p>No one writes perfect programs. Errors in programs controlling medical equipment
+have killed people. Errors in computer models and data analysis code have not had
+such dire results, but have wasted lots of time for researchers and have caused
+public policy to proceed on incorrect assumptions. In many cases, these errors
+were uncovered only after a great deal of frustration because the original
+researchers would not share their computer codes with others who were suspicious
+of their results.</p>
+<p>You can never be certain that your model is correct, but the more aggressively
+you check for errors the more confident you can be that it does not have major problems.</p>
+<p>Two very important things you can do to ensure that your research does not suffer
+a similar fate are:</p>
+<ol style="list-style-type: decimal">
+<li>Test your code. Assume your program has errors in it and make the search for
+those errors a priority in your programming process.
+Some things you can do in this regard are:
 <ul>
 <li>Write your code with tests that will help you find errors.</li>
-<li>Work with a partner: after one of you writes code, the other should read it and check for errors.</li>
-<li>Break your program up into small chunks. It is easier to test and find bugs if you are looking at a short block of code than if you are looking at hundreds of lines of code.</li>
-<li>Independently reimplement submodels and check whether they agree with the submodel you are using.</li>
+<li>Work with a partner: after one of you writes code, the other should read
+it and check for errors.</li>
+<li>Break your program up into small chunks. It is easier to test and find
+bugs if you are looking at a short block of code than if you are looking
+at hundreds of lines of code.</li>
+<li>Independently reimplement submodels and check whether they agree with the
+submodel you are using.</li>
 </ul></li>
-<li><p>Publish your code. If you trust your results and believe they are important enough to publish in a book or journal, then you should make your code available (there are many free sites, such as github.com and openabm.org where people can publish their models and other computer code).</p>
-<p>The more that other researchers can read your code, the greater the probability that they will find any errors, and if you make it easy for others to use your code, it will help science because other people can build on your work, and it will help your reputation because when other people use your model or other code they are likely to cite the publication in which you first announced it, so your work will get attention.</p>
-<p>Many scholarly journals demand that you make your code available as a condition for publishing your paper, and federal funding agencies are increasingly requiring that any research funded by their grants must make its code and data available to other researchers and the public.</p></li>
+<li><p>Publish your code. If you trust your results and believe they are important
+enough to publish in a book or journal, then you should make your code available
+(there are many free sites, such as github.com and openabm.org where people can
+publish their models and other computer code).</p>
+<p>The more that other researchers can read your code, the greater the probability
+that they will find any errors, and if you make it easy for others to use your
+code, it will help science because other people can build on your work, and it
+will help your reputation because when other people use your model or other
+code they are likely to cite the publication in which you first announced
+it, so your work will get attention.</p>
+<p>Many scholarly journals demand that you make your code available as a
+condition for publishing your paper, and federal funding agencies are
+increasingly requiring that any research funded by their grants must make
+its code and data available to other researchers and the public.</p></li>
 </ol>
 <p><strong>The Marriage Model</strong></p>
-<p>The <a href="/files/models/chapter_06/Marriage_age_model_ODD.pdf">ODD for the marriage model</a> and a <a href="files/models/chapter_06/Marriage_model_with_errors.nlogo">NetLogo model</a> that implements the ODD, but with many errors, can be downloaded from the class web site: <a href="https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_age_model_ODD.pdf" class="uri">https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_age_model_ODD.pdf</a>, and <a href="https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_model_with_errors.nlogo" class="uri">https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_model_with_errors.nlogo</a>.</p>
+<p>The
+<a href="/files/models/chapter_06/Marriage_age_model_ODD.pdf">ODD for the marriage model</a>
+and a
+<a href="files/models/chapter_06/Marriage_model_with_errors.nlogo">NetLogo model</a>
+that implements the ODD, but with many errors, can be downloaded from the class web site:
+<a href="https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_age_model_ODD.pdf" class="uri">https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_age_model_ODD.pdf</a>,
+and <a href="https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_model_with_errors.nlogo" class="uri">https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_model_with_errors.nlogo</a>.</p>
 <p><strong>Errata for chapter 6:</strong></p>
 <ul>
-<li><p>Section 6.3.7, in the example <code>test</code> procesure: The syntax of the <code>foreach</code> statement changed, starting with NetLogo version 6.0. This was because NetLogo introduced a new feature, called “anonymous procedures,” which you can read about in the NetLogo User Manual. This means that we need to change the code in the book for the <code>go-back</code> test procedure. The new procedure should read:</p>
+<li><p>Section 6.3.7, in the example <code>test</code> procesure:
+The syntax of the <code>foreach</code> statement changed, starting with NetLogo
+version 6.0. This was because NetLogo introduced a new feature, called
+“anonymous procedures,” which you can read about in the NetLogo User Manual.
+This means that we need to change the code in the book for the <code>go-back</code> test
+procedure. The new procedure should read:</p>
 <pre><code>ask turtles
  [
     set color blue ; Make the return path a different color
@@ -55,8 +91,16 @@ output:
       fd 1
     ]
  ]</code></pre></li>
-<li><p>Section 6.3.10, Figure 6.4: The column labels in the very top row of the fiture’s spreadsheet are wrong: what is labeled col. B should be col. A, the column labeled O should be N, etc.. In the figure caption, reference to col. N should be to the corrected col. M (which is currently labeled N); and references to col. M should be to the corrected col. N (currently labeled O).</p></li>
-<li><p>Section 6.5, p. 91: Note that the “social network” of young people can potentially include other people below the marriage age of 16. Hence, it is possible for a person less than 16 to be selected as a spouse and married.</p></li>
+<li><p>Section 6.3.10, Figure 6.4:
+The column labels in the very top row of the fiture’s spreadsheet are wrong:
+what is labeled col. B should be col. A, the column labeled O should be N, etc..
+In the figure caption, reference to col. N should be to the corrected
+col. M (which is currently labeled N); and references to col. M should be to
+the corrected col. N (currently labeled O).</p></li>
+<li><p>Section 6.5, p. 91:
+Note that the “social network” of young people can potentially include other
+people below the marriage age of 16. Hence, it is possible for a person less
+than 16 to be selected as a spouse and married.</p></li>
 </ul>
-</section>
-</section>
+</div>
+</div>

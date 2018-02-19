@@ -13,35 +13,68 @@ output:
 
 
 
-<section id="reading" class="level2">
+<div id="reading" class="section level2">
 <h2>Reading:</h2>
 <ul>
 <li>Railsback &amp; Grimm, Ch. 16.</li>
 </ul>
-<section id="reading-notes" class="level3">
+<div id="reading-notes" class="section level3">
 <h3>Reading Notes:</h3>
 <p><strong>Errata for Chapter 16:</strong></p>
 <ul>
-<li><p>Section 16.4.1, p. 213: The description of social status is not clear: it assumes ages are real numbers instead of integers. It should read:</p>
+<li><p>Section 16.4.1, p. 213:
+The description of social status is not clear: it assumes ages are real
+numbers instead of integers. It should read:</p>
 _The social status of a dog can be (a) “pup,” meaning its age is less than one;
-<ol start="2" type="a">
-<li>“yearling,” with age of 1 year; (c) “subordinate,” meaning age is 2 or greater but the dog is not an alpha; (d) “alpha,” the dominant individual of its sex in a pack; and (e) “disperser,” meaning the dog currently belongs to a disperser group, not a pack._</li>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>“yearling,” with age of 1 year; (c) “subordinate,” meaning age is 2 or
+greater but the dog is not an alpha; (d) “alpha,” the dominant individual of its
+sex in a pack; and (e) “disperser,” meaning the dog currently belongs to a
+disperser group, not a pack._</li>
 </ol></li>
-<li><p>Section 16.4.1, p. 213: The first bullet of the description of pack formation should start “Determine how many times the disperser group meets another…”</p></li>
-<li><p>Section 16.4.1, Fig. 16.1: Be aware that this figure does not depict the logistic function parameters in the Wild Dog model description. The figure shows a probability of 0.5 when the number of dogs in the population is 67% of carrying capacity (40 out of 60), while the model description says the probability is 0.5 when the population is 50% of carrying capacity. To match the model description, the figure’s curve should go through X = 30, Y = 0.5.</p></li>
-<li><p>Section 16.4.2, p. 217: Setting the dog’s variable <code>my-pack</code> to the pack that created it (via the statement <code>set my-pack myself</code>) can cause a subtle error in the pack formation submodel. Disperser groups cannot form a pack with other disperser groups that originated in the same pack. In most people’s code, disperser groups use the value of <code>my-pack</code> from one of their dogs to determine which pack they came from. The error can occur when two disperser groups came from packs that have since died; when a disperser dog’s pack dies, NetLogo automatically changes its value of <code>my-pack</code> to the keyword <code>nobody</code>. Because disperser groups cannot form a new pack with another group that has the same value of <code>my-pack</code>, groups whose packs have died cannot combine with each other, even if they really came from two different packs. A solution is to set <code>my-pack</code> to the unique <code>who</code> number of the dog’s pack. Instead of <code>set my-pack myself</code>, use <code>set my-pack [who] of myself</code>. Use a similar statement when new dogs are created in the reproduction submodel. Then change the statements where a dog’s value of <code>my-pack</code> is compared to a pack, from (for example):</p>
+<li><p>Section 16.4.1, p. 213:
+The first bullet of the description of pack formation should start
+“Determine how many times the disperser group meets another…”</p></li>
+<li><p>Section 16.4.1, Fig. 16.1:
+Be aware that this figure does not depict the logistic function parameters in
+the Wild Dog model description. The figure shows a probability of 0.5 when the
+number of dogs in the population is 67% of carrying capacity (40 out of 60),
+while the model description says the probability is 0.5 when the population is
+50% of carrying capacity.
+To match the model description, the figure’s curve should go through X = 30, Y = 0.5.</p></li>
+<li><p>Section 16.4.2, p. 217:
+Setting the dog’s variable <code>my-pack</code> to the pack that created it (via the
+statement <code>set my-pack myself</code>) can cause a subtle error in the pack formation
+submodel. Disperser groups cannot form a pack with other disperser groups that
+originated in the same pack. In most people’s code, disperser groups use the value
+of <code>my-pack</code> from one of their dogs to determine which pack they came from.
+The error can occur when two disperser groups came from packs that have since
+died; when a disperser dog’s pack dies, NetLogo automatically changes its
+value of <code>my-pack</code> to the keyword <code>nobody</code>.
+Because disperser groups cannot form a new pack with another group that has the
+same value of <code>my-pack</code>, groups whose packs have died cannot combine with each
+other, even if they really came from two different packs. A solution is to set
+<code>my-pack</code> to the unique <code>who</code> number of the dog’s pack.
+Instead of <code>set my-pack myself</code>, use <code>set my-pack [who] of myself</code>.
+Use a similar statement when new dogs are created in the reproduction submodel.
+Then change the statements where a dog’s value of <code>my-pack</code> is compared to a pack,
+from (for example):</p>
 <pre><code>set pack-members dogs with [my-pack = myself]</code></pre>
 <p>to:</p>
 <pre><code>set pack-members dogs with [my-pack = [who] of myself]</code></pre>
-<p>And because <code>my-pack</code> now contains a who number instead of a pack, one of the last lines in the <code>create-disperser-group-from</code> code (page 220) needs to be changed, from:</p>
+<p>And because <code>my-pack</code> now contains a who number instead of a pack, one of the
+last lines in the
+<code>create-disperser-group-from</code> code (page 220) needs to be changed, from:</p>
 <pre><code>ask dogs-former-pack [set pack-members ... </code></pre>
 <p>to:</p>
 <pre><code>ask pack dogs-former-pack [set pack-members ...</code></pre>
 <p>This error appears to have little effect on model results.</p></li>
-<li><p>Section 16.4.3, Figure 16.2: The figure should look like</p>
-<figure>
-<img src="/img/errata_fig_16_2.png" alt="Corrected Fig. 16.2" /><figcaption>Corrected Fig. 16.2</figcaption>
-</figure></li>
+<li><p>Section 16.4.3, Figure 16.2:
+The figure should look like</p>
+<div class="figure">
+<img src="/img/errata_fig_16_2.png" alt="Corrected Fig. 16.2" />
+<p class="caption">Corrected Fig. 16.2</p>
+</div></li>
 </ul>
-</section>
-</section>
+</div>
+</div>
