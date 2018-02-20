@@ -60,6 +60,7 @@ lessons:
   assignment: homework_09
 - date: '2018-02-20'
   title: Prediction
+  lecture: /Slides/Class_13
   reading: /reading/reading_13
 - date: '2018-02-22'
   title: Interaction
