@@ -46,6 +46,7 @@ to setup
     initialize-turtle
   ]
 
+
   reset-ticks
 end
 
@@ -133,6 +134,7 @@ to initialize-turtle
   set wealth 0
   set size 0.8
   color-turtle 1.0
+  create-links-to n-of number-of-links other turtles
 end
 
 ;
@@ -328,11 +330,11 @@ end
 GRAPHICS-WINDOW
 210
 10
-788
-589
+444
+245
 -1
 -1
-30.0
+12.0
 1
 10
 1
@@ -395,7 +397,7 @@ sense-radius
 sense-radius
 0
 10
-0.0
+2.0
 1
 1
 NIL
@@ -435,7 +437,7 @@ CHOOSER
 color-patches-by
 color-patches-by
 "black" "profit" "p-failure" "exp utility"
-0
+3
 
 CHOOSER
 5
@@ -444,8 +446,8 @@ CHOOSER
 170
 vision-mode
 vision-mode
-"neighbors" "radius"
-1
+"neighbors" "radius" "links"
+0
 
 SLIDER
 5
@@ -456,7 +458,7 @@ max-ticks
 max-ticks
 0
 500
-0.0
+30.0
 1
 1
 NIL
@@ -471,7 +473,7 @@ num-turtles
 num-turtles
 0
 381
-0.0
+10.0
 1
 1
 NIL
@@ -486,7 +488,7 @@ risk-min
 risk-min
 0
 1
-0.0
+0.1
 0.01
 1
 NIL
@@ -501,7 +503,7 @@ risk-max
 risk-max
 0
 1
-0.0
+0.1
 0.01
 1
 NIL
@@ -560,7 +562,7 @@ risk-multiplier
 risk-multiplier
 0
 2
-0.0
+1.0
 0.01
 1
 NIL
@@ -592,8 +594,40 @@ profit-multiplier
 profit-multiplier
 0.1
 2
-0.0
+1.0
 0.1
+1
+NIL
+HORIZONTAL
+
+BUTTON
+471
+15
+534
+49
+Donut
+ask turtle 5 [ \n  ask (patch-set [neighbors] of [neighbors] of self) with                      \n    [not member? self [(patch-set neighbors patch-here)] of myself] \n  [ \n  set pcolor blue\n  ]\n]
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+SLIDER
+471
+59
+644
+93
+number-of-links
+number-of-links
+0
+20
+5.0
+1
 1
 NIL
 HORIZONTAL
