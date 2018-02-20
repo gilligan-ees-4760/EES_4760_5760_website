@@ -337,8 +337,8 @@ end
 GRAPHICS-WINDOW
 210
 10
-790
-611
+788
+589
 -1
 -1
 30.0
@@ -404,7 +404,7 @@ sense-radius
 sense-radius
 0
 10
-10
+10.0
 1
 1
 NIL
@@ -465,7 +465,7 @@ max-ticks
 max-ticks
 0
 500
-25
+25.0
 1
 1
 NIL
@@ -480,7 +480,7 @@ num-investors
 num-investors
 0
 381
-100
+100.0
 1
 1
 NIL
@@ -569,7 +569,7 @@ profit-multiplier
 profit-multiplier
 0
 2
-1
+1.0
 0.01
 1
 NIL
@@ -584,7 +584,7 @@ risk-multiplier
 risk-multiplier
 0
 2
-1
+1.0
 0.01
 1
 NIL
@@ -599,7 +599,7 @@ number-of-links
 number-of-links
 0
 10
-5
+5.0
 1
 1
 NIL
@@ -1009,9 +1009,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -1197,7 +1196,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 1
 @#$#@#$#@

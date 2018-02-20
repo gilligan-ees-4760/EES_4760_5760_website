@@ -150,15 +150,15 @@ end
 
 to move
 ;  move-to find-best-patch
-  if expected-utility-here < wealth-increase-threshold
+  if expected-utility-growth < wealth-increase-threshold
   [
     let candidates neighbors with [not any? turtles-here ]
     if any? candidates [ move-to one-of candidates ]
   ]
-  set current-utility expected-utility-here
+  set current-utility expected-utility-growth
 end
 
-to-report expected-utility-here
+to-report expected-utility-growth
   if wealth = 0 [set wealth 1.0]
   let utility (wealth + (profit * time-horizon)) * (1 - p-failure) ^ time-horizon
   let wealth-increase-rate (utility - wealth) / (wealth * time-horizon)
@@ -278,17 +278,35 @@ end
 to color-turtle [max-wealth]
   ifelse turtle-coloring-mode = "wealth"
   [
-    set color scale-color green wealth 0 max-wealth
+    ifelse wealth > 0.5 * max-wealth
+    [set color scale-color green wealth (0.5 * max-wealth) (1.5 * max-wealth)]
+    [set color scale-color red wealth (0.5 * max-wealth) (-0.5 * max-wealth)]
   ]
   [
     ifelse turtle-coloring-mode = "current utility"
     [
       let mcu max [current-utility] of turtles
       if mcu = 0 [ set mcu 0.1]
-      set color scale-color green current-utility 0 mcu
+      ifelse current-utility > 0.5 * mcu
+      [set color scale-color green wealth (0.5 * mcu) (1.5 * mcu)]
+      [set color scale-color red wealth (0.5 * mcu) (-0.5 * mcu)]
     ]
     [
-      set color red
+      ifelse turtle-coloring-mode = "satisfied?"
+      [
+         ifelse current-utility > wealth-increase-threshold
+        [ set color green]
+        [ set color red]
+      ]
+      [
+        ifelse turtle-coloring-mode = "red"
+        [
+          set color red
+        ]
+        [
+          error "Unknown turtle coloring mode"
+        ]
+      ]
     ]
   ]
 end
@@ -342,8 +360,8 @@ end
 GRAPHICS-WINDOW
 210
 10
-790
-611
+788
+589
 -1
 -1
 30.0
@@ -409,7 +427,7 @@ sense-radius
 sense-radius
 0
 10
-10
+10.0
 1
 1
 NIL
@@ -470,7 +488,7 @@ max-ticks
 max-ticks
 0
 500
-25
+25.0
 1
 1
 NIL
@@ -485,7 +503,7 @@ num-investors
 num-investors
 0
 381
-100
+100.0
 1
 1
 NIL
@@ -545,8 +563,8 @@ CHOOSER
 535
 turtle-coloring-mode
 turtle-coloring-mode
-"wealth" "current utility" "red"
-1
+"wealth" "current utility" "satisfied?" "red"
+2
 
 BUTTON
 5
@@ -574,7 +592,7 @@ profit-multiplier
 profit-multiplier
 0
 2
-1
+1.0
 0.01
 1
 NIL
@@ -589,7 +607,7 @@ risk-multiplier
 risk-multiplier
 0
 2
-2
+2.0
 0.01
 1
 NIL
@@ -1032,9 +1050,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -1176,7 +1193,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 1
 @#$#@#$#@

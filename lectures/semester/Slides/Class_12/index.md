@@ -21,8 +21,8 @@ output:
 
 * Sit with your team partners
 * Download models:
-    * <https://ees4760.jonathangilligan.org/models/class_12/jg-tif.nls>
-    * <https://ees4760.jonathangilligan.org/models/class_12/class_12.nlogo>
+    * <https://ees4760.jgilligan.org/models/class_12/jg-tif.nls>
+    * <https://ees4760.jgilligan.org/models/class_12/class_12.nlogo>
   
 ## Announcements {#announcements .center data-transition="fade-in"}
 
@@ -63,6 +63,35 @@ output:
 >   * __Lots__ more you can do with links (read NetLogo dictionary)
 > * **But** links can be slow if you have a big model with lots of links.
 >   * Sometimes it's better to use turtles-own variables to keep track of connections
+
+## Examples of Links {.eighty}
+
+* Directed links
+  ```
+  ask turtles
+  [
+    create-links-to n-of 5 other turtles
+    ask my-out-links 
+    [ 
+      ; set the link to the same color as the turtle it originates at
+      set color [color] of myself
+      set thickness 0.3
+    ]
+  ]
+  ```
+* Undirected links
+  ```
+  ask turtles
+  [
+    create-links-to min-n-of [distance myself] 3 other turtles
+    ask my-out-links 
+    [ 
+      ; set the link to the same color as the turtle it originates at
+      set color pink
+      set thickness 0.4
+    ]
+  ]
+  ```
 
 
 # Subsetting {#subset-sec data-transition="fade-out" data-state="skip_slide"}
@@ -107,6 +136,25 @@ ask turtle 5 [
 * What does `self` refer to in `patch-set [neighbors] of [neighbors] of self`?
 * What does `self` refer to in `not member? self [(patch-set neighbors patch-here)] of myself`?
 
+## Another solution
+
+```
+ask turtle 5 [
+  ; This is a big solid square
+  let donut (patch-set [neighbors] of [neighbors] of patch-here)
+  ; This is a smaller hole in the middle
+  let hole (patch-set patch-here [neighbors] of patch-here)
+  ; This is the big square with the hole removed
+  set donut (patch-set donut with [not member? self of hole])
+  ask donut [set pcolor blue]
+]
+```
+
+* Making complicated sets in smaller steps makes it both easier to understand
+  and easier to catch errors
+* **Note:** `[neighbors] of [neighbors] of self` is a list of patches. We turn 
+  this into a patch-set with `(patch-set [neighbors] of [neighbors] of self)`
+
 ## Links
 
 * Put a slider on the interface and call it `number-of-links`
@@ -129,6 +177,7 @@ ask turtle 5 [
 
 * Edit `to-report find-best-patch`:
   ```
+  let candidates nobody
   ifelse vision-mode = "radius" 
   [
     set candidates (patches in-radius sense-radius) with [ not any? turtles-here ]

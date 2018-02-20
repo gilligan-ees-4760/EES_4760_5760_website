@@ -21,22 +21,29 @@ globals
 
   g-mean-wealth
   g-max-utility
+  g-mean-risk
+  g-var-risk
 ]
 
 turtles-own
 [
   wealth ; wealth, in dollars
-  delta
 ]
 
 patches-own
 [
   profit     ; annual profit (dollars)
   p-failure  ; annual probabilty of failure (0 to 1)
+  failed-this-tick
+  failure-count
+  alpha
+  beta
+  est-risk
 ]
 
 to setup
   ca
+
   initialize-tests
   initialize-globals
   initialize-patches
@@ -57,10 +64,17 @@ to go
     move
   ]
 
+  ask patches
+  [
+    update-patch-failure
+    update-est-risk
+  ]
+
   ask turtles
   [
     update-wealth
   ]
+
 
   set g-mean-wealth mean [wealth] of turtles
   set g-max-utility max [expected-utility-of nobody] of patches
@@ -103,8 +117,10 @@ to initialize-globals
     set failure-max failure-min
   ]
 
-  set time-horizon 5 ; years
+  set g-mean-risk (failure-min + failure-max) / 2
+  set g-var-risk (failure-max - failure-min) ^ 2 / 12
 
+  set time-horizon 5 ; years
 
   set g-mean-wealth 0
   set g-max-utility (profit-max * time-horizon) * (1 - failure-min) ^ time-horizon
@@ -124,6 +140,11 @@ to initialize-patches
     set p-failure failure-min + random-float (failure-max - failure-min)
     set profit profit * profit-multiplier
     set p-failure p-failure * risk-multiplier
+    set failure-count 0
+    set failed-this-tick false
+    set alpha g-mean-risk * (g-mean-risk - g-mean-risk ^ 2 - g-var-risk) / g-var-risk
+    set beta (g-mean-risk / g-var-risk) * (1 - g-mean-risk) ^ 2 + (g-mean-risk - 1)
+    set est-risk g-mean-risk
   ]
   color-patches
 end
@@ -133,7 +154,28 @@ to initialize-turtle
   set wealth 0
   set size 0.8
   color-turtle 1.0
-  create-links-to n-of number-of-links other turtles
+end
+
+;
+;  PATCH PROCESSING
+;
+;
+
+to update-patch-failure
+  ifelse random-float 1.0 < p-failure
+  [
+    set alpha alpha + 1
+    set failure-count failure-count + 1
+    set failed-this-tick true
+  ]
+  [
+    set failed-this-tick false
+    set beta beta + 1
+  ]
+end
+
+to update-est-risk
+  set est-risk alpha / (alpha + beta)
 end
 
 ;
@@ -142,13 +184,10 @@ end
 ;
 
 to update-wealth ; turtle procedure
-  ifelse random-float 1.0 < p-failure
+  set wealth wealth + profit
+  if [failed-this-tick] of patch-here
   [
-    set delta (- wealth)
     set wealth 0
-  ] [
-    set delta profit
-    set wealth wealth + profit
   ]
 end
 
@@ -180,25 +219,11 @@ to-report find-best-patch ; turtle reporter
     [
       set candidates neighbors with [ not any? turtles-here ]
       set candidates (patch-set candidates patch-here)
-    ] [
-  ifelse vision-mode = "link-radius"
-    [
-    set candidates (patches in-radius sense-radius) with [ not any? turtles-here ]
-    set candidates (patch-set candidates patch-here)
-    set candidates (patch-set candidates ([ (patches in-radius sense-radius) with [not any? turtles-here]] of out-link-neighbors))
-    ] [
-  ifelse vision-mode = "link-neighbors"
-    [
-    set candidates neighbors with [ not any? turtles-here ]
-    set candidates (patch-set candidates patch-here)
-    set candidates (patch-set candidates ([neighbors with [not any? turtles-here]] of out-link-neighbors))
     ]
     [
       ; vision-mode should be either "radius" or "neighbors"
       ; If we get here, it was neither and something must be wrong.
-      error "Unknown vision-mode"
-    ]
-    ]
+        error "Unknown vision-mode"
     ]
   ]
   if not any? candidates
@@ -257,21 +282,28 @@ to color-patches
   [
     ifelse color-patches-by = "p-failure"
     [
-     ask patches
-     [
-       ifelse (failure-min < failure-max) and (failure-min > 0)
-       [
-       set pcolor scale-color red (ln p-failure) (ln failure-max) (ln failure-min)
-       ]
-       [
-       set pcolor scale-color red (p-failure) 1 0
-       ]
-     ]
+      ask patches
+      [set pcolor scale-color red p-failure (1.5 * failure-max) 0]
     ]
     [
-      ask patches
+      ifelse color-patches-by = "est risk"
       [
-        set pcolor scale-color magenta (expected-utility-of nobody) 0 g-max-utility
+        let max-risk max (list [est-risk] of patches failure-max)
+        let min-risk min (list [est-risk] of patches failure-min)
+        ask patches
+        [set pcolor scale-color red est-risk (1.5 * max-risk) 0]
+      ]
+      [
+        ifelse color-patches-by = "exp utility"
+        [
+          ask patches
+          [
+            set pcolor scale-color magenta (expected-utility-of nobody) 0 g-max-utility
+          ]
+        ]
+        [
+          error "Unknown patch coloring mode"
+        ]
       ]
     ]
   ]
@@ -280,7 +312,9 @@ end
 to color-turtle [max-wealth]
   ifelse turtle-coloring-mode = "wealth"
   [
-    set color scale-color green wealth 0 (max-wealth * 1.2)
+    ifelse wealth > 0.5 * max-wealth
+    [set color scale-color green wealth (0.5 * max-wealth) (1.5 * max-wealth)]
+    [set color scale-color red wealth (0.5 * max-wealth) (-0.5 * max-wealth)]
   ]
   [
     set color red
@@ -438,34 +472,34 @@ OUTPUT
 
 CHOOSER
 5
-430
+385
 143
-475
+430
 color-patches-by
 color-patches-by
-"profit" "p-failure" "exp utility"
-2
+"profit" "p-failure" "exp utility" "est risk"
+3
 
 CHOOSER
 5
-170
+125
 143
-215
+170
 vision-mode
 vision-mode
-"neighbors" "radius" "link-neighbors" "link-radius"
-0
+"neighbors" "radius"
+1
 
 SLIDER
 5
-390
+345
 177
-423
+378
 max-ticks
 max-ticks
 0
 500
-25.0
+150.0
 1
 1
 NIL
@@ -488,9 +522,9 @@ HORIZONTAL
 
 SLIDER
 5
-305
+260
 177
-338
+293
 failure-min
 failure-min
 0
@@ -503,9 +537,9 @@ HORIZONTAL
 
 SLIDER
 5
-340
+295
 177
-373
+328
 failure-max
 failure-max
 0
@@ -535,9 +569,9 @@ NIL
 
 CHOOSER
 5
-480
+435
 143
-525
+480
 turtle-coloring-mode
 turtle-coloring-mode
 "wealth" "red"
@@ -545,9 +579,9 @@ turtle-coloring-mode
 
 BUTTON
 5
-535
+490
 107
-568
+523
 Do coloring
 color-patches\ncolor-turtles
 NIL
@@ -562,9 +596,9 @@ NIL
 
 SLIDER
 5
-220
+175
 177
-253
+208
 profit-multiplier
 profit-multiplier
 0
@@ -577,30 +611,15 @@ HORIZONTAL
 
 SLIDER
 5
-255
+210
 177
-288
+243
 risk-multiplier
 risk-multiplier
 0
 2
 1.0
 0.01
-1
-NIL
-HORIZONTAL
-
-SLIDER
-5
-130
-177
-163
-number-of-links
-number-of-links
-0
-10
-5.0
-1
 1
 NIL
 HORIZONTAL
@@ -1137,50 +1156,6 @@ NetLogo 6.0.2
     </enumeratedValueSet>
     <enumeratedValueSet variable="turtle-coloring-mode">
       <value value="&quot;wealth&quot;"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="vary-vision-mode" repetitions="20" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <metric>mean [wealth] of turtles</metric>
-    <metric>standard-deviation [wealth] of turtles</metric>
-    <metric>mean [profit] of turtles</metric>
-    <metric>standard-deviation [profit] of turtles</metric>
-    <enumeratedValueSet variable="max-ticks">
-      <value value="25"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sense-radius">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-investors">
-      <value value="100"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="failure-max">
-      <value value="0.1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="number-of-links">
-      <value value="5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="failure-min">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="risk-multiplier">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="color-patches-by">
-      <value value="&quot;exp utility&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="turtle-coloring-mode">
-      <value value="&quot;wealth&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="profit-multiplier">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="vision-mode">
-      <value value="&quot;neighbors&quot;"/>
-      <value value="&quot;radius&quot;"/>
-      <value value="&quot;link-neighbors&quot;"/>
-      <value value="&quot;link-radius&quot;"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>

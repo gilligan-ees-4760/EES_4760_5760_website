@@ -10,7 +10,7 @@ globals
 
   ; num-investors
 
-  time-horizon
+  ; time-horizon
 
   ; sense-radius
   ; use-sense-radius?
@@ -26,6 +26,7 @@ globals
 turtles-own
 [
   wealth ; wealth, in dollars
+  failures ; number of failures
 ]
 
 patches-own
@@ -102,7 +103,7 @@ to initialize-globals
     set failure-max failure-min
   ]
 
-  set time-horizon 5 ; years
+  ; set time-horizon 5 ; years
 
 
   set g-mean-wealth 0
@@ -129,6 +130,7 @@ end
 
 to initialize-turtle
   move-to one-of patches with [ not any? turtles-here ]
+  set failures 0
   set wealth 0
   set size 0.8
   color-turtle 1.0
@@ -141,7 +143,11 @@ end
 
 to update-wealth ; turtle procedure
   set wealth wealth + profit
-  if random-float 1.0 < p-failure [  set wealth 0 ]
+  if random-float 1.0 < p-failure
+  [
+    set wealth 0
+    set failures failures + 1
+  ]
 end
 
 to move
@@ -258,7 +264,9 @@ end
 to color-turtle [max-wealth]
   ifelse turtle-coloring-mode = "wealth"
   [
-    set color scale-color green wealth 0 (max-wealth * 1.2)
+    ifelse wealth > 0.5 * max-wealth
+    [set color scale-color green wealth (0.5 * max-wealth) (1.5 * max-wealth)]
+    [set color scale-color red wealth (0.5 * max-wealth) (-0.5 * max-wealth)]
   ]
   [
     set color red
@@ -315,8 +323,8 @@ end
 GRAPHICS-WINDOW
 210
 10
-790
-611
+788
+589
 -1
 -1
 30.0
@@ -382,7 +390,7 @@ sense-radius
 sense-radius
 0
 10
-10
+10.0
 1
 1
 NIL
@@ -416,9 +424,9 @@ OUTPUT
 
 CHOOSER
 5
-385
+415
 143
-430
+460
 color-patches-by
 color-patches-by
 "profit" "p-failure" "exp utility"
@@ -436,14 +444,14 @@ vision-mode
 
 SLIDER
 5
-345
+375
 177
-378
+408
 max-ticks
 max-ticks
 0
 500
-25
+25.0
 1
 1
 NIL
@@ -458,7 +466,7 @@ num-investors
 num-investors
 0
 381
-100
+100.0
 1
 1
 NIL
@@ -513,9 +521,9 @@ NIL
 
 CHOOSER
 5
-435
+465
 143
-480
+510
 turtle-coloring-mode
 turtle-coloring-mode
 "wealth" "red"
@@ -523,9 +531,9 @@ turtle-coloring-mode
 
 BUTTON
 5
-490
+520
 107
-523
+553
 Do coloring
 color-patches\ncolor-turtles
 NIL
@@ -547,7 +555,7 @@ profit-multiplier
 profit-multiplier
 0
 2
-1
+1.0
 0.01
 1
 NIL
@@ -562,8 +570,23 @@ risk-multiplier
 risk-multiplier
 0
 2
-1
+1.0
 0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+5
+340
+177
+373
+time-horizon
+time-horizon
+1
+25
+5.0
+1
 1
 NIL
 HORIZONTAL
@@ -972,9 +995,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -1103,6 +1125,45 @@ NetLogo 5.3.1
       <value value="&quot;wealth&quot;"/>
     </enumeratedValueSet>
   </experiment>
+  <experiment name="vary-time-horizon" repetitions="20" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <metric>mean [wealth] of turtles</metric>
+    <metric>mean [failures] of turtles</metric>
+    <metric>mean [profit] of turtles</metric>
+    <metric>mean [p-failure] of turtles</metric>
+    <enumeratedValueSet variable="profit-multiplier">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="risk-multiplier">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="vision-mode">
+      <value value="&quot;neighbors&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="sense-radius">
+      <value value="2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="failure-max">
+      <value value="0.1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="turtle-coloring-mode">
+      <value value="&quot;wealth&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="failure-min">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-ticks">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="color-patches-by">
+      <value value="&quot;exp utility&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-investors">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="time-horizon" first="1" step="1" last="25"/>
+  </experiment>
 </experiments>
 @#$#@#$#@
 @#$#@#$#@
@@ -1116,7 +1177,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 1
 @#$#@#$#@

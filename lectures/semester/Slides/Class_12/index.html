@@ -75,8 +75,8 @@
 <li>Sit with your team partners</li>
 <li>Download models:
 <ul>
-<li><a href="https://ees4760.jonathangilligan.org/models/class_12/jg-tif.nls" class="uri">https://ees4760.jonathangilligan.org/models/class_12/jg-tif.nls</a></li>
-<li><a href="https://ees4760.jonathangilligan.org/models/class_12/class_12.nlogo" class="uri">https://ees4760.jonathangilligan.org/models/class_12/class_12.nlogo</a></li>
+<li><a href="https://ees4760.jgilligan.org/models/class_12/jg-tif.nls" class="uri">https://ees4760.jgilligan.org/models/class_12/jg-tif.nls</a></li>
+<li><a href="https://ees4760.jgilligan.org/models/class_12/class_12.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_12/class_12.nlogo</a></li>
 </ul></li>
 </ul>
 </section><section id="announcements" class="slide level2 center" data-transition="fade-in">
@@ -139,6 +139,32 @@
 <li class="fragment">Sometimes it’s better to use turtles-own variables to keep track of connections</li>
 </ul></li>
 </ul>
+</section><section id="examples-of-links" class="slide level2 eighty">
+<h2>Examples of Links</h2>
+<ul>
+<li><p>Directed links</p>
+<pre><code>ask turtles
+[
+  create-links-to n-of 5 other turtles
+  ask my-out-links 
+  [ 
+    ; set the link to the same color as the turtle it originates at
+    set color [color] of myself
+    set thickness 0.3
+  ]
+]</code></pre></li>
+<li><p>Undirected links</p>
+<pre><code>ask turtles
+[
+  create-links-to min-n-of [distance myself] 3 other turtles
+  ask my-out-links 
+  [ 
+    ; set the link to the same color as the turtle it originates at
+    set color pink
+    set thickness 0.4
+  ]
+]</code></pre></li>
+</ul>
 </section></section>
 <section><section id="subset-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Subsetting</h1></section><section id="subset-exercises" class="slide level2 eighty" data-transition="fade-in">
 <h2>Subsetting</h2>
@@ -182,6 +208,21 @@
 <li>What does <code>self</code> refer to in <code>patch-set [neighbors] of [neighbors] of self</code>?</li>
 <li>What does <code>self</code> refer to in <code>not member? self [(patch-set neighbors patch-here)] of myself</code>?</li>
 </ul>
+</section><section id="another-solution" class="slide level2">
+<h2>Another solution</h2>
+<pre><code>ask turtle 5 [
+  ; This is a big solid square
+  let donut (patch-set [neighbors] of [neighbors] of patch-here)
+  ; This is a smaller hole in the middle
+  let hole (patch-set patch-here [neighbors] of patch-here)
+  ; This is the big square with the hole removed
+  set donut (patch-set donut with [not member? self of hole])
+  ask donut [set pcolor blue]
+]</code></pre>
+<ul>
+<li>Making complicated sets in smaller steps makes it both easier to understand and easier to catch errors</li>
+<li><strong>Note:</strong> <code>[neighbors] of [neighbors] of self</code> is a list of patches. We turn this into a patch-set with <code>(patch-set [neighbors] of [neighbors] of self)</code></li>
+</ul>
 </section><section id="links" class="slide level2">
 <h2>Links</h2>
 <ul>
@@ -200,7 +241,8 @@ end</code></pre></li>
 <h2>Links</h2>
 <ul>
 <li><p>Edit <code>to-report find-best-patch</code>:</p>
-<pre><code>ifelse vision-mode = &quot;radius&quot; 
+<pre><code>let candidates nobody
+ifelse vision-mode = &quot;radius&quot; 
 [
   set candidates (patches in-radius sense-radius) with [ not any? turtles-here ]
   set candidates (patch-set candidates patch-here)
