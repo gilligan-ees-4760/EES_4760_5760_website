@@ -222,7 +222,7 @@ Open app at <https://alo.ees.vanderbilt.edu/shiny/ees4760/contour/>
   to satisfice
     ; Move if expected wealth increase rate is below the threshold
     ; Potential destinations do NOT include the current patch
-    if utility self < wealth * (1 + wealth-increase-threshold)
+    if expected-utility-of self < wealth * (1 + wealth-increase-threshold)
     [
       let potential-destinations neighbors with [not any? turtles-here]
       if any? potential-destinations [ move-to one-of potential-destinations]
