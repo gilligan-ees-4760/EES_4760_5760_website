@@ -68,8 +68,9 @@ library(magrittr)
     * [telemarketer_mergers_class_14.nlogo](/models/class_14/telemarketer_compare_class_14.nlogo)
   * Behaviorspace Output:
     * [telemarketer_class_14_vary_initial_telemarketers-table.csv](/models/class_14/telemarketer_class_14_vary_initial_telemarketers-table.csv)
-    * [telemarketer_non_spatial_class_14_vary_initial_telemarketers-table.csv](/models/class_14/telemarketer_non_spatial_class_14_vary_initial_telemarketers-table.csv)
+    * [telemarketer_non-spatial_class_14_vary_initial_telemarketers-table.csv](/models/class_14/telemarketer_non-spatial_class_14_vary_initial_telemarketers-table.csv)
     * [telemarketer_mergers_class_14_vary_initial_telemarketers-table.csv](/models/class_14/telemarketer_mergers_class_14_vary_initial_telemarketers-table.csv)
+    * [telemarketer_compare_class_14_model_comparison-table.csv](/models/class_14/telemarketer_compare_class_14_model_comparison-table.csv)
 
 # Telemarketer Model {#telemarketer-sec data-transition="fade-out" data-state="skip_slide"}
 
