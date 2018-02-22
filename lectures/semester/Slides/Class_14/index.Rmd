@@ -56,20 +56,14 @@ library(magrittr)
 ```
 ## Getting Started {#getting-started .eighty}
 
-* Download the zip file 
-  <https://ees4760.jgilligan.org/models/class_14/class_14_models.zip>,
-  which contains
-  * NetLogo Library:
+* Download the following files: 
+  * NetLogo Testing Is Fun Library:
     * [jg-tif.nls](/models/class_14/jg-tif.nls)
   * NetLogo Models:
     * [telemarketer_class_14.nlogo](/models/class_14/telemarketer_class_14.nlogo)
     * [telemarketer_class_14.nlogo](/models/class_14/telemarketer_non_spatial_class_14.nlogo)
     * [telemarketer_mergers_class_14.nlogo](/models/class_14/telemarketer_mergers_class_14.nlogo)
     * [telemarketer_mergers_class_14.nlogo](/models/class_14/telemarketer_compare_class_14.nlogo)
-  * Behaviorspace Output:
-    * [telemarketer_class_14_vary_initial_telemarketers-table.csv](/models/class_14/telemarketer_class_14_vary_initial_telemarketers-table.csv)
-    * [telemarketer_non_spatial_class_14_vary_initial_telemarketers-table.csv](/models/class_14/telemarketer_non_spatial_class_14_vary_initial_telemarketers-table.csv)
-    * [telemarketer_mergers_class_14_vary_initial_telemarketers-table.csv](/models/class_14/telemarketer_mergers_class_14_vary_initial_telemarketers-table.csv)
 
 # Telemarketer Model {#telemarketer-sec data-transition="fade-out" data-state="skip_slide"}
 
