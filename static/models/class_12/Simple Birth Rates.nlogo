@@ -123,10 +123,10 @@ end
 GRAPHICS-WINDOW
 290
 10
-704
-445
-50
-50
+702
+423
+-1
+-1
 4.0
 1
 10
@@ -173,7 +173,7 @@ carrying-capacity
 carrying-capacity
 1
 4000
-4000
+4000.0
 1
 1
 turtles
@@ -222,7 +222,7 @@ red-fertility
 red-fertility
 0.0
 10.0
-2
+2.0
 0.1
 1
 children
@@ -675,9 +675,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -717,7 +716,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 1
 @#$#@#$#@
