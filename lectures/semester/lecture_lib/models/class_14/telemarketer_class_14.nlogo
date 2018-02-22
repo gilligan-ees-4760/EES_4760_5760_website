@@ -1,5 +1,7 @@
 __includes["jg-tif.nls"]
 
+extensions [palette]
+
 globals
 [
   not-called-color
@@ -81,10 +83,16 @@ end
 to update-observers
   set max-wealth max [balance] of turtles
   ask turtles [set color scale-color green balance 0 max-wealth]
+
   set-current-plot "Business Size Distribution"
+  if plot-x-max < max [size] of turtles
+  [ set-plot-x-range 0 ceiling max [size] of turtles ]
+  set-plot-y-range 0 count turtles
   histogram [size] of turtles
+
   set-current-plot "Number of Businesses"
   plot count turtles
+
   set-current-plot "Total Sales"
   plot sum [successful-calls] of turtles
 end
@@ -92,10 +100,10 @@ end
 GRAPHICS-WINDOW
 235
 10
-807
-603
-100
-100
+805
+581
+-1
+-1
 2.8
 1
 10
@@ -176,7 +184,7 @@ initial-num-marketers
 initial-num-marketers
 0
 1000
-500
+200.0
 10
 1
 NIL
@@ -191,7 +199,7 @@ growth-param
 growth-param
 0
 5000
-1000
+1000.0
 10
 1
 NIL
@@ -206,7 +214,7 @@ Business Size Distribution
 NIL
 NIL
 0.0
-200.0
+10.0
 0.0
 10.0
 true
@@ -250,6 +258,17 @@ false
 "" ""
 PENS
 "default" 1.0 0 -16777216 true "" ""
+
+MONITOR
+235
+585
+317
+630
+# businesses
+count turtles
+0
+1
+11
 
 @#$#@#$#@
 # Telemarketer Model
@@ -662,9 +681,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -691,7 +709,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 1
 @#$#@#$#@

@@ -64,6 +64,7 @@ lessons:
   reading: /reading/reading_13
 - date: '2018-02-22'
   title: Interaction
+  lecture: /Slides/Class_14
   reading: /reading/reading_14
   assignment: model_analysis
 - date: '2018-02-27'
