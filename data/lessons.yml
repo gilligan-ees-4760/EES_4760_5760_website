@@ -77,18 +77,22 @@ lessons:
 - date: '2018-03-08'
   title: SPRING BREAK
 - date: '2018-03-13'
-  title: Prediction
-  reading: /reading/reading_17
+  title: "No Class Today"
 - date: '2018-03-15'
-  title: Stochasticity
-  reading: /reading/reading_18
+  title: "No Class Today"
 - date: '2018-03-16'
   title: Research project ODD due"
   assignment: project_odd
 - date: '2018-03-20'
+  title: Prediction
+  reading: /reading/reading_17
+  date: '2018-03-21'
+  title: Stochasticity
+  reading: /reading/reading_18
+- date: '2018-03-22'
   title: Collectives
   reading: /reading/reading_19
-- date: '2018-03-22'
+- date: '2018-03-26'
   title: Patterns
   reading: /reading/reading_20
 - date: '2018-03-27'
