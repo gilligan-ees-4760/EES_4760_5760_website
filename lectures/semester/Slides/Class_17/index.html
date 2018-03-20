@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template -->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Jonathan Gilligan" />
+  <title>Scheduling Model Behavior</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+  <link rel="stylesheet" href="/lecture_lib/library/reveal.js-3.3.0/css/reveal.min.css"/>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+  <style type="text/css">
+    div.qrbox {
+     position:fixed;
+     bottom:-90%;
+     left:10px;
+     text-align:left;
+     vertical-align:bottom;
+    }
+  </style>
+<!-- theme = solarized_jg -->
+<link rel="stylesheet" href="/lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/lecture_lib/library/reveal.js-3.3.0/css/print/pdf.css' : '/lecture_lib/library/reveal.js-3.3.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="/lecture_lib/library/reveal.js-3.3.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class='center' id='title' >
+    <h1 class="title">Scheduling Model Behavior</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based &amp; Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #17:
+       Tuesday Mar. 20
+      2018
+    </h3>
+        <div class="qrbox" id="qrbox">
+      <p style="font-size:30%">
+    <a href="https://ees4760.jgilligan.org/Slides/Class_17">
+  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/Slides/Class_17"/>
+  	</a>
+    	<br/>
+    	Live web page: <a href="https://ees4760.jgilligan.org/Slides/Class_17">https://ees4760.jgilligan.org/Slides/Class_17</a>
+    	<br/>
+    	PDF: <a href="https://ees4760.jgilligan.org/Slides/Class_17/EES_4760_5760_Class_17_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/Slides/Class_17/EES_4760_5760_Class_17_Slides.pdf</a>
+    	
+  	</p>
+  	</div>
+    	<!-- end title slide -->
+</section>
+
+<section><section id="download-sec" class="title-slide slide level1 center" data-transition="fade" data-state="skip_slide"><h1>Models to Download</h1></section><section id="model-downloads" class="slide level2 center" data-transition="fade-in">
+<h2>Models to Download</h2>
+<p><a href="https://ees4760.jgilligan.org/models/class_17/Mousetrap_Ch14.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_17/Mousetrap_Ch14.nlogo</a></p>
+<p><a href="https://ees4760.jgilligan.org/models/class_17/Mousetrap_Ch14_v2.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_17/Mousetrap_Ch14_v2.nlogo</a></p>
+<p><a href="https://ees4760.jgilligan.org/models/class_23/Ch_23_4_breeding_synchrony.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_23/Ch_23_4_breeding_synchrony.nlogo</a></p>
+</section></section>
+<section><section id="modeling-for-actionable-research" class="title-slide slide level1 center"><h1>Modeling for Actionable Research</h1></section><section id="modeling-for-actionable-research-1" class="slide level2 eightyfive leftslide">
+<h2>Modeling for Actionable Research</h2>
+<ul>
+<li>Using agent-based models of socio-environmental systems to inform planners, public, government decision-makers
+<ul>
+<li>Disaster planning</li>
+<li>Conservation and sustainability</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Grand challenges:
+<ul>
+<li>Data: Combining different kinds of data, new sources of data, managing big data, …</li>
+<li>Challenges of research disciplines: Using models to integrate different kinds of knowledge. Challenge of aligning different ways of thinking.</li>
+<li>Predictions and Uncertainty: Can models built on today’s conditions anticipate very different future conditions? How to plan for uncertain future? How to communicate with public about models?</li>
+<li>Making models useful: What do non-experts want to know? Results of models, or modeling process? Participatory and interactive models. Tools to let non-programmers develop models.</li>
+<li>Challenges of future technology: Modeling tens or hundreds of millions of people. Integrating people into big models of climate, rivers, cities, etc.</li>
+</ul></li>
+</ul>
+</div>
+</section></section>
+<section><section id="scheduling-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1>Scheduling Actions:</h1></section><section id="scheduling" class="slide level2 center" data-transition="fade-in">
+<h2>Scheduling Actions:</h2>
+<ul>
+<li>Representing time:
+<ul>
+<li>Discrete (<code>tick</code>)</li>
+<li>Continuous (<code>tick-advance</code>)</li>
+</ul></li>
+<li>Execution order
+<ul>
+<li>Synchronous</li>
+<li>Asynchronous
+<ul>
+<li>Random order</li>
+<li>Determined order</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="repeating-actions" class="slide level2">
+<h2>Repeating actions</h2>
+<ul>
+<li><p><code>repeat</code> repeats a certain number of times</p>
+<pre><code>repeat 5 [ wander ]</code></pre>
+<p>or</p>
+<pre><code>repeat random count turtles [ wander ]</code></pre></li>
+<li><p><code>while</code> repeats as long as a condition is true</p>
+<pre><code>while not any? turtles-here [ wander ]</code></pre></li>
+<li><p><code>loop</code> repeats forever (until <code>stop</code> or <code>report</code>)</p>
+<pre><code>loop [
+  wander
+  if any? turtles-here [ stop ]
+]</code></pre></li>
+</ul>
+</section><section id="discrete-vs.continuous-time" class="slide level2">
+<h2>Discrete vs. continuous time</h2>
+<ul>
+<li>Almost all models use discrete time:
+<ul>
+<li><code>tick</code> advances tick counter by 1.</li>
+<li><code>ticks</code> is always an integer.</li>
+</ul></li>
+<li>Continuous time
+<ul>
+<li><code>tick-advance 2.3</code></li>
+</ul></li>
+<li>Things to think about:
+<ul>
+<li>When to tick?</li>
+</ul></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%">
+<pre><code>to go
+  ask patches [ do-patch-stuff ]
+  ask turtles [ do-turtle-stuff ]
+
+  tick
+  if ticks &gt; run-duration [stop]
+end</code></pre>
+</div><div class="column" style="width:50%">
+<pre><code>to go
+  tick
+  if ticks &gt; run-duration [stop]
+
+  ask patches [ do-patch-stuff ]
+  ask turtles [ do-turtle-stuff ]
+end</code></pre>
+</div>
+</div>
+</section><section id="order-of-execution" class="slide level2">
+<h2>Order of execution</h2>
+<ul>
+<li class="fragment"><p><code>ask</code>: Asks turtles in a random order.</p>
+<pre><code>ask turtles [do-sales]</code></pre></li>
+<li class="fragment"><p>Suppose we wanted bigger turtles to act before the smaller ones?</p>
+<pre><code>foreach sort-on [(- size)] turtles 
+[ 
+  next-turtle -&gt; ask next-turtle [do-sales] 
+]</code></pre></li>
+</ul>
+</section><section id="concurrent-execution" class="slide level2">
+<h2>Concurrent execution</h2>
+<ul>
+<li><code>ask-concurrent</code> (<span style="color:darkred;"><strong>not recommended</strong></span>)</li>
+</ul>
+<p>This is a relic from older versions and can create problems if you use it.</p>
+</section><section id="synchronous-vs.asynchronous-updating" class="slide level2 eightyfive">
+<h2>Synchronous vs. asynchronous updating</h2>
+<ul>
+<li class="fragment">What is the difference?</li>
+<li class="fragment">When would you want to use one or the other?
+<ul>
+<li class="fragment">Business investor model?</li>
+<li class="fragment">Telemarketer model?</li>
+</ul></li>
+<li class="fragment">How would you do <em>asynchronous</em> updating?</li>
+<li class="fragment">How would you do <em>synchronous</em> updating?
+<ul>
+<li class="fragment">Hidden state-variables (turtle can’t see other turtle’s hidden variables)</li>
+<li class="fragment">Two ways:
+<ol type="1">
+<li class="fragment">Break submodel into two parts:
+<ol type="1">
+<li class="fragment">Turtles have sense and update hidden state-variables that others can’t sense</li>
+<li class="fragment">Update environment (including state-variables that others can sense)</li>
+</ol></li>
+<li class="fragment">Make shadow copy of all state variables:
+<ol type="1">
+<li class="fragment">Sensing sees originals, updates change shadow-copies</li>
+<li class="fragment">Update the original (<code>set original shadow-copy</code>)</li>
+</ol></li>
+</ol></li>
+</ul></li>
+<li class="fragment">What advantages or disadvantages does <em>synchronous updating</em> have versys <em>asynchronous</em>?</li>
+</ul>
+</section></section>
+<section><section id="mousetrap-sec" class="title-slide slide level1 center"><h1>Mousetrap model</h1></section><section id="mousetrap-video" class="slide level2 center">
+<h2>Mousetrap model</h2>
+<p><a href="https://youtu.be/XIvHd76EdQ4?t=1m25s" target="_blank">https://youtu.be/XIvHd76EdQ4</a></p>
+</section><section id="mousetrap-netlogo" class="slide level2 center">
+<h2>Mousetrap model</h2>
+<p><a href="https://ees4760.jgilligan.org/models/class_17/Mousetrap_Ch14.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_17/Mousetrap_Ch14.nlogo</a></p>
+<p><a href="https://ees4760.jgilligan.org/models/class_17/Mousetrap_Ch14_v2.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_17/Mousetrap_Ch14_v2.nlogo</a></p>
+<ul>
+<li>Play with models</li>
+<li>Compare continuous updating with updating on ticks</li>
+</ul>
+</section></section>
+<section><section id="breeding-sec" class="title-slide slide level1 center"><h1>Breeding Synchrony Model</h1></section><section id="breeding-synchrony" class="slide level2">
+<h2>Breeding Synchrony Model</h2>
+<p><a href="https://ees4760.jgilligan.org/models/class_23/Ch_23_4_breeding_synchrony.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_23/Ch_23_4_breeding_synchrony.nlogo</a></p>
+<ul>
+<li>Colonies of sea birds (up to several thousand) often exhibit synchronized breeding:
+<ul>
+<li>Birds with very different characteristics &amp; histories lay eggs at the same time
+<ul>
+<li>Different stored energy, different arrival times, …</li>
+</ul></li>
+</ul></li>
+<li>Different colonies in nearby areas lay eggs at different times
+<ul>
+<li>So environemntal factors (e.g., phase of moon) aren’t explanation</li>
+</ul></li>
+<li>Why?</li>
+</ul>
+</section><section id="breeding-synchrony-2" class="slide level2">
+<h2>Breeding Synchrony Model</h2>
+<ul>
+<li>Is stress the answer?
+<ul>
+<li>“Stressful neighborhoods”:
+<ul>
+<li>If other birds are still competing for mates, nesting material, it’s dangerous to lay eggs.</li>
+<li>Hypothesis: Birds wait until neighborhood is fairly calm to lay eggs.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="breeding-synchrony-equation" class="slide level2 eightyfive leftslide">
+<h2>Breeding Synchrony Model</h2>
+<ul>
+<li>Model:
+<ul>
+<li>Birds’ activities cause stress in neighbors</li>
+<li>Key variables:
+<ul>
+<li><strong>OSL</strong>: a bird’s own stress level,</li>
+<li><strong>mean NSL</strong>: average of neighbors’ stress levels,</li>
+<li><strong>NR</strong> (0–1): neighborhood relevance: how much a bird’s stress is influenced by its neighbors,</li>
+<li><strong>SD</strong> = 10: stress decay rate: How quickly a bird loses stress without external stimulus. <span class="math display">\[
+\text{OSL}_t = (1 - \text{NR}) \text{OSL}_{t-1} + (\text{NR} \times \text{mean NSL}_{t - 1}) - \text{SD}
+\]</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Birds start out with random <span class="math inline">\(\text{OSL}\)</span> between 100 and 300.</li>
+<li>Birds lay eggs when <span class="math inline">\(\text{OSL} \le 10\)</span>.</li>
+<li>Synchronous updating:
+<ul>
+<li>All birds compute <span class="math inline">\(\text{OSL}_t\)</span> using stress levels at <span class="math inline">\(t-1\)</span>, then they all update together</li>
+</ul></li>
+<li>How does breeding synchrony depend on <span class="math inline">\(\text{NR}\)</span>?</li>
+</ul>
+</div>
+</section></section>
+    </div>
+  </div>
+  <script src="/lecture_lib/library/reveal.js-3.3.0/lib/js/head.min.js"></script>
+  <script src="/lecture_lib/library/reveal.js-3.3.0/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '/lecture_lib/library/reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '/lecture_lib/library/reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '/lecture_lib/library/reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+
+<script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"],
+                Macros: {
+                  permil: "\\unicode{x2030}",
+                  pH: "p\\ce{H}",
+                  CaSi: "\\ce{CaSiO3}",
+                  silicate: "\\ce{SiO3^2-}",
+                  Caplus: "\\ce{Ca^2+}",
+                  calcite: "\\ce{CaCO3}",
+                  silica: "\\ce{SiO2}",
+                  OH: "\\ce{OH-}",
+                  Hplus: "\\ce{H+}",
+                  carbonic: "\\ce{H2CO3}",
+                  bicarb: "\\ce{HCO3-}",
+                  carb: "\\ce{CO3^2-}",
+                  water: "\\mathrm{H_2O}",
+                  degF: "^\\circ \\mathrm{F}",
+                  degC: "^\\circ \\mathrm{C}",
+                  methane: "\\ce{CH4}",
+                  COO: "\\ce{CO2}"
+                },
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script>
+
+
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script>
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  <script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+  Reveal.addEventListener('slidechanged', function() {
+    if (Reveal.isFirstSlide()) {
+      qrbox.style.visibility="visible";
+    } else {
+      qrbox.style.visibility="hidden";
+      while (advance_fragment > 0) {
+        console.log('advancing fragment');
+        Reveal.nextFragment();
+        advance_fragment--;
+      }
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+  </body>
+</html>

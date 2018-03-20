@@ -84,8 +84,9 @@ lessons:
   title: Research project ODD due"
   assignment: project_odd
 - date: '2018-03-20'
-  title: Prediction
+  title: Scheduling
   reading: /reading/reading_17
+  lecture: /Slides/Class_17
 - date: '2018-03-21'
   title: "Stochasticity (Make-up class 6:15 PM, Wilson 120)"
   reading: /reading/reading_18
