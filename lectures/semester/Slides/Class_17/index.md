@@ -95,6 +95,7 @@ output:
   * `ticks` is always an integer.
 * Continuous time
   * `tick-advance 2.3`
+  * `ticks` can have fractional values.
 * Things to think about:
   * When to tick?
 
