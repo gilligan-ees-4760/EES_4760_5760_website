@@ -158,7 +158,7 @@ module.exports = function(grunt) {
         },
         {
           cwd: 'Slides',
-          src: ['**', '!**/*.yml', '!**/*.Rmd', '!**/*.md', '!**/cache/**/*', '!**/data/**/*'],
+          src: ['**', '!**/*.yml', '!**/*.Rmd', '!**/*.md', '!**/cache/**/*', '!**/data/**/*', '!**/tmp_screenshots/**/*'],
           dest: '../../static/Slides',
         }]
 		  }
