@@ -17,13 +17,15 @@ output:
 
 # Models to Download {#download-sec .center data-transition="fade" data-state="skip_slide"}
 
-## Models to Download {#model-downloads .center data-transition="fade-in"}
+## Models to Download {#model-downloads .center .eightyfive data-transition="fade-in"}
 
-<https://ees4760.jgilligan.org/models/class_17/Mousetrap_Ch14.nlogo>
-
-<https://ees4760.jgilligan.org/models/class_17/Mousetrap_Ch14_v2.nlogo>
-
-<https://ees4760.jgilligan.org/models/class_23/Ch_23_4_breeding_synchrony.nlogo>
+* Download page: [www.ees4760.jgilligan.org/downloads/scheduling_class_17/](/downloads/scheduling_class_17/)
+* Zip File with all models: 
+  * [www.ees4760.jgilligan.org/models/class_17/class_17_models.zip](/models/class_17/class_17_models.zip)
+* Or download individual models:
+  * [ees4760.jgilligan.org/models/class_17/Mousetrap_Ch14.nlogo](/models/class_17/Mousetrap_Ch14.nlogo)
+  * [ees4760.jgilligan.org/models/class_17/Mousetrap_Ch14_v2.nlogo](/models/class_17/Mousetrap_Ch14_v2.nlogo)
+  * [ees4760.jgilligan.org/models/class_23/Ch_23_4_breeding_synchrony.nlogo](/models/class_23/Ch_23_4_breeding_synchrony.nlogo)
 
 # Modeling for Actionable Research {.center}
 
