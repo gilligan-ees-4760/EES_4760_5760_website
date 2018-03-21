@@ -18,6 +18,6 @@ revealjs.jg::revealjs_presentation:
     clean: true
     reveal_version: "3.3.0"
     reveal_source: "default"
-    md_extensions: "+tex_math_dollars+tex_math_single_backslash-autolink_bare_uris+fancy_lists"
+    md_extensions: "+tex_math_dollars+tex_math_single_backslash-autolink_bare_uris+fancy_lists+fenced_code_blocks+fenced_code_attributes"
     pandoc_args: ["--variable", "sf-math=true", "--no-highlight"]
     mathjax_scale: 100
