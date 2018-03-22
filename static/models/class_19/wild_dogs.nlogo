@@ -572,8 +572,9 @@ to initialize-pack-appearance
   test-that "initialize-pack-appearance should have pack context"
   expect-that is-pack? self is-true
 
-  set shape "square"
-  move-to one-of patches with [ not any? turtles-here ]
+  set shape "circle"
+  let max-rad max [size] of turtles
+  move-to one-of patches with [ not any? turtles in-radius (2.0 * max-rad) ]
   update-pack-appearance
 end
 
@@ -581,7 +582,7 @@ to update-pack-appearance
   test-that "update-pack-appearance should have pack context"
   expect-that is-pack? self is-true
 
-  set shape "square"
+  set shape "circle"
   set size 0.25 * count pack-members
   let alphas pack-members with [ status = "alpha"]
   ifelse count alphas = 2
@@ -622,6 +623,7 @@ to make-disperser-group [ dg-sex ]
   [
     initialize-disperser-group dispersers
     initialize-dg-appearance
+    create-link-from myself
   ]
 
   test-that (word "size of pack " who " has decreased from " old-pack-size " by " count dispersers " of dispersers.")
@@ -707,8 +709,17 @@ to initialize-dg-appearance
   test-that "initialize-dg-appearance should have disperser group context"
   expect-that is-disperser-group? self is-true
 
-  set shape "circle"
-  move-to one-of patches with [ not any? turtles in-radius ([dg-size] of myself)  ]
+  set shape "square"
+  let max-rad max [size] of turtles
+  if not is-turtle? self [ stop ]
+  let candidates patches with [ not any? turtles in-radius (2.0 * max-rad)]
+  ifelse any? candidates
+  [
+    move-to min-one-of candidates [distance myself]
+  ]
+  [
+    move-to one-of patches with [not any? turtles-here]
+  ]
   update-dg-appearance
 end
 
@@ -716,11 +727,11 @@ to update-dg-appearance
   test-that "update-dg-appearance should have disperser group context"
   expect-that is-disperser-group? self is-true
 
-  set shape "circle"
+  set shape "square"
   set size dg-size
   ifelse sex = "M"
-  [ set color orange + 2 ]
-  [ set color pink ]
+  [ set color blue + 2 ]
+  [ set color green + 2 ]
 end
 
 to-report dg-size
@@ -1108,7 +1119,7 @@ TEXTBOX
 479
 190
 549
-square = pack\n  yellow = two alphas\n  green = female alpha only\n  blue = male alpha only\n  brown = no alphas
+circle = pack\n  yellow = two alphas\n  green = female alpha only\n  blue = male alpha only\n  brown = no alphas
 11
 0.0
 1
@@ -1118,7 +1129,7 @@ TEXTBOX
 480
 335
 522
-circle = disperser group\n  blue = male\n  green = female
+square = disperser group\n  blue = male\n  green = female
 11
 0.0
 1
