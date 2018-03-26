@@ -12,7 +12,7 @@ description: "Applications in natural, social, and behavioral sciences and engin
 | Classroom   |     | Stevenson 2200   |   
 | Class Times      |     | **Tu/Th 11:00--12:15** |
 | <hr style="border-top-color:black;"/> | <hr style="border-top-color:black;"/> | <hr style="border-top-color:black;"/> |
-| Office Hours |   | <span style="font-size:75%;line-height:50%;">Mon. 10:30--11:30, Thurs. 2:40--3:30<br/>SC 5735 (7th floor, Stevenson Bldg 5)</span> |
+| Office Hours |   | <span style="font-size:75%;line-height:50%;">Mon. 10:00--11:00, Thurs. 2:40--3:30<br/>SC 5735 (7th floor, Stevenson Bldg 5)</span> |
 {{% /md %}}
 </center>
 
