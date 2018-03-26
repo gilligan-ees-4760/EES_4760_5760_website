@@ -4,7 +4,7 @@
 ;
 ; It implements the model described in:
 ;
-;   Jovani, R. and Grimm, V. 200X. Breeding synchrony in colonial birds: from local stress
+;   Jovani, R. and Grimm, V. 2007. Breeding synchrony in colonial birds: from local stress
 ;   to global harmony
 ;
 ; This is the BASIC MODEL discussed in that paper.

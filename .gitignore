@@ -5,7 +5,7 @@
 .Rhistory
 *.zip
 *.xlsx
-blogdown
+/blogdown/
 /docs/
 /public/
 .Rproj.user

@@ -4,7 +4,7 @@ course      : "EES 4760/5760"
 course_name : "Agent-Based & Individual-Based Computational Modeling"
 author      : "Jonathan Gilligan"
 semester    : Spring
-year        : 2017
+year        : 2018
 output: 
   revealjs.jg::revealjs_presentation:
     controls: true

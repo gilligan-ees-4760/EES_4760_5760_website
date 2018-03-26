@@ -1,10 +1,10 @@
+library(tidyverse)
+library(rprojroot)
 library(knitr)
 library(rmarkdown)
 library(revealjs.jg)
 library(yaml)
-library(stringr)
-library(purrr)
-library(rprojroot)
+library(magick)
 
 find_semester_dir <- function(dir = '.', up = TRUE) {
   dir = normalizePath(path.expand(dir))
@@ -268,11 +268,26 @@ run_decktape <- function(class = NULL) {
       res = str_c(w, "x", h)
     }
   }
-  cmd_line = str_c("decktape -s ", res, " reveal http://localhost:8000/", slide_path, " ", dest)
-  if (.Platform$OS.type == "windows") {
-    shell(cmd_line)
+  screenshot_dir <- "tmp_screenshots"
+  if (dir.exists(screenshot_dir)) {
+    ss_files <- file.path(screenshot_dir, list.files(screenshot_dir))
+    if (length(ss_files) > 0)
+      file.remove(ss_files)
   } else {
-  system(cmd_line)
+    dir.create(screenshot_dir, recursive = TRUE)
   }
+
+  slide_url <- str_c("http://localhost:8000/", slide_path)
+  decktape_cmd_line = str_c("decktape reveal -s", res, "--screenshots --screenshots-directory", screenshot_dir,
+                   slide_url, " ", dest, sep = " ")
+  system(decktape_cmd_line)
+
+  magick_files <- tibble(fname = list.files(screenshot_dir)) %>%
+    mutate(index = str_extract(fname, "(?<=_Slides_)[0-9]+(?=_)") %>% as.integer()) %>%
+    arrange(index) %>%
+    select(fname) %>% flatten() %>% simplify()
+  screen_shots <- image_read(file.path(screenshot_dir, magick_files))
+  image_write(screen_shots, dest, format = "pdf", quality = "100")
+  unlink(screenshot_dir, recursive = TRUE, force = TRUE)
 }
 

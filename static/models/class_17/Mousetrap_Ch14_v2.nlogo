@@ -1,3 +1,9 @@
+globals [
+  untriggered-color
+  triggered-color
+  dead-color
+  ball-color
+]
 patches-own [trigger-time] ; The non-integer time at which trap triggers
 
 turtles-own [
@@ -6,14 +12,19 @@ turtles-own [
 ]
 
 to setup
-
   clear-all
-  reset-ticks
+
+  set untriggered-color green - 2
+  set triggered-color yellow
+  set dead-color black
+  set ball-color cyan
+
   ask patches
    [
-     set pcolor yellow   ; Yellow means the trap has not triggered
+     set pcolor untriggered-color   ; Yellow means the trap has not triggered
      set trigger-time -1 ; Initialize trigger time to before model starts
    ]
+  reset-ticks
 
 end
 
@@ -21,9 +32,9 @@ to pop
 
     ; show trigger-time  ; Test output- trigger times should always increase
 
-    set pcolor red   ; Show the snap
+    set pcolor triggered-color   ; Show the snap
      wait 0.05        ; So we can see things happen on the View
-    set pcolor black ; Black means the trap has triggered
+    set pcolor dead-color ; Black means the trap has triggered
     let origin self
 
     ; Send 2 balls in air, determine where and when they land
@@ -37,7 +48,7 @@ to pop
         face dest-patch
         set shape "circle"
         set size 0.5
-        set color cyan
+        set color ball-color
       ]
       if trigger-time < 0 ; Patch only triggers if it has not already
       [
@@ -91,7 +102,7 @@ to start
       plotxy ticks count patches with [trigger-time > ticks]
 
       set-current-plot "Untriggered traps"
-      plotxy ticks count patches with [pcolor = yellow]
+      plotxy ticks count patches with [pcolor = untriggered-color]
     ]
 
 end
@@ -99,10 +110,10 @@ end
 GRAPHICS-WINDOW
 312
 10
-652
-371
-16
-16
+650
+349
+-1
+-1
 10.0
 1
 10
@@ -117,8 +128,8 @@ GRAPHICS-WINDOW
 16
 -16
 16
-1
-1
+0
+0
 1
 ticks
 30.0
@@ -495,9 +506,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -513,7 +523,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 0
 @#$#@#$#@

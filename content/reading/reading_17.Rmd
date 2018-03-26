@@ -1,11 +1,11 @@
 ---
-title: Prediction
-class_date: '2018-03-13'
+title: Scheduling
+class_date: '2018-03-20'
 class_number: 17
 weight: 17
 slug: reading_17
 pubdate: '2018-01-01'
-date: '2018-03-13'
+date: '2018-03-20'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -16,7 +16,7 @@ output:
 
 ### Reading Notes:
 
-A good example of asynchronous updating is the 
+A good example of synchronous updating is the 
 [model of breeding synchrony](/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo), 
 described in [Jovani and Grimm (2008)](/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf) 
 and in Chapter 23, which I have posted on the class web site: 

@@ -77,19 +77,27 @@ lessons:
 - date: '2018-03-08'
   title: SPRING BREAK
 - date: '2018-03-13'
-  title: Prediction
-  reading: /reading/reading_17
+  title: "No Class Today"
 - date: '2018-03-15'
-  title: Stochasticity
-  reading: /reading/reading_18
+  title: "No Class Today"
 - date: '2018-03-16'
   title: Research project ODD due"
   assignment: project_odd
 - date: '2018-03-20'
-  title: Collectives
-  reading: /reading/reading_19
+  title: Scheduling
+  reading: /reading/reading_17
+  lecture: /Slides/Class_17
+- date: '2018-03-21'
+  title: "Stochasticity (Make-up class 6:15 PM, Wilson 120)"
+  lecture: /Slides/Class_18
+  reading: /reading/reading_18
 - date: '2018-03-22'
-  title: Patterns
+  title: Collectives
+  lecture: /Slides/Class_19
+  reading: /reading/reading_19
+- date: '2018-03-26'
+  title: "Patterns (Make-up class 7:00 PM, Wilson 120)"
+  lecture: /Slides/Class_20
   reading: /reading/reading_20
 - date: '2018-03-27'
   title: Theory development
