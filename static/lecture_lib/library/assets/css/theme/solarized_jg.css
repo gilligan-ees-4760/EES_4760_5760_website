@@ -319,6 +319,10 @@ body {
 .reveal sup {
   font-size: 60%; }
 
+.reveal .small {
+  font-size: 0.6em;
+  line-height: 1.2em; }
+
 .reveal pre {
   display: block;
   position: relative;
