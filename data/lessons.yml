@@ -101,6 +101,7 @@ lessons:
   reading: /reading/reading_20
 - date: '2018-03-27'
   title: Theory development
+  lecture: /Slides/Class_21
   reading: /reading/reading_21
 - date: '2018-03-29'
   title: Parameterization and calibration 1

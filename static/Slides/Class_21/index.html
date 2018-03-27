@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template -->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Jonathan Gilligan" />
+  <title>Theory Development</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+  <link rel="stylesheet" href="/lecture_lib/library/reveal.js-3.3.0/css/reveal.min.css"/>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+  <style type="text/css">
+    div.qrbox {
+     position:fixed;
+     bottom:-90%;
+     left:10px;
+     text-align:left;
+     vertical-align:bottom;
+    }
+  </style>
+<!-- theme = solarized_jg -->
+<link rel="stylesheet" href="/lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/lecture_lib/library/reveal.js-3.3.0/css/print/pdf.css' : '/lecture_lib/library/reveal.js-3.3.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="/lecture_lib/library/reveal.js-3.3.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class='center' id='title' >
+    <h1 class="title">Theory Development</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based &amp; Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #21:
+       Tuesday, Mar. 27
+      2018
+    </h3>
+        <div class="qrbox" id="qrbox">
+      <p style="font-size:30%">
+    <a href="https://ees4760.jgilligan.org/Slides/Class_21">
+  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/Slides/Class_21"/>
+  	</a>
+    	<br/>
+    	Live web page: <a href="https://ees4760.jgilligan.org/Slides/Class_21">https://ees4760.jgilligan.org/Slides/Class_21</a>
+    	<br/>
+    	PDF: <a href="https://ees4760.jgilligan.org/Slides/Class_21/EES_4760_5760_Class_21_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/Slides/Class_21/EES_4760_5760_Class_21_Slides.pdf</a>
+    	
+  	</p>
+  	</div>
+    	<!-- end title slide -->
+</section>
+
+<section id="downloads" class="slide level2">
+<h2>Downloads</h2>
+<ul>
+<li>Download page: <a href="/downloads/hoopoe_class_21/">https://ees4760.jgilligan.org/downloads/hoopoe_class_21/</a></li>
+<li>Zip file <a href="/models/class_21/class_21_models.zip">https://ees4760.jgilligan.org/models/class_21/class_21_models.zip</a> containing Wood Hoopoe breeding model:
+<ul>
+<li>NetLogo model: <a href="/models/class_21/wood_hoopoe_class_21.nlogo">https://ees4760.jgilligan.org/models/class_21/wood_hoopoe_class_21.nlogo</a></li>
+<li>ODD: <a href="/models/class_21/wood_hoopoe_odd.pdf">https://ees4760.jgilligan.org/models/class_21/wood_hoopoe_odd.pdf</a></li>
+<li>NetLogo model with alternative strategies: <a href="/models/class_21/wood_hoopoe_strategies.nlogo">https://ees4760.jgilligan.org/models/class_21/wood_hoopoe_strategies.nlogo</a></li>
+</ul></li>
+</ul>
+</section>
+<section><section id="theory-development-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Theory Development</h1></section><section id="virtual-laboratory" class="slide level2" data-transition="fade-in">
+<h2>Models as a Virtual Laboratory</h2>
+<ul>
+<li class="fragment">How to use models to run experiments?</li>
+<li class="fragment">Strong inference (John Platt)</li>
+<li class="fragment">Identify traits (individual behaviors) that give rise to multiple macroscopic patterns</li>
+</ul>
+<ol type="1">
+<li class="fragment">Identify alternative traits (hypotheses)</li>
+<li class="fragment">Implement traits in ABM</li>
+<li class="fragment">Test and compare alternatives:
+<ul>
+<li class="fragment">How well did model reproduce observed patterns?</li>
+<li class="fragment">Falsify traits that did not reproduce patterns</li>
+</ul></li>
+<li class="fragment">Repeat cycle as needed. Revise behavior traits, look for additional patterns, etc.</li>
+</ol>
+</section><section id="pom-cycle" class="slide level2">
+<h2>Pattern-Oriented Modeling Cycle</h2>
+<p><img data-src="assets/images/POM_cycle.png" alt="POM Cycle" height="800" /></p>
+</section></section>
+<section><section id="trader-intelligence-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Example: Trader intelligence</h1></section><section id="trader-intelligence" class="slide level2" data-transition="fade-in">
+<h2>Example: Trader intelligence</h2>
+<h3 id="continuous-double-auction">Continuous Double Auction</h3>
+<ol type="1">
+<li>Traders establish buying and selling prices
+<ul>
+<li>If someone offers a price <span class="math inline">\(\ge\)</span> selling price, trader sells.</li>
+<li>If someone offers to sell for <span class="math inline">\(\le\)</span> buying price, trader buys</li>
+</ul></li>
+<li>Match traders:
+<ul>
+<li>If traders <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> have <span class="math inline">\(P_{i,\text{sell}} \le P_{j,\text{buy}}\)</span>, then transaction occurs.</li>
+</ul></li>
+</ol>
+</section><section id="zero-intelligence" class="slide level2 center" data-transition="fade-out">
+<h2>Zero-intelligence agent</h2>
+<ul>
+<li>Agent sets random buying and selling price</li>
+<li>If <span class="math inline">\(P_{i,\text{buy}} &gt; P_{i,\text{sell}}\)</span>, then trader <span class="math inline">\(i\)</span> will lose money.</li>
+</ul>
+</section><section id="min-intelligence" class="slide level2 center" data-transition="fade-in">
+<h2>Minimal-intelligence agent</h2>
+<ul>
+<li>Random buying and selling price with constraint: <span class="math inline">\(P_{i,\text{buy}} &lt; P_{i,\text{sell}}\)</span>.</li>
+</ul>
+</section><section id="trading-results" class="slide level2 ninety">
+<h2>Results</h2>
+<ul>
+<li>Minimal-intelligence agent was better than zero-intelligence
+<ul>
+<li>Zero-intelligence produced wild price fluctuations</li>
+<li>Minimal-intelligence reproduced observed pattern of rapid price convergence</li>
+<li>Minimal-intelligence also reproduced observed effects of price-ceiling.</li>
+</ul></li>
+<li>But simple models had limits:
+<ul>
+<li>Observed volatility of lower-end prices was not reproduced by models</li>
+<li>As experimental markets got more complicated, human traders did worse, but models did <strong><em>much</em></strong> worse.</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<h3 id="lessons"><strong>Lessons</strong></h3>
+<blockquote>
+<p>Using zero-intelligence as a baseline, the researcher can ask: what is the minimal additional structure or restrictions on agent behavior that are necessary to achieve a certain goal.</p>
+</blockquote>
+</div>
+</section></section>
+<section><section id="cpr-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Example: Harvesting Common Resource</h1></section><section id="cpr" class="slide level2" data-transition="fade-in">
+<h2>Example: Harvesting Common Resource</h2>
+<ul>
+<li>Experimental subjects move avatars on screen to harvest tokens <br/>(like simple video game)</li>
+<li>Players compete to get most tokens</li>
+<li>Tokens grow back at some rate</li>
+<li>Patterns:
+<ol>
+<li>Number of tokens on screen over time</li>
+<li>Inequality between players</li>
+<li># tokens collected in first four minutes</li>
+<li>Number of straight-line moves</li>
+</ol></li>
+</ul>
+</section><section id="cpr-theory" class="slide level2 eightyfive leftslide">
+<h2>Theory development</h2>
+<ol>
+<li>Näive model: (random) Moves randomly</li>
+<li>Näive model: (greedy) Always goes to nearest token</li>
+<li>Clever model:
+<ul>
+<li>Prefers nearby tokens</li>
+<li>Prefers clusters of tokens</li>
+<li>Prefers tokens straight ahead</li>
+<li>Avoids tokens close to other players</li>
+</ul></li>
+</ol>
+<div class="fragment">
+<ul>
+<li>Näive models do not match any of the four patterns.</li>
+<li><p>Ran clever model 100 times for each of 65,536 different combinations of parameters that characterize preferences.</p>
+<div class="fragment">
+<ul>
+<li>Only 37 combinations of parameters matched all four patterns in data.</li>
+<li>Patterns 2 and 3 are seen for most parameter values</li>
+<li>Patterns 1 and 4 seen less frequently</li>
+<li>Therefore:
+<ul>
+<li>Patterns 2 and 3 are built into the structure of the game.</li>
+<li>Patterns 1 and 4 may give insight into human behavior.</li>
+</ul></li>
+</ul>
+</div></li>
+</ul>
+</div>
+</section></section>
+<section><section id="woodhoopoe-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Example: Woodhoopoe</h1></section><section id="woodhoopoe" class="slide level2" data-transition="fade-in">
+<h2>Example: Woodhoopoe</h2>
+<p><img data-src="assets/images/bom_green_woodhoopoe_e_skelton.jpg" height="800" /></p>
+<p><a href="https://ees4760.jgilligan.org/models/class_21/wood_hoopoe_class_21.nlogo" class="uri" style="font-size:80%;">https://ees4760.jgilligan.org/models/class_21/wood_hoopoe_class_21.nlogo</a> <a href="https://ees4760.jgilligan.org/models/class_21/wood_hoopoe_odd.pdf" class="uri" target="blank_" style="font-size:80%;">https://ees4760.jgilligan.org/models/class_21/wood_hoopoe_odd.pdf</a></p>
+</section><section id="woodhoopoe-behavior" class="slide level2">
+<h2>Observed Behaviors</h2>
+<ul>
+<li>Groups occupy spatial territories</li>
+<li>One <strong>alpha</strong> of each sex in a territory</li>
+<li>Only alpha couple reproduces</li>
+<li>If alpha dies, oldest subordinate of that sex becomes alpha</li>
+<li><strong>Scouting forays</strong>
+<ul>
+<li>Subordinate adult leaves territory</li>
+<li>If it finds territory without alpha, it stays, becomes alpha</li>
+<li>Otherwise, returns home</li>
+<li>Risk of predation (death) is high on scouting forays</li>
+</ul></li>
+<li>Alpha couple breeds once a year, in December</li>
+</ul>
+</section><section id="woodhoopoe-patterns" class="slide level2">
+<h2>Observed Patterns</h2>
+<ol>
+<li><p>Characteristic group size distribution (adults)</p>
+<div style="text-align:center;">
+<p><img data-src="assets/images/histogram.png" alt="Group-size histogram" style="text-align:center;" height="400" /></p>
+</div></li>
+<li>Average age of birds on scouting forays is younger than<br/>average age of all subordinates.</li>
+<li><p>Scouting forays most common April–October</p></li>
+</ol>
+</section><section id="woodhoopoe-model" class="slide level2">
+<h2>Modeling Woodhoopoe</h2>
+<ul>
+<li>Start simple:
+<ul>
+<li>One-dimensional world</li>
+<li>One tick = one month</li>
+<li>Every tick, bird has 1% chance of dying (0.99 probability to survive)</li>
+<li>Scouting forays have 20% chance of death (0.80 probability to survive)</li>
+<li>Adult subordinates go scouting at random (50% probability each tick)</li>
+</ul></li>
+<li>Does model reproduce patterns?</li>
+</ul>
+</section><section id="woodhoopoe-strategies" class="slide level2">
+<h2>Developing Alternative Strategies</h2>
+<p><a href="https://ees4760.jgilligan.org/models/class_21/wood_hoopoe_strategies.nlogo" class="uri" style="font-size:80%;">https://ees4760.jgilligan.org/models/class_21/wood_hoopoe_strategies.nlogo</a></p>
+</section></section>
+    </div>
+  </div>
+  <script src="/lecture_lib/library/reveal.js-3.3.0/lib/js/head.min.js"></script>
+  <script src="/lecture_lib/library/reveal.js-3.3.0/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '/lecture_lib/library/reveal.js-3.3.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '/lecture_lib/library/reveal.js-3.3.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '/lecture_lib/library/reveal.js-3.3.0/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+
+<script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"],
+                Macros: {
+                  permil: "\\unicode{x2030}",
+                  pH: "p\\ce{H}",
+                  CaSi: "\\ce{CaSiO3}",
+                  silicate: "\\ce{SiO3^2-}",
+                  Caplus: "\\ce{Ca^2+}",
+                  calcite: "\\ce{CaCO3}",
+                  silica: "\\ce{SiO2}",
+                  OH: "\\ce{OH-}",
+                  Hplus: "\\ce{H+}",
+                  carbonic: "\\ce{H2CO3}",
+                  bicarb: "\\ce{HCO3-}",
+                  carb: "\\ce{CO3^2-}",
+                  water: "\\mathrm{H_2O}",
+                  degF: "^\\circ \\mathrm{F}",
+                  degC: "^\\circ \\mathrm{C}",
+                  methane: "\\ce{CH4}",
+                  COO: "\\ce{CO2}"
+                },
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script>
+
+
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script>
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  <script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+  Reveal.addEventListener('slidechanged', function() {
+    if (Reveal.isFirstSlide()) {
+      qrbox.style.visibility="visible";
+    } else {
+      qrbox.style.visibility="hidden";
+      while (advance_fragment > 0) {
+        console.log('advancing fragment');
+        Reveal.nextFragment();
+        advance_fragment--;
+      }
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+  </body>
+</html>

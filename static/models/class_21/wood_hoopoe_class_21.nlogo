@@ -236,7 +236,7 @@ to-report p-scout
   [
     report 0.5
   ]
-  stop
+  report 0.5
 end
 
 to-report I-should-scout  ; a turtle reporter for the scouting decision; returns a boolean
@@ -349,10 +349,10 @@ end
 GRAPHICS-WINDOW
 14
 10
-774
-71
-12
-0
+772
+49
+-1
+-1
 30.0
 1
 10
@@ -588,16 +588,20 @@ PENS
 "default" 1.0 1 -16777216 true "" ""
 
 @#$#@#$#@
-#Woodhoopoe Model
+# Woodhoopoe Model
+
 This is the simplified Woodhoopoe model from Section 19.4.3 of _Agent-based and Individual-based Modeling: A Practical Introduction_. The key adaptive trait of scouting for vacant territories is left unspecified for Exercise 2 of Chapter 19.
 
-##Purpose
+## Purpose
+
 The purpose of the model is to illustrate how the dynamics of a population of group-living woodhoopoes, and the dynamics of its social groups, depend on the trait individuals use to decide when to leave their group. The model provides a laboratory for developing theory for the woodhoopoes’ scouting foray trait.
 
-##Entities, state variables, and scales
+## Entities, state variables, and scales
+
 The model entities are territories and birds. A territory represents both a collective—a social group of birds—and the space occupied by the group (territories can also be empty, though). Territories are represented as a one-dimensional row of 25 NetLogo patches, “wrapped” so that the two ends of the row are considered adjacent. The only state variables of territories are a coordinate for their position in the row and a list of the birds in them. Birds have state variables for their sex, age (in months), and whether they are alpha. The time step is one month. Simulations run for 22 years, with results from the initial two “warm-up” years ignored.
 
-##Process overview and scheduling
+## Process overview and scheduling
+
 The following actions are executed in the given order once per time step. The order in which the birds and territories execute an action is always randomized and state variables are updated immediately, after each action.
 
   1.	Date and ages are updated. The current year and month are advanced by one month, and the age of all birds is increased by one month.
@@ -612,7 +616,8 @@ The following actions are executed in the given order once per time step. The or
 
   6.	Output is produced.
 
-##Design concepts
+## Design concepts
+
 This discussion of design concepts may help you design alternative theories for the scouting trait.
 
 _Basic principles_: This model explores the “stay-or-leave” question: when should a subordinate individual leave a group that provides safety and group success but restricts opportunities for individual success? In ecology we can assume real individuals have traits for this decision that evolved because they provide “fitness”: success at reproducing. The trait we use in an ABM could explicitly consider fitness (e.g., select the behavior providing the highest expected probability of reproducing) but could instead just be a simple rule or “heuristic” that usually, but not always, increases fitness.
@@ -633,10 +638,12 @@ _Collectives_: The social groups are collectives: their state affects the indivi
 
 _Observation_: In addition to visual displays to observe individual behavior, the model’s software must produce outputs that allow you to test how well it reproduces the three characteristic patterns identified in Section 19.4.2. Hence, it must output the group size distribution illustrated in Figure 19 2, the mean age (over all months of the entire simulation) of subordinate adult birds that do vs. do not make scouting forays, and the total number of forays made by month.
 
-##Initialization
+## Initialization
+
 Simulations start at January (month 1). Every territory starts with two male and two female birds, with ages chosen randomly from a uniform distribution of 1 to 24 months. The oldest of each sex becomes alpha.
 
-##Input
+## Input
+
 The model does not use any external input.
 @#$#@#$#@
 default
@@ -929,9 +936,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -947,7 +953,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 0
 @#$#@#$#@
