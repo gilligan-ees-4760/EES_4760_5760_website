@@ -360,6 +360,19 @@ body {
 .reveal .leftslide blockquote {
   text-align: left; }
 
+.reveal .slides .leftslide section,
+.reveal .slides .leftslide div,
+.reveal .leftslide p,
+.reveal .leftslide ul,
+.reveal .leftslide ol,
+.reveal .leftslide li {
+  width: 100%; }
+
+.reveal .leftslide p,
+.reveal .leftslide ul,
+.reveal .leftslide ol {
+  margin-left: 1em; }
+
 .reveal .leftslide h1,
 .reveal .leftslide h2 {
   text-align: center; }
