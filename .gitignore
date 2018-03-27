@@ -16,3 +16,5 @@ Corel Auto-Preserve/
 *.synctex.gz
 *-concordance.tex
 *.bak
+/lectures/semester/lecture_lib/models/class_21/HoopoeModel-Test.csv
+/static/models/class_21/HoopoeModel-Test.csv
