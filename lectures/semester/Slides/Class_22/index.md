@@ -17,7 +17,7 @@ output:
 
 ## Download Models and Data
 
-* Zip File: [https://ees4760.jgilligan.org/models/class_22_models.zip](/models/class_22_models.zip)
+* Zip File: [https://ees4760.jgilligan.org/models/class_22/class_22_models.zip](/models/class_22_models.zip)
   * Containing:
     * Wood Hoopoe NetLogo model: [Sect20-5_WoodHoopoes.nlogo](/models/class_22/Sect20-5_WoodHoopoes.nlogo)
     * R Scripts to analyze behaviorspace output:
