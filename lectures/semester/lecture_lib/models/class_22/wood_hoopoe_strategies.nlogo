@@ -17,6 +17,9 @@ globals
   ; p-vacant
   foray-trials
   foray-success
+  best-perf
+  best-x2
+  best-pv
 ]
 
 turtles-own
@@ -29,14 +32,20 @@ turtles-own
 
 to setup
 
-  ca
+  ; ca
+  clear-turtles
+  clear-patches
+  clear-ticks
+  clear-drawing
+  clear-all-plots
+  clear-output
   file-close-all
   reset-ticks
 
   ; Set parameters and globals
   set month 0
   set year 1
-  set survival-prob 0.98
+  set survival-prob 0.99
   set fecundity 2
   set scouting-distance 5
   set scouting-survival 0.8
@@ -51,8 +60,8 @@ to setup
   set foray-trials 0
   set foray-success 0
 
-;  let x1 0
-;  let x2 3
+  ;  let x1 0
+  ;  let x2 3
   let p1 0.5
   let p2 0.9
   let d-log ln(p1 / (1.0 - p1))
@@ -93,13 +102,6 @@ to setup
 
   ]
 
-  ; Open test output file
-  ; First, delete it instead of appending to it
-  if (file-exists? "HoopoeModel-Test.csv")
-  [carefully [file-delete "HoopoeModel-Test.csv"]
-    [print error-message]]
-  file-open "HoopoeModel-Test.csv"
-
 end
 
 
@@ -109,7 +111,6 @@ to go
 
   if year = 22 and month = 12
   [
-    file-close-all
     stop
   ]
 
@@ -123,7 +124,7 @@ to go
 
   if (month = 12) [
     ask turtles with [is-female? and is-alpha?] [reproduce]
-    ]
+  ]
 
   ask turtles [ set pop-months lput month pop-months ]
 
@@ -168,14 +169,14 @@ end
 
 to scout  ; a turtle procedure
 
-  ; Record age for output
+          ; Record age for output
   set non-alpha-ages lput age-in-months non-alpha-ages
 
   ; Test output
-   file-type (word who "," month "," is-alpha? "," is-female? "," age-in-months "," I-should-scout "," elders "," (p-alpha month) "," p-scout ",")
-   ;ask other turtles-here
-   ;[file-type (word is-alpha? "," is-female? "," age-in-months ",")]
-   file-print count turtles-here
+  ; file-type (word who "," month "," is-alpha? "," is-female? "," age-in-months "," I-should-scout "," elders "," (p-alpha month) "," p-scout ",")
+  ;ask other turtles-here
+  ;[file-type (word is-alpha? "," is-female? "," age-in-months ",")]
+  ; file-print count turtles-here
 
   ; First decide whether to scout by calling the scouting decision reporter
   if not I-should-scout [stop]
@@ -229,12 +230,11 @@ to-report elders
 end
 
 to-report p-survive [ mon ]
-    report survival-prob ^ (12 - mon)
+  report survival-prob ^ (12 - mon)
 end
 
 to-report p-alpha [ mon ]
-    let p-surv p-survive mon ; probability an elder will survive until December
-    report p-surv * (1 - p-surv) ^ elders ; probability that all elders will die before December
+  report (1 - (p-survive mon)) ^ elders
 end
 
 to-report p-scout
@@ -251,6 +251,7 @@ to-report p-scout
   if strategy = "expected reproduction"
   [
     let m month
+    ; if m >= 11 [ set m (m - 12) ]
     let pa (p-alpha m)
     ifelse pa = 0
     [
@@ -264,7 +265,7 @@ to-report p-scout
       report z / (1 + z)
     ]
   ]
-  stop
+  report 0.5
 end
 
 to-report I-should-scout  ; a turtle reporter for the scouting decision; returns a boolean
@@ -274,7 +275,7 @@ end
 
 to reproduce  ; a turtle procedure only executed by female alphas
 
-  ; Cannot reproduce if there is no male alpha
+              ; Cannot reproduce if there is no male alpha
   if not any? turtles-here with [(not is-female?) and is-alpha?] [stop]
 
   hatch fecundity
@@ -335,11 +336,11 @@ to update-output
   histogram foray-months
 
   set-current-plot "Ages"
-  set-current-plot-pen "Subordinates"
+  set-current-plot-pen "Non-alphas"
   ifelse length non-alpha-ages > 0
   [plot mean non-alpha-ages]
   [plot 0]
-  set-current-plot-pen "Scouts"
+  set-current-plot-pen "Forayers"
   ifelse length foray-ages > 0
   [plot mean foray-ages]
   [plot 0]
@@ -373,14 +374,71 @@ to-report to-end-of-year
   if month = 12 [ report 12 ]
   report 12 - month
 end
+
+to-report age-diff
+  ifelse ((mean non-alpha-ages) > (mean foray-ages)) [ report 1 ] [ report 0 ]
+end
+
+to-report group-dist-1
+  ifelse ((length filter [ ?1 -> ?1 = 2 ] group-sizes) > (0.5 * length group-sizes)) [ report 1] [ report 0]
+end
+
+to-report group-dist-2
+  ifelse ((max group-sizes) <= 4) [ report 1] [report 0]
+end
+
+to-report group-dist-3
+  ifelse (length filter [ ?1 -> ?1 < 2 ] group-sizes) > (length filter [ ?1 -> ?1 > 2 ] group-sizes) [ report 1 ] [ report 0 ]
+end
+
+to-report foray-timing
+  ifelse (length filter [ ?1 -> ?1 >= 4 and ?1 <= 10 ] foray-months) > (length foray-months) [ report 1] [report 0]
+end
+
+to-report performance
+  report age-diff + foray-timing + 0.5 * group-dist-1 + 0.1 * (group-dist-2 + group-dist-3)
+end
+
+to optimize
+  set best-x2 0
+  set best-pv 0
+  set best-perf 0
+  let perf 0
+  let x2-vals n-values 50 [ ?1 -> 0.01 + ?1 * 0.01 ]
+  let pv-vals n-values 50 [ ?1 -> 0.01 + ?1 * 0.01 ]
+  foreach x2-vals [ ?1 ->
+    set x2 ?1
+    foreach pv-vals [ ??1 ->
+      set p-vacant ??1
+      type (word "x2 = " (precision x2 2) ", p-vacant = " (precision p-vacant 2) ", ")
+      set perf 0
+      repeat 10 [
+        setup
+        while [not (year = 22 and month = 12)] [ go ]
+        set perf perf + performance / 10.0
+      ]
+      print (word "perf = " (perf) ", best-perf = " (best-perf))
+      if (perf > best-perf) [
+        print "Improvement!"
+        set best-x2 x2
+        set best-pv p-vacant
+        set best-perf perf
+      ]
+    ]
+  ]
+  set x2 best-x2
+  set p-vacant best-pv
+  setup
+  while [not (year = 22 and month = 12)] [ go ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 14
 10
-774
-71
-12
-0
+772
+49
+-1
+-1
 30.0
 1
 10
@@ -519,8 +577,8 @@ true
 true
 "" ""
 PENS
-"Subordinates" 1.0 0 -16777216 true "" ""
-"Scouts" 1.0 0 -2674135 true "" ""
+"Non-alphas" 1.0 0 -16777216 true "" ""
+"Forayers" 1.0 0 -2674135 true "" ""
 
 PLOT
 308
@@ -634,7 +692,7 @@ x1
 x1
 -5
 5
-0
+0.7
 0.1
 1
 NIL
@@ -649,7 +707,7 @@ x2
 x2
 0
 2
-0.14
+1.14
 0.02
 1
 NIL
@@ -1022,12 +1080,29 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3.1
-@#$#@#$#@
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
+@#$#@#$#@
+<experiments>
+  <experiment name="optimize" repetitions="30" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <metric>age-diff</metric>
+    <metric>foray-timing</metric>
+    <metric>group-dist-1</metric>
+    <metric>group-dist-2</metric>
+    <metric>group-dist-3</metric>
+    <metric>performance</metric>
+    <steppedValueSet variable="x2" first="1" step="0.05" last="1.5"/>
+    <steppedValueSet variable="x1" first="0.5" step="0.05" last="0.9"/>
+    <steppedValueSet variable="p-vacant" first="0.01" step="0.01" last="0.5"/>
+    <enumeratedValueSet variable="strategy">
+      <value value="&quot;expected reproduction&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
@@ -1040,7 +1115,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 0
 @#$#@#$#@

@@ -9,7 +9,7 @@ output: html_document
 ---
 # Wood Hoopoe breeding models for in-class exercises on theory development
 
-* [class_19_models.zip](/models/class_21/class_21_models.zip), which contains:
+* [class_21_models.zip](/models/class_21/class_21_models.zip), which contains:
   * Wood Hoopoe model: 
     * NetLogo model: [wood_hoopoe_class_21.nlogo](/models/class_21/wood_hoopoe_class_21.nlogo)
     * ODD:  [wood_hoopoe_odd.pdf](/models/class_21/wood_hoopoe_odd.pdf)

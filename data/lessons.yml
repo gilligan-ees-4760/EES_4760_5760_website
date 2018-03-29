@@ -105,6 +105,7 @@ lessons:
   reading: /reading/reading_21
 - date: '2018-03-29'
   title: Parameterization and calibration 1
+  lecture: /Slides/Class_22
   reading: /reading/reading_22
 - date: '2018-03-30'
   title: "Draft Model Code Due"
