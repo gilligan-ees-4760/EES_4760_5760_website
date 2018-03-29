@@ -15,5 +15,5 @@ output: html_document
     * [process_bs.R](/models/class_22/process_bs.R)
     * [analyze_woodhoopoe.R](/models/class_22/analyze_woodhoopoe.R)
   * Behaviorspace output:
-    * [Sect20-5_WoodHoopoes Calibration-table.csv](/models/class_22/Sect20-5_WoodHoopoes Calibration-table.csv)
-    * [Sect20-5_WoodHoopoes Calibration2-table.csv](/models/class_22/Sect20-5_WoodHoopoes Calibration2-table.csv)
+    * [Sect20-5_WoodHoopoes Calibration-table.csv](https://github.com/gilligan-ees-4760/EES_4760_5760_website/raw/master/static/models/class_22/Sect20-5_WoodHoopoes%20Calibration-table.csv)
+    * [Sect20-5_WoodHoopoes Calibration2-table.csv](https://github.com/gilligan-ees-4760/EES_4760_5760_website/raw/master/static/models/class_22/Sect20-5_WoodHoopoes%20Calibration2-table.csv)
