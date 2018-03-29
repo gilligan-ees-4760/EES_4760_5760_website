@@ -175,7 +175,7 @@ output:
 
 > * A few combinations reproduce all three patterns.
 > * Abundance pattern only for `survival.prob` = 0.975--0.985
-> * Vacancy pattern only for `survival.prob` = 0.975--0.990
+> * Vacancy pattern only for `survival.prob` = 0.975--0.985
 
 ***
 ![](assets/fig/plot_nominal_calibration-1.png)
