@@ -1,7 +1,7 @@
 ---
 title: "Analyzing and Understanding ABMs"
 class_no: 24
-class_date: "Tuesday, Apr. 5"
+class_date: "Thursday, Apr. 5"
 qrimage: qrcode.png
 qrbottom: '-90%'
 pageurl: "ees4760.jgilligan.org/Slides/Class_24"

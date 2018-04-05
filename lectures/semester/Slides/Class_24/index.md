@@ -1,7 +1,7 @@
 ---
 title: "Analyzing and Understanding ABMs"
 class_no: 24
-class_date: "Tuesday, Apr. 5"
+class_date: "Thursday, Apr. 5"
 qrimage: qrcode.png
 qrbottom: '-90%'
 pageurl: "ees4760.jgilligan.org/Slides/Class_24"
@@ -24,7 +24,7 @@ output:
 * No computers. Schelling worked the model on a checkerboard.
 
 
-<https://ees4760.jonathangilligan.org/models/class_24/segregation.nlogo>{style="text-size:80%;"}
+<https://ees4760.jgilligan.org/models/class_24/segregation.nlogo>{style="text-size:80%;"}
 
 ## Model Overview
 
