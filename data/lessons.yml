@@ -114,6 +114,7 @@ lessons:
   title: Parameterization and calibration 2
 - date: '2018-04-05'
   title: Analyzing ABMs
+  lecture: /Slides/Class_24
   reading: /reading/reading_24
 - date: '2018-04-10'
   title: Sensitivity and robustness
