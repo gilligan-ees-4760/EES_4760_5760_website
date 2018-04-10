@@ -118,9 +118,10 @@ lessons:
   reading: /reading/reading_24
 - date: '2018-04-10'
   title: Sensitivity and robustness
+  lecture: /Slides/Class_25
   reading: /reading/reading_25
 - date: '2018-04-12'
-  title: 'Looking ahead: ABMs beyond this course'
+  title: 'Class Cancelled'
   reading: /reading/reading_26
 - date: '2018-04-17'
   title: Presentations
@@ -128,6 +129,6 @@ lessons:
 - date: '2018-04-19'
   title: Presentations
   assignment: project_presentations
-- date: '2018-04-24'
+- date: '2018-04-27'
   title: "Final paper due"
   assignment: project_presentations

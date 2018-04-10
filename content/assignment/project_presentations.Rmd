@@ -12,17 +12,15 @@ output:
 ## Research Project Presentations
 
 On April 17--19, you will present your semester research project. Each student
-will have 10 minutes to present your project: 
+will have 10 minutes to present your project:
 
 * The big question you were asking
-* How you approached that question with an agent-based model
 * What you learned from running experiments with your model.
 
 ## Research Project Paper
 
-On April 24, you should turn in to your folder on Box a formal paper on your
+On April 27, you should turn in to your folder on Box a formal paper on your
 project.
 
 [Detailed project assignment](/assignment/ResearchProjectAssignment.pdf)
 <https://ees4760.jgilligan.org/assignment/ResearchProjectAssignment.pdf>
-
