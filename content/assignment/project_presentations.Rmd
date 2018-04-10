@@ -2,7 +2,7 @@
 title: Research project presentations
 due_date: '2018-04-17'
 weight: 15
-slug: draft_code
+slug: project_presentations
 pubdate: '2018-01-01'
 date: '2018-04-17'
 output:
