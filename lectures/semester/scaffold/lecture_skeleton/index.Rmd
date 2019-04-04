@@ -3,37 +3,28 @@ title:
 class_no: 
 class_date: 
 qrimage: 
-qrbottom: '-90%'
+qrbottom: '0%'
 pageurl: 
-pdfurl:
-course      : "EES 4760/5760"
-course_name : "Agent-Based & Individual-Based Computational Modeling"
-author      : "Jonathan Gilligan"
-semester    : Spring
-year        : 2018
+pdfurl: 
+course: "EES 3310/5310"
+course_name: "Global Climate Change"
+author: "Jonathan Gilligan"
+semester: Fall
+year: 2018
 output:
   revealjs.jg::revealjs_presentation
 ---
 ```{r utility_functions, cache = F, echo = F, eval = T, message=F, warning=F}
-knitr::opts_chunk$set(cache=TRUE, echo=FALSE, message=FALSE, warming=FALSE,
-                      fig.height=8.5, fig.width=14, dpi=100,
+knitr::opts_chunk$set(cache=TRUE, 
+                      echo=FALSE, message=FALSE, warning=FALSE,
+                      fig.height=7.5, fig.width=14, dpi=100,
                       dev='png',fig.path='assets/fig/',cache.path='./cache/')
 
-find_semester_dir <- function(p = NULL) {
-  if (is.null(p)) p <- getwd()
-  p <- normalizePath(p)
-  if (file.exists(file.path(p,'semester.yml'))) {
-    return(p)
-  } else {
-    d <- dirname(p)
-    if (d == p) return(NA)
-    return(find_semester_dir(d))
-  }
-}
+library(here)
 
-semester.dir <- find_semester_dir()
-data.dir <- file.path(semester.dir, 'data')
-script.dir <- file.path(semester.dir,'util_scripts')
+semester.dir <- here()
+data.dir <- here("data")
+script.dir <- here("util_scripts")
 
 source_semester_script <- function(script) {
   script_file <- file.path(script.dir, script)
@@ -49,6 +40,7 @@ eval_in_sem_script_dir <- function(expr, loc = script.dir) {
   invisible(retval)
 }
 
-library(tidyverse)
+library(here)
 library(magrittr)
+library(tidyverse)
 ```

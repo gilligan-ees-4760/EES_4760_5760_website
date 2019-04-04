@@ -1,5 +1,4 @@
-/**
- * Solarized Light JG theme for reveal.js.
+/* Solarized Light JG theme for reveal.js.
  * Author: Achim Staebler, Modified by Jonathan GIlligan
  */
 
@@ -109,6 +108,14 @@ $codeBackgroundColor: #C0C0C0;
  margin-left: 2em;
  }
 
+ .reveal ol[type=A] {
+ list-style-type: upper-alpha;
+ }
+
+ .reveal ol[type=a] {
+ list-style-type: lower-alpha;
+ }
+
  .reveal sub {
  font-size: 60%;
  }
@@ -135,7 +142,7 @@ $codeBackgroundColor: #C0C0C0;
 
 	word-wrap: break-word;
 
-	box-shadow: 0;
+	box-shadow: none;
 }
 
 .reveal code {
@@ -257,8 +264,21 @@ $codeBackgroundColor: #C0C0C0;
   }
 
 .reveal .seventy {
-  font-size: 75%;
+  font-size: 70%;
   }
+
+.reveal .nomargin div,
+.reveal .nomargin p,
+.reveal .nomargin > p,
+.reveal .nomargin ul,
+.reveal .nomargin ol,
+.reveal .nomargin li,
+.reveal .nomargin blockquote,
+.reveal .momargin img {
+  margin: 0;
+}
+
+
 
 .reveal .slides section .fragment.hightlight-green.visible {
   color: #4fa843;
@@ -277,33 +297,48 @@ $codeBackgroundColor: #C0C0C0;
 
 .reveal .slides>section,
 .reveal .slidex>section>section {
-  padding: 0px 0px;
+  padding: 0 0;
   }
 
-.reveal table {
-  border-width: 1px;
-  border-spacing: 2px;
+.reveal table,
+.reveal table th,
+.reveal table td {
+  border-width: 2px;
   border-style: dotted;
   border-color: gray;
   border-collapse: collapse;
+}
+
+.reveal table {
+  border-spacing: 2px;
   font-size: 0.7em;
 }
 
-.reveal table th {
-  border-width: 1px;
+.reveal table th,
+.reveal table td {
   padding-left: 10px;
   padding-right: 25px;
-  font-weight: bold;
-  border-style: dotted;
-  border-color: gray;
 }
 
-.reveal table td {
-  border-width: 1px;
-  padding-left: 10px;
-  padding-right: 25px;
-  border-style: dotted;
-  border-color: gray;
+.reveal table th {
+  font-weight: bold;
+}
+
+.reveal .bordered table,
+.reveal .bordered table thead,
+.reveal .bordered table tbody,
+.reveal .bordered table th,
+.reveal .bordered table tr,
+.reveal .bordered table td,
+.reveal table.bordered,
+.reveal table.bordered thead,
+.reveal table.bordered tbody,
+.reveal table.bordered th,
+.reveal table.bordered tr,
+.reveal table.bordered td {
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
 }
 
 .reveal .noborder table,

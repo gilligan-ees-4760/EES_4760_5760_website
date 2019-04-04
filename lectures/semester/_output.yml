@@ -1,7 +1,7 @@
 revealjs.jg::revealjs_presentation:
     template: "./scaffold/html_template/template-revealjs-jg.html"
-    height: 1080
-    width: 1920
+    width: 1440
+    height: 900
     header_attributes: true
     fancy_lists: true
     definition_lists: true
@@ -10,13 +10,12 @@ revealjs.jg::revealjs_presentation:
     center: false
     theme: custom
     custom_theme: solarized_jg
-    custom_theme_path: "./assets"
+    custom_theme_path: "./lecture_lib/library/assets"
     transition: slide
     vertical: true
-    lib_dir: "./library"
-    reveal_location: "./library"
+    lib_dir: "./lecture_lib/library"
     keep_md: false
     clean: true
-    reveal_version: "3.3.0"
+    reveal_version: "3.7.0"
     reveal_source: "default"
     pandoc_args: ["--variable", "sf-math=true"]

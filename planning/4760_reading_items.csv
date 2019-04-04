@@ -1,0 +1,397 @@
+rd_item_id,reading_group,source_id,chapter,pages,reading_notes,optional,rd_break_before
+1,1,1,1,,"This reading sets the stage for answering the questions:
+
+1. What is computational modeling and why is it useful in social and natural science research?
+1. What are agent based models? How are they different from other kinds of models? What makes them useful for scientific research?
+
+The reading introduces the idea of a **modeling cycle**. You should understand the different steps in the modeling cycle. You should also think about why Railsback and Grimm describe modeling as a cycle, as opposed to a linear process with a start and stop.  
+
+As to what makes agent-based modeling special, Steven Railsback and Volker Grimm are ecologists and _<%MED_RAILSBACK%>_ emphasizes aspects of agent-based modeling that are well suited for studying ecological systems. Others, such as social scientists, emphasize the aspects of agent-based modeling that are well suited for problems in social science. And still others, such as computer scientists, emphasize aspects of automated and autonomous things (ranging from packets of data on a network to swarms of robots or flying drones that need to coordinate their activities and avoid collisions). What all of these approaches have in common are their use of individuals or **agents** (what is an agent?), which inhabit some kind of space or **environment** (this could be physical space or an abstract space, such as a computer network). Agents **interact** with each other and with the environment, and they make **decisions** according to rules. 
+
+The article ""Artificial Life"" gives you a feel for how an early agent-based model called ""Sugarscape"" was used as part of a very influential research project in the 1990s. Joshua Epstein and Robert Axtell who wrote Sugarscape are highly respected pioneers in agent-based modeling and the Sugarscape model set off a revolution in agent-based modeling by showing that a very simple model could reproduce complex phenomena that are observed in real societies. As you read through this article, think about what the different applications of agent-based models have in common. Do these suggest questions that you might be interested in exploring with agent-based models. Do you have questions, as you read this, about whether computer modeling can really tell you about real societies?
+
+Agent-based models are often used to examine **emergent** phenomena. Neither reading describes clearly what _emergence_ means. There is no simple definition, but during the semester we will pay a lot of attention to learning about emergence and trying to understand it. Do not worry if you don't understand emergence at this point. Emergence is difficult to put into words, and it's much easier to understand from experience. Over the course of the semester, we will work together to understand what emergence is and how to study it.
+",0,0
+2,2,1,2,,"Familiarize yourself with <%NETLOGO%>. I recommend that you read through the chapter with <%NETLOGO%> open on your computer. Feel free to play around with <%NETLOGO%> and try things out. The homework consists of following the step-by-step creation of a model in section 2.3.
+
+**Errata for chapter 2:**
+
+* On page 20, after you add the `setup` and `go` buttons to the interface, but before you write the `go` procedure, when you click the ""Check"" button, it will take you to the interface page because the `go` button has an eror: the procedure `go` does not exist yet. 
+  After you write the `go` procedure in the Code tab, then the Check button will work as described in the book.
+* The first bullet on page 21 should read:
+   * Just as we created the `setup` procedure (with two lines saying `to setup` and `end`, write the ""skeleton"" of the `go` procedure.
+
+",0,0
+3,3,1,3,,"You can download several useful documents related to the ODD protocol from the class web site:
+
+* The journal article, [V. Grimm _et al._ (2010). ""The ODD protocol: A review and first update"" _Ecological Modeling_ **221**, 2760--68.](/files/odd/Grimm_2010_ODD_update.pdf). <<%CLASS_URL%>files/odd/Grimm_2010_ODD_update.pdf>
+* A Word document that provides [a template for writing ODDs](/files/odd/Grimm_2010_odd_template.docx): <<%CLASS_URL%>files/odd/Grimm_2010_odd_template.docx>
+* Lists of scientific publications using agent-based and individual-based models that either do or don't use the ODD protocol (this appeared as [Appendix 1](/files/odd/Grimm_2010_appendix_1.pdf) of the Grimm _et al._ paper):
+  <<%CLASS_URL%>files/odd/Grimm_2010_appendix_1.pdf>, <<%CLASS_URL%>files/odd/ch3_ex1_pubs_with_no_ODD.pdf>, <<%CLASS_URL%>files/odd/ch3_ex2_pubs_with_ODD.pdf>.
+",0,0
+4,4,1,4,,"For the reading, read Chapter 4 in _<%MED_RAILSBACK%>_ first and focus mostly on this chapter. 
+
+It is worth noting that the Sugarscape model you read about for Jan. 11 is very similar to the hilltopping model. Sugarscape was part of a very influential research project in the 1990s, in which Joshua Epstein and Robert Axtell showed that a very simple model could reproduce complex biological and economic phenomena that are observed in real societies and ecosystems. You may find it interesting at this point to look back at the ""Artificial Societies"" article and to play with the Sugarscape model in <%NETLOGO%>.
+
+You can downlload an [ODD for the butterfly model](/files/models/chapter_04/butterfly_model_ODD.txt), which is suitable to paste into the ""Info"" tab in <%NETLOGO%>, from the class web site: <<%CLASS_URL%>files/models/chapter_04/butterfly_model_ODD.txt>
+",0,0
+5,5,1,5,,"This reading sets the stage for answering the big question, ""How can we use agent-based models to do science?""
+There are several aspects to this question, which this chapter will introduce:
+
+1. How can we produce quantitative output from our models?
+1. How can your models read and write data to and from files? (This is important for connecting your model to other parts of your project)
+1. How should we test our models to make sure they do what we think they do? (More on this in Chapter 6)
+1. Making your research reproducible by using version control and documentation.
+
+A number of you like to use Excel or statistical analysis tools, such as `R`, `SPSS`, or `Stata`. The material in this chapter about
+importing and exporting data using text or `.csv` files will be very useful for this. 
+By default, <%NETLOGO%> only allows you to read in data in simple text files. However, if comes with some extensions that you can use to read in 
+data from other common file formats, including `.csv` and ArcGIS shapefiles and raster (grid) files.
+
+If you want to read in data from csv files, you may want to 
+look at the documentation for the \texttt{csv} extension to <%NETLOGO%>. To use it, you just put the line `includes [csv]` as the first line of your
+model, and then  use functions from the extension, such as `let data csv:from-file ""myfile.csv""`.
+
+To read in date from ArcGIS files, look at the documentation for the \texttt{GIS} extension. You would put the line `extensions [ gis ]` as the
+first line of your model, and then use functions, such as `gis:load-dataset`, which can load vector shape files (`.shp`) 
+and raster grid files (`.grd` or `.asc`). The GIS extension offers a lot of functions for working with vector and raster GIS data.
+If you're interested in using GIS data in your models, take a look at the GIS examples in the <%NETLOGO%> model library.
+
+You can download the [data file](/files/models/chapter_05/ElevationData.txt) with the elevations for the realistic butterfly model from <<%CLASS_URL%>files/models/chapter_05/ElevationData.txt>
+
+**Errata for Chapter 5:**
+
+* Page 68: Replace the statement
+  ```
+  export-plot ""Corridor width""
+      word ""Corridor-output-for-q-"" q
+  ```
+  with this:
+  ```
+  export-plot ""Corridor width""
+      (word ""Corridor-output-for-q-"" q "".csv"")
+  ```
+
+    The revised statement appends the file extension ""`.csv`"" to the file name created via the `word` primitive.
+    Note that when `word` is used to concatenate more than two values tovether, it and all the values must be
+    inside parentheses.
+",0,0
+6,6,1,6,,"No one writes perfect programs. Errors in programs controlling medical equipment 
+have killed people. Errors in computer models and data analysis code have not had 
+such dire results, but have wasted lots of time for researchers and have caused 
+public policy to proceed on incorrect assumptions. In many cases, these errors 
+were uncovered only after a great deal of frustration because the original 
+researchers would not share their computer codes with others who were suspicious 
+of their results.
+
+You can never be certain that your model is correct, but the more aggressively 
+you check for errors the more confident you can be that it does not have major problems.
+
+Two very important things you can do to ensure that your research does not suffer 
+a similar fate are:
+
+1. Test your code. Assume your program has errors in it and make the search for 
+those errors a priority in your programming process.
+    Some things you can do in this regard are:
+      * Write your code with tests that will help you find errors.
+      * Work with a partner: after one of you writes code, the other should read 
+        it and check for errors.
+      * Break your program up into small chunks. It is easier to test and find 
+        bugs if you are looking at a short block of code than if you are looking 
+        at hundreds of lines of code.
+      * Independently reimplement submodels and check whether they agree with the 
+        submodel you are using.
+1. Publish your code. If you trust your results and believe they are important 
+   enough to publish in a book or journal, then you should make your code available 
+   (there are many free sites, such as github.com and openabm.org where people can 
+   publish their models and other computer code). 
+    
+      The more that other researchers can read your code, the greater the probability 
+      that they will find any errors, and if you make it easy for others to use your 
+      code, it will help science because other people can build on your work, and it 
+      will help your reputation because when other people use your model or other 
+      code they are likely to cite the publication in which you first announced 
+      it, so your work will get attention.
+    
+      Many scholarly journals demand that you make your code available as a 
+      condition for publishing your paper, and federal funding agencies are 
+      increasingly requiring that any research funded by their grants must make 
+      its code and data available to other researchers and the public.
+
+**The Marriage Model**
+
+The 
+[ODD for the marriage model](/files/models/chapter_06/Marriage_age_model_ODD.pdf) 
+and a 
+[<%NETLOGO%> model](files/models/chapter_06/Marriage_model_with_errors.nlogo) 
+that implements the ODD, but with many errors, can be downloaded from the class web site: 
+<<%CLASS_URL%>files/models/chapter_06/Marriage_age_model_ODD.pdf>, 
+and <<%CLASS_URL%>files/models/chapter_06/Marriage_model_with_errors.nlogo>.
+
+
+**Errata for chapter 6:**
+
+* Section 6.3.7, in the example `test` procesure:
+  The syntax of the `foreach` statement changed, starting with <%NETLOGO%> 
+  version 6.0. This was because <%NETLOGO%> introduced a new feature, called 
+  ""anonymous procedures,"" which you can read about in the <%NETLOGO%> User Manual. 
+  This means that we need to change the code in the book for the `go-back` test 
+  procedure. The new procedure should read:
+  ```
+  ask turtles
+   [
+      set color blue ; Make the return path a different color
+      foreach path   ; See ""foreach: executes once for each
+                     ; patch on the list, where next-patch is the
+                     ; patch currently being executed
+      [ next-patch ->
+        set heading towards next-patch
+        fd 1
+      ]
+   ]
+  ```
+
+* Section 6.3.10, Figure 6.4: 
+  The column labels in the very top row of the fiture's spreadsheet are wrong: 
+  what is labeled col. B should be col. A, the column labeled O should be N, etc.. 
+  In the figure caption, reference to col. N should be to the corrected
+  col. M (which is currently labeled N); and references to col. M should be to 
+  the corrected col. N (currently labeled O).
+
+* Section 6.5, p. 91: 
+  Note that the ""social network"" of young people can potentially include other
+  people below the marriage age of 16. Hence, it is possible for a person less
+  than 16 to be selected as a spouse and married.
+",0,0
+7,7,1,7,,"There is not very much reading for today. Read Chapter 7 of _<%MED_RAILSBACK%>_ carefully (it's very short) The point of this chapter is to help you get ideas for your term research project.
+
+Before class, I want you to read through the research project assignment and think about what you might want to do for a research project. We will spend class talking about possible research projects.
+",0,0
+8,8,1,8,,"This is a major chapter. Emergence is one of the most important concepts in agent-based modeling, so pay close attention to the discussion in this chapter and think about how you can measure and assess emergence.
+
+This chapter also introduces a very important tool for doing experiments in <%NETLOGO%>: **BehaviorSpace**. BehaviorSpace lets you repeatedly run a <%NETLOGO%> model while varying the settings of any of the controls on your user interface. Where there is randomness (stochasticity) in the model, you can perform many runs at each set of control settings. This will let us perform **sensitivity analysis** to determine whether a certain emergent phenomenon we are investigating happens only for values of the parameters within a narrow range, or whether it happens over a wide range of the parameters. It will let us determine which parameters are most important for the phenomenon.
+
+For homework and your modeling projects you will use BehaviorSpace extensively. BehaviorSpace outputs large amounts of data to `.csv` files, which you can read into Excel, R, SPSS, or another tool where you can do statistical analysis and generate plots such as the ones in figures 8.3, 8.5, and 8.6. 
+
+The format in which BehaviorSpace saves its data is very annoying to deal with in many tools. Indeed, it's almost impossible to do anything useful with it in Excel. Because of this, I have written a tool called `analyzeBehaviorspace` that can read the output of a BehaviorSpace run and allow you to interactively graph it and re-organize the data to make it more useful. 
+
+You can either use this tool online in a web browser at <https://analyze-behaviorspace.jgilligan.org> or install it on your own computer. For details, see the description of `analyzeBehaviorspace` on the ""Reading Resources and Computing Tools for Research"" handout.
+
+As you read the chapter, be sure to try out the experiments with the birth-and-death model and the flocking model. Try reading the output of the behaviorspace runs into analyzeBehaviorspace (the web version or a local version installed on your computer), or your favorite statistical analysis software and try to generate plots similar to figures 8.3, 8.5, and 8.6.
+
+If you have time, try to play around with BehaviorSpace using those models (varying different parameters) or other models from the <%NETLOGO%> library to explore the ways that changing parameters affects the models' behavior.
+",0,0
+9,9,1,9,,"In this chapter, we examine how to detect and record the properties of a model 
+that we want to study. 
+
+The article, D. Kornhauser, [U. Wilensky, and W. Rand. (2009). ""Design guidelines 
+for agent-based model visualization,"" _Journal of Artificial Societies and Social 
+Simulation_ **12**, 1](http://jasss.soc.surrey.ac.uk/12/2/1.html) 
+is available online at <http://jasss.soc.surrey.ac.uk/12/2/1.html>.
+
+I have posted a [refresher guide](/files/models/chapter_09/ch9_ex8_Netlogo_exercises.pdf) 
+for <%NETLOGO%> programming on the class web site at <<%CLASS_URL%>files/models/chapter_09/ch9_ex8_Netlogo_exercises.pdf>
+
+**Errata for Chapter 9:**
+
+* Section 9.3, p. 119: 
+  The discussion of histograms mentions potential difficulties setting the 
+  _x_ axis to a useful range, so all the bars are visible. One solution is to 
+  use the `set-plot-x-range` primitive. For example, add this statement:
+  ```
+  set-plot-x-range (min [elevation] of turtles) 
+      (max [elevation] of turtles)
+  ```
+  just before the statement: 
+  ```
+  histogram [elevation] of turtles
+  ```
+  Or, if the histogram should always
+  start at zero: 
+  ```
+  set-plot-x-range 0 max [elevation] of turtles
+  ```
+  (You may need to use primitives such as `ceiling` and `precision` to convert 
+  the inputs to `set-plot-x-range` to nice round numbers.)
+",0,0
+10,10,1,10,,"Important programming concepts in this chapter include:
+
+Links:
+  ~ Agents interact with their physical environment (patches around them) and with other agents nearby, but they can also interact in social networks, which can be represented by links.
+    
+Variable scope: 
+  ~ Understand the differences between global variables, local variables, patch variables, agent variables, and link variables. Understand how an agent can get the value of a global variable or variables belonging to a certain patch or link or another agent.
+
+Entity detection:
+  ~ Understand different ways to detect which agents or patches meet certain conditions (e.g., within a certain distance, have a certain color, have the largest or smallest values of some variable, etc.).
+
+The agents' interactions, both with their environment and with each other through sensing. Part of the design concepts section of a model's ODD consists of specifying what the agents can sense: They might be able to sense other agents within a certain distance. They might only be able to detect other agents if they are within a certain angle (e.g., the agent might be able to look forward, but might not be able to see behind itself unless it turns around). Agents might be able to detect certain qualities of one another (e.g., I can see how tall you are, but I can't see how much money you have).
+
+Agents can interact both spatially and through networks of links. You can create many kinds of links so that agents can belong to many networks (e.g., family, co-workers, members of a church congregation, etc.).
+
+Sensing involves two steps:
+
+1. Detect which entities your agent (or patch) will sense.
+1. Get the values of the sensed variables from those entities.
+
+Be sure to code the Business Investor model as you read section 10.4. You will use it in Chapter 11 and it will form the basis for one of the team projects you will present. 
+The other team project will use the Telemarketer model from section 13.3. This would be a good time for you and your teammates to get started on your team projects.
+
+**Errata for Chapter 10:**
+
+* Section 10.4, p. 140:
+  The first statement in the first block of code near the top of p. 140 should be: `let potential-destinations ...`  instead of `set potential-destinations ...`.
+",0,0
+11,11,1,11,,"Agents' behavior often consists of trying to achieve some **objective**.
+
+I have discussed the way that Adam Smith's ""invisible hand of the market"" is a kind of agent-based view of a nation's economy: Each person (agent) has an objective of trying to maximize his or her own wealth (that's the agent's **micromotive**), and in doing so, the population of agents manages unintentionally to maximize the total wealth of the nation (an emergent **macrobehavior** that results from the collective interactions of the agents and their micromotives). 
+
+For Darwin, agents whose objectives are to survive and reproduce under changing environmental conditions achieve emergent phenomena of evolution and speciation.
+
+If we are going to program an agent-based model to simulate such an economy (we saw this in the Sugarscape models), you need to program your agents to try to achieve their objective (maximize their wealth). There are two approaches to this:
+
+1. You could program a sophisticated strategy into your agents.
+1. You could program a simple strategy into your agents, but give them the ability to learn from their experience and adapt their behavior according to what they learn. (see section 11.3 for details and an example)
+
+This chapter discusses different kinds of objectives you might have your agents employ. An important concept from decision theory and behavioral economics that might be new to you is **satisficing**. This term, introduced by Herbert Simon[^1] in 1956, refers to making decisions by choosing a ""good-enough"" option when it would take too much time and effort to determine which option is the absolute best. See section 11.4 for details and an example.
+
+[^1]: Herbert Simon (1916--2001) was a fascinating intellectual. Kind of a renaissance scholar, he made major contributions to political science, economics, cognitive psychology, and artificial intelligence. He won the Nobel Prize for economics in 1978. His publications have been cited more than 250,000 times and even fifteen years after his death, they are still cited more than 10,000 times per year.",0,0
+12,12,1,12,,"In class, we will discuss the telemarketer model.
+
+For the teams working on the telemarketer model, the steps are:
+
+1. Build the model as described in the ODD.
+1. Do the analyses in section 13.3.2
+1. Next work on two extensions:
+      1. Mergers (section 13.5)
+      1. Customers remember (section 13.6)
+
+Before class on Thursday, everyone should read Chapter 13 and the ODD for the telemarketer model and be ready to discuss the model in class.
+This will be a chance for the teams working on the model to ask questions.
+",0,0
+13,13,1,13,,"**Errata for Chapter 13:**
+
+* Section 13.6, p. 180:
+  Starting with version 5.0 of NetLogo, the Programming Guide no longer says 
+  that putting items on a list using `fput` is better (faster) than putting them 
+  on the end of the list using `lput`. 
+  NetLogo's lists were reprogrammed to eliminate this difference and improve the 
+  speed of adding and accessing list items.
+",0,0
+14,14,1,14,,"A good example of asynchronous updating is the 
+[model of breeding synchrony](/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo), 
+described in [Jovani and Grimm (2008)](/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf) 
+and in Chapter 23, which I have posted on the class web site: 
+<<%CLASS_URL%>files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo>
+
+**Errata for Chapter 14:**
+
+* Section 14.2.3, p. 187:
+  The `foreach` statement in the example code for executing turtles in size order 
+  is not compatible with <%NETLOGO%> versions 6.0 and higher. 
+  For version 6.0.2, the statement should be:
+  ```
+  foreach sort-on [size] turtles
+  [
+      next-turtle -> ask next-turtle [do-sales]
+  ]
+  ```
+
+* Section 14.2.5, p. 189:
+  This code statement: 
+  ```
+  while [count patches with [trigger-time > ticks] > 0] 
+  ```
+  should of course be: 
+  ```
+  while [any? patches with [trigger-time > ticks] ] 
+  ```
+  (This Mousetrap model also has a small flaw: it does not represent the 
+  possibility that a trap scheduled to be triggered by one ball could be 
+  triggered sooner by a different ball that is launched later but has a 
+  shorter trajectory.)
+",0,0
+15,15,1,15,,,0,0
+16,16,1,16,,"**Errata for Chapter 16:**
+
+* Section 16.4.1, p. 213:
+  The description of social status is not clear: it assumes ages are real 
+  numbers instead of integers. It should read:
+  
+    _The social status of a dog can be (a) ""pup,"" meaning its age is less than one; 
+    (b) ""yearling,"" with age of 1 year; (c) ""subordinate,"" meaning age is 2 or 
+    greater but the dog is not an alpha; (d) ""alpha,"" the dominant individual of its 
+    sex in a pack; and (e) ""disperser,"" meaning the dog currently belongs to a 
+    disperser group, not a pack._
+
+* Section 16.4.1, p. 213:
+  The first bullet of the description of pack formation should start 
+  ""Determine how many times the disperser group meets another...""
+
+* Section 16.4.1, Fig. 16.1:
+  Be aware that this figure does not depict the logistic function parameters in 
+  the Wild Dog model description. The figure shows a probability of 0.5 when the 
+  number of dogs in the population is 67% of carrying capacity (40 out of 60), 
+  while the model description says the probability is 0.5 when the population is 
+  50% of carrying capacity. 
+  To match the model description, the figure's curve should go through X = 30, Y = 0.5.
+
+* Section 16.4.2, p. 217:
+  Setting the dog's variable `my-pack` to the pack that created it (via the 
+  statement `set my-pack myself`) can cause a subtle error in the pack formation 
+  submodel. Disperser groups cannot form a pack with other disperser groups that 
+  originated in the same pack. In most people's code, disperser groups use the value 
+  of `my-pack` from one of their dogs to determine which pack they came from. 
+  The error can occur when two disperser groups came from packs that have since 
+  died; when a disperser dog's pack dies, <%NETLOGO%> automatically changes its 
+  value of `my-pack` to the keyword `nobody`. 
+  Because disperser groups cannot form a new pack with another group that has the 
+  same value of `my-pack`, groups whose packs have died cannot combine with each 
+  other, even if they really came from two different packs. A solution is to set 
+  `my-pack` to the unique `who` number of the dog's pack. 
+  Instead of `set my-pack myself`, use `set my-pack [who] of myself`. 
+  Use a similar statement when new dogs are created in the reproduction submodel. 
+  Then change the statements where a dog's value of `my-pack` is compared to a pack, 
+  from (for example): 
+  ```
+  set pack-members dogs with [my-pack = myself]
+  ```
+  to: 
+  ```
+  set pack-members dogs with [my-pack = [who] of myself]
+  ```
+  And because `my-pack` now contains a who number instead of a pack, one of the 
+  last lines in the 
+  `create-disperser-group-from` code (page 220) needs to be changed, from: 
+  ```
+  ask dogs-former-pack [set pack-members ... 
+  ```
+  to: 
+  ```
+  ask pack dogs-former-pack [set pack-members ...
+  ```
+  This error appears to have little effect on model results.
+
+* Section 16.4.3, Figure 16.2:
+  The figure should look like 
+
+    ![Corrected Fig. 16.2](<%FIG_16_2%>)
+",0,0
+17,17,1,17--18,,"You can download [the ODD for the BEFORE beech forest model](/files/models/chapter_18/ch18_before_ODD.pdf), which is described in section 18.3, from the class web site: <<%CLASS_URL%>files/models/chapter_18/ch18_before_ODD.pdf>.
+
+I have also posted [a list of published models](/files/models/chapter_18/ch18_ex1_models_list.pdf) in which observed patterns are important: <<%CLASS_URL%>files/models/chapter_18/ch18_ex1_models_list.pdf>",0,0
+18,18,1,19,,"There is an implementation of the [wood hoopoe model](/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo), suitable for Exercise 2, on the class web site: <<%CLASS_URL%>files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo>",0,0
+19,19,1,20,,"**Errata for Chapter 20:**
+
+* Section 20.5, p. 264:
+  The first bullet of the description of the simple trait for how subordinate adults decide whether to scout should say,
+  ""If there are no _older_ subordinate adults"" instead of ""other subordinate adults"".
+
+* Section 20.7, Exercise 2:
+  The model equation has parentheses in the wrong place. It should be:
+  $$ N_t = N_{t-1} + r N_{t-1} [ 1 - (N_{t-1} / K)] - H_{t-1}$$
+",0,0
+20,20,1,22,,,0,0
+21,21,1,23,,"You can download the [model of breeding synchrony](/files/models/chapter_23/)Ch_23_4_breeding_synchrony.nlogo), described in [Jovani and Grimm (2008)](/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf) and in section 23.4, from the class web site: <<%CLASS_URL%>files/models/chapter_23/)Ch_23_4_breeding_synchrony.nlogo>",0,0
+22,1,4,,,"You can download ""[Artificial Societies](/files/reading/Tyson_1997_Artificial_Societies.pdf)"" from Brightspace or <<%CLASS_URL%>files/reading/Tyson_1997_Artificial_Societies.pdf>.",0,1
+23,22,1,24,,,0,0

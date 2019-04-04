@@ -1,15 +1,15 @@
 baseurl = "https://www.ees4760.jgilligan.org"
-# baseurl = "https://ees-4760-5760.netlify.com"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = "EES 4760/5760"
-theme = "material"
+theme = "hugo-syllabus"
 #disqusShortname = ""
-# googleAnalytics = ""
+enableRobotsTXT = true
+googleAnalytics = "UA-101117636-4"
 paginate = 10
 relativeurls = true
 publishDir = "public"
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_data$", "\\.gitkeep"]
 
 [blackfriday]
   smartypangs = true
@@ -23,6 +23,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   post = "/:year/:month/:slug/"
   reading = "/reading/:slug"
   assignment = "/assignment/:slug"
+  lab = "/lab/:slug"
+  lab_docs = "/lab_docs/:slug"
+  lab_solutions = "/lab_solutions/:slug"
+  homework_solutions = "/homework_solutions/:slug"
 
 [taxonomies]
   tag = "tags"
@@ -37,6 +41,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   gravatarEmail = "jonathan.gilligan@gmail.com"
   # Your profile picture
 #  picture = ""
+  homepage = "https://www.jonathangilligan.org"
   twitter = "jg_environ"
 
 # Menu Configuration
@@ -83,12 +88,6 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   pre = "<i class=\"material-icons\">build</i>"
   url = "/tools"
 
-#[[menu.footer]]
-#  weight = 1
-#  identifier = "Berkeley"
-#  name = "UC Berkeley"
-#  pre = "<i class=\"material-icons\">pin_drop</i>"
-#  url = "https://data.berkeley.edu"
 [[menu.footer]]
   weight = 2
   identifier = "GitHub"
@@ -97,7 +96,38 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   url = "https://github.com/gilligan-ees-4760"
 
 [params]
+  profname = "Jonathan Gilligan"
   dateFormat = "January 2, 2006"
   background = "img/course_banner_cropped.jpg"
   math = "true"
+  backgroundColor = "white"
+  backgroundSize = "cover"
+  backgroundBlendMode = "multiply"
+  backgroundRepeat = "repeat-y"
+  shortCourseName = "EES 4760/5760"
+  fullCourseName = "EES 4760/5760: Agent- and Individual-Based Computational Modeling"
+  semester = "Fall 2018"
+  courseCatalogEntry = " Applications in natural, social, and behavioral sciences and engineering. Designing, programming, and documenting models. Using models for experiments. Examples from environmental science, ecology, economics, urban planning, and medicine. Familiarity with basic statistics and proficiency in algebra are expected. [3] (MNS)"
+  fontAwesomePro = "sha384-POYwD7xcktv3gUeZO5s/9nUbRJG/WOmV6jfEGikMJu77LGYO8Rfs2X7URG822aum"
 
+  [params.lectures]
+    times = "TR 11:00--12:15"
+    classroom = "TBA"
+
+  [params.prof]
+    name = "Jonathan Gilligan"
+    lastname = "Gilligan"
+    title = "Prof."
+    email = "jonathan.gilligan@vanderbilt.edu"
+    phone = "322-2420"
+    url = "www.jonathangilligan.org"
+    office = "Stevenson 5725 (7th floor of building #5)"
+    officeHours = "Mon. 10:10--11:00, Thu. 10:00--11:00, or by appointment"
+
+  [params.ta]
+    name = "TBA"
+    lastname = "TBA"
+    title = "Ms."
+    email = "TBA@vanderbilt.edu"
+    office = "TBA"
+    officeHours = "TBA"

@@ -2,7 +2,7 @@
 title: "Policies"
 date: "2017-04-13T00:00:00"
 ---
-#### <a href="/files/EES_4760_5760_Syllabus.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="margin-right:0.25em;"></i> **Printable syllabus**</a>
+#### <a href="/files/EES_3310_5310_Syllabus.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="margin-right:0.25em;"></i> **Printable syllabus**</a>
 
 # **Assignment policy**
 

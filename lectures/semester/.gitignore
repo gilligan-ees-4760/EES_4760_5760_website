@@ -1,1 +1,10 @@
-node_modules
+*.Rproj
+.Rproj.user/
+.RData
+.Rhistory
+node_modules/
+.Rproj.user
+cache/
+/static/
+gruntconfig.yml
+Index - Copy.Rmd

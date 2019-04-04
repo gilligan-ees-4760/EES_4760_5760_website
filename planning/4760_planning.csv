@@ -1,0 +1,31 @@
+cal_id,week,class,date,topic,latex_topic,topic_id,homework_id,event_id,reading_id
+1,1,1,2018-01-09,Introduction,,1,,,
+2,1,2,2018-01-11,The computer modeling cycle,,2,1,,1
+3,2,3,2018-01-16,Introduction to <%NETLOGO%>,,3,2,,2
+4,2,4,2018-01-18,Specifying models: The ODD protocol,,4,3,,3
+5,3,5,2018-01-23,Your first model,,5,4,,4
+6,3,6,2018-01-25,Using models for science,,6,,,5
+7,4,7,2018-01-30,Testing and validating models,,7,5,,6
+8,4,8,2018-02-01,Choosing Research Projects,,8,6,,7
+9,5,9,2018-02-06,Emergence,,9,100,,8
+10,5,10,2018-02-08,Observation,,10,7,,9
+11,6,11,2018-02-13,Sensing,,11,8,,10
+12,6,12,2018-02-15,Adaptive Behavior and Objectives,,12,9,,11
+13,7,13,2018-02-20,Prediction,,13,,,12
+14,7,14,2018-02-22,Interaction,,14,,,13
+15,8,15,2018-02-27,Team Presentations,,15,,2,
+16,8,16,2018-03-01,Research Project ODDs,,16,,3,
+17,,,2018-03-06,SPRING BREAK,,,,1,
+18,,,2018-03-08,SPRING BREAK,,,,1,
+19,9,17,2018-03-13,Prediction,,17,,,14
+20,9,18,2018-03-15,Stochasticity,,18,,,15
+21,10,19,2018-03-20,Collectives,,19,,,16
+22,10,20,2018-03-22,Patterns,,20,,,17
+23,11,21,2018-03-27,Theory Development,,21,,,18
+24,11,22,2018-03-29,Parameterization and Calibration,,22,,,19
+25,12,23,2018-04-03,Parameterization and Calibration 2,,23,,,
+26,12,24,2018-04-05,Analyzing ABMs,,24,,,20
+27,13,25,2018-04-10,Sensitivity and Robustness,,25,,,21
+28,13,26,2018-04-12,Looking Ahead: ABMs Beyond this Course,,26,,,22
+29,14,27,2018-04-17,Presentations,,27,,4,
+30,14,28,2018-04-19,Presentations,,28,,4,

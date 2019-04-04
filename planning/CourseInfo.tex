@@ -3,104 +3,150 @@
 
 \newcommand{\shortdept}{EES}
 \newcommand{\longdept}{EES}
-\newcommand{\coursenum}{4760/5760}
+\newcommand{\coursenum}{3310/5310}
 \newcommand{\sectionnum}{}
-\newcommand{\shortcoursetitle}{Agent- and Individual-Based Computational Modeling}
+\newcommand{\shortcoursetitle}{Global Climate Change}
 \newcommand{\longcoursetitle}{\shortcoursetitle}
-\newcommand{\semester}{Spring}
+\newcommand{\semester}{Fall}
 \newcommand{\yeartaught}{2018}
 
-\newcommand{\Classroom}{SC 2200}
-\newcommand{\ClassMeetings}{Tuesday, Thursday 11:00--12:15, \Classroom}
+\newcommand{\Classroom}{Stevenson 1120}
+\newcommand{\ClassMeetings}{MWF 9:10--10:00\ \Classroom}
+\newcommand{\LabClassroom}{Stevenson 2200}
+\newcommand{\LabMeetings}{Mondays, 2:10--5:00 PM\ \LabClassroom}
 
 \newcommand{\ProfName}{Jonathan Gilligan}
 \newcommand{\ShortProfName}{J.\ Gilligan}
 \newcommand{\ProfTitle}{Prof.\ Gilligan}
-\newcommand{\ProfDescr}{Associate Professor of Earth \& Environmental Sciences}
-\newcommand{\ProfOffice}{Office: SC 5735 (Stevenson \#5, 7\textsuperscript{th} floor)}
+\newcommand{\ProfDescr}{Associate Professor of Earth \& Environmental Sciences\\
+Associate Professor of Civil \& Environmental Engineering}
+\newcommand{\ProfOffice}{Office: Stevenson 5735 (Stevenson \#5, 7\textsuperscript{th} floor)}
 \newcommand{\ProfPhone}{Phone: 322-2420}
 \newcommand{\ProfEmail}{\href{mailto:jonathan.gilligan@vanderbilt.edu}%
 {\nolinkurl{jonathan.gilligan@vanderbilt.edu}}}
+\newcommand{\ProfWeb}{\href{https://www.jonathangilligan.org}%
+{\nolinkurl{www.jonathangilligan.org}}}
 
 \newcommand{\ProfOfficeHours}{Office Hours:
-    Mon.\ 10:30--11:30,
-    Thurs.\ 2:40--3:30,
-    or by appointment.
-}
+	Mon.\ 10:15--11:00,
+	Thu.\ 10:00--11:00,
+	or by appointment.%
+	} % TODO: Office Hours
 
-%
-\TAfalse
-\TAmaletrue
-\newcommand{\TaName}{\qqq}
-\newcommand{\TaTitle}{\TaHonorific~\qqq}
-\newcommand{\TaOffice}{\qqq}
+\TAmalefalse
+\newcommand{\TaName}{Kelsea Best}
+\newcommand{\TaTitle}{Ms.\ Best}
+\newcommand{\TaOffice}{Stevenson 5703A}
 \newcommand{\TaOfficeLoc}{Office: \TaOffice}
 \newcommand{\TaOfficeHours}{Office Hours:
-    \qqq
-}
+Wed.\ 3:00--4:00 pm, 
+Fri.\ 10:10--11:00 am,
+or by appointment.%
+} % Tues. 2:30--3:30}
 \TaPhonefalse
 \ifTaPhone
 \newcommand{\TaPhone}{\qqq}
 \fi
-\newcommand{\TaEmail}{\qqq}
+\newcommand{\TaEmail}{\href{mailto:kelsea.b.best@vanderbilt.edu}%
+{\nolinkurl{kelsea.b.best@vanderbilt.edu}}}
+%{\href{qqq}%
+%{\nolinkurl{qqq}}}
 
-\newcommand{\FinalExamDay}{Thursday}   %TODO: Final Exam Date & Time
-\newcommand{\ShortFinalExamDay}{Thurs.}   %TODO: Final Exam Date & Time
-\newcommand{\FinalExamMonth}{May} %TODO: Final Exam Date & Time
-\newcommand{\ShortFinalExamMonth}{May} %TODO: Final Exam Date & Time
-\newcommand{\FinalExamDate}{3}  %TODO: Final Exam Date & Time
+\newcommand{\FinalExamDay}{Saturday}   %TODO: Final Exam Date & Time
+\newcommand{\ShortFinalExamDay}{Sat.{}}   %TODO: Final Exam Date & Time
+\newcommand{\FinalExamMonth}{December} %TODO: Final Exam Date & Time
+\newcommand{\ShortFinalExamMonth}{Dec.{}} %TODO: Final Exam Date & Time
+\newcommand{\FinalExamDate}{9}  %TODO: Final Exam Date & Time
 \newcommand{\FinalExamTime}{3:00--5:00~pm}  %TODO: Final Exam Date & Time
 \newcommand{\FinalExamStartTime}{3:00~pm}
 \newcommand{\FinalExamEndTime}{5:00~pm}
 \newcommand{\FinalExamRoom}{\Classroom\ (our regular classroom)}  %TODO: Final Exam Date & Time
 
 \newif\ifAltFinal
-\AltFinalfalse
+\AltFinaltrue
 
 \ifAltFinal
-\newcommand{\AltFinalExamDay}{Friday}   %TODO: Alternate Final Exam Date & Time
-\newcommand{\ShortAltFinalExamDay}{Fri.}   %TODO: Alternate Final Exam Date & Time
-\newcommand{\AltFinalExamMonth}{April} %TODO: Alternate Final Exam Date & Time
-\newcommand{\ShortAltFinalExamMonth}{Apr.} %TODO: Final Exam Date & Time
-\newcommand{\AltFinalExamDate}{27}  %TODO: Alternate Final Exam Date & Time
+\newcommand{\AltFinalExamDay}{Wednesday}   %TODO: Alternate Final Exam Date & Time
+\newcommand{\ShortAltFinalExamDay}{Wed.{}}   %TODO: Alternate Final Exam Date & Time
+\newcommand{\AltFinalExamMonth}{December} %TODO: Alternate Final Exam Date & Time
+\newcommand{\ShortAltFinalExamMonth}{Dec.{}} %TODO: Final Exam Date & Time
+\newcommand{\AltFinalExamDate}{13}  %TODO: Alternate Final Exam Date & Time
 \newcommand{\AltFinalExamTime}{12:00--2:00~pm}  %TODO: Alternate Final Exam Date & Time
 \newcommand{\AltFinalExamStartTime}{12:00~pm}
 \newcommand{\AltFinalExamEndTime}{2:00~pm}
 \newcommand{\AltFinalExamRoom}{\FinalExamRoom}  %TODO: Alternate Final Exam Date & Time
 \fi
 
-\newcommand{\NetLogo}{{\sffamily\scshape NetLogo}}
-\newcommand{\NetLogoURL}{\url{http://ccl.northwestern.edu/netlogo/}}
+\newcommand{\TestOneDay}{Wednesday}
+\newcommand{\TestOneShortDay}{Wed.{}}
+\newcommand{\TestOneMonth}{October}
+\newcommand{\TestOneShortMonth}{Oct.{}}
+\newcommand{\TestOneDate}{3}
 
-\iffalse
-\newcommand{\Epstein}{Growing Artificial Societies}
-\newcommand{\ShortEpstein}{Growing}
-\newcommand{\MedEpstein}{\Epstein}
-\newcommand{\LongEpstein}{Joshua M. Epstein \& Robert Axtell,
-	\emph{Growing Artificial Societies: Social Science from the Bottom Up\/}
-	(Brookings/MIT, 1996\ifisbn ; ISBN 978-0-262-55025-3\fi )%
+%\newcommand{\Ruddiman}{Earth's Climate}
+%\newcommand{\LongRuddiman}{William F.\ Ruddiman,
+%	\emph{Earth's Climate: Past and Future,} 2\textsuperscript{nd}~Ed.{}
+%	(W.H. Freeman, 2008)%
+%	}
+
+\newcommand{\Archer}{Global Warming: Understanding the Forecast}
+\newcommand{\ShortArcher}{Forecast}
+\newcommand{\MedArcher}{Understanding the Forecast}
+\newcommand{\LongArcher}{David Archer,
+	\emph{Global Warming: Understanding the Forecast,} 2\textsuperscript{nd}~ed.{}
+	(Wiley, 2011\ifisbn ; ISBN 978-0-470-94341-0\fi )%
 	}
+\newcommand{\ArcherURL}{\href{http://climatemodels.uchicago.edu/}%
+{\nolinkurl{climatemodels.uchicago.edu}}}
 
-\newcommand{\Growing}{\Epstein}
-\newcommand{\ShortGrowing}{\ShortEpstein}
-\newcommand{\MedGrowing}{\MedEpstein}
-\newcommand{\LongGrowing}{\LongEpstein}
-\fi
+\newcommand{\Forecast}{\Archer}
+\newcommand{\ShortForecast}{\ShortArcher}
+\newcommand{\MedForecast}{\MedArcher}
+\newcommand{\LongForecast}{\LongArcher}
+\newcommand{\ForecastURL}{\ArcherURL}
 
-\newcommand{\Railsback}{Agent-Based and Individual-Based Modeling}
-\newcommand{\ShortRailsback}{Agent-Based Modeling}
-\newcommand{\MedRailsback}{\Railsback}
-\newcommand{\AltShortRailsback}{Railsback \& Grimm}
-\newcommand{\ShorttestRailsback}{AB\&IBM}
-\newcommand{\LongRailsback}{Steven F. Railsback \& Volker Grimm,
-    \emph{Agent-Based and Individual-Based Modeling: A Practical Introduction\/}
-    (Princeton University Press, 2012\ifisbn ; ISBN 978-0-691-13674-5\fi )%
-}
-\newcommand{\RailsbackURL}{\url{http://www.railsback-grimm-abm-book.com/index.html}}
+%\newcommand{\Houghton}{Global Warming: The Complete Briefing}
+%\newcommand{\ShortHoughton}{Briefing}
+%\newcommand{\MedHoughton}{Complete Briefing}
+%\newcommand{\LongHoughton}{John Houghton,
+%	\emph{Global Warming: The Complete Briefing}, 4\textsuperscript{th}~ed.{}
+%	(Cambridge, 2009\ifisbn ; ISBN 978-0-521-70916-3\fi )%
+%	}
 
+%\newcommand{\Crisis}{Climate Crisis}
+%\newcommand{\ShortCrisis}{Crisis}
+%\newcommand{\LongCrisis}{David Archer \& Stefan Rahmstorf,
+%	\emph{Climate Crisis: An Introductory Guide to Climate Change\/}
+%	(Cambridge, 2010\ifisbn ; ISBN 978-0-521-73255-0\fi )%
+%	}
 
-\newcommand{\AbmBook}{\Railsback}
-\newcommand{\ShortAbmBook}{\ShortRailsback}
-\newcommand{\MedAbmBook}{\MedRailsback}
-\newcommand{\LongAbmBook}{\LongRailsback}
+\newcommand{\Pielke}{The Climate Fix}
+\newcommand{\ShortPielke}{Climate Fix}
+\newcommand{\MedPielke}{Climate Fix}
+\newcommand{\LongPielke}{Roger A. Pielke, Jr.,
+	\emph{The Climate Fix\/}
+	(Basic Books, 2010\ifisbn; ISBN 978-0-465-02519-0\fi )%
+	}
+\newcommand{\Fix}{\Pielke}
+\newcommand{\ShortFix}{\ShortPielke}
+\newcommand{\MedFix}{\MedPielke}
+\newcommand{\LongFix}{\LongPielke}
+%\newcommand{\Ackerman}{Can We Afford the Future?}
+%\newcommand{\ShortAckerman}{Future}
+%\newcommand{\MedAckerman}{Can We Afford the Future?}
+%\newcommand{\LongAckerman}{Frank Ackerman,
+%	\emph{Can We Afford the Future? The Economics of a Warming World\/}
+%	(Zed, 2009\ifisbn ;	ISBN 978-1-84813-038-8\fi )%
+%	}
 
+\newcommand{\Nordhaus}{The Climate Casino}
+\newcommand{\ShortNordhaus}{Casino}
+\newcommand{\MedNordhaus}{Climate Casino}
+\newcommand{\LongNordhaus}{William Nordhaus,
+    \emph{The Climate Casino: Risk, Uncertainty, and Economics for a Warming World\/}
+    (Yale, 2013\ifisbn; ISBN 978-0-300-21264-8\fi)%
+    }
+\newcommand{\Casino}{\Nordhaus}
+\newcommand{\ShortCasino}{\ShortNordhaus}
+\newcommand{\MedCasino}{\MedNordhaus}
+\newcommand{\LongCasino}{\LongNordhaus}

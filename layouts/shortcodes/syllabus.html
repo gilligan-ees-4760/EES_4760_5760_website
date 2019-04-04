@@ -1,12 +1,14 @@
-<table class="table">
+{{ "<!-- site custom syllabus.html -->" | safeHTML }}
+{{ printf "<!-- fontAwesomePro = %s -->" .Site.Params.fontAwesomePro | safeHTML }}
+<table class="table" style="opacity:0.60;">
   <tr>
     <th style="width:30%">Date</th>
     <th style="width:50%">Lesson</th>
     <th style="width:5%">Reading</th>
-    <th style="width:5%">Lecture</th>
-    <th style="width:5%">Assignment</th>
+    <th style="width:5%">Slides</th>
+    <th style="width:5%">Lab</th>
+    <th style="width:5%">Homework</th>
   </tr>
-
   {{ range $.Site.Data.lessons }}
     {{range . }}
     <tr>
@@ -22,10 +24,18 @@
 
       {{ if .lecture }}
       <td align="center"><a href="{{ .lecture  }}">
-          <i class="fa fa-comment fa-lg"></i></a></td>
+          <i class="fa {{ if $.Site.Params.fontAwesomePro -}} fa-presentation {{- else -}} fa-comment {{- end }} fa-lg"></i></a></td>
       {{ else }}
         <td align="center"><font color="f1f1f1">
-          <i class="fa fa-comment fa-lg"></i></font></td>
+          <i class="fa {{ if $.Site.Params.fontAwesomePro -}} fa-presentation {{- else -}} fa-comment {{- end }} fa-lg"></i></font></td>
+      {{ end }}
+
+      {{ if .lab }}
+      <td align="center"><a href="{{ .Site.baseurl }}/lab/{{ .lab }}">
+          <i class="fa fa-flask fa-lg"></i></a></td>
+      {{ else }}
+        <td align="center"><font color="f1f1f1">
+          <i class="fa fa-flask fa-lg"></i></font></td>
       {{ end }}
 
       {{ if .assignment }}

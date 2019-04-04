@@ -1,5 +1,6 @@
 ---
 title: Projects
+draft: false
 ---
 
 ## Team Projects
@@ -21,12 +22,8 @@ Presentations and write-ups due Feb. 27.
 
 | Team # | &nbsp;&nbsp; |      Project      | &nbsp;&nbsp; |           Members                          | &nbsp;&nbsp; |     Exercises     |
 |-------:|:------------:|:-----------------:|:------------:|:-------------------------------------------|:------------:|:-----------------:|
-| 1      |              | Business Investor |              | Raven Delk and Saurabh Jha                 |              |  10.3, 10.4       |
-| 2      |              | Business Investor |              | Jess Raff, Cameron de Wet, and Eva Biedron |              |  10.3, 10.4       |
-| 3      |              | Business Investor |              | Benjamin Lee and Matt Park                 |              |  10.3, 10.4       |
-| 4      |              | Telemarketer      |              | Kelsea Best and Jack Ding                  |              |  13.2, 13.6, 13.8 |
-| 5      |              | Telemarketer      |              | Rasul Dent and Faith Rovenolt              |              |  13.2, 13.7       |
-| 6      |              | Telemarketer      |              | Bhavia Srivastava and Andrew Stanford      |              |  13.2, 13.6, 13.8 |
+| 1      |              | Business Investor |              | TBA                                        |              |  10.3, 10.4       |
+| 2      |              | Telemarketer      |              | TBA                                        |              |  13.2, 13.6, 13.8 |
 
 ## Individual Projects
 

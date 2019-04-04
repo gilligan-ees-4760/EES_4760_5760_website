@@ -1,0 +1,88 @@
+lab_asg_id,lab_group,lab_title,lab_description,lab_assignment_url,report_due_date,presentation_date
+1,INTRO_LAB,Introduction to Reproducible Research,"This lab will introduce the principles of reproducible research and the tools we will use to perform the tasks of reproducible research.
+
+Before you come to class Monday, please set up a free account on GitHub, as described in ""Introduction to Git and GitHub Classroom."" After you sign up on GitHub will probably also want to register on GitHub as a student (<https://education.github.com/students>), to get a bunch of free extra features.",https://classroom.github.com/a/gvdNarpA,2018-09-03,
+2,DATA_LAB,Working with climate data,"This lab will introduce working with climate data using R and RMarkdown. We will download temperature and CO~2~ measurements from scientific archives of climate data and practice producing tables of measurements, making plots of the measurements, and analyzing the series of measurements to determine the trends over time (rates of increase or decrease).",https://classroom.github.com/a/vFttp2UE,2018-09-10,
+3,MODTRAN_LAB,Infrared light in the atmosphere,"This lab will use the MODTRAN computer model to simulate the transmission of different wavelengths of infrared light through the atmosphere and explore the effect that different greenhouse gases have on infrared light and the earth's temperature.
+
+There are two files for this lab.
+
+1. Start by reading `Lab_03_instructions.pdf`, which describes things you need
+to know for this lab (about the R functions for working with the MODTRAN model
+and the data that it produces, as well as some useful R functions that we will
+use in procesing and graphing data for this lab.)
+
+This file also has the exercises you will do for this lab.
+
+2. When you come to lab, you will work through the exercises, and you will
+edit the file `Lab_03_exercises.Rmd` to write your answers and show your
+work.
+
+## Instructions:
+
+* Accept this assignment.
+* Clone a local copy of the file repository from github to your
+  own computer.
+* In your local repository, answer the exercises in the template
+  `Lab_03_data_exercises.Rmd`.
+* When you are done, knit your `.Rmd` files into PDF files.
+* Use git to commit your changes (including the edits to the `.Rmd` files
+  and the new PDF files) to your local git repository.
+* Push the changes from your local git repository to github.
+
+    The last changes that you push before the due date 
+    (9:00 AM on Monday Sept. 17) will be graded.
+
+I advise using git to commit changes frequently as you work and push those commits
+to github.
+
+I also advise knitting your answers frequently to make sure that they 
+knit correctly.
+",https://classroom.github.com/a/BUE36STw,2018-09-17,
+4,CLOUD_LAPSE_LAB,Clouds and Convection,"This lab will explore two different phenomena: First, we will explore the effect that clouds have on infrared transmission and the climate and second we will explore the role of the lapse rate and convection in modifying the greenhouse effect.",https://classroom.github.com/a/wkg7zh2m,2018-09-24,
+5,GEOCARB_LAB,The Geochemical Carbon Cycle,This lab will use the GEOCARB model to explore the geochemical carbon cycle. We will trace what happens following a large release of carbon dioxide into the atmosphere.,https://classroom.github.com/a/hq33_bud,2018-10-01,
+6,PROJECT_LAB,Group Projects,"In this lab, you and a partner will begin to develop your own question to explore using computer models and/or archives of climate data",https://classroom.github.com/a/7XbkctvB,2018-10-17,
+7,PROJECT_CONT,Continuing Work on Group Projects,"You and your partner will continue to work on your group projects. Lab attendance is optional today, but Ms. Best and I will be available in the lab classroom to answer questions and discuss your projects.",https://classroom.github.com/a/7XbkctvB,2018-10-17,
+8,PROJECT_PRESENT,Group Project Presentations,"You and your partners will give a presentation about your project in lab
+today. 
+
+You should have received an email invitation to join a shared folder 
+""EES-3310-5310-Lab-Presentations"""" on 
+[vanderbilt.box.com](https://vanderbilt.box.com). 
+Please accept this invitation and upload your presentation to the 
+""Independent-Project"" folder inside the ""EES-3310-5310-Lab-Presentations""
+folder before lab on Monday.
+
+The final report will be due Wednesday Oct. 17. Turn in your final report
+by committing and pushing your RMarkdown project to GitHub, including a final 
+version of the report knitted to a PDF or Word document.
+",https://classroom.github.com/a/7XbkctvB,2018-10-17,
+9,DECARB_BOTTOM_UP,Decarbonizing the World's Energy Supply: Bottom-Up Approaches,"You will use the Kaya identity to analyze challenges to decarbonizing the world's energy supply, following the ""bottom-up"" approach that we read about in <%MEDIUM_PIELKE%>.
+
+I have posted a revised version of the lab instructions here. These don't change the assignment at all, but they correct the typos that I announced in lab on Monday about section 6.",https://classroom.github.com/a/wH4bpcjg,2018-10-29,
+10,DECARB_TOP_DOWN,Decarbonizing the World's Energy Supply: Top-Down Approaches,"This week, you will continue analyzing decarbonization policy, but this time you will use what's called a ""top-down"" approach in which you assume the rates of growth of population and the economy from macroeconomic models, and then figure out what rate of decarbonization is implied by various policy goals.
+
+Note that the due date for the report is in two weeks, not one week.",https://classroom.github.com/a/gfiEb7w1,2018-11-12,
+11,ROLE_PLAY,Role-Playing Emissions Regulations,"This week, we will do something very different. We will role-play different kinds of greenhouse gas emissions regulations: 
+
+* ""**Command-and-Control**,"" in which the EPA mandates the maximum emissions for each company, 
+* ""**Cap and Trade**,"" in which the EPA mandates the total emissions, and gives each company a certain number of permits, but the companies can buy and sell permits,
+* ""**Emissions Tax**,"" in which the EPA imposes a tax on each ton of emissions, and then reduces other taxes to keep the total government revenue constant.
+
+Students will play different roles: some will act as government regulators at the Environmental Protection Agency and others will act as managers of different companies that must balance their desire to make money against the environmental damage from the pollution they emit.
+
+There is no report to complete for this lab, but there is a short homework assignment in preparation for the lab. The homework will be due when you come to lab on Monday. Full credit will be given for making a good effort on the preparation homework and for showing up and participating in the lab exercise.",,,
+12,DECARB_PROJECT,Group Project: Decarbonization Policy for a Country,"You and a partner will pick a country and begin working on a policy analysis for reducing its greenhouse gas emissions.
+
+## Important Update
+
+The original assignment said to analyze **both** the 2030 goal for the Paris nationally determined contribution **and** the 2050 goal that you choose. 
+
+I have decided that is too much work, so you should **only** do the analysis of how the country would achieve the **2050** goal that you choose (you **do not** have to analyze the difficulty of meeting the 2030 goal).",https://classroom.github.com/a/1ogfEu9S,2018-12-05,2018-12-03
+13,DECARB_PROJECT_CONT,Continuing Work on the Decarbonization Policy Analysis,Lab attendence is optional today. Ms. Best and I will be there to answer questions and discuss your projects with you.,https://classroom.github.com/a/1ogfEu9S,2018-12-05,2018-12-03
+14,DECARB_PRESENT,Presentations on Decarbonization Projects,"You and your partners will present the results of your decarbonization policy 
+analysis. 
+
+Please upload your decarbonization presentation to the `Decarbonization-Project`
+folder inside the `EES-3310-5310-Lab-Presentations` folder on 
+[`vanderbilt.box.com`](https://vanderbilt.box.com) before lab on Monday.",https://classroom.github.com/a/1ogfEu9S,2018-12-05,2018-12-03

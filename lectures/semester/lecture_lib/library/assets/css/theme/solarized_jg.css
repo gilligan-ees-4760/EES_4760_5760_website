@@ -1,5 +1,4 @@
-/**
- * Solarized Light JG theme for reveal.js.
+/* Solarized Light JG theme for reveal.js.
  * Author: Achim Staebler, Modified by Jonathan GIlligan
  */
 @import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic);
@@ -30,8 +29,13 @@ body {
   background: #d33682;
   text-shadow: none; }
 
-.reveal .slides > section,
-.reveal .slides > section > section {
+::-moz-selection {
+  color: #fff;
+  background: #d33682;
+  text-shadow: none; }
+
+.reveal .slides section,
+.reveal .slides section > section {
   line-height: 1.3;
   font-weight: inherit; }
 
@@ -122,10 +126,6 @@ body {
 .reveal dd {
   margin-left: 40px; }
 
-.reveal q,
-.reveal blockquote {
-  quotes: none; }
-
 .reveal blockquote {
   display: block;
   position: relative;
@@ -156,7 +156,8 @@ body {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); }
 
 .reveal code {
-  font-family: monospace; }
+  font-family: monospace;
+  text-transform: none; }
 
 .reveal pre code {
   display: block;
@@ -192,10 +193,12 @@ body {
   border-bottom: none; }
 
 .reveal sup {
-  vertical-align: super; }
+  vertical-align: super;
+  font-size: smaller; }
 
 .reveal sub {
-  vertical-align: sub; }
+  vertical-align: sub;
+  font-size: smaller; }
 
 .reveal small {
   display: inline-block;
@@ -251,45 +254,27 @@ body {
 /*********************************************
  * NAVIGATION CONTROLS
  *********************************************/
-.reveal .controls .navigate-left,
-.reveal .controls .navigate-left.enabled {
-  border-right-color: #268bd2; }
-
-.reveal .controls .navigate-right,
-.reveal .controls .navigate-right.enabled {
-  border-left-color: #268bd2; }
-
-.reveal .controls .navigate-up,
-.reveal .controls .navigate-up.enabled {
-  border-bottom-color: #268bd2; }
-
-.reveal .controls .navigate-down,
-.reveal .controls .navigate-down.enabled {
-  border-top-color: #268bd2; }
-
-.reveal .controls .navigate-left.enabled:hover {
-  border-right-color: #78b9e6; }
-
-.reveal .controls .navigate-right.enabled:hover {
-  border-left-color: #78b9e6; }
-
-.reveal .controls .navigate-up.enabled:hover {
-  border-bottom-color: #78b9e6; }
-
-.reveal .controls .navigate-down.enabled:hover {
-  border-top-color: #78b9e6; }
+.reveal .controls {
+  color: #268bd2; }
 
 /*********************************************
  * PROGRESS BAR
  *********************************************/
 .reveal .progress {
-  background: rgba(0, 0, 0, 0.2); }
+  background: rgba(0, 0, 0, 0.2);
+  color: #268bd2; }
 
 .reveal .progress span {
-  background: #268bd2;
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+/*********************************************
+ * PRINT BACKGROUND
+ *********************************************/
+@media print {
+  .backgrounds {
+    background-color: #fdf6e3; } }
 
 .reveal h1 {
   margin-bottom: 50px; }
@@ -313,6 +298,12 @@ body {
 .reveal ol {
   margin-left: 2em; }
 
+.reveal ol[type=A] {
+  list-style-type: upper-alpha; }
+
+.reveal ol[type=a] {
+  list-style-type: lower-alpha; }
+
 .reveal sub {
   font-size: 60%; }
 
@@ -333,7 +324,7 @@ body {
   font-family: monospace;
   line-height: 1.2em;
   word-wrap: break-word;
-  box-shadow: 0; }
+  box-shadow: none; }
 
 .reveal code {
   font-family: "Anonymous Pro", monospace;
@@ -431,7 +422,17 @@ body {
   font-size: 75%; }
 
 .reveal .seventy {
-  font-size: 75%; }
+  font-size: 70%; }
+
+.reveal .nomargin div,
+.reveal .nomargin p,
+.reveal .nomargin > p,
+.reveal .nomargin ul,
+.reveal .nomargin ol,
+.reveal .nomargin li,
+.reveal .nomargin blockquote,
+.reveal .momargin img {
+  margin: 0; }
 
 .reveal .slides section .fragment.hightlight-green.visible {
   color: #4fa843;
@@ -455,30 +456,43 @@ body {
 
 .reveal .slides > section,
 .reveal .slidex > section > section {
-  padding: 0px 0px; }
+  padding: 0 0; }
 
-.reveal table {
-  border-width: 1px;
-  border-spacing: 2px;
+.reveal table,
+.reveal table th,
+.reveal table td {
+  border-width: 2px;
   border-style: dotted;
   border-color: gray;
-  border-collapse: collapse;
+  border-collapse: collapse; }
+
+.reveal table {
+  border-spacing: 2px;
   font-size: 0.7em; }
 
-.reveal table th {
-  border-width: 1px;
-  padding-left: 10px;
-  padding-right: 25px;
-  font-weight: bold;
-  border-style: dotted;
-  border-color: gray; }
-
+.reveal table th,
 .reveal table td {
-  border-width: 1px;
   padding-left: 10px;
-  padding-right: 25px;
-  border-style: dotted;
-  border-color: gray; }
+  padding-right: 25px; }
+
+.reveal table th {
+  font-weight: bold; }
+
+.reveal .bordered table,
+.reveal .bordered table thead,
+.reveal .bordered table tbody,
+.reveal .bordered table th,
+.reveal .bordered table tr,
+.reveal .bordered table td,
+.reveal table.bordered,
+.reveal table.bordered thead,
+.reveal table.bordered tbody,
+.reveal table.bordered th,
+.reveal table.bordered tr,
+.reveal table.bordered td {
+  border-width: 2px;
+  border-style: solid;
+  border-color: black; }
 
 .reveal .noborder table,
 .reveal .noborder thead,

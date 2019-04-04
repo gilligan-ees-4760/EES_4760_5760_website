@@ -5,7 +5,7 @@ def make_lecture_qr(path = None):
   if (path is None):
       path = os.getcwd()
   node = os.path.split(path)[1]
-  qr_text = "https://ees4760.jgilligan.org/Slides/%s/index.html" % node
+  qr_text = "https://ees3310.jgilligan.org/Slides/%s/index.html" % node
   qr = qrcode.QRCode(
       version=None,
       error_correction=qrcode.constants.ERROR_CORRECT_H,

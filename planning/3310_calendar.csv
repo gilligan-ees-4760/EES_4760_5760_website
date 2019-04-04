@@ -1,0 +1,49 @@
+cal_id,class,week,date,topic,topic_id,homework_id,event_id,reading_id
+1,1,1,8/22/2018,Introduction,INTRO,,,
+2,2,1,8/24/2018,The Modeling Cycle,MODELING_CYCLE,SET_UP_SOFTWARE,,INTRO_MODELING
+3,3,2,8/27/2018,Introduction to <%NETLOGO%>,INTRO_NETLOGO,INTRO_NETLOGO,,INTRO_NETLOGO
+4,4,2,8/29/2018,Specifying Models: The ODD Protocol,ODD_PROTOCOL,LEARNING_NETLOGO,,ODD_PROTOCOL
+5,5,3,8/31/2018,Your First Agent-Based Model,FIRST_MODEL,EXPERIMENTING_WITH_NETLOGO,,FIRST_MODEL
+6,6,3,9/3/2018,Using Models for Science,MODELS_FOR_SCIENCE,BUTTERFLY_MATING,,ANIMATIONS_TO_SCIENCE
+7,7,4,9/5/2018,Testing and Validating Models,TESTING_VALIDATING,MODELS_FROM_ODDS,,TESTING_MODELS
+8,8,4,9/7/2018,Choosing Research Projects,CHOOSING_PROJECTS,TESTING_DEBUGGING,,MODEL_DESIGN_CONCEPTS
+9,9,5,9/10/2018,Emergent Behavior: Micromotives and Macrobehavior,EMERGENCE,,,EMERGENCE
+10,10,5,9/12/2018,Observation: Extracting Data from Models,OBSERVATION,ANALYZING_EXPERIMENTS,,OBSERVATION
+11,11,6,9/14/2018,Sensing: What Do the Agents See?,SENSING,PROGRAMMING_SENSING,,SENSING
+12,12,6,9/17/2018,Adaptatve Behavior and Objectives: Agents Make Decisions,ADAPTATION_OBJECTIVES,,,ADAPTATIVE_BEHAVIOR_OBJECTIVES
+13,13,7,9/19/2018,Prediction: Agents Look Into the Future,PREDICTION,,,PREDICTION
+14,14,7,9/21/2018,Interaction among Agents,INTERACTION,,,INTERACTION
+15,15,8,9/24/2018,Team Presentations,TEAM_PRESENTATIONS,,,
+16,16,8,9/26/2018,Designing Your Research Projects,PROJECT_ODD,,,
+17,17,9,9/28/2018,Scheduling: What Happens When?,SCHEDULING,,,SCHEDULING
+18,18,9,10/1/2018,Stochasticity: Randomness in Models,STOCHASTICITY,,,STOCHASTICITY
+19,19,10,10/3/2018,"Collectives of Agents: Packs, Gangs, and Organizations",COLLECTIVES,,,COLLECTIVES
+20,20,10,10/5/2018,Pattern-Based Modeling,PATTERNS,,,PATTERN_BASED_MODELING
+21,21,11,10/8/2018,Theory Development with Models,THEORY,,,THEORY_DEVELOPMENT
+22,22,11,10/10/2018,Parameterization and Calibration of Models (Part 1),PARAM_CALIBRATION_1,,,PARAMETERIZATION_CALIBRATION_1
+23,23,12,10/12/2018,Parameterization and Calibration of Models (Part 2),PARAM_CALIBRATION_2,,,PARAMETERIZATION_CALIBRATION_2
+24,24,12,10/15/2018,Analyzing and Understanding Models,ANALYSIS,,,ANALYZING_UNDERSTANDING
+25,25,13,10/17/2018,"Trusting Models: Sensitivity, Uncertainty, and Robustness",SENSITIVITY_ROBUSTNESS,,,SENSITIVITY_ROBUSTNESS
+26,26,13,10/19/2018,Looking Ahead: Agent-Based Models beyond this Course,LOOKING_AHEAD,,,WHERE_TO_GO_FROM_HERE
+27,27,14,10/22/2018,Project Presentations,PRESENTATIONS,,,
+28,28,14,10/24/2018,Project Presentations,PRESENTATIONS,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,

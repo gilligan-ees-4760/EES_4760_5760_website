@@ -1,14 +1,21 @@
 library(tidyverse)
+library(DBI)
 library(RSQLite)
 library(lubridate)
 
-sanitize_string <- function(src_str) {
-  # message("Sanitizing \"", src_str, "\"")
+sanitize_string <- function(src_str, debug = FALSE) {
+  if (debug) {
+    message("Sanitizing ", str_trunc(src_str, 70))
+    g_str <<- src_str
+  }
   brace_commands <- tribble(
     ~target, ~prefix, ~suffix,
     "emph", "_", "_",
     "textbf", "**", "**",
-    "url", "<", ">"
+    "url", "<", ">",
+    "subsubsection", "### ", "",
+    "subsubsubsection", "####", "",
+    "ce", "", "",
   )
 
   bar_commands <- tribble(
@@ -18,22 +25,51 @@ sanitize_string <- function(src_str) {
 
   simple_commands <- tribble(
     ~target, ~subst,
-    "NetLogo", "<%NETLOGO%>",
-    "ShortRailsback", "<%SHORT_RAILSBACK%>",
-    "MedRailsback", "<%MED_RAILSBACK%>",
-    "Railsback", "<%RAILSBACK%>",
-    "AltShortRailsback", "<%ALT_SHORT_RAILSBACK%>",
-    "Railsback", "<%RAILSBACK%>"
+    "Archer", "<%ARCHER%>",
+    "MedArcher", "<%MEDIUM_ARCHER%>",
+    "ShortArcher", "<%SHORT_ARCHER%>",
+    "Nordhaus", "<%NORDHAUS%>",
+    "MedNordhaus", "<%MEDIUM_NORDHAUS%>",
+    "ShortNordhaus", "<%SHORT_NORDHAUS%>",
+    "Pielke", "<%PIELKE%>",
+    "MedPielke", "<%MEDIUM_PIELKE%>",
+    "ShortPielke", "<%SHORT_PIELKE%>",
+    "RStudio", "<%RSTUDIO%>",
+    "COO", "<%COO%>",
+    "carbonicacid", "<%CARBONIC_ACID%>",
+    "bicarbonate", "<%BICARBONATE%>",
+    "carbonate", "<%CARBONATE%>",
+    "methane", "<%METHANE%>",
+    "Hplus", "<%HPLUS%>",
+    "Htwo", "<%HTWO%>",
+    "Otwo", "<%OTWO%>",
+    "Ntwo", "<%NTWO%>",
+    "Oeighteen", "<%OEIGHTEEN%>",
+    "Osixteen", "<%OSIXTEEN%>",
+    "Ctwelve", "%<CTWELVE%>",
+    "Cthirteen", "%<CTHIRTEEN%>",
+    "Cfourteen", "%<CFOURTEEN%>",
+    "Hone", "<%HONE%>",
+    "deuterium", "<%DEUTERIUM%>",
+    "SLUGULATOR", "<%SLUGULATOR%>",
+    "GEOCARB", "<%GEOCARB%>",
+    "MODTRAN", "<%MODTRAN%>"
   )
 
   unesc_chars <- tribble(
     ~target, ~subst,
     "(\\\\([&%$ ]))", "\\2",
+    "\\\\~n", "&ntilde;",
     "~", " ",
     "\\\\/", "",
+    "\\ ", " ",
     "`", "'",
     "``", '"',
-    "''", '"'
+    "''", '"',
+    "\\\\\"o", "&ouml;",
+    "\\\\\"u", "&uuml;",
+    "\\\\\"O", "&Ouml;",
+    "\\\\\"U", "&Uuml;"
   )
 
   patterns <- c(open = "\\{", close = "\\}", bar = "\\|", cmd = "\\\\[a-zA-Z]+",
@@ -80,7 +116,6 @@ sanitize_string <- function(src_str) {
       mutate(close = lead(open, 1))
   }
 
-
   commands <- specials$cmd %>% mutate(cmd = str_sub(src_str, start + 1, end)) %>%
     mutate(arg_start = end + 1L, bar_start = arg_start) %>%
     left_join(select(braces, arg_start = open, arg_stop = close), by = "arg_start") %>%
@@ -100,13 +135,88 @@ sanitize_string <- function(src_str) {
            suffix = ifelse(is.na(suffix), "", suffix)
            )
 
+  if (nrow(braces) > 0) {
+    lists <- specials$cmd %>%
+      mutate(cmd = str_sub(src_str, start + 1, end)) %>%
+      filter(str_detect(cmd, "begin|end|item"))
+    if (nrow(lists) > 0) {
+
+    lists <- lists %>%
+      left_join(mutate(braces, end = open - 1), by = "end") %>%
+      mutate(arg = str_sub(src_str, open + 1, close - 1))
+
+    newlines <- str_locate_all(src_str, "\n")
+    newlines <- c(0, newlines[[1]][,"start"])
+
+    cmd_stack = character(0)
+    depth <- 0
+    for (i in seq(nrow(lists))) {
+      lcmd <- lists$cmd[i]
+      larg <- lists$arg[i]
+      if (debug) {
+        message("Row ", i, ": cmd = ", lcmd, ", arg = ", larg)
+      }
+      if (lcmd == "begin") {
+        depth <- depth + 1
+        cmd_stack <- c(cmd_stack, larg)
+        # lists$start[i] <- newlines %>% keep(~.x <= lists$start[i]) %>% max() + 1
+        lists$end[i] <- lists$close[i]
+        if (debug) {
+          message("line ", i, ": cmd = ", lcmd, ", depth = ", depth,
+                  ", arg = ", larg,
+                  ", cmd_stack = (", str_c(cmd_stack, collapse = ", "), ")")
+        }
+      } else if (lcmd == "end") {
+        depth <- depth - 1
+        cmd_stack <- head(cmd_stack, -1)
+        # lists$start[i] <- newlines %>% keep(~.x <= lists$start[i]) %>% max() + 1
+        lists$end[i] <- lists$close[i]
+        if (debug) {
+          message("line ", i, ": cmd = ", lcmd, ", depth = ", depth,
+                  ", arg = ", larg,
+                  ", cmd_stack = (", str_c(cmd_stack, collapse = ", "), ")")
+        }
+      } else {
+        lists$depth[i] <- depth
+        lists$arg[i] <- tail(cmd_stack, 1)
+        # lists$start[i] <- newlines %>% keep(~.x <= lists$start[i]) %>% max() + 1
+      }
+      lists$start[i] <- newlines %>% keep(~.x <= lists$start[i]) %>% max() + 1
+    }
+
+    # lists <- lists %>% filter(cmd == "item")
+
+    if (debug) {
+      g_lists <<- lists
+    }
+
+    lists <- lists %>%
+      mutate(has_arg = FALSE, arg_start = end + 1, arg_stop = arg_start, has_bar = FALSE,
+             bar_start = NA, bar_stop = NA,
+             prefix = ifelse(cmd == "item",
+                             str_c(str_dup(" ", (depth - 1) * 4),
+                                   ifelse(arg == "itemize", "*", "1.")),
+                             ""),
+             suffix = "", subst = prefix) %>%
+      select(one_of(names(commands)))
+
+    commands <- commands %>% bind_rows(lists) %>% arrange(start)
+    }
+  }
+
+  if (debug) {
+    g_cmds <<- commands
+  }
+
   output <- ""
   pointer <- 1
   while(nrow(commands) > 0) {
     cmd <- head(commands, 1)
     old_pointer <- pointer
-    # message("output = \"", output, "\"")
-    # message("cmd = ", cmd$cmd, ", pointer = ", pointer)
+    if (debug) {
+      message("output = \"", output, "\"")
+      message("cmd = ", cmd$cmd, ", pointer = ", pointer)
+    }
     if (cmd$start > pointer) {
       output <- str_c(output, str_sub(src_str, pointer, cmd$start - 1))
     }
@@ -150,7 +260,9 @@ sanitize_string <- function(src_str) {
       }
     }
     output <- str_c(output, arg)
-    # message("Finishing loop: output = \"", output, "\", pointer = ", pointer)
+    if (debug) {
+      message("Finishing loop: output = \"", output, "\", pointer = ", pointer)
+    }
     commands <- commands %>% filter(start >= pointer)
     stopifnot(pointer > old_pointer)
   }
@@ -170,33 +282,73 @@ convert_vector <- function(x) {
   map_chr(x, convert_item)
 }
 
-convert_database <- function() {
+
+convert_database <- function(src, dest) {
+  text_code_table <- tribble(
+    ~code_name, ~code_value, ~latex_value, ~print_value,
+    "ARCHER", "Global Warming: Understanding the Forecast", "Global Warming: Understanding the Forecast", NA,
+    "MEDIUM_ARCHER", "Understanding the Forecast", "Understanding the Forecast", NA,
+    "SHORT_ARCHER", "Forecast", "Forecast", NA,
+    "PIELKE", "The Climate Fix", "The Climate Fix", NA,
+    "MEDIUM_PIELKE", "The Climate Fix", "The Climate Fix", NA,
+    "SHORT_PIELKE", "Climate Fix", "Climate Fix", NA,
+    "NORDHAUS", "The Climate Casino", "The Climate Casino", NA,
+    "MEDIUM_NORDHAUS", "Climate Casino", "Climate Casino", NA,
+    "SHORT_NORDHAUS", "Casino", "Casino", NA,
+    "RSTUDIO", "RStudio", "RStudio", NA,
+    "COO", "CO~2~", "\\COO", NA,
+    "CARBONIC_ACID", "H~2~CO~3~", "\\carbonicacid", NA,
+    "HPLUS", "H^+^", "\\hplus", NA,
+    "BICARBONATE", "HCO~3~^-^", "\\bicarbonate", NA,
+    "CARBONATE", "CO~3~^-2^", "\\carbonate", NA,
+    "METHANE", "CH~4~", "\\methane", NA,
+    "SLUGULATOR", "SLUGULATOR", "\\SLUGULATOR", NA,
+    "GEOCARB", "GEOCARB", "\\GEOCARB", NA,
+    "MODTRAN", "MODTRAN", "\\MODTRAN", NA,
+    "HPLUS", "H^+^", "\\Hplus", NA,
+    "HTWO", "H~2~", "\\Htwo", NA,
+    "OTWO", "O~2~", "\\Otwo", NA,
+    "NTWO", "N~2~", "\\Ntwo", NA,
+    "OEIGHTEEN", "^18^O$", "\\Oeighteen", NA,
+    "OSIXTEEN", "^16^O$", "\\Osixeen", NA,
+    "CTWELVE", "^12^C$", "\\Ctwelve", NA,
+    "CTHIRTEEN", "^13^C$", "\\Cthirteen", NA,
+    "CFOURTEEN", "^14^C$", "\\Cfourteen", NA,
+    "HONE", "^1^H$", "\\Hone", NA,
+    "DEUTERIUM", "^2^H$", "\\deuterium", NA
+  )
+
+
   driver <- SQLite()
 
-  src_db <- dbConnect(driver, "planning/EES_4760_5760_Class_Schedule.sqlite3")
-  dest_db <- dbConnect(driver, "planning/EES_4760_5760.sqlite3")
+  src_db <- dbConnect(driver, src)
+  dest_db <- dbConnect(driver, dest)
   sqliteCopyDatabase(src_db, dest_db)
   dbDisconnect(src_db)
   dbDisconnect(dest_db)
 
-  db <- dbConnect(driver, "planning/EES_4760_5760.sqlite3", flags = SQLITE_RW)
-  hw_assignments <- db %>% tbl("homework_assignments") %>% collect()
-  hw_items <- db %>% tbl("homework_items") %>% collect() %>%
-    mutate_at(c("short_homework", "homework", "homework_notes"), convert_vector)
-  copy_to(db, hw_items, name = "homework_items", overwrite = TRUE, temporary = FALSE)
-
+  db <- dbConnect(driver, dest, flags = SQLITE_RW)
   calendar <- db %>% tbl("calendar") %>% collect() %>%
     mutate_at(c("topic"), convert_vector)
-  copy_to(db, calendar, name = "calendar", overwrite = TRUE, temporary = FALSE)
+
+  dbWriteTable(db, "calendar", calendar, overwrite = TRUE)
+
+  hw_items <- db %>% tbl("homework_items") %>% collect() %>%
+    mutate_at(c("short_homework", "homework", "homework_notes"), convert_vector)
+
+  dbWriteTable(db, "homework_items", hw_items, overwrite = TRUE)
 
   reading_items <- db %>% tbl("reading_items") %>% collect() %>%
     mutate_at(c("reading_notes"), convert_vector)
-  copy_to(db, reading_items, name = "reading_items", overwrite = TRUE, temporary = FALSE)
+
+  dbWriteTable(db, "reading_items", reading_items, overwrite = TRUE)
 
   reading_sources <- db %>% tbl("reading_sources") %>% collect() %>%
-    mutate_at(c("title", "short_title", "latex_title", "short_latex_title", "citation"), convert_vector) %>%
-    rename(markdown_title = latex_title, short_markdown_title = short_latex_title) %>%
-  copy_to(db, reading_sources, name = "reading_sources", overwrite = TRUE, temporary = FALSE)
+    mutate_at(c("title", "short_title", "citation"), convert_vector)
+
+  dbWriteTable(db, "reading_sources", reading_sources, overwrite = TRUE)
+
+  dbWriteTable(db, "text_codes", text_code_table, overwrite = TRUE)
 
   dbDisconnect(db)
 }

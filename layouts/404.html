@@ -1,7 +1,24 @@
-{{ define "main"}}
-<main id="main">
-  <div>
-    <h1 id="title"><a href="{{ "/" | relURL }}">Go Home</a></h1>
+{{ define "body" }}
+<body style="background-image:url({{ .Site.Params.background | relURL }});background-size:{{ .Site.Params.backgroundSize | safeCSS  }};background-repeat:{{ .Site.Params.backgroundRepeat | safeCSS }};background-color:{{ .Site.Params.backgroundColor | safeCSS }};background-blend-mode:{{ .Site.Params.backgroundBlendMode | safeCSS }}">
+  <div class="grid-y medium-grid-frame">
+    {{ partial "topbar.html" . }}
+    <div class="grid-x medium-auto medium-cell-block-container">
+      <div class="grid-container fill-y medium-cell-block-y">
+        <div class="grid-y fill-y grid-margin-y">
+          <div class="cell medium-5 show-for-medium">
+          </div>
+          <div class="grid-x grid-padding-x grid-padding-y medium-auto medium-cell-block-container">
+            <div class="cell small-12" style="color:white;background-color:hsla(0, 0%, 0%, 0.4);overflow:scroll-y;text-align:center">
+              <h1 id="title">Page not found.</h1>
+              <h2 id="gohome"><a href="{{ "/" | absURL }}">Go Home</a></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cell footer shrink" style="text-align:center;color:white;background-color:hsla(0, 0%, 0%, 0.4);">
+      {{ partial "footer.html" . }}
+    </div>
   </div>
-</main>
+</body>
 {{ end }}

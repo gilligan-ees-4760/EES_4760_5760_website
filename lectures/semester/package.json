@@ -1,13 +1,14 @@
 {
   "name": "reveal.js",
-  "version": "3.3.0",
+  "version": "3.7.0",
   "description": "The HTML Presentation Framework",
-  "homepage": "http://lab.hakim.se/reveal-js",
+  "homepage": "http://revealjs.com",
   "subdomain": "revealjs",
   "main": "js/reveal.js",
   "scripts": {
     "test": "grunt test",
-    "start": "grunt serve"
+    "start": "grunt serve",
+    "build": "grunt"
   },
   "author": {
     "name": "Hakim El Hattab",
@@ -19,29 +20,26 @@
     "url": "git://github.com/hakimel/reveal.js.git"
   },
   "engines": {
-    "node": "~>=4.2.6"
-  },
-  "dependencies": {
-    "decktape": "^2.8.0",
-    "express": ">=4.13.4",
-    "grunt-cli": ">=0.1.13",
-    "mustache": ">=2.2.1",
-    "sass": ">=1.0.0-rc.1",
-    "socket.io": ">=1.4.5"
+    "node": ">=4.0.0"
   },
   "devDependencies": {
-    "grunt": "^1.0.2",
-    "grunt-autoprefixer": ">=3.0.3",
-    "grunt-contrib-connect": ">=0.11.2",
-    "grunt-contrib-cssmin": ">=0.14.0",
-    "grunt-contrib-jshint": ">=0.12.0",
-    "grunt-contrib-qunit": ">=0.7.0",
-    "grunt-contrib-uglify": ">=0.11.0",
-    "grunt-contrib-watch": ">=0.6.1",
-    "grunt-sass": "^2.1.0",
-    "grunt-sync": ">=0.5.0",
+    "express": "^4.16.2",
+    "grunt": "^1.0.1",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-qunit": "^2.0.0",
+    "grunt-contrib-uglify": "^3.3.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^2.0.0",
+    "grunt-retire": "^1.0.7",
     "grunt-zip": ">=0.17.1",
-    "node-sass": "^4.7.2"
+    "grunt-sync": ">=0.5.0",
+    "mustache": "^2.3.0",
+    "socket.io": "^2.1.1",
+    "read-yaml": ">=1.1.0"
   },
   "license": "MIT"
 }

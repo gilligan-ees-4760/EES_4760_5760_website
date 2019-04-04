@@ -1,10 +1,12 @@
-library(tidyverse)
-library(rprojroot)
 library(knitr)
 library(rmarkdown)
 library(revealjs.jg)
 library(yaml)
-library(magick)
+library(tidyverse)
+library(stringr)
+
+source('fix_rmd.R')
+source('fix_file_refs.R')
 
 find_semester_dir <- function(dir = '.', up = TRUE) {
   dir = normalizePath(path.expand(dir))
@@ -24,18 +26,9 @@ find_semester_dir <- function(dir = '.', up = TRUE) {
   NULL
 }
 
-semester.dir <- find_semester_dir()
-data.dir <- file.path(semester.dir, 'data')
-script.dir <- file.path(semester.dir, 'util_scripts')
-
-setwd(semester.dir)
-
-source('fix_rmd.R')
-source('fix_file_refs.R')
-
 
 make_pageurl <- function(lecture_no, lecture_dir = 'Slides') {
-  server <- 'ees4760.jgilligan.org'
+  server <- 'ees3310.jgilligan.org'
   head_dir <- NA
   URLencode(paste0('https://',
                    c(server, head_dir, lecture_dir, sprintf('Class_%02d/', lecture_no)) %>%
@@ -43,13 +36,13 @@ make_pageurl <- function(lecture_no, lecture_dir = 'Slides') {
 }
 
 make_pdfurl <- function(lecture_no, lecture_dir = 'Slides') {
-  server <- 'ees4760.jgilligan.org'
+  server <- 'ees3310.jgilligan.org'
   head_dir <- NA
   URLencode(paste0('https://',
-                   c(server, head_dir, lecture_dir, sprintf('Class_%02d/EES_4760_5760_Class_%02d_Slides.pdf', lecture_no, lecture_no)) %>%
+                   c(server, head_dir, lecture_dir, sprintf('Class_%02d', lecture_no),
+                     sprintf('EES_3310_5310_Class_%02d_Slides.pdf', lecture_no)) %>%
                      discard(~is.na(.x)) %>% reduce(file.path)))
 }
-
 
 
 add_class_number <- function(lecture_number, file = 'index.Rmd') {
@@ -99,18 +92,30 @@ add_pageurl <- function(lecture_no, lecture_dir = "Slides", file = 'index.Rmd') 
         str_replace("^https://","")
       lines[i] <- str_trim(lines[i], 'right') %>%
         paste0(' "', page_url, '"')
-    }
-    if (str_detect(lines[i], '^\\s*pdfurl\\s*:\\s*$')) {
-      pdf_url <- make_pdfurl(lecture_no, lecture_dir) %>%
-        str_replace("^https://","")
-      lines[i] <- str_trim(lines[i], 'right') %>%
-        paste0(' "', pdf_url, '"')
+      break
     }
     if (grepl('^---', lines[i]))
       break
   }
   writeLines(lines, file)
 }
+
+add_pdfurl <- function(lecture_no, lecture_dir = "Slides", file = 'index.Rmd') {
+  lines <- readLines(file)
+  for (i in 2:length(lines)) {
+    if (str_detect(lines[i], '^\\s*pdfurl\\s*:\\s*$')) {
+      pdf_url <- make_pdfurl(lecture_no, lecture_dir) %>%
+        str_replace("^https://","")
+      lines[i] <- str_trim(lines[i], 'right') %>%
+        paste0(' "', pdf_url, '"')
+      break
+    }
+    if (grepl('^---', lines[i]))
+      break
+  }
+  writeLines(lines, file)
+}
+
 
 split_path <- function(p) {
   b<-  basename(p)
@@ -174,6 +179,7 @@ author_lecture <- function(lecture_number, semester_dir = '.',
     dir.create('assets/images', recursive = TRUE)
     add_qrimage()
     add_pageurl(lecture_number, basename(lecture_dir))
+    add_pdfurl(lecture_number, basename(lecture_dir))
     if (open_rmd)
       file.edit('index.Rmd')
   }
@@ -209,8 +215,8 @@ build_lecture <- function(inputFile, knit_deck = TRUE,
 }
 
 build_semester_index <- function(semester_dir = '.', last_lecture = NA) {
-  old_wd <- getwd()
-  setwd(semester_dir)
+  old_wd = getwd()
+  setwd(here::here())
   site = yaml.load_file('semester.yml')
   last_lecture_file <- file.path(semester_dir, 'last_lecture.yml')
   if (is.na(last_lecture)) {
@@ -242,52 +248,125 @@ build_lectures <- function (semester_dir = ".", last_lecture = NA, envir = paren
   #  return(invisible(list(pages = pages, site = site, tags = tags)))
 }
 
-
-
-run_decktape <- function(class = NULL) {
-  if (is.null(class)) {
-    class_dir = getwd() %>% basename()
-    class = class_dir %>% str_extract("[0-9]+$") %>%
-      simplify() %>% as.integer()
-    dest_dir = "."
-  } else {
-    class = as.integer(class)
-    class_dir = sprintf("Class_%02d", class)
-    dest_dir = file.path(semester.dir, "Slides", class_dir)
+clean_images <- function(dir = NULL, dry_run = FALSE, quiet = FALSE) {
+  strip_leading <- function(s) {
+    str_replace(s, "^assets/images/", "")
   }
-  dest = file.path(dest_dir, sprintf("EES_4760_5760_Class_%02d_Slides.pdf", class))
-  slide_path = str_c("Slides/", class_dir)
-  output_yml = file.path(dest_dir, "_output.yml")
-  res = "1920x1080"
-  if (file.exists(output_yml)) {
-    y = yaml.load_file(output_yml)
-    params = y[["revealjs.jg::revealjs_presentation"]]
-    if (all (c("height", "width") %in% names(params))) {
-      h = params$height
-      w = params$width
-      res = str_c(w, "x", h)
+
+  cwd = getwd()
+  if (! is.null(dir)) {
+    setwd(dir)
+  }
+
+  lines = readLines("index.html")
+  lines = lines %>% keep(~str_detect(.x, fixed("images/")))
+  images = lines %>% str_extract_all("images/[a-zA-Z0-9_.\\-]+") %>%
+    unlist() %>% simplify() %>% unique() %>% file.path("assets", .)
+  image_df <- tibble(im = images, lc = str_to_lower(im))
+  image_files = list.files('assets/images') %>% file.path('assets/images', .)
+  image_file_df = tibble(im_file = image_files, lc = str_to_lower(im_file))
+  big_df = image_file_df %>% left_join(image_df, by = "lc") %>%
+    filter(! str_detect(lc, '^corel'), ! str_detect(lc, "\\.pspimage$"))
+  files_to_remove = big_df %>% filter(is.na(im))
+  files_to_rename = big_df %>% filter(!is.na(im) & im_file != im)
+  missing_files = image_file_df %>% right_join(image_df, by = "lc") %>%
+    filter(is.na(im_file))
+
+  if (!quiet) {
+    message("Files to remove = [",
+            str_c(strip_leading(files_to_remove$im_file),
+                  collapse = ", "), "]")
+    message("Files to rename = [",
+            str_c(strip_leading(files_to_rename$im_file),
+                  strip_leading(files_to_rename$im),
+                  sep = " --> ", collapse = ", "), "]")
+  }
+
+  if (nrow(missing_files) > 0) {
+    warning("Missing files: [",
+            str_c(strip_leading(missing_files$im), collapse = ", "), "]")
+  }
+
+  if (! dry_run) {
+    file.remove(files_to_remove$im_file)
+    file.rename(files_to_rename$im_file, files_to_rename$im)
+  }
+
+  setwd(cwd)
+}
+
+copy_image_files_worker = function(source, dest) {
+  source_dir = file.path(source, 'assets/images/')
+  if (! dir.exists(source_dir)) {
+    source_dir = file.path(source, 'images/')
+    if (! dir.exists(source_dir)) {
+      return
     }
   }
-  screenshot_dir <- "tmp_screenshots"
-  if (dir.exists(screenshot_dir)) {
-    ss_files <- file.path(screenshot_dir, list.files(screenshot_dir))
-    if (length(ss_files) > 0)
-      file.remove(ss_files)
-  } else {
-    dir.create(screenshot_dir, recursive = TRUE)
+  dest_dir = file.path(dest, 'assets/images/')
+  if (dir.exists(dest) & ! dir.exists(dest_dir)) {
+    if (! dir.create(dest_dir, recursive = TRUE))
+      return
+  }
+  dest_dir = dirname(dest_dir)
+  message("source = ", source, ", source_dir = ", source_dir, ", dest = ", dest, " dest_dir = ", dest_dir)
+  file.copy(source_dir, dest_dir, recursive = TRUE, overwrite = FALSE,
+            copy.mode = TRUE, copy.date = TRUE)
+}
+
+copy_image_files <- function(source, dest, subdir = "Slides") {
+  if (! is.na(subdir) && ! is.null(subdir)) {
+    source = file.path(source, subdir)
+    dest = file.path(dest, subdir)
   }
 
-  slide_url <- str_c("http://localhost:8000/", slide_path)
-  decktape_cmd_line = str_c("decktape reveal -s", res, "--screenshots --screenshots-directory", screenshot_dir,
-                   slide_url, " ", dest, sep = " ")
-  system(decktape_cmd_line)
-
-  magick_files <- tibble(fname = list.files(screenshot_dir)) %>%
-    mutate(index = str_extract(fname, "(?<=_Slides_)[0-9]+(?=_)") %>% as.integer()) %>%
-    arrange(index) %>%
-    select(fname) %>% flatten() %>% simplify()
-  screen_shots <- image_read(file.path(screenshot_dir, magick_files))
-  image_write(screen_shots, dest, format = "pdf", quality = "100")
-  unlink(screenshot_dir, recursive = TRUE, force = TRUE)
+  dirs = intersect(list.dirs(source, recursive = FALSE, full.names = FALSE),
+                     list.dirs(dest, recursive = FALSE, full.names = FALSE))
+  for (dir in dirs) {
+    message("Processing ", dir)
+    copy_image_files_worker(file.path(source, dir), file.path(dest, dir))
+  }
 }
+
+copy_lecture_images = function(num, dest = NULL) {
+  source_path = file.path(semester.dir, '..', 'old_lectures', 'Slides',
+                          sprintf("Class_%02d", num)) %>%
+    normalizePath()
+  if (is.null(dest)) {
+    cwd = getwd()
+    if (str_detect(cwd, 'Class_[0-9]+$')) {
+      dest = '.'
+    } else {
+      dest = file.path(semester.dir, 'Slides', sprintf("Class_%02d"))
+    }
+  }
+  if (dir.exists(source_path) & dir.exists(dest)) {
+    copy_image_files_worker(source_path, dest)
+  }
+}
+
+copy_lecture_template = function(num, dest_dir = NULL) {
+  source = file.path(semester.dir, '..', 'old_lectures', 'Slides',
+                          sprintf("Class_%02d", num), 'index.Rmd') %>%
+    normalizePath()
+  if (is.null(dest_dir)) {
+    cwd = getwd()
+    if (str_detect(cwd, 'Class_[0-9]+$')) {
+      dest_dir = '.'
+    } else {
+      dest_dir = file.path(semester.dir, 'Slides', sprintf("Class_%02d"))
+    }
+  }
+  if (file.exists(source) & dir.exists(dest_dir)) {
+    dest = sprintf('index-%02d.Rmd', num)
+    message("source = ", source, ", dest = ", dest, " dest_dir = ", dest_dir)
+    file.copy(source, dest, recursive = FALSE, overwrite = FALSE,
+              copy.mode = TRUE, copy.date = TRUE)
+  }
+}
+
+semester.dir <- find_semester_dir()
+data.dir <- file.path(semester.dir, 'data')
+script.dir <- file.path(semester.dir, 'util_scripts')
+
 

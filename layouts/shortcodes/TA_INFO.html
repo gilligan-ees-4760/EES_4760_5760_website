@@ -1,0 +1,8 @@
+{{ if isset .Site.Params.ta "url" -}}
+<a href="{{ .Site.Params.ta.url }}", target="_blank">{{ .Site.Params.ta.name | markdownify}}
+{{- else -}}
+{{ .Site.Params.ta.name | markdownify }}
+{{- end }}<br/>
+Office: {{ .Site.Params.ta.office | markdownify }}<br/>
+Email: <a href="mailto:{{.Site.Params.ta.email}}?subject=EES 3310">{{.Site.Params.ta.email}}</a><br/>
+Office Hours: {{ .Site.Params.ta.officeHours | markdownify }}

@@ -1,10 +1,4 @@
 ---
-title       : Semester Overview
-course      : "EES 4760/5760"
-course_name : "Agent-Based & Individual-Based Computational Modeling"
-author      : "Jonathan Gilligan"
-semester    : Spring
-year        : 2018
 output: 
   revealjs.jg::revealjs_presentation:
     controls: true
@@ -43,11 +37,13 @@ message("now at 8")
 ### Navigation:
 
 <ul style="width:95%;">
+<li><a href="`r file.path(semester.dir, 'assets', 'pdf', 'EES_3310_5310_Syllabus.pdf')`"><b>Syllabus</b></a>
+<li><a href="`r file.path(semester.dir, 'assets', 'pdf', 'EES_3310_5310_Reading_Assignments.pdf')`"><b>Reading Assignments</b></a>
 <li><b>Classes:</b></li>
 <ul style="height:600px; width:95%; overflow-x:hidden; overflow-y:scroll; white-space:normal;">
 
 ```{r link_to_lectures, echo = FALSE, results = 'asis', cache=FALSE}
-files = dir('Slides', 'Class_*', full = TRUE)
+files = dir('Slides', 'index.Rmd', recursive = TRUE, full = TRUE)
 links <- c()
 
 last_lecture_file <- 'last_class.yml'
@@ -55,28 +51,27 @@ if (file.exists(last_lecture_file)) {
   last_lecture <- yaml.load_file(last_lecture_file)$last_lecture
 } else last_lecture <- NA
 for (f in files) {
-  rmdfile <- file.path(f, 'index.Rmd')
-  htmlfile <- sub('\\.Rmd$','.html',rmdfile)
-  url <- URLencode(htmlfile)
-  if (file.exists(rmdfile)) {
-    metadata <- grab_header(rmdfile)
+  url = NULL
+  htmlfile <- sub('\\.Rmd$','.html',f)
+    metadata <- grab_header(f)
     num <- metadata$class_no
     title <- metadata$title
     class_date <- metadata$class_date
-    if (file.exists(htmlfile) && (is.na(last_lecture) || num <= last_lecture)) {
+  if (file.exists(htmlfile)) {
+    url <- URLencode(htmlfile)
+  } else {
+    dir = dirname(f)
+    pdf_file = file.path(dir, sprintf("EES_3310_5310_Class_%02d.pdf", num))
+    if (file.exists(pdf_file)) {
+      url <- URLencode(pdf_file)
+    }
+  }
+    if (! is.null(url) && (is.na(last_lecture) || num <= last_lecture)) {
       links = c(links, 
                 paste0('<li><a href="', url, '">Class #', num , '</a> (', 
-                       strip_year(class_date), '): "', gsub('<br */>',' ',title, ignore.case = TRUE), '"</li>'))
-    } else {
-      links = c(links, 
-                paste0('<li>Class #', num , ' (', 
-                       strip_year(class_date), '): <i>No slides</i> </li>'))
+                       strip_year(class_date), '): "', 
+                       gsub('<br */>',' ', title, ignore.case = TRUE), '"</li>'))
     }
-  } else {
-    num <- str_extract(basename(f), '[0-9]+$') %>% as.integer()
-      links = c(links, 
-                paste0('<li>Class #', num , ': <i>No slides</i> </li>'))
-  }
 }
 writeLines(links)
 ```

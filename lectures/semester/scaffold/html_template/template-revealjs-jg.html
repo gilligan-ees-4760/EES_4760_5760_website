@@ -26,6 +26,7 @@ $endif$
       .column{display: inline-block;}  </style>
   <style type="text/css">
     div.qrbox {
+     width:100vw;
      position:fixed;
      bottom:$if(qrbottom)$$qrbottom$$else$-90%$endif$;
      left:10px;
@@ -111,16 +112,25 @@ $endif$
     </h3>
     $if(qrimage)$
     <div class="qrbox" id="qrbox">
-      <p style="font-size:30%">
+      <div style="font-size:30%;width:100%;">
     $if(pageurl)$<a href="https://$pageurl$">$endif$
   	<img src="$qrimage$" alt="https://$pageurl$"/>
-  	$if(pageurl)$</a>
-    	<br/>
+  	$if(pageurl)$</a>$endif$
+    	</div>
+    	<div style="font-size:30%;width:100%;vertical-align:top;">
+    	<span style="display:inline-block;text-align:left;margin-left:0">
+    	$if(pageurl)$
     	Live web page: <a href="https://$pageurl$">https://$pageurl$</a>
     	$if(pdfurl)$<br/>
     	PDF: <a href="https://$pdfurl$" target="_blank">https://$pdfurl$</a>
-    	$endif$$endif$
-  	</p>
+    	$endif$
+    	$endif$
+    	</span>
+    	<span style="display:inline-block;text-align:right;vertical-align:top;position:relative;left:10rem;">
+    	  Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>
+    	  Also: up, down, left, right arrows; overview: o; help: ?
+    	</span>
+  	</div>
   	</div>
     $endif$
 	<!-- end title slide -->

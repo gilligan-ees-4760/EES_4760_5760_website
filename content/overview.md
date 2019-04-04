@@ -6,6 +6,20 @@ date: "2017-04-13T00:00:00"
 
 # **Course Description**
 
+## Basic Info:
+
+#### Professor
+
+{{% PROF_INFO %}}
+
+#### Graduate Teaching Assistant
+
+{{% TA_INFO %}}
+
+#### Schedule
+
+{{% CLASS_MEETINGS %}}
+
 ## Catalog Description
 
 **EES 4760/5760 Agent- and Individual-Based Computational Modeling** 
@@ -15,7 +29,7 @@ Examples from environmental science, ecology, economics, urban planning, and
 medicine. Familiarity with basic statistics and proficiency in algebra are 
 expected. \[3\] \(MNS\)
 
-## Prerequisites
+### Prerequisites
 
 You should be generally numerically literate and I will assume that you are
 familiar and comfortable with basic algebra and statistics.
@@ -91,9 +105,6 @@ during the term.
     <http://railsback-grimm-abm-book.com/>
     where you can find errata in the textbook and download supporting data files 
     and {{% NETLOGO %}} models for some of the exercises.
-    
-    I have also posted [a copy of the errata](/files/Railsback_Grimm_2012_Errata.pdf) 
-    on this web site.
 
 ## Additional Resources
 
@@ -181,13 +192,13 @@ presentations.
 
 ## **Basis for Grading**
 
-|       |       |      |
-|:-----:|------:|-----:|
-| Class participation | 5%   | |
-| Homework            | 25%  | |
-| Assigned Projects   | 30%  | |
-| Research Project    | 40%  | |
-| Feedback to Other Students | 5% | |
+|                            |       |      |
+|:--------------------------:|------:|-----:|
+| Class participation        |  5%   |      |
+| Homework                   | 25%   |      |
+| Assigned Projects          | 30%   |      |
+| Research Project           | 40%   |      |
+| Feedback to Other Students |  5%   |      |
 
 # **Final Note:**
 

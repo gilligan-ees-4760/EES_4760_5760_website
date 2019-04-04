@@ -1,102 +1,65 @@
+#!/usr/bin/python3
 import os
 import sys
 import subprocess
 import re
 import platform
-import getopt
 
 system = platform.system().lower()
 if (system == 'windows'):
-    decktape = ['decktape.bat',]
+    decktape = ['old_decktape.bat',]
 elif (system == 'linux'):
     # decktape = 'decktape'
     decktape = ['~/decktape/bin/phantomjs','~/decktape/decktape.js']
-    decktape = map(os.path.expanduser, decktape)
+    decktape = list(map(os.path.expanduser, decktape))
 
 # subprocess.call(decktape + ['-h',], shell=True)
-resolution = '1920x1080'
-#resolution = '1280x1024'
 
-args = ['reveal', '-s', resolution]
-incremental_args = ['reveal-incremental', '-s', resolution ]
+# args = ['reveal', '-s', '1920x1080']
+# args = ['reveal', '-s', '1280x1024']
+args = ['reveal', '-s', '1440x900']
 
-lecture_template = "EES_4760_5760_Class_%02d_Slides.pdf"
-lecture_template_incremental = "EES_4760_5760_Class_%02d_Slides_inc.pdf"
+lecture_template = "EES_3310_5310_Class_%02d_Slides.pdf"
+url_template = "http://localhost:8000/Slides/Class_%02d/"
 classnum_expr = re.compile('.*_(?P<class_num>[0-9]+)$')
 
 
-def run_decktape(path, incremental = False):
-    if incremental:
-        dt_args = incremental_args
-        dt_template = lecture_template_incremental
-    else:
-        dt_args = args
-        dt_template = lecture_template
-    if os.path.isfile(path):
-        path, infile_name = os.path.split(path)
-    else:
-        infile_name = 'index.html'
-    if not os.path.exists(os.path.join(path, infile_name)):
-        return
-    if infile_name == 'index.html':
-        tail = os.path.split(path)[1]
-        m = classnum_expr.match(tail)
-        if m is None:
-            return
-        classnum = int(m.group('class_num'))
-        outfile_name = dt_template % classnum
-    else:
-        if incremental:
-            outfile_name = infile_name.replace('.html', '_inc.pdf')
-        else:
-            outfile_name = infile_name.replace('.html', '.pdf')
-    home = os.getcwd()
-    os.chdir(path)
-    print("Changing directory from ", home, " to ", path)
-    cmd = decktape + dt_args + [infile_name, outfile_name]
-    print(cmd)
-    subprocess.call(cmd)
-    os.chdir(home)
+def run_decktape(path):
+  class_number = None
+  cwd = os.getcwd()
+  if path is None or path == "":
+    path = cwd
+    print("Setting empty path to \"%s\"" % path)
+  if os.path.isdir(path):
+    m = classnum_expr.match(path)
+    if m:
+      class_number = int(m.group("class_num"))
+  elif re.match("^[0-9]+$", path):
+    class_number = int(path)
+  if class_number is None:
+    print("Can't figure out which lecture to print from argument \"%s\"." % path)
+    return
+  class_dir = "Class_%02d" % class_number
+  if os.path.basename(cwd) == class_dir:
+    lecture_home = cwd
+  elif os.path.basename(cwd) == "Slides" and os.path.isdir(class_dir):
+    lecture_home = os.path.join(cwd, class_dir)
+  elif os.path.isdir(os.path.join("Slides", class_dir)):
+    lecture_home = os.path.join(cwd, "Slides", class_dir)
+  else:
+    print("ERROR: Can't find lecture directory", class_dir)
+    return
+  dest_fname = lecture_template % class_number
+  dest_path = os.path.join(lecture_home, dest_fname)
+  url = url_template % class_number
+  cmd = decktape + args + [url, dest_path]
+  print(cmd)
+  subprocess.call(cmd)
 
-def runall_decktape(path, incremental = False):
-  files = os.listdir(path)
-  for f in files:
-    ff = os.path.join(path,f)
-    if os.path.isdir(ff) and f.lower().startswith('class_'):
-      run_decktape(ff)
-      runall_decktape(ff)
-
-def main(argv):
-    try:
-        opts, args = getopt.getopt(argv, "ai", ["all", "incremental"])
-    except:
-        print("run_decktape.py [-a|--all] [-i|--incremental]")
-        sys.exit(2)
-    incremental = False
-    process_all = False
-    for opt, arg in opts:
-        if opt in ('-a', '--all'):
-            process_all = True
-        if opt in ('-i', '--incremental'):
-            incremental = True
-    if (process_all):
-        if (len(args) > 0):
-            for d in args:
-                if (os.path.isdir(d)):
-                    runall_decktape(d, incremental)
-        else:
-            runall_decktape('Slides', incremental)
-    else:
-        for d in args:
-            if (os.path.isdir(d) and d.lower().startswith('slides') and os.path.exists(os.path.join(d, 'index.html'))):
-                run_decktape(d, incremental)
-            elif (os.path.isfile(d)):
-                run_decktape(d, incremental)
-            elif d.isdigit():
-                f = os.path.join('Slides', 'Class_%02d' % int(d), 'index.html')
-                print("checking ", f)
-                if os.path.exists(f):
-                    run_decktape(f, incremental)
+def main():
+    if len(sys.argv) > 1:
+      for a in sys.argv[1:]:
+        run_decktape(a)
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    main()

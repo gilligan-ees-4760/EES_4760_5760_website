@@ -1,0 +1,6 @@
+source_id,title,short_title,markdown_title,short_markdown_title,latex_title,short_latex_title,citation,textbook,handout,url
+1,Agent-Based and Individual-Based Modeling,Agent-Based Modeling,<%RAILSBACK%>,<%ALT_SHORT_RAILSBACK%>,,,"Steven F. Railsback and Volker Grimm, _Agent-Based and Individual-Based Modeling: A Practical Introduction_ (Princeton University Press, 2012). ISBN: 978-0-691-13674-5",1,0,
+2,Artificial Societies,Artificial Societies,"""Artificial Societies""","""Artificial Societies""",``Artificial Societies'',``Artificial Societies'',"P. Tyson, ""Artificial Societies,"" Technology Review **100** (3), 15--17 (1997).",0,1,https://www.technologyreview.com/s/400048/artifical-societies/
+3,Economics as Distributed Computation,Economics as Distributed Computation,"""Economics as Distributed Computation""","""Economics as Distributed Computation""",``Economics as Distributed Computation'',``Economics as Distributed Computation'',"Robert L. Axtell, “Economics as Distributed Computation,” in  Takao Terano, Hiroshi Deguchi, and Keiki Takadama (eds) _Meeting the Challenge of Social Problems via Agent-Based Simulation_(Springer,2003), pp. 3--23.
+",0,1,
+4,Artificial Societies,Artificial Societies,Artificial Societies,Artificial Societies,,,"Peter Tyson, ""Artificial Societies"" MIT Technology Review **100**(3) 15--17 (Apr. 1, 1997)",0,1,

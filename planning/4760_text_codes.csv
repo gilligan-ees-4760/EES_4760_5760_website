@@ -1,0 +1,14 @@
+code_name,code_value,latex_value,print_value
+MED_ABM_BOOK,Agent-Based Modeling,Agent-Based Modeling,
+SHORTEST_ABM_BOOK,AB&IBM,AB\&IBM,
+ALT_SHORT_ABM_BOOK,Railsback & Grimm,Railsback \& Grimm,
+SHORT_ABM_BOOK,Agent-Based Modeling,Agent-Based Modeling,
+ABM_BOOK,Agent-Based and Individual-Based Modeling,Agent-Based and Individual-Based Modeling,
+SHORTEST_RAILSBACK,AB&IBM,AB\&IBM,
+ALT_SHORT_RAILSBACK,Railsback & Grimm,Railsback \& Grimm,
+SHORT_RAILSBACK,Agent-Based Modeling,Agent-Based Modeling,
+MED_RAILSBACK,Agent-Based Modeling,Agent-Based Modeling,
+RAILSBACK,Agent-Based and Individual-Based Modeling,Agent-Based and Individual-Based Modeling,
+NETLOGO,NetLogo,\NetLogo,
+FIG_16_2,/img/errata_fig_16_2.png,,../static/img/errata_fig_16_2.png
+CLASS_URL,https://ees4760.jgilligan.org/,,

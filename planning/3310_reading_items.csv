@@ -1,0 +1,557 @@
+rd_item_id,rd_group,source_id,chapter,pages,item_extra,reading_notes,undergraduate_only,graduate_only,optional,rd_prologue,rd_epilogue,rd_break_before
+200,INTRO_CLIMATE_CHANGE,,,,,"Read these chapters lightly. Do not try to memorize all the facts or numbers, but try to get a feel for the way the authors write about climate and what they think is important.
+
+For <%wday(this_class_date, label=T, abbr=F)%>, come to class prepared to discuss the questions I list for each book.
+(you don't need to write up answers to hand, but I want you to be ready to discuss them):
+",0,0,0,1,0,0
+201,INTRO_CLIMATE_CHANGE,ARCHER,Ch. 1,,,"_<%MEDIUM_ARCHER%>_ is written by David Archer, a prominent climate scientist. As you read it, try to get a sense for four aspects in particular:
+
+1. What kinds of things (both human and natural) cause the earth's climate to change?
+1. Why are carbon and energy so important?
+1. Very roughly, how much has the earth's temperature changed in the past and how much do we expect it to change in the next few centuries?
+1. Should we worry about climate change and human activities that cause it?
+
+
+### Questions to think about:
+
+1. What is climate, and how is it different from weather?
+1. What determines the temperature of the earth, and what are some things that can cause the temperature to change?
+1. What is global warming? What kinds of risks do we worry about in connection with it?
+1. What are several reasons why we emphasize carbon dioxide (<%COO%>) when we talk about global warming?
+1. About how much has earth's temperature varied in the past thousand years? In the last 25,000 years? How much do we expect it to change in the next hundred years?
+1. What are some extreme climatic or weather events that we've seen recently around the world (think of things in the assigned readings, but also other things you've experienced or heard about in the news).
+1. What kinds of trends do we see in natural disasters?
+1. How would you know whether or not the kinds of events and trends in your answers
+  to the two previous questions are caused by human interference with climate?
+1. What possible responses can we (the population of the earth) take to respond to global warming?
+
+",0,0,0,0,0,0
+203,INTRO_CLIMATE_CHANGE,NORDHAUS,Ch. 2--3,,,"_<%MEDIUM_NORDHAUS%>_ is written by William Nordhaus, a prominent economist. He has a different emphasis than Archer does. Read Chapter 1 more carefully, and mostly skim Chapter 2 lightly, but do pay attention to the section on p. 15 where he asks, ""why read a book about climate change by an economist?""  Chapter 1 presents an outline of the book. As you read it, pay attention to the way Nordhaus connects the science and economics of climate change.  The figure on p. 10 illustrates these connections and it is important to understand what he is saying with it.
+
+At the end of the chapter, Nordhaus presents three things he thinks people around the planet **must** do about climate change. Later in the semester we will read a book that disagrees vehemently with most of Nordhaus's analysis and recommendations. For now, ask yourself whether you agree with Nordhaus's three points, why you agree or disagree, and whether he has made a strong case for these points in this chapter.
+
+
+### Questions to think about
+
+1. Why does Nordhaus emphasize the difference between **managed**, **unmanaged**, and **unmanageable** human and natural systems?
+1. What does Nordhaus mean by **tipping points** in the earth's climate system? Why are they important?
+1. What does Nordhaus mean by **mitigation** of climate change? (p. 6)
+1. Why does Nordhaus think that ""the economics of climate change is straightforward?"" What policy does his ""straightforward"" analysis recommmend?
+1. What does Nordhaus mean when he calls emission of <%COO%> into the atmosphere an **externality**? (p. 6) Why is this important for policymakers and for his own preferred policy?
+
+",0,0,0,0,0,0
+299,INTRO_CLIMATE_CHANGE,,,,,"Also come to class ready to ask questions about parts of the chapter that you didn't understand as well as you'd like or that you found unconvincing, or things you just want to know. If you email me questions by <%wday(date(this_class_date) - 1, label = T, abbr = F)%> evening, I will try to address them during class <%wday(this_class_date, label = T, abbr = F)%>.",0,0,0,0,1,0
+301,ENERGY_BALANCE,ARCHER,Ch. 2--3,pp. 9--23,,"Focus on pp. 13--23 in _<%MEDIUM_ARCHER%>_. You need to understand the calculations of the ""bare-rock"" model on pp. 19--23. The intermediate steps are not as important as two equations:
+\[
+  F_{\text{out}} = F_{\text{in}}\quad\text{at equilibrium,}
+\]
+and equation (3.1), which describes the bare-rock model:
+\[
+  T_{\text{earth}} =
+  \sqrt[4]{\frac{(1-\alpha)I_{\text{in}}}{4\epsilon\sigma}}
+\]
+(Helpful hint: to take a fourth root easily with your calculator, just press the square root key twice.)
+
+Questions to think about (**not** to write up and turn in):
+
+* What is blackbody radiation? What is a ""blackbody"" anyway?
+* Why is it that the sun gives off visible light, but the earth does not?
+* When the earth absorbs energy from sunlight, where does the energy go initially?
+  Where is the final destination of that energy?
+* What is the Stefan-Boltzmann equation, and why is it important?
+* What does the Stefan-Boltzmann equation tell us would happen if the sun got hotter?
+  What would happen if the Earth got hotter?
+* Study table 3.1 on p. 23 of _<%MEDIUM_ARCHER%>_
+  (ignore the column ""$T_{\text{1 layer}}$"" because we don't get
+  to that until later in the chapter.):
+
+    * Why is the sunlight brighter on Venus than on Earth, and dimmer on Mars?
+    * Why is the ""bare-rock"" temperature of Venus lower than Earth,
+      even though it gets more sunlight?
+    * Why do you suppose the actual observed temperature at the surface of Venus
+      is so much hotter than the ""bare rock"" temperature?
+
+* At the top of p. 20, why does Archer write,
+  \(F_{\text{out}} = F_{\text{in}}\)?
+  What would happen if
+  \(F_{\text{out}} \ne F_{\text{in}}\)
+* Without getting bogged down in the details of the numbers,
+  why are the areas used to calculate the incoming and outgoing energy
+  fluxes different? (Figures 3.1 and 3.2 explain this)
+* If the sun got 5% brighter, approximately how many degrees warmer would
+  the earth become?
+
+",0,0,0,0,0,0
+400,LAYER_GREENHOUSE,ARCHER,Ch. 3,pp. 23--26,,"Study the one-layer model. We will work through it in detail during class.
+",0,0,0,0,0,1
+500,SPECTRAL_GREENHOUSE,ARCHER,Ch. 4,,,"Undergraduates need only understand band saturation qualitatively
+(i.e., you don't need to worry about equations 4.1--4.3).
+Graduate students do need to know and be able to apply these equations.
+
+You should understand why molecules with many atoms are
+more powerful greenhouse gases than molecules with fewer atoms. Can a single
+atom (e.g., noble gases such as helium) act as greenhouse gases? What about
+nitrogen (<%NTWO%>) and oxygen (<%OTWO%>) molecules, which make up almost 99% of
+the atmosphere?
+
+What is the ""atmospheric window,"" that spans the range of about
+800--1250 <%WAVENUMBER%> (wavelengths of 8--12 <%MICRON%>)?
+
+### Understanding emissions spectra seen by satellites
+
+**This is important:** The key to this section is understanding diagrams,
+such as Fig. 4.3 and 4.5. These diagrams show the brightness of
+infrared light emitted at different frequencies. The smooth lines correspond
+to the radiation a perfect blackbody would give off at different temperatures.
+Hotter bodies give off more energy and cooler bodies give off less.
+
+The jagged line is the actual radiation given off by the atmosphere, as seen by
+a satellite in space. Because the atmosphere is cooler higher up, emissions that follow a cooler
+blackbody curve for some part of the spectrum mean the infrared at
+those wavenumbers is emitted by greenhouse gases higher in the atmosphere.
+Brighter emissions that follow a hotter blackbody curve for some part of
+the spectrum means hotter temperatures, and hence emission at those wavenumbers
+comes from gases closer to the ground.
+
+As you add more of a gas, it absorbs more infrared light, so the emissions from
+the ground or from lower in the atmosphere can't get through---they're absorbed
+by higher layers of the atmosphere---and thus, the only emissions that get out to
+space come from higher (and thus colder) layers. This is why you see lower
+emissions (colder temperatures) for the wavenumbers at which powerful greenhouse
+gases, such as <%COO%> and ozone, absorb.
+
+Here are some review questions to check whether you understand this material
+well:
+
+* Water vapor is a powerful greenhouse gas. Why do you suppose we don't
+  see extremely cold temperatures for the part of the spectrum (100--600 <%WAVENUMBER%>)
+  where _it_ absorbs?
+* If greenhouse gases make earth warmer, why does adding <%COO%> in
+  make the emissions temperatures become smaller in Fig. 4-5?
+
+
+### Band saturation
+
+**This is important for understanding why some greenhouse gases are more
+powerful than others** What is band saturation? Why does increasing <%COO%>
+from 10 to 100 parts per million or from 100 to 1000 parts per million have much
+less effect than increasing it from 0 to 10 parts per million? Think by analogy.
+Suppose you smear a tablespoon of black ink all over a white piece of
+paper. How much will that affect its brightness? Now suppose you smear four
+more tablespoons of ink on the stained paper. Which has the bigger effect on
+the whiteness of the paper: the first spill of ink, or the second (much bigger)
+one?
+
+Now, looking at the atmosphere with the current amount of greenhouse gases,
+can you speculate why adding a million molecules of methane to the atmosphere
+will produce 20 times more warming than adding a million molecules of <%COO%>?",0,0,0,0,0,0
+600,VERTICAL_STRUCTURE,ARCHER,Ch. 5,,,"  The key thing in this chapter is understanding why the troposphere gets colder as
+  you go higher, and how this phenomenon (described by the term **lapse rate**),
+  contributes to the greenhouse effect.
+
+  First, the chapter starts by defining a **skin layer**, which is an
+  important concept, and connects it to the greenhouse effect.
+
+  Next, it moves on to describe how air pressure varies with altitude. I
+  find the discussion on pp. 46--49 more confusing than it needs to be.
+  Don't get bogged down in the details of _why_ the equation at
+  the bottom of p. 48 is true. Just understand _what_ that equation
+  tells you:
+\[
+  P(z) = 1~\text{atm}\cdot e^{-z/8~\text{km}}
+\]
+You might find it easier and more intuitive to work with another way to write
+the same equation:
+\[
+  P(z) = 1~\text{atm}\cdot 2^{-z/5.5~\text{km}}
+\]
+If we think of it this way, it's intuitive that every 5.5 km you go up in the
+atmosphere, the pressure drops by half: at 5.5 km, it's 50% what it is at sea
+level. At 11.0 km it's 25%; at 16.5 km it's 12.5%, and so on.
+
+Third, we learn why air cools off as it rises through the atmosphere. It's
+because it expands as the pressure surrounding it drops. Similarly, as air descends to lower
+altitudes, it compresses and gets hotter.
+
+Fourth, we learn about latent heat from water evaporating and condensing. Latent
+heat is responsible for a large fraction of the heat transport around the atmosphere. Latent heat
+is also very important because it affects lapse rate. How does the lapse rate in
+**saturated** air (i.e., air with 100% relative humidity) differ from the lapse rate
+in **unsaturated** air (with relative humidity $<100%$)? Why? (Hint: the relavant
+material appears in the section on **moist convection**, not the section on latent heat.)
+
+Fifth, we learn about convection: as you heat air it tends to rise and this
+moves heat around the atmosphere. The key concept regarding convection is **stability** vs.
+**instability**. Unstable air undergoes convection (as the troposphere does), whereas
+stable air does not, and instead remains **stratified**, as the stratosphere does.
+
+Sixth (and finally), we put everything together to see the connection between
+lapse rates and the greenhouse effect. The key result is that adding greenhouse gases raises the height
+of the ""skin"" and this added height, together with the lapse rate, tells us how much the
+surface temperature will warm up. The book summarizes these five points
+concisely on p. 55.
+",0,0,0,0,0,0
+700,GREENHOUSE_REVIEW,,,,,"As you prepare for class, think about:
+
+* What makes some greenhouse gases more powerful than others?
+* What are the important differences between the layer-model approach to calculating temperature and the skin-model on pp. 45--46?
+* How does band saturation work? How can you recognize saturation in <%MODTRAN%>?
+* How do you use <%MODTRAN%> to calculate the effect of doubling <%COO%>?
+* How do you use the full-spectrum model to calculate the effect of doubling <%COO%>?
+
+",0,0,0,1,0,0
+800,FEEDBACKS,ARCHER,Ch. 7,pp. 73--81,,"
+* Understand the concept of positive and negative feedbacks.
+* Understand how the following feedbacks work and whether each is positive or negative:
+
+    * Stefan-Boltzmann feedback
+    * Ice-albedo feedback
+    * Water vapor feedback
+
+* What is a **runaway greenhouse effect**? What prevents Earth from having a runaway greenhouse?
+",0,0,0,0,0,0
+901,OCEAN_BIOSPHERE_FEEDBACKS,ARCHER,Ch. 7,pp. 81--84,,"
+* Why are cloud feedbacks more complicated and uncertain than other feedbacks?
+* What is El Ni&ntilde;o and how do feedbacks in the ocean-atmosphere system create the El Ni&ntilde;o/La Ni&ntilde;a cycle? How does this cycle affect the global climate?
+* How do feedbacks between climate and the biosphere work?
+
+",0,0,0,0,0,0
+902,OCEAN_BIOSPHERE_FEEDBACKS,FEEDBACK_HANDOUT,,,,"
+* In the handout, pay close attenton to two different ways of talking about feedbacks:
+    If we **force** the climate by changing the brightness of the sun, the bare-rock temperature of the earth adjusts until the average flux of outgoing radiation equals the average flux of incoming radiation. Sometimes we count this adjustment as a negative feedback (called the **Stefan-Boltzmann feedback**) that maintains radiative balance. Other times we consider it to be a simple response to the changing amount of radiation.
+
+    The handout calls this adjustment the Stefan-Boltzmann feedback ($f_0$) and calculates the other feedbacks (water-vapor, lapse-rate, ice-albedo, etc.) as additional feedbacks. This lets us write a straightforward equation for the effect of all the different feedbacks on the earth's temperature, but it is important to be clear that when most people (including most scientists) talk about feedbacks in the climate system, they do not include the Stefan-Boltzmann feedback.
+
+",0,0,0,0,0,0
+1000,OCEAN_BREATHES,ARCHER,Ch. 8,pp. 89--97,,"
+* Know the different forms carbon takes in the earth system: <%COO%> and organic gases in the atmosphere; dissolved inorganic carbon in the hydrosphere (carbonic acid and related ions: <%CARBONIC_ACID%>, <%BICARBONATE%>, <%CARBONATE%>); solid organic and inorganic matter in the lithosphere (what's the difference between organic and inorganic? What are dominant forms that each takes in the lithosphere?); and living organic carbon in the biosphere.
+* What are **oxidation** and **reduction** and how do they affect organic and inorganic carbon?
+* Focus intently on Fig. 8.1: get a feel for the size of each reservoir and the magnitude of flux between the different reservoirs. Don't feel that you have to memorize the numbers, but you should have a good feel for which are larger, which are smaller, and a general sense of the range of sizes.
+* What are the dominant mechanisms by which carbon moves from one reservoir to another? Which processes are fast and which are slow?
+* In Fig. 8-2, why are the annual wiggles in the atmospheric carbon concentration so much bigger in Hawaii than in New Zealand?
+* How might feedbacks in the carbon cycle destabilize the global climate?
+* Try to get a rough feel for the orbital forcing of climate, but don't stress about the details. We'll dig into this in much more depth when we look at climates of the past, on <%format_date_range_by_topic_id(calendar, c('PALEO_PROXIES','PLEISTOCENE'))%>. The key here is to understand that small variations in the earth's orbit lead to small forcings on the climate, which are dramatically amplified by a positive feedback in the carbon cycle to produce the cycle of ice ages that the earth experienced over the past 2 million years or so.
+
+",0,0,0,0,0,1
+1100,ROCKS_BREATHE,ARCHER,Ch. 8,pp. 95--101,,"* Try to get a rough feel for the orbital forcing of climate, but don't stress about the details. We'll dig into this in much more depth when we look at climates of the past, on <%format_date_range_by_topic_id(calendar, c('PALEO_PROXIES','PLEISTOCENE'))%>. The key here is to understand that small variations in the earth's orbit lead to small forcings on the climate, which are dramatically amplified by a positive feedback in the carbon cycle to produce the cycle of ice ages that the earth experienced over the past 2 million years or so.
+* Understand the feedback in the sedimentary rock cycle. This is very important, but very slow. It acts as a thermostat for the earth, but takes millions of years to act, so although it will ultimately fix any global warming that people cause, it will do so much too slowly to protect our civilization from the effects of climate change.
+
+  The key to the sedimentary rock part of the carbon cycle is the transformation of **silicate minerals** to **carbonate minerals** through weathering. You should understand how this cycle works, how it changes in response to changing climate in order to act as a thermostat (negative feedback), and why this cycle works well on Earth but not on Mars or Venus. One clue is the graph in Fig. 7.2 on p. 76.
+",0,0,0,0,0,0
+1200,PERTURBED_CARBON,ARCHER,Ch. 10,,,"Some key points to be sure you understand:
+
+* How is the steady-state concentration of methane in the atmosphere related to the rate of methane emissions?
+* What are the largest natural and anthropogenic sources of methane? How does anthropogenic methane emission compare to natural emission?
+* What are the dominant anthropogenic sources of <%COO%> emissions?
+* What do we know about the land as a sink for carbon?
+* What is <%COO%> fertilization and how might it affect the role of the land as a carbon sink? What are the potential benefits to plants of higher <%COO%> concentrations and what constraints are there on the extent to which these benefits might be realized in practice?
+* Understand the ocean carbon sink. Where, specifically, does the ocean work effectively to remove <%COO%> from the atmosphere and how might this sink be affected by rising <%COO%> levels?
+* What is **ocean ventilation**? Why is it important and how fast does it work?
+* What is the **thermocline** and why is it important to the ocean carbon sink?
+* Why would increasing carbon dioxide in the atmosphere make the oceans become more acidic? How confident can we be of predictions about ocean acidification?
+* What is **buffering** and how would it affect ocean acidification?
+* What is the biological pump in the oceans? Are there things people might do to speed up the biological pump
+* In the big picture, consider how these pieces fit together: how might rising temperatures and increasing drought around the world (two things scientists are very confident will happen as a result of rising greenhouse gas concentrations) affect the various carbon sources and sinks? How might ocean acidification affect the biological pump?
+
+",0,0,0,0,0,0
+1300,PALEO_PROXIES,ARCHER,Ch. 11,pp. 135--145,,"* The last hundred years: Focus on two things in particular:
+
+    1. What is the evidence that the planet has warmed significantly in the last century?
+    1. What is the evidence that human emissions of greenhouse gases are responsible?
+
+* The last thousand years: This gets into some very tricky and controversial material that was central to the infamous ""climategate"" scandal in 2009. I will not spend a huge amount of time on this, but I will attempt to explain in class what the controversy was about and why it isn't nearly as big a deal as the media have made it out to be.
+
+    Some things to understand about the past millennium are:
+
+    * What is a **proxy** for ancient temperatures? What are examples of commonly used proxies?
+    * What problems do scientists face trying to get past temperatures from proxies?
+    * What were the **Medieval Warm Period** and the **Little Ice Age**? Roughly when did they happen? What are the big questions scientists have about them?
+",0,0,0,0,0,0
+1400,PLEISTOCENE,,,,,"Focus on the Pleistocene Ice Ages, which extended from roughly 2.75 million years ago (different scientists attribute different dates to the exact beginning of the Pleistocene) to about 10,000 years ago when our current warm period, the Holocene, began when the glaciers retreated for the last time.
+
+We have two principal questions about the Pleistocene: How do we know what climate was like then? And how do we know what caused the cycle of ice ages?
+
+* Pay particular attention to the way oxygen isotopes in samples of ice can be used to tell the temperature hundreds of thousands of years ago and the way oxygen isotopes in sediments at the bottom of the ocean can tell us about the amount of ice in the glaciers around the world, but both are useful.
+* Recall the discussion of carbon dioxide feedbacks on p. 84. This is crucial.
+* What kinds of instabilities did we see in the climates of the Pleistocene? Are those instabilities relevant to questions of how the climate will change as we increase the atmospheric greenhouse gas levels over the coming century?
+
+",0,0,0,1,0,0
+1401,PLEISTOCENE,ARCHER,Ch. 7,p. 84,"(You already read this, but please review it again)",,0,0,0,0,0,0
+1402,PLEISTOCENE,ARCHER,Ch. 8,pp. 93--97,"(You already read this, but please review it again)",,0,0,0,0,0,0
+1403,PLEISTOCENE,ARCHER,Ch. 11,pp. 147--149,,,0,0,0,0,0,0
+1404,PLEISTOCENE,ISOTOPE_HANDOUT,,,(concentrate on the sections about temperature and sea-level),,0,0,0,0,0,0
+1500,CLIMATE_REVIEW,,,,,Take time to review the reading from the last week (Chapters 10 and 11 and the handout on isotopes). Come to class with questions about the carbon cycle and past climates.,0,0,0,1,0,0
+1600,CLIMATE_MODELS,NORDHAUS,Ch. 3--4,,,"Chapter 3 treats global warming as a scientific consequence of an economic problem. As you read, consider the following questions. Some have clear answers
+while others are beyond the knowledge of experts and I ask them to challenge you to think about hard problems.
+On p. 30, Nordhaus describes three components that drive <%COO%> emissions: population, per-capita GDP, and the carbon intensity of the economy. A mathematical expression for this relationship is known as the **Kaya identity**, and we will study this in great depth on <%format_date_range_by_topic_id(calendar, c(""KAYA_IDENTITY"",
+""BOTTOM_UP_DECARBONIZATION"", ""TOP_DOWN_DECARBONIZATION""), TRUE)%> and in the lab project on decarbonizing the energy supply.
+
+* Why don't free markets manage greenhouse gas emissions well?
+* Are <%COO%> emissions going up or down? Why?
+* What is carbon intensity? Is it going up or down in the US? Why?
+* When Nordhaus writes about models for predicting future climate change, he distinguishes between **predictions** and
+    **projections**. What is the difference and why is it important?
+* Table 1 on p. 31 shows two projections of future <%COO%> emissions. Why are they different? How can we tell which is a better prediction?
+* What is an **integrated assessment model** (**IAM**)?
+* What are the biggest sources of uncertainty in predicting future <%COO%> emissions?
+* How much can we trust models of future climate change? What should we consider when deciding how much to trust a model?
+
+
+Chapter 4 looks at what we do and don't know about future climate change.
+
+* Pages 37--42 are largely a review of material we studied in much greater depth
+in the first few weeks of the term. You can read through it quickly.
+* What is the difference between **transient** and **equilibrium** response to <%COO%> emissions? What would we expect to happen
+    to the global temperature if everyone around the world completely stopped burning fossil fuels this afternoon?
+* Figure 9 shows several different projections for how temperature might change over the rest of this century. What is the biggest reason the
+    projections don't all agree with each other?
+* Pay close attention to the bullet points on pp. 47--48.
+* How does Nordhaus recommend that we think about the uncertainties in predictions about the climate?
+* Given these uncertainties, can we trust climate models and can they be useful?
+
+",0,0,0,0,0,0
+1701,FUTURE_CLIMATES,NORDHAUS,Ch. 5,,,"One of the big worries with future climate change has to do with tipping points. As you read Ch. 5 of _<%NORDHAUS%>_, you should focus on understanding what tipping points are and what some of the specific tipping points are worry climate experts. Fig. 12 and the accompanying discussion about melting ice sheets is a key example and you should understand it. If we raise the temperature and a large fraction of the Greenland ice sheet melts, will reducing the temperature cause it to eventually grow back to its original size? Why or why not?",0,0,0,0,0,0
+1702,FUTURE_CLIMATES,ARCHER,Ch. 12,pp. 153--164,,"Chapter 12 of _<%MEDIUM_ARCHER%>_ presents a lot more detail about **abrupt climate change** (tipping points), melting ice sheets, and sea-level rise. The earlier part of the chapter also discusses the phenomenon of **global weirding**, in which the weather becomes less and less predictable as the global temperature rises. Indeed, recent scientific studies confirm predictions made years ago that global warming would lead to both increased drought and increased flooding. How is this possible?
+",0,0,0,0,0,0
+1800,REVIEW_FOR_MIDTERM,,,,,We will use today to catch up and review for the midterm exam. Bring your questions.,0,0,0,1,0,0
+1900,MIDTERM_EXAM,,,,,"The midterm exam will be a mixture of about 40% multiple-choice questions and 60% free-response short-answer questions.
+It will cover all the reading through <%format_class_day_date(filter(calendar, class == this_class_num - 3)$date, TRUE, FALSE)%>.
+
+I will provide a sheet with the important numbers (such as the Stefan-Boltzmann constant, the lapse rate of the atmosphere, 
+the solar constant, and so forth), and the important equations (such as the Stefan-Boltzmann law, the barometric law, 
+and the chemical reactions that control carbon-dioxide buffering in the oceans).
+
+Remember to bring a calculator, \#2 pencils, and an eraser.",0,0,0,1,0,0
+2000,UNCERTAINTY,,,,,"This is a good place for us to reflect on what we do and don't know about the science of climate change. As we review the science we have studied so far, think about the contrasting views Nordhaus and Pielke present in _<%MEDIUM_NORDHAUS%>_ and _<%MEDIUM_PIELKE%>_ about what we do and don't know and whether people should be skeptical of scientists about global warming. In particular, focus on:
+
+* What is **scientific consensus**, is there consensus on global warming, and should we trust it? Where do Nordhaus and Pielke agree and where do they disagree about this?
+* How should we think about contrarians or skeptics who disagree with the consensus?
+* How should we think about scientific uncertainty? Where do Nordhaus and Pielke agree and where do they disagree about this?
+* Can we make policy when there is still disagreement and uncertainty about climate science? How do Nordhaus and Pielke feel about this?
+
+",0,0,0,1,0,0
+2001,UNCERTAINTY,ARCHER,Ch. 12,pp. 164--166,,,0,0,0,0,0,0
+2002,UNCERTAINTY,NORDHAUS,Ch. 24,,,,0,0,0,0,0,0
+2003,UNCERTAINTY,PIELKE,Ch. 1,pp. 1--24,,,0,0,0,0,0,0
+2100,CLIMATE_IMAPACTS_1,NORDHAUS,6--9,,,"This reading assignment covers many pages, but the material is descriptive, not mathematical.
+What I am looking for you to get out of this is a sense of the different kinds of impacts that climate change might have on our lives and the lives of people around the planet.
+
+* Pay particular attention to the distinction Nordhaus draws between **managed**, **unmanaged**, and **unmanageable** systems.
+* Also pay attention to the discussions of **adaptation** and **mitigation**.
+
+    * **Mitigating factors** mean aspects of climate change that may be 
+      beneficial and mitigate the damage caused by the harmful aspects. 
+      This can be confusing because in the context of climate policy 
+      **mitigation** usually means reducing the amount of climate change 
+      (e.g., by reducing greenhouse gas emissions), whereas **mitigating factors** 
+      are things that reduce the impact that a given amount of climate change 
+      will have on people's lives.
+      
+    * **Adaptation** means changes people make in the way they live and the 
+      kinds of economic activities they pursue in order to adapt to living in a 
+      different climate.
+
+      Adaptation and mitigating factors are important because they show us that 
+      there can be more to climate change policy than just reducing greenhouse 
+      gas emissions.
+      Again, to point out how confusing this terminology can be, 
+      _mitigating factors_ (things that reduce the impact of climate change on 
+      people's lives) show that there is more to climate policy than 
+      _mitigation_ (reducing greenhouse gas emissions).
+
+* In the three chapters on details (7--9), try to get a feel for the following questions:
+
+    1. How severe are the threats likely to be to human well-being?
+    1. Are certain groups of people especially vulnerable?
+    1. What kinds of mitigating factors might reduce the impact of climate change?
+    1. What kinds of adaptations might make it easier to live with climate change?
+
+* In the chapter on farming, pay attention to the discussion of productivity growth in the worlds' economies (basically this is the growth of $g$, the per-capita GDP, in the Kaya identity, which we read about on p. 30 of Ch. 3, and which we'll study in greater detail when we look at decarbonizing the world's energy supply on Oct. 15--22.). How does growing productivity affect the way we look at climate change?
+* In the chapter on farming, why is figure 15 important to the discussion of adaptation and mitigation?
+* In the chapter on health impacts, don't try to get every detail but do try to get a sense of what the biggest climate related threats to health are likely to be and what kinds of adaptive things people could do to fight them as temperatures rise.
+* In the chapter on the oceans, there are two distinct threats: sea-level rise and ocean acidification. Get a feel for how each affects people's lives and what adaptations might be possible.
+",0,0,0,0,0,1
+2200,CLIMATE_IMAPACTS_2,NORDHAUS,10-12,,,"Mostly, skim chapters 10--11 and focus on reading chapter 12 carefully.
+
+* What sectors of the economy are most vulnerable to climate change?
+* What parts of the world are most vulnerable?
+* Think about Nordhaus's distinction between managed and unmanaged systems: Does management affect vulnerability to climate change?
+* How has the world's economy changed in the last 60 years or so? Which sectors have become more important and which have become less important? What does that imply as we look ahead to the impacts of climate change 100 years from now?
+* How do economists estimate the damage climate change might cause to the world economy? How certain are they about these estimates? What are the biggest sources of uncertainty?
+* The section on ""A Risk Premium"" is especialy important. Understand what a risk premium is and how this figures into Nordhaus's thoughts about policy.
+
+",0,0,0,0,0,0
+2301,POLICY_MYTHS,PIELKE,Ch. 2,,,"In _<%MEDIUM_PIELKE%>_, Pielke addresses three what he calls three myths of climate policy:
+
+1. We lack political will to do anything about climate change
+1. We must trade off the economy for the environment
+1. We have all the technology we need to solve the problem
+
+With respect to myth #2, consider this quotation, from a story on National Public Radio on October 2, 2010:
+
+>  Republican pollster Frank Luntz says it's clear why the politics of climate change are so different [in 2010] than they were in 2008. 
+> ""_What has changed is that the American economy went to hell. And when you ask voters are they more concerned about destroying 
+> their environment over the next 100 years or rehabilitating their economy over the next 100 weeks, they'll choose the economy over 
+> the environment any day_,"" Luntz says.
+
+As you read Chapter 2 of _<%MEDIUM_PIELKE%>_, critically assess Luntz's arguments. Pay special attention to the ""**Iron Law**,"" described on pp. 46--50. This will be a crucial piece of Pielke's analysis throughout the book.
+
+On pp. 51--58 of _<%MEDIUM_PIELKE%>_, Pielke writes about the idea of ""**stabilization wedges**,"" introduced by Robert Socolow and Stephen Pacala, in the context of dismissing myth #3. The stabilization wedge concept is very important in climate policy and we will discuss them further later in the semester, so read these pages reasonably carefully and keep in mind that Pielke's dismissal is just one opinion. A number of scholars and policy experts agree with Pielke, but many disagree as well. This is a topic on which it's important to think for yourself.
+
+After dismissing many myths, Pielke offers his own ideas for how to approach climate policy.
+",0,0,0,0,0,0
+2302,POLICY_MYTHS,NORDHAUS,Ch. 25,,,"In Chapter 25 of _<%MEDIUM_NORDHAUS%>_, Nordhaus discusses what we know about public opinion on climate change. Nordhaus shows that in the past decade, we have seen an increasing divide between what scientists think about the facts of climate change and what the public thinks, that this widening gap has proceeded together with a growing ideological divide between liberals and Democrats on one side and conservatives and Republicans on the other. He observes on p. 311 that ""Climate change is an area where the political leaders have led public opinion.""
+
+Nordhaus then proposes a way for small-government political conservatives, such as himself, to close the divide between the parties and between scientists and the public.
+",0,0,0,0,0,0
+2399,POLICY_MYTHS,,,,,"As you read both Nordhaus's and Pielke's analyses and recommendations, ask yourself what you find it persuasive, what you agree with, and what you disagree with. This is a time to start thinking both about what kinds of climate policies you would want to pursue and how you would critically analyze them for their strengths and weaknesses.
+",0,0,0,0,1,0
+2400,KAYA_IDENTITY,,,,,"In both chapters, the focus is on what it would take to reduce <%COO%> emissions around the world.
+
+Key concepts that you should understand are:
+
+* We will be discussing national and global energy consumption in terms of **quads** (see p. 63 in Climate Fix). You should have a good feeling for how much a quad is and how many quads the US consumes.
+* The **Kaya Identity** and the factors that go into it (p. 71 of _<%MEDIUM_PIELKE%>_; you might also go back and quickly review pp. 19--23 of _<%MEDIUM_NORDHAUS%>_, which we read for Aug. 28).:
+
+    * Total <%COO%> emissions ($F$)
+    * Population ($P$)
+    * Per-capita GDP ($g$)
+    * Energy intensity of the economy ($e$)
+    * Carbon intensity of the energy supply ($f$)
+
+* How would you make sense of the fact that the U.S. has a much greater $F$ than India and a slightly smaller $F$ than China, but a much smaller $e$ and $f$ than either India or China?
+* What trends have we seen over the past several decades in the energy intensity of the economy and the carbon intensity of the energy supply? (pp. 74--79 of _<%MEDIUM_PIELKE%>_ and Fig. 3 on p. 22 of _<%MEDIUM_NORDHAUS%>_)
+* What is **primary energy consumption** and how does it differ from other kinds of energy consumption?
+* Why does Pielke argue that **energy dependence** leads to **energy insecurity**?
+* In _<%MEDIUM_NORDHAUS%>_, look at Figure 23 and the table of carbon emissions on p. 159. How do different fuels compare in terms of carbon emissions?
+* In _<%MEDIUM_NORDHAUS%>_, look at Table 6 and get a sense of what activities cause the most <%COO%> emissions.
+* What does the Kaya Identity and the material from _<%MEDIUM_NORDHAUS%>_ suggest for where we should focus in our economy to reduce <%COO%> emissions?
+
+",0,0,0,1,0,0
+2401,KAYA_IDENTITY,PIELKE,Ch. 3,,,,0,0,0,0,0,0
+2402,KAYA_IDENTITY,NORDHAUS,Ch. 14,,,,0,0,0,0,0,0
+2501,BOTTOM_UP_DECARBONIZATION,PIELKE,Ch. 4,,,"We will spend two days on this chapter. It is very involved and the technical analysis both of this chapter and of Jacobson's proposal for converting the US to 100% wind, water, and solar power will be the focus of a project in the lab. You will follow Pielke's methods to analyze the prospects for the US, China, and a third country to convert a large part of their economies to clean energy by 2050.
+",0,0,0,0,0,0
+2502,BOTTOM_UP_DECARBONIZATION,PIELKE_UK,,,,,0,0,1,0,0,0
+2503,BOTTOM_UP_DECARBONIZATION,PIELKE_JAPAN,,,,,0,0,1,0,0,0
+2504,BOTTOM_UP_DECARBONIZATION,PIELKE_AUSTRALIA,,,,,0,0,1,0,0,0
+2599,BOTTOM_UP_DECARBONIZATION,,,,,"The optional extra reading comprises three articles by Roger Pielke, in which he applies the methods he describes in this chapter to analyze proposed decarbonization policies in the U.K., Japan, and Australia.",0,0,0,0,1,0
+2601,TOP_DOWN_DECARBONIZATION,PIELKE,Ch. 4,,,We will continue discussing this chapter and work examples in class of Pielke's calculations.,0,0,0,0,0,0
+2602,TOP_DOWN_DECARBONIZATION,PIELKE_UK,,,,,0,0,1,0,0,0
+2603,TOP_DOWN_DECARBONIZATION,PIELKE_JAPAN,,,,,0,0,1,0,0,0
+2604,TOP_DOWN_DECARBONIZATION,PIELKE_AUSTRALIA,,,,,0,0,1,0,0,0
+2699,TOP_DOWN_DECARBONIZATION,,,,,"The optional extra reading comprises three articles by Roger Pielke, in which he applies the methods he describes in this chapter to analyze proposed decarbonization policies in the U.K., Japan, and Australia.",0,0,0,0,1,0
+2700,RENEWABLE_ENERGY,,,,,"Pielke has argued that we don't have the technology necessary to abandon fossil fuels. Jacobson and Delucchi disagree and present a proposal here.
+
+* ""A path to sustainable energy"" presents Jacobson and Delucchi's proposal to the general public. ""Low-cost solution to the grid reliabilty problem"" (optional for undergrads) provides up-to-date technical details for implementing this plan in the US.
+* ""Evaluation of a proposal"" (optional for undergraduates) is a fierce critique by a group of scientists and engineers. Jacobson _et al._ reply to this critique in ""The United States can keep the grid stable."" This exchange spawned a huge fight in the clean energy research community with accusations of dishonesty on all sides. The news stories ""Fisticuffs"" and ""A bitter scientific debate"" describe this fight.
+* As you read Jacobson and Delucchi's proposal and its critics, think about both the technical and political aspects:
+
+    * Are Jacobson and his co-authors persuasive when they argue that we have the technology that we need to quickly transition from fossil fuels to renewable energy?
+    * If we do have the technology, what political obstacles would you see to implementing this proposal?
+
+
+",0,0,0,1,0,0
+2701,RENEWABLE_ENERGY,JACOBSON_SCIAM,,,,,0,0,0,0,0,0
+2702,RENEWABLE_ENERGY,PORTER_FISTICUFFS,,,,,0,0,0,0,0,0
+2703,RENEWABLE_ENERGY,MOONEY_JACOBSON,,,,,0,0,0,0,0,0
+2704,RENEWABLE_ENERGY,JACOBSON_PNAS,,,,,0,1,0,0,0,0
+2705,RENEWABLE_ENERGY,CLACK_PNAS,,,,,0,1,0,0,0,0
+2706,RENEWABLE_ENERGY,JACOBSON_RESPONSE_TO_CLACK,,,,,0,1,0,0,0,0
+2800,GEOENGINEERING_SOLAR_RADIATION,,,,,"We will discuss geoengineering as an alternative to rapidly cutting greenhouse gas emissions. For today, we will focus on **solar radiation management**: Techniques for cancelling out the enhanced greenhouse effect by blocking sunlight from reaching the earth.
+
+* As you read Pielke, pay attention to his discussion of the big picture. What does he mean by a **technological fix**, and what does he think about technological fixes for environmental problems?
+* What are Daniel Sarewitz's criteria for successful technological fixes?
+* In the context of technological fixes, Pielke describes climate change as a ""wicked problem."" This is a phrase with a specific meaning in public policy analysis. It comes from a 1973 paper,^[H.W.J. Rittel and M.M. Weber, ""[Dilemmas in a General Theory of Planning](https://doi.org/10.1007/BF01405730),"" Policy Sciences **4**, 155 (1973).] which defines ""wicked problems"" as possessing ten different properties, all of which make it very difficult, even impossible, to find satisfactory solutions. A few of these properties include: Wicked problems have high stakes, so it is unacceptable to choose a solution that proves ineffective. They are plagued by uncertainty, so no one can tell in advance whether a solution will work well. They invoilve important tradeoffs, so anything that makes a solution attractive to one constituency will make it unattractive to another. They are irreversible, so trial and error is not an effective approach for finding good solutions.
+
+    As you read this chapter, think about how the problem of geoengineering the climate fits the criteria of a wicked problem.
+* What does Pielke think about solar radiation management in terms of Sarewitz's criteria?
+* Pielke begins this chapter by discussing geoengineering as a ""**Plan B**"" for climate policy. What does he mean by this?
+* Where Pielke talks about ""Plan B,"" Nordhaus describes geoengineering as ""**salvage therapy**"" for the planet. How does his account of solar radiation management compare to Pielke's? Where do the two agree and where do they disagree?
+* Nordhaus, as an economist, focuses a lot on costs, comparing the costs and the benefits of any policy. How does he asses the costs and benefits of geoengineering?
+* The short paper by Hegerl and Solomon presents solar radiation management geoengineering from the perspective of two top climate scientists. As you read their thoughts, which focus almost entirely on the scientific aspects, how do you think of this in comparison to the policy focus in Nordhaus's and Pielke's discussions?
+
+",0,0,0,1,0,0
+2801,GEOENGINEERING_SOLAR_RADIATION,PIELKE,Ch. 5,pp. 117--132,,,0,0,0,0,0,0
+2802,GEOENGINEERING_SOLAR_RADIATION,NORDHAUS,Ch. 13,"Read the whole chapter, but focus especially on pp. 152--156",,,0,0,0,0,0,0
+2803,GEOENGINEERING_SOLAR_RADIATION,HEGERL_RISKS,,,,,0,0,0,0,0,0
+2900,GEOENGINEERING_CARBON_CAPTURE,,,,,"For today we will focus on a second class of geoengineering, called ""**air capture**,"" (Pielke calls this ""**carbon remediation**"") meaning reducing the atmospheric concentration of <%COO%> by filtering it out of the atmosphere and storing it permanently somewhere.
+
+* How do Pielke and Dyson feel about the prospect of air-capture geoengineering? (You know about Pielke; Dyson is a very famous physicist who is often discussed as a top prospect for a future Nobel Prize).
+* How does Pielke think air-capture fits Sarewitz's criteria for a technological fix?
+* At the end, when Pielke discusses the ""**moral hazard**"" argument against geoengineering, what does he mean by ""moral hazard?"" What do you think about the moral hazard argument?
+* What are the implications of geoengineering technology for climate policy in general? How does the prospect of geoengineering shape Dyson's, Nordhaus's, and Pielke's support or opposition to more conventional climate policy that focuses on cutting greenhouse gas emissions?
+* What do _you_ think about geoengineering and how does the prospect of geoengineering shape your views of climate policy?
+
+",0,0,0,1,0,0
+2901,GEOENGINEERING_CARBON_CAPTURE,PIELKE,Ch. 5,pp. 132--142,,,0,0,0,0,0,0
+2902,GEOENGINEERING_CARBON_CAPTURE,NORDHAUS,Ch. 14,pp. 165--168,,,0,0,0,0,0,0
+2903,GEOENGINEERING_CARBON_CAPTURE,DYSON_QUESTION,,,,,0,0,0,0,0,0
+3001,COST_OF_MITIGATION,NORDHAUS,Ch. 14,pp. 157--165,,"Here, we focus on the cost of reducing emissions. You should skim the material from Ch. 14 lightly and focus on reading Ch. 15 carefully.
+Remember how, in the reading notes for Oct. 9, I warned you about the potential confusion between ""mitigating factors,"" (the benefits of global warming, such as reduced heating costs for people who live in cold climates and longer growing seasons for farmers, which can offset some of the harms) and ""mitigation,"" which means cutting greenhouse gas emissions. Here, we are talking about the latter.
+
+* Nordhaus distinguishes two kinds of economic analysis of the cost of mitigation: Top-down and bottom-up (pp. 174--76 and Fig. 25). What is the difference? Do you think one is more reliable than the other? Why or why not?
+* Nordhaus discusses two aspects of mitigating greenhouse gas emissions: the technical aspects that determine what a perfect policy that is efficiently implemented could do; and the human aspects, which cause policies to be imperfectly designed and inefficently implemented in the real world. Compare the two curves in Fig. 26.
+
+",0,0,0,0,0,0
+3002,COST_OF_MITIGATION,NORDHAUS,Ch. 15,,,,0,0,0,0,0,0
+3100,DISCOUNTING,,,,,"Time-discounting is one of the most contentious and controversial aspects of the economics and ethics of climate change. Entire books have been written about this, and one class will not do justice to the topic.
+
+* As you read this chapter in Nordhaus, try to follow the distinctions Nordhaus draws between several aspects of discounting:
+
+    * **Pure time preference:** If I offer you a choice of getting a free dinner at a nice restaurant sometime this month or getting the same dinner five years from now, you would almost certainly prefer to get the nice dinner this month. Given the choice of getting something nice now, or in the near future, versus having to wait a long time, most people don't want to wait.
+    * **Opportunity cost:** If I offered you the choice of \$100 now versus in five years, as opposed to the fancy meal, something else comes into the picture: If you got the money now, but chose not to spend it right away, you could invest it so that in five years, you would have more than \$100. Spending money today rather than investing it for the future produces an opportunity cost (missing out on the compounding interest), which contributes another piece to the problem of discounting and the value of time.
+    * **Fairness and economic growth:** Economic growth has dramatically reduced poverty around the world over the past centuries. The decline of poverty has been especially rapid in the past half-century. If this trend continues, people living a few centuries in the future will have average per-capita incomes much more than 10 times what the average person earns today. Thus, spending money today to reduce the costs of climate change for future generations might be like taking from the poor (today's generation) to benefit the rich (future generations).
+
+* Graduate students should read the two articles in Science (and undergrads are welcome to read them if you're interested). Each is a bit less than two pages and they are very clear. These articles are a nice distillation of the kinds of economic/ethical arguments about what it means to be fair and just that are very common in environmental policy, and especially in climate policy.
+
+    There are no easy answers, and the challenge has led philosopher Stephen Gardiner to call the problem of climate change ""a perfect moral storm.""
+* The optional article by the economist, John Quiggin, is a much more technical discussion of the ethical and economic conundrums that arise from reducing the value of life and suffering to a mathematical equation about time. It's very good, but it's purely optional and you should not feel obliged to read it if you are not really excited to nerd out about these things.
+
+",0,0,0,1,0,0
+3101,DISCOUNTING,NORDHAUS,Ch. 16,,,,0,0,0,0,0,0
+3102,DISCOUNTING,NORDHAUS_ON_STERN,,,,,0,1,0,0,0,0
+3103,DISCOUNTING,STERN_ETHICS,,,,,0,1,0,0,0,0
+3104,DISCOUNTING,QUIGGIN_DISCOUNTING,,,,,0,0,1,0,0,0
+3200,POLICY_GOALS,,,,,"
+* In these chapters, Pielke and Nordhaus offer different accounts of the history of international treaties and policies to manage climate change.
+* Much of the focus is on the United Nations Framework Convention on Climate Change (UNFCCC), signed in 1992 and ratified by all 193 member states of the United Nations.
+* The UNFCCC is legally binding on its signatories, and requires them to "" stabiliz[e] greenhouse gases concentrations in the atmosphere at a level that would avoid dangerous anthropogenic interference with the climate system."" A problem is that the Framework did not define what constituted ""dangerous anthropogenic interference,"" or spell out any specific actions that the signatories would have to take under the treaty.
+* In subsequent years, much of the world's scientific and climate policy elites arrived at a rough consensus that raising the average temperature of the earth by more than 2<%DEGREE_CELSIUS%> relative to preindustrial temperatures would constitute dangerous interference. Both Nordhaus and Pielke present critical examinations of this judgment.
+* The details of implementing the pledge under UNFCCC (both defining 'dangerous interference"" and deciding on specific actions) was left to subsequent negotiations, and the signatory nations have met every year at ""conferences of parties"" (COPs) to hammer out details. The most important implementation agreement was a treaty signed in Kyoto in 1998, but never ratified by the United States. Both Nordhaus and Pielke discuss the Kyoto treaty and its pros and cons.
+* As you read this history and the discussion of the goal of limiting warming to no more than 2<%DEGREE_CELSIUS%> above pre-industrial temperatures, try to become familiar with the history and think critically about the kinds of policies that were pursued and those that were not given serious consideration.
+
+",0,0,0,1,0,0
+3201,POLICY_GOALS,NORDHAUS,Ch. 17,,,,0,0,0,0,0,0
+3202,POLICY_GOALS,PIELKE,Ch. 6,,,,0,0,0,0,0,0
+3300,COSTS_AND_BENEFITS,NORDHAUS,Ch. 18,,,,0,0,0,0,0,0
+3400,SOCIAL_COST_OF_CARBON,NORDHAUS,Ch. 19,,,,0,0,0,0,0,0
+3500,CARBON_PRICING_INSTRUMENTS,ECONOMICS_OF_REGULATION,,,,,0,0,0,0,0,0
+3601,PRAGMATIC_POLICIES,NORDHAUS,Ch. 23,,,,0,0,0,0,0,0
+3602,PRAGMATIC_POLICIES,PIELKE,Ch. 9,,,,0,0,0,0,0,0
+3700,GLOBAL_WARMING_GRIDLOCK,VICTOR_GRIDLOCK,Ch. 1,,,I have posted Chapter 1 online. The entire book is [available as an e-book](https://catalog.library.vanderbilt.edu/discovery/fulldisplay?docid=cambookslvl10.1017/CBO9780511975714&context=PC&vid=01VAN_INST:vanui&search_scope=MyInst_and_CI&tab=Everything&lang=en) online through the Vanderbilt Library.,0,0,0,0,0,0
+3800,BEYOND_GRIDLOCK,BEYOND_POLITICS,Ch. 1,,,,0,0,0,0,0,0
+3901,OBSTACLES_PERSPECTIVES,NORDHAUS,Ch. 26,,,,0,0,0,0,0,0
+3902,OBSTACLES_PERSPECTIVES,KRUGMAN_GAMBLING,,,,,0,0,0,0,0,0
+4000,SEMESTER_REVIEW,,,,,,0,0,0,1,0,0
+4100,NUCLEAR_ENERGY,,,,,"Nuclear power has the potential to provide abundant clean energy with no greenhouse gas emissions. However, there are two separate problems that nuclear power must contend with: First, it is very expensive. Several years ago, the CEO of Excelon, the largest operator of nuclear power plants in the U.S., said that nuclear power was more expensive than any other source of energy except solar photovoltaic. Second, nuclear power is politically controversial because of public fears about safety, especially after the 2011 nuclear accident in Fukushima, Japan.
+
+In these readings, ""Nuclear power as we know it is finished"" and ""A roadmap for U.S. nuclear energy innovation"" discuss the economics and the prospects for whether nuclear power can become economically competitive. ""Clean energy mind games"" is written by an expert on risk and discusses the safety issues and public fears.",0,0,0,1,0,0
+4101,NUCLEAR_ENERGY,LESTER_ROADMAP,,,,,0,0,0,0,0,0
+4102,NUCLEAR_ENERGY,ROPEIK_MIND_GAMES,,,,,0,0,0,0,0,0
+4103,NUCLEAR_ENERGY,TOMLINSON_FINISHED,,,,,0,0,0,0,0,0
+4201,LIMITS_OF_ECON,BARKER_ECON,,,,"The article by Barker, ""The Economics of Avoiding Dangerous Climate Change,"" is long. Read the following portions:
+
+* Section 1 (Introduction)
+* Section 2 (Traditional and New Economics): pp. 176--178 (through the paragraph in the middle of the page that ends ""... but any implications for policy are heavily qualified and extensive lists are given of the dangers that are not or cannot be monetised,' and the single paragraph that starts at the bottom of p. 179 (""Contrast also the pre-Stern traditional conclusion ... assumptions about human welfare and behaviour needed to make the mathematics tractable."")
+* Section 3 (Uncertainty): pp. 181--183, through the first complete paragraph on p. 183 (""There are serious problems ... fundamental differences between them."")
+* Section 4 (Economic Ethics): Skip the first few pages, which summarize arguments about discounting that we already covered in previous classes. Read pp. 185--187, starting at the bottom of p. 185 with ""Justice as a theory of ethics"" and reading through the end of the section.
+* Section 5 (Engineering and History). Skip this section.
+* Section 6  (Social Choice): read pp. 189--190. Read through the first complete paragraph on p. 190 (""In theory ... adaptation investments."")
+* Section 7 (Toward a New Economics): Read this whole section.
+
+",0,0,0,0,0,0
+4202,LIMITS_OF_ECON,ADAMS_FALLACY,,,,,0,0,0,0,0,0
+4300,CARBON_TRADING_GAME,,,,,It is very important that you are in class today unless there is an important and valid excuse for your absence. We will do a role-playing exercise to understand how market-based regulation of greenhouse gas emissions work.,0,0,0,1,0,1
+4400,CARBON_TRADING_REVIEW,,,,,We will review the carbon-trading game and discuss the implications for efficiently managing greenhouse gas emissions.,0,0,0,1,0,0
+4201,SEMESTER_REVIEW,,,,,No reading for today. We will review the semester and discuss climate change and climate policy in the big picture.,,,,1,,

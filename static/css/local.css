@@ -1,0 +1,21 @@
+.tex-logo sub, .latex-logo sub, .latex-logo sup {
+  text-transform: uppercase;
+}
+
+.tex-logo, .latex-logo {
+  font-size: 1em;
+}
+
+.tex-logo sub, .latex-logo sub {
+  font-size: 0.90em;
+  vertical-align: -0.0ex;
+  margin-left: -0.25em;
+  margin-right: -0.1em;
+}
+
+.latex-logo sup {
+  font-size: 0.85em;
+  vertical-align: -0.3em;
+  margin-left: -0.36em;
+  margin-right: -0.15em;
+}

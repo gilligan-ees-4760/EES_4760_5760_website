@@ -1,5 +1,41 @@
-# COMMENT: These are two rules with all the fields expanded
+[Settings]
+  ID = "ees4760"
+
 [[redirects]]
-  from = "/analyzeBehaviorspace/*"
-  to = "https://analyze-behaviorspace.jgilligan.org/:splat"
+  from = "https://www.ees4760.jgilligan.org/*"
+  to   = "https://ees4760.jgilligan.org/:splat"
+  force = true
   status = 301
+
+[[redirects]]
+  from = "http://www.ees4760.jgilligan.org/*"
+  to   = "https://ees4760.jgilligan.org/:splat"
+  force = true
+  status = 301
+
+[[redirects]]
+  from = "https://ees4760.netlify.com/*"
+  to   = "https://ees4760.jgilligan.org/:splat"
+  force = true
+  status = 301
+
+[[redirects]]
+  from = "http://ees4760.netlify.com/*"
+  to   = "https://ees4760.jgilligan.org/:splat"
+  force = true
+  status = 301
+
+[[redirects]]
+  from = "/static/*"
+  to = "https://static.jgilligan.org/ees4760/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/analyze_behaviorspace/*"
+  to = "https://shiny.jgilligan.org/ees4760/analyze_behaviorspace/:splat"
+  status = 302
+
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
