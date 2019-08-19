@@ -1,8 +1,0 @@
-{{ if isset .Site.Params.prof "url" -}}
-<a href="{{ .Site.Params.prof.url }}", target="_blank">{{ .Site.Params.prof.name | markdownify }}</a>
-{{- else -}}
-{{ .Site.Params.prof.name | markdownify }}
-{{- end }}<br/>
-Office: {{ .Site.Params.prof.office | markdownify }}<br/>
-Email: <a href="mailto:{{.Site.Params.prof.email}}?subject=EES 3310">{{.Site.Params.prof.email}}</a><br/>
-Office Hours: {{ .Site.Params.prof.officeHours | markdownify }}
