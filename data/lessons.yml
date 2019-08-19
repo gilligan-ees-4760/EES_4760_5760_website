@@ -49,6 +49,7 @@ lessons:
   reading: /reading/reading_11
 - date: '2019-09-27'
   title: Semester project proposal due
+  assignment: homework_07
 - date: '2019-10-01'
   title: Adaptive Behavior and Objectives
   reading: /reading/reading_12
@@ -77,6 +78,7 @@ lessons:
   lecture: /Slides/Class_19
 - date: '2019-10-23'
   title: Project ODD Due
+  assignment: homework_09
 - date: '2019-10-24'
   title: FALL BREAK
 - date: '2019-10-29'
@@ -96,6 +98,7 @@ lessons:
   reading: /reading/reading_23
 - date: '2019-11-08'
   title: Draft Model Code Due
+  assignment: homework_09
 - date: '2019-11-12'
   title: Parameterization and Calibration 2
   reading: /reading/reading_24
@@ -116,5 +119,10 @@ lessons:
   title: THANKSGIVING_BREAK
 - date: '2019-12-03'
   title: Presentations
+  assignment: homework_09
 - date: '2019-12-05'
   title: Presentations
+  assignment: homework_09
+- date: '2019-12-06'
+  title: Final project report
+  assignment: homework_09
