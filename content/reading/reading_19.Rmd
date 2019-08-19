@@ -1,82 +1,18 @@
 ---
-title: Collectives
-class_date: '2018-03-22'
+title: Stochasticity
+class_date: '2019-10-22'
 class_number: 19
 weight: 19
 slug: reading_19
-pubdate: '2018-01-01'
-date: '2018-03-22'
+pubdate: '2019-07-31'
+date: '2019-10-22'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Reading:
 
-* Railsback & Grimm, Ch. 16.
+### Required Reading (everyone):
+* Agent-Based and Individual-Based Modeling, Ch. 15.
 
-### Reading Notes:
 
-**Errata for Chapter 16:**
-
-* Section 16.4.1, p. 213:
-  The description of social status is not clear: it assumes ages are real 
-  numbers instead of integers. It should read:
-  
-    _The social status of a dog can be (a) "pup," meaning its age is less than one; 
-    (b) "yearling," with age of 1 year; (c) "subordinate," meaning age is 2 or 
-    greater but the dog is not an alpha; (d) "alpha," the dominant individual of its 
-    sex in a pack; and (e) "disperser," meaning the dog currently belongs to a 
-    disperser group, not a pack._
-
-* Section 16.4.1, p. 213:
-  The first bullet of the description of pack formation should start 
-  "Determine how many times the disperser group meets another..."
-
-* Section 16.4.1, Fig. 16.1:
-  Be aware that this figure does not depict the logistic function parameters in 
-  the Wild Dog model description. The figure shows a probability of 0.5 when the 
-  number of dogs in the population is 67% of carrying capacity (40 out of 60), 
-  while the model description says the probability is 0.5 when the population is 
-  50% of carrying capacity. 
-  To match the model description, the figure's curve should go through X = 30, Y = 0.5.
-
-* Section 16.4.2, p. 217:
-  Setting the dog's variable `my-pack` to the pack that created it (via the 
-  statement `set my-pack myself`) can cause a subtle error in the pack formation 
-  submodel. Disperser groups cannot form a pack with other disperser groups that 
-  originated in the same pack. In most people's code, disperser groups use the value 
-  of `my-pack` from one of their dogs to determine which pack they came from. 
-  The error can occur when two disperser groups came from packs that have since 
-  died; when a disperser dog's pack dies, NetLogo automatically changes its 
-  value of `my-pack` to the keyword `nobody`. 
-  Because disperser groups cannot form a new pack with another group that has the 
-  same value of `my-pack`, groups whose packs have died cannot combine with each 
-  other, even if they really came from two different packs. A solution is to set 
-  `my-pack` to the unique `who` number of the dog's pack. 
-  Instead of `set my-pack myself`, use `set my-pack [who] of myself`. 
-  Use a similar statement when new dogs are created in the reproduction submodel. 
-  Then change the statements where a dog's value of `my-pack` is compared to a pack, 
-  from (for example): 
-  ```
-  set pack-members dogs with [my-pack = myself]
-  ```
-  to: 
-  ```
-  set pack-members dogs with [my-pack = [who] of myself]
-  ```
-  And because `my-pack` now contains a who number instead of a pack, one of the 
-  last lines in the 
-  `create-disperser-group-from` code (page 220) needs to be changed, from: 
-  ```
-  ask dogs-former-pack [set pack-members ... 
-  ```
-  to: 
-  ```
-  ask pack dogs-former-pack [set pack-members ...
-  ```
-  This error appears to have little effect on model results.
-
-* Section 16.4.3, Figure 16.2:
-  The figure should look like 
-
-    ![Corrected Fig. 16.2](/img/errata_fig_16_2.png)

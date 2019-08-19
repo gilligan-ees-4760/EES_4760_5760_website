@@ -1,22 +1,23 @@
 ---
 title: 'Specifying models: The ODD protocol'
-class_date: '2018-01-18'
+class_date: '2019-09-03'
 class_number: 4
 weight: 4
 slug: reading_04
-pubdate: '2018-01-01'
-date: '2018-01-18'
+pubdate: '2019-07-31'
+date: '2019-09-03'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Homework
 
-Homework #3 is due today: Railsback & Grimm, Ch. 2, Ex. 1--2. See the homework assignment sheet for details.
+Homework #3 is due today: Ex. 2.1--2.2. See the homework assignment sheet for details.
 
 ## Reading:
 
-* Railsback & Grimm, Ch. 3.
+### Required Reading (everyone):
+* Agent-Based and Individual-Based Modeling, Ch. 3.
 
 ### Reading Notes:
 

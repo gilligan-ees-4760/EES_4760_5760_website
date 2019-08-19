@@ -12,7 +12,7 @@ publishDir = "public"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_data$", "\\.gitkeep"]
 
 [blackfriday]
-  smartypangs = true
+  smartypants = true
   latexDashes = true
   smartDashes = true
   hrefTargetBlank = true
@@ -106,13 +106,13 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
   backgroundRepeat = "repeat-y"
   shortCourseName = "EES 4760/5760"
   fullCourseName = "EES 4760/5760: Agent- and Individual-Based Computational Modeling"
-  semester = "Fall 2018"
+  semester = "Fall 2019"
   courseCatalogEntry = " Applications in natural, social, and behavioral sciences and engineering. Designing, programming, and documenting models. Using models for experiments. Examples from environmental science, ecology, economics, urban planning, and medicine. Familiarity with basic statistics and proficiency in algebra are expected. [3] (MNS)"
   fontAwesomePro = "sha384-POYwD7xcktv3gUeZO5s/9nUbRJG/WOmV6jfEGikMJu77LGYO8Rfs2X7URG822aum"
 
   [params.lectures]
     times = "TR 11:00--12:15"
-    classroom = "TBA"
+    classroom = "SC 2200"
 
   [params.prof]
     name = "Jonathan Gilligan"
@@ -122,9 +122,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
     phone = "322-2420"
     url = "www.jonathangilligan.org"
     office = "Stevenson 5725 (7th floor of building #5)"
-    officeHours = "Mon. 10:10--11:00, Thu. 10:00--11:00, or by appointment"
+    officeHours = "Tues. 1:00--2:00, Wed. 10:30--11:30, or by appointment"
 
   [params.ta]
+    hasTa = false
     name = "TBA"
     lastname = "TBA"
     title = "Ms."

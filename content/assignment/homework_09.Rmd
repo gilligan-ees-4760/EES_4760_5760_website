@@ -1,17 +1,16 @@
 ---
 title: Programming agent sensing
-due_date: '2018-02-19'
+due_date: '2019-10-03'
 assignment_number: 9
-weight: 10
+weight: 9
 slug: homework_09
-pubdate: '2018-01-01'
-date: '2018-02-19'
+pubdate: '2019-07-31'
+date: '2019-10-03'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Homework
-Turn in the following homework on Box by 11:59 pm:
 
 * **Everyone:**
   * Railsback & Grimm, Ch. 10, Ex. 10.1, 10.2

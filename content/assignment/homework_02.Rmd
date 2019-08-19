@@ -1,17 +1,16 @@
 ---
 title: Introducing NetLogo
-due_date: '2018-01-16'
+due_date: '2019-08-29'
 assignment_number: 2
 weight: 2
 slug: homework_02
-pubdate: '2018-01-01'
-date: '2018-01-16'
+pubdate: '2019-07-31'
+date: '2019-08-29'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Homework
-Turn in the following homework on Box by 11:59 pm:
 
 * As you read along with Section 2.3, follow along on your computer and build the _Mushroom Hunt_ model by typing in the code shown in the textbook. The whole program is shown on pages 28--29.
   **Save your model as `mushroom_hunt.nlogo`**.

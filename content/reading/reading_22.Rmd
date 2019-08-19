@@ -1,27 +1,20 @@
 ---
-title: Parameterization and Calibration
-class_date: '2018-03-29'
+title: Theory Development
+class_date: '2019-11-05'
 class_number: 22
 weight: 22
 slug: reading_22
-pubdate: '2018-01-01'
-date: '2018-03-29'
+pubdate: '2019-07-31'
+date: '2019-11-05'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Reading:
 
-* Railsback & Grimm, Ch. 20.
+### Required Reading (everyone):
+* Agent-Based and Individual-Based Modeling, Ch. 19.
 
 ### Reading Notes:
 
-**Errata for Chapter 20:**
-
-* Section 20.5, p. 264:
-  The first bullet of the description of the simple trait for how subordinate adults decide whether to scout should say,
-  "If there are no _older_ subordinate adults" instead of "other subordinate adults".
-
-* Section 20.7, Exercise 2:
-  The model equation has parentheses in the wrong place. It should be:
-  $$ N_t = N_{t-1} + r N_{t-1} [ 1 - (N_{t-1} / K)] - H_{t-1}$$
+There is an implementation of the [wood hoopoe model](/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo), suitable for Exercise 2, on the class web site: <https://ees4760.jgilligan.org/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo>

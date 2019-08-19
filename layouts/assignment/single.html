@@ -1,41 +1,36 @@
-
 {{ define "body" }}
-<body class="profile-page">
-  {{ partial "nav-fixed-top.html" . }}
-  <div class="wrapper">
-    <div class="header header-filter" style="background-image: url('{{ .Site.Params.background | relURL }}');">
-    </div>
-		<div class="main main-raised">
-			<div class="container">
-		  	<div class="section text-left">
-		  	  <h2 class="title text-center">
-		  	    {{- if isset .Params "assignment_number" -}}
-		  	    Homework #{{ .Params.assignment_number }}: {{ end -}}
-		  	    {{ .Title }}</h2>
-		  	  <h3 class="text-center">Due {{dateFormat "Mon., Jan 2" .Params.due_date}}</h3>
+<body style="background-image:url({{ .Site.Params.background | relURL }});background-size:{{ .Site.Params.backgroundSize | safeCSS  }};background-repeat:{{ .Site.Params.backgroundRepeat | safeCSS }};background-color:{{ .Site.Params.backgroundColor | safeCSS }};background-blend-mode:{{ .Site.Params.backgroundBlendMode | safeCSS }}">
+  <div class="grid-y medium-grid-frame">
+    {{ partial "topbar.html" . }}
+    <div class="grid-x medium-auto medium-cell-block-container">
+      <div class="grid-container small-12 fill-y medium-cell-block-y">
+        <div class="grid-y fill-y grid-margin-y">
+          <div class="cell auto show-for-medium">
+          </div>
+          <div class="grid-x grid-padding-x grid-padding-y shrink scrollable-content medium-cell-block-container" style="background-color:hsla(0, 0%, 100%, 0.9);">
+            <div class="cell" style="height:calc(100vh - 5rem);">
+    		  	  <h2 class="title text-center">
+		    	    {{- if isset .Params "assignment_number" -}}
+		  	        Homework #{{ .Params.assignment_number }}: {{ end -}}
+		  	      {{ .Title }}</h2>
+		  	      <h3 class="text-center">Due {{dateFormat "Mon., Jan 2" .Params.due_date}}</h3>
 	            {{ .Content }}
-	            {{- if (or .PrevInSection .NextInSection) }}
-	            <div>
-	              {{- if .NextInSection }}
-	                <span class="pull-left"><a href="{{.NextInSection.URL}}"><i class="material-icons">arrow_back</i> Prev:
-	                {{ if isset .NextInSection.Params "assignment_number" -}}
-	                  HW #{{.NextInSection.Params.assignment_number}} "{{.NextInSection.Title}}"
-	                {{- else -}}
-	                  {{.NextInSection.Title}}
-	                {{- end -}}
-	                </a></span>
-	              {{ end -}}
-	              {{- if .PrevInSection }}
-	                <span class="pull-right"><a href="{{.PrevInSection.URL}}">Next:
-	                {{ if isset .PrevInSection.Params "assignment_number" -}}
-	                  HW #{{.PrevInSection.Params.assignment_number}} "{{.PrevInSection.Title}}"
-	                {{- else -}}
-  	                {{.PrevInSection.Title}}
-	                {{- end }}
-	                <i class="material-icons">arrow_forward</i></a></span>
-	              {{ end -}}
+              {{- if (or .PrevInSection .NextInSection) }}
+              <div class="grid-x grid-padding-x align-top">
+                <div class="cell small-6">
+                  {{- if .NextInSection }}
+	                  <span class="text-left"><a href="{{.NextInSection.URL}}"><i class="material-icons">arrow_back</i> Prev: HW #{{.NextInSection.Params.assignment_number}} "{{.NextInSection.Title}}"</a></span>
+                  {{ end -}}
+                  </div>
+                <div class="cell small-6">
+                  {{- if .PrevInSection }}
+	                  <span class="text-right"><a href="{{.PrevInSection.URL}}">Next: HW #{{.PrevInSection.Params.assignment_number}} "{{.PrevInSection.Title}}" <i class="material-icons">arrow_forward</i></a></span>
+                  {{ end -}}
+                </div>
 	            </div>
 	            {{ end -}}
+	            </div>
+          </div>
 	      </div>
       </div>
 		</div>

@@ -1,22 +1,23 @@
 ---
 title: Adaptive Behavior and Objectives
-class_date: '2018-02-19'
+class_date: '2019-10-01'
 class_number: 12
 weight: 12
 slug: reading_12
-pubdate: '2018-01-01'
-date: '2018-02-19'
+pubdate: '2019-07-31'
+date: '2019-10-01'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Homework
 
-Homework #9 is due today: Railsback & Grimm, Ch. 10, Ex. 10.1, 10.2 (everyone), Ch. 11, Ex. 11.1, 11.2 (everyone), and Ch. 11, Ex. 11.3 (grad. students). See the homework assignment sheet for details.
+Homework #8 is due today: Ex. 8.1, 8.2 (everyone), Ex. 9.1, 9.3, 9.4 (everyone), Ex. 8.3, 8.4 (grad. students), and Ex. 9.6 (grad. students). See the homework assignment sheet for details.
 
 ## Reading:
 
-* Railsback & Grimm, Ch. 11.
+### Required Reading (everyone):
+* Agent-Based and Individual-Based Modeling, Ch. 11.
 
 ### Reading Notes:
 

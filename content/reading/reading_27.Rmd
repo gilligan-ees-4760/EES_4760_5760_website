@@ -1,0 +1,18 @@
+---
+title: 'Looking Ahead: ABMs Beyond this Course'
+class_date: '2019-11-21'
+class_number: 27
+weight: 27
+slug: reading_27
+pubdate: '2019-07-31'
+date: '2019-11-21'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Reading:
+
+### Required Reading (everyone):
+* Agent-Based and Individual-Based Modeling, Ch. 24.
+
+

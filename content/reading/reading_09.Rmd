@@ -1,18 +1,23 @@
 ---
 title: Emergence
-class_date: '2018-02-06'
+class_date: '2019-09-19'
 class_number: 9
 weight: 9
 slug: reading_09
-pubdate: '2018-01-01'
-date: '2018-02-06'
+pubdate: '2019-07-31'
+date: '2019-09-19'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
+## Homework
+
+Homework #6 is due today: Ex. 5.11 (grad. students). See the homework assignment sheet for details.
+
 ## Reading:
 
-* Railsback & Grimm, Ch. 8.
+### Required Reading (everyone):
+* Agent-Based and Individual-Based Modeling, Ch. 8.
 
 ### Reading Notes:
 

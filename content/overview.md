@@ -12,9 +12,11 @@ date: "2017-04-13T00:00:00"
 
 {{% PROF_INFO %}}
 
+{{< IF_TA >}}
 #### Graduate Teaching Assistant
 
 {{% TA_INFO %}}
+{{< /IF_TA >}}
 
 #### Schedule
 

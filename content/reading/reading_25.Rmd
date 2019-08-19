@@ -1,19 +1,18 @@
 ---
-title: Sensitivity and Robustness
-class_date: '2018-04-10'
+title: Analyzing ABMs
+class_date: '2019-11-14'
 class_number: 25
 weight: 25
 slug: reading_25
-pubdate: '2018-01-01'
-date: '2018-04-10'
+pubdate: '2019-07-31'
+date: '2019-11-14'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Reading:
 
-* Railsback & Grimm, Ch. 23.
+### Required Reading (everyone):
+* Agent-Based and Individual-Based Modeling, Ch. 22.
 
-### Reading Notes:
 
-You can download the [model of breeding synchrony](/files/models/chapter_23/)Ch_23_4_breeding_synchrony.nlogo), described in [Jovani and Grimm (2008)](/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf) and in section 23.4, from the class web site: <https://ees4760.jgilligan.org/files/models/chapter_23/)Ch_23_4_breeding_synchrony.nlogo>

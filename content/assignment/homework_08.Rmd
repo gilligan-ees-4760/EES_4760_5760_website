@@ -1,17 +1,16 @@
 ---
 title: Analyzing model experiments
-due_date: '2018-02-15'
+due_date: '2019-10-01'
 assignment_number: 8
-weight: 9
+weight: 8
 slug: homework_08
-pubdate: '2018-01-01'
-date: '2018-02-15'
+pubdate: '2019-07-31'
+date: '2019-10-01'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Homework
-Turn in the following homework on Box by 11:59 pm:
 
 * **Everyone:**
   * Railsback & Grimm, Ch. 8, Ex. 8.1, 8.2

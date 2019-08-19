@@ -1,18 +1,19 @@
 ---
 title: Using models for science
-class_date: '2018-01-25'
+class_date: '2019-09-10'
 class_number: 6
 weight: 6
 slug: reading_06
-pubdate: '2018-01-01'
-date: '2018-01-25'
+pubdate: '2019-07-31'
+date: '2019-09-10'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Reading:
 
-* Railsback & Grimm, Ch. 5.
+### Required Reading (everyone):
+* Agent-Based and Individual-Based Modeling, Ch. 5.
 
 ### Reading Notes:
 
@@ -39,20 +40,3 @@ and raster grid files (`.grd` or `.asc`). The GIS extension offers a lot of func
 If you're interested in using GIS data in your models, take a look at the GIS examples in the NetLogo model library.
 
 You can download the [data file](/files/models/chapter_05/ElevationData.txt) with the elevations for the realistic butterfly model from <https://ees4760.jgilligan.org/files/models/chapter_05/ElevationData.txt>
-
-**Errata for Chapter 5:**
-
-* Page 68: Replace the statement
-  ```
-  export-plot "Corridor width"
-      word "Corridor-output-for-q-" q
-  ```
-  with this:
-  ```
-  export-plot "Corridor width"
-      (word "Corridor-output-for-q-" q ".csv")
-  ```
-
-    The revised statement appends the file extension "`.csv`" to the file name created via the `word` primitive.
-    Note that when `word` is used to concatenate more than two values tovether, it and all the values must be
-    inside parentheses.

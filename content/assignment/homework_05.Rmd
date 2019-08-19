@@ -1,17 +1,16 @@
 ---
 title: 'Science with models: Butterfly mating'
-due_date: '2018-01-30'
+due_date: '2019-09-12'
 assignment_number: 5
 weight: 5
 slug: homework_05
-pubdate: '2018-01-01'
-date: '2018-01-30'
+pubdate: '2019-07-31'
+date: '2019-09-12'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Homework
-Turn in the following homework on Box by 11:59 pm:
 
 * **Everyone:**
   * Railsback & Grimm, Ch. 4, Ex. 4.2, 4.4
