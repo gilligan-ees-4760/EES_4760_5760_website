@@ -125,10 +125,16 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
     officeHours = "Tues. 1:00--2:00, Wed. 10:30--11:30, or by appointment"
 
   [params.ta]
-    hasTa = false
+    hasTA = false
     name = "TBA"
     lastname = "TBA"
     title = "Ms."
     email = "TBA@vanderbilt.edu"
     office = "TBA"
     officeHours = "TBA"
+    
+  [params.assignments]
+    labs = false
+    homework = true
+    reading = true
+
