@@ -7,7 +7,7 @@ p_load(assertthat)
 p_load(yaml)
 p_load(here)
 p_load(blogdown)
-p_load(blogdownDigest)
+p_load_current_gh("jonathan-g/blogdownDigest")
 
 database <- "EES_4760_5760.sqlite3"
 online_location <- "posted on Brightspace"
@@ -44,7 +44,8 @@ check_for_hw_asgt <- function(homework_df) {
 
 check_for_lab_asgt <- function(lab_df) {
   homework_df %>% filter(! is.na(lab_id)) %>% group_by(lab_id) %>%
-    summarize(has_lab = any_true_vec(str_length(lab_group) > 0)) %>%
+    summarize(has_lab = any_true_vec(str_length(lab_group) > 0),
+              lab_num = min(lab_num, na.rm = TRUE)) %>%
     ungroup()
 }
 
@@ -199,7 +200,7 @@ load_semester_db <- function() {
       mutate(has_lab = map_lgl(has_lab, isTRUE))
   } else {
     calendar <- calendar %>%
-      mutate(has_lab = FALSE)
+      mutate(has_lab = FALSE, lab_num = NA)
   }
 
   if (TRUE || has_hw_assignments) {
@@ -214,8 +215,8 @@ load_semester_db <- function() {
 
   calendar <- calendar %>%
     left_join(check_for_notices(notices), by = "topic_id") %>%
-    mutate(homework_index = ifelse(has_hw, cumsum(has_hw), NA_integer_),
-           homework_num = ifelse(has_hw, cumsum(has_numbered_hw), NA_integer_))
+    mutate(hw_index = ifelse(has_hw, cumsum(has_hw), NA_integer_),
+           hw_num = ifelse(has_hw, cumsum(has_numbered_hw), NA_integer_))
 
   spring_break <- calendar %>% filter(event_id == "SPRING_BREAK") %>%
     select(date, topic_id, event_id)
@@ -608,9 +609,10 @@ make_hw_page <- function(cal_entry) {
   this_assignment <- homework_assignments %>%
     filter(homework_id == cal_entry$homework_id)
   hw_topic <- head(this_assignment$hw_topic, 1)
-  hw_num <- cal_entry$homework_num
+  hw_idx <- cal_entry$hw_index
+  hw_num <- cal_entry$hw_num
 
-  message("Making homework page for HW #", hw_num)
+  message("Making homework page for HW #", hw_num, " (index = ", hw_idx, ")")
 
   delim <- "---"
   header <- tibble(title = hw_topic, due_date = hw_date,
@@ -795,7 +797,7 @@ make_short_hw_assignment <- function(cal_entry) {
   }
   output <- NULL
   if (length(homework_topic > 0)) {
-    output <- str_c( "Homework #", cal_entry$homework_num, " is due today: ",
+    output <- str_c( "Homework #", cal_entry$hw_num, " is due today: ",
                      add_period(homework_topic),
                      " See the homework assignment sheet for details.") %>%
       str_c( "## Homework", "", .,  "", sep = "\n" )
@@ -1139,7 +1141,7 @@ make_notice <- function(notice_entries) {
 generate_assignments <- function() {
   semester <- calendar %>%
     filter(! event_id %in% c("FINAL_EXAM", "ALT_FINAL_EXAM")) %>%
-    select(seq, class, date, topic, homework_num, lab_num) %>%
+    select(seq, class, date, topic, hw_num, lab_num) %>%
     mutate(reading_page = NA_character_, homework_page = NA_character_,
            lecture_page = NA_character_, lab_page = NA_character_)
   for (class_num in na.omit(calendar$class)) {
@@ -1186,15 +1188,15 @@ generate_assignments <- function() {
         mutate(reading_page = ifelse(class == cal_entry$class,
                                      rd_url, reading_page))
     }
-    if (cal_entry$has_homework) {
-      message("Making homework page for assignment #", cal_entry$homework_num)
-      hw_fname <- sprintf("homework_%02d.Rmd", cal_entry$homework_num)
+    if (cal_entry$has_hw) {
+      message("Making homework page for assignment #", cal_entry$hw_num, " (index = ", cal_entry$hw_index, ")")
+      hw_fname <- sprintf("homework_%02d.Rmd", cal_entry$hw_num)
       hw_path <- hw_fname %>% file.path(root_dir, "content", "assignment", .)
       hw_url <- hw_fname %>% str_replace("\\.Rmd$", "")
       hw_page <- make_hw_page(cal_entry)
       cat(hw_page, file = hw_path)
       semester <- semester %>%
-        mutate(homework_page = ifelse(homework_num == cal_entry$homework_num,
+        mutate(homework_page = ifelse(hw_num == cal_entry$hw_num,
                                      hw_url, homework_page))
     }
     if (cal_entry$has_lab) {
