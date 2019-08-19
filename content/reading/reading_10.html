@@ -1,11 +1,11 @@
 ---
 title: Observation
-class_date: '2018-02-13'
+class_date: '2019-09-24'
 class_number: 10
 weight: 10
 slug: reading_10
-pubdate: '2018-01-01'
-date: '2018-02-13'
+pubdate: '2019-07-31'
+date: '2019-09-24'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -15,13 +15,16 @@ output:
 
 <div id="homework" class="section level2">
 <h2>Homework</h2>
-<p>Homework #7 is due today: Railsback &amp; Grimm, Ch. 6, Ex. 6.2, 6.3, 6.5 (everyone) and Ex. 6.4, 6.7 (grad. students). See the homework assignment sheet for details.</p>
+<p>Homework #7 is due today: Ex. 6.2, 6.3, 6.5 (everyone) and Ex. 6.4, 6.7 (grad. students). See the homework assignment sheet for details.</p>
 </div>
 <div id="reading" class="section level2">
 <h2>Reading:</h2>
+<div id="required-reading-everyone" class="section level3">
+<h3>Required Reading (everyone):</h3>
 <ul>
-<li>Railsback &amp; Grimm, Ch. 9.</li>
+<li>Agent-Based and Individual-Based Modeling, Ch. 9.</li>
 </ul>
+</div>
 <div id="reading-notes" class="section level3">
 <h3>Reading Notes:</h3>
 <p>In this chapter, we examine how to detect and record the properties of a model
@@ -32,21 +35,5 @@ Simulation</em> <strong>12</strong>, 1</a>
 is available online at <a href="http://jasss.soc.surrey.ac.uk/12/2/1.html" class="uri">http://jasss.soc.surrey.ac.uk/12/2/1.html</a>.</p>
 <p>I have posted a <a href="/files/models/chapter_09/ch9_ex8_Netlogo_exercises.pdf">refresher guide</a>
 for NetLogo programming on the class web site at <a href="https://ees4760.jgilligan.org/files/models/chapter_09/ch9_ex8_Netlogo_exercises.pdf" class="uri">https://ees4760.jgilligan.org/files/models/chapter_09/ch9_ex8_Netlogo_exercises.pdf</a></p>
-<p><strong>Errata for Chapter 9:</strong></p>
-<ul>
-<li><p>Section 9.3, p. 119:
-The discussion of histograms mentions potential difficulties setting the
-<em>x</em> axis to a useful range, so all the bars are visible. One solution is to
-use the <code>set-plot-x-range</code> primitive. For example, add this statement:</p>
-<pre><code>set-plot-x-range (min [elevation] of turtles) 
-    (max [elevation] of turtles)</code></pre>
-<p>just before the statement:</p>
-<pre><code>histogram [elevation] of turtles</code></pre>
-<p>Or, if the histogram should always
-start at zero:</p>
-<pre><code>set-plot-x-range 0 max [elevation] of turtles</code></pre>
-<p>(You may need to use primitives such as <code>ceiling</code> and <code>precision</code> to convert
-the inputs to <code>set-plot-x-range</code> to nice round numbers.)</p></li>
-</ul>
 </div>
 </div>

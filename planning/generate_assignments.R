@@ -18,6 +18,42 @@ slide_dir <- here::here("static", "Slides")
 
 md_extensions <- "+tex_math_single_backslash+compact_definition_lists"
 
+any_true_vec <- function(vec) {
+  any(map_lgl(vec, isTRUE))
+}
+
+check_for_reading_asgt <- function(reading_df) {
+  reading_df %>% filter(!is.na(reading_id)) %>% group_by(reading_id) %>%
+    summarize(textbook = any_true_vec(textbook),
+              handout = any_true_vec(handout),
+              prologue = any_true_vec(rd_prologue),
+              epilogue = any_true_vec(rd_epilogue),
+              url = any_true_vec(str_length(url) > 0)
+    ) %>% ungroup() %>%
+    transmute(reading_id, has_reading = textbook | handout | prologue |
+                epilogue | url)
+}
+
+check_for_hw_asgt <- function(homework_df) {
+  homework_df %>% filter(! is.na(homework_id)) %>% group_by(homework_id) %>%
+    summarize(has_hw = any_true_vec(str_length(homework) > 0) |
+                any_true_vec(str_length(homework_notes) > 0),
+              has_numbered_hw = has_hw && any_true_vec(hw_is_numbered)) %>%
+    ungroup()
+}
+
+check_for_lab_asgt <- function(lab_df) {
+  homework_df %>% filter(! is.na(lab_id)) %>% group_by(lab_id) %>%
+    summarize(has_lab = any_true_vec(str_length(lab_group) > 0)) %>%
+    ungroup()
+}
+
+check_for_notices <- function(notice_df) {
+  notice_df %>% filter(!is.na(topic_id)) %>% group_by(topic_id) %>%
+  summarize(has_notice = any_true_vec(str_length(notice) > 0)) %>%
+    ungroup()
+}
+
 load_semester_db <- function() {
   semester_db <- src_sqlite(file.path(planning_dir, database))
 
@@ -154,42 +190,32 @@ load_semester_db <- function() {
 
   calendar <- calendar %>%
     left_join(events, by = "event_id") %>%
-    left_join(reading_assignments %>%
-                select(reading_id, textbook, handout, reading_notes),
-              by = "reading_id")
+    left_join(check_for_reading_asgt(reading_assignments), by = "reading_id") %>%
+    mutate(has_reading = map_lgl(has_reading, isTRUE))
 
   if (has_lab_assignments) {
     calendar <- calendar %>%
-      left_join(lab_assignments %>%
-                  select(lab_id, lab_group, lab_title, lab_num), by = "lab_id")
+      left_join(check_for_lab_asgt(lab_assignments), by = "lab_id") %>%
+      mutate(has_lab = map_lgl(has_lab, isTRUE))
   } else {
     calendar <- calendar %>%
-      mutate(lab_group = NA_character_, lab_title = NA_character_, lab_num = NA_integer_)
+      mutate(has_lab = FALSE)
   }
 
   if (TRUE || has_hw_assignments) {
     calendar <- calendar %>%
-      left_join(homework_assignments %>%
-                  select(homework_id, homework, homework_notes), by = "homework_id")
+      left_join(check_for_hw_asgt(homework_assignments), by = "homework_id") %>%
+      mutate(has_hw = map_lgl(has_hw, isTRUE),
+             has_numbered_hw = map_lgl(has_numbered_hw, isTRUE))
   } else {
     calendar <- calendar %>%
-      mutate(homework = NA_character_, homework_notes = NA_character_)
+      mutate(has_hw = FALSE, has_numbered_hw = FALSE)
   }
 
   calendar <- calendar %>%
-    left_join(notices %>% select(topic_id, notice), by = "topic_id") %>%
-    mutate(has_reading = ifelse(is.na(textbook), FALSE, textbook) | ifelse(is.na(handout), FALSE, handout) |
-             ! is.na(reading_notes),
-           has_notice =  ! is.na(notice), has_lab = ! is.na(lab_group),
-           has_homework = ! (is.na(homework) & is.na(homework_notes))) %>%
-    select(-reading_notes, -textbook, -handout, -notice, -homework, -homework_notes, -lab_title) %>%
-    {
-      .g <- names(.) %>% discard(~str_detect(.x, "^has")) %>% (rlang::syms)
-      group_by(., !!! .g)
-    } %>%
-    summarize_all(funs(any(.))) %>%
-    ungroup() %>% distinct() %>%
-    mutate(homework_num = ifelse(has_homework, cumsum(has_homework), NA_integer_))
+    left_join(check_for_notices(notices), by = "topic_id") %>%
+    mutate(homework_index = ifelse(has_hw, cumsum(has_hw), NA_integer_),
+           homework_num = ifelse(has_hw, cumsum(has_numbered_hw), NA_integer_))
 
   spring_break <- calendar %>% filter(event_id == "SPRING_BREAK") %>%
     select(date, topic_id, event_id)
@@ -372,7 +398,7 @@ enumerate <- function(text, pad_len = 0, enum_type = "#.") {
 }
 
 expand_codes <- function(text, delim = c("<%", "%>")) {
-  invoke(knit_expand, .args = text_codes, text = text, delim = delim)
+  rlang::exec(knit_expand, !!!text_codes, text = text, delim = delim)
 }
 
 expand_code <- function(text) {
@@ -1114,8 +1140,8 @@ generate_assignments <- function() {
   semester <- calendar %>%
     filter(! event_id %in% c("FINAL_EXAM", "ALT_FINAL_EXAM")) %>%
     select(seq, class, date, topic, homework_num, lab_num) %>%
-    mutate(reading_page = as.character(NA), homework_page = as.character(NA),
-           lecture_page = as.character(NA), lab_page = as.character(NA))
+    mutate(reading_page = NA_character_, homework_page = NA_character_,
+           lecture_page = NA_character_, lab_page = NA_character_)
   for (class_num in na.omit(calendar$class)) {
     cal_entry <- calendar %>% filter(class == class_num)
     g_cal_entry <<- cal_entry

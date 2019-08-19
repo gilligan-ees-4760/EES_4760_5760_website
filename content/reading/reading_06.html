@@ -1,11 +1,11 @@
 ---
 title: Using models for science
-class_date: '2018-01-25'
+class_date: '2019-09-10'
 class_number: 6
 weight: 6
 slug: reading_06
-pubdate: '2018-01-01'
-date: '2018-01-25'
+pubdate: '2019-07-31'
+date: '2019-09-10'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -15,9 +15,12 @@ output:
 
 <div id="reading" class="section level2">
 <h2>Reading:</h2>
+<div id="required-reading-everyone" class="section level3">
+<h3>Required Reading (everyone):</h3>
 <ul>
-<li>Railsback &amp; Grimm, Ch. 5.</li>
+<li>Agent-Based and Individual-Based Modeling, Ch. 5.</li>
 </ul>
+</div>
 <div id="reading-notes" class="section level3">
 <h3>Reading Notes:</h3>
 <p>This reading sets the stage for answering the big question, “How can we use agent-based models to do science?”
@@ -34,23 +37,11 @@ By default, NetLogo only allows you to read in data in simple text files. Howeve
 data from other common file formats, including <code>.csv</code> and ArcGIS shapefiles and raster (grid) files.</p>
 <p>If you want to read in data from csv files, you may want to
 look at the documentation for the  extension to NetLogo. To use it, you just put the line <code>includes [csv]</code> as the first line of your
-model, and then use functions from the extension, such as <code>let data csv:from-file &quot;myfile.csv&quot;</code>.</p>
+model, and then use functions from the extension, such as <code>let data csv:from-file "myfile.csv"</code>.</p>
 <p>To read in date from ArcGIS files, look at the documentation for the  extension. You would put the line <code>extensions [ gis ]</code> as the
 first line of your model, and then use functions, such as <code>gis:load-dataset</code>, which can load vector shape files (<code>.shp</code>)
 and raster grid files (<code>.grd</code> or <code>.asc</code>). The GIS extension offers a lot of functions for working with vector and raster GIS data.
 If you’re interested in using GIS data in your models, take a look at the GIS examples in the NetLogo model library.</p>
 <p>You can download the <a href="/files/models/chapter_05/ElevationData.txt">data file</a> with the elevations for the realistic butterfly model from <a href="https://ees4760.jgilligan.org/files/models/chapter_05/ElevationData.txt" class="uri">https://ees4760.jgilligan.org/files/models/chapter_05/ElevationData.txt</a></p>
-<p><strong>Errata for Chapter 5:</strong></p>
-<ul>
-<li><p>Page 68: Replace the statement</p>
-<pre><code>export-plot &quot;Corridor width&quot;
-    word &quot;Corridor-output-for-q-&quot; q</code></pre>
-<p>with this:</p>
-<pre><code>export-plot &quot;Corridor width&quot;
-    (word &quot;Corridor-output-for-q-&quot; q &quot;.csv&quot;)</code></pre>
-<p>The revised statement appends the file extension “<code>.csv</code>” to the file name created via the <code>word</code> primitive.
-Note that when <code>word</code> is used to concatenate more than two values tovether, it and all the values must be
-inside parentheses.</p></li>
-</ul>
 </div>
 </div>
