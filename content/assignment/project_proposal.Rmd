@@ -1,0 +1,31 @@
+---
+title: Research project proposal
+due_date: '2019-09-27'
+assignment_number: .na.integer
+weight: .na.integer
+slug: project_proposal
+pubdate: '2019-07-31'
+date: '2019-09-27'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Homework
+
+* Turn in a one-to-two page (double-spaced) proposal for your semester research project.
+
+### Notes on Homework:
+
+This proposal should describe the topic you want to work on, 
+identify a published open-source model you want to work with,
+and and describe how you think you might want to extend it.
+
+You should consult the textbook, the Model Library in NetLogo, 
+and the list of reading and computational tools and
+resources I distributed on the first day of class (it's also posted on the
+course web site).
+
+If you really want to write your own model instead of working with a
+published one, that is also acceptable, but be aware that it may be a lot
+more work. I recommend that you do this only if you have previous experience
+in programming.

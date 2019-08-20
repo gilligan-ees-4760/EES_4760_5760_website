@@ -1,0 +1,24 @@
+---
+title: Research project ODD
+due_date: '2019-10-23'
+assignment_number: .na.integer
+weight: .na.integer
+slug: project_odd
+pubdate: '2019-07-31'
+date: '2019-10-23'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Homework
+
+* Turn in an ODD for extending your chosen model to ask new questions.
+
+### Notes on Homework:
+
+If you are working with a published model that has an ODD,
+your ODD should modify the published one to include the changes you plan to
+make to investigate your new research question.
+
+If you're writing a new model from scratch, you should turn in a full ODD
+for your model.

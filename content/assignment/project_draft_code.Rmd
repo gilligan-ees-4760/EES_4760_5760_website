@@ -1,0 +1,24 @@
+---
+title: Draft model code for research project
+due_date: '2019-11-08'
+assignment_number: .na.integer
+weight: .na.integer
+slug: project_draft_code
+pubdate: '2019-07-31'
+date: '2019-11-08'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Homework
+
+* Turn in a draft `.nlogo` file with your modified model. The ODD for your modified model should be included in the "Info" section of the model.
+
+  You should _also_ turn in a document that describes what you are satisfied with about your draft model and what problems you are struggling with.
+
+### Notes on Homework:
+
+The model code you turn in should run, but it does not need to be perfect. 
+   
+The point of this deadline is so that you can check in with me about how
+things are going so I can give you feedback and suggestions.

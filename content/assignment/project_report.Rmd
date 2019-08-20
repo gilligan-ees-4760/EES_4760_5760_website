@@ -1,0 +1,28 @@
+---
+title: Research project presentation
+due_date: '2019-12-05'
+assignment_number: .na.integer
+weight: .na.integer
+slug: project_report
+pubdate: '2019-07-31'
+date: '2019-12-05'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Homework
+
+* You will make a ten-minute presentation in class about your model (seven minutes of talking and three minutes for questions).
+* You will make a ten-minute presentation in class about your model (seven minutes of talking and three minutes for questions).
+
+### Notes on Homework:
+
+There will not be time to go into all the details in your presentation, so focus on:
+* the big question you were addressing,
+* a short description of the approach you took to answer it using an agent-based model,
+* what you learned from running the model.
+
+There will not be time to go into all the details in your presentation, so focus on:
+* the big question you were addressing,
+* a short description of the approach you took to answer it using an agent-based model,
+* what you learned from running the model.

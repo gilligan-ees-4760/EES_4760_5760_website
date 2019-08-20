@@ -35,11 +35,19 @@ check_for_reading_asgt <- function(reading_df) {
 }
 
 check_for_hw_asgt <- function(homework_df) {
-  homework_df %>% filter(! is.na(homework_id)) %>% group_by(homework_id) %>%
+  retval <- homework_df %>% filter(! is.na(homework_id)) %>%
+    group_by(homework_id) %>%
     summarize(has_hw = any_true_vec(str_length(homework) > 0) |
                 any_true_vec(str_length(homework_notes) > 0),
-              has_numbered_hw = has_hw && any_true_vec(hw_is_numbered)) %>%
+              has_numbered_hw = has_hw && any_true_vec(hw_is_numbered),
+              hw_slug_len = length(unique(hw_slug)),
+              hw_slug = head(hw_slug, 1)) %>%
     ungroup()
+  bad_slugs <- retval %>% filter(! is.na(hw_slug_len), hw_slug_len != 1)
+  if (nrow(bad_slugs) > 0) {
+    warning("Bad slug len for ", str_c(bad_slugs$homework_id, collapse = ", "))
+  }
+  retval %>% select(-hw_slug_len)
 }
 
 check_for_lab_asgt <- function(lab_df) {
@@ -51,7 +59,7 @@ check_for_lab_asgt <- function(lab_df) {
 
 check_for_notices <- function(notice_df) {
   notice_df %>% filter(!is.na(topic_id)) %>% group_by(topic_id) %>%
-  summarize(has_notice = any_true_vec(str_length(notice) > 0)) %>%
+    summarize(has_notice = any_true_vec(str_length(notice) > 0)) %>%
     ungroup()
 }
 
@@ -145,7 +153,8 @@ load_semester_db <- function() {
       left_join(hw_groups, by = "hw_group") %>%
       left_join(hw_topics, by = "homework_id") %>%
       left_join(hw_items, by = "hw_group") %>%
-      select(homework_id, hw_group, hw_due_date, hw_topic = homework_topic,
+      select(homework_id, hw_group, hw_due_date,
+             hw_topic = homework_topic, hw_title, hw_slug,
              short_homework, homework, homework_notes,
              hw_graduate_only = graduate_only,
              hw_undergraduate_only = undergraduate_only,
@@ -216,7 +225,7 @@ load_semester_db <- function() {
   calendar <- calendar %>%
     left_join(check_for_notices(notices), by = "topic_id") %>%
     mutate(hw_index = ifelse(has_hw, cumsum(has_hw), NA_integer_),
-           hw_num = ifelse(has_hw, cumsum(has_numbered_hw), NA_integer_))
+           hw_num = ifelse(has_numbered_hw, cumsum(has_numbered_hw), NA_integer_))
 
   spring_break <- calendar %>% filter(event_id == "SPRING_BREAK") %>%
     select(date, topic_id, event_id)
@@ -517,7 +526,7 @@ make_reading_assignment <- function(reading_entry) {
     }
     if (has_ugrad_reading) {
       ug_readings <- c(format_textbook_reading(ugrad_textbook_reading),
-                    format_handout_reading(ugrad_handout_reading)) %>%
+                       format_handout_reading(ugrad_handout_reading)) %>%
         itemize()
       output <- str_c(str_trim(output),
                       "",
@@ -528,7 +537,7 @@ make_reading_assignment <- function(reading_entry) {
     }
     if (has_grad_reading) {
       g_readings <- c(format_textbook_reading(grad_textbook_reading),
-                    format_handout_reading(grad_handout_reading)) %>%
+                      format_handout_reading(grad_handout_reading)) %>%
         itemize()
       output <- str_c(str_trim(output),
                       "",
@@ -560,11 +569,30 @@ make_reading_assignment <- function(reading_entry) {
   output
 }
 
-make_hw_solution_page <- function(solution, assignment) {
-  # g_doc <<- solution
-  # g_asg <<- assignment
+make_hw_slug <- function(cal_entry) {
+  message("Making HW slug for ", cal_entry$homework_id,
+          ": has_hw = ", cal_entry$has_hw,
+          ", has_numbered_hw = ", cal_entry$has_numbered_hw,
+          ", hw_num = ", cal_entry$hw_num,
+          ", hw_index = ", cal_entry$hw_index)
+  if (cal_entry$has_numbered_hw) {
+    slug <- sprintf("homework_%02d", cal_entry$hw_num)
+  } else {
+    slug <- cal_entry$hw_slug
+  }
+  slug
+}
 
-  message("Generating markdown for solutions to homework #", assignment$hw_num)
+make_hw_solution_page <- function(solution, assignment, slug = NA_character_) {
+  g_doc <<- solution
+  g_asg <<- assignment
+
+  if (is.na(slug)) {
+    slug = sprintf("homework_%02d", assignment$hw_num)
+  }
+
+  message("Generating markdown for solutions to homework #", assignment$hw_num,
+          ", slug = ", slug)
 
   delim <- "---"
   header <- list(
@@ -573,7 +601,7 @@ make_hw_solution_page <- function(solution, assignment) {
     pubdate = as.character(solution$hw_sol_pub_date),
     date = assignment$hw_due_date,
     pdf_url = solution$hw_sol_pdf_url,
-    slug = sprintf("homework_%02d_%s", assignment$hw_num, solution$hw_sol_filename)) %>%
+    slug = str_c(slug, "_", solution$hw_sol_filename)) %>%
     discard(is.na) %>%
     c(
       output = list("blogdown::html_page" =
@@ -590,16 +618,18 @@ make_hw_solution_page <- function(solution, assignment) {
   hw_solution_page
 }
 
-make_hw_solution <- function(solution, assignment) {
-  fname <- sprintf("homework_%02d_%s.Rmd", assignment$hw_num,
-                   solution$hw_sol_filename)
+make_hw_solution <- function(solution, assignment, slug = NA_character_) {
+  if (is.na(slug)) {
+    slug = sprintf("homework_%02d", assignment$hw_num)
+  }
+  fname <- str_c(slug, "_", solution$hw_sol_filename, ".Rmd")
   solution_path <- fname %>%
     file.path(root_dir, "content", "homework_solutions/", .)
   solution_url <- fname %>% str_replace("\\.Rmd$", "") %>%
     file.path("/homework_solutions", .)
   message("Making solutions file for homework #", assignment$hw_num, ": ",
           solution_path)
-  hw_solution_page <- make_hw_solution_page(solution, assignment)
+  hw_solution_page <- make_hw_solution_page(solution, assignment, slug)
   cat(hw_solution_page, file = solution_path)
   c(path = solution_path, url = solution_url)
 }
@@ -611,31 +641,34 @@ make_hw_page <- function(cal_entry) {
   hw_topic <- head(this_assignment$hw_topic, 1)
   hw_idx <- cal_entry$hw_index
   hw_num <- cal_entry$hw_num
+  hw_slug <- make_hw_slug(cal_entry)
 
-  message("Making homework page for HW #", hw_num, " (index = ", hw_idx, ")")
+  message("Making homework page for HW #", hw_num, " (index = ", hw_idx,
+          ", slug = ", hw_slug, ")")
 
   delim <- "---"
   header <- tibble(title = hw_topic, due_date = hw_date,
                    assignment_number = hw_num, weight = hw_num,
-                   slug = sprintf("homework_%02d", hw_num),
+                   slug = hw_slug,
                    pubdate = pub_date, date = hw_date,
                    output = list("blogdown::html_page" =
                                    list(md_extensions = md_extensions))
-                   ) %>%
+  ) %>%
     as.yaml() %>% str_trim("right") %>%
     str_c(delim, ., delim, sep = "\n")
   hw_page <- str_c(
     header,
-    make_homework_assignment(this_assignment, homework_solutions),
+    make_homework_assignment(this_assignment, homework_solutions, hw_slug),
     sep = "\n"
   ) %>% expand_codes()
 }
 
 make_homework_assignment <- function(this_assignment,
-                                     homework_solutions = NULL) {
+                                     homework_solutions = NULL,
+                                     slug = NA_character_) {
   if (! is.null(homework_solutions)) {
-  solutions <- homework_solutions %>%
-    filter(as_datetime(hw_sol_pub_date) <= now())
+    solutions <- homework_solutions %>%
+      filter(as_datetime(hw_sol_pub_date) <= now())
   } else {
     solutions <- NULL
   }
@@ -666,7 +699,7 @@ make_homework_assignment <- function(this_assignment,
     for (i in seq(nrow(solutions))) {
       this_sol <- solutions[i,]
       this_sol <- solutions[i,]
-      sol <- make_hw_solution(this_sol, this_assignment)
+      sol <- make_hw_solution(this_sol, this_assignment, slug)
       output <- output %>% str_c("* [", this_sol$hw_sol_title, "](", sol['url'], ")\n")
     }
     output <- str_c(output, "\n")
@@ -681,7 +714,7 @@ make_homework_assignment <- function(this_assignment,
   }
 
   if (nrow(epilogue) > 0) {
-    epiloque_str <- str_c(discard(epilogue$homework, ~is.na(.x) | .x == ""), collapse = "\n\n")
+    epilogue_str <- str_c(discard(epilogue$homework, ~is.na(.x) | .x == ""), collapse = "\n\n")
   } else {
     epilogue_str <-  NULL
   }
@@ -776,11 +809,11 @@ make_short_hw_assignment <- function(cal_entry) {
   if (any(homework_topic$hw_undergraduate_only |
           homework_topic$hw_graduate_only)) {
     homework_topic <- homework_topic %>%
-    mutate(topic = str_c(topic, " (",
-                         ifelse(hw_undergraduate_only, "undergrads",
-                                ifelse(hw_graduate_only, "grad.\ students",
-                                       "everyone")),
-                         ")"))
+      mutate(topic = str_c(topic, " (",
+                           ifelse(hw_undergraduate_only, "undergrads",
+                                  ifelse(hw_graduate_only, "grad.\ students",
+                                         "everyone")),
+                           ")"))
   }
   homework_topic <- homework_topic %>%
     select(topic) %>% simplify() %>% unname()
@@ -789,7 +822,7 @@ make_short_hw_assignment <- function(cal_entry) {
       homework_topic <- homework_topic %>%
         {
           c( head(., -1) %>% str_c(collapse = ", "), tail(., 1)) %>%
-          str_c(collapse = ", and ")
+            str_c(collapse = ", and ")
         }
     } else {
       homework_topic <- str_c(homework_topic, collapse = " and ")
@@ -804,132 +837,6 @@ make_short_hw_assignment <- function(cal_entry) {
   }
   output
 }
-
-# make_lab_doc_page <- function(doc, assignment) {
-#   g_doc <<- doc
-#   g_asg <<- assignment
-#
-#   delim <- "---"
-#   header <- list(
-#     title = doc$lab_document_title,
-#     author = doc$doc_author,
-#     lab_number = assignment$lab_num,
-#     lab_date = assignment$lab_date,
-#     pubdate = pub_date,
-#     date = assignment$lab_date,
-#     bibliography = doc$bibliography,
-#     pdf_url = doc$lab_document_pdf_url,
-#     slug = sprintf("lab_%02d_%s", assignment$lab_num, doc$doc_filename)) %>%
-#     discard(is.na) %>%
-#     c(
-#       output = list("blogdown::html_page" =
-#                       list(md_extensions = md_extensions,
-#                            toc = TRUE))
-#     ) %>%
-#     as.yaml() %>% str_trim("right") %>%
-#     str_c(delim, ., delim, sep = "\n")
-#   lab_doc_page <- str_c(
-#     header,
-#     doc$lab_document_markdown,
-#     sep = "\n"
-#   ) %>% expand_codes()
-#   lab_doc_page
-# }
-#
-# make_lab_doc <- function(doc, assignment) {
-#   fname <- sprintf("lab_%02d_%s.Rmd", assignment$lab_num, doc$doc_filename)
-#   doc_path <- fname %>% file.path(root_dir, "content", "lab_docs", .)
-#   doc_url <- fname %>% str_replace("\\.Rmd$", "") %>%
-#     file.path("/lab_docs", .)
-#   lab_doc_page <- make_lab_doc_page(doc, assignment)
-#   cat(lab_doc_page, file = doc_path)
-#   c(path = doc_path, url = doc_url)
-# }
-#
-# make_lab_assignment_page <- function(this_assignment, lab_docs,
-#                                      lab_solutions) {
-#   delim <- "---"
-#   these_docs <- lab_docs %>% filter(lab_group == this_assignment$lab_group) %>%
-#     arrange(lab_item_id)
-#   these_solutions <- lab_solutions %>%
-#     mutate(lab_sol_pub_date = as_datetime(lab_sol_pub_date)) %>%
-#     filter(lab_group == this_assignment$lab_group, lab_sol_pub_date <= now()) %>%
-#     arrange(lab_sol_id)
-#
-#   header <- list(
-#     title = this_assignment$lab_title,
-#     lab_date = this_assignment$lab_date,
-#     presentation_date = this_assignment$lab_present_date,
-#     report_due_date = this_assignment$lab_due_date,
-#     lab_number = this_assignment$lab_num,
-#     github_classroom_assignment_url = this_assignment$lab_assignment_url,
-#     pubdate = pub_date,
-#     date = this_assignment$lab_date,
-#     slug = sprintf("lab_%02d_assignment", this_assignment$lab_num),
-#     output = list("blogdown::html_page" =
-#                     list(md_extensions = md_extensions))
-#   ) %>% discard(is.na) %>%
-#     as.yaml() %>% str_trim("right") %>%
-#     str_c(delim, ., delim, sep = "\n")
-#   output <- this_assignment$lab_description
-#   if (nrow(these_docs) > 0) {
-#     output <- output %>% str_c(
-#       "", "## Reading", "",
-#       str_c("**Before you come to lab**, please read the following document",
-#             ifelse(nrow(these_docs) > 1, "s", ""),
-#             ":"), "",
-#       sep = "\n")
-#     for (i in seq(nrow(these_docs))) {
-#       this_doc <- these_docs[i,]
-#       doc <- make_lab_doc(this_doc, this_assignment)
-#       output <- output %>% str_c("\n* [", this_doc$lab_document_title, "](", doc['url'], ")")
-#     }
-#   } else {
-#     output <- output %>% str_c(
-#       "", "## Reading", "",
-#       "No reading has been posted yet for this lab.",
-#       "", sep = "\n")
-#   }
-#   url <- this_assignment$lab_assignment_url
-#   if (! is.na(url)) {
-#     output <- output %>% str_c("", "## Assignment", "",
-#                                str_c("Accept the assignment at GitHub Classroom at <", url, ">."),
-#                                "", sep = "\n")
-#   } else {
-#     output <- output %>% str_c("", "## Assignment", "",
-#                                "The GitHub Classroom has not been posted yet.",
-#                                "", sep = "\n")
-#   }
-#   if (nrow(these_solutions) > 0) {
-#     output <- output %>% str_c(
-#       "", "## Solutions", "",
-#       "**Solutions for Lab Exercises**:", "",
-#       sep = "\n")
-#     for (i in seq(nrow(these_solutions))) {
-#       this_sol <- these_solutions[i,]
-#       sol <- make_lab_solution(this_sol, this_assignment)
-#       output <- output %>% str_c("\n* [", this_sol$lab_sol_title, "](", sol['url'], ")")
-#     }
-#
-#
-#   }
-#   output <- str_c(header, output, sep = "\n") %>% expand_codes()
-#   output
-# }
-#
-# make_lab_assignment <- function(group, lab_assignments, lab_docs,
-#                                 lab_solutions) {
-#   this_assignment <- lab_assignments %>% filter(lab_group == group)
-#   fname <- sprintf("lab_%02d_assignment.Rmd", this_assignment$lab_num)
-#   lab_path <- fname %>% file.path(root_dir, "content", "lab", .)
-#   lab_url <- fname %>% str_replace("\\.Rmd$", "")
-#   lab_assignment_page <- make_lab_assignment_page(this_assignment, lab_docs,
-#                                                   lab_solutions)
-#   cat(lab_assignment_page, file = lab_path)
-#   c(path = lab_path, url = lab_url)
-# }
-#
-#
 
 make_reading_page <- function(cal_entry) {
   rd_date <- cal_entry$date
@@ -1016,9 +923,9 @@ make_lab_doc_page <- function(doc, assignment) {
     slug = sprintf("lab_%02d_%s", assignment$lab_num, doc$doc_filename)) %>%
     discard(is.na) %>%
     c(
-    output = list("blogdown::html_page" =
-                    list(md_extensions = md_extensions,
-                         toc = TRUE))
+      output = list("blogdown::html_page" =
+                      list(md_extensions = md_extensions,
+                           toc = TRUE))
     ) %>%
     as.yaml() %>% str_trim("right") %>%
     str_c(delim, ., delim, sep = "\n")
@@ -1141,64 +1048,75 @@ make_notice <- function(notice_entries) {
 generate_assignments <- function() {
   semester <- calendar %>%
     filter(! event_id %in% c("FINAL_EXAM", "ALT_FINAL_EXAM")) %>%
-    select(seq, class, date, topic, hw_num, lab_num) %>%
+    select(seq, class, date, topic, hw_index, hw_num, lab_num) %>%
     mutate(reading_page = NA_character_, homework_page = NA_character_,
            lecture_page = NA_character_, lab_page = NA_character_)
-  for (class_num in na.omit(calendar$class)) {
-    cal_entry <- calendar %>% filter(class == class_num)
+  for (s in na.omit(calendar$seq)) {
+    cal_entry <- calendar %>% filter(seq == s)
     g_cal_entry <<- cal_entry
+    if (nrow(cal_entry) != 1) {
+      stop("cal_entry for seq = ", s, " has ", nrow(cal_entry), " rows.")
+    }
+    class_num = cal_entry$class
 
-    slide_class_dir <- sprintf("Class_%02d", class_num)
-    slide_url <- file.path("/Slides", slide_class_dir, fsep = "/")
+    if (! is.na(class_num)) {
+      slide_class_dir <- sprintf("Class_%02d", class_num)
+      slide_url <- file.path("/Slides", slide_class_dir, fsep = "/")
 
-    if (file.exists(file.path(slide_dir, slide_class_dir, "index.html"))) {
-      message("HTML slide_url = ", slide_url)
-      semester <- semester %>%
-        mutate(lecture_page = ifelse(class == class_num,
-                                     slide_url, lecture_page))
-    } else {
-      slides <- list.files(file.path(slide_dir, slide_class_dir), pattern = "*.ppt*")
-      if (length(slides) > 0) {
-        if (length(slides) == 1) {
-          these_slides <- slides[1]
-          message("One ppt slide found: ", these_slides)
-        } else {
-          slide_df <- tibble(slide = slides) %>%
-            mutate(date = file.mtime(file.path(slide_dir, slide_class_dir, slide))) %>%
-            arrange(desc(date))
-          these_slides <- slide_df$slide[1]
-          message(length(slides), " slides found. Choosing ", these_slides)
+      if (file.exists(file.path(slide_dir, slide_class_dir, "index.html"))) {
+        message("HTML slide_url = ", slide_url)
+        semester <- semester %>%
+          mutate(lecture_page = ifelse(class == class_num,
+                                       slide_url, lecture_page))
+      } else {
+        slides <- list.files(file.path(slide_dir, slide_class_dir), pattern = "*.ppt*")
+        if (length(slides) > 0) {
+          if (length(slides) == 1) {
+            these_slides <- slides[1]
+            message("One ppt slide found: ", these_slides)
+          } else {
+            slide_df <- tibble(slide = slides) %>%
+              mutate(date = file.mtime(file.path(slide_dir, slide_class_dir, slide))) %>%
+              arrange(desc(date))
+            these_slides <- slide_df$slide[1]
+            message(length(slides), " slides found. Choosing ", these_slides)
+          }
+          slide_url <- file.path(slide_url, these_slides, fsep = "/") %>% URLencode()
+          message("slide_url = ", slide_url)
+          semester <- semester %>% mutate(lecture_page = ifelse(class == class_num,
+                                                                slide_url, lecture_page))
         }
-        slide_url <- file.path(slide_url, these_slides, fsep = "/") %>% URLencode()
-        message("slide_url = ", slide_url)
-        semester <- semester %>% mutate(lecture_page = ifelse(class == class_num,
-                                                              slide_url, lecture_page))
+      }
+
+      if (cal_entry$has_reading) {
+        message("Making reading page for class #", cal_entry$class)
+        rd_fname <- sprintf("reading_%02d.Rmd", cal_entry$class)
+        rd_path <- rd_fname %>% file.path(root_dir, "content", "reading", .)
+        rd_url <- rd_fname %>% str_replace("\\.Rmd$", "") %>%
+          file.path("/reading", .)
+        rd_page <- make_reading_page(cal_entry)
+        cat(rd_page, file = rd_path)
+        semester <- semester %>%
+          mutate(reading_page = ifelse(class == cal_entry$class,
+                                       rd_url, reading_page))
       }
     }
 
-    if (cal_entry$has_reading) {
-      message("Making reading page for class #", cal_entry$class)
-      rd_fname <- sprintf("reading_%02d.Rmd", cal_entry$class)
-      rd_path <- rd_fname %>% file.path(root_dir, "content", "reading", .)
-      rd_url <- rd_fname %>% str_replace("\\.Rmd$", "") %>%
-        file.path("/reading", .)
-      rd_page <- make_reading_page(cal_entry)
-      cat(rd_page, file = rd_path)
-      semester <- semester %>%
-        mutate(reading_page = ifelse(class == cal_entry$class,
-                                     rd_url, reading_page))
-    }
     if (cal_entry$has_hw) {
-      message("Making homework page for assignment #", cal_entry$hw_num, " (index = ", cal_entry$hw_index, ")")
-      hw_fname <- sprintf("homework_%02d.Rmd", cal_entry$hw_num)
+      hw_slug <- make_hw_slug(cal_entry)
+      hw_fname <- str_c(hw_slug, ".Rmd")
+      message("Making homework page for assignment #", cal_entry$hw_num,
+              " (index = ", cal_entry$hw_index,
+              ", slug = ", hw_slug, ", filename = ", hw_fname, ")")
       hw_path <- hw_fname %>% file.path(root_dir, "content", "assignment", .)
       hw_url <- hw_fname %>% str_replace("\\.Rmd$", "")
       hw_page <- make_hw_page(cal_entry)
       cat(hw_page, file = hw_path)
       semester <- semester %>%
-        mutate(homework_page = ifelse(hw_num == cal_entry$hw_num,
-                                     hw_url, homework_page))
+        mutate(homework_page = ifelse(hw_index == cal_entry$hw_index,
+                                      hw_url, homework_page))
     }
+
     if (cal_entry$has_lab) {
       message("Making lab page for lab #", cal_entry$lab_num )
       lab_assignment <-
@@ -1209,7 +1127,6 @@ generate_assignments <- function() {
       semester <- semester %>%
         mutate(lab_page = ifelse(lab_num == cal_entry$lab_num,
                                  lab_url, lab_page))
-
     }
   }
 

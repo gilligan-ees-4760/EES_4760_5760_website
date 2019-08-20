@@ -1,28 +1,20 @@
 ---
-title: Research project presentation
-due_date: '2019-12-05'
+title: Programming agent sensing
+due_date: '2019-10-03'
 assignment_number: 9
 weight: 9
 slug: homework_09
 pubdate: '2019-07-31'
-date: '2019-12-05'
+date: '2019-10-03'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Homework
 
-* You will make a ten-minute presentation in class about your model (seven minutes of talking and three minutes for questions).
-* You will make a ten-minute presentation in class about your model (seven minutes of talking and three minutes for questions).
+* **Everyone:**
+  * Railsback & Grimm, Ch. 10, Ex. 10.1, 10.2
+  * Railsback & Grimm, Ch. 11, Ex. 11.1, 11.2
+* **Graduate Students:**
+  * Railsback & Grimm, Ch. 11, Ex. 11.3
 
-### Notes on Homework:
-
-There will not be time to go into all the details in your presentation, so focus on:
-* the big question you were addressing,
-* a short description of the approach you took to answer it using an agent-based model,
-* what you learned from running the model.
-
-There will not be time to go into all the details in your presentation, so focus on:
-* the big question you were addressing,
-* a short description of the approach you took to answer it using an agent-based model,
-* what you learned from running the model.
