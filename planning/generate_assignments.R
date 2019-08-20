@@ -709,7 +709,6 @@ make_homework_assignment <- function(this_assignment,
     output <- output %>% str_c("## Solutions:\n\n")
     for (i in seq(nrow(solutions))) {
       this_sol <- solutions[i,]
-      this_sol <- solutions[i,]
       sol <- make_hw_solution(this_sol, this_assignment, slug)
       output <- output %>% str_c("* [", this_sol$hw_sol_title, "](", sol['url'], ")\n")
     }
@@ -718,33 +717,36 @@ make_homework_assignment <- function(this_assignment,
 
   output <- str_c(output, "## Homework")
   if (nrow(prologue) > 0) {
-    prologue_str <- str_c(discard(prologue$homework, ~is.na(.x) | .x == ""),
-                          collapse = "\n\n")
+    prologue_str <-
+      str_c(discard(prologue$homework, ~is.na(.x) | .x == "") %>% unique(),
+            collapse = "\n\n")
   } else {
     prologue_str <- NULL
   }
 
   if (nrow(epilogue) > 0) {
-    epilogue_str <- str_c(discard(epilogue$homework, ~is.na(.x) | .x == ""), collapse = "\n\n")
+    epilogue_str <-
+      str_c(discard(epilogue$homework, ~is.na(.x) | .x == "") %>% unique(),
+            collapse = "\n\n")
   } else {
     epilogue_str <-  NULL
   }
 
   output <- str_c(output, prologue_str, "", "", sep = "\n")
   if (nrow(ugrad_hw) > 0) {
-    ugrad_hw_items <- ugrad_hw$homework %>% itemize() %>%
+    ugrad_hw_items <- ugrad_hw$homework %>% unique() %>% itemize() %>%
       str_c("**Undergraduate Students:**", ., sep = "\n")
   } else {
     ugrad_hw_items <- NULL
   }
   if (nrow(grad_hw) > 0) {
-    grad_hw_items <- grad_hw$homework %>% itemize() %>%
+    grad_hw_items <- grad_hw$homework %>% unique() %>% itemize() %>%
       str_c("**Graduate Students:**", ., sep = "\n")
   } else {
     grad_hw_items <- NULL
   }
   if (nrow(everyone_hw) > 0) {
-    everyone_hw_items <- everyone_hw$homework %>% itemize()
+    everyone_hw_items <- everyone_hw$homework %>% unique() %>% itemize()
     if (! all(is.null(grad_hw_items), is.null(ugrad_hw_items))) {
       everyone_hw_items <- str_c("**Everyone:**", everyone_hw_items, sep = "\n")
     }
@@ -766,7 +768,8 @@ make_homework_assignment <- function(this_assignment,
                   sep = "\n"
   )
 
-  everyone_notes <- bind_rows(prologue_notes, everyone_notes, epilogue_notes)
+  everyone_notes <- bind_rows(prologue_notes, everyone_notes, epilogue_notes) %>%
+    distinct()
 
   if (nrow(everyone_notes) > 0) {
     everyone_note_items <- everyone_notes$homework_notes %>%

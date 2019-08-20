@@ -30,8 +30,8 @@ Presentations and write-ups due Thursday, Oct. 10. Post your write-up to the cou
 [Project assignment](/assignment/ResearchProjectAssignment.pdf)
 
 * Proposals due Fri. Sept. 27. Post to your course Box folder by the end of the day (i.e., before midnight).
-* Model analysis due Tues. 
-* ODD for extending model due Mar. 16
-* Draft model code due Mar. 30
-* Presentations Apr. 17--19
-* Written report due Apr. 24
+* Model analysis due Tues. Oct. 15.
+* ODD for extending model due Wed. Oct. 23
+* Draft model code due Fri. Nov. 8
+* Presentations Dec. 3--5.
+* Written report due Dec. 6.
