@@ -1,6 +1,8 @@
 ---
 title: Introducing NetLogo
 due_date: '2019-08-29'
+assignment_type: Homework
+short_assignment_type: HW
 assignment_number: 2
 weight: 2
 slug: homework_02

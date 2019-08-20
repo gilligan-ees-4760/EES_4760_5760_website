@@ -1,8 +1,10 @@
 ---
 title: Analyzing model experiments
 due_date: '2019-10-01'
+assignment_type: Homework
+short_assignment_type: HW
 assignment_number: 8
-weight: 8
+weight: 9
 slug: homework_08
 pubdate: '2019-07-31'
 date: '2019-10-01'

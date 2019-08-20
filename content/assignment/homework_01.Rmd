@@ -1,6 +1,8 @@
 ---
 title: Set up Box and NetLogo
 due_date: '2019-08-27'
+assignment_type: Homework
+short_assignment_type: HW
 assignment_number: 1
 weight: 1
 slug: homework_01

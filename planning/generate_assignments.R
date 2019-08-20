@@ -154,6 +154,7 @@ load_semester_db <- function() {
       left_join(hw_topics, by = "homework_id") %>%
       left_join(hw_items, by = "hw_group") %>%
       select(homework_id, hw_group, hw_due_date,
+             hw_type, short_hw_type,
              hw_topic = homework_topic, hw_title, hw_slug,
              short_homework, homework, homework_notes,
              hw_graduate_only = graduate_only,
@@ -642,18 +643,28 @@ make_hw_page <- function(cal_entry) {
   hw_idx <- cal_entry$hw_index
   hw_num <- cal_entry$hw_num
   hw_slug <- make_hw_slug(cal_entry)
+  hw_type = this_assignment$hw_type %>% unique()
+  short_hw_type = this_assignment$short_hw_type %>% unique()
+  if (length(hw_type) != 1) {
+    stop("Error: multiple assignment types.")
+  }
+  if (length(short_hw_type) != 1) {
+    stop("Error: multiple short assignment types: ", str_c(short_hw_type, collapse = ", "))
+  }
 
   message("Making homework page for HW #", hw_num, " (index = ", hw_idx,
           ", slug = ", hw_slug, ")")
 
   delim <- "---"
   header <- tibble(title = hw_topic, due_date = hw_date,
-                   assignment_number = hw_num, weight = hw_num,
+                   assignment_type = hw_type,
+                   short_assignment_type = short_hw_type,
+                   assignment_number = hw_num, weight = hw_idx,
                    slug = hw_slug,
                    pubdate = pub_date, date = hw_date,
                    output = list("blogdown::html_page" =
                                    list(md_extensions = md_extensions))
-  ) %>%
+  ) %>% discard(is.na) %>%
     as.yaml() %>% str_trim("right") %>%
     str_c(delim, ., delim, sep = "\n")
   hw_page <- str_c(

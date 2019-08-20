@@ -5,7 +5,7 @@ draft: false
 
 ## Team Projects
 
-Presentations and write-ups due Feb. 27.
+Presentations and write-ups due Thursday, Oct. 10. Post your write-up to the course Box folder by the end of the day (i.e., before midnight).
 
 [Project assignment](/assignment/TeamProjectAssignment.pdf)
 
@@ -29,8 +29,8 @@ Presentations and write-ups due Feb. 27.
 
 [Project assignment](/assignment/ResearchProjectAssignment.pdf)
 
-* Proposals due Feb. 9
-* Model analysis due Feb. 25
+* Proposals due Fri. Sept. 27. Post to your course Box folder by the end of the day (i.e., before midnight).
+* Model analysis due Tues. 
 * ODD for extending model due Mar. 16
 * Draft model code due Mar. 30
 * Presentations Apr. 17--19

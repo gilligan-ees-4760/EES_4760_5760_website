@@ -1,8 +1,10 @@
 ---
 title: Programming agent sensing
 due_date: '2019-10-03'
+assignment_type: Homework
+short_assignment_type: HW
 assignment_number: 9
-weight: 9
+weight: 10
 slug: homework_09
 pubdate: '2019-07-31'
 date: '2019-10-03'

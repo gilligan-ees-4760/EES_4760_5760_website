@@ -1,8 +1,9 @@
 ---
 title: Research project ODD
 due_date: '2019-10-23'
-assignment_number: .na.integer
-weight: .na.integer
+assignment_type: Semester Project Assignment
+short_assignment_type: Assignment
+weight: 11
 slug: project_odd
 pubdate: '2019-07-31'
 date: '2019-10-23'

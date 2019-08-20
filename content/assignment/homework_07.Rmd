@@ -1,6 +1,8 @@
 ---
 title: Testing and debugging
 due_date: '2019-09-24'
+assignment_type: Homework
+short_assignment_type: HW
 assignment_number: 7
 weight: 7
 slug: homework_07

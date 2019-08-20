@@ -1,6 +1,8 @@
 ---
 title: Reproducing a model from its ODD
 due_date: '2019-09-19'
+assignment_type: Homework
+short_assignment_type: HW
 assignment_number: 6
 weight: 6
 slug: homework_06
