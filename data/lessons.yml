@@ -68,6 +68,7 @@ lessons:
   title: Team Presentations
 - date: '2019-10-15'
   title: Research Project ODDs
+  assignment: project_analysis
 - date: '2019-10-17'
   title: Scheduling
   reading: /reading/reading_17

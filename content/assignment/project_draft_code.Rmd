@@ -3,7 +3,7 @@ title: Draft model code for research project
 due_date: '2019-11-08'
 assignment_type: Semester Project Assignment
 short_assignment_type: Assignment
-weight: 12
+weight: 13
 slug: project_draft_code
 pubdate: '2019-07-31'
 date: '2019-11-08'

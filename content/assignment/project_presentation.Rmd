@@ -3,7 +3,7 @@ title: Research project report
 due_date: '2019-12-06'
 assignment_type: Semester Project Assignment
 short_assignment_type: Assignment
-weight: 15
+weight: 16
 slug: project_presentation
 pubdate: '2019-07-31'
 date: '2019-12-06'

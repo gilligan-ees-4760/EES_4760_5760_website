@@ -1,0 +1,79 @@
+---
+title: Research project model analysis
+due_date: '2019-10-15'
+assignment_type: Semester Project Assignment
+short_assignment_type: Assignment
+weight: 11
+slug: project_analysis
+pubdate: '2019-07-31'
+date: '2019-10-15'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+
+
+
+<div id="homework" class="section level2">
+<h2>Homework</h2>
+<ul>
+<li><p>Study the code and ODD of the model you chose, play with the model and run some BehaviorSpace experiments to examine its
+output.
+Turn in a 3–5 page (double-spaced) write-up about the model.
+If the model does not have a published ODD, try to write your own to describe what it does.</p>
+<p>If you are writing your own model from scratch, turn in a 3–5 page write-up about how you are approaching designing your model and the experiments you will run with it.</p></li>
+</ul>
+<div id="notes-on-homework" class="section level3">
+<h3>Notes on Homework:</h3>
+<p>If you are working with a published model:</p>
+<ul>
+<li>Describe the purpose of the mdoel, the important features about its design
+and structure.</li>
+<li>Discuss whether there are weaknesses in the model design and whether you
+might have represented the system differently if you were writing the model
+from scratch.</li>
+<li>Present the output from the model (BehaviorSpace experiments or interactively
+playing with it) and discuss what you learn about the system from that.</li>
+<li>Discuss something you didn’t learn from the model that you would like to
+study by extending the model.</li>
+</ul>
+<p>If you are writing your own model from scratch, then you should:</p>
+<ul>
+<li>Describe in detail the problem your model will investigate. Present one or
+two specific questions that you will try to answer with your model.</li>
+<li>Present the background that you will draw on to design your model
+(theory and published empirical research or observations) and explain how
+you plan to use this knowledge to design your model.</li>
+<li>Describe the “Overview” part of your ODD:
+<ul>
+<li><p>What is the purpose of the model?</p></li>
+<li><p>What are the entities (agents, patches)?</p></li>
+<li><p>What are the state variables (agents-own, patches-own, and global
+variables) that characterize the state of the model and its entities
+at any point in time?</p></li>
+<li><p>What are the spatial and temporal scales of the model? How large is
+a patch? How long is a tick? These don’t need to be specifically defined
+in meters, kilometers, seconds, or days, but you should at least
+think qualitatively about how finely or coarsely your model divides
+space and time with regard to the phenomena you’re investigating.</p></li>
+<li><p>Describe the process and scheduling: What happens during a tick?
+What do agents and patches do? What order to the different steps
+occur in?</p>
+<p>When multiple agents or patches are going to take a given
+action, how does your model decide the order in which they act (i.e.,
+who goes first, second, etc.)? By default, agents and patches act in a
+random order when you write code like <code>ask turtles [...]</code> but you may
+want to have the turtles queue in a specific order.</p>
+<p>When turtles or patches take several different actions (e.g., eat,
+move, sleep) does one turtle do all three actions, then the next
+turtle does all three, and so forth, or do all the turtles do the
+first action, then all turtles do the second action,
+then all do the third (for details, see pp. 40–41 in Chapter 3
+and also Chapter 14).</p></li>
+<li><p>Describe the kinds of experiments you might do with your model to
+investigate your research questions (e.g., what parameters will you
+vary in the experiment and what outputs will you measure?)</p></li>
+</ul></li>
+</ul>
+</div>
+</div>
