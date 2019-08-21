@@ -277,6 +277,15 @@ load_semester_db <- function() {
   }
 }
 
+select_event <- function(calendar, seq_index) {
+  event <- calendar %>% filter(seq == seq_index) %>% select(seq, date, topic) %>%
+    mutate(weekday = wday(date, label = TRUE), long.weekday = wday(date, label = TRUE, abbr = FALSE),
+           month = month(date, label = TRUE), long.month = month(date, label = TRUE, abbr = FALSE),
+           day = day(date))
+  as.list(event)
+}
+
+
 select_class <- function(calendar, class_no) {
   class <- calendar %>% filter(class == class_no) %>% select(class, date, topic) %>%
     mutate(weekday = wday(date, label = TRUE), long.weekday = wday(date, label = TRUE, abbr = FALSE),
