@@ -109,6 +109,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
   semester = "Fall 2019"
   courseCatalogEntry = " Applications in natural, social, and behavioral sciences and engineering. Designing, programming, and documenting models. Using models for experiments. Examples from environmental science, ecology, economics, urban planning, and medicine. Familiarity with basic statistics and proficiency in algebra are expected. [3] (MNS)"
   fontAwesomePro = "sha384-POYwD7xcktv3gUeZO5s/9nUbRJG/WOmV6jfEGikMJu77LGYO8Rfs2X7URG822aum"
+  siteGitHub = "https://github.com/gilligan-ees-4760-2019/EES_4760_5760_website.git"
 
   [params.lectures]
     times = "TR 11:00--12:15"
@@ -137,4 +138,3 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
     labs = false
     homework = true
     reading = true
-
