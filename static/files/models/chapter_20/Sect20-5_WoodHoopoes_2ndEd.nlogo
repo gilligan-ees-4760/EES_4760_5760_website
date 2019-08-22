@@ -207,12 +207,10 @@ to-report I-should-scout  ; a turtle reporter, returns a boolean
    [
      (is-female? = [is-female?] of myself) and
      (not is-alpha?) and
-     (age-in-months > [age-in-months] of myself)]
-    [ifelse random-bernoulli scout-prob
-      [report true]
-      [report false]
-    ]
-    [report false]
+     (age-in-months > [age-in-months] of myself)
+   ]
+  [report random-bernoulli scout-prob] ; There are older siblings of same sex
+  [report false] ; There are no older siblings of same sex
 
 end
 
@@ -284,8 +282,6 @@ to update-output
   ifelse length foray-ages > 0
   [plot mean foray-ages]
   [plot 0]
-;  histogram foray-ages
- ; show count turtles with [is-alpha?]
 
 end
 
@@ -464,7 +460,7 @@ Foray Month Histogram
 Month
 Number forays
 0.0
-12.0
+13.0
 0.0
 10.0
 true
@@ -493,7 +489,7 @@ survival-prob
 survival-prob
 0.9
 1
-0.993
+0.98
 .001
 1
 NIL
@@ -508,7 +504,7 @@ scout-prob
 scout-prob
 0
 1.00
-0.5
+0.3
 .001
 1
 NIL
@@ -516,35 +512,34 @@ HORIZONTAL
 
 @#$#@#$#@
 # Woodhoopoe Model
+This is the simplified Woodhoopoe model from Section 19.4.3 of _Agent-based and Individual-based Modeling: A Practical Introduction_. The key adaptive trait of scouting for vacant territories is the simple version described in Section 20.5 for an exercise in model calibration. 
 
-This is the simplified Woodhoopoe model from Section 19.4.3 of _Agent-based and Individual-based Modeling: A Practical Introduction_. The key adaptive trait of scouting for vacant territories is left unspecified for Exercise 2 of Chapter 19.
+This version is compatible only with the book's 2nd edition.
 
-## Purpose
-
+## 1. Purpose and patterns
 The purpose of the model is to illustrate how the dynamics of a population of group-living woodhoopoes, and the dynamics of its social groups, depend on the trait individuals use to decide when to leave their group. The model provides a laboratory for developing theory for the woodhoopoes’ scouting foray trait.
 
-## Entities, state variables, and scales
+For the calibration exercise, three patterns are used as calibration criteria. The “mean abundance” criterion is that the long-term mean number of woodhoopoes (including sub-adults) is in the range of 115 to 135. The “variation” criterion is that the standard deviation from year to among years in the annual number of birds is in the range of 10 to 15 birds. The “vacancy” criterion is that the average percentage of territories that lack one or both alphas is in the range of 15–30%. All the criteria are assumed to be from data collected in November (month 11) of each year of the field study (just before breeding). 
 
+## 2. Entities, state variables, and scales
 The model entities are territories and birds. A territory represents both a collective—a social group of birds—and the space occupied by the group (territories can also be empty, though). Territories are represented as a one-dimensional row of 25 NetLogo patches, “wrapped” so that the two ends of the row are considered adjacent. The only state variables of territories are a coordinate for their position in the row and a list of the birds in them. Birds have state variables for their sex, age (in months), and whether they are alpha. The time step is one month. Simulations run for 22 years, with results from the initial two “warm-up” years ignored.
 
-## Process overview and scheduling
-
+## 3. Process overview and scheduling
 The following actions are executed in the given order once per time step. The order in which the birds and territories execute an action is always randomized and state variables are updated immediately, after each action. 
 
-  1. Date and ages are updated. The current year and month are advanced by one month, and the age of all birds is increased by one month.
+  1.	Date and ages are updated. The current year and month are advanced by one month, and the age of all birds is increased by one month.
 
-  2. Territories fill vacant alpha positions. If a territory lacks an alpha but has a subordinate adult (age > 12 months) of the right sex, the oldest subordinate becomes the new alpha. 
+  2.	Territories fill vacant alpha positions. If a territory lacks an alpha but has a subordinate adult (age > 12 months) of the right sex, the oldest subordinate becomes the new alpha. 
 
-  3. Birds undertake scouting forays. Subordinate adults decide whether to scout for a new territory with a vacant alpha position. Birds that do scout choose randomly (with equal probability) between the two directions they can look (left or right along the row of territories). Scouting birds can explore up to five territories in their chosen direction. Of those five territories, the bird occupies the one that is closest to its starting territory and has no alpha of its sex. If no such territory exists, the bird stays at its starting territory. All birds that scout (including those that find and occupy a new territory) are then subjected to predation mortality, a stochastic event with the probability of survival 0.8.
+  3.	Birds undertake scouting forays. Subordinate adults decide whether to scout for a new territory with a vacant alpha position, using the scouting decision submodel described below. Birds that do scout choose randomly (with equal probability) between the two directions they can look (left or right along the row of territories). Scouting birds can explore up to five territories in their chosen direction. Of those five territories, the bird occupies the one that is closest to its starting territory and has no alpha of its sex. If no such territory exists, the bird stays at its starting territory. All birds that scout (including those that find and occupy a new territory) are then subjected to predation mortality, a stochastic event with the probability of survival 0.8.
 
-  4. Alpha females reproduce. In the 12th month of every year, alpha females that have an alpha male in their territory produce two offspring. The offspring have their age set to zero months and their sex chosen randomly with equal probability of male and female.
+  4.	Alpha females reproduce. In the 12th month of every year, alpha females that have an alpha male in their territory produce two offspring. The offspring have their age set to zero months and their sex chosen randomly with equal probability of male and female.
 
-  5. Birds experience mortality. All birds are subject to stochastic mortality with a monthly survival probability of 0.99.
+  5.	Birds experience mortality. All birds are subject to stochastic mortality with a monthly survival probability of 0.98.
 
-  6. Output is produced. 
+  6.	Output is produced. 
 
-## Design concepts
-
+## 4. Design concepts
 This discussion of design concepts may help you design alternative theories for the scouting trait.
 
 _Basic principles_: This model explores the “stay-or-leave” question: when should a subordinate individual leave a group that provides safety and group success but restricts opportunities for individual success? In ecology we can assume real individuals have traits for this decision that evolved because they provide “fitness”: success at reproducing. The trait we use in an ABM could explicitly consider fitness (e.g., select the behavior providing the highest expected probability of reproducing) but could instead just be a simple rule or “heuristic” that usually, but not always, increases fitness.
@@ -565,13 +560,21 @@ _Collectives_: The social groups are collectives: their state affects the indivi
 
 _Observation_: In addition to visual displays to observe individual behavior, the model’s software must produce outputs that allow you to test how well it reproduces the three characteristic patterns identified in Section 19.4.2. Hence, it must output the group size distribution illustrated in Figure 19 2, the mean age (over all months of the entire simulation) of subordinate adult birds that do vs. do not make scouting forays, and the total number of forays made by month.
 
-## Initialization
+To reduce the effects of initial conditions on simulation experiment results, the first two simulated years are excluded from the observations used for model analysis.
 
+## 5. Initialization
 Simulations start at January (month 1). Every territory starts with two male and two female birds, with ages chosen randomly from a uniform distribution of 1 to 24 months. The oldest of each sex becomes alpha. 
 
-## Input
-
+## 6. Input
 The model does not use any external input.
+
+## 7. Submodels
+### Scouting decision
+This submodel is executed by individual subordinate adult woodhoopoes to decide whether to search for a new territory where they would become an alpha individual. The decision has two simple steps:
+
+  1. If there are no older subordinate adults of the same sex in the current territory, then do not scout.
+
+  2. Otherwise, decide whether to scout via a random Bernoulli trial with probability of scouting equal to the parameter _scouting-prob_.
 @#$#@#$#@
 default
 true
@@ -878,16 +881,6 @@ NetLogo 6.0.2
     <metric>count patches with [count (turtles-here with [is-alpha?]) &lt; 2]</metric>
     <steppedValueSet variable="scout-prob" first="0" step="0.05" last="0.5"/>
     <steppedValueSet variable="survival-prob" first="0.95" step="0.005" last="1"/>
-  </experiment>
-  <experiment name="Calibration2" repetitions="1" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <metric>year</metric>
-    <metric>month</metric>
-    <metric>count turtles</metric>
-    <metric>count patches with [count (turtles-here with [is-alpha?]) &lt; 2]</metric>
-    <steppedValueSet variable="scout-prob" first="0.2" step="0.01" last="0.4"/>
-    <steppedValueSet variable="survival-prob" first="0.975" step="0.001" last="0.985"/>
   </experiment>
 </experiments>
 @#$#@#$#@
