@@ -14,7 +14,7 @@ output:
 ---
 ## Homework
 
-* As you read along with Section 2.3, follow along on your computer and build the _Mushroom Hunt_ model by typing in the code shown in the textbook. The whole program is shown on pages 28--29.
+* As you read along with Section 2.3, follow along on your computer and build the _Mushroom Hunt_ model by typing in the code shown in the textbook. The whole program is shown on pages 27--29.
   **Save your model as `mushroom_hunt.nlogo`**.
 
   This exercise may seem very simple, but it is the first step toward learning how to program NetLogo and it will be an important first step toward writing your own models.

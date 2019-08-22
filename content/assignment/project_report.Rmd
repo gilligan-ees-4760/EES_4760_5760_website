@@ -3,7 +3,7 @@ title: Research project report
 due_date: '2019-12-06'
 assignment_type: Semester Project Assignment
 short_assignment_type: Assignment
-weight: 16
+weight: 18
 slug: project_report
 pubdate: '2019-07-31'
 date: '2019-12-06'
@@ -17,60 +17,4 @@ output:
 
 ### Notes on Homework:
 
-Your report should include the following:
-
-* **Title:** Maximum of 90 characters
-* **Abstract:** A one-paragraph abstract that explains to a general reader
-  why you did this project, what the big results were, and what important
-  things they show us regarding your research question.
-* **Text:** Up to 2000 words (around eight pages, double-spaced), not
-  including the abstract, references, notes, or captions. Up to four
-  figures or tables.
-
-  The text should:
-  * Give a short introduction to the research question and explain why it's
-    interesting,
-  * Describe the methods you used to answer the question (the model design,
-    the experiments you conducted, and the methods you used to analyze the
-    output from the experiments),
-  * Describe the results of your experiments (figures or tables are useful
-    here),
-  * Discuss the significance of the results with respect to your research
-    question
-  * Present short conclusions about what you learned about your research
-    question and what the next steps for future research using your model
-    might be.
-* **References:** In your text, you should cite sources that you used
-  (e.g., the source of the model you modified, books or articles you
-  consulted to learn more about the subject of your study, and sources of
-  authority to support assertions that you make in the text). You may use
-  any standard reference format (e.g., Chicago, APA, MLA, etc.) and you may
-  use either numbered or author-date style citations.
-* **Supporting Materials:** You should have a separate folder within
-  your project folder called "Supporting Materials" where you should put
-  the final `.nlogo` file for your model, output files from your experimental
-  runs, any input data files you used in running your model (e.g., something
-  like the digital elevation map we used in the butterfly mating model),
-  and any additional material that would allow someone else to
-  reproduce your research. The ODD for your model should be in the
-  "Info" pane of your model, but you may also submit a text document with
-  the ODD if you wish as part of the Supporting Materials.
-
-  You may also optionally include a supplementary document with text,
-  figures, and tables that don't fit into the formal report. If you
-  produce a lot of figures or tables, this is a good place to put them.
-
-  You may refer to the supplementary materials in the text of your report,
-  but the main text of your paper should stand alone in describing the
-  problem, the general approach you took with your model and experiments,
-  what you found, and why it was significant. The supporting material is
-  for providing extra details that don't fit into the main paper and for
-  providing the code and data necessary for someone else to reproduce and
-  extend your research.
-
-The main paper should be in a Word or PDF document with the filename
-`<lastname>_final_paper.docx` or `<lastname>_final_paper.pdf` (with your
-own last name in place of `<lastname>`). Make a folder in Box called
-`Final_Paper` and put your paper there. Make a subfolder inside
-`Final_Paper` called `Supporting_Material` and put all of your supporting
-material there (ODD document, NetLogo model, etc.).
+See the project assignment sheet for details.

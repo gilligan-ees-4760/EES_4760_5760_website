@@ -25,7 +25,5 @@ output:
 * **Graduate Students:**You can download the journal article for this exercise, [R. Jovani & V. Grimm. (2008) "Breeding synchrony in colonial birds: From local stress to global harmony", _Proc. Royal Soc. London B_ **275**, 1567--63](/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf) from the class web site,
   <https://ees4760.jgilligan.org/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf>.
 
-  **Errata for homework exercise:**
-
-  * The parameter `SD` should have a value of 10.0, not 1.0.
+  * The paper by Jovani and Grimm forgot to specify the parameter `SD.` It should have the value 10.0.
 

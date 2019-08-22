@@ -12,7 +12,7 @@ output:
 ---
 ## Homework
 
-Homework #4 is due today: Ex. 2.3--2.4. and Ex. 3.3. See the homework assignment sheet for details.
+Homework #4 is due today: Ex. 2.3--2.4 and Ex. 3.3. See the homework assignment sheet for details.
 
 ## Reading:
 
@@ -23,6 +23,6 @@ Homework #4 is due today: Ex. 2.3--2.4. and Ex. 3.3. See the homework assignment
 
 For the reading, read Chapter 4 in _Agent-Based Modeling_ first and focus mostly on this chapter. 
 
-It is worth noting that the Sugarscape model you read about for Aug. 27 is very similar to the hilltopping model. Sugarscape was part of a very influential research project in the 1990s, in which Joshua Epstein and Robert Axtell showed that a very simple model could reproduce complex biological and economic phenomena that are observed in real societies and ecosystems. You may find it interesting at this point to look back at the ""Artificial Societies"" article and to play with the Sugarscape model in NetLogo.
+It is worth noting that the Sugarscape model you read about for Aug. 27 is very similar to the hilltopping model. Sugarscape was part of a very influential research project in the 1990s, in which Joshua Epstein and Robert Axtell showed that a very simple model could reproduce complex biological and economic phenomena that are observed in real societies and ecosystems. You may find it interesting at this point to look back at the "Artificial Societies" article and to play with the Sugarscape model in NetLogo.
 
-You can downlload an [ODD for the butterfly model](/files/models/chapter_04/butterfly_model_ODD.txt), which is suitable to paste into the ""Info"" tab in NetLogo, from the class web site: <https://ees4760.jgilligan.org/files/models/chapter_04/butterfly_model_ODD.txt>
+You can download an [ODD for the butterfly model](/files/models/chapter_04/butterfly_model_ODD.txt), which is suitable to paste into the "Info" tab in NetLogo, from the class web site: <https://ees4760.jgilligan.org/files/models/chapter_04/butterfly_model_ODD.txt>

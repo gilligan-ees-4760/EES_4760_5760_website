@@ -3,7 +3,7 @@ title: Research project ODD
 due_date: '2019-10-23'
 assignment_type: Semester Project Assignment
 short_assignment_type: Assignment
-weight: 12
+weight: 14
 slug: project_odd
 pubdate: '2019-07-31'
 date: '2019-10-23'
@@ -17,9 +17,4 @@ output:
 
 ### Notes on Homework:
 
-If you are working with a published model that has an ODD,
-your ODD should modify the published one to include the changes you plan to
-make to investigate your new research question.
-
-If you're writing a new model from scratch, you should turn in a full ODD
-for your model.
+See the semester research project assignment sheet for details.

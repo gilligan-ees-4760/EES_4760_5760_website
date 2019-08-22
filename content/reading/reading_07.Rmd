@@ -12,7 +12,7 @@ output:
 ---
 ## Homework
 
-Homework #5 is due today: Ex. 4.2, 4.4 (everyone), Ex. 5.1--5.5 (everyone), and Ex. 5.6--5.7 (grad. students). See the homework assignment sheet for details.
+Homework #5 is due today: Ex. 4.2, 4.4 (everyone), Ex. 5.1, 5.2, 5.4, and 5.7 (everyone), and Ex. 5.5 and 5.8 (grad. students). See the homework assignment sheet for details.
 
 ## Reading:
 
@@ -48,7 +48,8 @@ those errors a priority in your programming process.
         submodel you are using.
 1. Publish your code. If you trust your results and believe they are important 
    enough to publish in a book or journal, then you should make your code available 
-   (there are many free sites, such as github.com and openabm.org where people can 
+   (there are many free sites, such as [`github.com`](https://github.com) and 
+   [`openabm.org`](https://openabm.org) where people can 
    publish their models and other computer code). 
     
       The more that other researchers can read your code, the greater the probability 
@@ -70,5 +71,5 @@ The
 and a 
 [NetLogo model](files/models/chapter_06/Marriage_model_with_errors.nlogo) 
 that implements the ODD, but with many errors, can be downloaded from the class web site: 
-<https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_age_model_ODD.pdf>, 
-and <https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_model_with_errors.nlogo>.
+* <https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_age_model_ODD.pdf>, 
+* and <https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_model_with_errors.nlogo>.

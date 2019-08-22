@@ -25,7 +25,7 @@ There are several aspects to this question, which this chapter will introduce:
 1. How should we test our models to make sure they do what we think they do? (More on this in Chapter 6)
 1. Making your research reproducible by using version control and documentation.
 
-A number of you like to use Excel or statistical analysis tools, such as `R`, `SPSS`, or `Stata`. The material in this chapter about
+A number of you may like to use Excel or statistical analysis tools, such as `R`, `SPSS`, or `Stata`. The material in this chapter about
 importing and exporting data using text or `.csv` files will be very useful for this. 
 By default, NetLogo only allows you to read in data in simple text files. However, if comes with some extensions that you can use to read in 
 data from other common file formats, including `.csv` and ArcGIS shapefiles and raster (grid) files.
@@ -34,9 +34,12 @@ If you want to read in data from csv files, you may want to
 look at the documentation for the \texttt{csv} extension to NetLogo. To use it, you just put the line `includes [csv]` as the first line of your
 model, and then  use functions from the extension, such as `let data csv:from-file "myfile.csv"`.
 
-To read in date from ArcGIS files, look at the documentation for the \texttt{GIS} extension. You would put the line `extensions [ gis ]` as the
+To read in date from ArcGIS files, look at the documentation for the `GIS` extension. You would put the line `extensions [ gis ]` as the
 first line of your model, and then use functions, such as `gis:load-dataset`, which can load vector shape files (`.shp`) 
 and raster grid files (`.grd` or `.asc`). The GIS extension offers a lot of functions for working with vector and raster GIS data.
 If you're interested in using GIS data in your models, take a look at the GIS examples in the NetLogo model library.
 
-You can download the [data file](/files/models/chapter_05/ElevationData.txt) with the elevations for the realistic butterfly model from <https://ees4760.jgilligan.org/files/models/chapter_05/ElevationData.txt>
+NA
+You can download the [data file](/files/models/chapter_05/ElevationData.txt) with the elevations for the realistic butterfly model from 
+<https://ees4760.jgilligan.org/files/models/chapter_05/ElevationData.txt>
+NA

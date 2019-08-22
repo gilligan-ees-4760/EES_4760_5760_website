@@ -66,6 +66,10 @@ lessons:
   lecture: /Slides/Class_14
 - date: '2019-10-10'
   title: Team Presentations
+  assignment: team_project_presentation
+- date: '2019-10-11'
+  title: Team Project Report
+  assignment: team_project_report
 - date: '2019-10-15'
   title: Research Project ODDs
   assignment: project_analysis
@@ -81,7 +85,7 @@ lessons:
   title: Project ODD Due
   assignment: project_odd
 - date: '2019-10-24'
-  title: FALL BREAK
+  title: Fall Break
 - date: '2019-10-29'
   title: Collectives
   reading: /reading/reading_20
@@ -115,9 +119,9 @@ lessons:
   title: 'Looking Ahead: ABMs Beyond this Course'
   reading: /reading/reading_27
 - date: '2019-11-26'
-  title: THANKSGIVING BREAK
+  title: Thanksgiving Break
 - date: '2019-11-28'
-  title: THANKSGIVING_BREAK
+  title: Thanksgiving Break
 - date: '2019-12-03'
   title: Presentations
   assignment: project_presentation

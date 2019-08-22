@@ -30,3 +30,5 @@ If you really want to write your own model instead of working with a
 published one, that is also acceptable, but be aware that it may be a lot
 more work. I recommend that you do this only if you have previous experience
 in programming.
+
+See the semester project assignment for details.

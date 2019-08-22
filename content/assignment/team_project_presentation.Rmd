@@ -1,0 +1,20 @@
+---
+title: Team modeling project presentations
+due_date: '2019-10-10'
+assignment_type: Team Project Assignment
+short_assignment_type: Team Project
+weight: 11
+slug: team_project_presentation
+pubdate: '2019-07-31'
+date: '2019-10-10'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Homework
+
+* Teams will give a presentation on their projects.
+
+### Notes on Homework:
+
+See the team project assignment sheet for details on what I expect for the presentation.
