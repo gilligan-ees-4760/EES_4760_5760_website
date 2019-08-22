@@ -1,36 +1,29 @@
 lessons:
 - date: '2019-08-22'
   title: Introduction
-  lecture: /Slides/Class_01
 - date: '2019-08-27'
   title: The computer modeling cycle
   reading: /reading/reading_02
   assignment: homework_01
-  lecture: /Slides/Class_02
 - date: '2019-08-29'
   title: Introduction to NetLogo
   reading: /reading/reading_03
   assignment: homework_02
-  lecture: /Slides/Class_03
 - date: '2019-09-03'
   title: 'Specifying models: The ODD protocol'
   reading: /reading/reading_04
   assignment: homework_03
-  lecture: /Slides/Class_04
 - date: '2019-09-05'
   title: Your first model
   reading: /reading/reading_05
   assignment: homework_04
-  lecture: /Slides/Class_05
 - date: '2019-09-10'
   title: Using models for science
   reading: /reading/reading_06
-  lecture: /Slides/Class_06
 - date: '2019-09-12'
   title: Testing and validating models
   reading: /reading/reading_07
   assignment: homework_05
-  lecture: /Slides/Class_07
 - date: '2019-09-17'
   title: Choosing Research Projects
   reading: /reading/reading_08
@@ -38,12 +31,10 @@ lessons:
   title: Emergence
   reading: /reading/reading_09
   assignment: homework_06
-  lecture: /Slides/Class_09
 - date: '2019-09-24'
   title: Observation
   reading: /reading/reading_10
   assignment: homework_07
-  lecture: /Slides/Class_10
 - date: '2019-09-26'
   title: Sensing
   reading: /reading/reading_11
@@ -54,16 +45,13 @@ lessons:
   title: Adaptive Behavior and Objectives
   reading: /reading/reading_12
   assignment: homework_08
-  lecture: /Slides/Class_12
 - date: '2019-10-03'
   title: Prediction
   reading: /reading/reading_13
   assignment: homework_09
-  lecture: /Slides/Class_13
 - date: '2019-10-08'
   title: Interaction
   reading: /reading/reading_14
-  lecture: /Slides/Class_14
 - date: '2019-10-10'
   title: Team Presentations
   assignment: team_project_presentation
@@ -76,11 +64,9 @@ lessons:
 - date: '2019-10-17'
   title: Scheduling
   reading: /reading/reading_17
-  lecture: /Slides/Class_17
 - date: '2019-10-22'
   title: Stochasticity
   reading: /reading/reading_19
-  lecture: /Slides/Class_19
 - date: '2019-10-23'
   title: Project ODD Due
   assignment: project_odd
@@ -89,15 +75,12 @@ lessons:
 - date: '2019-10-29'
   title: Collectives
   reading: /reading/reading_20
-  lecture: /Slides/Class_20
 - date: '2019-10-31'
   title: Patterns
   reading: /reading/reading_21
-  lecture: /Slides/Class_21
 - date: '2019-11-05'
   title: Theory Development
   reading: /reading/reading_22
-  lecture: /Slides/Class_22
 - date: '2019-11-07'
   title: Parameterization and Calibration
   reading: /reading/reading_23
@@ -107,11 +90,9 @@ lessons:
 - date: '2019-11-12'
   title: Parameterization and Calibration 2
   reading: /reading/reading_24
-  lecture: /Slides/Class_24
 - date: '2019-11-14'
   title: Analyzing ABMs
   reading: /reading/reading_25
-  lecture: /Slides/Class_25
 - date: '2019-11-19'
   title: Sensitivity and Robustness
   reading: /reading/reading_26

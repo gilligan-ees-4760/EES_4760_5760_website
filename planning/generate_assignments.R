@@ -14,7 +14,7 @@ online_location <- "posted on Brightspace"
 
 root_dir <- here::here()
 planning_dir <- here::here("planning")
-slide_dir <- here::here("static", "Slides")
+slide_dir <- here::here("static", "slides")
 
 md_extensions <- "+tex_math_single_backslash+compact_definition_lists"
 
@@ -1084,7 +1084,7 @@ generate_assignments <- function() {
 
     if (! is.na(class_num)) {
       slide_class_dir <- sprintf("Class_%02d", class_num)
-      slide_url <- file.path("/Slides", slide_class_dir, fsep = "/")
+      slide_url <- file.path("/slides", slide_class_dir, fsep = "/")
 
       if (file.exists(file.path(slide_dir, slide_class_dir, "index.html"))) {
         message("HTML slide_url = ", slide_url)
