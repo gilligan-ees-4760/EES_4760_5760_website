@@ -1,6 +1,7 @@
 /blogdown/
 /docs/
 /lectures/semester/
+/lectures/old_semesster/
 /public/
 *cache/
 .Rproj.user/
