@@ -1,0 +1,5 @@
+.title-page-box {
+  color: white;
+  background-color: hsla(0, 0%, 0%, 0.5);
+  overflow: scroll-y;
+}

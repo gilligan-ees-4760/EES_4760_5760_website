@@ -1083,7 +1083,7 @@ generate_assignments <- function() {
     class_num = cal_entry$class
 
     if (! is.na(class_num)) {
-      slide_class_dir <- sprintf("Class_%02d", class_num)
+      slide_class_dir <- sprintf("class_%02d", class_num)
       slide_url <- file.path("/slides", slide_class_dir, fsep = "/")
 
       if (file.exists(file.path(slide_dir, slide_class_dir, "index.html"))) {

@@ -5,7 +5,7 @@ draft: false
 
 ## Team Projects
 
-Presentations and write-ups due Thursday, Oct. 10. Post your write-up to the course Box folder by the end of the day (i.e., before midnight).
+Presentations and write-ups due Thursday, Oct. 10. Post your write-up to the course Box folder by the end of the day Friday, Oct. 11 (i.e., before midnight).
 
 [Project assignment](/assignment/TeamProjectAssignment.pdf)
 
