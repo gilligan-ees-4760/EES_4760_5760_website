@@ -138,3 +138,9 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
     labs = false
     homework = true
     reading = true
+
+  [params.ip]
+    copyright = "Copyright 2018, <a href=\"https://www.jonathangilligan.org\" target=\"_blank\">Jonathan Gilligan</a>."
+    licenseIcon = "/img/cc-by.svg"
+    licenseURL = "https://creativecommons.org/licenses/by/4.0/"
+    
