@@ -18,7 +18,7 @@ Homework #1 is due today: Install NetLogo and Set up Box account. See the homewo
 
 ### Required Reading (everyone):
 * Agent-Based and Individual-Based Modeling, Ch. 1.
-* Handout: [P. Tyson, "Artificial Societies," Technology Review **100** (3), 15--17 (1997).](/files/reading_handouts/Tyson_Artificial_Societies_1997.pdf){target="_blank"}.
+* Handout: [P. Tyson, "Artificial Societies," Technology Review **100** (3), 15--17 (1997).](/files/reading/Tyson_Artificial_Societies_1997.pdf){target="_blank"}.
 
 ### Reading Notes:
 

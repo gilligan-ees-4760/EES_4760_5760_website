@@ -64,12 +64,12 @@ those errors a priority in your programming process.
       increasingly requiring that any research funded by their grants must make 
       its code and data available to other researchers and the public.
 
-**The Marriage Model**
+**The Cultural Dissemination Model**
 
 The 
-[ODD for the marriage model](/files/models/chapter_06/Marriage_age_model_ODD.pdf) 
+[paper describing the cultural dissemination model](/files/models/chapter_06/axelrod_cultural_dissemination_1997.pdf]
 and a 
-[NetLogo model](files/models/chapter_06/Marriage_model_with_errors.nlogo) 
+[NetLogo model](files/models/chapter_06/CulturalDissemination_Untested.nlogo) 
 that implements the ODD, but with many errors, can be downloaded from the class web site: 
-* <https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_age_model_ODD.pdf>, 
-* and <https://ees4760.jgilligan.org/files/models/chapter_06/Marriage_model_with_errors.nlogo>.
+* <https://ees4760.jgilligan.org/files/models/chapter_06/axelrod_cultural_dissemination_1997.pdf>, 
+* and <https://ees4760.jgilligan.org/files/models/chapter_06/CulturalDissemination_Untested.nlogo>.
