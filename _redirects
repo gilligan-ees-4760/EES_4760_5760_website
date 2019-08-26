@@ -1,0 +1,11 @@
+# These rules will change if you change your site’s custom domains or HTTPS settings
+
+# Redirect domain aliases to primary domain
+https://www.ees4760.jgilligan.org/* https://ees4760.jgilligan.org/:splat 301!
+https://www.ees5760.jgilligan.org/* https://ees4760.jgilligan.org/:splat 301!
+https://ees5760.jgilligan.org/* https://ees4760.jgilligan.org/:splat 301!
+https://ees4760.jonathangilligan.org/* https://ees4760.jgilligan.org/:splat 301!
+https://www.ees4760.jonathangilligan.org/* https://ees4760.jgilligan.org/:splat 301!
+
+# Optional: Redirect default Netlify subdomain to primary domain
+https://ees-4760-5760.netlify.com/* https://ees4760.jgilligan.org/:splat 301!
