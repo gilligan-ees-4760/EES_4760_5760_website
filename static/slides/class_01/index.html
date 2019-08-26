@@ -55,7 +55,8 @@
        Thursday, August 22
       2019
     </h3>
-        <div class="qrbox" id="qrbox">
+        <div style="vertical-align:bottom;position:fixed;left:5rem;bottom:1rem;width:100%;"
+    <div class="qrbox" id="qrbox">
       <div style="font-size:30%;width:100%;">
     <a href="https://ees4760.jgilligan.org/slides/class_01">
   	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_01"/>
@@ -68,11 +69,11 @@
     	PDF: <a href="https://ees4760.jgilligan.org/slides/class_01/EES_4760_5760_class_01_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_01/EES_4760_5760_class_01_Slides.pdf</a>
     	
     	    	</span>
-    	<span style="display:inline-block;text-align:right;vertical-align:top;position:relative;left:10rem;">
+    	<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">
     	  Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>
     	  Also: up, down, left, right arrows; overview: o; help: ?
     	</span>
-  	</div>
+    </div>
   	</div>
     	<!-- end title slide -->
 </section>
@@ -227,8 +228,12 @@
 <section><section id="anasazi-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Artificial Anasazi</h1></section><section id="anasazi-intro" class="slide level2 ninety" data-transition="fade-in">
 <h2>Example: Artificial Anasazi</h2>
 <h3 id="axtell-dean-epstein-et-al.">Axtell, Dean, Epstein, <em>et al.</em></h3>
-<p><img data-src="assets/images/long_house_valley.jpg" alt="Long House Valley" height="800" /></p>
-<p>Long House Valley (flourished ca. 1800 BCE–1300 CE)</p>
+<p style="margin-bottom:0;">
+<img data-src="assets/images/long_house_valley.jpg" alt="Long House Valley" style="margin-top:0;margin-bottom:0;" height="800" />
+</p>
+<p style="margin-top:0.5em;">
+Long House Valley (flourished ca. 1800 BCE–1300 CE)
+</p>
 </section><section id="anasazi-modeling-environment" class="slide level2">
 <h2>Modeling Environment</h2>
 <p><img data-src="assets/images/anasazi_maps.png" alt="Artificial Anasazi Simulations" width="1800" /></p>
@@ -261,7 +266,7 @@
 </ul>
 </section><section id="anasazi-initial-results" class="slide level2">
 <h2>Results</h2>
-<p><img data-src="assets/images/anasazi_output_1.png" alt="Artificial Ansazi model results" height="850" /></p>
+<p><img data-src="assets/images/anasazi_output_1.png" alt="Artificial Ansazi model results" height="950" /></p>
 </section><section id="anasazi-results-comparison" class="slide level2">
 <h2>Comparison</h2>
 <div class="noborder">
@@ -274,8 +279,8 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><img data-src="assets/images/anasazi_simulated.png" alt="Artificial Ansazi simulation" width="900" /></td>
-<td style="text-align: center;"><img data-src="assets/images/anasazi_historical.png" alt="Artificial Ansazi simulation" width="900" /></td>
+<td style="text-align: center;"><img data-src="assets/images/anasazi_simulated.png" alt="Artificial Ansazi simulation" width="850" /></td>
+<td style="text-align: center;"><img data-src="assets/images/anasazi_historical.png" alt="Artificial Ansazi simulation" width="850" /></td>
 </tr>
 </tbody>
 </table>
@@ -288,7 +293,7 @@
 </ul>
 </section><section id="anasazi-improved-results" class="slide level2">
 <h2>Results</h2>
-<p><img data-src="assets/images/anasazi_output_2.png" alt="Artificial Ansazi improved model results" height="850" /></p>
+<p><img data-src="assets/images/anasazi_output_2.png" alt="Artificial Ansazi improved model results" height="950" /></p>
 </section></section>
     </div>
   </div>
@@ -313,8 +318,8 @@
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1280,
-        height: 1024,
+        width: 1920,
+        height: 1080,
       
         // Optional reveal.js plugins
         dependencies: [
