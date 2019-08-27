@@ -1,10 +1,10 @@
 ---
 title: "Telemarketer Models"
 weight: 12
-date: "2018-02-22"
-due_date: "2018-02-22"
-pubdate: "2018-01-01"
-descr: "Telemarketer models (Feb. 22)"
+date: "2019-10-01"
+due_date: "2019-10-01"
+pubdate: "2019-08-22"
+descr: "Telemarketer models (Oct. 1)"
 output: html_document
 ---
 # Telemarketer models for in-class exercises

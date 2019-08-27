@@ -1,10 +1,10 @@
 ---
 title: "Team Project Templates"
 weight: 11
-date: "2018-02-15"
-due_date: "2018-01-15"
+date: "2019-10-01"
+due_date: "2019-10-01"
 pubdate: "2018-01-01"
-descr: "Templates for team projects (for Feb. 15 class)"
+descr: "Templates for team projects (for Oct. 1 class)"
 output: html_document
 ---
 # Templates for programming team-project models

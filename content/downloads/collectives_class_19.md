@@ -1,10 +1,10 @@
 ---
 title: "Collectives: Wild-Dog Models"
 weight: 19
-date: "2018-03-22"
-due_date: "2018-03-22"
-pubdate: "2018-01-01"
-descr: "Models of wild dogs for collectives (Mar. 22)"
+date: "2019-10-29"
+due_date: "2019-10-29"
+pubdate: "2019-08-22"
+descr: "Models of wild dogs for collectives (Oct. 29)"
 output: html_document
 ---
 # Wild-dog models for in-class exercises on collectives

@@ -1,10 +1,10 @@
 ---
 title: "Models for Scheduling"
 weight: 13
-date: "2018-03-20"
-due_date: "2018-03-20"
-pubdate: "2018-01-01"
-descr: "Models for scheduling (Mar. 20)"
+date: "2019-10-17"
+due_date: "2019-10-17"
+pubdate: "2019-08-22"
+descr: "Models for scheduling (Oct. 17)"
 output: html_document
 ---
 # Models for in-class exercises on scheduling

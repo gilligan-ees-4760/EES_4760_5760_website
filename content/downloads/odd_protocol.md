@@ -2,15 +2,15 @@
 title: "ODD Protocol"
 author: "Volker Grimm"
 weight: 3
-date: "2018-01-09"
-due_date: "2018-01-18"
-pubdate: "2018-01-01"
-descr: "Documents on ODD protocol (optional supplementary reading for Jan. 18)."
+date: "2019-09-03"
+due_date: "2019-09-03"
+pubdate: "2019-08-22"
+descr: "Documents on ODD protocol (optional supplementary reading for Sept. 3)."
 output: html_document
 ---
 ## Documents on ODD protocol
 
-### Optional supplementary reading for Jan. 18.
+### Optional supplementary reading for Sept. 3.
 
 * The journal article, [V. Grimm _et al._ (2010). "The ODD protocol: A review and first update" _Ecological Modeling_ **221**, 2760--68.](/files/odd/Grimm_2010_ODD_update.pdf). {{% abs_link "/files/odd/Grimm_2010_ODD_update.pdf" %}}
 * A Word document that provides [a template for writing ODDs](/files/odd/Grimm_2010_odd_template.docx): {{% abs_link "/files/odd/Grimm_2010_odd_template.docx" %}}

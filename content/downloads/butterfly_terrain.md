@@ -1,13 +1,13 @@
 ---
 title: "Science with Butterfly Models"
 weight: 6
-date: "2018-01-25"
-due_date: "2018-01-25"
-pubdate: "2018-01-01"
-descr: "Doing Science with the Butterfly Model (Jan. 25)"
+date: "2019-09-10"
+due_date: "2019-09-10"
+pubdate: "2019-08-22"
+descr: "Doing Science with the Butterfly Model (Sept. 10)"
 output: html_document
 ---
-# Butterfly Model for Class Exercises on Jan. 25
+# Butterfly Model for Class Exercises on Sept. 10
  
 * A [butterfly model](/models/class_06/butterfly_class_06a.nlogo) 
   from Chapter 5:<br/>
