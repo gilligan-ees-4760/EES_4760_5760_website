@@ -429,10 +429,24 @@ Airports, banks, etc.
       
         // Optional reveal.js plugins
         dependencies: [
-                              { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
           { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
-        ]
-      });
+        ],
+        keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
+    	    46: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'DEL' is pressed
+    	     8: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'F',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'G',
+      	      });
     </script>
 
 <script>
