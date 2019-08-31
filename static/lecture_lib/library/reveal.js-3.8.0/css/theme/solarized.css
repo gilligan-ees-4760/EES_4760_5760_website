@@ -1,9 +1,9 @@
-/* Solarized Light JG theme for reveal.js.
- * Author: Achim Staebler, Modified by Jonathan GIlligan
+/**
+ * Solarized Light theme for reveal.js.
+ * Author: Achim Staebler
  */
-@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic);
-@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic);
-@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro:400,700,400italic,700italic);
+@import url(../../lib/font/league-gothic/league-gothic.css);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
 /**
  * Solarized colors by Ethan Schoonover
  */
@@ -19,8 +19,8 @@ body {
   background-color: #fdf6e3; }
 
 .reveal {
-  font-family: "Noto Sans", sans-serif;
-  font-size: 52px;
+  font-family: "Lato", sans-serif;
+  font-size: 40px;
   font-weight: normal;
   color: #657b83; }
 
@@ -50,11 +50,11 @@ body {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #586e75;
-  font-family: "PT Sans", Impact, sans-serif;
+  font-family: "League Gothic", Impact, sans-serif;
   font-weight: normal;
-  line-height: 0.9;
+  line-height: 1.2;
   letter-spacing: normal;
-  text-transform: none;
+  text-transform: uppercase;
   text-shadow: none;
   word-wrap: break-word; }
 
@@ -150,13 +150,13 @@ body {
   margin: 20px auto;
   text-align: left;
   font-size: 0.55em;
-  font-family: "Anonymous Pro", monospace;
+  font-family: monospace;
   line-height: 1.2em;
   word-wrap: break-word;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15); }
 
 .reveal code {
-  font-family: "Anonymous Pro", monospace;
+  font-family: monospace;
   text-transform: none; }
 
 .reveal pre code {
@@ -275,244 +275,3 @@ body {
 @media print {
   .backgrounds {
     background-color: #fdf6e3; } }
-
-.reveal h1 {
-  margin-bottom: 50px; }
-
-.reveal .h3 {
-  margin-top: 10px; }
-
-.reveal .subtitle {
-  font-size: 52px; }
-
-.reveal .author {
-  font-size: 1.2em;
-  text-transform: none; }
-
-.reveal .date {
-  font-size: 0.8em; }
-
-.reveal blockquote {
-  box-shadow: none; }
-
-.reveal ol {
-  margin-left: 2em; }
-
-.reveal ol[type=A] {
-  list-style-type: upper-alpha; }
-
-.reveal ol[type=a] {
-  list-style-type: lower-alpha; }
-
-.reveal sub {
-  font-size: 60%; }
-
-.reveal sup {
-  font-size: 60%; }
-
-.reveal .small {
-  font-size: 0.6em;
-  line-height: 1.2em; }
-
-.reveal pre {
-  display: block;
-  position: relative;
-  width: 90%;
-  margin: 20px auto;
-  text-align: left;
-  font-size: 0.55em;
-  font-family: monospace;
-  line-height: 1.2em;
-  word-wrap: break-word;
-  box-shadow: none; }
-
-.reveal code {
-  font-family: "Anonymous Pro", monospace;
-  color: #268bd2; }
-
-.reveal pre code {
-  font-size: 1.3em;
-  line-height: 1.2em;
-  font-family: "Anonymous Pro", monospace;
-  color: #134671;
-  background-color: #C0C0C0;
-  display: block;
-  padding: 5px;
-  max-height: 100%;
-  overflow: visible;
-  word-wrap: normal; }
-
-.reveal .slides .leftslide section,
-.reveal .slides .leftslide div,
-.reveal .leftslide p,
-.reveal .leftslide ul,
-.reveal .leftslide ol,
-.reveal .leftslide li,
-.reveal .leftslide blockquote {
-  text-align: left; }
-
-.reveal .slides .leftslide section,
-.reveal .slides .leftslide div,
-.reveal .leftslide p,
-.reveal .leftslide ul,
-.reveal .leftslide ol,
-.reveal .leftslide li {
-  width: 100%; }
-
-.reveal .leftslide p,
-.reveal .leftslide ul,
-.reveal .leftslide ol {
-  margin-left: 1em; }
-
-.reveal .leftslide h1,
-.reveal .leftslide h2 {
-  text-align: center; }
-
-.reveal .toptitle h1,
-.reveal .toptitle h2 {
-  top: 50px;
-  margin-bottom: 6in; }
-
-.reveal .whitetitle h1,
-.reveal .whitetitle h2,
-.reveal .whitetitle h3,
-.reveal .whitetitle h4,
-.reveal .whitetitle h5 {
-  color: white; }
-
-.reveal .yellowtitle h1,
-.reveal .yellowtitle h2,
-.reveal .yellowtitle h3,
-.reveal .yellowtitle h4,
-.reveal .yellowtitle h5 {
-  color: yellow; }
-
-.reveal .blacktitle h1,
-.reveal .blacktitle h2,
-.reveal .blacktitle h3,
-.reveal .blacktitle h4,
-.reveal .blacktitle h5 {
-  color: black; }
-
-.blacktext p,
-.blacktext li,
-.blacktext ul,
-.blacktext ol {
-  color: black; }
-
-.reveal .yellowtext p,
-.reveal .yellowtext li,
-.reveal .yellowtext ul,
-.reveal .yellowtext ol {
-  color: yellow; }
-
-.reveal .ninetyfive {
-  font-size: 95%; }
-
-.reveal .ninety {
-  font-size: 90%; }
-
-.reveal .eightyfive {
-  font-size: 85%; }
-
-.reveal .eighty {
-  font-size: 80%; }
-
-.reveal .seventyfive {
-  font-size: 75%; }
-
-.reveal .seventy {
-  font-size: 70%; }
-
-.reveal .nomargin div,
-.reveal .nomargin p,
-.reveal .nomargin > p,
-.reveal .nomargin ul,
-.reveal .nomargin ol,
-.reveal .nomargin li,
-.reveal .nomargin blockquote,
-.reveal .momargin img {
-  margin: 0; }
-
-.reveal .slides section .fragment.hightlight-green.visible {
-  color: #4fa843;
-  font-weight: bold; }
-
-.reveal .hidetitle h1,
-.reveal .hidetitle h2 {
-  display: none; }
-
-.reveal h1 {
-  font-size: 2.0em; }
-
-.reveal h2 {
-  font-size: 1.5em; }
-
-.reveal h3 {
-  font-size: 1.25em; }
-
-.reveal h4 {
-  font-size: 1em; }
-
-.reveal .slides > section,
-.reveal .slidex > section > section {
-  padding: 0 0; }
-
-.reveal table,
-.reveal table th,
-.reveal table td {
-  border-width: 2px;
-  border-style: solid;
-  border-color: gray;
-  border-collapse: collapse; }
-
-.reveal table {
-  border-spacing: 2px;
-  font-size: 0.7em; }
-
-.reveal table th,
-.reveal table td {
-  padding-left: 10px;
-  padding-right: 25px; }
-
-.reveal table th {
-  font-weight: bold; }
-
-.reveal .bordered table,
-.reveal .bordered table thead,
-.reveal .bordered table tbody,
-.reveal .bordered table th,
-.reveal .bordered table tr,
-.reveal .bordered table td,
-.reveal table.bordered,
-.reveal table.bordered thead,
-.reveal table.bordered tbody,
-.reveal table.bordered th,
-.reveal table.bordered tr,
-.reveal table.bordered td {
-  border-width: 2px;
-  border-style: solid;
-  border-color: black; }
-
-.reveal .noborder table,
-.reveal .noborder thead,
-.reveal .noborder tbody,
-.reveal .noborder th,
-.reveal .noborder tr,
-.reveal .noborder td,
-.reveal table.noborder,
-.reveal table.noborder thead,
-.reveal table.noborder tbody,
-.reveal table.noborder th,
-.reveal table.noborder tr,
-.reveal table.noborder td,
-.reveal img.noborder,
-.reveal .noborder img {
-  border-style: none; }
-
-.reveal .leftlist ol,
-.reveal .leftlist ul {
-  width: 100%; }
-
-.reveal .stretch code {
-  max-height: 100%; }

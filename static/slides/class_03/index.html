@@ -9,8 +9,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
-  <link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.7.0/css/reveal.min.css"/>
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+  <link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+  <link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css"/>
   <style type="text/css">
       code{white-space: pre-wrap;}
       .smallcaps{font-variant: small-caps;}
@@ -18,12 +19,12 @@
       .column{display: inline-block;}  </style>
   <style type="text/css">
     div.qrbox {
-     width:100vw;
-     position:fixed;
-     bottom:0;
-     left:10px;
      text-align:left;
      vertical-align:bottom;
+     width:95%;
+     position:fixed;
+     left:2.5%;
+     bottom:1rem;
     }
   </style>
 <!-- theme = solarized_jg -->
@@ -33,11 +34,11 @@
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
     link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.7.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.7.0/css/print/paper.css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script>
   <!--[if lt IE 9]>
-  <script src="../../lecture_lib/library/reveal.js-3.7.0/lib/js/html5shiv.js"></script>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
   <![endif]-->
 </head>
 <body>
@@ -55,27 +56,7 @@
        Tuesday Aug. 29
       2019
     </h3>
-        <div style="vertical-align:bottom;position:fixed;left:2.5%;bottom:1rem;width:95%;"
-    <div class="qrbox" id="qrbox">
-      <div style="font-size:30%;width:100%;">
-    <a href="https://ees4760.jgilligan.org/slides/class_03">
-  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_03"/>
-  	</a>
-    	</div>
-    	<div style="font-size:30%;width:100%;vertical-align:top;">
-    	<span style="display:inline-block;text-align:left;margin-left:0">
-    	    	Live web page: <a href="https://ees4760.jgilligan.org/slides/class_03">https://ees4760.jgilligan.org/slides/class_03</a>
-    	<br/>
-    	PDF: <a href="https://ees4760.jgilligan.org/slides/class_03/EES_4760_5760_class_03_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_03/EES_4760_5760_class_03_Slides.pdf</a>
-    	
-    	    	</span>
-    	<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">
-    	  Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>
-    	  Also: up, down, left, right arrows; overview: o; help: ?
-    	</span>
-    </div>
-  	</div>
-    	<!-- end title slide -->
+	<!-- end title slide -->
 </section>
 
 <section id="agenda" class="slide level2">
@@ -322,8 +303,9 @@ end</code></pre>
 </ul></li>
 <li>Include termination point</li>
 </ul>
-</div><div class="column seventyfive" style="width:60%;vertical-align:top;">
+</div><div class="column eighty" style="width:60%;vertical-align:top;">
 <p>Type this into your model:</p>
+<div class="stretch">
 <pre><code>to go
   tick
   ask turtles [ 
@@ -349,6 +331,7 @@ end
 
 to move
 end</code></pre>
+</div>
 </div>
 </div>
 </section></section>
@@ -396,7 +379,7 @@ end</code></pre>
 </div>
 </div>
 </section></section>
-<section><section id="commands-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Elementary NetLogo Commands</h1></section><section id="commands" class="slide level2" data-transition="fade-in">
+<section><section id="commands-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>Elementary NetLogo Commands</h1></section><section id="commands" class="slide level2" data-transition="fade-in">
 <h2>Elementary NetLogo Commands</h2>
 <ol type="A">
 <li>Searching NetLogo dictionary</li>
@@ -697,7 +680,7 @@ to setup
 <h2>When in doubt, use this.</h2>
 <p><img data-src="assets/images/netlogo_dictionary.png" height="900" /></p>
 </section></section>
-<section><section id="ABM-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Agent-Based Models</h1></section><section id="ABMs" class="slide level2" data-transition="fade-in">
+<section><section id="ABM-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>Agent-Based Models</h1></section><section id="ABMs" class="slide level2" data-transition="fade-in">
 <h2>Agent-based models</h2>
 <ul>
 <li><p>Agents/Individuals are discrete, unique, and autonomous entities.</p></li>
@@ -812,10 +795,28 @@ to setup
 <source src="/static/video/MovieS2.mp4" type="video/mp4">
 <p>Your browser does not support the video tag.<br/> You can play the video at <a href="https://ees4760.jgilligan.org/static/video//MovieS2.mp4">https://ees4760.jgilligan.org/static/video//MovieS2.mp4</a> </video></p>
 </section></section>
+        <div class="qrbox" id="qrbox">
+      <div style="font-size:30%;width:100%;">
+    <a href="https://ees4760.jgilligan.org/slides/class_03">
+  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_03"/>
+  	</a>
+    	</div>
+    	<div style="font-size:30%;width:100%;vertical-align:top;">
+    	<span style="display:inline-block;text-align:left;margin-left:0">
+    	    	Live web page: <a href="https://ees4760.jgilligan.org/slides/class_03">https://ees4760.jgilligan.org/slides/class_03</a>
+    	<br/>
+    	PDF: <a href="https://ees4760.jgilligan.org/slides/class_03/EES_4760_5760_class_03_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_03/EES_4760_5760_class_03_Slides.pdf</a>
+    	
+    	    	</span>
+    	<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">
+    	  Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>
+    	  Also: up, down, left, right arrows; overview: o; help: ?
+    	</span>
     </div>
+  	</div>
+        </div>
   </div>
-  <script src="../../lecture_lib/library/reveal.js-3.7.0/lib/js/head.min.js"></script>
-  <script src="../../lecture_lib/library/reveal.js-3.7.0/js/reveal.min.js"></script>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.js"></script>
 
   <script>
 
@@ -826,6 +827,8 @@ to setup
         controls: false,
         // Push each slide change to the browser history
         history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
         // Vertical centering of slides
         center: false,
         // Transition style
@@ -840,9 +843,8 @@ to setup
       
         // Optional reveal.js plugins
         dependencies: [
-          { src: '../../lecture_lib/library/reveal.js-3.7.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: '../../lecture_lib/library/reveal.js-3.7.0/plugin/zoom-js/zoom.js', async: true },
-          { src: '../../lecture_lib/library/reveal.js-3.7.0/plugin/notes/notes.js', async: true }
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
         ]
       });
     </script>
@@ -884,25 +886,51 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
   <script>
   var qrbox = document.querySelector("#qrbox");
   var advance_fragment = 0;
+
+  Reveal.addEventListener('overviewshown', function() {
+    qrbox.style.visibility="hidden";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') ) {
+      qrbox.style.visibility="visible";
+    }
+  }, false);
+
+  Reveal.addEventListener('load', function() {
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() && 
+        ! qrbox.hasAttribute('qr-box-hide')) {
+       qrbox.style.visibility="visible";
+     }
+  })
+  
   Reveal.addEventListener('slidechanged', function() {
-    if (Reveal.isFirstSlide()) {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+  
+  Reveal.addEventListener('slidechanged', function() {
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() && 
+        ! qrbox.hasAttribute('qr-box-hide') ) {
       qrbox.style.visibility="visible";
     } else {
       qrbox.style.visibility="hidden";
-      while (advance_fragment > 0) {
-        console.log('advancing fragment');
-        Reveal.nextFragment();
-        advance_fragment--;
-      }
+    }
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
     }
   }, false);
 
   Reveal.addEventListener('skip_slide', function() {
     Reveal.next();
   }, false);
-
+  
   Reveal.addEventListener('advance_fragment', function() {
-    console.log("setting advance fragment");
+    // console.log("setting advance fragment");
     advance_fragment++;
     }, false);
   </script>
