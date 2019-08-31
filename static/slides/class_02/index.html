@@ -402,7 +402,7 @@ Airports, banks, etc.
   	</div>
         </div>
   </div>
-  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.js"></script>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script>
 
   <script>
 
@@ -429,7 +429,7 @@ Airports, banks, etc.
       
         // Optional reveal.js plugins
         dependencies: [
-          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+                              { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
           { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
         ]
       });
@@ -473,6 +473,11 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
   var qrbox = document.querySelector("#qrbox");
   var advance_fragment = 0;
 
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() ) {
+    qrbox.style.visibility="hidden";
+  }
+
   Reveal.addEventListener('overviewshown', function() {
     qrbox.style.visibility="hidden";
   }, false);
@@ -483,22 +488,15 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
     }
   }, false);
 
-  Reveal.addEventListener('load', function() {
-    if (Reveal.isFirstSlide() && ! Reveal.isOverview() && 
-        ! qrbox.hasAttribute('qr-box-hide')) {
-       qrbox.style.visibility="visible";
-     }
-  })
-  
   Reveal.addEventListener('slidechanged', function() {
     if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
       // console.log("going to next slide...");
       Reveal.next();
     }
   }, false);
-  
+
   Reveal.addEventListener('slidechanged', function() {
-    if (Reveal.isFirstSlide() && ! Reveal.isOverview() && 
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
         ! qrbox.hasAttribute('qr-box-hide') ) {
       qrbox.style.visibility="visible";
     } else {
@@ -514,7 +512,7 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
   Reveal.addEventListener('skip_slide', function() {
     Reveal.next();
   }, false);
-  
+
   Reveal.addEventListener('advance_fragment', function() {
     // console.log("setting advance fragment");
     advance_fragment++;

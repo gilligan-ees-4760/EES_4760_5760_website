@@ -5100,6 +5100,7 @@
 	 * @param {object} event
 	 */
 	function onDocumentKeyPress( event ) {
+	  console.log("key press: " + event.which + " code = " + event.charCode);
 
 		// Check if the pressed key is question mark
 		if( event.shiftKey && event.charCode === 63 ) {
@@ -5114,6 +5115,7 @@
 	 * @param {object} event
 	 */
 	function onDocumentKeyDown( event ) {
+	  console.log("key down: " + event.which + " code = " + event.charCode);
 
 		// If there's a condition specified and it returns false,
 		// ignore this event
