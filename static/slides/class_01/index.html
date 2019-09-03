@@ -18,13 +18,15 @@
       .line-block{white-space: pre-line;}
       .column{display: inline-block;}  </style>
   <style type="text/css">
-    div.qrbox {
-     text-align:left;
-     vertical-align:bottom;
-     width:95%;
-     position:fixed;
-     left:2.5%;
-     bottom:1rem;
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
     }
   </style>
 <!-- theme = solarized_jg -->
@@ -210,14 +212,14 @@
 <h2>Example: Artificial Anasazi</h2>
 <h3 id="axtell-dean-epstein-et-al.">Axtell, Dean, Epstein, <em>et al.</em></h3>
 <p style="margin-bottom:0;">
-<img data-src="assets/images/long_house_valley.jpg" alt="Long House Valley" style="margin-top:0;margin-bottom:0;" height="800" />
+<img data-src="assets/images/long_house_valley.jpg" style="margin-top:0;margin-bottom:0;" height="800" alt="Long House Valley" />
 </p>
 <p style="margin-top:0.5em;">
 Long House Valley (flourished ca. 1800 BCE–1300 CE)
 </p>
 </section><section id="anasazi-modeling-environment" class="slide level2">
 <h2>Modeling Environment</h2>
-<p><img data-src="assets/images/anasazi_maps.png" alt="Artificial Anasazi Simulations" width="1800" /></p>
+<p><img data-src="assets/images/anasazi_maps.png" width="1800" alt="Artificial Anasazi Simulations" /></p>
 </section><section id="anasazi-paleoclimate" class="slide level2" data-background="assets/images/paleoclimate.png" data-background-size="100% 100%">
 <h2><!--- ---></h2>
 </section><section id="constructing-anasazi-model" class="slide level2">
@@ -247,7 +249,7 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
 </ul>
 </section><section id="anasazi-initial-results" class="slide level2">
 <h2>Results</h2>
-<p><img data-src="assets/images/anasazi_output_1.png" alt="Artificial Ansazi model results" height="950" /></p>
+<p><img data-src="assets/images/anasazi_output_1.png" height="950" alt="Artificial Ansazi model results" /></p>
 </section><section id="anasazi-results-comparison" class="slide level2">
 <h2>Comparison</h2>
 <div class="noborder">
@@ -260,8 +262,8 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><img data-src="assets/images/anasazi_simulated.png" alt="Artificial Ansazi simulation" width="850" /></td>
-<td style="text-align: center;"><img data-src="assets/images/anasazi_historical.png" alt="Artificial Ansazi simulation" width="850" /></td>
+<td style="text-align: center;"><img data-src="assets/images/anasazi_simulated.png" width="850" alt="Artificial Ansazi simulation" /></td>
+<td style="text-align: center;"><img data-src="assets/images/anasazi_historical.png" width="850" alt="Artificial Ansazi simulation" /></td>
 </tr>
 </tbody>
 </table>
@@ -274,28 +276,9 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
 </ul>
 </section><section id="anasazi-improved-results" class="slide level2">
 <h2>Results</h2>
-<p><img data-src="assets/images/anasazi_output_2.png" alt="Artificial Ansazi improved model results" height="950" /></p>
+<p><img data-src="assets/images/anasazi_output_2.png" height="950" alt="Artificial Ansazi improved model results" /></p>
 </section></section>
-        <div class="qrbox" id="qrbox">
-      <div style="font-size:30%;width:100%;">
-    <a href="https://ees4760.jgilligan.org/slides/class_01">
-  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_01"/>
-  	</a>
-    	</div>
-    	<div style="font-size:30%;width:100%;vertical-align:top;">
-    	<span style="display:inline-block;text-align:left;margin-left:0">
-    	    	Live web page: <a href="https://ees4760.jgilligan.org/slides/class_01">https://ees4760.jgilligan.org/slides/class_01</a>
-    	<br/>
-    	PDF: <a href="https://ees4760.jgilligan.org/slides/class_01/EES_4760_5760_class_01_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_01/EES_4760_5760_class_01_Slides.pdf</a>
-    	
-    	    	</span>
-    	<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">
-    	  Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>
-    	  Also: up, down, left, right arrows; overview: o; help: ?
-    	</span>
     </div>
-  	</div>
-        </div>
   </div>
   <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script>
 
@@ -312,6 +295,8 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
         hash: true,
         // Vertical centering of slides
         center: false,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
         // Transition style
         transition: 'slide', // none/fade/slide/convex/concave/zoom
         // Transition style for full page slide backgrounds
@@ -337,12 +322,62 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
     	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
         },
               	// Shortcut for showing all fragments
-      	skipFragmentsShowShortcut: 'F',
+      	skipFragmentsShowShortcut: 'R',
 
       	// Shortcut for hiding all fragments
-      	skipFragmentsHideShortcut: 'G',
+      	skipFragmentsHideShortcut: 'T',
       	      });
     </script>
+
+<script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<aside class="qrbox" id="qrbox">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_01">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_01"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_01">https://ees4760.jgilligan.org/slides/class_01</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_01/EES_4760_5760_class_01_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_01/EES_4760_5760_class_01_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</aside>' + '\n'
+  );
+</script>
 
 <script>
 var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
@@ -378,6 +413,7 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
   </script>
+
   <script>
   var qrbox = document.querySelector("#qrbox");
   var advance_fragment = 0;
@@ -398,23 +434,29 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
   }, false);
 
   Reveal.addEventListener('slidechanged', function() {
-    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
-      // console.log("going to next slide...");
-      Reveal.next();
-    }
-  }, false);
-
-  Reveal.addEventListener('slidechanged', function() {
     if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
         ! qrbox.hasAttribute('qr-box-hide') ) {
       qrbox.style.visibility="visible";
     } else {
       qrbox.style.visibility="hidden";
     }
+  }, false);
+
+  </script>
+
+  <script>
+  Reveal.addEventListener('slidechanged', function() {
     while (advance_fragment > 0) {
       // console.log('advancing fragment');
       Reveal.nextFragment();
       advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
     }
   }, false);
 

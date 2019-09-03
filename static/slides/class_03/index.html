@@ -18,13 +18,15 @@
       .line-block{white-space: pre-line;}
       .column{display: inline-block;}  </style>
   <style type="text/css">
-    div.qrbox {
-     text-align:left;
-     vertical-align:bottom;
-     width:95%;
-     position:fixed;
-     left:2.5%;
-     bottom:1rem;
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
     }
   </style>
 <!-- theme = solarized_jg -->
@@ -575,7 +577,7 @@ ask neighbors [set pcolor my-color]</code></pre>
 </ul>
 </section><section id="graphics" class="slide level2">
 <h2>Working with graphics</h2>
-<p><img data-src="assets/images/color_palette.png" alt="color palette" height="900" /></p>
+<p><img data-src="assets/images/color_palette.png" height="900" alt="color palette" /></p>
 </section><section id="adding-color-to-model" class="slide level2">
 <h2>Updating Our Model</h2>
 <p>Type the following into the “code” tab to update the procedures <code>update-pcolor</code> and <code>update-color</code></p>
@@ -747,14 +749,14 @@ to setup
 </div>
 </section><section id="heterogeneity" class="slide level2">
 <h2>Individual variability</h2>
-<p><img data-src="assets/images/tree_variation.jpg" alt="tree variation" style="width:45%;" /> <img data-src="assets/images/fish_variation.jpg" alt="fish variation" style="width:45%;" /></p>
+<p><img data-src="assets/images/tree_variation.jpg" style="width:45%;" alt="tree variation" /> <img data-src="assets/images/fish_variation.jpg" style="width:45%;" alt="fish variation" /></p>
 <p><span style="font-size:50%;color:#C0C0C0;">From Huston, M., <em>et al.</em>, BioScience <strong>38</strong>, 682 (1988)</span></p>
 </section><section id="adaptive-behavior" class="slide level2">
 <h2>Adaptive behavior</h2>
-<p><img data-src="assets/images/adaptive.png" alt="Adaptive behavior" height="800" /></p>
+<p><img data-src="assets/images/adaptive.png" height="800" alt="Adaptive behavior" /></p>
 </section><section id="adaptive-trout" class="slide level2 eightyfive">
 <h2>Adaptive behavior:<br/>Characteristic patterns in trout habitat selection</h2>
-<p><img data-src="assets/images/trout.jpg" alt="Trout" height="800" /></p>
+<p><img data-src="assets/images/trout.jpg" height="800" alt="Trout" /></p>
 </section><section id="trout-habitat-selection" class="slide level2 eightyfive">
 <h2>Adaptive behavior:<br/>Characteristic patterns in trout habitat selection</h2>
 <ul>
@@ -776,7 +778,7 @@ to setup
 <li>show adaptive behavior</li>
 </ul></li>
 </ul>
-<p><img data-src="assets/images/starlings.png" alt="Starlings" height="600" /></p>
+<p><img data-src="assets/images/starlings.png" height="600" alt="Starlings" /></p>
 </section><section id="starling-movie" class="slide level2">
 <h2>Flock of thousands of starlings</h2>
 <video width="960" height="720" controls>
@@ -793,26 +795,7 @@ to setup
 <source src="/static/video/MovieS2.mp4" type="video/mp4">
 <p>Your browser does not support the video tag.<br/> You can play the video at <a href="https://ees4760.jgilligan.org/static/video//MovieS2.mp4">https://ees4760.jgilligan.org/static/video//MovieS2.mp4</a> </video></p>
 </section></section>
-        <div class="qrbox" id="qrbox">
-      <div style="font-size:30%;width:100%;">
-    <a href="https://ees4760.jgilligan.org/slides/class_03">
-  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_03"/>
-  	</a>
-    	</div>
-    	<div style="font-size:30%;width:100%;vertical-align:top;">
-    	<span style="display:inline-block;text-align:left;margin-left:0">
-    	    	Live web page: <a href="https://ees4760.jgilligan.org/slides/class_03">https://ees4760.jgilligan.org/slides/class_03</a>
-    	<br/>
-    	PDF: <a href="https://ees4760.jgilligan.org/slides/class_03/EES_4760_5760_class_03_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_03/EES_4760_5760_class_03_Slides.pdf</a>
-    	
-    	    	</span>
-    	<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">
-    	  Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>
-    	  Also: up, down, left, right arrows; overview: o; help: ?
-    	</span>
     </div>
-  	</div>
-        </div>
   </div>
   <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script>
 
@@ -829,6 +812,8 @@ to setup
         hash: true,
         // Vertical centering of slides
         center: false,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
         // Transition style
         transition: 'slide', // none/fade/slide/convex/concave/zoom
         // Transition style for full page slide backgrounds
@@ -854,12 +839,62 @@ to setup
     	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
         },
               	// Shortcut for showing all fragments
-      	skipFragmentsShowShortcut: 'F',
+      	skipFragmentsShowShortcut: 'R',
 
       	// Shortcut for hiding all fragments
-      	skipFragmentsHideShortcut: 'G',
+      	skipFragmentsHideShortcut: 'T',
       	      });
     </script>
+
+<script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<aside class="qrbox" id="qrbox">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_03">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_03"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_03">https://ees4760.jgilligan.org/slides/class_03</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_03/EES_4760_5760_class_03_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_03/EES_4760_5760_class_03_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</aside>' + '\n'
+  );
+</script>
 
 <script>
 var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
@@ -895,6 +930,7 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
   </script>
+
   <script>
   var qrbox = document.querySelector("#qrbox");
   var advance_fragment = 0;
@@ -915,23 +951,29 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
   }, false);
 
   Reveal.addEventListener('slidechanged', function() {
-    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
-      // console.log("going to next slide...");
-      Reveal.next();
-    }
-  }, false);
-
-  Reveal.addEventListener('slidechanged', function() {
     if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
         ! qrbox.hasAttribute('qr-box-hide') ) {
       qrbox.style.visibility="visible";
     } else {
       qrbox.style.visibility="hidden";
     }
+  }, false);
+
+  </script>
+
+  <script>
+  Reveal.addEventListener('slidechanged', function() {
     while (advance_fragment > 0) {
       // console.log('advancing fragment');
       Reveal.nextFragment();
       advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
     }
   }, false);
 

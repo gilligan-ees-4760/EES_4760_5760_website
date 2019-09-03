@@ -18,13 +18,15 @@
       .line-block{white-space: pre-line;}
       .column{display: inline-block;}  </style>
   <style type="text/css">
-    div.qrbox {
-     text-align:left;
-     vertical-align:bottom;
-     width:95%;
-     position:fixed;
-     left:2.5%;
-     bottom:1rem;
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
     }
   </style>
 <!-- theme = solarized_jg -->
@@ -81,7 +83,7 @@
 </ul>
 </td>
 <td style="vertical-align:top;">
-<p><img data-src="assets/images/moniac.jpg" alt="Physical Model of the Economy" height="800" /></p>
+<p><img data-src="assets/images/moniac.jpg" height="800" alt="Physical Model of the Economy" /></p>
 <p style="font-size:80%;margin-top:0;margin-bottom:0.5em;">
 MONIAC: A physical model of the British national economy
 </p>
@@ -289,7 +291,7 @@ Airports, banks, etc.
 </section></section>
 <section><section id="modeling-cycle-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>The Modeling Cycle</h1></section><section id="modeling-cycle" class="slide level2" data-transition="fade-in">
 <h2>The Modeling Cycle</h2>
-<p><img data-src="assets/images/new-modeling-cycle.png" alt="Modeling Cycle" height="900" /></p>
+<p><img data-src="assets/images/new-modeling-cycle.png" height="900" alt="Modeling Cycle" /></p>
 </section><section id="tasks-1" class="slide level2">
 <h2>Modeling Cycle Tasks</h2>
 <h3 id="formulate-the-question"><strong>Formulate the Question</strong></h3>
@@ -349,7 +351,7 @@ Airports, banks, etc.
 </div>
 </section><section id="modeling-cycle-final" class="slide level2">
 <h2>The Modeling Cycle</h2>
-<p><img data-src="assets/images/new-modeling-cycle.png" alt="Modeling Cycle" height="900" /></p>
+<p><img data-src="assets/images/new-modeling-cycle.png" height="900" alt="Modeling Cycle" /></p>
 </section></section>
 <section><section id="example-model-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>Example Models</h1></section><section id="example-model-vu" class="slide level2" data-transition="fade-in">
 <h2>Examples of Agent-Based Model Research at Vanderbilt</h2>
@@ -381,26 +383,7 @@ Airports, banks, etc.
 <li>Effect of opium trafficking on Taliban insurgency in Afghanistan</li>
 </ul>
 </section></section>
-        <div class="qrbox" id="qrbox">
-      <div style="font-size:30%;width:100%;">
-    <a href="https://ees4760.jgilligan.org/slides/class_02">
-  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_02"/>
-  	</a>
-    	</div>
-    	<div style="font-size:30%;width:100%;vertical-align:top;">
-    	<span style="display:inline-block;text-align:left;margin-left:0">
-    	    	Live web page: <a href="https://ees4760.jgilligan.org/slides/class_02">https://ees4760.jgilligan.org/slides/class_02</a>
-    	<br/>
-    	PDF: <a href="https://ees4760.jgilligan.org/slides/class_02/EES_4760_5760_class_02_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_02/EES_4760_5760_class_02_Slides.pdf</a>
-    	
-    	    	</span>
-    	<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">
-    	  Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>
-    	  Also: up, down, left, right arrows; overview: o; help: ?
-    	</span>
     </div>
-  	</div>
-        </div>
   </div>
   <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script>
 
@@ -417,6 +400,8 @@ Airports, banks, etc.
         hash: true,
         // Vertical centering of slides
         center: false,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
         // Transition style
         transition: 'slide', // none/fade/slide/convex/concave/zoom
         // Transition style for full page slide backgrounds
@@ -442,12 +427,62 @@ Airports, banks, etc.
     	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
         },
               	// Shortcut for showing all fragments
-      	skipFragmentsShowShortcut: 'F',
+      	skipFragmentsShowShortcut: 'R',
 
       	// Shortcut for hiding all fragments
-      	skipFragmentsHideShortcut: 'G',
+      	skipFragmentsHideShortcut: 'T',
       	      });
     </script>
+
+<script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<aside class="qrbox" id="qrbox">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_02">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_02"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_02">https://ees4760.jgilligan.org/slides/class_02</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_02/EES_4760_5760_class_02_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_02/EES_4760_5760_class_02_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</aside>' + '\n'
+  );
+</script>
 
 <script>
 var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
@@ -483,6 +518,7 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
   </script>
+
   <script>
   var qrbox = document.querySelector("#qrbox");
   var advance_fragment = 0;
@@ -503,23 +539,29 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
   }, false);
 
   Reveal.addEventListener('slidechanged', function() {
-    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
-      // console.log("going to next slide...");
-      Reveal.next();
-    }
-  }, false);
-
-  Reveal.addEventListener('slidechanged', function() {
     if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
         ! qrbox.hasAttribute('qr-box-hide') ) {
       qrbox.style.visibility="visible";
     } else {
       qrbox.style.visibility="hidden";
     }
+  }, false);
+
+  </script>
+
+  <script>
+  Reveal.addEventListener('slidechanged', function() {
     while (advance_fragment > 0) {
       // console.log('advancing fragment');
       Reveal.nextFragment();
       advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
     }
   }, false);
 

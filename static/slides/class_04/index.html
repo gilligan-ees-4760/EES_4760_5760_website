@@ -18,13 +18,15 @@
       .line-block{white-space: pre-line;}
       .column{display: inline-block;}  </style>
   <style type="text/css">
-    div.qrbox {
-     text-align:left;
-     vertical-align:bottom;
-     width:95%;
-     position:fixed;
-     left:2.5%;
-     bottom:1rem;
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
     }
   </style>
 <!-- theme = solarized_jg -->
@@ -318,26 +320,7 @@
 <h2>Next Steps</h2>
 <p>For Thursday, you will follow the book and write code to implement the butterfly model.</p>
 </section></section>
-        <div class="qrbox" id="qrbox">
-      <div style="font-size:30%;width:100%;">
-    <a href="https://ees4760.jgilligan.org/slides/class_04">
-  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_04"/>
-  	</a>
-    	</div>
-    	<div style="font-size:30%;width:100%;vertical-align:top;">
-    	<span style="display:inline-block;text-align:left;margin-left:0">
-    	    	Live web page: <a href="https://ees4760.jgilligan.org/slides/class_04">https://ees4760.jgilligan.org/slides/class_04</a>
-    	<br/>
-    	PDF: <a href="https://ees4760.jgilligan.org/slides/class_04/EES_4760_5760_class_04_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_04/EES_4760_5760_class_04_Slides.pdf</a>
-    	
-    	    	</span>
-    	<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">
-    	  Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>
-    	  Also: up, down, left, right arrows; overview: o; help: ?
-    	</span>
     </div>
-  	</div>
-        </div>
   </div>
   <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script>
 
@@ -354,6 +337,8 @@
         hash: true,
         // Vertical centering of slides
         center: false,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
         // Transition style
         transition: 'slide', // none/fade/slide/convex/concave/zoom
         // Transition style for full page slide backgrounds
@@ -385,6 +370,56 @@
       	skipFragmentsHideShortcut: 'T',
       	      });
     </script>
+
+<script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<aside class="qrbox" id="qrbox">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_04">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_04"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_04">https://ees4760.jgilligan.org/slides/class_04</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_04/EES_4760_5760_class_04_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_04/EES_4760_5760_class_04_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</aside>' + '\n'
+  );
+</script>
 
 <script>
 var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
@@ -420,6 +455,7 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
   </script>
+
   <script>
   var qrbox = document.querySelector("#qrbox");
   var advance_fragment = 0;
@@ -440,23 +476,29 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
   }, false);
 
   Reveal.addEventListener('slidechanged', function() {
-    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
-      // console.log("going to next slide...");
-      Reveal.next();
-    }
-  }, false);
-
-  Reveal.addEventListener('slidechanged', function() {
     if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
         ! qrbox.hasAttribute('qr-box-hide') ) {
       qrbox.style.visibility="visible";
     } else {
       qrbox.style.visibility="hidden";
     }
+  }, false);
+
+  </script>
+
+  <script>
+  Reveal.addEventListener('slidechanged', function() {
     while (advance_fragment > 0) {
       // console.log('advancing fragment');
       Reveal.nextFragment();
       advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
     }
   }, false);
 
