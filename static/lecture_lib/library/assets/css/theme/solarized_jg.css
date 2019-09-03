@@ -517,6 +517,8 @@ body {
 .reveal .stretch code {
   max-height: 100%; }
 
+.reveal .bare div > p,
+.reveal .bare div > img,
 .reveal .bare p,
 .reveal .bare img {
   margin: 0;

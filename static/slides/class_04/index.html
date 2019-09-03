@@ -18,13 +18,15 @@
       .line-block{white-space: pre-line;}
       .column{display: inline-block;}  </style>
   <style type="text/css">
-    div.qrbox {
-     text-align:left;
-     vertical-align:bottom;
-     width:95%;
-     position:fixed;
-     left:2.5%;
-     bottom:1rem;
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
     }
   </style>
 <!-- theme = solarized_jg -->
@@ -97,12 +99,12 @@
 </section><section id="overview-design-concepts-and-details" class="slide level2">
 <h2>Overview, Design Concepts, and Details</h2>
 <div class="columns">
-<div class="column" style="width:40%;vertical-align:top;margin-top:50px;">
-<p><img data-src="assets/images/odd_diagram.png" alt="ODD Diagram" style="height:850px;" /></p>
-</div><div class="column" style="width:15%;vertical-align:top;margin-top:50px;">
+<div class="column" style="width:33%;vertical-align:top;margin-top:50px;">
+<p><img data-src="assets/images/elements_of_odd.jpg" alt="ODD Diagram" style="height:850px;" /></p>
+</div><div class="column" style="width:15%;vertical-align:top;margin-top:50px;padding-top:100px;">
 <div class="bare" style="padding:0;margin:0;text-align:center;">
 <p>General</p>
-<p><img data-src="assets/images/arrow.png" alt="Arrow" style="height:740px;border:0;box-shadow:none;margin-top:15px;text-align:center;" /></p>
+<p><img data-src="assets/images/arrow.png" alt="Arrow" style="height:625;border:0;box-shadow:none;margin-top:15px;text-align:center;" /></p>
 <p>Detailed</p>
 </div>
 </div>
@@ -116,14 +118,32 @@
 <li class="fragment">When you are finished, write a complete ODD. This will be the major documentation for your model.</li>
 </ul>
 </section></section>
-<section><section id="odd-outline-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>ODD Outline</h1></section><section id="odd-purpose" class="slide level2 center" data-transition="fade-in">
-<h2>1. Purpose</h2>
-<p><em>Question:</em> What is the <strong>purpose</strong> of the model?</p>
+<section><section id="odd-outline-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>ODD Outline</h1></section><section id="odd-purpose" class="slide level2" data-transition="fade-in">
+<h2>1. Purpose &amp; Patterns</h2>
+<div style="text-align:left;">
+<p><strong>Questions:</strong></p>
+<ul>
+<li class="fragment">What is the <strong>purpose</strong> of the model?
+<ul>
+<li class="fragment">What are you trying to do?</li>
+<li class="fragment"><em><strong>Suggestion</strong></em>: What will the <em>key graph</em> of your results look like?</li>
+</ul></li>
+<li class="fragment"><strong>Patterns:</strong> What aspects are we modeling?
+<ul>
+<li class="fragment">How will you judge whether it’s realistic enough for the purpose?</li>
+<li class="fragment">What can you neglect?</li>
+</ul></li>
+</ul>
+</div>
 </section><section id="odd-entities" class="slide level2">
 <h2>2. Entities, State Variables, Scale</h2>
 <ul>
 <li class="fragment">What kinds of <strong>entities</strong> are in the model?<br/> <em>Agents, collectives, spatial units, global environment, …</em></li>
-<li class="fragment">What attributes (state-variables) characterize the entities?<br/> <em>Age, sex, wealth, mood, opinion, soil type, land costs, rainfall, market price, …</em></li>
+<li class="fragment">What attributes (state-variables) characterize the entities?<br/> <em>Age, sex, wealth, mood, opinion, soil type, land costs, rainfall, market price, …</em>
+<ul>
+<li class="fragment">You only need state-variables if they vary (different entities, different times, …)</li>
+<li class="fragment">Use the minimum number you need</li>
+</ul></li>
 <li class="fragment">What are the temporal and spatial resolutions and extents of the model?</li>
 </ul>
 </section><section id="odd-scheduling" class="slide level2">
@@ -135,20 +155,18 @@
 <li class="fragment">Schedule:
 <ol type="1">
 <li class="fragment">Which entities take actions?</li>
-<li class="fragment">What actions do they take?</li>
+<li class="fragment">What actions do they take?
+<ul>
+<li class="fragment">Details of actions often go in <strong>submodels</strong></li>
+</ul></li>
 <li class="fragment">In what order do they take them?</li>
 </ol></li>
-</ul></li>
-<li class="fragment">How is time modeled?
-<ul>
-<li class="fragment">Discrete steps?</li>
-<li class="fragment">Continuum, with both continuous processes and discrete events?</li>
 </ul></li>
 </ul>
 </section></section>
 <section><section id="design-concept-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>4. Design Concepts</h1></section><section id="design-concepts" class="slide level2 center" data-transition="fade-in">
 <h2>4. Design Concepts</h2>
-<p>There are <strong>11 design concepts</strong>.</p>
+<p>There are <strong>11 design concepts</strong> (see Table 3.1).</p>
 <p>Textbook has one chapter for each.</p>
 </section><section id="design-concept-outline" class="slide level2 eightyfive">
 <h2>Outline of Design Concepts</h2>
@@ -170,7 +188,7 @@
 <h2>5. Initialization</h2>
 <ul>
 <li><p>What is the initial state of the model world?</p></li>
-<li><p>Time \(t = 0\) of a simulation run</p></li>
+<li><p>Time <span class="math inline">\(t = 0\)</span> of a simulation run</p></li>
 <li><p>In detail:</p>
 <ul>
 <li>How many entities, of what type, are there initially?</li>
@@ -195,7 +213,7 @@
 </ul>
 </section><section id="odd-submodels" class="slide level2">
 <h2>7. Submodels</h2>
-<p>If the <strong>process scheduling</strong> step contains a list of processes,<br/> explain, in detail what <strong>submodels</strong> represent those processes.</p>
+<p>If the <strong>process scheduling</strong> step contains a list of processes or actions,<br/> explain, in detail what <strong>submodels</strong> represent those processes or actions.</p>
 <ul>
 <li class="fragment"><p>What are the model parameters?</p></li>
 <li class="fragment"><p>How were the submodels designed or chosen?</p></li>
@@ -222,15 +240,23 @@
 </section><section id="butterfly-purpose" class="slide level2">
 <h2>Purpose</h2>
 <ul>
-<li><p>Ecologists observe that as butterflies move uphill, they concentrate into narrow and well-definied <em>virtual corridors</em> rather than following any old path to the top of the hill.</p></li>
+<li>Ecologists observe that as butterflies move uphill, they concentrate into narrow and well-definied <em>virtual corridors</em> rather than following any old path to the top of the hill.</li>
+</ul>
+<div class="fragment">
+<ul>
 <li><p>Explore the concept of <em>virtual corridors:</em></p>
 <p>Can concentrations of migrating animals emerge spontaneously from movement behavior and topography, instead of being a special habitat?</p></li>
-<li><p>Specifically, How does the concentration of hill-topping butterflies emerge from:</p>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Specifically, How does the concentration of hill-topping butterflies emerge from:
 <ul>
 <li>How butterflies move uphill</li>
 <li>Landscape topography</li>
 </ul></li>
 </ul>
+</div>
 </section><section id="butterfly-odd-entities" class="slide level2">
 <h2>Entities, State Variables, and Scales</h2>
 <ul>
@@ -269,6 +295,7 @@
 </section><section id="butterfly-odd-design-concepts" class="slide level2">
 <h2>Design concepts (important ones)</h2>
 <ul>
+<li><strong>Basic Principles:</strong> The concept of <em>virtual corridors</em></li>
 <li><strong>Emergence:</strong> results (concentration of butterflies in corridors)<br/>emerge from movement rule and topography</li>
 <li><strong>Sensing:</strong> Butterflies can sense elevation in current and 9 surrounding cells</li>
 <li><strong>Interaction:</strong> None</li>
@@ -289,26 +316,11 @@
 </ul>
 <p><img data-src="assets/images/butterfly_patches.png" alt="Butterfly patch movement" height="700" /></p>
 </section></section>
-        <div class="qrbox" id="qrbox">
-      <div style="font-size:30%;width:100%;">
-    <a href="https://ees4760.jgilligan.org/slides/class_04">
-  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_04"/>
-  	</a>
-    	</div>
-    	<div style="font-size:30%;width:100%;vertical-align:top;">
-    	<span style="display:inline-block;text-align:left;margin-left:0">
-    	    	Live web page: <a href="https://ees4760.jgilligan.org/slides/class_04">https://ees4760.jgilligan.org/slides/class_04</a>
-    	<br/>
-    	PDF: <a href="https://ees4760.jgilligan.org/slides/class_04/EES_4760_5760_class_04_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_04/EES_4760_5760_class_04_Slides.pdf</a>
-    	
-    	    	</span>
-    	<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">
-    	  Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>
-    	  Also: up, down, left, right arrows; overview: o; help: ?
-    	</span>
+<section><section id="next-step-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1>Next Steps</h1></section><section id="next-steps" class="slide level2 center" data-transition="fade-in">
+<h2>Next Steps</h2>
+<p>For Thursday, you will follow the book and write code to implement the butterfly model.</p>
+</section></section>
     </div>
-  	</div>
-        </div>
   </div>
   <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script>
 
@@ -325,6 +337,8 @@
         hash: true,
         // Vertical centering of slides
         center: false,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
         // Transition style
         transition: 'slide', // none/fade/slide/convex/concave/zoom
         // Transition style for full page slide backgrounds
@@ -350,12 +364,62 @@
     	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
         },
               	// Shortcut for showing all fragments
-      	skipFragmentsShowShortcut: 'F',
+      	skipFragmentsShowShortcut: 'R',
 
       	// Shortcut for hiding all fragments
-      	skipFragmentsHideShortcut: 'G',
+      	skipFragmentsHideShortcut: 'T',
       	      });
     </script>
+
+<script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_04">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_04"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_04">https://ees4760.jgilligan.org/slides/class_04</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_04/EES_4760_5760_class_04_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_04/EES_4760_5760_class_04_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script>
 
 <script>
 var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
@@ -391,22 +455,73 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
   </script>
+
   <script>
   var qrbox = document.querySelector("#qrbox");
   var advance_fragment = 0;
 
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
   if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
-      ! Reveal.isFirstSlide() ) {
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
     qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
   }
 
   Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
     qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
   }, false);
 
   Reveal.addEventListener('overviewhidden', function() {
-    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') ) {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
       qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script>
+
+  <script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
     }
   }, false);
 
@@ -414,20 +529,6 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
     if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
       // console.log("going to next slide...");
       Reveal.next();
-    }
-  }, false);
-
-  Reveal.addEventListener('slidechanged', function() {
-    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
-        ! qrbox.hasAttribute('qr-box-hide') ) {
-      qrbox.style.visibility="visible";
-    } else {
-      qrbox.style.visibility="hidden";
-    }
-    while (advance_fragment > 0) {
-      // console.log('advancing fragment');
-      Reveal.nextFragment();
-      advance_fragment--;
     }
   }, false);
 

@@ -18,13 +18,15 @@
       .line-block{white-space: pre-line;}
       .column{display: inline-block;}  </style>
   <style type="text/css">
-    div.qrbox {
-     text-align:left;
-     vertical-align:bottom;
-     width:95%;
-     position:fixed;
-     left:2.5%;
-     bottom:1rem;
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
     }
   </style>
 <!-- theme = solarized_jg -->
@@ -276,26 +278,7 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
 <h2>Results</h2>
 <p><img data-src="assets/images/anasazi_output_2.png" alt="Artificial Ansazi improved model results" height="950" /></p>
 </section></section>
-        <div class="qrbox" id="qrbox">
-      <div style="font-size:30%;width:100%;">
-    <a href="https://ees4760.jgilligan.org/slides/class_01">
-  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_01"/>
-  	</a>
-    	</div>
-    	<div style="font-size:30%;width:100%;vertical-align:top;">
-    	<span style="display:inline-block;text-align:left;margin-left:0">
-    	    	Live web page: <a href="https://ees4760.jgilligan.org/slides/class_01">https://ees4760.jgilligan.org/slides/class_01</a>
-    	<br/>
-    	PDF: <a href="https://ees4760.jgilligan.org/slides/class_01/EES_4760_5760_class_01_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_01/EES_4760_5760_class_01_Slides.pdf</a>
-    	
-    	    	</span>
-    	<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">
-    	  Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>
-    	  Also: up, down, left, right arrows; overview: o; help: ?
-    	</span>
     </div>
-  	</div>
-        </div>
   </div>
   <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script>
 
@@ -312,6 +295,8 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
         hash: true,
         // Vertical centering of slides
         center: false,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
         // Transition style
         transition: 'slide', // none/fade/slide/convex/concave/zoom
         // Transition style for full page slide backgrounds
@@ -337,12 +322,62 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
     	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
         },
               	// Shortcut for showing all fragments
-      	skipFragmentsShowShortcut: 'F',
+      	skipFragmentsShowShortcut: 'R',
 
       	// Shortcut for hiding all fragments
-      	skipFragmentsHideShortcut: 'G',
+      	skipFragmentsHideShortcut: 'T',
       	      });
     </script>
+
+<script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_01">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_01"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_01">https://ees4760.jgilligan.org/slides/class_01</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_01/EES_4760_5760_class_01_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_01/EES_4760_5760_class_01_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script>
 
 <script>
 var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
@@ -378,22 +413,73 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
   </script>
+
   <script>
   var qrbox = document.querySelector("#qrbox");
   var advance_fragment = 0;
 
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
   if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
-      ! Reveal.isFirstSlide() ) {
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
     qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
   }
 
   Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
     qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
   }, false);
 
   Reveal.addEventListener('overviewhidden', function() {
-    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') ) {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
       qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script>
+
+  <script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
     }
   }, false);
 
@@ -401,20 +487,6 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
     if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
       // console.log("going to next slide...");
       Reveal.next();
-    }
-  }, false);
-
-  Reveal.addEventListener('slidechanged', function() {
-    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
-        ! qrbox.hasAttribute('qr-box-hide') ) {
-      qrbox.style.visibility="visible";
-    } else {
-      qrbox.style.visibility="hidden";
-    }
-    while (advance_fragment > 0) {
-      // console.log('advancing fragment');
-      Reveal.nextFragment();
-      advance_fragment--;
     }
   }, false);
 
