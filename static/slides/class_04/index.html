@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template -->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Jonathan Gilligan" />
+  <title>Designing and Documenting Models: The ODD Protocol</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+  <link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+  <link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css"/>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+  <style type="text/css">
+    div.qrbox {
+     text-align:left;
+     vertical-align:bottom;
+     width:95%;
+     position:fixed;
+     left:2.5%;
+     bottom:1rem;
+    }
+  </style>
+<!-- theme = solarized_jg -->
+<link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class='center' id='title' >
+    <h1 class="title">Designing and Documenting Models:<br/>The ODD Protocol</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based and Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #4:
+       Tuesday, Sept. 3
+      2019
+    </h3>
+	<!-- end title slide -->
+</section>
+
+<section><section id="housekeeping-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Housekeeping at Start of Class:</h1></section><section id="getting-started" class="slide level2 center" data-transition="fade-in">
+<h2>Getting Started:</h2>
+<p>Today’s slides are at <a href="https://ees4760.jonathangilligan.org/Slides/Class_04" class="uri">https://ees4760.jonathangilligan.org/Slides/Class_04</a></p>
+<div style="padding-top:50px;padding-bottom:50px;">
+<hr />
+</div>
+<ul>
+<li>Download and save the Butterfly model from <a href="https://ees4760.jonathangilligan.org/models/Class_04/butterfly_odd.nlogo" class="uri">https://ees4760.jonathangilligan.org/models/Class_04/butterfly_odd.nlogo</a></li>
+<li>Open NetLogo and load “butterfly_odd.nlogo”</li>
+</ul>
+</section></section>
+<section><section id="designing-documenting-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Designing and Documenting Models</h1></section><section id="designing-documenting" class="slide level2" data-transition="fade-in">
+<h2>Designing and Documenting Models</h2>
+<p><img data-src="assets/images/odd_paper.png" height="800" alt="ODD publication" /></p>
+</section><section id="design" class="slide level2">
+<h2>Design</h2>
+<ul>
+<li>Don’t start writing code until you know what you’re trying to do.</li>
+</ul>
+<ul>
+<li class="fragment">Big picture
+<ul>
+<li class="fragment">What is the <strong>purpose</strong> of your model?</li>
+<li class="fragment">What <strong>things</strong> does your model use?</li>
+<li class="fragment">How do those things <strong>behave</strong>?</li>
+</ul></li>
+<li class="fragment">Design concepts
+<ul>
+<li class="fragment">How do you represent the <strong>things</strong> in your model?</li>
+<li class="fragment">How do you implement their <strong>behavior</strong>?</li>
+<li class="fragment">How will your <strong>things</strong> and <strong>behaviors</strong> realize your <strong>purpose</strong>?</li>
+<li class="fragment">What <strong>data</strong> will you collect from your model?</li>
+<li class="fragment">How will you <strong>use that data</strong> to achieve your <strong>purpose</strong>?</li>
+</ul></li>
+</ul>
+</section><section id="overview-design-concepts-and-details" class="slide level2">
+<h2>Overview, Design Concepts, and Details</h2>
+<div class="columns">
+<div class="column" style="width:33%;vertical-align:top;margin-top:50px;">
+<p><img data-src="assets/images/elements_of_odd.jpg" style="height:850px;" alt="ODD Diagram" /></p>
+</div><div class="column" style="width:15%;vertical-align:top;margin-top:50px;padding-top:100px;">
+<div class="bare" style="padding:0;margin:0;text-align:center;">
+<p>General</p>
+<p><img data-src="assets/images/arrow.png" style="height:625;border:0;box-shadow:none;margin-top:15px;text-align:center;" alt="Arrow" /></p>
+<p>Detailed</p>
+</div>
+</div>
+</div>
+</section><section id="odd-perspective" class="slide level2 center">
+<h2>ODD in perspective:</h2>
+<ul>
+<li class="fragment">Write overview and major parts of design concepts <span style="color:#5555e0;"><em>first</em></span></li>
+<li class="fragment">As you write the model code, revisit and revise design concepts.</li>
+<li class="fragment">Much of the details will emerge in the course of programming.</li>
+<li class="fragment">When you are finished, write a complete ODD. This will be the major documentation for your model.</li>
+</ul>
+</section></section>
+<section><section id="odd-outline-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>ODD Outline</h1></section><section id="odd-purpose" class="slide level2" data-transition="fade-in">
+<h2>1. Purpose &amp; Patterns</h2>
+<div style="text-align:left;">
+<p><strong>Questions:</strong></p>
+<ul>
+<li class="fragment">What is the <strong>purpose</strong> of the model?
+<ul>
+<li class="fragment">What are you trying to do?</li>
+<li class="fragment"><em><strong>Suggestion</strong></em>: What will the <em>key graph</em> of your results look like?</li>
+</ul></li>
+<li class="fragment"><strong>Patterns:</strong> What aspects are we modeling?
+<ul>
+<li class="fragment">How will you judge whether it’s realistic enough for the purpose?</li>
+<li class="fragment">What can you neglect?</li>
+</ul></li>
+</ul>
+</div>
+</section><section id="odd-entities" class="slide level2">
+<h2>2. Entities, State Variables, Scale</h2>
+<ul>
+<li class="fragment">What kinds of <strong>entities</strong> are in the model?<br/> <em>Agents, collectives, spatial units, global environment, …</em></li>
+<li class="fragment">What attributes (state-variables) characterize the entities?<br/> <em>Age, sex, wealth, mood, opinion, soil type, land costs, rainfall, market price, …</em>
+<ul>
+<li class="fragment">You only need state-variables if they vary (different entities, different times, …)</li>
+<li class="fragment">Use the minimum number you need</li>
+</ul></li>
+<li class="fragment">What are the temporal and spatial resolutions and extents of the model?</li>
+</ul>
+</section><section id="odd-scheduling" class="slide level2">
+<h2>3. Process Overview and Scheduling</h2>
+<ul>
+<li class="fragment">How do states change?</li>
+<li class="fragment">What entities do what, and in what order?
+<ul>
+<li class="fragment">Schedule:
+<ol type="1">
+<li class="fragment">Which entities take actions?</li>
+<li class="fragment">What actions do they take?
+<ul>
+<li class="fragment">Details of actions often go in <strong>submodels</strong></li>
+</ul></li>
+<li class="fragment">In what order do they take them?</li>
+</ol></li>
+</ul></li>
+</ul>
+</section></section>
+<section><section id="design-concept-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>4. Design Concepts</h1></section><section id="design-concepts" class="slide level2 center" data-transition="fade-in">
+<h2>4. Design Concepts</h2>
+<p>There are <strong>11 design concepts</strong> (see Table 3.1).</p>
+<p>Textbook has one chapter for each.</p>
+</section><section id="design-concept-outline" class="slide level2 eightyfive">
+<h2>Outline of Design Concepts</h2>
+<ul>
+<li class="fragment"><strong>Basic Principles:</strong> Basis of model in general concepts and theories</li>
+<li class="fragment"><strong>Emergence:</strong> What emerges as the model runs?<br/> (phenomena not imposed or directly programmed)</li>
+<li class="fragment"><strong>Adaptation</strong> How do agents respond to changes in their environment?<br/> What decisions do they make, and how do they decide?<br/> Do they seek objectives directly (<em>deliberatly</em>) or indirectly (<em>mimic natural behavior</em>)?</li>
+<li class="fragment"><strong>Objectives (Fitness):</strong> Goals of agents? What determines survival?<br/> Do objectives change as agent changes?</li>
+<li class="fragment"><strong>Learning:</strong> Do individuals change behavior as they gain experience?</li>
+<li class="fragment"><strong>Prediction:</strong> How do agents predict consequences of their decisions?<br/> (learning, memory, environmental cues, programmed assumptions)</li>
+<li class="fragment"><strong>Sensing:</strong> What do agents know or perceive when making decisions?<br/> (Is sensing process itself explicitly modelled, or do they <em>just know</em>?)</li>
+<li class="fragment"><strong>Interaction:</strong> What forms of interaction among agents are there?</li>
+<li class="fragment"><strong>Stochasticity:</strong> Is there randomness in model? <span style="color:#5555e0;"><em>Randomness must be justified!</em></span></li>
+<li class="fragment"><strong>Collectives:</strong> Grouping of individuals (Herds, social networks, …)</li>
+<li class="fragment"><strong>Observation:</strong> How are data collected from model for analysis?</li>
+</ul>
+</section></section>
+<section><section id="details-sec" class="title-slide slide level1 center"><h1>Details</h1></section><section id="odd-initialization" class="slide level2">
+<h2>5. Initialization</h2>
+<ul>
+<li><p>What is the initial state of the model world?</p></li>
+<li><p>Time <span class="math inline">\(t = 0\)</span> of a simulation run</p></li>
+<li><p>In detail:</p>
+<ul>
+<li>How many entities, of what type, are there initially?</li>
+<li>What are the exact values of their state variables?<br/> (Or how were they set at random?)</li>
+<li>Is initialization always the same,<br/> or does it vary from one simulation run to the next?</li>
+<li>Are initial values chosen arbitrarily, or based on data?</li>
+<li>References to those data should be provided.</li>
+</ul></li>
+</ul>
+</section><section id="odd-input-data" class="slide level2">
+<h2>6. Input data</h2>
+<ul>
+<li class="fragment"><p>Does the model use input from external sources to represent processes that change over time?</p>
+<ul>
+<li class="fragment">data files, other models, human interaction</li>
+</ul></li>
+<li class="fragment"><p>If so, what data?</p>
+<ul>
+<li class="fragment"><p>Where did they come from?</p></li>
+<li class="fragment"><p>Provide references, citations.</p></li>
+</ul></li>
+</ul>
+</section><section id="odd-submodels" class="slide level2">
+<h2>7. Submodels</h2>
+<p>If the <strong>process scheduling</strong> step contains a list of processes or actions,<br/> explain, in detail what <strong>submodels</strong> represent those processes or actions.</p>
+<ul>
+<li class="fragment"><p>What are the model parameters?</p></li>
+<li class="fragment"><p>How were the submodels designed or chosen?</p></li>
+<li class="fragment"><p>How were they tested?</p></li>
+</ul>
+</section></section>
+<section><section id="butterfly-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Example: Virtual Corridors for Conservation Management</h1></section><section id="butterfly-example" class="slide level2 center">
+<h2>Example: Virtual Corridors for Conservation Management</h2>
+<p><img data-src="assets/images/butterfly_paper.png" height="800" alt="Virtual Corridors Paper" /></p>
+<p><small>Pe’er, G., D. Saltz, and K. Frank, “Virtual corridors for conservation management,” Conservation Biology <strong>19</strong>, 1997 (2005).</small></p>
+</section><section id="start-netlogo" class="slide level2">
+<h2>Butterfly Model in NetLogo</h2>
+<p>Open NetLogo and load “butterfly_odd.nlogo”</p>
+<ul>
+<li>Code section is blank, but ODD is filled in on “Info” tab.
+<ul>
+<li>You will fill in the code based on ODD while reading Chapter 4</li>
+</ul></li>
+<li>Click on “Edit” (pencil icon) to see what Info tab looks like when you edit it.
+<ul>
+<li>For details on editing “Info” tab, open <a href="https://ccl.northwestern.edu/netlogo/docs/infotab.html">NetLogo User Guide</a> from the NetLogo Help menu and go to <a href="https://ccl.northwestern.edu/netlogo/docs/infotab.html">“Info Tab Guide”</a> in the “Reference Section”</li>
+</ul></li>
+</ul>
+</section><section id="butterfly-purpose" class="slide level2">
+<h2>Purpose</h2>
+<ul>
+<li>Ecologists observe that as butterflies move uphill, they concentrate into narrow and well-definied <em>virtual corridors</em> rather than following any old path to the top of the hill.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><p>Explore the concept of <em>virtual corridors:</em></p>
+<p>Can concentrations of migrating animals emerge spontaneously from movement behavior and topography, instead of being a special habitat?</p></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Specifically, How does the concentration of hill-topping butterflies emerge from:
+<ul>
+<li>How butterflies move uphill</li>
+<li>Landscape topography</li>
+</ul></li>
+</ul>
+</div>
+</section><section id="butterfly-odd-entities" class="slide level2">
+<h2>Entities, State Variables, and Scales</h2>
+<ul>
+<li><strong>Landscape:</strong>
+<ul>
+<li>Square grid cells, with one <em>state variable</em>: <strong>elevation</strong>.</li>
+</ul></li>
+<li><strong>Butterflies:</strong>
+<ul>
+<li>Have one <em>state variable</em>: <strong>location</strong><br/> (discrete: which patch they’re in)</li>
+</ul></li>
+</ul>
+</section><section id="butterfly-odd-scale" class="slide level2">
+<h2>Entities, State Variables, and Scales</h2>
+<ul>
+<li><strong>Spatial Scale:</strong>
+<ul>
+<li>150 × 150 cells</li>
+<li>Corresponds to 25 × 25 meters in real landscape</li>
+</ul></li>
+<li><strong>Time Scale:</strong>
+<ul>
+<li>Simulations last 1000 ticks</li>
+<li>Tick length is unspecified (time for a butterfly to move one cell).</li>
+</ul></li>
+</ul>
+</section><section id="butterfly-odd-scheduling" class="slide level2">
+<h2>Process Overview and Scheduling</h2>
+<ul>
+<li><strong>Only one process:</strong> butterfly movement
+<ul>
+<li>On each tick, each butterfly moves once</li>
+<li>The order in which butterflies move is unimportant because they don’t interact</li>
+</ul></li>
+</ul>
+</section><section id="butterfly-odd-design-concepts" class="slide level2">
+<h2>Design concepts (important ones)</h2>
+<ul>
+<li><strong>Basic Principles:</strong> The concept of <em>virtual corridors</em></li>
+<li><strong>Emergence:</strong> results (concentration of butterflies in corridors)<br/>emerge from movement rule and topography</li>
+<li><strong>Sensing:</strong> Butterflies can sense elevation in current and 9 surrounding cells</li>
+<li><strong>Interaction:</strong> None</li>
+<li><strong>Stochasticity:</strong> Used to represent reasons why butterflies do not move straight uphill</li>
+<li><strong>Observation:</strong> We need a way to measure of butterfly concentration</li>
+</ul>
+</section><section id="butterfly-odd-initialization" class="slide level2">
+<h2>Initialization</h2>
+<ul>
+<li><strong>Landscape:</strong> cell elevations set to flat landscape with four hills</li>
+<li><strong>Butterflies:</strong> 500 are created and placed in one cell</li>
+</ul>
+<p><img data-src="assets/images/hill_plan.png" width="600" alt="Butterfly landscape plan" /> <img data-src="assets/images/hill_elevation.png" width="600" alt="Butterfly landscape elevation" /></p>
+</section><section id="butterfly-odd-submodel-movement" class="slide level2">
+<h2>Submodel: Butterfly movement</h2>
+<ul>
+<li>Global parameter <em>q</em> is probability that butterfly moves straight uphill,<br/> vs. moving to random neighbor cell.</li>
+</ul>
+<p><img data-src="assets/images/butterfly_patches.png" height="700" alt="Butterfly patch movement" /></p>
+</section></section>
+<section><section id="next-step-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1>Next Steps</h1></section><section id="next-steps" class="slide level2 center" data-transition="fade-in">
+<h2>Next Steps</h2>
+<p>For Thursday, you will follow the book and write code to implement the butterfly model.</p>
+</section></section>
+        <div class="qrbox" id="qrbox">
+      <div style="font-size:30%;width:100%;">
+    <a href="https://ees4760.jgilligan.org/slides/class_04">
+  	<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_04"/>
+  	</a>
+    	</div>
+    	<div style="font-size:30%;width:100%;vertical-align:top;">
+    	<span style="display:inline-block;text-align:left;margin-left:0">
+    	    	Live web page: <a href="https://ees4760.jgilligan.org/slides/class_04">https://ees4760.jgilligan.org/slides/class_04</a>
+    	<br/>
+    	PDF: <a href="https://ees4760.jgilligan.org/slides/class_04/EES_4760_5760_class_04_Slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_04/EES_4760_5760_class_04_Slides.pdf</a>
+    	
+    	    	</span>
+    	<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">
+    	  Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>
+    	  Also: up, down, left, right arrows; overview: o; help: ?
+    	</span>
+    </div>
+  	</div>
+        </div>
+  </div>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Push each slide change to the browser history
+        history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
+        ],
+        keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
+    	    46: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'DEL' is pressed
+    	     8: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'R',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'T',
+      	      });
+    </script>
+
+<script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script>
+
+
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script>
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  <script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() ) {
+    qrbox.style.visibility="hidden";
+  }
+
+  Reveal.addEventListener('overviewshown', function() {
+    qrbox.style.visibility="hidden";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') ) {
+      qrbox.style.visibility="visible";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') ) {
+      qrbox.style.visibility="visible";
+    } else {
+      qrbox.style.visibility="hidden";
+    }
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    // console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+  </body>
+</html>
