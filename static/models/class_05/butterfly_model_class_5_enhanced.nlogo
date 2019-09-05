@@ -1,7 +1,7 @@
 globals [
-  ; q
-  ]        ; q is the probability that a butterfly moves
-                     ; directly to the highest surrounding patch
+  ; q  ; q is the probability that a butterfly moves
+       ; directly to the highest surrounding patch
+]
 patches-own [
   elevation
   visited?
@@ -17,21 +17,15 @@ to setup
 
   ; Assign an elevation to patches and color them by it
   ask patches
-    [
-       ; Patch elevation decreases linearly with distance from the center
-       ; of hills. Hills are at (30, 30) and (120, 100). The first hill is
-       ; 100 units high. The second hill is 50 units high.
+  [
+    ; Elevation is a sine function of X, Y coordinates
+    ; with maximum elevation of 400 when sin is 1.0
+    set elevation 200 + (100 * (sin (pxcor * 3.8) +
+      sin (pycor * 3.8)))
+    set pcolor scale-color green elevation 0 400
 
-      let elev1 100 - distancexy 30 30
-      let elev2 50 - distancexy 120 100
-
-      ifelse elev1 > elev2
-         [set elevation elev1]
-         [set elevation elev2]
-
-      set pcolor scale-color green elevation 0 100
-      set visited? false
-    ]    ; end of "ask patches"
+    set visited? false
+  ]    ; end of "ask patches"
 
   ;  Create just 1 butterfly for now
   crt 50
@@ -542,7 +536,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.1.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

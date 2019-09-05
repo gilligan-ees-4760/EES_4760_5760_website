@@ -1,71 +1,49 @@
-globals [
-  q
-  ]        ; q is the probability that a butterfly moves
-                     ; directly to the highest surrounding patch
-patches-own [
-  elevation
-  ]
-turtles-own [
-  ]
+globals [q]  ; q is the probability that butterfly moves
+             ; directly to the highest surrounding patch
+patches-own [elevation]
+turtles-own []
 
 to setup
-
-  clear-all
+  ca
 
   ; Assign an elevation to patches and color them by it
-  ask patches
-    [
-       ; Patch elevation decreases linearly with distance from the center
-       ; of hills. Hills are at (30, 30) and (120, 100). The first hill is
-       ; 100 units high. The second hill is 50 units high.
+  ask patches  [
+    ; Elevation is a sine function of X, Y coordinates
+    ; with maximum elevation of 400 when sin is 1.0
+    set elevation 200 + (100 * (sin (pxcor * 3.8) +
+      sin (pycor * 3.8)))
+    set pcolor scale-color green elevation 0 400
+  ]; end of "ask patches"
 
-      let elev1 100 - distancexy 30 30
-      let elev2 50 - distancexy 120 100
+  ; Create butterflies
+  crt 500
+  [
+    set size 2
+    ; Set initial location to random patch
+    setxy random-pxcor random-pycor
+    ; setxy (71 + random 5 - 2.5) (71 + random 5 - 2.5)
+    pen-down
+  ]
 
-      ifelse elev1 > elev2
-         [set elevation elev1]
-         [set elevation elev2]
+  ; Initialize the "q" parameter
+  set q 0.4
 
-      set pcolor scale-color green elevation 0 100
-    ]    ; end of "ask patches"
+  reset-ticks
+end  ; of setup procedure
 
-  ;  Create just 1 butterfly for now
-  create-turtles 1
-   [
-     set size 2
-     set color red
-     ; Set initial location of butterflies
-     setxy 85 95
-     pen-down
-   ]
-
-   ; Initialize the "q" parameter
-   ; don't initialize here if we're using a slider
-   set q 0.4
-
-   reset-ticks
-
-end           ; of setup procedure
-
-to go  ;  This is the master schedule
-
+to go  ; This is the master schedule
   ask turtles [move]
-
   tick
-
-  ; stop when all the butterflies are at the summit, or
-  ; 1000 ticks, whichever comes first
   if ticks >= 1000 [stop]
-
 end
 
-to move  ; The butterfly move procedure, in turtle context
-         ; Decide whether to the highest
-         ; surrounding patch with probability q
-  ifelse random-float 1 < q
-    [ uphill elevation ]            ; Move uphill
-    [ move-to one-of neighbors ]    ; Otherwise move randomly
-end ; of move procedure
+to move ; The butterfly move procedure, in turtle context
+        ; Decide whether to move to the highest
+        ; surrounding patch with probability q
+  ifelse random-float 1.0 < q
+  [uphill elevation] ; Move deterministically uphill
+  [move-to one-of neighbors] ; Or move randomly
+end; of move procedure
 @#$#@#$#@
 GRAPHICS-WINDOW
 211
@@ -468,7 +446,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.1.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
