@@ -3,6 +3,9 @@
 /lectures/semester/
 /lectures/old_semester/
 /public/
+/planning/*.zip
+/planning/*.xlsx
+/temp.R
 *cache/
 .Rproj.user/
 node_modules/
@@ -12,8 +15,6 @@ Corel Auto-Preserve/
 .Rhistory
 .DS_Store
 *.Rproj
-*.zip
-*.xlsx
 *.out
 *.log
 *.aux
@@ -21,4 +22,3 @@ Corel Auto-Preserve/
 *-concordance.tex
 *.bak
 .Rproj.user
-/temp.R
