@@ -247,6 +247,9 @@ load_semester_db <- function() {
              day = day(date))
     as.list(class)
   }
+  
+  rm(semester_db)
+  gc() # Need to garbage collect to force closing the database.
 
   first_class <- 1
   last_class <- NA
