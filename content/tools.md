@@ -36,7 +36,7 @@ familiar with {{<RSTATS>}} may find that it is a powerful tool for analyzing
 
 1. Install the latest versions of {{<R_DOWNLOAD_URL>}} and 
    {{<RSTUDIO_DOWNLOAD_URL>}} (free desktop edition).
-2. Install the {{<abs_download_url>}} tool for {{<RSTATS>}} so you can run
+2. Install the [Analyze Behaviorspace]({{<abs_package_url>}}) tool for {{<RSTATS>}} so you can run
    it on your own computer.
 
 ### R Tools & Features
