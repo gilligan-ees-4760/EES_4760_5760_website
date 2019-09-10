@@ -18,6 +18,12 @@ title: Tools
 2. [{{<NETLOGO>}} User Community Models](https://ccl.northwestern.edu/netlogo/models/community/index.cgi)
 3. [{{<NETLOGO>}} Modeling Commons](http://modelingcommons.org/)
 
+## Analyze Behaviorspace Tool
+
+The [Analyze Behaviorspace]({{<abs_tool_url>}}) tool can be reached online at 
+[{{<abs_tool_url>}}]({{<abs_tool_url>}}), or if you use {{<RSTATS>}}, you can install the tool 
+on your own computer by following the instructions at [{{<abs_package_url>}}]({{<abs_package_url>}}).
+
 ## R for Statistical Analysis
 
 You do not need to use {{<RSTATS>}} for this course, but people who are
@@ -25,10 +31,6 @@ familiar with {{<RSTATS>}} may find that it is a powerful tool for analyzing
 {{<NETLOGO>}} models, and there are tools for integrating {{<NETLOGO>}} with
 {{<RSTATS>}}.
 
-
-If you do not want to use {{<RSTATS>}}, you may find the interactive 
-web-based [Analyze Behaviorspace]({{<abs_url>}}) tool useful for reformatting
-data produced by {{<NETLOGO>}} Behaviorspace experiments.
 
 ### Get Started!
 
