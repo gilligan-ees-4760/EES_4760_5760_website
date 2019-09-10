@@ -42,13 +42,14 @@ to setup
     set visited? false
   ]    ; end of "ask patches"
 
-  ;  Create just 1 butterfly for now
-  crt 50
+  crt 500
    [
      set size 2
      set color red
      ; Set initial location of butterflies
-     setxy x0 + random 10 - 5 y0 + random 10 - 5
+     ; setxy x0 + random 10 - 5 y0 + random 10 - 5
+     ; setxy x0 y0
+     setxy random-pxcor random-pycor
      set initial-patch patch-here
      set finished? false
      set visited? true
