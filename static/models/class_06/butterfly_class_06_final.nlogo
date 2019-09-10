@@ -328,7 +328,7 @@ Pe’er, G., Saltz, D. & Frank, K. 2005. Virtual corridors for conservation mana
 
 Pe’er, G. 2003. Spatial and behavioral determinants of butterfly movement patterns in topographically complex landscapes. Ph.D. thesis, Ben-Gurion University of the Negev.
 
-Railsback, S. & Grimm, V. 2012. _Agent-based and individual-based modeling: A practical introduction_. Princeton University Press, Princeton, NJ.
+Railsback, S. & Grimm, V. 2019. _Agent-based and individual-based modeling: A practical introduction_, 2nd edition. Princeton University Press, Princeton, NJ.
 @#$#@#$#@
 default
 true
