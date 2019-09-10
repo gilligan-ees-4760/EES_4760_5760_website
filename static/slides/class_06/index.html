@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Jonathan Gilligan" />
-  <title>Your First Model</title>
+  <title>From Animations To Science</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="viewport"
@@ -49,148 +49,179 @@
 
             <!-- start title slide -->
 <section class='center' id='title' >
-    <h1 class="title">Your First Model</h1>
+    <h1 class="title">From Animations To Science</h1>
     <h3 class="author">EES 4760/5760</h3>
         <h3 class="author">Agent-Based and Individual-Based Computational Modeling</h3>
     <h3 class="author">Jonathan Gilligan</h3>
     <h3 class="date">
-      Class #5:
-       Thursday, Sept. 5
+      Class #6:
+       Tuesday, Sept. 10
       2019
     </h3>
 	<!-- end title slide -->
 </section>
 
-<section><section id="homework-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1>Homework</h1></section><section id="homework" class="slide level2" data-transition="fade-in">
-<h2>Homework:</h2>
+<section><section id="download-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1>Download files</h1></section><section id="download-files" class="slide level2 eighty" data-transition="fade-in">
+<h2>Download files for Butterfly model</h2>
+<style>
+.reveal .stretch code { max-height:100%; }
+</style>
+<p>Download the following files from the Download page on the class web site:</p>
+<ul>
+<li>A single ZIP file with all the files in it:<br/><a href="https://ees4760.jgilligan.org/models/class_06/class_06.zip" class="uri">https://ees4760.jgilligan.org/models/class_06/class_06.zip</a>
+<ul>
+<li>Unzip after downloading.</li>
+</ul></li>
+<li>Or individual files listed on Download page <a href="https://ees4760.jgilligan.org/downloads/butterfly_science/" class="uri">https://ees4760.jgilligan.org/downloads/butterfly_science/</a></li>
+<li>Start NetLogo and load <code>butterfly_class_06a.nlogo</code></li>
+</ul>
+</section></section>
+<section><section id="project-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1>Projects</h1></section><section id="projects" class="slide level2 eighty" data-transition="fade-in">
+<h2>Planning</h2>
+<ul>
+<li>Semester Project:
+<ul>
+<li>Pick a model from an open-source repository (<a href="https://openabm.org">OpenABM.org</a>), or NetLogo “model library” that you want to work with.</li>
+<li>Fri. Sept. 27:
+<ul>
+<li>One-page description of model and thoughts for extending it</li>
+</ul></li>
+<li>Tue. Oct. 15: Examine ODD and code.
+<ul>
+<li>Short write-up of how model works and output from running it</li>
+</ul></li>
+<li>Wed. Oct. 23: ODD for extending model</li>
+<li>Tue–Thu. Dec. 3–5: Presentations on experiments with extended models</li>
+<li>Fri. Dec. 6: Write-up of research project (around 10 pages)</li>
+</ul></li>
+<li>Team Project:
+<ul>
+<li>Each team (2–3 students) will code a model from an ODD in the textbook (Ch. 10 or Ch. 13)</li>
+<li>Use model to do exercises from book</li>
+<li>Make presentation about what you learned (Thu. Oct. 10)</li>
+</ul></li>
+<li>Detailed Assignments on Brightspace and <a href="https://ees4760.jgilligan.org/projects/">course web site</a>.</li>
+</ul>
+</section></section>
+<section><section id="butterfly-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1>Experiments with the Butterfly Model</h1></section><section id="butterfly-models" class="slide level2 eighty" data-transition="fade-in">
+<h2>Experiments with the Butterfly Mode</h2>
 <style>
 .reveal .stretch code { max-height:100%; }
 </style>
 <ul>
-<li class="fragment">In the mushroom hunt, were there always 80 red patches?</li>
-<li class="fragment">Any questions about modified mushroom hunt model?</li>
-<li class="fragment">Let’s talk about ODD exercise.</li>
-</ul>
-</section><section id="model-from-odd" class="slide level2">
-<h2>Writing a model from an ODD</h2>
+<li><p>You should have downloaded:</p>
 <ul>
-<li class="fragment">Questions about writing a model from Butterfly ODD?</li>
-<li class="fragment">Were there things the ODD was unclear about?</li>
+<li><p>Various versions of NetLogo butterfly models.</p></li>
+<li><p>The NetLogo “Testing Is Fun” library<br/><a href="https://ees4760.jgilligan.org/models/class_06/jg-tif.nls" class="uri">https://ees4760.jgilligan.org/models/class_06/jg-tif.nls</a></p></li>
+<li><p>A digital elevation map of real hills<br/><a href="https://ees4760.jgilligan.org/models/class_06/ElevationData.txt" class="uri">https://ees4760.jgilligan.org/models/class_06/ElevationData.txt</a></p></li>
+</ul></li>
+<li><p>Start NetLogo and load <code>butterfly_class_06a.nlogo</code></p></li>
+</ul>
+</section><section id="plot-corridor-width" class="slide level2">
+<h2>Plot Corridor Width</h2>
+<ul>
+<li><p>On the interface tab, add a plot</p>
+<p><img data-src="assets/images/plot_dlg.png" alt="plot dialog box" height="600" /></p></li>
+<li><p>On the code tab, add a line to <code>go</code> to plot the corridor width</p>
+<pre><code>plot corridor-width</code></pre></li>
+</ul>
+</section><section id="enhance-interface" class="slide level2">
+<h2>Enhance Interface</h2>
+<ul>
+<li><p>Add a button to export the plot to a file:</p>
+<pre><code>export-plot &quot;Corridor-width&quot; (word &quot;corridor-output-for-q-&quot; (precision q 2) &quot;.csv&quot;)          </code></pre>
+<ul>
+<li><code>precision q 2</code> rounds <code>q</code> off to two decimal places.</li>
+</ul></li>
+<li><p>Add a button to increment <em>q</em> by 0.1</p></li>
+</ul>
+</section><section id="behaviorspace" class="slide level2 ninety">
+<h2>BehaviorSpace</h2>
+<ul>
+<li><p>If your model is having problems, compare it to <code>butterfly_class_06b.nlogo</code></p></li>
+<li><p>Open BehaviorSpace and create an experiment</p>
+<ul>
+<li>Call it <code>experiment</code></li>
+<li>Vary <code>real-terrain</code> between <code>false</code> and <code>true</code></li>
+<li>Vary <code>q</code> from 0 to 1 in steps of 0.2</li>
+<li>Run 20 repetitions for each value of <code>q</code>.</li>
+<li>Measure <code>corridor-width</code> at the last tick only</li>
+<li>Set time limit to 0 to let model run until it stops</li>
+</ul></li>
+<li><p>Run BehaviorSpace experiment</p>
+<ul>
+<li>Save “table” output</li>
+<li>Speed things up by unchecking “Update view” and “Update plots and monitors”</li>
+</ul></li>
+<li><p>Open the analyzeBehaviorspace app at <a href="https://ees4760.jgilligan.org/analyze_behaviorspace" class="uri">https://ees4760.jgilligan.org/analyze_behaviorspace</a> <br/>and use it to compare the relationship between corridor width and <code>q</code> for each terrain</p></li>
 </ul>
 </section></section>
-<section><section id="butterfly-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1>Butterfly Model</h1></section><section id="butterfly" class="slide level2 eightyfive" data-transition="fade">
-<h2>Enhancing the Butterfly model</h2>
+<section><section id="practice-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1>Practice</h1></section><section id="practice" class="slide level2 ninety" data-transition="fade-in">
+<h2>Practice</h2>
 <ul>
-<li class="fragment"><p>Download butterfly model from <a href="https://ees4760.jonathangilligan.org/models/class_05/butterfly_model_class_5.nlogo" class="uri">https://ees4760.jonathangilligan.org/models/class_05/butterfly_model_class_5.nlogo</a></p></li>
-<li class="fragment"><p>Put a slider for <em>q</em></p></li>
-<li class="fragment"><p>Add patches-own variable to indicate whether it was visited.</p>
-<div class="fragment">
-<pre><code>patches-own 
-[ 
-  elevation 
-  visited? ; question mark means it&#39;s a true/false variable
-]
-
-to setup
+<li>Work together with a partner</li>
+<li>Add a button to erase the tracks of the turtles (Exercise 5.2)</li>
+<li>Using the realistic terrain, play with <em>q</em> and see what values do best at helping butterflies find mates near hilltops.</li>
+</ul>
+</section></section>
+<section><section id="testing-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1>Testing</h1></section><section id="trails" class="slide level2 ninety" data-transition="fade-in">
+<h2>Leaving trails</h2>
+<div class="leftslide">
+<p>Turtles leave trails with the pen (because you told them <code>pen-down</code> when you created them in <code>to-setup</code>). The pens are the same color as the turtles, so it’s hard to tell the difference between turtles and trails.</p>
+<p>It would be nice to color patches they visited yellow so you could erase the pen trails and see the red turtles contrasting with the yellow trails of visited patches.</p>
+</div>
+<ul>
+<li><p>Open the original “<code>butterfly_class_06a_testing.nlogo</code>”</p></li>
+<li><p>Add code to color patches yellow when a turtle visits them:</p>
+<ul>
+<li><p>At the end of <code>to move</code>, add</p>
+<pre><code>set pcolor yellow</code></pre></li>
+</ul></li>
+<li><p>Add a button to the interface to erase the pen trails:</p>
+<ul>
+<li>Give the button the command <code>clear-drawing</code> and the display name “erase trails”</li>
+</ul></li>
+</ul>
+</section><section id="testing-models" class="slide level2 eightyfive">
+<h2>Testing Models</h2>
+<ul>
+<li>Using monitors</li>
+<li>Unit testing resource “Testing Is Fun”
+<ul>
+<li><p>Open the original “<code>butterfly_class_06a_testing.nlogo</code>”</p></li>
+<li><p>At beginning of code:</p>
+<pre><code>__includes [&quot;jg-tif.nls&quot;]</code></pre></li>
+<li><p>In <code>to_setup</code> add:</p>
+<pre><code>initialize-tests</code></pre></li>
+<li><p>In <code>to go</code>, after the turtles move add:</p>
+<pre><code>set-context &quot;Testing consistency&quot;
+test-that &quot;# visited patches should equal # yellow patches&quot;  
+expect-that (count patches with [visited?]) equals (count patches with [pcolor = yellow])            
+...
+if ticks &gt;= 1000 or all? turtles [finished?]
 [
-  ...
-  ask patches [
-    set visited? false
-    ...
-    ]
-  ...
-]</code></pre>
-</div></li>
-<li class="fragment"><p>Add turtles-own variable to remember the patch where it started.</p></li>
-</ul>
-</section><section id="butterfly-2" class="slide level2" data-transition="fade">
-<h2>Enhancing the Butterfly model</h2>
-<ul>
-<li class="fragment">Put a slider for <em>q</em></li>
-<li class="fragment">Add patches-own variable to indicate whether it was visited.</li>
-<li class="fragment">Add turtles-own variable to remember the patch where it started.</li>
-<li class="fragment">Set the number of butterflies to 50.</li>
-<li class="fragment">Stop butterfly from moving if it’s at the top of a hill.
-<ul>
-<li class="fragment">How can you tell whether it’s on the top?</li>
+  resume-all-tests
+  stop
+]</code></pre></li>
 </ul></li>
 </ul>
-</section><section id="butterfly-3" class="slide level2" data-transition="fade-in">
-<h2>Enhancing the Butterfly model</h2>
+</section><section id="more-testing" class="slide level2">
+<h2>More testing</h2>
 <ul>
-<li class="fragment">Write a reporter for corridor width<br/>
-<div style="border-top:20px;border-bottom:20px;">
-<p><span class="math display">\[ \text{Corridor width} = \frac{\text{# patches visited}}{\text{distance from start}} \]</span></p>
-</div>
-<ul>
-<li class="fragment">Put an <strong>observer</strong> on the interface</li>
-<li class="fragment">Define a reporter:</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<pre><code>to-report corridor-width
-  let wid ... ; calculate corridor width
-  report wid
-end</code></pre>
-</div>
-</section></section>
-<section><section id="behaviorspace-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1>Behaviorspace</h1></section><section id="behaviorspace" class="slide level2" data-transition="fade-in">
-<h2>Running Experiments: BehaviorSpace</h2>
-<ul>
-<li class="fragment">Vary any parameter that has a control on the model’s interface</li>
-<li class="fragment">Writes output to <code>.csv</code> spreadsheet file (table output is the most useful).</li>
-<li class="fragment">Note: Data written in spreadsheet might be out of order.</li>
-</ul>
-<div class="fragment">
-<div class="stretch">
-<pre><code>&quot;BehaviorSpace results (NetLogo 5.3.1)&quot;
-&quot;jg_butterfly_1.nlogo&quot;
-&quot;vary-q&quot;
-&quot;01/25/2016 23:08:47:963 -0600&quot;
-&quot;min-pxcor&quot;,&quot;max-pxcor&quot;,&quot;min-pycor&quot;,&quot;max-pycor&quot;
-&quot;0&quot;,&quot;149&quot;,&quot;0&quot;,&quot;149&quot;
-&quot;[run number]&quot;,&quot;q&quot;,&quot;[step]&quot;,&quot;corridor-width&quot;
-&quot;4&quot;,&quot;0&quot;,&quot;999&quot;,&quot;424.71585264477375&quot;
-&quot;3&quot;,&quot;0&quot;,&quot;999&quot;,&quot;407.8948972331853&quot;
-&quot;2&quot;,&quot;0&quot;,&quot;999&quot;,&quot;402.16008464319225&quot;
-&quot;1&quot;,&quot;0&quot;,&quot;999&quot;,&quot;413.09183879201066&quot;
-&quot;5&quot;,&quot;0&quot;,&quot;999&quot;,&quot;380.4175502215263&quot;
-&quot;6&quot;,&quot;0&quot;,&quot;999&quot;,&quot;408.25117143183326&quot;
-&quot;7&quot;,&quot;0&quot;,&quot;999&quot;,&quot;431.37461560574894&quot;
-&quot;8&quot;,&quot;0&quot;,&quot;999&quot;,&quot;408.38259535508286&quot;
-&quot;9&quot;,&quot;0&quot;,&quot;999&quot;,&quot;421.7254402334981&quot;</code></pre>
-</div>
-</div>
-</section><section id="analyzing-behaviorspace" class="slide level2">
-<h2>Analyzing Behaviorspace Output</h2>
-<ul>
-<li class="fragment">Behaviorspace output format is annoying
-<ul>
-<li class="fragment">Each line is some tick of some run</li>
-<li class="fragment">How to organize, and average over runs?</li>
-</ul></li>
-<li class="fragment">analyzeBehaviorspace app
-<ul>
-<li class="fragment"><a href="https://ees4760.jonathangilligan.org/analyze_behaviorspace" class="uri">https://ees4760.jonathangilligan.org/analyze_behaviorspace</a></li>
-<li class="fragment">Or install on your own computer using R
-<ul>
-<li class="fragment">Instructions at <a href="https://github.com/jonathan-g/analyzeBehaviorspace" class="uri">https://github.com/jonathan-g/analyzeBehaviorspace</a></li>
-<li class="fragment">After installing:</li>
-</ul></li>
-</ul></li>
-</ul>
-<div class="fragment">
-<pre><code>library(analyzeBehaviorspace)
-launch_abs()</code></pre>
-</div>
-</section></section>
-<section><section id="emergence-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1>Emergence</h1></section><section id="emergence" class="slide level2" data-transition="fade-in">
-<h2>Emergence</h2>
-<ul>
-<li class="fragment">A tricky concept.</li>
-<li class="fragment">Joseph Epstein in <em>Growing Artificial Societies:</em> “stable macroscopic patterns arising from the local interaction of agents.”</li>
-<li class="fragment">Epstein ten years later: “I have always been uncomfortable with the vagueness and occasional mysticism surrounding this word.”</li>
-<li class="fragment">Epstein now prefers to talk about “<em>Generative</em> Social Science”</li>
+<li><p>At the beginning <code>to go</code>, before the turtles move, add:</p>
+<pre><code>set-context &quot;Moving turtles&quot;
+
+ask turtles with [not finished?] [move]</code></pre></li>
+<li><p>In <code>to move</code> replace the <code>ifelse</code> block with this:</p>
+<pre><code>ifelse random-float 1 &lt; q
+[
+  let current-elevation elevation
+  move-to max-one-of neighbors [elevation]
+  test-that (word &quot;Turtle &quot; self &quot; should not move downhill&quot;)
+  expect-that elevation is-greater-or-equal current-elevation
+] ; move uphill
+[ move-to one-of neighbors ] ; move randomly</code></pre></li>
+<li><p>Why does the turtle sometimes move downhill when it should be moving uphill?</p></li>
 </ul>
 </section></section>
     </div>
@@ -275,15 +306,15 @@ launch_abs()</code></pre>
   createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
   '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
   '<div style="font-size:30%;width:100%;">' + '\n' +
-      '<a href="https://ees4760.jgilligan.org/slides/class_05">' +
-  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_05"/>' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_06">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_06"/>' +
   	'</a>' + '\n' +
 	  '</div>' + '\n' +
   '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
     '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
-        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_05">https://ees4760.jgilligan.org/slides/class_05</a>' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_06">https://ees4760.jgilligan.org/slides/class_06</a>' + '\n' +
               '<br/>' + '\n' +
-        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_05/EES_4760_5760_class_05_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_05/EES_4760_5760_class_05_slides.pdf</a>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_06/EES_4760_5760_class_06_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_06/EES_4760_5760_class_06_slides.pdf</a>' + '\n' +
           	'</span>' + '\n' +
   	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
   	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +

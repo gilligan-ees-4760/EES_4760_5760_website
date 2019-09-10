@@ -9,6 +9,11 @@ output: html_document
 ---
 # Butterfly Model for Class Exercises on Sept. 10
  
+* A [single ZIP file](/models/class_06/class_06.zip) with all the files
+  <https://ees4760.jgilligan.org/models/class_06/class_06.zip>
+  
+### Or individual files
+
 * A [butterfly model](/models/class_06/butterfly_class_06a.nlogo) 
   from Chapter 5:<br/>
   <https://ees4760.jgilligan.org/models/class_06/butterfly_class_06a.nlogo>

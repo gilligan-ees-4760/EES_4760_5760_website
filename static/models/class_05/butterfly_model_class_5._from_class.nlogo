@@ -1,106 +1,80 @@
 globals [
   ; q
-]        ; q is the probability that a butterfly moves
-         ; directly to the highest surrounding patch
-patches-own [
+]  ; q is the probability that butterfly moves
+             ; directly to the highest surrounding patch
+patches-own
+[
   elevation
   visited?
 ]
-turtles-own [
+turtles-own
+[
   origin
-  stopped?
+  at-top?
 ]
 
 to setup
-
-  clear-all
+  ca
 
   ; Assign an elevation to patches and color them by it
-  ask patches
-    [
-      ; Elevation is a sine function of X, Y coordinates
-      ; with maximum elevation of 400 when sin is 1.0
-      set elevation 200 + (100 * (sin (pxcor * 3.8) +
-        sin (pycor * 3.8)))
-      set pcolor scale-color green elevation 0 400
-      set visited? false
-  ]    ; end of "ask patches"
+  ask patches  [
+    ; Elevation is a sine function of X, Y coordinates
+    ; with maximum elevation of 400 when sin is 1.0
+    set elevation 200 + (100 * (sin (pxcor * 3.8) +
+      sin (pycor * 3.8)))
+    set pcolor scale-color green elevation 0 400
+    set visited? false
+  ]; end of "ask patches"
 
-  ;  Create just 1 butterfly for now
-  create-turtles 50
-    [
-      set size 2
-      set color red
-      ; Set initial location of butterflies
-      setxy 85 95
-      set visited? true
-      set stopped? false
-      set origin patch-here
-      pen-down
+  ; Create butterflies
+  crt 500
+  [
+    set size 2
+    ; Set initial location to random patch
+    ; setxy random-pxcor random-pycor
+    setxy (71 + random 5 - 2.5) (71 + random 5 - 2.5)
+    set visited? true
+    set origin patch-here
+    pen-down
+    set at-top? false
   ]
 
   ; Initialize the "q" parameter
-  ; don't initialize here if we're using a slider
   ; set q 0.4
 
   reset-ticks
+end  ; of setup procedure
 
-end           ; of setup procedure
-
-to go  ;  This is the master schedule
-
-  ask turtles with [ not stopped? ]
-  [move]
-
+to go  ; This is the master schedule
+  ask turtles with [not at-top?] [move]
   tick
-
-  ; stop when all the butterflies are at the summit, or
-  ; 1000 ticks, whichever comes first
-  if (ticks >= 1000) or all? turtles [ stopped? ] [stop]
-
+  if ticks >= 1000 or all? turtles [at-top?]  [stop]
 end
 
-to move  ; The butterfly move procedure, in turtle context
-         ; Decide whether to the highest
-         ; surrounding patch with probability q
-  ifelse at-top?
-  [ set stopped? true ]
-  [
-    ifelse random-float 1 < q
-    	  [ uphill elevation ]            ; Move uphill
-    	  [ move-to one-of neighbors ]    ; Otherwise move randomly
-    	set visited? true
-  ]
-end ; of move procedure
+to move ; The butterfly move procedure, in turtle context
+        ; Decide whether to move to the highest
+        ; surrounding patch with probability q
+  ifelse random-float 1.0 < q
+  [uphill elevation] ; Move deterministically uphill
+  [move-to one-of neighbors] ; Or move randomly
+  set visited? true
+  if elevation >= max [elevation] of patches in-radius 3
+  [ set at-top? true]
+end; of move procedure
 
-to-report at-top?
-  report elevation >= max [ elevation ] of neighbors
-end
-
-;  Corridor width is the number of patches visited by butterflies
-;  divided by the average distance a butterfly is from its initial position
-;
-;  If a butterfly moves in a straight line, the number of patches visited
-;  equals the distance from its initial patch, so corridor-width = 1
-;  The more a butterfly wanders off a straight line, the more patches
-;  it will visit, so the wider the corridor will be.
-;
 to-report corridor-width
-  let pcount count patches with [visited?]
-  let dist mean [distance origin] of turtles
-  ifelse dist = 0
-  [report 1]
-  [report pcount / dist]
+  let wid (count patches with [visited?]) / (mean [distance origin] of turtles)
+  report wid
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
 211
 10
-519
-319
+669
+469
 -1
 -1
-2.0
+3.0
 1
 10
 1
@@ -155,39 +129,39 @@ NIL
 1
 
 SLIDER
-20
-109
-193
-142
+19
+110
+192
+143
 q
 q
 0
 1
-0.0
-0.01
+0.4
+0.1
 1
 NIL
 HORIZONTAL
 
 MONITOR
-39
-162
-137
-207
-Stopped turtles
-word (100 * (count turtles with [stopped?]) / (count turtles)) \"%\"
-17
+25
+171
+119
+216
+Corridor Width
+corridor-width
+2
 1
 11
 
 MONITOR
-38
-224
-128
-269
-NIL
-corridor-width
-2
+25
+234
+85
+279
+% at top
+100 * (count turtles with [at-top?]) / count turtles
+1
 1
 11
 
@@ -536,7 +510,7 @@ NetLogo 6.1.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="vary-q-all-steps" repetitions="10" runMetricsEveryStep="true">
+  <experiment name="vary-q-all-steps" repetitions="20" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
     <metric>corridor-width</metric>

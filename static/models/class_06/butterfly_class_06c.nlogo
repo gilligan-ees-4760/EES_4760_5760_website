@@ -15,6 +15,7 @@ to setup
 
   ca
 
+  ; Round q to the nearest step of 0.01.
   set q precision q 2
 
   let x0 74
@@ -29,8 +30,8 @@ to setup
   ]
   [
     build-hills
-    set x0 85
-    set y0 95
+    set x0 71
+    set y0 71
   ]
   let max-elevation max [elevation] of patches
   let min-elevation min [elevation] of patches
@@ -62,7 +63,7 @@ to go  ;  This is the master schedule
   tick
   ; stop when all the butterflies are at the summit, or
   ; 1000 ticks, whichever comes first
-  if ticks >= 1000 or all? turtles [finished?] = 0
+  if ticks >= 1000 or all? turtles [finished?]
   [
     stop
   ]
@@ -84,19 +85,13 @@ to move  ; The butterfly move procedure, in turtle context
 end ; of move procedure
 
 to build-hills
-  ask patches
-  [
-         ; Patch elevation decreases linearly with distance from the center
-       ; of hills. Hills are at (30, 30) and (120, 100). The first hill is
-       ; 100 units high. The second hill is 50 units high.
-
-      let elev1 100 - distancexy 30 30
-      let elev2 50 - distancexy 120 100
-
-      ifelse elev1 > elev2
-         [set elevation elev1]
-         [set elevation elev2]
-  ]
+  ; Assign an elevation to patches and color them by it
+  ask patches  [
+    ; Elevation is a sine function of X, Y coordinates
+    ; with maximum elevation of 400 when sin is 1.0
+    set elevation 200 + (100 * (sin (pxcor * 3.8) +
+      sin (pycor * 3.8)))
+  ]; end of "ask patches"
 end
 
 to input-elevation
@@ -197,7 +192,7 @@ q
 q
 0
 1
-0.3
+0.4
 0.01
 1
 NIL
@@ -221,7 +216,7 @@ SWITCH
 53
 real-terrain
 real-terrain
-0
+1
 1
 -1000
 
@@ -590,7 +585,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.1.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
