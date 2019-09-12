@@ -1,3 +1,11 @@
+---
+title: "ODD for Business Investor Model"
+date: "2019-08-22"
+pubdate: "2019-08-22"
+download_link: "/files/odd/business_investor_odd.pdf"
+descr: "ODD for Business Investor Model"
+output: html_document
+---
 # THE BUSINESS INVESTOR MODEL
 
 This model was produced by S. Railsback and V. Grimm for Chapter 10 of the book Agent-Based and Individual-Based Modeling, 2nd edition (2019).

@@ -1,3 +1,11 @@
+---
+title: "ODD for Telemarketer Model"
+date: "2019-08-22"
+pubdate: "2019-08-22"
+download_link: "/files/odd/telemarketer_odd.pdf"
+descr: "ODD for Telemarketer Model"
+output: html_document
+---
 # THE TELEMARKETER MODEL
 
 This model was produced by S. Railsback and V. Grimm for the book: _Agent-based and Individual-Based Modeling: A Practical Introduction_, 2nd edition (2019).

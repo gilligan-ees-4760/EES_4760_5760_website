@@ -12,9 +12,11 @@ Presentations and write-ups due Thursday, Oct. 10. Post your write-up to the cou
 ### ODDs:
 
 * Business Investor Model:
+  * [Online](/projects/business_investor_odd)
   * [Printable PDF](/files/odd/business_investor_odd.pdf)
   * [Text file](/files/odd/business_investor_odd.md) that you can paste into the "info" tab in your NetLogo model.
 * Telemarketer Model:
+  * [Online](/projects/telemarketer_odd)
   * [Printable PDF](/files/odd/telemarketer_odd.pdf)
   * [Text file](/files/odd/telemarketer_odd.md) that you can paste into the "info" tab in your NetLogo model.
 
