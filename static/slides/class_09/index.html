@@ -61,28 +61,29 @@
 	<!-- end title slide -->
 </section>
 
-<section><section id="team-project-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Team Projects</h1></section><section id="team-projects" class="slide level2" data-transition="fade-in">
+<section><section id="team-project-sec" class="title-slide slide level1 center" data-skip="true"><h1>Team Projects</h1></section><section id="team-projects" class="slide level2">
 <h2>Team Projects</h2>
 <ul>
 <li>For next Thursday (Sept. 26): In addition to the assigned reading, read the ODD of the model you will work on. You will spend some time in class working with your partner(s) to start turning the ODD into a working NetLogo model.</li>
 </ul>
 </section></section>
-<section><section id="emergence-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Emergence</h1></section><section id="emergence" class="slide level2" data-transition="fade-in">
+<section><section id="emergence-sec" class="title-slide slide level1 center" data-skip="true"><h1>Emergence</h1></section><section id="emergence" class="slide level2">
 <h2>Emergence</h2>
 <ul>
 <li><p>Download and open the “modified flocking model” from Blackboard (in the NetLogo models folder) or from <a href="https://ees4760.jonathangilligan.org/models/class_09/modified_flocking.nlogo" class="uri">https://ees4760.jonathangilligan.org/models/class_09/modified_flocking.nlogo</a></p></li>
 <li><p>It’s easiest if you right-click on the link and choose “Save As” and save the model in a folder on your computer.</p></li>
 </ul>
-</section><section id="flocking" class="slide level2 center">
-<h2>Flocking</h2>
+</section></section>
+<section><section id="flocking-model-sec" class="title-slide slide level1 center" data-skip="true"><h1>Flocking Model</h1></section><section id="flocking-model" class="slide level2">
+<h2>Flocking Model</h2>
 <ul>
 <li>Play with the model.
 <ul>
 <li>Adjust the parameters and see how they change the flocking behavior</li>
 </ul></li>
 </ul>
-</section><section id="flocking-model-overview" class="slide level2">
-<h2>Flocking Model Overview</h2>
+</section><section id="flocking-overview" class="slide level2">
+<h2>Overview</h2>
 <ul>
 <li>Entities:
 <ul>
@@ -95,8 +96,8 @@
 <li>Each bird moves forward one patch</li>
 </ul></li>
 </ul>
-</section><section id="flocking-model-design-concepts" class="slide level2">
-<h2>Flocking Model Design Concepts</h2>
+</section><section id="flocking-design-concepts" class="slide level2">
+<h2>Design Concepts</h2>
 <div style="text-align:left;">
 <ul>
 <li>Emergence: Large flocks emerge from each bird acting independently, looking only at nearby birds.</li>
@@ -128,7 +129,7 @@
 </ul>
 </div>
 </div>
-</section><section id="submodels" class="slide level2 ninety">
+</section><section id="flocking-submodels" class="slide level2 ninety">
 <h2>Submodels</h2>
 <ul>
 <li><code>find-flockmates</code>:
@@ -144,7 +145,7 @@
 <li><code>align</code>: Turn toward center of <code>flockmates</code> by up to <code>max-align-turn</code> degrees</li>
 <li><code>cohere</code>: Turn toward average direction <code>flockmates</code> are flying, by up to <code>max-cohere-turn</code> degrees</li>
 </ul>
-</section><section id="observations" class="slide level2">
+</section><section id="flocking-observations" class="slide level2">
 <h2>Observations:</h2>
 <div style="text-align:left;">
 <ul>
@@ -157,7 +158,7 @@ mean [min [distance myself] of other turtles] of turtles
 standard-deviation [heading] of turtles</code></pre>
 </div>
 </div>
-</section><section id="digression-selecting-turtles" class="slide level2 ninety">
+</section><section id="selecting-turtles" class="slide level2 ninety">
 <h2>Digression: Selecting Turtles</h2>
 <ul>
 <li>Selection primitives:
@@ -182,7 +183,7 @@ standard-deviation [heading] of turtles</code></pre>
 <li>Others expect individual turtles.</li>
 </ul></li>
 </ul>
-</section><section id="practice-selecting-turtles" class="slide level2 ninety">
+</section><section id="selection-practice" class="slide level2 ninety">
 <h2>Practice Selecting Turtles</h2>
 <ul>
 <li><p>Turn 5 turtles red:</p>
@@ -207,7 +208,7 @@ standard-deviation [heading] of turtles</code></pre>
 </div></li>
 </ul>
 </section></section>
-<section><section id="experiment-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Experiments</h1></section><section id="experiment" class="slide level2 ninety" data-transition="fade-in">
+<section><section id="experiment-sec" class="title-slide slide level1 center" data-skip="true"><h1>Experiments</h1></section><section id="experiment" class="slide level2 ninety" data-transition="fade-out">
 <h2>Experiments</h2>
 <div style="text-align:left;">
 <ul>
@@ -220,6 +221,24 @@ mean [count flockmates] of turtles
 mean [min [distance myself] of other turtles] of turtles
 standard-deviation [heading] of turtles</code></pre>
 </div></li>
+</ul></li>
+</ul>
+</div>
+</section><section id="experiments-bs-fig" class="slide level2" data-transition="fade">
+<h2>Experiments</h2>
+<p><img data-src="assets/images/behavior_space.png" alt="Beahvioarspace configuration" style="height:950px;" /></p>
+</section><section id="experiment-more" class="slide level2 ninety" data-transition="fade">
+<h2>Experiments</h2>
+<div style="text-align:left;">
+<ul>
+<li>Create a Behaviorspace experiment and call it “<strong>Baseline</strong>”
+<ul>
+<li><p>change one parameter and see how it affects the various measures of flocking.</p>
+<pre><code>count turtles with [any? flockmates]
+mean [count flockmates] of turtles
+mean [min [distance myself] of other turtles] of turtles
+standard-deviation [heading] of turtles</code></pre></li>
+<li><p>Run the experiment: remember to select <code>table</code> output and turn off <code>Update view</code> and <code>Update plots and monitors</code></p></li>
 </ul></li>
 </ul>
 <div class="fragment" data-fragment-index="3">
