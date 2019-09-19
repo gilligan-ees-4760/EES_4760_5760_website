@@ -92,6 +92,7 @@ load_semester_db <- function() {
   events <- semester_db %>% tbl("events") %>% collect()
 
   text_codes <- semester_db %>% tbl("text_codes") %>% collect() %>%
+    mutate(code_value = ifelse(is.na(code_value), "", code_value)) %>%
     { set_names(.$code_value, .$code_name) }
 
   has_lab_assignments <- FALSE
@@ -247,7 +248,7 @@ load_semester_db <- function() {
              day = day(date))
     as.list(class)
   }
-  
+
   rm(semester_db)
   gc() # Need to garbage collect to force closing the database.
 
