@@ -91,9 +91,15 @@ load_semester_db <- function() {
 
   events <- semester_db %>% tbl("events") %>% collect()
 
-  text_codes <- semester_db %>% tbl("text_codes") %>% collect() %>%
-    mutate(code_value = ifelse(is.na(code_value), "", code_value)) %>%
-    { set_names(.$code_value, .$code_name) }
+  text_codes <- semester_db %>% tbl("text_codes") %>% collect()
+  bad_codes <- text_codes %>% filter(is.na(code_value))
+  if (nrow(bad_codes) > 0) {
+    warning("Text codes with missing values: [",
+            str_c(bad_codes$code_name, collapse = ", "), "]")
+    text_codes <- text_codes %>%
+      mutate(code_value = ifelse(is.na(code_value), "", code_value))
+  }
+    text_codes <- text_codes %>% { set_names(.$code_value, .$code_name) }
 
   has_lab_assignments <- FALSE
 
