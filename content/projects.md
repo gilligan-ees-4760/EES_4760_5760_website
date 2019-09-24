@@ -22,10 +22,13 @@ Presentations and write-ups due Thursday, Oct. 10. Post your write-up to the cou
 
 ### Teams:
 
-| Team # | &nbsp;&nbsp; |      Project      | &nbsp;&nbsp; |           Members                          | &nbsp;&nbsp; |     Exercises     |
-|-------:|:------------:|:-----------------:|:------------:|:-------------------------------------------|:------------:|:-----------------:|
-| 1      |              | Business Investor |              | TBA                                        |              |  10.3, 10.4       |
-| 2      |              | Telemarketer      |              | TBA                                        |              |  13.2, 13.6, 13.8 |
+| Team # |       Project      |                     Members                 |      Exercises     |
+|-------:|:------------------:|:-------------------------------------------:|:------------------:|
+| 1      |  Business Investor |         Alyssa Chvasta & Nidhi Metha        |   10.3, 10.4       |
+| 2      |  Business Investor |    Samuel Heagney & Alex Rice-Slothower     |   10.3, 10.4       |
+| 3      |  Business Investor |         Andrew McKinnis & Jessica Mo        |   10.3, 10.4       |
+| 4      |  Telemarketer      |           Bowen He & Alex Ismodes           |   13.2, 13.6, 13.8 |
+| 5      |  Telemarketer      |        Michaela Peterson & Kat Turk         |   13.2, 13.6, 13.8 |
 
 ## Individual Projects
 
