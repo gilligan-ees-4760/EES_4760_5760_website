@@ -3,7 +3,7 @@ title: "Telemarketer Models"
 weight: 12
 date: "2019-10-01"
 due_date: "2019-10-01"
-pubdate: "2019-08-22"
+pubdate: "2019-12-06"
 descr: "Telemarketer models (Oct. 1)"
 output: html_document
 ---

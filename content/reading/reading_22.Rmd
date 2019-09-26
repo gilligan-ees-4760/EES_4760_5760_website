@@ -17,6 +17,6 @@ output:
 
 ### Reading Notes:
 
-NA
+
 There is an implementation of the [wood hoopoe model](/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo), suitable for Exercise 2, on the class web site: <https://ees4760.jgilligan.org/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo>
-NA
+

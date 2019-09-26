@@ -39,7 +39,7 @@ first line of your model, and then use functions, such as `gis:load-dataset`, wh
 and raster grid files (`.grd` or `.asc`). The GIS extension offers a lot of functions for working with vector and raster GIS data.
 If you're interested in using GIS data in your models, take a look at the GIS examples in the NetLogo model library.
 
-NA
+
 You can download the [data file](/files/models/chapter_05/ElevationData.txt) with the elevations for the realistic butterfly model from 
 <https://ees4760.jgilligan.org/files/models/chapter_05/ElevationData.txt>
-NA
+

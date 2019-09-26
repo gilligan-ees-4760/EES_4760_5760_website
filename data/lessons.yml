@@ -38,13 +38,16 @@ lessons:
   title: Emergence
   reading: /reading/reading_09
   assignment: homework_06
+  lecture: /slides/class_09
 - date: '2019-09-24'
   title: Observation
   reading: /reading/reading_10
   assignment: homework_07
+  lecture: /slides/class_10
 - date: '2019-09-26'
   title: Sensing
   reading: /reading/reading_11
+  lecture: /slides/class_11
 - date: '2019-09-27'
   title: Semester project proposal due
   assignment: project_proposal

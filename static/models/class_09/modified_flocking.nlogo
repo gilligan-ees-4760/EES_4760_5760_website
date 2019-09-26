@@ -256,7 +256,7 @@ vision
 vision
 0.0
 10.0
-3.0
+5.0
 0.5
 1
 patches
@@ -691,77 +691,13 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.1.0
 @#$#@#$#@
 set population 200
 setup
 repeat 200 [ go ]
 @#$#@#$#@
 @#$#@#$#@
-<experiments>
-  <experiment name="experiment" repetitions="20" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="500"/>
-    <metric>count turtles with [any? flockmates]</metric>
-    <metric>mean [count flockmates] of turtles</metric>
-    <metric>mean [min [distance myself] of other turtles] of turtles</metric>
-    <metric>standard-deviation [heading] of turtles</metric>
-    <enumeratedValueSet variable="vision">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="flock-type">
-      <value value="&quot;vision range&quot;"/>
-      <value value="&quot;closest&quot;"/>
-      <value value="&quot;six closest&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-cohere-turn">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="population">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-align-turn">
-      <value value="5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="minimum-separation">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-separate-turn">
-      <value value="1.5"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="bsaeline" repetitions="20" sequentialRunOrder="false" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="500"/>
-    <metric>count turtles with [any? flockmates]</metric>
-    <metric>mean [count flockmates] of turtles</metric>
-    <metric>mean [min [distance myself] of other turtles] of turtles</metric>
-    <metric>standard-deviation [heading] of turtles</metric>
-    <enumeratedValueSet variable="max-cohere-turn">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-separate-turn">
-      <value value="1.5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="flock-type">
-      <value value="&quot;vision range&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="vision">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="minimum-separation">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="population">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-align-turn">
-      <value value="5"/>
-    </enumeratedValueSet>
-  </experiment>
-</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
