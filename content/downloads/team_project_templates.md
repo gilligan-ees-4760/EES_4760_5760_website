@@ -1,10 +1,10 @@
 ---
 title: "Team Project Templates"
-weight: 11
-date: "2019-10-01"
-due_date: "2019-10-01"
+weight: 11.5
+date: "2019-09-26"
+due_date: "2019-09-26"
 pubdate: "2018-01-01"
-descr: "Templates for team projects (for Oct. 1 class)"
+descr: "Templates for team projects (for Sept. 26 class)"
 output: html_document
 ---
 # Templates for programming team-project models
@@ -20,6 +20,6 @@ output: html_document
 
 * [Printable PDF](/files/odd/telemarketer_odd.pdf)
 * [Text file](/files/odd/telemarketer_odd.md) that you can paste into the "info" tab in your NetLogo model.
-* [Figure for ODD](/files/odd/fig_13_1.md)
+* [Figure for ODD](/files/odd/fig_13_1.jpg)
 * [NetLogo template](/models/team_projects/telemarketer_template.nlogo)
 * [Testing Is Fun module](/models/team_projects/jg-tif.nls)
