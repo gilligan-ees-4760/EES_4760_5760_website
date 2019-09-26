@@ -47,6 +47,7 @@ lessons:
 - date: '2019-09-26'
   title: Sensing
   reading: /reading/reading_11
+  lecture: /slides/class_11
 - date: '2019-09-27'
   title: Semester project proposal due
   assignment: project_proposal
