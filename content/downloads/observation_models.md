@@ -15,3 +15,5 @@ output: html_document
   <https://ees4760.jgilligan.org/models/class_10/ElevationData.txt>
 * [Model with observations fully implemented](/models/class_10/butterfly_class_10_observing.nlogo)
   <https://ees4760.jgilligan.org/models/class_10/butterfly_class_10_observing.nlogo>
+* [Output from BehaviorSpace experiment](/models/class_10/butterfly_class_10_observing_experiment_2-table.zip)
+  <https://ees4760.jgilligan.org/models/class_10/butterfly_class_10_observing_experiment_2-table.zip>
