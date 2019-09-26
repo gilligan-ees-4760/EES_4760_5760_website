@@ -1,4 +1,4 @@
-patches-own [ wealth ]
+patches-own [ quality ]
 
 to setup
   ca
@@ -9,8 +9,8 @@ end
 
 to initialize-patches
   ask patches [
-    set wealth random-float 100
-    set pcolor scale-color green wealth 0 300
+    set quality random-float 100
+    set pcolor scale-color green quality 0 300
   ]
 end
 
@@ -52,7 +52,7 @@ to-report best-patch
     (turtle-set subjects
       ([out-link-neighbors] of subjects))
   report max-one-of
-      (patch-set [neighbors] of subjects) [ wealth ]
+      (patch-set [neighbors] of subjects) [ quality ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
