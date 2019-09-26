@@ -225,7 +225,7 @@ q
 q
 0
 1
-0.6
+1.0
 0.01
 1
 NIL
@@ -793,6 +793,31 @@ NetLogo 6.1.0
     <go>go</go>
     <metric>corridor-width</metric>
     <steppedValueSet variable="q" first="0" step="0.1" last="1"/>
+  </experiment>
+  <experiment name="experiment" repetitions="10" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="300"/>
+    <metric>corridor-width</metric>
+    <metric>mean [elevation] of turtles</metric>
+    <metric>mean [count turtles-here] of patches with [any? turtles-here]</metric>
+    <metric>fraction-crowded</metric>
+    <enumeratedValueSet variable="patch-coloring">
+      <value value="&quot;elevation&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="show-labels?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="real-terrain">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="show-butterflies?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-butterflies">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="q" first="0.1" step="0.1" last="1"/>
   </experiment>
 </experiments>
 @#$#@#$#@
