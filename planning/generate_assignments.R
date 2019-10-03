@@ -1177,3 +1177,8 @@ generate_assignments <- function() {
 
   invisible(list(lesson_plan = lesson_plan, semester = semester))
 }
+
+regenerate_assignments <- function() {
+  load_semester_db()
+  generate_assignments()
+}
