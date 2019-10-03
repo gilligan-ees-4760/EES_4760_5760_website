@@ -36,6 +36,11 @@
   status = 302
 
 [[redirects]]
+  from = "/contour/*"
+  to = "https://shiny.jgilligan.org/ees4760/contour/:splat"
+  status = 302
+
+[[redirects]]
   from = "/*"
   to = "/404.html"
   status = 404

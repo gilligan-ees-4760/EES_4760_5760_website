@@ -571,7 +571,7 @@ BUTTON
 112
 563
 set up turtle 5
-ask turtle 5\n[\nmove-to patch 9 9\nset shape \"default\"\nset heading 45\nfd 1.25\n]\n
+ask turtle 5\n[\nask other turtles [hide-turtle]\nmove-to patch 9 9\nset shape \"default\"\nset heading 45\nfd 1.25\n]\n
 NIL
 1
 T
@@ -1002,7 +1002,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.1.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
