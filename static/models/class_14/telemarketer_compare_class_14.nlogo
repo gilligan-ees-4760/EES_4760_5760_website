@@ -155,7 +155,10 @@ to update-observers
 
   set-current-plot "Business Size Distribution"
   if plot-x-max < max [size] of turtles
-  [ set-plot-x-range 0 ceiling max [size] of turtles ]
+  [
+    set-histogram-num-bars 20
+    set-plot-x-range 0 (ceiling (1.1 * max [size] of turtles))
+  ]
   set-plot-y-range 0 count turtles
   histogram [size] of turtles
 
@@ -773,7 +776,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.1.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
