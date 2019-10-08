@@ -78,6 +78,24 @@
 <li>If balance &gt; growth threshold, firm increases size proportional to excess balance</li>
 </ul>
 </li>
+</ul></section><section id="interactions" class="slide level2"><h2>Telemarketer Interactions</h2>
+<ul>
+<li>
+<strong>Indirect interactions:</strong>
+<ul>
+<li>Customers (patches) only buy from the first marketer (turtle) to call them that tick.</li>
+<li>If one marketer calls a customer, that prevents other marketers from selling to that customer.</li>
+<li>Competition</li>
+</ul>
+</li>
+<li>
+<strong>Direct interactions:</strong>
+<ul>
+<li>When one telemarketing company goes broke, a larger one may buy it.</li>
+<li>Create persistent owner/subsidiary relationship.</li>
+<li>Direct transfer of money each tick.</li>
+</ul>
+</li>
 </ul></section></section><section><section id="tm-results-sec" class="title-slide slide level1 center" data-skip="true"><h1>Results</h1></section><section id="results" class="slide level2"><h2>Results</h2>
 <p><img data-src="assets/fig/time_series-1.png"></p>
 </section><section id="tm-variation" class="slide level2"><h2>Variation</h2>
@@ -91,7 +109,7 @@
 <li>Find a company that’s bigger and has enough money to pay off deficit.</li>
 <li>If it finds a parent, parent pays off deficit
 <ul>
-<li>child firm ends up with 0 balance</li>
+<li>child firm ends up with zero balance</li>
 </ul>
 </li>
 <li>In future turns, child pays parent 50% of its net profits.</li>
@@ -99,6 +117,31 @@
 <ul>
 <li>If parent has enough money, it pays child’s deficit</li>
 <li>If parent does not have enough money, child dies.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section><section id="merger-implementation" class="slide level2"><h2>Implementing Mergers</h2>
+<ul>
+<li>Turtles-own variable: parent
+<ul>
+<li>Initialize <code>set parent nobody</code> in <code>to setup</code>
+</li>
+<li>When a merger happens, the broke turtle being acquired sets <code>parent</code> to the larger turtle buying it.
+<ul>
+<li>The owner does not have a record of the turtles it owns.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Links
+<ul>
+<li>No special initialization</li>
+<li>When a merger happens, create a directed link from the owner to the subsidiary.
+<ul>
+<li>Now turtles can track both their owners and their subsidiaries.</li>
+<li>Easier to keep track of relationships</li>
+<li>Relationships can be displayed on the model view.</li>
 </ul>
 </li>
 </ul>
