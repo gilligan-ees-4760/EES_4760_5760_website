@@ -1480,12 +1480,10 @@
 				dom.wrapper.addEventListener( 'MSPointerMove', onPointerMove, false );
 				dom.wrapper.addEventListener( 'MSPointerUp', onPointerUp, false );
 			}
-			else {
 				// Fall back to touch events
 				dom.wrapper.addEventListener( 'touchstart', onTouchStart, false );
 				dom.wrapper.addEventListener( 'touchmove', onTouchMove, false );
 				dom.wrapper.addEventListener( 'touchend', onTouchEnd, false );
-			}
 		}
 
 		if( config.keyboard ) {
@@ -5100,7 +5098,7 @@
 	 * @param {object} event
 	 */
 	function onDocumentKeyPress( event ) {
-	  console.log("key press: " + event.which + " code = " + event.charCode);
+	  // console.log("key press: " + event.which + " code = " + event.charCode);
 
 		// Check if the pressed key is question mark
 		if( event.shiftKey && event.charCode === 63 ) {
@@ -5115,7 +5113,7 @@
 	 * @param {object} event
 	 */
 	function onDocumentKeyDown( event ) {
-	  console.log("key down: " + event.which + " code = " + event.charCode);
+	  // console.log("key down: " + event.which + " code = " + event.charCode);
 
 		// If there's a condition specified and it returns false,
 		// ignore this event
@@ -5346,12 +5344,21 @@
 	 */
 	function onTouchStart( event ) {
 
+		/*
+		 console.log("Touch start event: length = " + event.touches.length + " (" + event.touches[0].clientX + ", " + event.touches[0].clientY + ")" +
+               	" " + event.name);
+		/*
+		*/
+
 		if( isSwipePrevented( event.target ) ) return true;
 
-		touch.startX = event.touches[0].clientX;
-		touch.startY = event.touches[0].clientY;
+		touch.startX = [ event.touches[0].clientX ] ;
+		touch.startY = [ event.touches[0].clientY ] ;
 		touch.startCount = event.touches.length;
-
+		if (event.touches.length > 1) {
+			touch.startX.push(event.touches[1].clientX);
+			touch.startY.push(event.touches[1].clientY);
+		}
 	}
 
 	/**
@@ -5367,29 +5374,95 @@
 		if( !touch.captured ) {
 			onUserInput( event );
 
-			var currentX = event.touches[0].clientX;
-			var currentY = event.touches[0].clientY;
+			var swipeAspect = 4.0;
+			var currentX, currentY, deltaX, deltaY;
 
 			// There was only one touch point, look for a swipe
 			if( event.touches.length === 1 && touch.startCount !== 2 ) {
 
-				var deltaX = currentX - touch.startX,
-					deltaY = currentY - touch.startY;
+				currentX = event.touches[0].clientX;
+				currentY = event.touches[0].clientY;
 
-				if( deltaX > touch.threshold && Math.abs( deltaX ) > Math.abs( deltaY ) ) {
+				deltaX = currentX - touch.startX[0];
+				deltaY = currentY - touch.startY[0];
+
+				if( deltaX > touch.threshold && Math.abs( deltaX ) > swipeAspect * Math.abs( deltaY ) ) {
 					touch.captured = true;
+					console.log("left");
 					navigateLeft();
 				}
-				else if( deltaX < -touch.threshold && Math.abs( deltaX ) > Math.abs( deltaY ) ) {
+				else if( deltaX < -touch.threshold && Math.abs( deltaX ) > swipeAspect * Math.abs( deltaY ) ) {
 					touch.captured = true;
+					console.log("right");
 					navigateRight();
 				}
 				else if( deltaY > touch.threshold ) {
 					touch.captured = true;
-					navigateUp();
+					if  ( Math.abs( deltaY ) < swipeAspect * Math.abs( deltaX ) ) {
+						console.log("up");
+						navigateUp();
+					} else {
+						console.log("next");
+						navigateNext();
+					}
 				}
 				else if( deltaY < -touch.threshold ) {
 					touch.captured = true;
+					if ( Math.abs( deltaY ) < swipeAspect * Math.abs( deltaX ) ) {
+						console.log("down");
+						navigateDown();
+					} else {
+						console.log("prev");
+						navigatePrev();
+					}
+				}
+
+				// If we're embedded, only block touch events if they have
+				// triggered an action
+				if( config.embedded ) {
+					if( touch.captured || isVerticalSlide( currentSlide ) ) {
+						event.preventDefault();
+					}
+				}
+			} else if (event.touches.length === 2 && touch.startCount === 2) {
+				currentX = [ event.touches[0].clientX, event.touches[1].clientX ];
+				currentY = [ event.touches[0].clientY, event.touches[1].clientY ];
+
+				deltaX = [ currentX[0] - touch.startX[0], currentX[1] - touch.startX[1] ];
+				deltaY = [ currentY[0] - touch.startY[0], currentY[1] - touch.startY[1] ];
+
+				if( ( deltaX[0] > touch.threshold && deltaX[1] > touch.threshold ) &&
+						(
+							( Math.abs( deltaX[0] ) > Math.abs( deltaY[0] ) &&
+							Math.abs( deltaX[1] ) > Math.abs( deltaY[1] ) )
+						) ) {
+							touch.captured = true;
+							console.log("next(2)");
+							navigateNext();
+					} else if ( ( deltaY[0] > touch.threshold && deltaY[1] > touch.threshold ) &&
+						(
+							( Math.abs( deltaX[0] ) < Math.abs( deltaY[0] ) &&
+							  Math.abs( deltaX[1] ) < Math.abs( deltaY[1] ) )
+							) ) {
+					touch.captured = true;
+					console.log("up(2)");
+					navigateUp();
+				}
+				else if( ( deltaX[0] < -touch.threshold && deltaX[1] < -touch.threshold ) &&
+						 			(
+										( Math.abs( deltaX[0] ) > Math.abs( deltaY[0] ) &&
+										Math.abs( deltaX[1] ) > Math.abs( deltaY[1] )  )
+						 		) ) {
+									touch.captured = true;
+									console.log("prev(2)");
+									navigatePrev();
+				} else if ( ( deltaY[0] < -touch.threshold && deltaY[1] < -touch.threshold ) &&
+ 	 							(
+	 									( Math.abs( deltaX[0] ) < Math.abs( deltaY[0] ) &&
+	 										Math.abs( deltaX[1] ) < Math.abs( deltaY[1] ) )
+ 								) ) {
+					touch.captured = true;
+					console.log("down(2)");
 					navigateDown();
 				}
 
@@ -5422,7 +5495,11 @@
 	 * @param {object} event
 	 */
 	function onTouchEnd( event ) {
-
+		/*
+		console.log( "Touch end event: length = " + event.touches.length + ", startCount = " + touch.startCount +
+		             " event: " + event + " touches = " + event.touches );
+		/*
+		 */
 		touch.captured = false;
 
 	}
@@ -5433,8 +5510,11 @@
 	 * @param {object} event
 	 */
 	function onPointerDown( event ) {
-
-		if( event.pointerType === event.MSPOINTER_TYPE_TOUCH || event.pointerType === "touch" ) {
+    // console.log("Event type " + event.pointerType);
+		if (event.pointerType === "touch") {
+			// console.log(event);
+		}
+		if( event.pointerType === event.MSPOINTER_TYPE_TOUCH ) {
 			event.touches = [{ clientX: event.clientX, clientY: event.clientY }];
 			onTouchStart( event );
 		}
@@ -5448,7 +5528,7 @@
 	 */
 	function onPointerMove( event ) {
 
-		if( event.pointerType === event.MSPOINTER_TYPE_TOUCH || event.pointerType === "touch" )  {
+		if( event.pointerType === event.MSPOINTER_TYPE_TOUCH )  {
 			event.touches = [{ clientX: event.clientX, clientY: event.clientY }];
 			onTouchMove( event );
 		}
@@ -5462,7 +5542,7 @@
 	 */
 	function onPointerUp( event ) {
 
-		if( event.pointerType === event.MSPOINTER_TYPE_TOUCH || event.pointerType === "touch" )  {
+		if( event.pointerType === event.MSPOINTER_TYPE_TOUCH )  {
 			event.touches = [{ clientX: event.clientX, clientY: event.clientY }];
 			onTouchEnd( event );
 		}
