@@ -518,6 +518,8 @@ body {
 .reveal .stretch code {
   max-height: 100%; }
 
+.reveal .bare div > p,
+.reveal .bare div > img,
 .reveal .bare p,
 .reveal .bare img {
   margin: 0;
@@ -535,5 +537,12 @@ body {
   font-size: 30%;
   text-align: right;
   color: #a0a0a0; }
+
+div.column {
+  width: 49%;
+  vertical-align: top; }
+
+div.topalign {
+  vertical-align: top; }
 
 /*# sourceMappingURL=solarized_jg.css.map */
