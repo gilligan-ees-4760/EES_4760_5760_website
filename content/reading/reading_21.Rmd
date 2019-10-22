@@ -1,11 +1,11 @@
 ---
-title: Patterns
-class_date: '2019-10-31'
+title: Theory Development
+class_date: '2019-11-05'
 class_number: 21
 weight: 21
 slug: reading_21
 pubdate: '2019-07-31'
-date: '2019-10-31'
+date: '2019-11-05'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -13,10 +13,10 @@ output:
 ## Reading:
 
 ### Required Reading (everyone):
-* Agent-Based and Individual-Based Modeling, Ch. 17--18.
+* Agent-Based and Individual-Based Modeling, Ch. 19.
 
 ### Reading Notes:
 
-You can download [the ODD for the BEFORE beech forest model](/files/models/chapter_18/ch18_before_ODD.pdf), which is described in section 18.3, from the class web site: <https://ees4760.jgilligan.org/files/models/chapter_18/ch18_before_ODD.pdf>.
 
-I have also posted [a list of published models](/files/models/chapter_18/ch18_ex1_models_list.pdf) in which observed patterns are important: <https://ees4760.jgilligan.org/files/models/chapter_18/ch18_ex1_models_list.pdf>
+There is an implementation of the [wood hoopoe model](/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo), suitable for Exercise 2, on the class web site: <https://ees4760.jgilligan.org/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo>
+

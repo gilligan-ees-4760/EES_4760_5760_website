@@ -1,11 +1,11 @@
 ---
-title: Theory Development
-class_date: '2019-11-05'
+title: Parameterization and Calibration
+class_date: '2019-11-07'
 class_number: 22
 weight: 22
 slug: reading_22
 pubdate: '2019-07-31'
-date: '2019-11-05'
+date: '2019-11-07'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -13,10 +13,6 @@ output:
 ## Reading:
 
 ### Required Reading (everyone):
-* Agent-Based and Individual-Based Modeling, Ch. 19.
+* Agent-Based and Individual-Based Modeling, Ch. 20.
 
-### Reading Notes:
-
-
-There is an implementation of the [wood hoopoe model](/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo), suitable for Exercise 2, on the class web site: <https://ees4760.jgilligan.org/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo>
 

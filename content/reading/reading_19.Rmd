@@ -1,11 +1,11 @@
 ---
-title: Stochasticity
-class_date: '2019-10-22'
+title: Collectives
+class_date: '2019-10-29'
 class_number: 19
 weight: 19
 slug: reading_19
 pubdate: '2019-07-31'
-date: '2019-10-22'
+date: '2019-10-29'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -13,6 +13,6 @@ output:
 ## Reading:
 
 ### Required Reading (everyone):
-* Agent-Based and Individual-Based Modeling, Ch. 15.
+* Agent-Based and Individual-Based Modeling, Ch. 16.
 
 

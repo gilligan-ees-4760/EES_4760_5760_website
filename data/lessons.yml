@@ -80,7 +80,8 @@ lessons:
   lecture: /slides/class_17
 - date: '2019-10-22'
   title: Stochasticity
-  reading: /reading/reading_19
+  reading: /reading/reading_18
+  lecture: /slides/class_18
 - date: '2019-10-23'
   title: Project ODD Due
   assignment: project_odd
@@ -88,31 +89,31 @@ lessons:
   title: Fall Break
 - date: '2019-10-29'
   title: Collectives
-  reading: /reading/reading_20
+  reading: /reading/reading_19
 - date: '2019-10-31'
   title: Patterns
-  reading: /reading/reading_21
+  reading: /reading/reading_20
 - date: '2019-11-05'
   title: Theory Development
-  reading: /reading/reading_22
+  reading: /reading/reading_21
 - date: '2019-11-07'
   title: Parameterization and Calibration
-  reading: /reading/reading_23
+  reading: /reading/reading_22
 - date: '2019-11-08'
   title: Draft Model Code Due
   assignment: project_draft_code
 - date: '2019-11-12'
   title: Parameterization and Calibration 2
-  reading: /reading/reading_24
+  reading: /reading/reading_23
 - date: '2019-11-14'
   title: Analyzing ABMs
-  reading: /reading/reading_25
+  reading: /reading/reading_24
 - date: '2019-11-19'
   title: Sensitivity and Robustness
-  reading: /reading/reading_26
+  reading: /reading/reading_25
 - date: '2019-11-21'
   title: 'Looking Ahead: ABMs Beyond this Course'
-  reading: /reading/reading_27
+  reading: /reading/reading_26
 - date: '2019-11-26'
   title: Thanksgiving Break
 - date: '2019-11-28'
