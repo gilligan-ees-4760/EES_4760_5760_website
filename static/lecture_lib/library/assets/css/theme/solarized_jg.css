@@ -327,6 +327,7 @@ body {
   word-wrap: break-word;
   box-shadow: none; }
 
+.reveal .code,
 .reveal code {
   font-family: "Anonymous Pro", monospace;
   color: #268bd2; }

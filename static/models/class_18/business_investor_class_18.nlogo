@@ -1,7 +1,6 @@
 globals
 [
-  profit-min
-  profit-max
+  profit-mean
 
   ; failure-min
   ; failure-max
@@ -56,8 +55,10 @@ to setup
     initialize-turtle
   ]
 
-  reset-ticks
+  set g-mean-wealth mean [wealth] of turtles
+  color-turtles
 
+  reset-ticks
 end
 
 to go
@@ -100,10 +101,9 @@ end
 
 to initialize-globals
   ; set num-investors 100
-  set profit-min 1000
-  set profit-max 10000
-  ; set failure-min 0.02
-  ; set failure-max 0.5
+  set profit-mean 5000
+  ; set failure-min 0.01
+  ; set failure-max 0.1
   set n-hplr 0
   set n-hphr 0
   set n-lplr 0
@@ -126,7 +126,7 @@ to initialize-globals
 
 
   set g-mean-wealth 0
-  set g-max-utility (profit-max * time-horizon) * (1 - failure-min) ^ time-horizon
+  set g-max-utility (profit-mean * time-horizon) * (1 - failure-min) ^ time-horizon
 
   ; set sense-radius 1
   ; set use-sense-radius? false
@@ -139,9 +139,10 @@ end
 to initialize-patches
   ask patches
   [
-    set profit profit-min + random-float (profit-max - profit-min)
+    set profit random-exponential profit-mean
     set p-failure failure-min + random-float (failure-max - failure-min)
   ]
+  set g-max-utility max [expected-utility nobody] of patches
   color-patches
 end
 
@@ -191,10 +192,10 @@ to-report find-best-patch ; turtle reporter
     (profit > [profit] of myself) and (p-failure < [p-failure] of myself) ]
   let alt-hi-profit-hi-risk candidates with [
     (profit > [profit] of myself) and (p-failure > [p-failure] of myself) ]
-    let alt-lo-profit-lo-risk candidates with [
-      (profit < [profit] of myself) and (p-failure < [p-failure] of myself) ]
-    let alt-lo-profit-hi-risk candidates with [
-      (profit < [profit] of myself) and (p-failure > [p-failure] of myself) ]
+  let alt-lo-profit-lo-risk candidates with [
+    (profit < [profit] of myself) and (p-failure < [p-failure] of myself) ]
+  let alt-lo-profit-hi-risk candidates with [
+    (profit < [profit] of myself) and (p-failure > [p-failure] of myself) ]
 
 
     let best-candidate patch-here
@@ -257,9 +258,11 @@ to color-patches
   ;ifelse patch-color-mode = 1
   ifelse color-patches-by = "profit"
   [
+    let min-profit 0
+    let max-profit max [profit] of patches
     ask patches
     [
-      set pcolor scale-color blue profit profit-min profit-max
+      set pcolor scale-color blue profit min-profit max-profit
     ]
   ]
   [
@@ -346,6 +349,7 @@ to get-percentages
   let runs 0
   let n  [ 0 0 0 0 0 ]
   let mv [ 0 0 0 0 0 ]
+  let p  [ 0 0 0 0 0 ]
   let total-w (list)
   let mean-w (list)
   repeat 1000 [
@@ -371,10 +375,17 @@ to get-percentages
   set mv-lphr item 3 mv
   set moves   item 4 mv
 
+  set p (map / n mv)
+  set p (map [x -> precision (100 * x) 2] p)
   show n
   show mv
+  show p
   output-print (word "Total wealth = " precision mean(total-w) 2)
   output-print (word "Mean wealth = " precision mean(mean-w) 2)
+  set p-high-profit-low-risk  precision (item 0 p) 1
+  set p-high-profit-high-risk precision (item 1 p) 1
+  set p-low-profit-low-risk   precision (item 2 p) 1
+  set p-low-profit-high-risk  precision (item 3 p) 1
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -472,7 +483,7 @@ CHOOSER
 color-patches-by
 color-patches-by
 "profit" "p-failure" "exp utility"
-0
+2
 
 SLIDER
 14
@@ -498,7 +509,7 @@ num-investors
 num-investors
 0
 381
-100.0
+25.0
 1
 1
 NIL
@@ -598,7 +609,7 @@ p-high-profit-low-risk
 p-high-profit-low-risk
 0
 100
-83.4
+78.0
 0.1
 1
 %
@@ -613,7 +624,7 @@ p-high-profit-high-risk
 p-high-profit-high-risk
 0
 100
-5.4
+9.3
 0.1
 1
 %
@@ -628,7 +639,7 @@ p-low-profit-low-risk
 p-low-profit-low-risk
 0
 100
-4.9
+3.4
 0.2
 1
 %
@@ -1126,7 +1137,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.1.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -1144,13 +1155,13 @@ NetLogo 6.0.2
       <value value="0.1"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="p-low-profit-low-risk">
-      <value value="4.9"/>
+      <value value="3.4"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="turtle-coloring-mode">
       <value value="&quot;wealth&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="p-high-profit-high-risk">
-      <value value="5.4"/>
+      <value value="9.3"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="failure-min">
       <value value="0.01"/>
@@ -1162,22 +1173,21 @@ NetLogo 6.0.2
       <value value="25"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="p-high-profit-low-risk">
-      <value value="83.4"/>
+      <value value="78"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="color-patches-by">
-      <value value="&quot;profit&quot;"/>
+      <value value="&quot;exp utility&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-investors">
-      <value value="100"/>
+      <value value="25"/>
     </enumeratedValueSet>
   </experiment>
-  <experiment name="vary-stochasticity-2" repetitions="100" runMetricsEveryStep="false">
+  <experiment name="vary-probabilities" repetitions="100" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>go</go>
     <metric>mean [wealth] of turtles</metric>
     <metric>standard-deviation [wealth] of turtles</metric>
     <enumeratedValueSet variable="stochastic?">
-      <value value="false"/>
       <value value="true"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="failure-max">
@@ -1199,10 +1209,52 @@ NetLogo 6.0.2
     </enumeratedValueSet>
     <steppedValueSet variable="p-high-profit-low-risk" first="70" step="10" last="100"/>
     <enumeratedValueSet variable="color-patches-by">
-      <value value="&quot;profit&quot;"/>
+      <value value="&quot;exp utility&quot;"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="num-investors">
-      <value value="100"/>
+      <value value="25"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="get-probabilities" repetitions="100" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <metric>p-hplr</metric>
+    <metric>p-hphr</metric>
+    <metric>p-lplr</metric>
+    <metric>p-lphr</metric>
+    <metric>p-same</metric>
+    <enumeratedValueSet variable="stochastic?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="failure-max">
+      <value value="0.1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p-high-profit-high-risk">
+      <value value="4.6"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="turtle-coloring-mode">
+      <value value="&quot;wealth&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p-low-profit-low-risk">
+      <value value="3.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="failure-min">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p-low-profit-high-risk">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-ticks">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p-high-profit-low-risk">
+      <value value="80"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="color-patches-by">
+      <value value="&quot;exp utility&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-investors">
+      <value value="25"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>
