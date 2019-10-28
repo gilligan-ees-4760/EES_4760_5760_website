@@ -1,6 +1,4 @@
-; extensions [r]
-
-__includes ["jg-tif.nls"]
+; __includes ["jg-tif.nls"]
 
 breed [ dogs dog ]
 breed [ packs pack ]
@@ -113,7 +111,7 @@ to setup
   set trace-file-is-open? false
   set record-debugging-traces? false
 
-  initialize-tests
+;  initialize-tests
 ;  set-context "Testing setup"
   initialize-trace-file
   initialize-globals
@@ -178,7 +176,7 @@ to step
   set median-dg-size-this-year 0
 
   age-dogs
-  test-all-for-consistency
+  ; test-all-for-consistency
 
   reproduce
   disperse-packs
@@ -201,7 +199,7 @@ to age-dogs ; called in global context
   [
     set age 1 + age
     update-status
-    test-dog-consistency
+    ; test-dog-consistency
   ]
   ask packs
   [
@@ -395,14 +393,14 @@ to initialize-pack-at-beginning ; pack context
   ]
 
   set pack-members dogs with [birth-pack = myself]
-  test-that "Number of dogs in pack is the number just created"
-  expect-that num-dogs equals count pack-members
+  ; test-that "Number of dogs in pack is the number just created"
+  ; expect-that num-dogs equals count pack-members
 
   check-and-update-alphas
 
   initialize-pack-appearance
 
-  test-pack-consistency
+  ; test-pack-consistency
 
 end
 
@@ -411,10 +409,10 @@ to initialize-pack-from-disperser-groups [ group1 group2 ]; pack context
   ; Both group1 and group2 should be disperser groups.
   ; Check whether they really are.
   ;
-  test-that "Group 1 is a disperser group"
-  expect-that is-disperser-group? group1 is-true
-  test-that "Group 2 is a disperser group"
-  expect-that is-disperser-group? group2 is-true
+  ; test-that "Group 1 is a disperser group"
+;  expect-that is-disperser-group? group1 is-true
+;  test-that "Group 2 is a disperser group"
+;  expect-that is-disperser-group? group2 is-true
 
   set pack-members (turtle-set [ group-members ] of group1 [ group-members ] of group2)
 
@@ -422,8 +420,8 @@ to initialize-pack-from-disperser-groups [ group1 group2 ]; pack context
   ; Disperser groups should only have dogs whose social status is "diserperser".
   ; Check whether that's true.
   ;
-  test-that "Number of pack-members is consistent with disperser groups"
-  expect-that count pack-members with [status = "disperser"] equals (count [group-members] of group1 + count [group-members] of group2)
+;  test-that "Number of pack-members is consistent with disperser groups"
+;  expect-that count pack-members with [status = "disperser"] equals (count [group-members] of group1 + count [group-members] of group2)
 
   ask pack-members
   [
@@ -433,7 +431,7 @@ to initialize-pack-from-disperser-groups [ group1 group2 ]; pack context
 
   check-and-update-alphas
 
-  test-pack-consistency
+;  test-pack-consistency
 end
 
 to initialize-dog [ initial-pack max-age p-male] ; dog-context
@@ -449,7 +447,7 @@ to initialize-dog [ initial-pack max-age p-male] ; dog-context
   set birth-pack initial-pack
   update-status
 
-  test-dog-consistency
+;  test-dog-consistency
 end
 
 
@@ -458,8 +456,8 @@ end
 ;
 
 to update-status ; dog context
-  test-that "update-status should have dog context"
-  expect-that is-dog? self is-true
+;  test-that "update-status should have dog context"
+;  expect-that is-dog? self is-true
 
   ifelse age < 1
   [
@@ -480,8 +478,8 @@ to update-status ; dog context
 end
 
 to check-mortality-and-die
-  test-that "check-mortality-and-die should have dog context"
-  expect-that is-dog? self is-true
+;  test-that "check-mortality-and-die should have dog context"
+;  expect-that is-dog? self is-true
 
   let p-mortality -1
   if status = "pup" [ set p-mortality mortality-pup ]
@@ -491,8 +489,8 @@ to check-mortality-and-die
   if status = "disperser" [ set p-mortality mortality-disperser ]
 
   ; Make sure I didn't forget a status in the list above.
-  test-that "Mortality has been initialized"
-  expect-that p-mortality is-greater-or-equal 0
+;  test-that "Mortality has been initialized"
+;  expect-that p-mortality is-greater-or-equal 0
 
   if random-binomial? p-mortality
   [
@@ -511,16 +509,16 @@ end
 ;
 
 to check-and-update-alphas ; pack context
-  test-that "check-and-update-alpha should have pack context"
-  expect-that is-pack? self is-true
+;  test-that "check-and-update-alpha should have pack context"
+;  expect-that is-pack? self is-true
 
   check-and-update-alpha-of-sex "M"
   check-and-update-alpha-of-sex "F"
 end
 
 to check-and-update-alpha-of-sex [ alpha-sex ] ; pack context
-  test-that "check-and-update-alpha-of-sex should have pack context"
-  expect-that is-pack? self is-true
+;  test-that "check-and-update-alpha-of-sex should have pack context"
+;  expect-that is-pack? self is-true
 
   if not any? pack-members with [ status = "alpha" and sex = alpha-sex ]
   [
@@ -534,8 +532,8 @@ to check-and-update-alpha-of-sex [ alpha-sex ] ; pack context
 end
 
 to-report will-reproduce?
-  test-that "will-reproduce? should have pack context"
-  expect-that is-pack? self is-true
+;  test-that "will-reproduce? should have pack context"
+;  expect-that is-pack? self is-true
 
   let alphas pack-members with [status = "alpha"]
   if any? alphas with [sex = "M"] and any? alphas with [sex = "F"]
@@ -547,8 +545,8 @@ to-report will-reproduce?
 end
 
 to produce-litter ; pack context
-  test-that "produce-litter should have pack context"
-  expect-that is-pack? self is-true
+;  test-that "produce-litter should have pack context"
+;  expect-that is-pack? self is-true
 
   set litters-this-year litters-this-year + 1
   let old-size count pack-members
@@ -562,25 +560,35 @@ to produce-litter ; pack context
   ]
   set pack-members (turtle-set pack-members litter)
 
-  test-that (word "Pack " who " size has grown from " old-size " by the litter size " litter-size )
-  expect-that count pack-members equals (old-size + litter-size)
-
-  test-pack-consistency
+;  test-that (word "Pack " who " size has grown from " old-size " by the litter size " litter-size )
+;  expect-that count pack-members equals (old-size + litter-size)
+;
+;  test-pack-consistency
 end
 
 to initialize-pack-appearance
-  test-that "initialize-pack-appearance should have pack context"
-  expect-that is-pack? self is-true
+;  test-that "initialize-pack-appearance should have pack context"
+;  expect-that is-pack? self is-true
 
   set shape "circle"
   let max-rad max [size] of turtles
-  move-to one-of patches with [ not any? turtles in-radius (2.0 * max-rad) ]
+  let target-patch one-of patches with [ not any? turtles in-radius (2.0 * max-rad) ]
+  if target-patch = nobody
+  [
+  set target-patch one-of patches with [ not any? turtles in-radius max-rad ]
+  ]
+  if target-patch = nobody
+  [
+    set target-patch max-one-of patches [min [distance myself] of turtles]
+  ]
+  move-to target-patch
+
   update-pack-appearance
 end
 
 to update-pack-appearance
-  test-that "update-pack-appearance should have pack context"
-  expect-that is-pack? self is-true
+;  test-that "update-pack-appearance should have pack context"
+;  expect-that is-pack? self is-true
 
   set shape "circle"
   set size 0.25 * count pack-members
@@ -599,8 +607,8 @@ to update-pack-appearance
 end
 
 to disperse
-  test-that "disperse should have pack context"
-  expect-that is-pack? self is-true
+;  test-that "disperse should have pack context"
+;  expect-that is-pack? self is-true
 
   foreach (list "M" "F")
   [ ?1 ->
@@ -613,8 +621,8 @@ to disperse
 end
 
 to make-disperser-group [ dg-sex ]
-  test-that "make-disperser-group should have pack context"
-  expect-that is-pack? self is-true
+;  test-that "make-disperser-group should have pack context"
+;  expect-that is-pack? self is-true
 
   let old-pack-size count pack-members
   let dispersers pack-members with [ status = "subordinate" and sex = dg-sex ]
@@ -626,15 +634,15 @@ to make-disperser-group [ dg-sex ]
     create-link-from myself
   ]
 
-  test-that (word "size of pack " who " has decreased from " old-pack-size " by " count dispersers " of dispersers.")
-  expect-that old-pack-size equals (count pack-members + count dispersers)
-
-  test-pack-consistency
+;  test-that (word "size of pack " who " has decreased from " old-pack-size " by " count dispersers " of dispersers.")
+;  expect-that old-pack-size equals (count pack-members + count dispersers)
+;
+;  test-pack-consistency
 end
 
 to-report will-disperse? [ dg-sex ]
-  test-that "will-disperse should have pack context"
-  expect-that is-pack? self is-true
+;  test-that "will-disperse should have pack context"
+;  expect-that is-pack? self is-true
 
   let candidates pack-members with [ sex = dg-sex and status = "subordinate" ]
   if any? candidates
@@ -649,8 +657,8 @@ to-report will-disperse? [ dg-sex ]
 end
 
 to terminate-pack-if-empty
-  test-that "terminate-pack-if-empty should have pack context"
-  expect-that is-pack? self is-true
+;  test-that "terminate-pack-if-empty should have pack context"
+;  expect-that is-pack? self is-true
 
   if any? pack-members with [ status != "pup" ]
   [ stop ]
@@ -669,8 +677,8 @@ to terminate-pack-if-empty
   ]
   ask pack-members with [ status = "pup" ] [ die ]
 
-  test-that "Pack should be empty here"
-  expect-that any? pack-members is-false
+;  test-that "Pack should be empty here"
+;  expect-that any? pack-members is-false
 
   set pack-deaths-this-year pack-deaths-this-year + 1
   die
@@ -682,15 +690,15 @@ end
 ;
 
 to initialize-disperser-group [ members ]
-  test-that "initialize-disperser-group should have disperser group context"
-  expect-that is-disperser-group? self is-true
-
-  test-that "Initializing disperser-group with non-empty set"
-  expect-that any? members is-true
+;  test-that "initialize-disperser-group should have disperser group context"
+;  expect-that is-disperser-group? self is-true
+;
+;  test-that "Initializing disperser-group with non-empty set"
+;  expect-that any? members is-true
 
   set sex [ sex] of one-of members
-  test-that "All members of new disperser group have the same sex"
-  expect-that any? members with [sex != [sex] of myself] is-false
+;  test-that "All members of new disperser group have the same sex"
+;  expect-that any? members with [sex != [sex] of myself] is-false
 
 ;  set birth-pack [ birth-pack ] of one-of members
 ;  test-that "All members of new disperser group have the same birth pack"
@@ -702,12 +710,12 @@ to initialize-disperser-group [ members ]
     set status "disperser"
   ]
 
-  test-dg-consistency
+;  test-dg-consistency
 end
 
 to initialize-dg-appearance
-  test-that "initialize-dg-appearance should have disperser group context"
-  expect-that is-disperser-group? self is-true
+;  test-that "initialize-dg-appearance should have disperser group context"
+;  expect-that is-disperser-group? self is-true
 
   set shape "square"
   let max-rad max [size] of turtles
@@ -724,8 +732,8 @@ to initialize-dg-appearance
 end
 
 to update-dg-appearance
-  test-that "update-dg-appearance should have disperser group context"
-  expect-that is-disperser-group? self is-true
+;  test-that "update-dg-appearance should have disperser group context"
+;  expect-that is-disperser-group? self is-true
 
   set shape "square"
   set size dg-size
@@ -735,14 +743,14 @@ to update-dg-appearance
 end
 
 to-report dg-size
-  test-that "dg-size should have disperser-group context"
-  expect-that is-disperser-group? self is-true
+;  test-that "dg-size should have disperser-group context"
+;  expect-that is-disperser-group? self is-true
   report 0.25 * count group-members
 end
 
 to terminate-dg-if-empty
-  test-that "terminate-dg-if-empty should have disperser group context"
-  expect-that is-disperser-group? self is-true
+;  test-that "terminate-dg-if-empty should have disperser group context"
+;  expect-that is-disperser-group? self is-true
 
   if not any? group-members with [ status != "pup" ]
   [
@@ -752,8 +760,8 @@ to terminate-dg-if-empty
 end
 
 to meet-and-greet ; disperser-group context
-  test-that "meet-and-greet should have disperser group context"
-  expect-that is-disperser-group? self is-true
+;  test-that "meet-and-greet should have disperser group context"
+;  expect-that is-disperser-group? self is-true
 
   let n-encounters random-poisson mean-meeting-rate
   foreach n-values n-encounters [ ?1 -> ?1 ]
@@ -785,11 +793,11 @@ to meet-and-greet ; disperser-group context
 end
 
 to-report dgs-are-compatible? [ partner ]
-  test-that "dgs-are-compatible? should have disperser group context."
-  expect-that is-disperser-group? self is-true
-
-  test-that "dgs-are-compatible? partner should be disperser group."
-  expect-that is-disperser-group? partner is-true
+;  test-that "dgs-are-compatible? should have disperser group context."
+;  expect-that is-disperser-group? self is-true
+;
+;  test-that "dgs-are-compatible? partner should be disperser group."
+;  expect-that is-disperser-group? partner is-true
 
   if sex = [ sex ] of partner
   [
@@ -825,7 +833,7 @@ end
 ;
 to cleanup
   cleanup-trace-file
-  resume-all-tests
+;  resume-all-tests
 end
 
 to cleanup-trace-file
@@ -840,85 +848,85 @@ end
 ;  TEST ROUTINES
 ;
 ;
-to test-dog-consistency ; dog context
-  ifelse age < 1
-  [
-    test-that "Age < 1 means pup"
-    expect-that status is-identical-to "pup"
-  ]
-  [
-    ifelse age <= 2
-    [
-      test-that "Age in range 1-2 is yearling"
-      expect-that status is-identical-to "yearling"
-    ]
-    [
-      test-that "Age > 2: subordinate, alpha, or disperser"
-      expect-that (member? status (list "subordinate" "alpha" "disperser")) is-true
-    ]
-  ]
-end
+;to test-dog-consistency ; dog context
+;  ifelse age < 1
+;  [
+;    test-that "Age < 1 means pup"
+;    expect-that status is-identical-to "pup"
+;  ]
+;  [
+;    ifelse age <= 2
+;    [
+;      test-that "Age in range 1-2 is yearling"
+;      expect-that status is-identical-to "yearling"
+;    ]
+;    [
+;      test-that "Age > 2: subordinate, alpha, or disperser"
+;      expect-that (member? status (list "subordinate" "alpha" "disperser")) is-true
+;    ]
+;  ]
+;end
 
-to test-pack-consistency ; pack context
-  test-that (word "Pack " who " is not empty")
-  expect-that any? pack-members is-true
+;to test-pack-consistency ; pack context
+;  test-that (word "Pack " who " is not empty")
+;  expect-that any? pack-members is-true
+;
+;  ifelse any? pack-members with [status = "alpha" and sex = "M"]
+;  [
+;    test-that (word "Pack " who " has only one alpha male")
+;    expect-that (count pack-members with [status = "alpha" and sex = "M"]) equals 1
+;  ]
+;  [
+;    test-that (word "Pack " who " has no subordinate male without alpha male")
+;    expect-that (any? pack-members with [status = "subordinate" and sex = "M"]) is-false
+;  ]
+;
+;  ifelse any? pack-members with [status = "alpha" and sex = "F"]
+;  [
+;    test-that (word "Pack " who " has only one alpha female")
+;    expect-that (count pack-members with [status = "alpha" and sex = "F"]) equals  1
+;  ]
+;  [
+;    test-that (word "Pack " who " has no subordinate female without alpha female")
+;    expect-that (any? pack-members with [status = "subordinate" and sex = "F"]) is-false
+;  ]
+;end
 
-  ifelse any? pack-members with [status = "alpha" and sex = "M"]
-  [
-    test-that (word "Pack " who " has only one alpha male")
-    expect-that (count pack-members with [status = "alpha" and sex = "M"]) equals 1
-  ]
-  [
-    test-that (word "Pack " who " has no subordinate male without alpha male")
-    expect-that (any? pack-members with [status = "subordinate" and sex = "M"]) is-false
-  ]
-
-  ifelse any? pack-members with [status = "alpha" and sex = "F"]
-  [
-    test-that (word "Pack " who " has only one alpha female")
-    expect-that (count pack-members with [status = "alpha" and sex = "F"]) equals  1
-  ]
-  [
-    test-that (word "Pack " who " has no subordinate female without alpha female")
-    expect-that (any? pack-members with [status = "subordinate" and sex = "F"]) is-false
-  ]
-end
-
-to test-dg-consistency ; disperser-group context
-  test-that (word "Disperser-group " who " is not empty")
-  expect-that any? group-members is-true
-
-  test-that (word "All members of dg " who " have the same sex")
-  let my-sex sex
-  expect-that (any? group-members with [ sex != my-sex]) is-false
+;to test-dg-consistency ; disperser-group context
+;  test-that (word "Disperser-group " who " is not empty")
+;  expect-that any? group-members is-true
+;
+;  test-that (word "All members of dg " who " have the same sex")
+;  let my-sex sex
+;  expect-that (any? group-members with [ sex != my-sex]) is-false
 ;  test-that (word "All members of dg " who " come from the same original pack")
 ;  let origin-pack [ birth-pack ] of one-of group-members
 ;  expect-that (any? group-members with [ birth-pack != origin-pack ]) is-false
-
-  test-that (word "Male and female members of dg " who " come from different birth packs")
-  let compatible? true
-  let males group-members with [ sex = "M" ]
-  ask group-members with [ sex = "F" ]
-  [
-    let f-birth birth-pack
-    if any? males with [ birth-pack = f-birth ]
-    [ set compatible? false ]
-  ]
-  expect-that compatible? is-true
-
-  test-that (word "All members of dg " who " have status disperser")
-  expect-that (any? group-members with [ status != "disperser" ]) is-false
-
-end
-
-to test-logistic
+;
+;  test-that (word "Male and female members of dg " who " come from different birth packs")
+;  let compatible? true
+;  let males group-members with [ sex = "M" ]
+;  ask group-members with [ sex = "F" ]
+;  [
+;    let f-birth birth-pack
+;    if any? males with [ birth-pack = f-birth ]
+;    [ set compatible? false ]
+;  ]
+;  expect-that compatible? is-true
+;
+;  test-that (word "All members of dg " who " have status disperser")
+;  expect-that (any? group-members with [ status != "disperser" ]) is-false
+;
+;end
+;
+;to test-logistic
 ;  test-that "logistic( 0 ) = 1.0"
 ;  expect-that abs(logistic (0.0) - 1.0) is-less-than 0.0001
-  test-that "logistic( 0.5 carrying capacity) = 0.5"
-  expect-that abs(logistic (0.5 * carrying-capacity) - 0.5) is-less-than 1.0E-6
-  test-that "logistic( carrying capacity) = 0.1"
-  expect-that abs(logistic (carrying-capacity) - 0.1) is-less-than 1.0E-6
-end
+;  test-that "logistic( 0.5 carrying capacity) = 0.5"
+;  expect-that abs(logistic (0.5 * carrying-capacity) - 0.5) is-less-than 1.0E-6
+;  test-that "logistic( carrying capacity) = 0.1"
+;  expect-that abs(logistic (carrying-capacity) - 0.1) is-less-than 1.0E-6
+;end
 
 to test-logistic-plot
   set-current-plot "logistic"
@@ -926,11 +934,11 @@ to test-logistic-plot
   foreach xvalues [ ?1 -> plot logistic ?1 ]
 end
 
-to test-all-for-consistency
-  ask dogs [ test-dog-consistency ]
-  ask packs [ test-pack-consistency ]
-  ask disperser-groups [ test-dg-consistency ]
-end
+;to test-all-for-consistency
+;  ask dogs [ test-dog-consistency ]
+;  ask packs [ test-pack-consistency ]
+;  ask disperser-groups [ test-dg-consistency ]
+;end
 
 to-report p-extinct
   ifelse extinct?
@@ -1264,7 +1272,7 @@ BUTTON
 642
 43
 Restore Defaults
-set carrying-capacity 60\nset mean-meeting-rate 1.0\nset mortality-disperser 0.44
+set years-to-simulate 100\nset carrying-capacity 60\nset mean-meeting-rate 1.0\nset mortality-disperser 0.44\nset mortality-adult 0.20\nset num-initial-packs 2\nset mean-initial-pack-size 5
 NIL
 1
 T
@@ -1337,6 +1345,13 @@ Measures of "persistence" include
 * the average number of years (over a number of replicate simulations) until the population is extinct,
 * and the percentage of simulations in which the population survives for at least 100 years.
 
+For evaluating the usefulness of the original model for this purpose, Gusset _et al._ (2009) defined five patterns observed in teh real wild dog population of Hluhluwe-iMfolozi Park in South Africa. The patterns relevant to this version of the model are:
+
+1. the range (mean and standard deviation) of the pack size, year by year.
+2. the sex ratio of males to females
+3. the proportion of the population that are pups
+4. the proportion of disperser groups that fail to form new packs
+
 The model's purposes as a NetLogo exercise are to demonstrate the use of breeds to represent collectives and to illustrate stochastic modeling techniques.
 
 ## Entities, State Variables, and Scales
@@ -1377,12 +1392,12 @@ The time step is one year. The model is nonspatial: locations of packs and dogs 
 
 The following actions are executed once per time step, in this given order (details are found in the Submodels section):
 
-1. *Age and social status update*:
-2. *Reproduction*: packs determine how many pups they produce, using these rules:
-3. **Dispersal:** Subordinate dogs can leave their packs in hopes of establishing a new pack. These "dispersers" form disperser groups, which comprise one or more subordinates of the same sex that came from the same pack.
-4. **Dog mortality:** Mortality is scheduled before pack formation because mortality of dispersers is high. Whether or not each dog dies is determined stochastically.
-5. **Mortality of collectives:**
-6. **Pack formation:** Disperser groups may meet other disperser groups, and if they meet a disperser group of the opposite sex and from a different pack, the groups may or may not join to form a new pack.
+1. *Age and social status update*: (submodel)
+2. *Reproduction*: (submodel)
+3. **Dispersal:** (submodel) Subordinate dogs can leave their packs in hopes of establishing a new pack. These "dispersers" form disperser groups, which comprise one or more subordinates of the same sex that came from the same pack.
+4. **Dog mortality:** (submodel) Mortality is scheduled before pack formation because mortality of dispersers is high. Whether or not each dog dies is determined stochastically.
+5. **Mortality of collectives:** (submodel)
+6. **Pack formation:** (submodel) Disperser groups may meet other disperser groups, and if they meet a disperser group of the opposite sex and from a different pack, the groups may or may not join to form a new pack.
 
 ## Design Concepts
 
@@ -1828,7 +1843,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.1.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
