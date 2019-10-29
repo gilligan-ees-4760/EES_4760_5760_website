@@ -350,7 +350,7 @@ to initialize-globals ; observer context
   ; set num-initial-packs 10
   ; set mean-initial-pack-size 5
   set p-male-initial 0.50
-  set max-age-initial 7 ; TODO check whether this should be 6
+  set max-age-initial 6
 
   set mean-litter-size 7.9
   set p-male-pup 0.55
@@ -362,7 +362,7 @@ to initialize-globals ; observer context
   ; set mortality-disperser 0.44
 
 ;  set mean-meeting-rate 1.0
-  set p-dg-merge 0.65
+  set p-dg-merge 0.64
 
   ; extinct? tells us whether all the dogs
   ; in the reserve have died
@@ -435,7 +435,7 @@ to initialize-pack-from-disperser-groups [ group1 group2 ]; pack context
 end
 
 to initialize-dog [ initial-pack max-age p-male] ; dog-context
-  set age random max-age
+  set age random (max-age + 1)
   set size 1
   set color gray
   hide-turtle
@@ -1272,7 +1272,7 @@ BUTTON
 642
 43
 Restore Defaults
-set years-to-simulate 100\nset carrying-capacity 60\nset mean-meeting-rate 1.0\nset mortality-disperser 0.44\nset mortality-adult 0.20\nset num-initial-packs 2\nset mean-initial-pack-size 5
+set years-to-simulate 100\nset carrying-capacity 60\nset mean-meeting-rate 1.0\nset mortality-disperser 0.44\nset mortality-adult 0.20\nset num-initial-packs 10\nset mean-initial-pack-size 5
 NIL
 1
 T
@@ -1307,7 +1307,7 @@ num-initial-packs
 num-initial-packs
 1
 20
-2.0
+10.0
 1
 1
 NIL
@@ -1345,7 +1345,7 @@ Measures of "persistence" include
 * the average number of years (over a number of replicate simulations) until the population is extinct,
 * and the percentage of simulations in which the population survives for at least 100 years.
 
-For evaluating the usefulness of the original model for this purpose, Gusset _et al._ (2009) defined five patterns observed in teh real wild dog population of Hluhluwe-iMfolozi Park in South Africa. The patterns relevant to this version of the model are:
+For evaluating the usefulness of the original model for this purpose, Gusset _et al._ (2009) defined five patterns observed in the real wild dog population of Hluhluwe-iMfolozi Park in South Africa. The patterns relevant to this version of the model are:
 
 1. the range (mean and standard deviation) of the pack size, year by year.
 2. the sex ratio of males to females
@@ -1359,19 +1359,22 @@ The model's purposes as a NetLogo exercise are to demonstrate the use of breeds 
 The model includes three kinds of agent: **dogs**, **dog packs**, and **disperser groups**.
 
 ### Dogs
+
 Dogs have state variables for:
 
-*  **age** in years,
-*  **sex**,
-*  **the pack they were born in**.
-    **NOTE:** In the book, the ODD says, "the pack or disperser group they belong to," but when two disperser groups meet, this state variable is used to ensure that the dogs were not born into the same pack, so at that point, this has to indicate the birth pack, not the disperser group. Thus, I interpret this as meaning that this variable refers only to the last pack, not disperser group, the dog belongs to.
+* **age** in years,
+* **sex**,
+* **the pack they were born in**.
+  **NOTE:** In the book, the ODD says, "the pack or disperser group they belong to," but when two disperser groups meet, this state variable is used to ensure that the dogs were not born into the same pack, so at that point, this has to indicate the birth pack, not the disperser group. Thus, I interpret this as meaning that this variable refers only to the last pack, not disperser group, the dog belongs to.
 * and **social status**.
+
     The social status of a dog can be
-        a. **pup:** meaning its age is less than one;
-        b. **yearling:** with age between 1 and 2;
-        c. **subordinate:** meaning age is greater than 2 but the dog is not an alpha;
-        d. **alpha:** the dominant individual of its sex in a pack; and
-        e. **disperser:** meaning the dog currently belongs to a disperser group, not a pack.
+
+    a. **pup:** meaning its age is less than one;
+    b. **yearling:** with age between 1 and 2;
+    c. **subordinate:** meaning age is greater than 2 but the dog is not an alpha;
+    d. **alpha:** the dominant individual of its sex in a pack; and
+    e. **disperser:** meaning the dog currently belongs to a disperser group, not a pack.
 
 ### Dog packs
 
@@ -1447,14 +1450,14 @@ For model analysis, the time to extinction was recorded.
 ## Initialization
 
 * Parameters for the model:
-    * Carrying capacity = 60
+  * Carrying capacity = 60
 * The model is initialized with:
-      * 10 packs and no disperser groups.
-      * The number of dogs in each initial pack is drawn from a Poisson distribution with mean of 5 (the Poisson distribution is convenient even though its assumptions are not met in this application).
-      * The sex of each dog is set randomly with equal probabilities for male and female.
-      * The age of individuals is drawn from a uniform integer distribution between 0 and 6.
-      * Social status is set according to age.
-      * The alpha male and female of each pack are selected randomly from among its subordinates; if there are no subordinates of a sex, then the pack has no alpha of that sex.
+  * 10 packs and no disperser groups.
+  * The number of dogs in each initial pack is drawn from a Poisson distribution with mean of 5 (the Poisson distribution is convenient even though its assumptions are not met in this application).
+    * The sex of each dog is set randomly with equal probabilities for male and female.
+    * The age of individuals is drawn from a uniform integer distribution between 0 and 6.
+    * Social status is set according to age.
+    * The alpha male and female of each pack are selected randomly from among its subordinates; if there are no subordinates of a sex, then the pack has no alpha of that sex.
 
 ## Input Data
 
@@ -1465,12 +1468,12 @@ The model does not use any input data.
 ### Age and update social status:
 * The age of all dogs is incremented.
 * Their social status variable is updated according to the new age:
-   * Age < 1: "pup"
+    * Age < 1: "pup"
     * Age = 1--2 (inclusive): "yearling
     * Age > 2 and in-pack: "subordinate" or "alpha"
     * Age > 2 and not in-pack: "disperser"
 * Each pack updates its alpha males and females. If any pack is missing one or both alphas, and if it has subordinates of the appropriate sex, a subordinate of that sex is randomly selected and its social status variable set to "alpha."
-* For testing: __At the end of this step, check that the pack is consistent with these rules:__
+* For testing: **At the end of this step, check that the pack is consistent with these rules:**
     * All dogs' social status is consistent with age and pack membership.
     * Each pack has exactly one alpha male or else it has no subordinate males.
     * Each pack has exactly one alpha female or else it has no subordinate females.
@@ -1479,64 +1482,76 @@ The model does not use any input data.
 Packs determine how many pups they produce, using these rules:
 
 * If the pack does not include both an alpha female and alpha male, no pups are produced.
-* Otherwise, the probability of a pack producing pups depends on the total number of dogs in the reserve, *N* (not counting any pups already born in the current time step).
-* The probability of reproducing is modeled as a logistic function *P(N)* such that
-    *P(N)* = 0.5 when *N* = half the carrying capacity and *P(N)* = 0.1 when *N* = the carrying capacity. See the logistic function submodel, below, for details.
+* Otherwise, the probability of a pack producing pups depends on the total number of dogs in the reserve, _N_ (not counting any pups already born in the current time step).
+* The probability of reproducing is modeled as a logistic function _P(N)_ such that
+    _P(N)_ = 0.5 when _N_ = half the carrying capacity and _P(N)_ = 0.1 when _N_ = the carrying capacity. See the logistic function submodel, below, for details.
     * Determine whether pack breeds, based on this probability.
     * If the pack reproduces, the number of pups is drawn from a Poisson distribution that has a mean birth rate (pups per pack per year) of 7.9.
-          * Assign sex of new-born pups randomly with *P*(male) = 0.55
+          * Assign sex of new-born pups randomly with _P_(male) = 0.55
           * Set age of new-born pups to zero.
 
 ### Dispersal
+
 Subordinate dogs can leave their packs in hopes of establishing a new pack. These "dispersers" form disperser groups, which comprise one or more subordinates of the same sex that came from the same pack.
 
 Each pack follows these rules to produce disperser groups:
-      * If a pack has no subordinates, then no disperser group is created.
-      * If a pack has only one subordinate of its sex, it has a probability of 0.5 of forming a one-member disperser group.
-      * If a pack has two or more subordinates of the same sex, the subordinates *always* form a disperser group.
-      * Dogs that join a disperser group no longer belong to their original pack, and their social status variable is set to "disperser." However, dogs that join disperser groups still keep the pack identifier of the pack they were born into. This is used if it meets another disperser group.
+
+* If a pack has no subordinates, then no disperser group is created.
+* If a pack has only one subordinate of its sex, it has a probability of 0.5 of forming a one-member disperser group.
+* If a pack has two or more subordinates of the same sex, the subordinates *always* form a disperser group.
+* Dogs that join a disperser group no longer belong to their original pack, and their social status variable is set to "disperser." However, dogs that join disperser groups still keep the pack identifier of the pack they were born into. This is used if it meets another disperser group.
 
 ### Dog mortality
+
 Whether or not each dog dies is determined stochastically using the following probabilities of dying:
-      * *P*(death) = 0.44 for dispersers,
-      * *P*(death) = 0.25 for yearlings,
-      * *P*(death) = 0.20 for subordinates and alphas,
-      * and *P*(death) = 0.12 for pups.
+
+* _P_(death) = 0.44 for dispersers,
+* _P_(death) = 0.25 for yearlings,
+* _P_(death) = 0.20 for subordinates and alphas,
+* and _P_(death) = 0.12 for pups.
 
 ### Mortality of collectives
+
 * If any pack or dispersal group has no members, it is removed from the model.
 * If any pack contains only pups, the pups die and the pack is removed.
 
 ### Pack formation
+
 Disperser groups may meet other disperser groups, and if they meet a disperser group of the opposite sex and from a different pack, the groups may or may not join to form a new pack. This process is modeled by having each disperser group execute the following steps. The order in which disperser groups execute this action is randomly shuffled each time step:
-        * Determine how many time the pack disperser group meets another disperser group. The number of meetings (variable num-groups-met) is modeled as a Poisson process with the rate of meeting (the average number of times per year that a disperser group meets another disperser group) equal to the number of other disperser groups times a parameter controlling how often groups meet.
-            * num-groups-met = Poisson(*x* * number of other disperser groups)
-            * The meeting rate parameter *x* can potentially have any value of 0.0 or higher (it can be greater than 1) but is given a value of 1.0.
-            * The following steps are repeated up to num-groups-met times, stopping if the disperser group selects another to join:
-                    1. Randomly select one other disperser group. It is possible to select the same other group more than once.
-                    1. If the other group is of the same sex, or originated from the same pack, then do nothing more.
-                    1. If the other group is of the opposite sex and a different pack, then there is a probability of 0.64 that the two groups join into a new pack.
-                          * If they do not join, nothing else happens.
-                          * If two disperser groups do join, a new pack is created immediately:
-                                * All the dogs in the two groups become its members.
-                                * The alpha male and female are chosen randomly.
-                                * All other members are given a social status of "subordinate."
-                                * The two disperser groups are no longer available to merge with remaining groups.
+
+* Determine how many time the pack disperser group meets another disperser group. The number of meetings (variable num-groups-met) is modeled as a Poisson process with the rate of meeting (the average number of times per year that a disperser group meets another disperser group) equal to the number of other disperser groups times a parameter controlling how often groups meet.
+* num-groups-met = Poisson(_x_ * number of other disperser groups)
+* The meeting rate parameter _x_ can potentially have any value of 0.0 or higher (it can be greater than 1) but is given a value of 1.0.
+* The following steps are repeated up to num-groups-met times, stopping if the disperser group selects another to join:
+  1. Randomly select one other disperser group. It is possible to select the same other group more than once.
+  2. If the other group is of the same sex, or originated from the same pack, then do nothing more.
+  3. If the other group is of the opposite sex and a different pack, then there is a probability of 0.64 that the two groups join into a new pack.
+    * If they do not join, nothing else happens.
+    * If two disperser groups do join, a new pack is created immediately:
+    * All the dogs in the two groups become its members.
+    * The alpha male and female are chosen randomly.
+    * All other members are given a social status of "subordinate."
+    * The two disperser groups are no longer available to merge with remaining groups.
 
 ### Logistic function
-The logistic function *P(N)* should be 0.5 when *N* = 0.5 carrying capacity and 0.1 when *N* = carrying capacity. One way to program this function is with the following  intermediate variables:
-        * *X*<sub>1</sub> = carrying-capacity / 2
-                * *X*<sub>2</sub> = carrying-capacity
-                * *P*<sub>1</sub> = 0.5
-                * *P*<sub>2</sub> = 0.1
-                * *D* = ln(*P*<sub>1</sub> / (1 - *P*<sub>1</sub>))
-                * *C* = ln(*P*<sub>2</sub> / (1 - *P*<sub>2</sub>))
-                * *B* = (*D* - *C*) / (*X*<sub>1</sub> - *X*<sub>2</sub>)
-                * *A* = *D* - (*B* * *X*<sub>1</sub>)
-                Now we can write the logistic function:
-                        * *z(x)* = exp(*A* + (*B x*))
-                        * *P(x)* = *z(x)* / (1 + *z(x)*)
-            We only need to calculate the intermediate variables *A*, *B*, *C*, and *D* once, during the initialization.
+
+The logistic function _P(N)_ should be 0.5 when _N_ = 0.5 carrying capacity and 0.1 when _N_ = carrying capacity. One way to program this function is with the following  intermediate variables:
+
+* _X_<sub>1</sub> = carrying-capacity / 2
+* _X_<sub>2</sub> = carrying-capacity
+* _P_<sub>1</sub> = 0.5
+* _P_<sub>2</sub> = 0.1
+* _D_ = ln(_P_<sub>1</sub> / (1 - _P_<sub>1</sub>))
+* _C_ = ln(_P_<sub>2</sub> / (1 - _P_<sub>2</sub>))
+* _B_ = (_D_ - _C_) / (_X_<sub>1</sub> - _X_<sub>2</sub>)
+* _A_ = _D_ - (_B_ * _X_<sub>1</sub>)
+
+Now we can write the logistic function:
+
+* _z_(_x_) = exp(_A_ + (_B x_))
+* _P_(_x_) = _z_(_x_) / (1 + _z_(_x_))
+
+We only need to calculate the intermediate variables _A_, _B_, _C_, and _D_ once, during the initialization.
 @#$#@#$#@
 default
 true
@@ -1854,9 +1869,10 @@ NetLogo 6.1.0
     <timeLimit steps="100"/>
     <exitCondition>extinct?</exitCondition>
     <metric>ticks</metric>
+    <metric>extinct?</metric>
     <steppedValueSet variable="num-initial-packs" first="2" step="2" last="10"/>
     <enumeratedValueSet variable="mean-meeting-rate">
-      <value value="2"/>
+      <value value="1"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="mortality-adult">
       <value value="0.2"/>
@@ -1878,8 +1894,9 @@ NetLogo 6.1.0
     <timeLimit steps="100"/>
     <exitCondition>extinct?</exitCondition>
     <metric>ticks</metric>
+    <metric>extinct?</metric>
     <enumeratedValueSet variable="num-initial-packs">
-      <value value="2"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <steppedValueSet variable="mean-meeting-rate" first="0" step="0.5" last="4"/>
     <enumeratedValueSet variable="mortality-adult">
@@ -1903,7 +1920,7 @@ NetLogo 6.1.0
     <metric>time-to-extinction</metric>
     <steppedValueSet variable="num-initial-packs" first="2" step="2" last="10"/>
     <enumeratedValueSet variable="mean-meeting-rate">
-      <value value="2"/>
+      <value value="1"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="mortality-adult">
       <value value="0.2"/>
@@ -1925,7 +1942,7 @@ NetLogo 6.1.0
     <metric>p-extinction</metric>
     <metric>time-to-extinction</metric>
     <enumeratedValueSet variable="num-initial-packs">
-      <value value="2"/>
+      <value value="10"/>
     </enumeratedValueSet>
     <steppedValueSet variable="mean-meeting-rate" first="0" step="0.5" last="4"/>
     <enumeratedValueSet variable="mortality-adult">

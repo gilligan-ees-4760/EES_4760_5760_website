@@ -15,3 +15,6 @@ output: html_document
     * ODD:  [wild_dog_odd.pdf](/models/class_19/wild_dog_odd.pdf)
   * Testing library:
     * [jg-tif.nls](/models/class_19/jg-tif.nls)
+  * Behaviorspace output:
+    * [wild_dogs vary_initialization_pe-table.csv](/models/class_19/wild_dogs vary_initialization_pe-table.csv)
+    * [wild_dogs vary_meeting_disp_mortality_pe-table.csv](/models/class_19/wild_dogs vary_meeting_disp_mortality_pe-table.csv)
