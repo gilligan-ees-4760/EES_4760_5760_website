@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<!-- JG Reveal.js Template -->
-<html>
+<!-- JG Reveal.js Template --><html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Jonathan Gilligan" />
-  <title>A Model Is A Model Is A Model</title>
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
-  <link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
-  <link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css"/>
-  <style type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="Jonathan Gilligan">
+<title>A Model Is A Model Is A Model</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css">
+<style type="text/css">
       code{white-space: pre-wrap;}
       .smallcaps{font-variant: small-caps;}
       .line-block{white-space: pre-line;}
       .column{display: inline-block;}  </style>
-  <style type="text/css">
+<style type="text/css">
     div.qrbox,
     aside.qrbox {
      text-align: left;
@@ -29,17 +28,14 @@
      display: block;
     }
   </style>
-<!-- theme = solarized_jg -->
-<link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
-  <!-- Printing and PDF exports -->
-  <script>
+<!-- theme = solarized_jg --><link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+<!-- Printing and PDF exports --><script>
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
     link.type = 'text/css';
     link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
-  </script>
-  <!--[if lt IE 9]>
+  </script><!--[if lt IE 9]>
   <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
   <![endif]-->
 </head>
@@ -48,25 +44,19 @@
     <div class="slides">
 
             <!-- start title slide -->
-<section class='center' id='title' >
-    <h1 class="title">A Model Is A Model Is A Model</h1>
+<section class="center" id="title"><h1 class="title">A Model Is A Model Is A Model</h1>
     <h3 class="author">EES 4760/5760</h3>
         <h3 class="author">Agent-Based and Individual-Based Computational Modeling</h3>
     <h3 class="author">Jonathan Gilligan</h3>
     <h3 class="date">
       Class #2:
-       Tuesday, Aug. 27
+       Tuesday, August 27
       2019
     </h3>
 	<!-- end title slide -->
-</section>
-
-<section><section id="model-model-model" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>A Model Is A Model Is A Model</h1></section><section id="modeling" class="slide level2" data-transition="fade-in">
-<h2>Modeling</h2>
+</section><section><section id="model-model-model" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>A Model Is A Model Is A Model</h1></section><section id="modeling" class="slide level2" data-transition="fade-in"><h2>Modeling</h2>
 <div class="noborder">
-<table>
-<tbody>
-<tr>
+<table><tbody><tr>
 <td style="vertical-align:top;padding-top:50px;">
 <ul>
 <li>There are many “modelings”:
@@ -79,11 +69,12 @@
 <li>Stochastic Dynamic Models</li>
 <li>Physical Models</li>
 <li>…</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 </td>
 <td style="vertical-align:top;">
-<p><img data-src="assets/images/moniac.jpg" alt="Physical Model of the Economy" height="800" /></p>
+<p><img data-src="assets/images/moniac.jpg" alt="Physical Model of the Economy" height="800"></p>
 <p style="font-size:80%;margin-top:0;margin-bottom:0.5em;">
 MONIAC: A physical model of the British national economy
 </p>
@@ -91,19 +82,17 @@ MONIAC: A physical model of the British national economy
 (Photo: Wm. Vandivere, Fortune, March 1952, p. 100)
 </p>
 </td>
-</tr>
-</tbody>
-</table>
+</tr></tbody></table>
 </div>
-</section><section id="abm" class="slide level2">
-<h2>Agent-Based Modeling (ABM)</h2>
+</section><section id="abm" class="slide level2"><h2>Agent-Based Modeling (ABM)</h2>
 <div style="text-align:left;">
 <ul>
 <li>Two elements:
 <ol type="1">
 <li>Agent-based</li>
 <li>Modeling</li>
-</ol></li>
+</ol>
+</li>
 </ul>
 <div style="height:50px;">
 
@@ -114,52 +103,47 @@ MONIAC: A physical model of the British national economy
 <li class="fragment">Then consider what distinguishes agent-based modeling from other kinds.</li>
 </ul>
 </div>
-</section><section id="what-is-a-model" class="slide level2">
-<h2>What Is A Model?</h2>
+</section><section id="what-is-a-model" class="slide level2"><h2>What Is A Model?</h2>
 <ul>
 <li class="fragment">Definition (first try):
 <ul>
 <li class="fragment">A model is a simplified representation of reality</li>
-</ul></li>
-<li class="fragment">Why do we simplify?</li>
 </ul>
-</section><section id="modeling-2" class="slide level2">
-<h2>Modeling</h2>
+</li>
+<li class="fragment">Why do we simplify?</li>
+</ul></section><section id="modeling-2" class="slide level2"><h2>Modeling</h2>
 <ul>
 <li>Developing a model:
 <ul>
 <li>Problem solving under constraints</li>
-</ul></li>
+</ul>
+</li>
 <li>Most important constraints:
 <ul>
 <li>Incomplete information</li>
 <li>Lack of time</li>
 <li>Lack of resources (people, money, computing power, etc.)</li>
-</ul></li>
 </ul>
-</section><section id="example-1" class="slide level2">
-<h2>Example</h2>
+</li>
+</ul></section><section id="example-1" class="slide level2"><h2>Example</h2>
 <ul>
 <li class="fragment">You bought a six-pack of a tasty beverage last night,
 <ul>
 <li class="fragment">but when you get home this evening, you realize that you forgot to put it in the refrigerator.</li>
-</ul></li>
+</ul>
+</li>
 <li class="fragment">So you put it in the fridge, and now you want to know, without trial and error, when it will be cool enough to drink.</li>
 <li class="fragment">How do you approach the problem?</li>
-</ul>
-</section></section>
-<section><section id="heuristics-sec" class="title-slide slide level1" data-transition="fade-in" data-skip="true"><h1>Heuristics</h1></section><section id="heuristics" class="slide level2" data-transition="fade-in">
-<h2>Heuristics</h2>
+</ul></section></section><section><section id="heuristics-sec" class="title-slide slide level1" data-transition="fade-in" data-skip="true"><h1>Heuristics</h1></section><section id="heuristics" class="slide level2" data-transition="fade-in"><h2>Heuristics</h2>
 <ul>
 <li>Mental shortcuts</li>
 <li>Rules of thumb that experience has shown to be useful.</li>
 <li>When solving problems under constraints, apply heuristics in modeling:
 <ul>
 <li>Simplified representations</li>
-</ul></li>
 </ul>
-</section><section id="typical-heuristics" class="slide level2">
-<h2>Typical Heuristics</h2>
+</li>
+</ul></section><section id="typical-heuristics" class="slide level2"><h2>Typical Heuristics</h2>
 <ul>
 <li>Rephrase the problem</li>
 <li>Draw a simple diagram of the system</li>
@@ -167,22 +151,22 @@ MONIAC: A physical model of the British national economy
 <li>Identify essential variables</li>
 <li>Identify simplifying assumptions</li>
 <li>Use “salami tactics”: slice space and time</li>
-</ul>
-</section><section id="what-is-a-model-2" class="slide level2">
-<h2>What Is A Model</h2>
+</ul></section><section id="what-is-a-model-2" class="slide level2"><h2>What Is A Model</h2>
 <ul>
-<li><p>Definition (second try):</p>
+<li>
+<p>Definition (second try):</p>
 <ul>
 <li>A model is a purposeful (simplified) representation</li>
-</ul></li>
-<li><p>Modeling is something we all do all the time because we never have enough data and time!</p>
+</ul>
+</li>
+<li>
+<p>Modeling is something we all do all the time because we never have enough data and time!</p>
 <div style="height:50px;">
 
-</div></li>
+</div>
+</li>
 <li><p>Thinking = problem-solving = modeling</p></li>
-</ul>
-</section><section id="what-is-a-model-3" class="slide level2">
-<h2>What Is A Model?</h2>
+</ul></section><section id="what-is-a-model-3" class="slide level2"><h2>What Is A Model?</h2>
 <ul>
 <li>
 Modeling adaptive behavior means trying to model the models used by adaptive agents (plants, animals, humans, organizations, etc.)
@@ -190,10 +174,7 @@ Modeling adaptive behavior means trying to model the models used by adaptive age
 <li class="fragment">
 A model is a model is a model
 </li>
-</ul>
-</section></section>
-<section><section id="essential-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>Is Modeling Essential?</h1></section><section id="essential" class="slide level2" data-transition="fade-in">
-<h2>Is Modeling Essential?</h2>
+</ul></section></section><section><section id="essential-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>Is Modeling Essential?</h1></section><section id="essential" class="slide level2" data-transition="fade-in"><h2>Is Modeling Essential?</h2>
 <ul>
 <li>
 When trying to solve a problem, we keep asking ourselves, “is this aspect of the real system essential for solving my problem?”
@@ -209,27 +190,29 @@ In science, we keep developing the model to test our assumptions
 </li>
 </ul>
 </li>
-</ul>
-</section><section id="modeling-forest" class="slide level2">
-<h2>Example: Model A Forest</h2>
+</ul></section><section id="modeling-forest" class="slide level2"><h2>Example: Model A Forest</h2>
 <ul>
-<li class="fragment"><p>Without a clearly stated question or problem we cannot formulate a simplified representation.</p>
+<li class="fragment">
+<p>Without a clearly stated question or problem we cannot formulate a simplified representation.</p>
 <ul>
 <li class="fragment">We don’t know the purpose of the model</li>
-</ul></li>
-<li class="fragment"><p>The strategy:</p>
+</ul>
+</li>
+<li class="fragment">
+<p>The strategy:</p>
 <p><span style="color:#4F94CD;font-style:italic;">Model first, then think about what problems we can solve with the model</span></p>
-<p><em>does <strong>not</strong> work!</em></p></li>
-<li class="fragment"><p>Forest model:</p>
+<p><em>does <strong>not</strong> work!</em></p>
+</li>
+<li class="fragment">
+<p>Forest model:</p>
 <ul>
 <li class="fragment">Timber extraction</li>
 <li class="fragment">Ecosystem preservation</li>
 <li class="fragment">Forest fires</li>
 <li class="fragment">…</li>
-</ul></li>
 </ul>
-</section><section id="queue-model" class="slide level2">
-<h2>Example: Checkout Queue</h2>
+</li>
+</ul></section><section id="queue-model" class="slide level2"><h2>Example: Checkout Queue</h2>
 <ul>
 <li>
 Your purpose:
@@ -260,23 +243,20 @@ Airports, banks, etc.
 </li>
 </ul>
 </li>
-</ul>
-</section></section>
-<section><section id="lessons-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>Lessons for Agent-Based Modeling</h1></section><section id="lessons" class="slide level2" data-transition="fade-in">
-<h2>Lessons for Agent-Based Modeling</h2>
+</ul></section></section><section><section id="lessons-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>Lessons for Agent-Based Modeling</h1></section><section id="lessons" class="slide level2" data-transition="fade-in"><h2>Lessons for Agent-Based Modeling</h2>
 <ul>
 <li>ABM requires some specific techniques (programming, math, statistics)</li>
 <li>But general modeling principles apply.
 <ul>
 <li>Scientific modeling explicitly states heuristics, simplifying assumptions</li>
 <li><strong>Use math &amp; computer logic to rigorously explore consequences of assumptions</strong></li>
-</ul></li>
 </ul>
-</section><section id="lessons-2" class="slide level2">
-<h2>Lessons for Agent-Based Modeling</h2>
+</li>
+</ul></section><section id="lessons-2" class="slide level2"><h2>Lessons for Agent-Based Modeling</h2>
 <ul>
 <li>We must start with a clearly formulated research question</li>
-<li>We need to <strong>simplify</strong></li>
+<li>We need to <strong>simplify</strong>
+</li>
 <li>Iterative process:
 <ul>
 <li>Formulate question</li>
@@ -285,19 +265,17 @@ Airports, banks, etc.
 <li>Test program</li>
 <li>Analyze output</li>
 <li>Start over with modified question/model/program/etc.</li>
-</ul></li>
-<li>Modeling cycle</li>
 </ul>
-</section></section>
-<section><section id="modeling-cycle-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>The Modeling Cycle</h1></section><section id="modeling-cycle" class="slide level2" data-transition="fade-in">
-<h2>The Modeling Cycle</h2>
-<p><img data-src="assets/images/new-modeling-cycle.png" alt="Modeling Cycle" height="900" /></p>
-</section><section id="tasks-1" class="slide level2">
-<h2>Modeling Cycle Tasks</h2>
+</li>
+<li>Modeling cycle</li>
+</ul></section></section><section><section id="modeling-cycle-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>The Modeling Cycle</h1></section><section id="modeling-cycle" class="slide level2" data-transition="fade-in"><h2>The Modeling Cycle</h2>
+<p><img data-src="assets/images/new-modeling-cycle.png" alt="Modeling Cycle" height="900"></p>
+</section><section id="tasks-1" class="slide level2"><h2>Modeling Cycle Tasks</h2>
 <h3 id="formulate-the-question"><strong>Formulate the Question</strong></h3>
 <ul>
 <li>Question or problem serves as filter for what to include in the model.</li>
-<li>Modeling the system first and then specifying the question <span style="color:#800000;"><em>does not work</em></span></li>
+<li>Modeling the system first and then specifying the question <span style="color:#800000;"><em>does not work</em></span>
+</li>
 </ul>
 <div class="fragment" style="padding-top:50px;">
 <h3 id="assemble-hypotheses"><strong>Assemble Hypotheses</strong></h3>
@@ -307,17 +285,18 @@ Airports, banks, etc.
 <li>Discuss and revise the conceptual model thoroughly, but not forever.
 <ul>
 <li><em>It can’t be tested in your head!</em></li>
-</ul></li>
+</ul>
+</li>
 </ul>
 </div>
-</section><section id="tasks-2" class="slide level2">
-<h2>Modeling Cycle Tasks</h2>
+</section><section id="tasks-2" class="slide level2"><h2>Modeling Cycle Tasks</h2>
 <h3 id="choose-model-structure"><strong>Choose Model Structure</strong></h3>
 <ul>
 <li>What are the model’s <strong>entities</strong>?
 <ul>
 <li>How are they characterized (state variables)?</li>
-</ul></li>
+</ul>
+</li>
 <li>How do you represent the environment?</li>
 <li>What are temporal and spatial resolutions and extents?</li>
 </ul>
@@ -328,8 +307,7 @@ Airports, banks, etc.
 <li>Choose appropriate software platform/system</li>
 </ul>
 </div>
-</section><section id="tasks-3" class="slide level2">
-<h2>Modeling Cycle Tasks</h2>
+</section><section id="tasks-3" class="slide level2"><h2>Modeling Cycle Tasks</h2>
 <h3 id="analyze-the-model"><strong>Analyze the Model</strong></h3>
 <ul>
 <li>Perform controlled experiments to understand your model</li>
@@ -344,17 +322,15 @@ Airports, banks, etc.
 <li>Keep old versions of your model
 <ul>
 <li><span style="font-size:80%;">Name files <code>model_1.nlogo</code>, <code>model_2.nlogo</code>, etc.</span></li>
-<li><span style="font-size:80%;">Or use revision-control software (git, mercurial, etc.)<br/> (See “Reading Resources and Computing Tools” handout)</span></li>
-</ul></li>
+<li><span style="font-size:80%;">Or use revision-control software (git, mercurial, etc.)<br> (See “Reading Resources and Computing Tools” handout)</span></li>
+</ul>
+</li>
 <li>Final documentation should enable peers to fully understand and re-implement model (ODD specification) (More on this next week)</li>
 </ul>
 </div>
-</section><section id="modeling-cycle-final" class="slide level2">
-<h2>The Modeling Cycle</h2>
-<p><img data-src="assets/images/new-modeling-cycle.png" alt="Modeling Cycle" height="900" /></p>
-</section></section>
-<section><section id="example-model-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>Example Models</h1></section><section id="example-model-vu" class="slide level2" data-transition="fade-in">
-<h2>Examples of Agent-Based Model Research at Vanderbilt</h2>
+</section><section id="modeling-cycle-final" class="slide level2"><h2>The Modeling Cycle</h2>
+<p><img data-src="assets/images/new-modeling-cycle.png" alt="Modeling Cycle" height="900"></p>
+</section></section><section><section id="example-model-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1>Example Models</h1></section><section id="example-model-vu" class="slide level2" data-transition="fade-in"><h2>Examples of Agent-Based Model Research at Vanderbilt</h2>
 <ul>
 <li>Sustainable management of water in South Africa</li>
 <li>Impact of land-use change on Brazilian ecosystems</li>
@@ -366,9 +342,7 @@ Airports, banks, etc.
 <li>Impact of Nashville gentrification on mobility &amp; access to mass transit</li>
 <li>Can prediction markets affect belief in climate change?</li>
 <li>Teaching K-12 science</li>
-</ul>
-</section><section id="example-model" class="slide level2" data-transition="fade-in">
-<h2>Other Examples of Agent-Based Model Applications</h2>
+</ul></section><section id="example-model" class="slide level2" data-transition="fade-in"><h2>Other Examples of Agent-Based Model Applications</h2>
 <ul>
 <li>Predator-prey interactions</li>
 <li>Preserving viability of threatened species</li>
@@ -381,13 +355,10 @@ Airports, banks, etc.
 <li>Mechanisms of septic shock (bacteria in human body)</li>
 <li>Developing strategies for responding to mass shootings</li>
 <li>Effect of opium trafficking on Taliban insurgency in Afghanistan</li>
-</ul>
-</section></section>
-    </div>
+</ul></section></section>
+</div>
   </div>
-  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script>
-
-  <script>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script><script>
 
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
@@ -432,9 +403,7 @@ Airports, banks, etc.
       	// Shortcut for hiding all fragments
       	skipFragmentsHideShortcut: 'T',
       	      });
-    </script>
-
-<script>
+    </script><script>
   	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
 
 		// Find all nodes matching the description
@@ -482,19 +451,12 @@ Airports, banks, etc.
 	'</div>' + '\n' +
   '</div>' + '\n'
   );
-</script>
-
-<script>
+</script><script>
 var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
                 TeX: {extensions: ["color.js", "mhchem.js"]
                   },
                 "HTML-CSS" : {scale: 100 }};
-</script>
-
-
-
-  <!-- dynamically load mathjax for compatibility with self-contained -->
-<script type="text/x-mathjax-config">
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script type="text/x-mathjax-config">
 MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
     var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
     VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
@@ -509,17 +471,14 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
 	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
 	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
 	});
-  </script>
-  <script>
+  </script><script>
     (function () {
       var script = document.createElement("script");
       script.type = "text/javascript";
       script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
-  </script>
-
-  <script>
+  </script><script>
   var qrbox = document.querySelector("#qrbox");
   var advance_fragment = 0;
 
@@ -577,9 +536,7 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
     qrbox.setAttribute('qr-box-hide', 'true');
   });
 
-  </script>
-
-  <script>
+  </script><script>
   Reveal.addEventListener('slidechanged', function() {
     while (advance_fragment > 0) {
       // console.log('advancing fragment');
@@ -604,5 +561,5 @@ MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
     advance_fragment++;
     }, false);
   </script>
-  </body>
+</body>
 </html>
