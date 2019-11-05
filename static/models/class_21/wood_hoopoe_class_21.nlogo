@@ -10,13 +10,12 @@ globals
   group-sizes       ; A list of group sizes by patch, for output
   foray-ages        ; A list of ages at which birds foray
   non-alpha-ages    ; A list of ages at which birds *consider* forays
-  foray-months       ; A list of months at which birds foray
+  foray-months      ; A list of months at which birds foray
   pop-months        ; A list of population by month
-  a-log
-  b-log
-  ; p-vacant
   foray-trials
   foray-success
+  p-scout           ; probability of scouting for random case
+  p-foray-success   ; probability of successful foray.
 ]
 
 turtles-own
@@ -29,28 +28,27 @@ turtles-own
 
 to setup
 
-  ca
-  file-close-all
+  clear-all
   reset-ticks
 
   ; Set parameters and globals
   set month 0
-  set year 1
-  set survival-prob 0.99
+  set year 0
+  set survival-prob 0.98
   set fecundity 2
   set scouting-distance 5
   set scouting-survival 0.8
-  ; set p-vacant 0.02
+  set p-scout 0.10
+  set p-foray-success 0.10
 
   set group-sizes []     ; An empty list
   set foray-ages []      ; An empty list
   set non-alpha-ages []  ; An empty list
   set foray-months []    ; An empty list
-  set pop-months []      ; An empty list
+  set pop-months n-values 12 [ 0 ]
 
   set foray-trials 0
   set foray-success 0
-
 
   ; Shade the patches
   ask patches
@@ -85,13 +83,6 @@ to setup
 
   ]
 
-  ; Open test output file
-  ; First, delete it instead of appending to it
-  if (file-exists? "HoopoeModel-Test.csv")
-  [carefully [file-delete "HoopoeModel-Test.csv"]
-    [print error-message]]
-  file-open "HoopoeModel-Test.csv"
-
 end
 
 
@@ -101,7 +92,6 @@ to go
 
   if year = 22 and month = 12
   [
-    file-close-all
     stop
   ]
 
@@ -117,7 +107,7 @@ to go
     ask turtles with [is-female? and is-alpha?] [reproduce]
     ]
 
-  ask turtles [ set pop-months lput month pop-months ]
+  set pop-months (replace-item (month - 1) pop-months (item (month - 1) pop-months + count turtles))
 
   ask turtles [do-mortality]
 
@@ -163,14 +153,8 @@ to scout  ; a turtle procedure
   ; Record age for output
   set non-alpha-ages lput age-in-months non-alpha-ages
 
-  ; Test output
-   file-type (word who "," month "," is-alpha? "," is-female? "," age-in-months "," I-should-scout "," elders "," (p-alpha month) "," p-scout ",")
-   ;ask other turtles-here
-   ;[file-type (word is-alpha? "," is-female? "," age-in-months ",")]
-   file-print count turtles-here
-
   ; First decide whether to scout by calling the scouting decision reporter
-  if not I-should-scout [stop]
+  if not go-scouting? [stop]
 
   ; Then do it
   ; Record age of forayers for output
@@ -216,31 +200,29 @@ to scout  ; a turtle procedure
 
 end
 
-to-report elders
-  report count turtles-here with [(is-female? = [is-female?] of myself) and ((age-in-months > [age-in-months] of myself))] ; or is-alpha?)]
-end
-
-to-report p-survive [ mon ]
-    report survival-prob ^ (12 - mon)
-end
-
-to-report p-alpha [ mon ]
-    let p-surv survival-prob ^ (12 - mon)
-    report (1 - p-surv) ^ elders
-end
-
-to-report p-scout
-  let strategy "random"
-  ; This version assumes the decision is random, with 50% probability
-  if strategy = "random"
+to-report elders [ include-alphas? ]
+  let elders-here (other turtles-here) with
   [
-    report 0.5
+    (is-female? = [is-female?] of myself) and
+    (age-in-months > [age-in-months] of myself)
   ]
-  report 0.5
+
+  if not include-alphas?
+  [
+    set elders-here elders-here with [ not is-alpha? ]
+  ]
+
+  report count elders-here
 end
 
-to-report I-should-scout  ; a turtle reporter for the scouting decision; returns a boolean
-  report random-bernoulli p-scout
+to-report go-scouting-random?
+  ifelse random-bernoulli p-scout
+  [ report true ]
+  [ report false ]
+end
+
+to-report go-scouting?  ; a turtle reporter for the scouting decision; returns a boolean
+  report go-scouting-random?
 end
 
 
@@ -300,7 +282,8 @@ to update-output
 
     set-current-plot "population"
 
-    histogram pop-months
+    clear-plot
+    foreach pop-months [ m-pop -> plot (m-pop / year) ]
   ]
 
   set-current-plot "Foray Month Histogram"
@@ -466,7 +449,7 @@ Group Size Histogram
 Number of birds
 Number of groups
 0.0
-10.0
+15.0
 0.0
 10.0
 true
@@ -550,7 +533,7 @@ true
 false
 "" ""
 PENS
-"default" 1.0 1 -16777216 true "" "histogram [elders] of turtles"
+"default" 1.0 1 -16777216 true "" "histogram [elders true] of turtles"
 
 BUTTON
 148
@@ -575,10 +558,10 @@ PLOT
 774
 418
 population
-NIL
-NIL
-1.0
-13.0
+Month
+Population
+0.0
+12.0
 0.0
 10.0
 true
@@ -937,7 +920,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.1.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

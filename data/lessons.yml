@@ -98,18 +98,19 @@ lessons:
 - date: '2019-11-05'
   title: Theory Development
   reading: /reading/reading_21
+  lecture: /slides/class_21
 - date: '2019-11-07'
   title: Parameterization and Calibration
   reading: /reading/reading_22
-- date: '2019-11-08'
-  title: Draft Model Code Due
-  assignment: project_draft_code
 - date: '2019-11-12'
   title: Parameterization and Calibration 2
   reading: /reading/reading_23
 - date: '2019-11-14'
   title: Analyzing ABMs
   reading: /reading/reading_24
+- date: '2019-11-15'
+  title: Draft Model Code Due
+  assignment: project_draft_code
 - date: '2019-11-19'
   title: Sensitivity and Robustness
   reading: /reading/reading_25

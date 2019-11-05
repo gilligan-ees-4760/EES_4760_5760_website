@@ -10,13 +10,13 @@ globals
   group-sizes       ; A list of group sizes by patch, for output
   foray-ages        ; A list of ages at which birds foray
   non-alpha-ages    ; A list of ages at which birds *consider* forays
-  foray-months       ; A list of months at which birds foray
+  foray-months      ; A list of months at which birds foray
   pop-months        ; A list of population by month
-  a-log
-  b-log
-  ; p-vacant
   foray-trials
   foray-success
+  ; p-scout           ; probability of scouting for random case
+  p-foray-success   ; probability of successful foray.
+  ; time-horizon      ; Time horizon for calculating expected offspring
 ]
 
 turtles-own
@@ -29,36 +29,28 @@ turtles-own
 
 to setup
 
-  ca
-  file-close-all
+  clear-all
   reset-ticks
 
   ; Set parameters and globals
-  set month 12
+  set month 0
   set year 0
-  set survival-prob 0.99
+  set survival-prob 0.98
   set fecundity 2
   set scouting-distance 5
   set scouting-survival 0.8
-  ; set p-vacant 0.02
+  ; set p-scout 0.10
+  set p-foray-success 0.10
+  ; set time-horizon 1
 
   set group-sizes []     ; An empty list
   set foray-ages []      ; An empty list
   set non-alpha-ages []  ; An empty list
   set foray-months []    ; An empty list
-  set pop-months []      ; An empty list
+  set pop-months n-values 12 [ 0 ]
 
   set foray-trials 0
   set foray-success 0
-
-;  let x1 0
-;  let x2 3
-  let p1 0.5
-  let p2 0.9
-  let d-log ln(p1 / (1.0 - p1))
-  let c-log ln(p2 / (1.0 - p2))
-  set b-log (d-log - c-log) / (x1 - x2)
-  set a-log d-log - (b-log * x1)
 
   ; Shade the patches
   ask patches
@@ -93,13 +85,6 @@ to setup
 
   ]
 
-  ; Open test output file
-  ; First, delete it instead of appending to it
-  if (file-exists? "HoopoeModel-Test.csv")
-  [carefully [file-delete "HoopoeModel-Test.csv"]
-    [print error-message]]
-  file-open "HoopoeModel-Test.csv"
-
 end
 
 
@@ -109,7 +94,6 @@ to go
 
   if year = 22 and month = 12
   [
-    file-close-all
     stop
   ]
 
@@ -125,7 +109,7 @@ to go
     ask turtles with [is-female? and is-alpha?] [reproduce]
     ]
 
-  ask turtles [ set pop-months lput month pop-months ]
+  set pop-months (replace-item (month - 1) pop-months (item (month - 1) pop-months + count turtles))
 
   ask turtles [do-mortality]
 
@@ -171,14 +155,8 @@ to scout  ; a turtle procedure
   ; Record age for output
   set non-alpha-ages lput age-in-months non-alpha-ages
 
-  ; Test output
-   file-type (word who "," month "," is-alpha? "," is-female? "," age-in-months "," I-should-scout "," elders "," (p-alpha month) "," p-scout ",")
-   ;ask other turtles-here
-   ;[file-type (word is-alpha? "," is-female? "," age-in-months ",")]
-   file-print count turtles-here
-
   ; First decide whether to scout by calling the scouting decision reporter
-  if not I-should-scout [stop]
+  if not go-scouting? [stop]
 
   ; Then do it
   ; Record age of forayers for output
@@ -224,58 +202,90 @@ to scout  ; a turtle procedure
 
 end
 
-to-report elders
-  report count other turtles-here with [(is-female? = [is-female?] of myself) and ((age-in-months > [age-in-months] of myself))]
+to-report elders [ include-alphas? ]
+  let elders-here (other turtles-here) with
+  [
+    (is-female? = [is-female?] of myself) and
+    (age-in-months > [age-in-months] of myself)
+  ]
+
+  if not include-alphas?
+  [
+    set elders-here elders-here with [ not is-alpha? ]
+  ]
+
+  report count elders-here
 end
 
-to-report p-survive [ mon ]
-    report survival-prob ^ (12 - mon)
+to-report go-scouting-random?
+  ifelse random-bernoulli p-scout
+  [ report true ]
+  [ report false ]
 end
 
-to-report p-alpha [ mon ]
-    report (1 - p-survive mon) ^ elders
+to-report go-scouting-always?
+  report true
 end
 
-to-report p-scout
-  ;let strategy "random"
-  ; This version assumes the decision is random, with 50% probability
+to-report go-scouting-never?
+  report false
+end
+
+to-report go-scouting-direct?
+  ; This alternative assumes decision is taken rationally to maximize probability of reproducing:
+  ; Compare expected lifetime number of offspring if the bird stays and if it forays this month.
+  ; Choose the option that provides the greater expected number of offspring.
+
+  let num-elders elders true
+
+  let p-find-site 0.012                    ; estimated probability of finding a site if foray
+  let offspring-if-stay 0
+  let offspring-if-scout 0
+  let breed-year 0
+
+  while [breed-year <= time-horizon] ; Iterate over lifetime years and
+                                     ; calculate expected offspring for each year
+  [
+    ; First, calculate probable offspring for year if stay and wait for elders to die
+    let months-til-breeding ((breed-year + 1) * 12) - month
+    let p-elders-die (1 - (survival-prob ^ months-til-breeding)) ^ num-elders
+    let p-survive survival-prob ^ months-til-breeding
+    set offspring-if-stay offspring-if-stay + (p-survive * p-elders-die * fecundity)
+
+    ; Second, calculate probable offspring for year if scout this month
+    set p-survive (p-survive * scouting-survival)
+    let p-become-alpha 1 - ((1 - p-foray-success) * (1 - p-elders-die))
+    set offspring-if-scout offspring-if-scout + (p-survive * p-become-alpha * fecundity)
+
+    set breed-year breed-year + 1
+  ]
+
+  ifelse offspring-if-scout > offspring-if-stay
+  [ report true ]
+  [ report false ]
+end
+
+to-report go-scouting-indirect?
+  ifelse random-bernoulli (1.0 - 0.5 ^ (elders false))
+  [ report true ]
+  [ report false ]
+end
+
+to-report go-scouting?  ; a turtle reporter for the scouting decision; returns a boolean
   if strategy = "random"
-  [
-    report 0.5
-  ]
-  if strategy = "elders"
-  [
-    report (1 - 0.5 ^ elders)
-  ]
-  if strategy = "expected reproduction"
-  [
-    let m month
-    if m >= 11 [ set m (m - 12) ]
-    let pa (p-alpha m)
-    ifelse pa <= 0
-    [
-      report 1
-    ]
-    [
-      ; let ratio p-vacant * scouting-survival * (p-survive m) / pa
-      let ratio p-vacant * scouting-survival / pa
-      set ratio ln(ratio)
-      let x a-log + b-log * ratio
-      if x > 100 [ report 1 ]
-      let z exp(x)
-      report z / (1 + z)
-    ]
-  ]
-  report 0.5
-end
-
-to-report I-should-scout  ; a turtle reporter for the scouting decision; returns a boolean
-  report random-bernoulli p-scout
+  [ report go-scouting-random? ]
+  if strategy = "always"
+  [ report go-scouting-always? ]
+  if strategy = "never"
+  [ report go-scouting-never? ]
+  if strategy = "direct"
+  [ report go-scouting-direct? ]
+  if strategy = "indirect"
+  [ report go-scouting-indirect? ]
 end
 
 
 to reproduce  ; a turtle procedure only executed by female alphas
-
   ; Cannot reproduce if there is no male alpha
   if not any? turtles-here with [(not is-female?) and is-alpha?] [stop]
 
@@ -294,28 +304,22 @@ to reproduce  ; a turtle procedure only executed by female alphas
       set color pink
     ]
   ]
-
 end
 
 
 to do-mortality  ; a turtle procedure
-
   if (not random-bernoulli survival-prob) [die]
-
 end
 
 
 to become-alpha  ; turtle procedure done any time a bird becomes alpha
-
   set is-alpha? true
   set size 0.2
   setxy (pxcor - 0.4 + random-float 0.8) (pycor + random-float 0.4)
-
 end
 
 
 to update-output
-
   ; Histogram group sizes, using data only from month 12
   if month = 12
   [
@@ -330,7 +334,8 @@ to update-output
 
     set-current-plot "population"
 
-    histogram pop-months
+    clear-plot
+    foreach pop-months [ m-pop -> plot (m-pop / year) ]
   ]
 
   set-current-plot "Foray Month Histogram"
@@ -345,12 +350,10 @@ to update-output
   ifelse length foray-ages > 0
   [plot mean foray-ages]
   [plot 0]
-
 end
 
 
 to-report random-bernoulli [probability-true]
-
   ; First, do some defensive programming to make sure "probability-true"
   ; has a sensible value
 
@@ -363,7 +366,6 @@ to-report random-bernoulli [probability-true]
   if-else random-float 1.0 < probability-true
   [report true]
   [report false]
-
 end
 
 to-report fraction-success
@@ -496,7 +498,7 @@ Group Size Histogram
 Number of birds
 Number of groups
 0.0
-10.0
+15.0
 0.0
 10.0
 true
@@ -560,7 +562,7 @@ CHOOSER
 120
 strategy
 strategy
-"random" "elders" "expected reproduction"
+"random" "always" "never" "direct" "indirect"
 0
 
 MONITOR
@@ -590,7 +592,7 @@ true
 false
 "" ""
 PENS
-"default" 1.0 1 -16777216 true "" "histogram [elders] of turtles"
+"default" 1.0 1 -16777216 true "" "histogram [elders true] of turtles"
 
 BUTTON
 148
@@ -615,10 +617,10 @@ PLOT
 774
 418
 population
-NIL
-NIL
-1.0
-13.0
+Month
+Population
+0.0
+12.0
 0.0
 10.0
 true
@@ -628,59 +630,34 @@ PENS
 "default" 1.0 1 -16777216 true "" ""
 
 SLIDER
-22
-608
-194
-641
-x1
-x1
--5
-5
-0.8
+20
+514
+192
+547
+time-horizon
+time-horizon
+0
+25
+1.0
+1
+1
+years
+HORIZONTAL
+
+SLIDER
+20
+478
+192
+511
+p-scout
+p-scout
+0
+1
 0.1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-22
-646
-194
-679
-x2
-x2
-0
-2
-1.1
-0.02
-1
-NIL
-HORIZONTAL
-
-SLIDER
-22
-684
-194
-717
-p-vacant
-p-vacant
-0
-1
-0.2
 0.01
 1
 NIL
 HORIZONTAL
-
-TEXTBOX
-28
-570
-194
-600
-Parameters for probabilities in \"expected reproduction\" strategy
-11
-0.0
-1
 
 @#$#@#$#@
 # Woodhoopoe Model
@@ -1032,7 +1009,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.1.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
