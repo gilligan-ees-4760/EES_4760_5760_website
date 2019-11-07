@@ -234,7 +234,8 @@ to-report p-survive [ mon ]
 end
 
 to-report p-alpha [ mon ]
-  report (1 - (p-survive mon)) ^ elders
+  let p-surv survival-prob ^ (12 - mon)
+  report (1 - p-surv) ^ elders
 end
 
 to-report p-scout
@@ -251,7 +252,7 @@ to-report p-scout
   if strategy = "expected reproduction"
   [
     let m month
-    ; if m >= 11 [ set m (m - 12) ]
+    ; if m >= 12 [ set m (m - 12) ]
     let pa (p-alpha m)
     ifelse pa = 0
     [
@@ -265,7 +266,7 @@ to-report p-scout
       report z / (1 + z)
     ]
   ]
-  report 0.5
+  stop
 end
 
 to-report I-should-scout  ; a turtle reporter for the scouting decision; returns a boolean
@@ -380,7 +381,7 @@ to-report age-diff
 end
 
 to-report group-dist-1
-  ifelse ((length filter [ ?1 -> ?1 = 2 ] group-sizes) > (0.5 * length group-sizes)) [ report 1] [ report 0]
+  ifelse ((length filter [? = 2] group-sizes) > (0.5 * length group-sizes)) [ report 1] [ report 0]
 end
 
 to-report group-dist-2
@@ -388,11 +389,11 @@ to-report group-dist-2
 end
 
 to-report group-dist-3
-  ifelse (length filter [ ?1 -> ?1 < 2 ] group-sizes) > (length filter [ ?1 -> ?1 > 2 ] group-sizes) [ report 1 ] [ report 0 ]
+  ifelse (length filter [? < 2] group-sizes) > (length filter [? > 2] group-sizes) [ report 1 ] [ report 0 ]
 end
 
 to-report foray-timing
-  ifelse (length filter [ ?1 -> ?1 >= 4 and ?1 <= 10 ] foray-months) > (length foray-months) [ report 1] [report 0]
+  ifelse (length filter [? >= 4 and ? <= 10] foray-months) > (length foray-months) [ report 1] [report 0]
 end
 
 to-report performance
@@ -404,12 +405,12 @@ to optimize
   set best-pv 0
   set best-perf 0
   let perf 0
-  let x2-vals n-values 50 [ ?1 -> 0.01 + ?1 * 0.01 ]
-  let pv-vals n-values 50 [ ?1 -> 0.01 + ?1 * 0.01 ]
-  foreach x2-vals [ ?1 ->
-    set x2 ?1
-    foreach pv-vals [ ??1 ->
-      set p-vacant ??1
+  let x2-vals n-values 50 [ 0.01 + ? * 0.01 ]
+  let pv-vals n-values 50 [ 0.01 + ? * 0.01 ]
+  foreach x2-vals [
+    set x2 ?
+    foreach pv-vals [
+      set p-vacant ?
       type (word "x2 = " (precision x2 2) ", p-vacant = " (precision p-vacant 2) ", ")
       set perf 0
       repeat 10 [
@@ -435,10 +436,10 @@ end
 GRAPHICS-WINDOW
 14
 10
-772
-49
--1
--1
+774
+71
+12
+0
 30.0
 1
 10
@@ -692,7 +693,7 @@ x1
 x1
 -5
 5
-0.7
+0
 0.1
 1
 NIL
@@ -707,7 +708,7 @@ x2
 x2
 0
 2
-1.14
+0.34
 0.02
 1
 NIL
@@ -722,7 +723,7 @@ p-vacant
 p-vacant
 0
 1
-0.2
+0.12
 0.01
 1
 NIL
@@ -1080,13 +1081,14 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
+
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 5.3.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="optimize" repetitions="30" runMetricsEveryStep="false">
+  <experiment name="optimize" repetitions="10" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>go</go>
     <metric>age-diff</metric>
@@ -1095,8 +1097,10 @@ NetLogo 6.0.2
     <metric>group-dist-2</metric>
     <metric>group-dist-3</metric>
     <metric>performance</metric>
-    <steppedValueSet variable="x2" first="1" step="0.05" last="1.5"/>
-    <steppedValueSet variable="x1" first="0.5" step="0.05" last="0.9"/>
+    <steppedValueSet variable="x2" first="0.01" step="0.01" last="0.5"/>
+    <enumeratedValueSet variable="x1">
+      <value value="0"/>
+    </enumeratedValueSet>
     <steppedValueSet variable="p-vacant" first="0.01" step="0.01" last="0.5"/>
     <enumeratedValueSet variable="strategy">
       <value value="&quot;expected reproduction&quot;"/>
@@ -1115,6 +1119,7 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
+
 @#$#@#$#@
 0
 @#$#@#$#@

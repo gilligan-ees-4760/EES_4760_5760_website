@@ -102,6 +102,7 @@ lessons:
 - date: '2019-11-07'
   title: Parameterization and Calibration
   reading: /reading/reading_22
+  lecture: /slides/class_22
 - date: '2019-11-12'
   title: Parameterization and Calibration 2
   reading: /reading/reading_23

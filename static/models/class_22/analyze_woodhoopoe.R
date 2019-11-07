@@ -6,9 +6,9 @@ library(stringr)
 library(purrr)
 library(ggplot2)
 
-source("process_bs.R")
+source('process_bs.R')
 
-calibration <- bs_data("Sect20-5_WoodHoopoes Calibration-table.csv")
+calibration <- bs_data("Sect20-5_WoodHoopoes_2ndEd Calibration-table.csv")
 df <- calibration$data
 df <- df %>% rename(population = count.turtles,
                     vacancies = count.patches.with.count.turtles.here.with.is.alpha.2.)
@@ -31,12 +31,14 @@ ggplot(df2_sum, aes(x = scout.prob, y = survival.prob)) +
   scale_shape_manual(values = c(Abundance = 3, Variation = 0, Vacancy = 19),
                      breaks = c("Abundance", "Variation", "Vacancy"),
                      name = NULL) +
-  scale_size_manual(values = c(Abundance = 3, Variation = 3, Vacancy = 2),
+  scale_size_manual(values = c(Abundance = 3, Variation = 3, Vacancy = 1.5),
                     breaks = c("Abundance", "Variation", "Vacancy"),
                     name = NULL) +
   labs(x = "Scouting Probability", y = "Survival Probability")
 
-ggplot(df2_sum, aes(x = survival.prob, y = mean.pop, color = ordered(scout.prob))) +
+df2 %>% group_by(survival.prob, scout.prob) %>%
+  summarize(mean.pop = mean(population)) %>% ungroup() %>%
+  ggplot(aes(x = survival.prob, y = mean.pop, color = ordered(scout.prob))) +
   geom_point() + geom_line() +
   geom_hline(yintercept = c(115,135), color = "gray10") +
   labs(x = "Survival Probability", y = "Mean Population") +

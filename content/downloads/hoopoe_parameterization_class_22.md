@@ -10,10 +10,10 @@ output: html_document
 # Wood Hoopoe breeding models for in-class exercises on parameterization and calibration
 
 * [class_22_models.zip](/models/class_22/class_22_models.zip), which contains:
-  * Wood Hoopoe NetLogo model: [Sect20-5_WoodHoopoes.nlogo](/models/class_22/Sect20-5_WoodHoopoes.nlogo)
+  * Wood Hoopoe NetLogo model: [Sect20-5_WoodHoopoes_2ndEd.nlogo](/models/class_22/Sect20-5_WoodHoopoes_2ndEd.nlogo)
   * R Scripts to analyze behaviorspace output:
     * [process_bs.R](/models/class_22/process_bs.R)
     * [analyze_woodhoopoe.R](/models/class_22/analyze_woodhoopoe.R)
   * Behaviorspace output:
-    * [Sect20-5_WoodHoopoes Calibration-table.csv](https://github.com/gilligan-ees-4760/EES_4760_5760_website/raw/master/static/models/class_22/Sect20-5_WoodHoopoes%20Calibration-table.csv)
-    * [Sect20-5_WoodHoopoes Calibration2-table.csv](https://github.com/gilligan-ees-4760/EES_4760_5760_website/raw/master/static/models/class_22/Sect20-5_WoodHoopoes%20Calibration2-table.csv)
+    * [Sect20-5_WoodHoopoes_2ndEd Calibration-table.csv](https://github.com/gilligan-ees-4760/EES_4760_5760_website/raw/master/static/models/class_22/Sect20-5_WoodHoopoes_2ndEd%20Calibration-table.csv)
+    * [Sect20-5_WoodHoopoes_2ndEd Calibration-2-table.csv](https://github.com/gilligan-ees-4760/EES_4760_5760_website/raw/master/static/models/class_22/Sect20-5_WoodHoopoes_2ndEd%20Calibration2-table.csv)

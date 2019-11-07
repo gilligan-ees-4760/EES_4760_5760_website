@@ -96,7 +96,7 @@ bs_data <- function(inFile){
   d <- read.csv(inFile, header = TRUE, skip = skip_lines) %>%
     rename(run = X.run.number., tick = X.step.)
   num_vars <- d %>% map_lgl(is.numeric) %>% keep(~.x) %>% names()
-  d <- d %>% select_(.dots = num_vars) %>%
+  d <- d %>% select(!!!num_vars) %>%
     arrange(run, tick)
   names(d) <- str_replace_all(names(d), '\\.+','.')
   vars <- classify_vars(d)
