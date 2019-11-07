@@ -86,18 +86,39 @@
 <li>Adjust a few important parameters to reproduce patterns observed in real system</li>
 </ul>
 </li>
+</ul></section><section id="theory-development" class="slide level2"><h2>Theory-Development vs. Parameterization/Calibration</h2>
+<ul>
+<li>
+<strong>Theory Development:</strong>
+<ul>
+<li>Develop different submodels for agent behavior &amp; decision-making</li>
+<li>Identify the submodels that best reproduce a range of observed patterns</li>
+</ul>
+</li>
+<li>
+<strong>Parameterization and Calibration:</strong>
+<ul>
+<li>With a given submodel,
+<ul>
+<li>Decide which parameters to vary and which to leave fixed</li>
+<li>Choose values for the fixed parameters</li>
+<li>Find the values for the variable parameters that best reproduce observed patterns</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul></section></section><section><section id="testing-calibrating-sec" class="title-slide slide level1" data-skip="true"><h1>Testing and Calibrating</h1></section><section id="testing-calibrating" class="slide level2"><h2>Testing and Calibrating</h2>
 <ul>
 <li>Test program: Has it been implemented correctly?</li>
 <li class="fragment">Test submodels: Are they doing what you think they are doing?</li>
-<li class="fragment"><strong>Verificaton:</strong> Is the model doing what it’s supposed to do?
+<li class="fragment"><strong>Verification:</strong> Is the model doing what it’s supposed to do?
 <ul>
 <li>Reproduce patterns, data, observations.</li>
 </ul>
 </li>
 <li class="fragment">Understanding: What’s going on? Why?</li>
 <li class="fragment"><strong>Validation:</strong> Can we find new (independent, secondary) patterns in the model that we can test against new observations?</li>
-</ul></section><section id="theoretical-models" class="slide level2"><h2>Theoretical Models</h2>
+</ul></section><section id="theoretical-models" class="slide level2 center"><h2>Theoretical Models</h2>
 <ul>
 <li>No data to calibrate from</li>
 <li class="fragment">“Guesstimate” parameter values from what you do know.</li>
@@ -115,7 +136,7 @@
 <li class="fragment"><strong>We need a plan!</strong>
 </li>
 </ul></section></section><section><section id="master-sec" class="title-slide slide level1" data-skip="true"><h1>Master Plan for Analysis</h1></section><section id="master-plan" class="slide level2"><h2>Master plan for analysis</h2>
-<h3 id="controlled-simulation-experiments">Controlled Simulation Experiments</h3>
+<h3 id="controlled-experiments" class="center">Controlled Simulation Experiments</h3>
 <ul>
 <li>Controlled = simplify
 <ul>
@@ -136,7 +157,7 @@
 </li>
 </ul>
 </li>
-</ul></section><section id="test-submodels-separately" class="slide level2"><h2>Test submodels separately</h2>
+</ul></section><section id="testing-submodels" class="slide level2 center"><h2>Test submodels separately</h2>
 <ul>
 <li>Create a separate testing model</li>
 <li>Make a controlled environment for your submodel</li>
@@ -160,7 +181,7 @@
 <li class="fragment">etc.</li>
 </ul>
 </li>
-</ul></section><section id="categorical-vs.-best-fit" class="slide level2"><h2>Categorical vs. Best Fit</h2>
+</ul></section><section id="kinds-of-calibration" class="slide level2"><h2>Categorical vs. Best Fit</h2>
 <ul>
 <li>Best-fit: Numerical data, minimize difference.
 <ul>
@@ -182,7 +203,7 @@
 <li class="fragment">Just as with real experiments, it is important to think creatively.</li>
 </ul></section></section><section><section id="woodhoopoe-sec" class="title-slide slide level1" data-skip="true"><h1>Example: Woodhoopoe Model</h1></section><section id="woodhoopoe" class="slide level2"><h2>Example: Woodhoopoe Model</h2>
 <ul>
-<li>Use “random scouting” submodel</li>
+<li class="fragment">Use “random scouting” submodel</li>
 <li class="fragment">Parameters:<ul>
 <li>Survival probability (mortality)</li>
 <li>Scouting probability (<em>can’t be directly measured in real world</em>)</li>
