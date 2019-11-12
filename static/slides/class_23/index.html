@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="Jonathan Gilligan">
+<title>Agent-Based Models in Practice</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css">
+<style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+<style type="text/css">
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+  </style>
+<!-- theme = solarized_jg --><link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+<!-- Printing and PDF exports --><script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><!--[if lt IE 9]>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class="center" id="title"><h1 class="title">Agent-Based Models in Practice</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based and Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #23:
+       Tuesday November 12
+      2019
+    </h3>
+	<!-- end title slide -->
+</section><section><section id="ways-to-use-models" class="title-slide slide level1 center"><h1>Ways to use models</h1></section><section id="ways-to-use-models-1" class="slide level2 center"><h2>Ways to use models</h2>
+<ol>
+<li>Detailed predictions</li>
+<li>Theory-building</li>
+<li>What-if analysis</li>
+</ol></section></section><section><section id="prediction-sec" class="title-slide slide level1 center" data-skip="true"><h1>Detailed Predictions</h1></section><section id="prediction" class="slide level2 center"><h2>Detailed Predictions</h2>
+<ul>
+<li>Develop model:
+<ul>
+<li>Theory-driven
+<ul>
+<li>Use existing theory</li>
+</ul>
+</li>
+<li>Data-driven
+<ul>
+<li>Need <em>lots</em> of observations/data</li>
+<li>Look for patterns in data</li>
+<li>Describe patterns mathematically</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Calibrate model
+<ul>
+<li>Mathematical theory has parameters
+<ul>
+<li>Adjust parameters to make model agree with past observations</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Validate &amp; Verify</li>
+</ul></section><section id="validation-verification" class="slide level2 center"><h2>Validation &amp; Verification</h2>
+<ul>
+<li>
+<strong>Cross-validation</strong> (for comparing theories):
+<ul>
+<li class="fragment">Divide data into <span class="math inline">\(k\)</span> parts: <span class="math inline">\(1 \ldots k\)</span>
+<ul>
+<li>Each part has a turn as ``test set’’:
+<ul>
+<li>Fit model parameters to the other parts</li>
+<li>Compare predictions to test set.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Choose model that performs best over the <span class="math inline">\(k\)</span> comparisons.</li>
+</ul>
+</li>
+<li class="fragment"><strong>Hold-out testing</strong> (for estimating predictive accuracy):
+<ul>
+<li class="fragment">Divide data into <em>hold-out</em> and <em>training</em> data:
+<ul>
+<li>Divide <em>training</em> data into <span class="math inline">\(k\)</span> parts</li>
+<li>Use <em>cross-validation</em> to choose best model</li>
+<li>Calibrate best model on full <em>training</em> set</li>
+<li>Test predictions against <em>hold-out</em> set to estimate predictive power</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section></section><section><section id="theory-building-sec" class="title-slide slide level1 center" data-skip="true"><h1>Theory-Building</h1></section><section id="theory-building" class="slide level2 center"><h2>Theory-Building</h2>
+<ul>
+<li>Similar to detailed prediction
+<ul>
+<li class="fragment">Detailed prediction often uses very complicated models to capture all the relevant details of the real world</li>
+<li class="fragment">Theory-building often uses simplified models to capture just the most important aspects of what makes the real-world system tick.</li>
+</ul>
+</li>
+</ul></section></section><section><section id="what-if-sec" class="title-slide slide level1 center" data-skip="true"><h1>What-if analysis</h1></section><section id="what-if" class="slide level2 center"><h2>What-if analysis</h2>
+<ul>
+<li class="fragment">Does not necessarily need data</li>
+<li class="fragment">Start with simple theory or hypothesis</li>
+<li class="fragment">Explore implications</li>
+</ul></section><section id="robust-policy-analysis" class="slide level2"><h2>Robust Policy Analysis</h2>
+<ul>
+<li>How to make policy under extreme uncertainty:
+<ul>
+<li class="fragment">R. Lempert: Making policy for the next 100 years<ul>
+<li>planning for climate change, technological revolutions, etc.</li>
+</ul>
+</li>
+<li class="fragment">You can’t predict what will happen</li>
+<li class="fragment">Division: <em>policy variables</em> (things you can control), <em>external variables</em> (things you can’t control).</li>
+<li class="fragment">Use <em><strong>lots</strong></em> of model runs (BehaviorSpace goes nuts)
+<ul>
+<li>Which sets of <em>policy variables</em> avoid catastrophic outcomes across the widest range of <em>external variables</em>?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section></section><section><section id="realistic-expectations" class="title-slide slide level1 center"><h1>Realistic Expectations</h1></section><section id="realistic-expectations-1" class="slide level2 center"><h2>Realistic Expectations</h2>
+<ul>
+<li>Most ABM work <em><strong>does not</strong></em> aspire to make detailed predictions</li>
+<li>Much focuses on either theory-building or what-if analysis</li>
+</ul></section></section><section><section id="ebola-sec" class="title-slide slide level1 center"><h1>Example of Detailed Predictions:<br>2014 Ebola Epidemic</h1></section><section id="ebola-intro" class="slide level2 eighty"><h2>2014 Ebola Outbreak</h2>
+<ul>
+<li>Ebola hemorrhagic fever is highly infectious through contact with blood or other bodily fluids
+<ul>
+<li>It also spreads from contact with infected fruit bats and non-human primates</li>
+<li>40–50% of infected people die</li>
+</ul>
+</li>
+<li class="fragment">Outbreak began in spring 2014 in Guinea</li>
+<li class="fragment">By summer:<ul>
+<li>
+<p>Spread to Sierra Leone and Liberia with additional cases in Mali, Nigeria, and Senegal</p>
+<p><img data-src="assets/images/Ebola_map.png" alt="Map of 2014 Ebola epidemic" style="height:400px;"></p>
+</li>
+<li><p>100 new cases per week</p></li>
+<li class="fragment"><p>In July, U.S. Government asked computational biologists to develop models of outbreak.</p></li>
+</ul>
+</li>
+</ul>
+<div class="credit">
+<p>M.M. Waldrop, ``Special agents offer modeling upgrade,’’ PNAS <strong>114</strong>, 7176–7179 (2017).</p>
+</div>
+</section><section id="ebola-abm" class="slide level2"><h2>Agent-Based Modeling of Ebola Outbreak</h2>
+<ul>
+<li>Goals of model:
+<ul>
+<li>Determine how bad the outbreak will become</li>
+<li>Provide guidance on number and location of field hospitals</li>
+<li>Develop plan to field-test experimental vaccine</li>
+</ul>
+</li>
+<li class="fragment">Challenges<ul>
+<li class="fragment">Simple equations can predict general properties of disease spread</li>
+<li class="fragment">Spread of Ebola also depended on:<ul>
+<li>Detailed geography and transportation networks</li>
+<li>Human behavior and social/familial relationships</li>
+</ul>
+</li>
+<li class="fragment">These required agent-based models</li>
+</ul>
+</li>
+<li class="fragment">Relief agencies needed answers in <em>weeks</em>
+</li>
+</ul>
+<div class="credit">
+<p>M.M. Waldrop, ``Special agents offer modeling upgrade,’’ PNAS <strong>114</strong>, 7176–7179 (2017).</p>
+</div>
+</section><section id="ebola-structure" class="slide level2"><h2>Schematic structure of model</h2>
+<p><img data-src="assets/images/Ebola_model_schematic.png" alt="Schematic structure of model" style="height:880px;"></p>
+<div class="credit">
+<p>K.A. Alexander <em>et al.</em>, “Modeling Wildlife-Associated Zoönoses: Applications and Caveats,” Vector-Borne and Zoönotic Diseases <strong>12</strong>, 1005–1018 (2012).</p>
+</div>
+</section><section id="ebola-calibration" class="slide level2 ninety"><h2>Parameterizing and Calibrating the Model</h2>
+<ul>
+<li>The models needed detailed data that was hard to get
+<ul>
+<li class="fragment">At first the team had a high-school student doing a summer internship get up early every morning to look up data on the Facebook page of the Sierra Leone public health ministry</li>
+<li class="fragment">An undergraduate student intern would enter the data into a computer.</li>
+<li class="fragment">Later, they assigned a graduate student to work full time on gathering and entering the data.</li>
+</ul>
+</li>
+<li class="fragment">The models were tracking millions of people. They needed powerful supercomputers to run.</li>
+<li class="fragment">This initial modeling let them forecast that if the epidemic was not controlled, there would be between 500,000 and 1,400,000 cases by January 2015.</li>
+<li class="fragment">This was the decisive factor in President Obama’s decision to send U.S. military to help.</li>
+</ul>
+<div class="credit">
+<p>M.M. Waldrop, ``Special agents offer modeling upgrade,’’ PNAS <strong>114</strong>, 7176–7179 (2017).</p>
+</div>
+</section><section id="ebola-what-if" class="slide level2"><h2>What-If Modeling for Policy Guidance</h2>
+<ul>
+<li>The next steps were to use the model to guide policy decisions in responding to the epidemic.
+<ul>
+<li class="fragment">By October, health workers were providing better data and the model was doing well at tracking the spread of the epidemic.</li>
+<li class="fragment">One Friday in October, the government asked the modelers to tell them where to put mobile hospitals.<ul>
+<li>Cargo planes would be taking off Monday morning</li>
+</ul>
+</li>
+<li class="fragment">This required predicting not just the size of the epidemic, but the detailed locations of where sick people would be over the next several weeks and months.</li>
+<li class="fragment">The team worked all weekend and produced the necessary predictions.</li>
+</ul>
+</li>
+</ul></section><section id="ebola-predictions" class="slide level2"><h2>Model Predictions</h2>
+<p><img data-src="assets/images/Ebola_model_predictions.jpg" alt="Predictions from Ebola model" style="height:880px;"></p>
+<div class="credit">
+<p>M.M. Waldrop, ``Special agents offer modeling upgrade,’’ PNAS <strong>114</strong>, 7176–7179 (2017).</p>
+</div>
+</section><section id="ebola-behavior" class="slide level2 ninety"><h2>The Role of Human Behavior</h2>
+<ul>
+<li>Another important aspect of the spread of the disease is behavioral:
+<ul>
+<li>Traditional mourning practices include washing and touching the body of the deceased.
+<ul>
+<li>This spreads infection</li>
+</ul>
+</li>
+<li class="fragment">Agent-based models predicted that changing these behaviors would dramatically reduce the spread of disease.</li>
+<li class="fragment">Public health experts were skeptical that people would change their behaviors</li>
+<li class="fragment">In the end, people <em>did</em> change behavior to adopt quarantine and safer burial practices.</li>
+</ul>
+</li>
+<li class="fragment">The epidemic ended in January 2016.<ul>
+<li class="fragment">The final toll was 28,000 cases and 11,000 deaths</li>
+<li class="fragment">This was far less than would likely have occurred if the epidemic had gone untreated.</li>
+</ul>
+</li>
+</ul>
+<div class="credit">
+<p>M.M. Waldrop, ``Special agents offer modeling upgrade,’’ PNAS <strong>114</strong>, 7176–7179 (2017).</p>
+</div>
+</section><section id="ebola-vaccine" class="slide level2 ninety"><h2>Vaccine Testing</h2>
+<ul>
+<li>At the time of the epidemic, there was a new experimental vaccine for Ebola, but it had not been tested on people.</li>
+<li class="fragment">The agent-based models were used to design the field tests.</li>
+<li class="fragment">Question: How fast would the disease spread?<ul>
+<li>Would it be necessary to vaccinate everyone in the area?</li>
+<li>Or could health workers use a “ring” strategy?
+<ul>
+<li>Vaccinate only the people who had first- or second-degree contact with a victim.</li>
+</ul>
+</li>
+<li class="fragment">The model said that a ring strategy would work.</li>
+</ul>
+</li>
+<li class="fragment">The vaccine was tested and proved up to 100% effective at preventing Ebola.</li>
+<li class="fragment">Agent-based models played several important roles in guiding the international response.</li>
+</ul>
+<div class="credit">
+<p>M.M. Waldrop, ``Special agents offer modeling upgrade,’’ PNAS <strong>114</strong>, 7176–7179 (2017).</p>
+</div>
+</section></section><section><section id="example-research-model-sec" class="title-slide slide level1 center"><h1>Example Research Model</h1></section><section id="punish-model" class="slide level2 center"><h2>Example Research Model</h2>
+<p>J.J. Jordan <em>et al.</em>, “Third-party punishment as a costly signal of trustworthiness,” Nature <strong>530</strong>, 473 (2016). <a href="https://doi.org/doi:10.1038/nature16981">doi:10.1038/nature16981</a></p>
+<ul>
+<li>Cooperation and Cheating
+<ul>
+<li>Common situation:
+<ul>
+<li class="fragment">Everyone is better off if everyone cooperates than if everyone cheats.</li>
+<li class="fragment">Once everyone else has chosen their action, any individual is better off cheating than cooperating.</li>
+<li class="fragment"><em>Nash equilibrium</em>: Everyone making the best choice for himself produces the worst outcome for everyone.</li>
+<li class="fragment">Opposite of the “invisible hand” in economics.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section><section id="prisoners-dilemma" class="slide level2"><h2>Prisoner’s Dilemma</h2>
+<table>
+<thead><tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">B Cooperates</th>
+<th style="text-align: center;">B Defects</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>A Cooperates</strong></td>
+<td style="text-align: center;">5, 5</td>
+<td style="text-align: center;">0, 7</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>A Defects</strong></td>
+<td style="text-align: center;">7, 0</td>
+<td style="text-align: center;">1, 1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li class="fragment">No matter what player A does, player B is better off defecting</li>
+<li class="fragment">No matter what player B does, player A is better off defecting</li>
+<li class="fragment">If both players defect, both are worse off than if both cooperated.</li>
+</ul></section><section id="tragedy-commons" class="slide level2 ninety"><h2>Tragedy of the commons</h2>
+<ul>
+<li>Ten farmers share a pasture.</li>
+<li>A pasture can support 100 cows.</li>
+<li>If <span class="math inline">\(N_{\text{cows}} \le 100\)</span>, each cow produces $1,000 worth of milk per month.</li>
+<li>If <span class="math inline">\(N_{\text{cows}} &gt; 100\)</span>, each cow produces <span class="math display">\[\$1,000 \times \left(1 - \frac{(N_{\text{cows}} - 100)}{100}\right)\]</span> worth of milk per month.</li>
+<li class="fragment" data-fragment-index="1">Each farmer has 10 cows, each farmer earns $10,000 per month.</li>
+<li class="fragment" data-fragment-index="2">One farmer adds 1 cow: total 101.<ul>
+<li class="fragment" data-fragment-index="3">Each cow produces <span class="math inline">\(\$1000 \times (1 - (101 - 100)/100) = \$990\)</span>.</li>
+<li class="fragment" data-fragment-index="3">First farmer earns (11 $990 = $10,890),</li>
+<li class="fragment" data-fragment-index="3">Everyone else earns $9,900.</li>
+</ul>
+</li>
+<li class="fragment" data-fragment-index="4">Each farmer adds 1 cow: total 110.<ul>
+<li class="fragment" data-fragment-index="5">Each cow produces $900. Each farmer earns $9,900.</li>
+</ul>
+</li>
+</ul></section><section id="iterated-games" class="slide level2"><h2>Iterated games</h2>
+<ul>
+<li>If only playing once, best strategy is to cheat, because it is rational for everyone else to cheat.</li>
+<li class="fragment">If playing multiple turns, threat of punishment in future rounds promotes cooperation.</li>
+<li class="fragment">It is generally costly to punish people.</li>
+<li class="fragment">If someone cheats against you, it’s often worthwhile to punish them.</li>
+<li class="fragment">If you see someone cheating against another person and you aren’t affected, is it worth your while to punish the cheater, even if it costs you?</li>
+<li class="fragment">Does tragedy of commons inhibit people from punishing?</li>
+</ul></section><section id="game-theory" class="slide level2 center"><h2>Game Theory</h2>
+<ul>
+<li>Punishment sends a signal:
+<ul>
+<li>Deters cheaters.</li>
+<li>Signals that you are trustworthy.</li>
+</ul>
+</li>
+</ul></section></section><section><section id="punishment-game-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1>Game</h1></section><section id="punishment-game" class="slide level2" data-transition="fade-in"><h2>Game</h2>
+<ul>
+<li>Player has two roles: <strong>Signaler</strong> and <strong>Chooser</strong>
+</li>
+<li class="fragment"><strong>Signaler</strong> can be either <em>Trustworthy</em> or <em>Exploitative</em>.</li>
+<li class="fragment">Two kinds of signals: <em>Helping</em> or <em>Punishing</em> a third party.</li>
+<li class="fragment">Two stages:<ol type="1">
+<li>
+<strong>Signalers</strong> can pay costs to send signals.</li>
+<li>
+<strong>Choosers</strong> decide whether to accept <strong>Signalers</strong> as partners.</li>
+</ol>
+</li>
+<li class="fragment">Cost of signaling can be either small (<span class="math inline">\(s\)</span>) or large (<span class="math inline">\(\ell\)</span>)</li>
+</ul>
+<div class="credit">
+<p>J.J. Jordan <em>et al.</em>, “Third-party punishment as a costly signal of trustworthiness,” Nature <strong>530</strong>, 473 (2016). <a href="https://doi.org/doi:10.1038/nature16981">doi:10.1038/nature16981</a></p>
+</div>
+</section><section id="punishment-game-payoffs" class="slide level2"><h2>Payoffs</h2>
+<ul>
+<li>Payoffs after second stage are:</li>
+</ul>
+<table>
+<thead><tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Trustworthy Signaller</th>
+<th style="text-align: center;">Exploitative Signaller</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Chooser Accepts</td>
+<td style="text-align: center;">
+<span class="math inline">\(m\)</span>, <span class="math inline">\(r\)</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">\(-e\)</span>, <span class="math inline">\(r\)</span>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Chooser Rejects</td>
+<td style="text-align: center;">0, 0</td>
+<td style="text-align: center;">0, 0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<span class="math inline">\(m\)</span> is benefit of mutual cooperation,</li>
+<li>
+<span class="math inline">\(r\)</span> is reward for being trustworthy,</li>
+<li>
+<span class="math inline">\(e\)</span> is harm from exploitation.</li>
+</ul>
+<div class="credit">
+<p>J.J. Jordan <em>et al.</em>, “Third-party punishment as a costly signal of trustworthiness,” Nature <strong>530</strong>, 473 (2016). <a href="https://doi.org/doi:10.1038/nature16981">doi:10.1038/nature16981</a></p>
+</div>
+</section><section id="punishment-game-strategies" class="slide level2"><h2>Rational strategies</h2>
+<div class="bare" style="margin-top:2rem;">
+<p><img data-src="assets/images/Fig_1b.png" style="height:900px;"></p>
+</div>
+<div class="credit">
+<p>J.J. Jordan <em>et al.</em>, “Third-party punishment as a costly signal of trustworthiness,” Nature <strong>530</strong>, 473 (2016). <a href="https://doi.org/doi:10.1038/nature16981">doi:10.1038/nature16981</a></p>
+</div>
+</section></section><section><section id="punishment-abm-sec" class="title-slide slide level1 center" data-skip="true"><h1>Agent-based model</h1></section><section id="punishment-abm" class="slide level2"><h2>Agent-based model</h2>
+<ul>
+<li>Signaler randomly chosen to be Trustworthy or Exploitative.</li>
+<li>Chooser does not know Signaler type</li>
+<li class="fragment">Evolution of strategies:<ul>
+<li>Each agent plays a certain number of turns (a generation)</li>
+<li>Agents have probability of reproducing based on earnings from game.
+<ul>
+<li>Offspring inherit strategy with some random “mutations”</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="credit">
+<p>J.J. Jordan <em>et al.</em>, “Third-party punishment as a costly signal of trustworthiness,” Nature <strong>530</strong>, 473 (2016). <a href="https://doi.org/doi:10.1038/nature16981">doi:10.1038/nature16981</a></p>
+</div>
+</section><section id="punishment-model-results" class="slide level2"><h2>Outcome of evolution</h2>
+<p><img data-src="assets/images/Fig_1b.png" style="height:800px;"><img data-src="assets/images/Fig_1c.png" style="height:800px;"></p>
+<div class="credit">
+<p>J.J. Jordan <em>et al.</em>, “Third-party punishment as a costly signal of trustworthiness,” Nature <strong>530</strong>, 473 (2016). <a href="https://doi.org/doi:10.1038/nature16981">doi:10.1038/nature16981</a></p>
+</div>
+</section></section><section><section id="punishment-human-game-sec" class="title-slide slide level1 center" data-skip="true"><h1>Human Game</h1></section><section id="punishment-human-game" class="slide level2"><h2>Human Game</h2>
+<ul>
+<li>Amazon Mechanical Turk (Internet)</li>
+<li>Human players assigned to one of three games:
+<ol>
+<li class="fragment">Signaler can only punish.</li>
+<li class="fragment">Signaler can only help.</li>
+<li class="fragment">Signaler can help and punish.</li>
+</ol>
+</li>
+</ul>
+<div class="credit">
+<p>J.J. Jordan <em>et al.</em>, “Third-party punishment as a costly signal of trustworthiness,” Nature <strong>530</strong>, 473 (2016). <a href="https://doi.org/doi:10.1038/nature16981">doi:10.1038/nature16981</a></p>
+</div>
+</section><section id="punishment-trust-game" class="slide level2"><h2>Trust Game</h2>
+<ul>
+<li>To check whether signals are interpreted accurately by Chooser agents, run a second game:
+<ul>
+<li class="fragment">Chooser gets some money <span class="math inline">\(M\)</span>.
+<ul>
+<li>Chooses how much to <em>send</em> to Signaler (<span class="math inline">\(x\)</span>).</li>
+</ul>
+</li>
+<li class="fragment">Money sent to Signaler is tripled (Signaler get <span class="math inline">\(3x\)</span>)</li>
+<li class="fragment">Signaler decides how much of the <span class="math inline">\(3x\)</span> to <em>return</em> to Chooser.</li>
+</ul>
+</li>
+</ul>
+<div class="credit">
+<p>J.J. Jordan <em>et al.</em>, “Third-party punishment as a costly signal of trustworthiness,” Nature <strong>530</strong>, 473 (2016). <a href="https://doi.org/doi:10.1038/nature16981">doi:10.1038/nature16981</a></p>
+</div>
+</section><section id="punishment-signal-perception" class="slide level2"><h2>Perception of signaling:</h2>
+<p><img data-src="assets/images/Fig_2a.png" style="height:600px;"></p>
+<ul>
+<li class="fragment">Chooser shows trust by sending more money to Signalers who punish and who help.</li>
+<li class="fragment">Helping is a more powerful signal to Chooser than punishing.</li>
+<li class="fragment">This matches theory of rational behavior.</li>
+</ul>
+<div class="credit">
+<p>J.J. Jordan <em>et al.</em>, “Third-party punishment as a costly signal of trustworthiness,” Nature <strong>530</strong>, 473 (2016). <a href="https://doi.org/doi:10.1038/nature16981">doi:10.1038/nature16981</a></p>
+</div>
+</section><section id="punishment-signal-actual" class="slide level2 ninety"><h2>Actual signaliing</h2>
+<p><img data-src="assets/images/Fig_2b.png" style="height:600px;"></p>
+<ul>
+<li class="fragment">Signalers who punish are more trustworthy: return more money to Chooser.</li>
+<li class="fragment">Helping is indeed a more accurate signal of trustworthiness.</li>
+</ul>
+<div class="credit">
+<p>J.J. Jordan <em>et al.</em>, “Third-party punishment as a costly signal of trustworthiness,” Nature <strong>530</strong>, 473 (2016). <a href="https://doi.org/doi:10.1038/nature16981">doi:10.1038/nature16981</a></p>
+</div>
+</section><section id="punishment-signal-choice" class="slide level2"><h2>Signaler Choice</h2>
+<p><img data-src="assets/images/Fig_2c.png" style="height:600px;"></p>
+<ul>
+<li class="fragment">Signaler is less likely to punish when helping is an option.</li>
+</ul>
+<div class="credit">
+<p>J.J. Jordan <em>et al.</em>, “Third-party punishment as a costly signal of trustworthiness,” Nature <strong>530</strong>, 473 (2016). <a href="https://doi.org/doi:10.1038/nature16981">doi:10.1038/nature16981</a></p>
+</div>
+</section><section id="punishment-conclusions" class="slide level2"><h2>Conclusions</h2>
+<ul>
+<li>Evolved strategies of agents match both pure theory (rational strategy) and experimental results.</li>
+<li class="fragment">It is advantageous for third parties to carry out costly punishments when the punishments can signal trustworthiness to others in the community.</li>
+<li class="fragment">When there are less costly or more effective ways to signal trustworthiness, third parties are less likely to punish.</li>
+</ul>
+<div class="credit">
+<p>J.J. Jordan <em>et al.</em>, “Third-party punishment as a costly signal of trustworthiness,” Nature <strong>530</strong>, 473 (2016). <a href="https://doi.org/doi:10.1038/nature16981">doi:10.1038/nature16981</a></p>
+</div>
+</section></section>
+</div>
+  </div>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script><script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Push each slide change to the browser history
+        history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
+        // Vertical centering of slides
+        center: false,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
+        ],
+        keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
+    	    46: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'DEL' is pressed
+    	     8: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'R',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'T',
+      	      });
+    </script><script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_23">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_23"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_23">https://ees4760.jgilligan.org/slides/class_23</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_23/EES_4760_5760_class_23_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_23/EES_4760_5760_class_23_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script><script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script><script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script><script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }
+
+  Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script><script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    // console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+</body>
+</html>

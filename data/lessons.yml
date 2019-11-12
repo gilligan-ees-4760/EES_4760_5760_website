@@ -106,6 +106,7 @@ lessons:
 - date: '2019-11-12'
   title: Parameterization and Calibration 2
   reading: /reading/reading_23
+  lecture: /slides/class_23
 - date: '2019-11-14'
   title: Analyzing ABMs
   reading: /reading/reading_24
