@@ -110,6 +110,7 @@ lessons:
 - date: '2019-11-14'
   title: Analyzing ABMs
   reading: /reading/reading_24
+  lecture: /slides/class_24
 - date: '2019-11-15'
   title: Draft Model Code Due
   assignment: project_draft_code

@@ -309,7 +309,6 @@ The model does not use input from external models or data files.
 The submodel “__move__” is performed by individual households if they are unhappy. The household chooses a direction randomly from a uniform continuous distribution between 0 and 360 degrees, then moves forward a distance drawn randomly from a uniform continuous distribution of 0 to 10 grid cell widths. If there is already a household on the grid cell at this new location, the household moves again with a new random direction and distance. If the new grid cell is empty, the household moves to its center.
 
 The submodel “__update__” is conducted by all households to determine whether they tolerate their neighborhood. The tolerance of households is determined by a parameter _%-similar-wanted_, which can range from 0 to 100 and applies to all households. A household's neighbors are all households on the eight surrounding patches. The household's variable _happy?_ is set to false unless the number of neighbors with the household's color is greater than or equal to _%-similar-wanted_ divided by 100 and multiplied by the number of neighbors.
-
 @#$#@#$#@
 default
 true
@@ -647,7 +646,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.1.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -655,6 +654,7 @@ NetLogo 6.0.2
   <experiment name="first-experiment" repetitions="20" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>go</go>
+    <timeLimit steps="1000"/>
     <metric>percent-similar</metric>
     <steppedValueSet variable="density" first="50" step="5" last="95"/>
     <steppedValueSet variable="%-similar-wanted" first="0" step="5" last="50"/>
