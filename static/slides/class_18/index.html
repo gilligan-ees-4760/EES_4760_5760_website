@@ -190,8 +190,8 @@ end</code></pre>
   set-plot-pen-interval 0.1
   set-plot-x-range -1 3
   let x (list)
-  ; fill x with 5000 random numbers from a normal distribution        
-  repeat 5000 [ set x fput (random-normal 1.0 0.25) x]      
+  ; fill x with 5000 random numbers from a normal distribution
+  repeat 5000 [ set x fput (random-normal 1.0 0.25) x]
   histogram x
 end</code></pre>
 </li>
@@ -231,7 +231,7 @@ observer: 999.9869678378017</code></pre>
 <li>
 <p>On every turn a random number of agents turn red,<br>with an average of 5% of agents</p>
 <div class="ninety">
-<pre><code>ask n-of (random-poisson (0.05 * count turtles)) turtles 
+<pre><code>ask n-of (random-poisson (0.05 * count turtles)) turtles
 [set color red]        </code></pre>
 </div>
 <p>or</p>
@@ -244,7 +244,7 @@ ask n-of n-red turtles [set color red]</code></pre>
 <ul>
 <li>
 <p>For measurable things with an average value</p>
-<pre><code>set weight random-normal 150 20  ; weight in pounds       
+<pre><code>set weight random-normal 150 20  ; weight in pounds
 set height random-normal 70 2    ; height in inches</code></pre>
 </li>
 <li class="fragment"><p>Be careful of outliers. There is no limit, so there is a small probability of getting a very large value or a negative value.</p></li>
@@ -400,7 +400,7 @@ set height random-normal 70 2    ; height in inches</code></pre>
         // specified using percentage units.
         width: 1920,
         height: 1080,
-      
+
         // Optional reveal.js plugins
         dependencies: [
                     { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
@@ -409,18 +409,24 @@ set height random-normal 70 2    ; height in inches</code></pre>
           { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
         ],
         keyboard: {
-    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
-    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
+    	    87: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+    	    67: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
     	    46: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'DEL' is pressed
     	     8: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'BACKSPACE' is pressed
     	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
         },
-              	// Shortcut for showing all fragments
+      	// Shortcut for showing all fragments
       	skipFragmentsShowShortcut: 'R',
 
       	// Shortcut for hiding all fragments
       	skipFragmentsHideShortcut: 'T',
-      	      });
+	      });
+
+      Reveal.registerKeyboardShortcut("W", 'Toggle writing with pen on slide');
+      Reveal.registerKeyboardShortcut("C", 'Toggle chalkboard drawing');
+      Reveal.registerKeyboardShortcut("DEL", 'Clear chalkboard for all slides');
+      Reveal.registerKeyboardShortcut("BACKSPACE", 'Clear chalkboard for current slide');
+      Reveal.registerKeyboardShortcut("D", 'Download chalkboard data');
     </script><script>
   	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
 

@@ -233,10 +233,10 @@ end</code></pre>
 </li>
 <li>Go to the code tab and type this:</li>
 </ul>
-<pre><code>globals 
-[ 
-  max-sugar 
-  sugar-growth 
+<pre><code>globals
+[
+  max-sugar
+  sugar-growth
 ]
 turtles-own [ hunger ]
 patches-own [ sugar ]</code></pre>
@@ -265,19 +265,19 @@ reset-ticks</code></pre>
 <div class="stretch eighty">
 <pre><code>to setup
   clear-all
-  
+
   set sugar-growth 0.075
   set max-sugar 100
-  
-  ask patches 
-  [ 
-    set sugar random max-sugar 
+
+  ask patches
+  [
+    set sugar random max-sugar
     update-pcolor
   ]
-  
-  create-turtles 100 
-  [ 
-    setxy random-xcor random-ycor 
+
+  create-turtles 100
+  [
+    setxy random-xcor random-ycor
     set hunger 5
     update-color
   ]
@@ -309,16 +309,16 @@ end</code></pre>
 <p>Type this into your model:</p>
 <pre><code>to go
   tick
-  ask turtles [ 
+  ask turtles [
     if hunger &lt; 10 [ set hunger hunger + 1 ]
     eat
     move
     update-color
     ]
-  ask patches 
+  ask patches
   [
-    if sugar &lt; max-sugar [ set sugar sugar + sugar-growth ]  
-    update-pcolor 
+    if sugar &lt; max-sugar [ set sugar sugar + sugar-growth ]
+    update-pcolor
    ]
    if ticks &gt; 2000 [ stop ]
 end
@@ -361,7 +361,7 @@ end</code></pre>
 <p>Good code:</p>
 <pre><code>to go
     tick
-  
+
     if ticks &gt; max-ticks
         [stop]
     ...
@@ -372,11 +372,11 @@ end</code></pre>
 <p>Bad code:</p>
 <pre><code>to go
     ticks
-  
+
     if tick &gt; max-ticks
         [stop]
     ...
-    ask turtles 
+    ask turtles
         [
             tick
             set age ticks
@@ -419,7 +419,7 @@ ask turtles [ forward 5 ]
 <div class="columns eighty" style="width:100%;">
 <div class="column" style="width:50%;vertical-align:top;">
 <pre><code>ask turtles
-    [ 
+    [
         buy
         sell
         update-bank-account
@@ -453,7 +453,7 @@ ask turtles [update-bank-account]</code></pre>
 <li><p>Use the dictionary to look up correct syntax.</p></li>
 </ul></section><section id="to-move" class="slide level2"><h2>Add Movement to Our Model</h2>
 <pre><code>to move
-  if hunger &gt; sugar 
+  if hunger &gt; sugar
   [
     move-to max-one-of neighbors [ sugar ]
   ]
@@ -493,10 +493,10 @@ end</code></pre>
 <p>Conditional statements (Boolean: yes or no)</p>
 <pre><code>if happiness = 3
     [stop]
-    
+
 if happiness &lt;= 3
     [stop]
-    
+
 if happiness != 5 or ticks &gt; 17
     [stop]</code></pre>
 </div>
@@ -521,7 +521,7 @@ set hypotenuse sqrt(a ^ 2 + b ^ 2)</code></pre>
 <p>Type this into “code” tab to update <code>to eat</code> and <code>to move</code> in our model:</p>
 <div class="ninety">
 <pre><code>to eat
-  ifelse hunger &gt; sugar 
+  ifelse hunger &gt; sugar
   [
     ; Use set to change an existing variable "hunger"
     set hunger hunger - sugar
@@ -534,7 +534,7 @@ set hypotenuse sqrt(a ^ 2 + b ^ 2)</code></pre>
 end
 
 to move
-  if hunger &gt; sugar or any? turtles-here 
+  if hunger &gt; sugar or any? turtles-here
   [
     ; Use let to create a new variable "dest"
     let dest max-one-of neighbors [ sugar ]
@@ -596,7 +596,7 @@ ask neighbors [set pcolor my-color]</code></pre>
 <p>Type the following into the “code” tab to update the procedures <code>update-pcolor</code> and <code>update-color</code></p>
 <div class="stretch">
 <pre><code>to update-pcolor
-  set pcolor scale-color yellow sugar 0 (2 * max-sugar) 
+  set pcolor scale-color yellow sugar 0 (2 * max-sugar)
 end
 
 to update-color
@@ -812,7 +812,7 @@ to setup
         // specified using percentage units.
         width: 1920,
         height: 1080,
-      
+
         // Optional reveal.js plugins
         dependencies: [
                     { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
@@ -821,18 +821,24 @@ to setup
           { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
         ],
         keyboard: {
-    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
-    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
+    	    87: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+    	    67: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
     	    46: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'DEL' is pressed
     	     8: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'BACKSPACE' is pressed
     	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
         },
-              	// Shortcut for showing all fragments
+      	// Shortcut for showing all fragments
       	skipFragmentsShowShortcut: 'R',
 
       	// Shortcut for hiding all fragments
       	skipFragmentsHideShortcut: 'T',
-      	      });
+	      });
+
+      Reveal.registerKeyboardShortcut("W", 'Toggle writing with pen on slide');
+      Reveal.registerKeyboardShortcut("C", 'Toggle chalkboard drawing');
+      Reveal.registerKeyboardShortcut("DEL", 'Clear chalkboard for all slides');
+      Reveal.registerKeyboardShortcut("BACKSPACE", 'Clear chalkboard for current slide');
+      Reveal.registerKeyboardShortcut("D", 'Download chalkboard data');
     </script><script>
   	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
 

@@ -290,7 +290,7 @@
         // specified using percentage units.
         width: 1920,
         height: 1080,
-      
+
         // Optional reveal.js plugins
         dependencies: [
                     { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
@@ -299,18 +299,24 @@
           { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
         ],
         keyboard: {
-    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
-    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
+    	    87: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+    	    67: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
     	    46: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'DEL' is pressed
     	     8: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'BACKSPACE' is pressed
     	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
         },
-              	// Shortcut for showing all fragments
+      	// Shortcut for showing all fragments
       	skipFragmentsShowShortcut: 'R',
 
       	// Shortcut for hiding all fragments
       	skipFragmentsHideShortcut: 'T',
-      	      });
+	      });
+
+      Reveal.registerKeyboardShortcut("W", 'Toggle writing with pen on slide');
+      Reveal.registerKeyboardShortcut("C", 'Toggle chalkboard drawing');
+      Reveal.registerKeyboardShortcut("DEL", 'Clear chalkboard for all slides');
+      Reveal.registerKeyboardShortcut("BACKSPACE", 'Clear chalkboard for current slide');
+      Reveal.registerKeyboardShortcut("D", 'Download chalkboard data');
     </script><script>
   	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
 

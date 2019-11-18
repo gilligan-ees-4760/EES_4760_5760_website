@@ -93,19 +93,19 @@
 <li>
 <p>Go to <code>move</code> and change</p>
 <pre><code>ifelse random-float 1 &lt; q
-  [ 
-    move-to max-one-of neighbors [elevation] ; Move uphill      
-  ]            
-  [ 
+  [
+    move-to max-one-of neighbors [elevation] ; Move uphill
+  ]
+  [
     move-to one-of neighbors ; Otherwise move randomly
   ]    </code></pre>
 <p>to</p>
 <pre><code>ifelse random-float 1 &lt; q
-  [ 
-    move-to max-one-of neighbors [elevation] ; Move uphill      
+  [
+    move-to max-one-of neighbors [elevation] ; Move uphill
     set color red                            ; Set to red to indicate uphill
-  ]            
-  [ 
+  ]
+  [
     move-to one-of neighbors ; Otherwise move randomly
     set color blue           ; Set to blue to indicate random movement
   ]    </code></pre>
@@ -146,7 +146,7 @@ end</code></pre>
   [
     let max-turtles max [count turtles-here] of patches
     let min-turtles 0
-    ask patches [ set pcolor scale-color cyan (count turtles-here) min-turtles max-turtles]            
+    ask patches [ set pcolor scale-color cyan (count turtles-here) min-turtles max-turtles]
   ]
 end</code></pre>
 </li>
@@ -158,7 +158,7 @@ end</code></pre>
 <li>
 <p>Write a new reporter:</p>
 <pre><code>to-report fraction-crowded
-  let crowd-count sum [count turtles-here] of patches with [count turtles-here &gt;= 4]            
+  let crowd-count sum [count turtles-here] of patches with [count turtles-here &gt;= 4]
   report crowd-count / num-butterflies
 end</code></pre>
 </li>
@@ -242,7 +242,7 @@ end</code></pre>
 <ul>
 <li>
 <p>First open file (generally, check whether a file exists, and delete it). It’s also a good idea to write a header with the names of the columns.</p>
-<pre><code>if (file-exists? "my_test_output.csv") 
+<pre><code>if (file-exists? "my_test_output.csv")
 [
   carefully ; try first block. If there's an error execute the second
     [ file-delete "my_test_output.csv" ]
@@ -331,7 +331,7 @@ file-print 100 * fraction-crowded</code></pre>
         // specified using percentage units.
         width: 1920,
         height: 1080,
-      
+
         // Optional reveal.js plugins
         dependencies: [
                     { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
@@ -340,18 +340,24 @@ file-print 100 * fraction-crowded</code></pre>
           { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
         ],
         keyboard: {
-    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
-    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
+    	    87: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+    	    67: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
     	    46: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'DEL' is pressed
     	     8: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'BACKSPACE' is pressed
     	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
         },
-              	// Shortcut for showing all fragments
+      	// Shortcut for showing all fragments
       	skipFragmentsShowShortcut: 'R',
 
       	// Shortcut for hiding all fragments
       	skipFragmentsHideShortcut: 'T',
-      	      });
+	      });
+
+      Reveal.registerKeyboardShortcut("W", 'Toggle writing with pen on slide');
+      Reveal.registerKeyboardShortcut("C", 'Toggle chalkboard drawing');
+      Reveal.registerKeyboardShortcut("DEL", 'Clear chalkboard for all slides');
+      Reveal.registerKeyboardShortcut("BACKSPACE", 'Clear chalkboard for current slide');
+      Reveal.registerKeyboardShortcut("D", 'Download chalkboard data');
     </script><script>
   	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
 

@@ -1439,17 +1439,17 @@
 			keyboardShortcuts['&#8592;  ,  &#8593;  ,  P  ,  H  ,  K']           = 'Previous slide';
 		}
 		else {
-			keyboardShortcuts['N  ,  SPACE']   = 'Next slide';
-			keyboardShortcuts['P']             = 'Previous slide';
-			keyboardShortcuts['&#8592;  ,  H'] = 'Navigate left';
-			keyboardShortcuts['&#8594;  ,  L'] = 'Navigate right';
-			keyboardShortcuts['&#8593;  ,  K'] = 'Navigate up';
-			keyboardShortcuts['&#8595;  ,  J'] = 'Navigate down';
+			keyboardShortcuts['&#8595; , N  ,  SPACE , PAGE DOWN'] = 'Next slide';
+			keyboardShortcuts['&#8593; , P , SHIFT-SPACE , PAGE UP']  = 'Previous slide';
+			keyboardShortcuts['&#8592; ,  H'] = 'Navigate left';
+			keyboardShortcuts['&#8594; , L'] = 'Navigate right';
+			keyboardShortcuts['SHIFT-&#8593; , K'] = 'Navigate up';
+			keyboardShortcuts['SHIFT-&#8595; , J'] = 'Navigate down';
 		}
 
-		keyboardShortcuts['Home  ,  &#8984;/CTRL &#8592;'] = 'First slide';
-		keyboardShortcuts['End  ,  &#8984;/CTRL &#8594;']  = 'Last slide';
-		keyboardShortcuts['B  ,  .']                       = 'Pause';
+		keyboardShortcuts['Home , &#8984;/CTRL &#8592;'] = 'First slide';
+		keyboardShortcuts['End , &#8984;/CTRL &#8594;']  = 'Last slide';
+		keyboardShortcuts['B , V , .']           = 'Pause';
 		keyboardShortcuts['F']                             = 'Fullscreen';
 		keyboardShortcuts['ESC, O']                        = 'Slide overview';
 
@@ -5123,6 +5123,10 @@
 
 		// Shorthand
 		var keyCode = event.keyCode;
+		var altState = event.altKey;
+		var ctrlState = event.ctrlKey;
+		var metaState = event.metaKey;
+		var shiftState = event.shiftKey;
 
 		// Remember if auto-sliding was paused so we can toggle it
 		var autoSlideWasPaused = autoSlidePaused;
@@ -5135,13 +5139,20 @@
 		var activeElementIsNotes = document.activeElement && document.activeElement.className && /speaker-notes/i.test( document.activeElement.className);
 
 		// Whitelist specific modified + keycode combinations
-		var prevSlideShortcut = event.shiftKey && event.keyCode === 32;
-		var firstSlideShortcut = ( event.metaKey || event.ctrlKey ) && keyCode === 37;
-		var lastSlideShortcut = ( event.metaKey || event.ctrlKey ) && keyCode === 39;
+		var prevSlideShortcut = shiftState && keyCode === 32;
+		var firstSlideShortcut = ( metaState || ctrlState ) && keyCode === 37;
+		var lastSlideShortcut = ( metaState || ctrlState ) && keyCode === 39;
+
+		var altSlideUp = shiftState && keyCode === 38;
+		var altSlideDown = shiftState && keyCode === 40;
+
+		var altPrevSlide = !shiftState && keyCode === 38;
+		var altNextSlide = !shiftState && keyCode === 40;
 
 		// Prevent all other events when a modifier is pressed
 		var unusedModifier = 	!prevSlideShortcut && !firstSlideShortcut && !lastSlideShortcut &&
-								( event.shiftKey || event.altKey || event.ctrlKey || event.metaKey );
+		                      !altSlideUp && !altSlideDown &&
+								( shiftState || altState || ctrlState || metaState );
 
 		// Disregard the event if there's a focused element or a
 		// keyboard modifier key is present
@@ -5223,15 +5234,15 @@
 			// Assume true and try to prove false
 			triggered = true;
 
-			// P, PAGE UP
-			if( keyCode === 80 || keyCode === 33 ) {
+			// P, PAGE UP, UP ARROW
+			if( keyCode === 80 || keyCode === 33 || altPrevSlide ) {
 				navigatePrev();
 			}
-			// N, PAGE DOWN
-			else if( keyCode === 78 || keyCode === 34 ) {
+			// N, PAGE DOWN, DOWN ARROW
+			else if( keyCode === 78 || keyCode === 34 || altNextSlide ) {
 				navigateNext();
 			}
-			// H, LEFT
+			// H, LEFT ARROW
 			else if( keyCode === 72 || keyCode === 37 ) {
 				if( firstSlideShortcut ) {
 					slide( 0 );
@@ -5243,7 +5254,7 @@
 					navigateLeft();
 				}
 			}
-			// L, RIGHT
+			// L, RIGHT ARROW
 			else if( keyCode === 76 || keyCode === 39 ) {
 				if( lastSlideShortcut ) {
 					slide( Number.MAX_VALUE );
@@ -5255,8 +5266,8 @@
 					navigateRight();
 				}
 			}
-			// K, UP
-			else if( keyCode === 75 || keyCode === 38 ) {
+			// K, SHIFT-UP ARROW
+			else if( keyCode === 75 || altSlideUp ) {
 				if( !isOverview() && config.navigationMode === 'linear' ) {
 					navigatePrev();
 				}
@@ -5264,8 +5275,8 @@
 					navigateUp();
 				}
 			}
-			// J, DOWN
-			else if( keyCode === 74 || keyCode === 40 ) {
+			// J, SHIFT-DOWN ARROW
+			else if( keyCode === 74 || altSlideDown ) {
 				if( !isOverview() && config.navigationMode === 'linear' ) {
 					navigateNext();
 				}
@@ -5293,7 +5304,7 @@
 					navigateNext();
 				}
 			}
-			// TWO-SPOT, SEMICOLON, B, V, PERIOD, LOGITECH PRESENTER TOOLS "BLACK SCREEN" BUTTON
+			// COLON, SEMICOLON, B, V, PERIOD, LOGITECH PRESENTER TOOLS "BLACK SCREEN" BUTTON
 			else if( keyCode === 58 || keyCode === 59 || keyCode === 66 || keyCode === 86 || keyCode === 190 || keyCode === 191 ) {
 				togglePause();
 			}

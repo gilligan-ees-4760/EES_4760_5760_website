@@ -64,7 +64,7 @@
 <ul>
 <li>Original (faulty) model movement:</li>
 </ul>
-<pre><code>repeat 100 
+<pre><code>repeat 100
 [
   rt (random 91 - 45)
   fd 1
@@ -85,7 +85,7 @@
 <li>
 <code>setup</code> movement</li>
 </ul>
-<pre><code>repeat 100 
+<pre><code>repeat 100
 [
   rt (random 91 - 45)
   fd 1
@@ -153,7 +153,7 @@ end</code></pre>
 </ul>
 <pre><code>to reproduce
   ; num-offspring only exists inside to reproduce
-  let num-offspring 1 
+  let num-offspring 1
   if random-float 1.0 &lt; prob-twins
   [ set num-offspring 2 ]
 
@@ -275,10 +275,10 @@ ask in-link-neighbors with [wealth &gt;= 5]
 <li>
 <p>Find the best patch next to any turtle within two links on the network</p>
 <pre><code>  let connections out-link-neighbors ; neighbors
-  set connections (turtle-set connections 
+  set connections (turtle-set connections
                               ([out-link-neighbors] of connections)
                   ) ; neighbors of neighbors
-  let target max-one-of (patch-set [neighbors] of connections) 
+  let target max-one-of (patch-set [neighbors] of connections)
        [ quality ]</code></pre>
 </li>
 </ul></section></section><section><section id="link-model-sec" class="title-slide slide level1 center" data-skip="true"><h1>Model with Links</h1></section><section id="link-model" class="slide level2 eighty"><h2>Model with Links</h2>
@@ -295,15 +295,15 @@ to setup
 end
 
 to initialize-patches
-  ask patches [ 
-    set quality random-float 100 
+  ask patches [
+    set quality random-float 100
     set pcolor scale-color green quality 0 300
   ]
 end
 
 to initialize-turtles
   create-turtles 50 [
-    move-to one-of patches with 
+    move-to one-of patches with
       [not any? turtles-here]
     set color red
     set size 0.75
@@ -321,23 +321,23 @@ end</code></pre>
       set thickness 0.2
       set color orange
     ]
-    ask out-link-neighbors [ 
-      create-links-to n-of 3 turtles with 
+    ask out-link-neighbors [
+      create-links-to n-of 3 turtles with
           [not any? my-links]
       [
         set thickness 0.1
         set color (orange + 3)
       ]
-    ]    
+    ]
   ]
 end
 
 to-report best-patch
   let subjects out-link-neighbors
-  set subjects other 
-    (turtle-set subjects 
+  set subjects other
+    (turtle-set subjects
       ([out-link-neighbors] of subjects))
-  report max-one-of 
+  report max-one-of
       (patch-set [neighbors] of subjects) [ quality ]
 end</code></pre>
 </div>
@@ -502,7 +502,7 @@ end</code></pre>
         // specified using percentage units.
         width: 1920,
         height: 1080,
-      
+
         // Optional reveal.js plugins
         dependencies: [
                     { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
@@ -511,18 +511,24 @@ end</code></pre>
           { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
         ],
         keyboard: {
-    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
-    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
+    	    87: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+    	    67: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'b' is pressed
     	    46: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'DEL' is pressed
     	     8: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'BACKSPACE' is pressed
     	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'd' is pressed
         },
-              	// Shortcut for showing all fragments
+      	// Shortcut for showing all fragments
       	skipFragmentsShowShortcut: 'R',
 
       	// Shortcut for hiding all fragments
       	skipFragmentsHideShortcut: 'T',
-      	      });
+	      });
+
+      Reveal.registerKeyboardShortcut("W", 'Toggle writing with pen on slide');
+      Reveal.registerKeyboardShortcut("C", 'Toggle chalkboard drawing');
+      Reveal.registerKeyboardShortcut("DEL", 'Clear chalkboard for all slides');
+      Reveal.registerKeyboardShortcut("BACKSPACE", 'Clear chalkboard for current slide');
+      Reveal.registerKeyboardShortcut("D", 'Download chalkboard data');
     </script><script>
   	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
 
