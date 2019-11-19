@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="pandoc">
 <meta name="author" content="Jonathan Gilligan">
-<title>Analyzing and Understanding ABMs</title>
+<title>Sensitivity, Uncertainty, and Robustness Analysis</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
@@ -44,133 +44,164 @@
     <div class="slides">
 
             <!-- start title slide -->
-<section class="center" id="title"><h1 class="title">Analyzing and Understanding ABMs</h1>
+<section class="center" id="title"><h1 class="title">Sensitivity, Uncertainty, and Robustness Analysis</h1>
     <h3 class="author">EES 4760/5760</h3>
         <h3 class="author">Agent-Based and Individual-Based Computational Modeling</h3>
     <h3 class="author">Jonathan Gilligan</h3>
     <h3 class="date">
-      Class #24:
-       Thursday, November 14
+      Class #25:
+       Tuesday, November 19
       2019
     </h3>
 	<!-- end title slide -->
-</section><section><section id="schelling-sec" class="title-slide slide level1 center" data-skip="true"><h1>Schelling Model</h1></section><section id="schelling" class="slide level2"><h2>Schelling Model of Housing Segregation</h2>
+</section><section><section id="sensitivity-sec" class="title-slide slide level1 center" data-skip="true"><h1>Sensitivity, Uncertainty, Robustness</h1></section><section id="sensitivity" class="slide level2 ninety"><h2>Sensitivity, Uncertainty, Robustness</h2>
+<ul>
+<li>Starting point: You have a working model that achieves some goal:
+<ul>
+<li class="fragment">Reproduces multiple observed patterns</li>
+<li class="fragment">Identifies policies that could produce a desired outcome</li>
+<li class="fragment">…</li>
+</ul>
+</li>
+<li class="fragment">How <em>trustworthy</em> and <em>reliable</em> are the model’s predictions?</li>
+<li class="fragment"><strong>Sensitivity Analysis</strong> focuses on how changing the model’s parameters affects the outcome.
+<ul>
+<li class="fragment">How important is it for a parameter to have some exact value?<ul>
+<li class="fragment">For policymaking, do we need to work hard to <em>achieve</em> just that value?</li>
+<li class="fragment">For science, do we need to work hard to <em>measure</em> that parameter very accurately?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment"><strong>Uncertainty Analysis</strong> focuses on how our uncertainty about the model’s <em>parameters</em> affects our certainty about the model’s <em>outputs</em> or <em>predictions</em>.</li>
+<li class="fragment"><strong>Robustness Analysis</strong> looks at bigger changes:
+<ul>
+<li class="fragment">What parts of the model can we change or eliminate and still get the desired results?</li>
+<li class="fragment">Can we simplify the model without losing the desired behavior?</li>
+</ul>
+</li>
+</ul></section></section><section><section id="sensitivity-sec" class="title-slide slide level1 center"><h1>Sensitivity Analysis</h1></section><section id="is-high-sensitivity-good-or-bad" class="slide level2"><h2>Is high sensitivity good or bad?</h2>
 <ul>
 <li>
-<p>Maybe the first Agent-Based Model.</p>
+<strong>Bad:</strong> If model is testing a general theory, but is very sensitive to parameter values, that is evidence <em>against</em> the theory.
+<ul>
+<li class="fragment">Does model work across the entire range of <em>observed values</em> for parameters?</li>
+</ul>
+</li>
+<li class="fragment"><strong>Good:</strong> If the model is being used to evaluate parameters we can’t measure directly, then <em>higher sensitivity</em> can mean that we can infer the values of those parameters <em>more precisely</em>, with <em>less uncertainty</em>.</li>
+</ul></section><section id="challenges-computational-complexity" class="slide level2"><h2>Challenges: Computational Complexity</h2>
+<ul>
+<li>We would like to do <em>global sensitivity analysis:</em>
+<ul>
+<li class="fragment">Vary all parameters over their entire ranges, in every combination.</li>
+<li class="fragment">Usually, we can’t: computationally unfeasible.</li>
+<li class="fragment">There are strategies to make global sensitivity analysis feasible, but they are complicated.<ul>
+<li class="fragment">Sampling parameter values<ul>
+<li>Random (Monte Carlo)</li>
+<li>Systematic (e.g., Latin Hypercube)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment">Instead: <em>local sensitiity analysis:</em>
+<ul>
+<li class="fragment">Small variations around most likely values of parameters.</li>
+<li class="fragment">Vary one parameter at a time, or multiple parameters?<ul>
+<li class="fragment">Interactions</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section><section id="sensitivity-steps" class="slide level2"><h2>Steps in Sensitivity Analysis</h2>
+<ul>
+<li>Choose one or more <strong>currencies</strong> that we will use to evaluate the model (e.g., a pattern we want to reproduce).</li>
+<li class="fragment">Single-Parameter analysis:<ul>
+<li class="fragment">Vary each parameter one at a time with the others set to their nominal value</li>
+</ul>
+</li>
+<li class="fragment">Interactions:<ul>
+<li class="fragment">Vary all the parameters simultaneous over a limited range</li>
+</ul>
+</li>
+</ul></section></section><section><section id="example-sec" class="title-slide slide level1 center"><h1>Example of Sensitivity Analysis</h1></section><section id="wild-dog-example" class="slide level2"><h2>Example: Wild Dog Model</h2>
+<ul>
+<li>Packs of wild dogs in nature preserve.</li>
+<li>Goal: Keep them from going extinct in next 100 years.
+<ul>
+<li class="fragment"><strong>Currency:</strong> Fraction of runs in which dogs go extinct within 100 years.</li>
+</ul>
+</li>
+<li class="fragment">Vary parameters:<ul>
+<li>Mortality rate of adult dogs in pack</li>
+<li>Mortality rate of dispersers</li>
+<li>Meeting rate of disperser groups</li>
+<li>Carrying capacity</li>
+</ul>
+</li>
+</ul></section><section id="single-parameter-analysis" class="slide level2"><h2>Single-Parameter Analysis</h2>
+<p><img data-src="assets/images/fig_23_1.png" style="height:900px;"></p>
+</section><section id="analyzing-data" class="slide level2 center"><h2>Analyzing Interaction Data:</h2>
+<ul>
+<li>Contour plots</li>
+<li>“Small multiple” plots</li>
+<li>Analyze a four-dimensional data set using a grid of nine plots.</li>
+</ul></section><section class="slide level2"><p><img data-src="assets/fig/wild_dog_plot-1.png"></p>
+</section></section><section><section id="uncertainty-sec" class="title-slide slide level1 center"><h1>Uncertainty Analysis</h1></section><section id="uncertainty" class="slide level2"><h2>Uncertainty Analysis</h2>
+<ul>
+<li>We usually don’t know the exact values of parameters.</li>
+<li class="fragment">How much does our uncertainty about the parameters’ values affect our certainty about the model’s predictions?</li>
+<li class="fragment">Starting point:<ul>
+<li class="fragment">Choose one or more <strong>currencies</strong>.</li>
+<li class="fragment">What parameters do we want to analyze?</li>
+<li class="fragment">Define a probability distribution for each parameter that represents our uncertainty about its value.</li>
+</ul>
+</li>
+<li class="fragment">Run the model many times, each time drawing a different random value for each parameter from the distributions.</li>
+<li class="fragment">Analyze the output:<ul>
+<li>Probability distribution of the currency</li>
+</ul>
+</li>
+</ul></section><section id="uncertainty-in-wild-dog-model" class="slide level2"><h2>Uncertainty in Wild Dog Model</h2>
+<div class="columns">
+<div class="column" style="width:49%;">
+<p><img data-src="assets/images/fig_23_3a.png" alt="Predictions with nominal values of parameters" style="height:700px;"></p>
+<p>Parameters at nominal (default) values.</p>
+</div>
+<div class="column" style="width:49%;">
+<p><img data-src="assets/images/fig_23_3b.png" alt="Predictions with parameter values sampled from uncertainty distribution" style="height:700px;"></p>
+<p>Parameters randomly sampled from uncertainty distribution.</p>
+</div>
+</div>
+</section></section><section><section id="robustness-sec" class="title-slide slide level1 center"><h1>Robustness Analysis</h1></section><section id="robustness" class="slide level2"><h2>Robustness Analysis</h2>
 <ul>
 <li>
-<a href="/files/reading/schelling_1971_segregation.pdf" target="_blank">T.C. Schelling, “Dynamic Models of Segregation”, <em>Journal of Mathematical Sociology</em> <strong>1</strong>, 143–186 (1971)</a>,</li>
-<li>
-<a href="https://www.amazon.com/Micromotives-Macrobehavior-Thomas-C-Schelling-ebook/dp/B002MB968C" target="_blank"><em>Micromotives and Macrobehavior</em></a> (WW Norton, 1978).</li>
+<em>Sensitivity analysis</em> and <em>uncertainty analysis</em> mostly made small changes to parameters and kept them within realistic limits</li>
+<li class="fragment"><strong><em>Robustness analysis</em></strong> tries to break the model:
+<ul>
+<li class="fragment">What happens when parameters take unrealistic values?</li>
+<li class="fragment">What happens when we change remove different parts of the model?</li>
+<li class="fragment">Identify which parts of the model are necessary, and which are unnecessary.</li>
 </ul>
 </li>
-<li><p>No computers. Schelling worked the model on graph paper with pennies and dimes representing the two kinds of agents.</p></li>
-<li>
-<p>NetLogo version of Schelling’s segregation model:</p>
+</ul></section><section id="general-ideas-about-agent-based-modeling" class="slide level2"><h2>General ideas about agent-based modeling</h2>
 <ul>
-<li>Download page or</li>
-<li><a href="https://ees4760.jgilligan.org/models/class_24/class_24_models.zip" class="eighty">https://ees4760.jgilligan.org/models/class_24/class_24_models.zip</a></li>
-<li><a href="https://ees4760.jgilligan.org/models/class_24/segregation.nlogo" class="eighty">https://ees4760.jgilligan.org/models/class_24/segregation.nlogo</a></li>
+<li>Model interactions between individuals
+<ul>
+<li class="fragment">Direct: individual-individual</li>
+<li class="fragment">Indirect: individual-environment, environment-individual</li>
 </ul>
 </li>
-</ul></section><section id="model-overview" class="slide level2"><h2>Model Overview</h2>
-<ul>
-<li class="fragment">Turtles represent households.<ul>
-<li>Two colors of turtles: red and blue</li>
-<li>Turtles have one state-variable: <code>happy?</code> (true or false)</li>
+<li class="fragment">Focus on emergent properties<ul>
+<li class="fragment">Patterns or phenomena that were not deliberately programmed in, but arise spontaneously from interactions of agents with each other and with environment.</li>
 </ul>
 </li>
-<li class="fragment">There is a global variable <code>%-similar-wanted</code> and a turtle is <code>happy?</code> if at least this fraction of its neighbors have the same color as its own.</li>
-<li class="fragment">At each tick, unhappy turtles move to a random empty patch.</li>
-<li class="fragment">When all turtles are <code>happy?</code>, the model stops.</li>
-</ul></section></section><section><section id="experiment-sec" class="title-slide slide level1 center" data-skip="true"><h1>Experiments</h1></section><section id="experiment" class="slide level2"><h2>Experiments</h2>
-<p>Vary <code>%-similar-wanted</code> and the <code>density</code> of turtles on the patches.</p>
-</section><section id="suggestions" class="slide level2"><h2>Suggestions:</h2>
-<ul>
-<li>Try extreme values of parameters:
-<ul>
-<li>Set <code>density</code> and <code>%-similar-wanted</code> to different combinations near maximum, minimum, and in the middle.</li>
-<li>What do you see?</li>
+<li class="fragment">Pattern-oriented modeling:<ul>
+<li class="fragment">Start simple, but aim to build in enough complexity to produce multiple patterns seen in nature, or predicted in theory.</li>
+<li class="fragment">As you design model think about what kinds of “currency” you will use to assess its value.</li>
 </ul>
 </li>
-</ul></section><section id="extreme-values" class="slide level2"><h2>Extreme Values</h2>
-<ul>
-<li class="fragment">Set <code>density</code> to 75% and set <code>%-similar-wanted</code> to 95%</li>
-<li class="fragment">Press <code>setup</code> and then press <code>go</code>
-<ul>
-<li>What happens?</li>
-</ul>
-</li>
-<li class="fragment">Now, with <code>go</code> still pushed, slowly reduce <code>%-similar-wanted</code>.
-<ul>
-<li>Now what happens?</li>
-</ul>
-</li>
-</ul></section><section id="systematic-experiment" class="slide level2"><h2>Systematic experiment:</h2>
-<ul>
-<li>Using Behaviorspace, create a new experiment to vary <code>%-similar-wanted</code>
-<ul>
-<li class="fragment">Set <code>time limit</code> to 1000</li>
-<li class="fragment">Set <code>density</code> to 75</li>
-<li class="fragment">Measure <code>percent-similar</code>
-</li>
-</ul>
-</li>
-<li class="fragment">What do you see?</li>
-<li class="fragment">Try adjusting both <code>%-similar-wanted</code> and <code>density</code>
-</li>
-</ul></section><section id="visualizing-structures" class="slide level2"><h2>Visualizing Structures</h2>
-<ul>
-<li>
-<p>Add the following to the procedure <code>to update-turtles</code>, after <code>set happy?</code></p>
-<pre><code>ifelse happy? [ set shape "square" ] [ set shape "square-x" ]</code></pre>
-</li>
-<li class="fragment">
-<p>Repeat the exercise of:</p>
-<ul>
-<li>set <code>density</code> = 75% and <code>%-similar-wanted</code> = 95%,</li>
-<li>press <code>setup</code> and <code>go</code>
-</li>
-<li>gradually reduce <code>%-similar-wanted</code>
-</li>
-</ul>
-</li>
-<li class="fragment"><p>Is it easier to see the emerging patterns now?</p></li>
-</ul></section></section><section><section id="heuristic-sec" class="title-slide slide level1 center" data-skip="true"><h1>Heuristics</h1></section><section id="heuristics" class="slide level2"><h2>Another Heuristic</h2>
-<ul>
-<li>When you’re at an interesting value for one parameter
-<ul>
-<li>(e.g., <code>%-similar-wanted</code> = 75%),</li>
-<li>vary other paremters (<code>density</code>).</li>
-</ul>
-</li>
-</ul></section><section id="other-heuristics" class="slide level2 eightyfive"><h2>Other heuristics:</h2>
-<ul>
-<li class="fragment">Use several <em>currencies</em> to evaluate models
-<ul>
-<li class="fragment">Statistical analysis of spatial patterns and time-series</li>
-<li class="fragment">Analyze agent properties:<ul>
-<li>Are they unimodal or multimodal
-<ul>
-<li>(e.g., are turtles divided into distinct groups of rich/poor, healthy/sick, etc.,</li>
-<li>or distributed continuously around one dominant value of state variables?)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="fragment">Stability: Does system return quickly to steady state after it’s disturbed?</li>
-</ul>
-</li>
-<li class="fragment">Simplify models:<ul>
-<li class="fragment">Make all patches the same</li>
-<li class="fragment">Make all turtles the same</li>
-<li class="fragment">Reduce places where you use stochasticity</li>
-<li class="fragment">Use fewer turtles and patches</li>
-</ul>
-</li>
-<li class="fragment">Explore unrealistic scenarios</li>
-<li class="fragment">See book for heuristics for statistical analysis of model output…</li>
 </ul></section></section>
 </div>
   </div>
@@ -256,15 +287,15 @@
   createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
   '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
   '<div style="font-size:30%;width:100%;">' + '\n' +
-      '<a href="https://ees4760.jgilligan.org/slides/class_24">' +
-  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_24"/>' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_25">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_25"/>' +
   	'</a>' + '\n' +
 	  '</div>' + '\n' +
   '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
     '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
-        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_24">https://ees4760.jgilligan.org/slides/class_24</a>' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_25">https://ees4760.jgilligan.org/slides/class_25</a>' + '\n' +
               '<br/>' + '\n' +
-        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_24/EES_4760_5760_class_24_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_24/EES_4760_5760_class_24_slides.pdf</a>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_25/EES_4760_5760_class_25_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_25/EES_4760_5760_class_25_slides.pdf</a>' + '\n' +
           	'</span>' + '\n' +
   	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
   	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +

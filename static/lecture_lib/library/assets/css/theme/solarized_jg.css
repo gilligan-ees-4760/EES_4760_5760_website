@@ -522,10 +522,19 @@ body {
 .reveal .bare div > p,
 .reveal .bare div > img,
 .reveal .bare p,
-.reveal .bare img {
+.reveal .bare img,
+.reveal .bare table,
+.reveal .bare thead,
+.reveal .bare tbody,
+.reveal .bare tr,
+.reveal .bare th,
+.reveal .bare td {
   margin: 0;
-  border: 0;
+  border: none;
   padding: 0; }
+
+.reveal .bare img {
+  shadow: none; }
 
 .reveal .flush div,
 .reveal .flush img,
