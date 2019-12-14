@@ -197,10 +197,10 @@ presentations.
 |                            |       |      |
 |:--------------------------:|------:|-----:|
 | Class participation        |  5%   |      |
-| Homework                   | 25%   |      |
-| Assigned Projects          | 30%   |      |
+| Homework                   | 30%   |      |
+| Team Project               | 25%   |      |
 | Research Project           | 40%   |      |
-| Feedback to Other Students |  5%   |      |
+
 
 # **Final Note:**
 
