@@ -5,7 +5,7 @@ title = "EES 4760/5760"
 theme = "hugo-syllabus"
 #disqusShortname = ""
 enableRobotsTXT = true
-googleAnalytics = "UA-101117636-4"
+# googleAnalytics = "UA-101117636-4"
 paginate = 10
 relativeurls = true
 publishDir = "public"
@@ -143,4 +143,3 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
     copyright = "Copyright 2018, <a href=\"https://www.jonathangilligan.org\" target=\"_blank\">Jonathan Gilligan</a>."
     licenseIcon = "/img/cc-by.svg"
     licenseURL = "https://creativecommons.org/licenses/by/4.0/"
-    
