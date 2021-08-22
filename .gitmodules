@@ -1,3 +1,5 @@
 [submodule "themes/hugo-syllabus"]
 	path = themes/hugo-syllabus
 	url = https://github.com/jonathan-g/hugo-syllabus.git
+	branch = main
+
