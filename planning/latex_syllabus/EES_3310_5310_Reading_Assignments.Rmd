@@ -53,7 +53,7 @@ The most up-to-date versions of the reading assignments will be posted on the
 ```{r initialize, include=FALSE}
 library(semestr)
 
-semester <- load_semester_db("../EES-3310-5310.sqlite3")
+semester <- load_semester_db("../EES-4760.sqlite3")
 
 # output_to <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 # output_formats <- rmarkdown::all_output_formats(knitr::current_input())
@@ -76,18 +76,18 @@ if (knitr::is_latex_output()) {
 ```
 ```{r define_functions, include=FALSE}
 assemble_schedule <- function(semester) {
-  schedule <- init_schedule(semester)
-  tmp <- schedule_strip_finals(schedule, semester)
+  schedule <- semestr:::init_schedule(semester)
+  tmp <- semestr:::schedule_strip_finals(schedule, semester)
   schedule <- tmp$schedule
   final_exams <- tmp$final_exams
 
-  tmp <- schedule %>% schedule_add_homework(semester)
+  tmp <- schedule %>% semestr:::schedule_add_homework(semester)
   schedule <- tmp$schedule
 
-  tmp <- schedule_widen(schedule, final_exams, semester, TRUE)
+  tmp <- semestr:::schedule_widen(schedule, final_exams, semester, TRUE)
   schedule <- tmp$schedule
 
-  set_schedule_globals(schedule, semester)
+  semestr:::set_schedule_globals(schedule, semester)
   
   invisible(schedule)
 }
@@ -99,8 +99,8 @@ format_section_heading <- function(title, class_date, class_number) {
 make_rd_asgt_for_master <- function(id, schedule, semester) {
   reading <- semester$rd_items %>% dplyr::filter(cal_id == id) %>%
     # merge_dates(semester) %>%
-    dplyr::left_join( dplyr::select(semester$class_topics, topic, rd_key),
-               by = "rd_key")
+    dplyr::left_join( dplyr::select(semester$class_topics, topic, rd_grp_key),
+               by = "rd_grp_key")
   if (nrow(reading) >= 1) {
     rd_date <- unique(reading$date)
     assertthat::assert_that(length(rd_date) == 1,
@@ -111,7 +111,7 @@ make_rd_asgt_for_master <- function(id, schedule, semester) {
     class_num <- unique(reading$class_num)
     assertthat::assert_that(length(rd_date) == 1,
                             msg = "A calendar ID should have a unique class # (make_rd_for_master)")
-    key <- unique(reading$rd_key)
+    key <- unique(reading$rd_grp_key)
     assertthat::assert_that(length(key) == 1,
                             msg = "A calendar ID should have a unique reading key # (make_rd_for_master)")
     if (is.na(rd_topic)) {
@@ -130,13 +130,19 @@ make_rd_asgt_for_master <- function(id, schedule, semester) {
     key <- cal_entry$key_class
   }
 
-  this_reading_asgt <- make_reading_assignment(reading) %>% escape_dollar()
+  this_reading_asgt <- semestr:::make_reading_assignment(reading) %>% escape_dollar()
   
-  notices <- semester$notices %>%
-  dplyr::filter(cal_id == id, ! is.na(notice))
-
-  this_notice <- make_notice(notices)
-
+  if (! is.null(semester$notices)) {
+    notices <- semester$notices %>%
+      dplyr::filter(cal_id == id, ! is.na(notice))
+    
+    if (nrow(notices) > 0) {
+      this_notice <- semestr:::make_notice(notices)
+    }
+  } else {
+    this_notice <- NULL
+  }
+  
   section_heading <-  format_section_heading(
     title = rd_topic,
     class_date = format_class_day_date(rd_date, abbr_month = TRUE, abbr_wday = TRUE),
@@ -151,7 +157,7 @@ make_rd_asgt_for_master <- function(id, schedule, semester) {
   # this_hw_asgt <- make_short_hw_assignment(homework) %>% escape_dollar()
   # 
 
-  this_asgt <- cat_nl(section_heading, 
+  this_asgt <- semestr:::cat_nl(section_heading, 
                       # this_hw_asgt,
                       this_reading_asgt,
                       this_notice,
@@ -187,7 +193,8 @@ make_holiday_entry_for_master <- function(id, schedule, semester) {
     date_string <- format_class_day_date(holiday_date, abbr_month = TRUE, 
                                         abbr_wday = TRUE)
   } else {
-    date_string <- format_day_date_range(holiday_dates, abbr_month = TRUE, 
+    date_range <- list(start = min(holiday_dates), stop = max(holiday_dates))
+    date_string <- format_day_date_range(date_range, abbr_month = TRUE, 
                                         abbr_wday = TRUE)
   }
   
@@ -206,7 +213,7 @@ make_holiday_entry_for_master <- function(id, schedule, semester) {
   # this_hw_asgt <- make_short_hw_assignment(homework) %>% escape_dollar()
   # 
 
-  this_asgt <- cat_nl(section_heading, 
+  this_asgt <- semestr:::cat_nl(section_heading, 
                       this_holiday_entry,
                       start_par = TRUE, extra_lines = 1)
   
@@ -231,7 +238,7 @@ format_class_entry <- function(d, schedule, semester) {
     id <- entry$id_holiday
     this_item <- make_holiday_entry_for_master(entry$id_holiday, schedule, semester)
   }
-  dbg_checkpoint("g_date", d)
+  # dbg_checkpoint("g_date", d)
   if (! is.na(type) && ! is.na(this_item)) {
     key <- semester$calendar %>% dplyr::filter(cal_id == id) %$% cal_key
     context <- list(
@@ -242,7 +249,7 @@ format_class_entry <- function(d, schedule, semester) {
       cal_id = id,
       class_num = entry$class_num
     )
-    this_item <- expand_codes(this_item, context, semester)
+    this_item <- semestr:::expand_codes(this_item, context, semester)
   }
   this_item
 }
@@ -256,7 +263,7 @@ make_reading_schedule <- function(schedule, semester) {
                    format_class_entry(d, schedule, semester))
   }
   asgt_list <- asgt_list %>% purrr::discard(is.na) %>%
-    cat_nl(start_par = TRUE)
+    semestr:::cat_nl(start_par = TRUE)
 }
 
 ```

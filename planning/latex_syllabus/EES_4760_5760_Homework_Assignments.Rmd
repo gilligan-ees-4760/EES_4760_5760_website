@@ -1,0 +1,183 @@
+---
+title: "Homework Assignments"
+author: "EES 4760/5760: Agent- and Individual-Based Computational Modeling"
+date: "Fall, 2021"
+output:
+  pdf_document: 
+    includes:
+      in_header: assignment_header.sty
+    keep_tex: yes
+    keep_md: yes
+  html_document:
+    df_print: paged
+---
+```{r setup, include=FALSE, message = FALSE, warning=FALSE, cache=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE, cache=FALSE)
+```
+```{r initialize, eval=TRUE, include=FALSE}
+library(tidyverse)
+library(semestr)
+
+semester <- load_semester_db("../EES-4760.sqlite3")
+
+# output_to <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+# output_formats <- rmarkdown::all_output_formats(knitr::current_input())
+# 
+# if (output_to == "latex" || output_formats[[1]] == "pdf_document") {
+#   .globals$text_mode <- "latex"
+# } else {
+#   .globals$text_mode <- "md"
+# }
+
+.globals <- new.env(parent = globalenv())
+
+if (knitr::is_latex_output()) {
+  assign("text_mode", "latex", envir = .globals)
+} else {
+  assign("text_mode", "md", envir = .globals)
+}
+
+
+```
+
+# General instructions for homework assignments
+
+
+* Homework must be turned in on Brightspace by the beginning of class on the 
+  due date unless the assignment gives a different time or date. 
+  * Late homework will lose 5% for every day it is late, but will not lose
+    more than 50%, no matter how late it is (you can always get up to half
+    credit for completing late homework).
+
+I encourage you to discuss homework assignments with your classmates. 
+Some assignments will explicitly tell you to work in a team with a classmate. 
+Even when the assignments do not specify working in teams, it is still fine to 
+work together on homework assignments, but 
+**unless the assignment tells you to work in a team, you must actually do all 
+the work yourself**. 
+This means that you can ask a classmate to explain how they solved a problem 
+but you have to go through the steps independently and put the answer in your 
+own words, not simply copy someone else's work.
+
+**It is a violation of the honor code to turn in homework that someone 
+else has done for you or which you copied from someone else.** 
+If you are unsure about how the honor code applies to an assignment, please ask 
+me.
+
+## Homework Policy: Extra-Credit Options
+
+Some homework problems are assigned to graduate students only.
+Undergraduate students may choose to do any of these problems that interest 
+them, and will receive for extra credit if they do.
+
+I assign grades based on the required work, so your grade will not be affected 
+by whether or not other students do extra credit problems (in other words, 
+I never curve grades downward).
+
+If you did poorly on some homework problems, or did not turn in some homework 
+problems, you can make up some of that deficit by doing extra-credit
+problems on subsequent assignments. Extra credit on homework only counts toward 
+your homework grade for the semester and cannot compensate for missed work on 
+other assignments, such as the team project or research project.
+
+
+## Disclaimer
+
+This is a schedule of homework assignments through the entire term. 
+I have worked hard to plan the semester, but I may need to deviate from this 
+schedule.
+
+The most up-to-date versions of the homework assignments will be posted on the
+"Schedule" page of the 
+[course web site](https://ees4760.jgilligan.org/schedule): 
+<https://ees4760.jgilligan.org/schedule>
+
+```{r define_functions, eval=TRUE, include=FALSE, dependson="initialize"}
+assemble_schedule <- function(semester) {
+  schedule <- semestr:::init_schedule(semester)
+  tmp <- semestr:::schedule_strip_finals(schedule, semester)
+  schedule <- tmp$schedule
+
+  tmp <- semestr:::schedule_add_homework(schedule, semester)
+  schedule <- tmp$schedule
+
+  tmp <- semestr:::schedule_widen(schedule, final_exams, semester, TRUE)
+  schedule <- tmp$schedule
+
+  semestr:::set_schedule_globals(schedule, semester)
+  
+  invisible(schedule)
+}
+
+format_section_heading <- function(hw_title, hw_date) {
+  stringr::str_c("# ", hw_date, ": ", stringr::str_trim(hw_title))
+}
+
+make_hw_asgt_for_master <- function(id, schedule, semester) {
+  homework <- semester$hw_asgt %>% dplyr::filter(cal_id == id)
+  this_hw_asgt <- semestr:::make_hw_asgt_content(homework$hw_grp_key, 
+                                                   semester) %>% 
+    escape_dollar()
+  
+  section_heading <-  
+    format_section_heading(hw_title = homework$hw_title,
+                           hw_date = format_class_day_date(homework$date, 
+                                                           abbr_month = TRUE, 
+                                                           abbr_wday = TRUE)
+    )
+
+  this_asgt <- semestr:::cat_nl(section_heading, 
+                                this_hw_asgt,
+                                start_par = TRUE, extra_lines = 1)
+  this_asgt
+}
+
+format_hw_entry <- function(d, schedule, semester) {
+  d <- lubridate::as_date(d)
+  entry <- schedule %>% dplyr::filter(date == d)
+  this_item <- NA_character_
+  type <- NA_character_
+  if (! is.na(entry$id_hw)) {
+    id <- entry$id_hw
+    this_item <- make_hw_asgt_for_master(id, schedule, semester)
+    hw_title <- semester$hw_asgt %>%
+      dplyr::filter(cal_id == id) %>% pull(hw_title)
+  } 
+  # dbg_checkpoint("g_date", d)
+  if (! is.na(this_item)) {
+    key <- semester$calendar %>% dplyr::filter(cal_id == id) %>%
+      pull(cal_key)
+    context <- list(
+      type = "homework",
+      date = d,
+      title = hw_title,
+      cal_key = key,
+      cal_id = id
+    )
+    this_item <- semestr:::expand_codes(this_item, context, semester)
+  }
+  this_item
+}
+
+make_homework_schedule <- function(schedule, semester) {
+  schedule <- schedule %>% dplyr::arrange(date)
+  asgt_list <- character(0)
+  for (d in schedule$date) {
+    d <- lubridate::as_date(d)
+    asgt_list <- c(asgt_list, 
+                   format_hw_entry(d, schedule, semester))
+  }
+  asgt_list <- asgt_list %>% purrr::discard(is.na)
+  asgt_list <- paste(asgt_list, collapse = "\n\n")
+  invisible(asgt_list)
+}
+
+```
+```{r generate_assignments, echo=FALSE, include=TRUE, results="asis", dependson="define_functions"}
+schedule <- assemble_schedule(semester)  %>%
+  dplyr::filter(! is.na(id_class) || ! is.na(id_holiday))
+
+schedule <- make_homework_schedule(schedule, semester)
+cat(schedule)
+```
+

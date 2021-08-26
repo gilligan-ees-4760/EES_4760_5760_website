@@ -1,0 +1,757 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Homework Assignments},
+  pdfauthor={EES 4760/5760: Agent- and Individual-Based Computational Modeling},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{jglucida}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+
+\newcommand{\Ntwo}{\ce{N2}}
+\newcommand{\Otwo}{\ce{O2}}
+\newcommand{\Htwo}{\ce{H2}}
+\newcommand{\COO}{\ce{CO2}}
+\newcommand{\methane}{\ce{CH4}}
+
+\newcommand{\water}{\ce{H2O}}
+\newcommand{\silica}{\ce{SiO2}}
+\newcommand{\calcite}{\ce{CaCO3}}
+\newcommand{\CaSi}{\ce{CaSiO3}}
+\newcommand{\carbonic}{\ce{H2CO3}}
+\newcommand{\carbonicacid}{\carbonic}
+
+\newcommand{\Hplus}{\ce{H+}}
+\newcommand{\OH}{\ce{OH-}}
+\newcommand{\Caplus}{\ce{Ca^2+}}
+\newcommand{\Siplus}{\ce{Si^2+}}
+\newcommand{\carb}{\ce{CO3^2-}}
+\newcommand{\bicarb}{\ce{HCO3-}}
+\newcommand{\bicarbonate}{\bicarb}
+\newcommand{\carbonate}{\carb}
+\newcommand{\silicate}{\ce{SiO3^2-}}
+
+\newcommand{\degC}{\ensuremath{^\circ \mathrm{C}}}
+\newcommand{\degF}{\ensuremath{^\circ \mathrm{F}}}
+\newcommand{\pH}{p\ce{H}}
+\newcommand{\permil}{\permille}
+
+\newcommand{\Osixteen}{\ce{^{16}O}}
+\newcommand{\Oeightteen}{\ce{^{18}O}}
+\newcommand{\Ctwelve}{\ce{^{12}C}}
+\newcommand{\Cthirteen}{\ce{^{13}C}}
+\newcommand{\Cfourteen}{\ce{^{14}C}}
+\newcommand{\Hone}{\ce{^1H}}
+\newcommand{\deuterium}{\ce{^2H}}
+\newcommand{\tritium}{\ce{^3H}}
+
+\newcommand{\SLUGULATOR}{\textsc{slugulator}}
+\newcommand{\GEOCARB}{\textsc{geocarb}}
+\newcommand{\MODTRAN}{\textsc{modtran}}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Homework Assignments}
+\author{EES 4760/5760: Agent- and Individual-Based Computational
+Modeling}
+\date{Fall, 2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{general-instructions-for-homework-assignments}{%
+\section{General instructions for homework
+assignments}\label{general-instructions-for-homework-assignments}}
+
+\begin{itemize}
+\tightlist
+\item
+  Homework must be turned in on Brightspace by the beginning of class on
+  the due date unless the assignment gives a different time or date.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Late homework will lose 5\% for every day it is late, but will not
+    lose more than 50\%, no matter how late it is (you can always get up
+    to half credit for completing late homework).
+  \end{itemize}
+\end{itemize}
+
+I encourage you to discuss homework assignments with your classmates.
+Some assignments will explicitly tell you to work in a team with a
+classmate. Even when the assignments do not specify working in teams, it
+is still fine to work together on homework assignments, but
+\textbf{unless the assignment tells you to work in a team, you must
+actually do all the work yourself}. This means that you can ask a
+classmate to explain how they solved a problem but you have to go
+through the steps independently and put the answer in your own words,
+not simply copy someone else's work.
+
+\textbf{It is a violation of the honor code to turn in homework that
+someone else has done for you or which you copied from someone else.} If
+you are unsure about how the honor code applies to an assignment, please
+ask me.
+
+\hypertarget{homework-policy-extra-credit-options}{%
+\subsection{Homework Policy: Extra-Credit
+Options}\label{homework-policy-extra-credit-options}}
+
+Some homework problems are assigned to graduate students only.
+Undergraduate students may choose to do any of these problems that
+interest them, and will receive for extra credit if they do.
+
+I assign grades based on the required work, so your grade will not be
+affected by whether or not other students do extra credit problems (in
+other words, I never curve grades downward).
+
+If you did poorly on some homework problems, or did not turn in some
+homework problems, you can make up some of that deficit by doing
+extra-credit problems on subsequent assignments. Extra credit on
+homework only counts toward your homework grade for the semester and
+cannot compensate for missed work on other assignments, such as the team
+project or research project.
+
+\hypertarget{disclaimer}{%
+\subsection{Disclaimer}\label{disclaimer}}
+
+This is a schedule of homework assignments through the entire term. I
+have worked hard to plan the semester, but I may need to deviate from
+this schedule.
+
+The most up-to-date versions of the homework assignments will be posted
+on the ``Schedule'' page of the
+\href{https://ees4760.jgilligan.org/schedule}{course web site}:
+\url{https://ees4760.jgilligan.org/schedule}
+
+\hypertarget{tue.-aug.-31-set-up-netlogo}{%
+\section{Tue., Aug.~31: Set up
+NetLogo}\label{tue.-aug.-31-set-up-netlogo}}
+
+\hypertarget{homework}{%
+\subsection{Homework}\label{homework}}
+
+\textbf{There is nothing for you to turn in}, but do the following task
+to prepare for next week:
+
+\begin{itemize}
+\tightlist
+\item
+  Download NetLogo version 6.2.0 from
+  \url{https://ccl.northwestern.edu/netlogo/} and install it on your
+  computer.
+\end{itemize}
+
+\hypertarget{thu.-sep.-2-introducing-netlogo}{%
+\section{Thu., Sep.~2: Introducing
+NetLogo}\label{thu.-sep.-2-introducing-netlogo}}
+
+\hypertarget{homework-1}{%
+\subsection{Homework}\label{homework-1}}
+
+\begin{itemize}
+\item
+  As you read along with Section 2.3, follow along on your computer and
+  build the \emph{Mushroom Hunt} model by typing in the code shown in
+  the textbook. The whole program is shown on pages 27--29. \textbf{Save
+  your model as \texttt{mushroom\_hunt.nlogo}}.
+
+  This exercise may seem very simple, but it is the first step toward
+  learning how to program NetLogo and it will be an important first step
+  toward writing your own models.
+
+  After you are done typing in your model, try running it.
+
+  \textbf{When you are done, turn your model in on Brightspace.}
+\end{itemize}
+
+\hypertarget{notes-on-homework}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework}}
+
+I recommend getting together with a classmate and working together on
+this assignment. Since the assignment consists of typing code in and
+running it, do not worry about your work being identical to your
+partner's. However, I strongly recommend that you type everything in
+yourself because you will not learn if you just copy someone else's code
+or download the code from a source on the web.
+
+If you run into trouble and cannot make your model work, do not worry.
+Ask a classmate for help, or email me (and attach your \texttt{.nlogo}
+model file), or simply come to class on Tuesday with questions about the
+problems you had getting your model to work.
+
+\hypertarget{tue.-sep.-7-becoming-familiar-with-netlogo}{%
+\section{Tue., Sep.~7: Becoming familiar with
+NetLogo}\label{tue.-sep.-7-becoming-familiar-with-netlogo}}
+
+\hypertarget{homework-2}{%
+\subsection{Homework}\label{homework-2}}
+
+This homework consists of reading and working through tutorials, so
+there is nothing to turn in.
+
+\begin{itemize}
+\tightlist
+\item
+  Everyone should do exercises 1--2 in Chapter 2 of Railsback \& Grimm.
+  This consists of reading and working through tutorials, so there is
+  nothing to turn in.
+\end{itemize}
+
+\hypertarget{thu.-sep.-9-experimenting-with-netlogo}{%
+\section{Thu., Sep.~9: Experimenting with
+NetLogo}\label{thu.-sep.-9-experimenting-with-netlogo}}
+
+\hypertarget{homework-3}{%
+\subsection{Homework}\label{homework-3}}
+
+Upload your work to Brightspace when you're done (Word or text files for
+the descriptions and ODD document, and \texttt{.nlogo} files for your
+NetLogo models).
+
+\begin{itemize}
+\item
+  Railsback \& Grimm, Chapter 2, exercises Exercises 3--4.
+
+  For exercise 4 in chapter 2, you will make seven sequential
+  modifications of the basic mushroom hunt model. Each step modifies the
+  previous one, so the last model will have all the modifications from
+  the bulleted list in Ex. 2.4. Save each model with a new name, such as
+  \texttt{ex\_2\_4a.nlogo}, \texttt{ex\_2\_4b.nlogo}, \dots,
+  \texttt{ex\_2\_4g.nlogo}
+\item
+  Railsback \& Grimm, Chapter 3 exercise 3.
+
+  Write your answers in any convenient text format (a simple text file,
+  a Word document, a \texttt{.pdf} file, or whatever suits you). Call
+  the file \texttt{ex\_3\_3.docx} (or \texttt{ex\_3\_3.pdf}, etc.).
+\end{itemize}
+
+\hypertarget{notes-on-homework-1}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-1}}
+
+My advice for Chapter 3, Exercise 3 is don't be too ambitious with your
+model, but keep it very simple. Don't worry about getting everything
+right. If there are things you don't feel sure about or don't know how
+to express, you should just write a parenthetical note in your ODD
+document commenting on your difficulty. Come to class prepared to talk
+about how this exercise went and where you felt confused about trying to
+specify your model.
+
+\hypertarget{thu.-sep.-16-science-with-models-butterfly-mating}{%
+\section{Thu., Sep.~16: Science with models: Butterfly
+mating}\label{thu.-sep.-16-science-with-models-butterfly-mating}}
+
+\hypertarget{homework-4}{%
+\subsection{Homework}\label{homework-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Everyone:}
+
+  \begin{itemize}
+  \item
+    Railsback \& Grimm, Ch. 4, Ex. 4.2, 4.4
+
+    For exercise 4.4, \textbf{instead of the way the exercise is
+    described in the book, do the following:}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Try adding ``noise'' to the landscape by adding a random number to
+      the patch elevation.
+
+      \begin{enumerate}
+      \def\labelenumi{\arabic{enumi}.}
+      \item
+        Add a switch to the interface and call it ``noise''
+      \item
+        In the \texttt{ask\ patches} statement in \texttt{to\ setup},
+        change the elevation to this:
+
+\begin{verbatim}
+ask patches
+[
+  set elevation 200 + (100 * (sin (pxcor * 3.8) +
+                              sin (pycor * 3.8)))
+  if noise [
+    set elevation elevation +
+                  random-float 20.0 - 10.0
+  ]
+  set pcolor scale-color green elevation 0 400
+]
+\end{verbatim}
+      \item
+        In the \texttt{crt} statementin \texttt{to\ setup} (where you
+        create the turtles), instead of
+        \texttt{setxy\ random-pxcor\ random-pycor} write
+        \texttt{setxy\ 71\ 71} to start the turtles in the middle of the
+        hills. Write up answers to the following questions and turn them
+        in on Brightspace:
+      \item
+        Compare the turtle behavior with \texttt{noise} off to
+        \texttt{noise} on for several values of \texttt{q}. How does the
+        noise affect the movement?
+      \item
+        Does this give you any insight into why the paths in the
+        original (noise-free) model look artificial and unlike what you
+        might expect butterflies to do in the real world?
+      \end{enumerate}
+    \end{itemize}
+  \item
+    Railsback \& Grimm, Ch. 5, Ex. 5.1, 5.2, 5.4, and 5.7.
+  \end{itemize}
+\item
+  \textbf{Graduate Students,} also do the following:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 5, exercises 5.5 and 5.8
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{notes-on-homework-2}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-2}}
+
+\begin{itemize}
+\item
+  \textbf{Everyone:}For exercise 5.1, you should have three versions of
+  the model. Each version adds new changes on top of the previous
+  version:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    one version of the model that incorporates all the changes (listed
+    with triangular bullets in the book) in section 5.2 (pp.~64--68),
+  \item
+    one version that starts with the previous version from 5.2 and also
+    incorporates the additional changes in section 5.4 (p.~70),
+  \item
+    one version that starts with the previous version from 5.4 and also
+    incorporates the additional changes in section 5.5 (p.~73)
+  \end{itemize}
+
+  For exercise 5.2, look in the NetLogo dictionary for a command that
+  does what you want. The point of this exercise is to start getting you
+  used to looking for new NetLogo commands when you want to do something
+  you haven't yet learned about.
+
+  Exercise 5.7 asks you to answer a question about the modified model.
+  Be sure to turn in an answer to the question (you can do this in a
+  separate text document or you can edit the ``Info'' tab in NetLogo to
+  put your answer at the top of the info page for your model by pasting
+  the following in and editing to add your answer.
+
+\begin{verbatim}
+# Answer to 5.7
+
+answer goes here...
+\end{verbatim}
+
+  If you prefer to hand-write your answer, that's fine. Just take a
+  picture of it with your phone and upload it to Brightspace.
+\item
+  \textbf{Undergraduates:}
+\item
+  \textbf{Graduate Students:}For exercises 5.5 and 5.8, you need to
+  answer questions about your models. Do this in a file that you upload
+  to Brightspace, or write your answers on paper and take a picture and
+  upload it, or edit the ``Info'' page of your model and put the answer
+  there.
+\end{itemize}
+
+\hypertarget{thu.-sep.-23-reproducing-a-model-from-its-odd}{%
+\section{Thu., Sep.~23: Reproducing a model from its
+ODD}\label{thu.-sep.-23-reproducing-a-model-from-its-odd}}
+
+\hypertarget{homework-5}{%
+\subsection{Homework}\label{homework-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Graduate Students:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Graduate students should do Railsback \& Grimm, Ex. 5.11
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{notes-on-homework-3}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-3}}
+
+\begin{itemize}
+\item
+  \textbf{Everyone:}
+\item
+  \textbf{Undergraduates:}
+\item
+  \textbf{Graduate Students:}You can download the journal article for
+  this exercise,
+  \href{/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf}{R.
+  Jovani \& V. Grimm. (2008) ``Breeding synchrony in colonial birds:
+  From local stress to global harmony'', \emph{Proc. Royal Soc. London
+  B} \textbf{275}, 1567--63} from the class web site,
+  \url{https://ees4760.jgilligan.org/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf}.
+
+  You don't have to reproduce all of the figures in the paper. Focus on
+  reproducing the information in Figure 2 (make a figure of colony
+  synchrony versus NR and some other figures showing histograms of
+  breeding dates for NR = 0.00, 0.08, 0.20, and 1.00 and comparing them
+  to the histograms in Fig. 2.
+
+  You may also (optionally) try to reproduce Fig. 1 and Fig. 4.
+
+  Fig. 3 is very hard to reproduce because you would need to write a
+  reporter to calculate the size of the colonies and that is quite
+  difficult with what you know at this point about NetLogo programming,
+  so I don't recommend this.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The paper by Jovani and Grimm forgot to specify the parameter
+    \texttt{SD.} It should have the value 10.0.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{tue.-sep.-28-research-project-proposal}{%
+\section{Tue., Sep.~28: Research project
+proposal}\label{tue.-sep.-28-research-project-proposal}}
+
+\hypertarget{homework-6}{%
+\subsection{Homework}\label{homework-6}}
+
+\begin{itemize}
+\tightlist
+\item
+  Turn in a one-to-two page (double-spaced) proposal for your semester
+  research project.
+\end{itemize}
+
+\hypertarget{notes-on-homework-4}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-4}}
+
+This proposal should describe the topic you want to work on, identify a
+published open-source model you want to work with, and and describe how
+you think you might want to extend it.
+
+You should consult the textbook, the Model Library in NetLogo, and the
+list of reading and computational tools and resources I distributed on
+the first day of class (it's also posted on the course web site).
+
+If you really want to write your own model instead of working with a
+published one, that is also acceptable, but be aware that it may be a
+lot more work. I recommend that you do this only if you have previous
+experience in programming.
+
+See the semester project assignment for details.
+
+\hypertarget{fri.-oct.-1-testing-and-debugging-models}{%
+\section{Fri., Oct.~1: Testing and debugging
+models}\label{fri.-oct.-1-testing-and-debugging-models}}
+
+\hypertarget{homework-7}{%
+\subsection{Homework}\label{homework-7}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Everyone:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 6, Ex. 6.2, 6.3
+  \end{itemize}
+\item
+  \textbf{Graduate Students,} also do the following:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 6, Ex. 6.4, 6.5, 6.7
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{notes-on-homework-5}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-5}}
+
+A hint for exercise 6.3: Patches have integer coordinates (representing
+the center of the patch). How does the turtle determine the angle to
+face during \texttt{setup}? How does it determine the angle to face in
+\texttt{go-back}? Can you think of a different way to record the path so
+the \texttt{go-back} exactly retraces the path it took during
+\texttt{setup}? If you knew the direction the turtle was heading at each
+step during \texttt{setup}, could you use this heading information to
+exactly retrace the path?
+
+\hypertarget{tue.-oct.-5-analyzing-model-experiments}{%
+\section{Tue., Oct.~5: Analyzing model
+experiments}\label{tue.-oct.-5-analyzing-model-experiments}}
+
+\hypertarget{homework-8}{%
+\subsection{Homework}\label{homework-8}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Everyone:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 8, Ex. 8.1, 8.2
+  \item
+    Railsback \& Grimm, Ch. 9, Ex. 9.1, 9.3, 9.4
+  \end{itemize}
+\item
+  \textbf{Graduate Students,} also do the following:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 8, Ex. 8.3, 8.4
+  \item
+    Railsback \& Grimm, Ch. 9, Ex. 9.6
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{thu.-oct.-7-programming-agent-sensing}{%
+\section{Thu., Oct.~7: Programming agent
+sensing}\label{thu.-oct.-7-programming-agent-sensing}}
+
+\hypertarget{homework-9}{%
+\subsection{Homework}\label{homework-9}}
+
+\begin{itemize}
+\tightlist
+\item
+  Railsback \& Grimm, Ch. 10, Ex. 10.1, 10.2
+\item
+  Railsback \& Grimm, Ch. 11, Ex. 11.1
+\end{itemize}
+
+\hypertarget{tue.-oct.-12-analysis-of-a-published-model}{%
+\section{Tue., Oct.~12: Analysis of a published
+model}\label{tue.-oct.-12-analysis-of-a-published-model}}
+
+\hypertarget{homework-10}{%
+\subsection{Homework}\label{homework-10}}
+
+\begin{itemize}
+\item
+  Study the code and ODD of the model you chose for your semester
+  research project, play with the model and run some BehaviorSpace
+  experiments to examine its output.
+
+  Turn in a 3--5 page (double-spaced) write-up about the model.
+\end{itemize}
+
+\hypertarget{notes-on-homework-6}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-6}}
+
+See the project assignment sheet for details about this assignment.
+
+\hypertarget{thu.-oct.-21-team-modeling-project-presentations}{%
+\section{Thu., Oct.~21: Team modeling project
+presentations}\label{thu.-oct.-21-team-modeling-project-presentations}}
+
+\hypertarget{homework-11}{%
+\subsection{Homework}\label{homework-11}}
+
+\begin{itemize}
+\tightlist
+\item
+  Teams will give a presentation on their projects.
+\end{itemize}
+
+\hypertarget{notes-on-homework-7}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-7}}
+
+See the team project assignment sheet for details on what I expect for
+the presentation.
+
+\hypertarget{fri.-oct.-22-team-modeling-project-reports}{%
+\section{Fri., Oct.~22: Team modeling project
+reports}\label{fri.-oct.-22-team-modeling-project-reports}}
+
+\hypertarget{homework-12}{%
+\subsection{Homework}\label{homework-12}}
+
+\begin{itemize}
+\tightlist
+\item
+  Turn in the written report for your team project on Brightspace.
+\end{itemize}
+
+\hypertarget{notes-on-homework-8}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-8}}
+
+See the team project assignment sheet for details.
+
+\hypertarget{fri.-oct.-29-research-project-odd}{%
+\section{Fri., Oct.~29: Research project
+ODD}\label{fri.-oct.-29-research-project-odd}}
+
+\hypertarget{homework-13}{%
+\subsection{Homework}\label{homework-13}}
+
+\begin{itemize}
+\tightlist
+\item
+  Turn in an ODD for extending your chosen model to ask new questions.
+\end{itemize}
+
+\hypertarget{notes-on-homework-9}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-9}}
+
+See the semester research project assignment sheet for details.
+
+\hypertarget{fri.-nov.-12-draft-model-code-for-research-project}{%
+\section{Fri., Nov.~12: Draft model code for research
+project}\label{fri.-nov.-12-draft-model-code-for-research-project}}
+
+\hypertarget{homework-14}{%
+\subsection{Homework}\label{homework-14}}
+
+\begin{itemize}
+\item
+  Turn in a draft \texttt{.nlogo} file with your modified model. The ODD
+  for your modified model should be included in the ``Info'' section of
+  the model.
+
+  You should \emph{also} turn in a document that describes what you are
+  satisfied with about your draft model and what problems you are
+  struggling with.
+\end{itemize}
+
+\hypertarget{notes-on-homework-10}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-10}}
+
+The model code you turn in should run, but it does not need to be
+perfect.
+
+The point of this deadline is so that you can check in with me about how
+things are going so I can give you feedback and suggestions.
+
+See the project assignment sheet for details.
+
+\hypertarget{tue.-dec.-7-research-project-presentations}{%
+\section{Tue., Dec.~7: Research project
+presentations}\label{tue.-dec.-7-research-project-presentations}}
+
+\hypertarget{homework-15}{%
+\subsection{Homework}\label{homework-15}}
+
+\begin{itemize}
+\tightlist
+\item
+  You will make a ten-minute presentation in class about your model
+  (seven minutes of talking and three minutes for questions).
+\end{itemize}
+
+\hypertarget{notes-on-homework-11}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-11}}
+
+There will not be time to go into all the details in your presentation,
+so focus on:
+
+\begin{itemize}
+\tightlist
+\item
+  the big question you were addressing,
+\item
+  a short description of the approach you took to answer it using an
+  agent-based model,
+\item
+  what you learned from running the model.
+\end{itemize}
+
+See the project assignment sheet for details.
+
+\hypertarget{fri.-dec.-10-research-project-report}{%
+\section{Fri., Dec.~10: Research project
+report}\label{fri.-dec.-10-research-project-report}}
+
+\hypertarget{homework-16}{%
+\subsection{Homework}\label{homework-16}}
+
+\begin{itemize}
+\tightlist
+\item
+  Turn in a written report about your research project. Your report
+  should follow the model of a research report for \emph{Science}
+  magazine:
+\end{itemize}
+
+\hypertarget{notes-on-homework-12}{%
+\subsubsection{Notes on Homework:}\label{notes-on-homework-12}}
+
+See the project assignment sheet for details.
+
+\end{document}

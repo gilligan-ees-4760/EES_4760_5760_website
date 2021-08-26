@@ -1,5 +1,5 @@
 ---
-title: "Assignment Sheet"
+title: "Reading Assignments"
 author: "EES 4760/5760: Agent- and Individual-Based Computational Modeling"
 date: "Fall, 2021"
 output:
@@ -14,6 +14,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE, cache=FALSE)
 ```
 ```{r initialize, eval=TRUE, include=FALSE}
+library(tidyverse)
 library(semestr)
 
 semester <- load_semester_db("../EES-4760.sqlite3")
@@ -64,8 +65,10 @@ schedule, if I decide that it's important to spend more time on
 some subjects.
 
 The most up-to-date versions of the reading assignments will be posted on the
-[course web site](https://ees4760.jgilligan.org): 
-<https://ees4760.jgilligan.org>
+"Schedule" page of the 
+[course web site](https://ees4760.jgilligan.org/schedule): 
+<https://ees4760.jgilligan.org/schedule>
+
 
 ```{r define_functions, eval=TRUE, include=FALSE, dependson="initialize"}
 assemble_schedule <- function(semester) {
