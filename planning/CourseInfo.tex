@@ -1,0 +1,111 @@
+\newif{\ifisbn}
+\isbnfalse
+
+\newcommand{\shortdept}{EES}
+\newcommand{\longdept}{EES}
+\newcommand{\coursenum}{4760/5760}
+\newcommand{\sectionnum}{}
+\newcommand{\shortcoursetitle}{Agent- and Individual-Based Computational Modeling}
+\newcommand{\longcoursetitle}{\shortcoursetitle}
+\newcommand{\semester}{Fall}
+\newcommand{\yeartaught}{2021}
+
+\newcommand{\Classroom}{Stevenson 2220}
+\newcommand{\ClassMeetings}{TR 11:10--12:25\ \Classroom}
+
+\newcommand{\ProfName}{Jonathan Gilligan}
+\newcommand{\ShortProfName}{J.\ Gilligan}
+\newcommand{\ProfTitle}{Prof.\ Gilligan}
+\newcommand{\ProfDescr}{Associate Professor of Earth \& Environmental Sciences\\
+Associate Professor of Civil \& Environmental Engineering}
+\newcommand{\ProfOffice}{Office: Stevenson 5735 (Stevenson \#5, 7\textsuperscript{th} floor)}
+\newcommand{\ProfPhone}{Phone: 322-2420}
+\newcommand{\ProfEmail}{\href{mailto:jonathan.gilligan@vanderbilt.edu}%
+{\nolinkurl{jonathan.gilligan@vanderbilt.edu}}}
+\newcommand{\ProfWeb}{\href{https://www.jonathangilligan.org}%
+{\nolinkurl{www.jonathangilligan.org}}}
+
+\newcommand{\ProfOfficeHours}{Office Hours:
+	TBA
+	or by appointment.%
+	} % TODO: Office Hours
+
+\TAmalefalse
+\newcommand{\TaName}{Katerine ``Kat'' Turk}
+\newcommand{\TaTitle}{Ms.\ Turk}
+\newcommand{\TaOffice}{Stevenson 5743}
+\newcommand{\TaOfficeLoc}{Office: \TaOffice}
+\newcommand{\TaOfficeHours}{Office Hours:
+Tues.\ 10:00--11:00 am,
+Wed.\ 11:00 am--12:00 pm,
+or by appointment.%
+}
+\TaPhonefalse
+\ifTaPhone
+\newcommand{\TaPhone}{\qqq}
+\fi
+\newcommand{\TaEmail}{\href{mailto:katherine.a.turk@vanderbilt.edu}%
+{\nolinkurl{katherine.a.turk@vanderbilt.edu}}}
+%{\href{qqq}%
+%{\nolinkurl{qqq}}}
+
+\newcommand{\FinalExamDay}{Thursday}   %TODO: Final Exam Date & Time
+\newcommand{\ShortFinalExamDay}{Thurs.{}}   %TODO: Final Exam Date & Time
+\newcommand{\FinalExamMonth}{December} %TODO: Final Exam Date & Time
+\newcommand{\ShortFinalExamMonth}{Dec.{}} %TODO: Final Exam Date & Time
+\newcommand{\FinalExamDate}{16}  %TODO: Final Exam Date & Time
+\newcommand{\FinalExamTime}{3:00--5:00~pm}  %TODO: Final Exam Date & Time
+\newcommand{\FinalExamStartTime}{3:00~pm}
+\newcommand{\FinalExamEndTime}{5:00~pm}
+\newcommand{\FinalExamRoom}{\Classroom\ (our regular classroom)}  %TODO: Final Exam Date & Time
+
+\newif\ifAltFinal
+\AltFinaltrue
+
+\ifAltFinal
+\newcommand{\AltFinalExamDay}{Monday}   %TODO: Alternate Final Exam Date & Time
+\newcommand{\ShortAltFinalExamDay}{Mon.{}}   %TODO: Alternate Final Exam Date & Time
+\newcommand{\AltFinalExamMonth}{December} %TODO: Alternate Final Exam Date & Time
+\newcommand{\ShortAltFinalExamMonth}{Dec.{}} %TODO: Final Exam Date & Time
+\newcommand{\AltFinalExamDate}{13}  %TODO: Alternate Final Exam Date & Time
+\newcommand{\AltFinalExamTime}{12:00--2:00~pm}  %TODO: Alternate Final Exam Date & Time
+\newcommand{\AltFinalExamStartTime}{12:00~pm}
+\newcommand{\AltFinalExamEndTime}{2:00~pm}
+\newcommand{\AltFinalExamRoom}{\FinalExamRoom}  %TODO: Alternate Final Exam Date & Time
+\fi
+
+\newcommand{\NetLogo}{{\sffamily\scshape NetLogo}}
+\newcommand{\NetLogoURL}{\url{http://ccl.northwestern.edu/netlogo/}}
+
+\iffalse
+\newcommand{\Epstein}{Growing Artificial Societies}
+\newcommand{\ShortEpstein}{Growing}
+\newcommand{\MedEpstein}{\Epstein}
+\newcommand{\LongEpstein}{Joshua M. Epstein \& Robert Axtell,
+	\emph{Growing Artificial Societies: Social Science from the Bottom Up\/}
+	(Brookings/MIT, 1996\ifisbn ; ISBN 978-0-262-55025-3\fi )%
+	}
+
+\newcommand{\Growing}{\Epstein}
+\newcommand{\ShortGrowing}{\ShortEpstein}
+\newcommand{\MedGrowing}{\MedEpstein}
+\newcommand{\LongGrowing}{\LongEpstein}
+\fi
+
+\newcommand{\Railsback}{Agent-Based and Individual-Based Modeling}
+\newcommand{\ShortRailsback}{Agent-Based Modeling}
+\newcommand{\MedRailsback}{\Railsback}
+\newcommand{\AltShortRailsback}{Railsback \& Grimm}
+\newcommand{\ShorttestRailsback}{AB\&IBM}
+\newcommand{\LongRailsback}{Steven F. Railsback \& Volker Grimm,
+    \emph{Agent-Based and Individual-Based Modeling: A Practical Introduction\/}
+    (Princeton University Press, 2012\ifisbn ; ISBN 978-0-691-13674-5\fi )%
+}
+\newcommand{\RailsbackURL}{\url{http://www.railsback-grimm-abm-book.com/index.html}}
+
+
+\newcommand{\AbmBook}{\Railsback}
+\newcommand{\ShortAbmBook}{\ShortRailsback}
+\newcommand{\MedAbmBook}{\MedRailsback}
+\newcommand{\LongAbmBook}{\LongRailsback}
+

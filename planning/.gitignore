@@ -1,0 +1,11 @@
+db_save/
+old_db/
+calendar.csv
+*_bak.sqlite3
+*_bak[0-9][0-9][0-9].sqlite3
+test_db.sqlite3
+foo.md
+db_checkpoints/
+old_databases/
+old_scripts/
+old_csv/
