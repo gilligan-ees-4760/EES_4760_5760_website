@@ -1,6 +1,7 @@
 lessons:
 - date: '2021-08-26'
   title: Introduction
+  lecture: /slides/class_01
 - date: '2021-08-31'
   title: The computer modeling cycle
   reading: /reading/reading_02

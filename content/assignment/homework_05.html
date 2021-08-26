@@ -30,8 +30,12 @@ output:
 <li><p>In the <code>ask patches</code> statement in <code>to setup</code>, change the elevation to this:</p>
 <pre><code>ask patches
 [
-  set elevation 200 + (100 * (sin (pxcor * 3.8) + sin (pycor * 3.8)))
-  if noise [ set elevation elevation + random-float 20.0 - 10.0 ]
+  set elevation 200 + (100 * (sin (pxcor * 3.8) +
+                              sin (pycor * 3.8)))
+  if noise [
+    set elevation elevation +
+                  random-float 20.0 - 10.0
+  ]
   set pcolor scale-color green elevation 0 400
 ]</code></pre></li>
 <li><p>In the <code>crt</code> statementin <code>to setup</code> (where you create the turtles), instead of
