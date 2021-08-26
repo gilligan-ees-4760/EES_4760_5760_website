@@ -1,12 +1,13 @@
 ---
 title: Research project proposal
-due_date: '2019-09-27'
+due_date: '2021-09-28'
 assignment_type: Semester Project Assignment
 short_assignment_type: Assignment
-weight: 8
+assignment_number: 7
+weight: 7
 slug: project_proposal
-pubdate: '2019-07-31'
-date: '2019-09-27'
+pubdate: '2021-07-31'
+date: '2021-09-28'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists

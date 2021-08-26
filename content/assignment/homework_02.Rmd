@@ -1,13 +1,13 @@
 ---
 title: Introducing NetLogo
-due_date: '2019-08-29'
+due_date: '2021-09-02'
 assignment_type: Homework
 short_assignment_type: HW
 assignment_number: 2
 weight: 2
 slug: homework_02
-pubdate: '2019-07-31'
-date: '2019-08-29'
+pubdate: '2021-07-31'
+date: '2021-09-02'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -21,10 +21,10 @@ output:
 
   After you are done typing in your model, try running it.
 
-  **When you are done, make a subfolder called `HW_2` in your Box folder for this class, and upload your model.**
+  **When you are done, turn your model in on Brightspace.**
 
 ### Notes on Homework:
 
 I recommend getting together with a classmate and working together on this assignment. Since the assignment consists of typing code in and running it, do not worry about your work being identical to your partner's. However, I strongly recommend that you type everything in yourself because you will not learn if you just copy someone else's code or download the code from a source on the web.
 
-If you run into trouble and cannot make your model work, do not worry. Ask a classmate for help, or email me (and attach your `.nlogo` model file), or simply come to class on Tuesday with questions about the problems you had getting your model to work. Since your model file will be on Box, we will be able to discuss the problems in class.
+If you run into trouble and cannot make your model work, do not worry. Ask a classmate for help, or email me (and attach your `.nlogo` model file), or simply come to class on Tuesday with questions about the problems you had getting your model to work.

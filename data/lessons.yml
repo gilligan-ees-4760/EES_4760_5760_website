@@ -1,0 +1,108 @@
+lessons:
+- date: '2021-08-26'
+  title: Introduction
+- date: '2021-08-31'
+  title: The computer modeling cycle
+  reading: /reading/reading_02
+  assignment: homework_01
+- date: '2021-09-02'
+  title: Introduction to NetLogo
+  reading: /reading/reading_03
+  assignment: homework_02
+- date: '2021-09-07'
+  title: 'Specifying models: The ODD protocol'
+  reading: /reading/reading_04
+  assignment: homework_03
+- date: '2021-09-09'
+  title: Your first model
+  reading: /reading/reading_05
+  assignment: homework_04
+- date: '2021-09-14'
+  title: Using models for science
+  reading: /reading/reading_06
+- date: '2021-09-16'
+  title: Testing and validating models
+  reading: /reading/reading_07
+  assignment: homework_05
+- date: '2021-09-21'
+  title: Choosing Research Projects
+  reading: /reading/reading_08
+- date: '2021-09-23'
+  title: Emergence
+  reading: /reading/reading_09
+  assignment: homework_06
+- date: '2021-09-28'
+  title: Observation
+  reading: /reading/reading_10
+  assignment: project_proposal
+- date: '2021-09-30'
+  title: Sensing
+  reading: /reading/reading_11
+- date: '2021-10-01'
+  assignment: homework_08
+- date: '2021-10-05'
+  title: Adaptive Behavior and Objectives
+  reading: /reading/reading_12
+  assignment: homework_09
+- date: '2021-10-07'
+  title: Prediction
+  reading: /reading/reading_13
+  assignment: homework_10
+- date: '2021-10-12'
+  title: Interaction
+  reading: /reading/reading_14
+  assignment: project_analysis
+- date: '2021-10-14'
+  title: Fall Break
+- date: '2021-10-19'
+  title: Team Presentations
+- date: '2021-10-21'
+  title: Research Project ODDs
+  assignment: team_project_presentation
+- date: '2021-10-22'
+  assignment: team_project_report
+- date: '2021-10-26'
+  title: Scheduling
+  reading: /reading/reading_17
+- date: '2021-10-28'
+  title: Stochasticity
+  reading: /reading/reading_18
+- date: '2021-10-29'
+  assignment: project_odd
+- date: '2021-11-02'
+  title: Collectives
+  reading: /reading/reading_19
+- date: '2021-11-04'
+  title: Patterns
+  reading: /reading/reading_20
+- date: '2021-11-09'
+  title: Theory Development
+  reading: /reading/reading_21
+- date: '2021-11-11'
+  title: Parameterization and Calibration
+  reading: /reading/reading_22
+- date: '2021-11-12'
+  assignment: project_draft_code
+- date: '2021-11-16'
+  title: Parameterization and Calibration 2
+  reading: /reading/reading_23
+- date: '2021-11-18'
+  title: Analyzing ABMs
+  reading: /reading/reading_24
+- date: '2021-11-23'
+  title: Thanksgiving Break
+- date: '2021-11-25'
+  title: Thanksgiving Break
+- date: '2021-11-30'
+  title: Sensitivity and Robustness
+  reading: /reading/reading_25
+- date: '2021-12-02'
+  title: 'Looking Ahead: ABMs Beyond this Course'
+  reading: /reading/reading_26
+- date: '2021-12-07'
+  title: Presentations
+  assignment: project_presentation
+- date: '2021-12-09'
+  title: Presentations
+- date: '2021-12-10'
+  assignment: project_report

@@ -1,11 +1,11 @@
 ---
 title: Sensitivity and Robustness
-class_date: '2019-11-19'
+class_date: '2021-11-30'
 class_number: 25
 weight: 25
 slug: reading_25
-pubdate: '2019-07-31'
-date: '2019-11-19'
+pubdate: '2021-07-31'
+date: '2021-11-30'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -13,6 +13,7 @@ output:
 ## Reading:
 
 ### Required Reading (everyone):
+
 * Agent-Based and Individual-Based Modeling, Ch. 23.
 
 ### Reading Notes:

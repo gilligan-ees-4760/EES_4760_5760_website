@@ -1,12 +1,13 @@
 ---
 title: Research project model analysis
-due_date: '2019-10-15'
+due_date: '2021-10-12'
 assignment_type: Semester Project Assignment
 short_assignment_type: Assignment
-weight: 13
+assignment_number: 11
+weight: 11
 slug: project_analysis
-pubdate: '2019-07-31'
-date: '2019-10-15'
+pubdate: '2021-07-31'
+date: '2021-10-12'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists

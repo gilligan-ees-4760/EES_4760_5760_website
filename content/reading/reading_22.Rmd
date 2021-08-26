@@ -1,11 +1,11 @@
 ---
 title: Parameterization and Calibration
-class_date: '2019-11-07'
+class_date: '2021-11-11'
 class_number: 22
 weight: 22
 slug: reading_22
-pubdate: '2019-07-31'
-date: '2019-11-07'
+pubdate: '2021-07-31'
+date: '2021-11-11'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -13,6 +13,6 @@ output:
 ## Reading:
 
 ### Required Reading (everyone):
-* Agent-Based and Individual-Based Modeling, Ch. 20.
 
+* Agent-Based and Individual-Based Modeling, Ch. 20.
 

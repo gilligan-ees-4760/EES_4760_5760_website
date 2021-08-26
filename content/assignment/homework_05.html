@@ -1,18 +1,19 @@
 ---
 title: 'Science with models: Butterfly mating'
-due_date: '2019-09-12'
+due_date: '2021-09-16'
 assignment_type: Homework
 short_assignment_type: HW
 assignment_number: 5
 weight: 5
 slug: homework_05
-pubdate: '2019-07-31'
-date: '2019-09-12'
+pubdate: '2021-07-31'
+date: '2021-09-16'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <div id="homework" class="section level2">
@@ -20,17 +21,40 @@ output:
 <ul>
 <li><strong>Everyone:</strong>
 <ul>
-<li>Railsback &amp; Grimm, Ch. 4, Ex. 4.2, 4.4</li>
-<li>Railsback &amp; Grimm, Ch. 5, Ex. 5.1, 5.2, 5.4, and 5.7.</li>
+<li><p>Railsback &amp; Grimm, Ch. 4, Ex. 4.2, 4.4</p>
+<p>For exercise 4.4, <strong>instead of the way the exercise is described in the book, do the following:</strong></p>
+<ul>
+<li>Try adding “noise” to the landscape by adding a random number to the patch elevation.
+<ol style="list-style-type: decimal">
+<li><p>Add a switch to the interface and call it “noise”</p></li>
+<li><p>In the <code>ask patches</code> statement in <code>to setup</code>, change the elevation to this:</p>
+<pre><code>ask patches
+[
+  set elevation 200 + (100 * (sin (pxcor * 3.8) + sin (pycor * 3.8)))
+  if noise [ set elevation elevation + random-float 20.0 - 10.0 ]
+  set pcolor scale-color green elevation 0 400
+]</code></pre></li>
+<li><p>In the <code>crt</code> statementin <code>to setup</code> (where you create the turtles), instead of
+<code>setxy random-pxcor random-pycor</code> write <code>setxy 71 71</code> to start the turtles in the
+middle of the hills.
+Write up answers to the following questions and turn them in on Brightspace:</p></li>
+<li><p>Compare the turtle behavior with <code>noise</code> off to <code>noise</code> on for several values of <code>q</code>.
+How does the noise affect the movement?</p></li>
+<li><p>Does this give you any insight into why the paths in the original (noise-free) model look
+artificial and unlike what you might expect butterflies to do in the real world?</p></li>
+</ol></li>
 </ul></li>
-<li><strong>Graduate Students:</strong>
+<li><p>Railsback &amp; Grimm, Ch. 5, Ex. 5.1, 5.2, 5.4, and 5.7.</p></li>
+</ul></li>
+<li><strong>Graduate Students,</strong> also do the following:
 <ul>
 <li>Railsback &amp; Grimm, Ch. 5, exercises 5.5 and 5.8</li>
 </ul></li>
 </ul>
 <div id="notes-on-homework" class="section level3">
 <h3>Notes on Homework:</h3>
-<p>For exercise 5.1, you should have three versions of the model. Each version adds new changes on top of the previous version:</p>
+<ul>
+<li><p><strong>Everyone:</strong>For exercise 5.1, you should have three versions of the model. Each version adds new changes on top of the previous version:</p>
 <ul>
 <li>one version of the model that incorporates all the changes (listed with triangular bullets in the book) in section 5.2 (pp. 64–68),</li>
 <li>one version that starts with the previous version from 5.2 and also incorporates the additional changes in section 5.4 (p. 70),</li>
@@ -38,5 +62,16 @@ output:
 </ul>
 <p>For exercise 5.2, look in the NetLogo dictionary for a command that does what you want. The point of this exercise is to start getting
 you used to looking for new NetLogo commands when you want to do something you haven’t yet learned about.</p>
+<p>Exercise 5.7 asks you to answer a question about the modified model. Be sure to turn in an answer to the question (you can do this in
+a separate text document or you can edit the “Info” tab in NetLogo to put your answer at the top of the info page for your model by pasting the following in and
+editing to add your answer.</p>
+<pre><code># Answer to 5.7
+
+answer goes here...
+</code></pre>
+<p>If you prefer to hand-write your answer, that’s fine. Just take a picture of it with your phone and upload it to Brightspace.</p></li>
+<li><p><strong>Undergraduates:</strong></p></li>
+<li><p><strong>Graduate Students:</strong>For exercises 5.5 and 5.8, you need to answer questions about your models. Do this in a file that you upload to Brightspace, or write your answers on paper and take a picture and upload it, or edit the “Info” page of your model and put the answer there.</p></li>
+</ul>
 </div>
 </div>

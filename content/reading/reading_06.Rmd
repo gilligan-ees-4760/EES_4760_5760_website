@@ -1,11 +1,11 @@
 ---
 title: Using models for science
-class_date: '2019-09-10'
+class_date: '2021-09-14'
 class_number: 6
 weight: 6
 slug: reading_06
-pubdate: '2019-07-31'
-date: '2019-09-10'
+pubdate: '2021-07-31'
+date: '2021-09-14'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -13,6 +13,7 @@ output:
 ## Reading:
 
 ### Required Reading (everyone):
+
 * Agent-Based and Individual-Based Modeling, Ch. 5.
 
 ### Reading Notes:

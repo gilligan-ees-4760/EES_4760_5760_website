@@ -1,13 +1,13 @@
 ---
-title: Analyzing model experiments
-due_date: '2019-10-01'
+title: Testing and debugging
+due_date: '2021-10-01'
 assignment_type: Homework
 short_assignment_type: HW
 assignment_number: 8
-weight: 9
+weight: 8
 slug: homework_08
-pubdate: '2019-07-31'
-date: '2019-10-01'
+pubdate: '2021-07-31'
+date: '2021-10-01'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -15,9 +15,10 @@ output:
 ## Homework
 
 * **Everyone:**
-  * Railsback & Grimm, Ch. 8, Ex. 8.1, 8.2
-  * Railsback & Grimm, Ch. 9, Ex. 9.1, 9.3, 9.4
-* **Graduate Students:**
-  * Railsback & Grimm, Ch. 8, Ex. 8.3, 8.4
-  * Railsback & Grimm, Ch. 9, Ex. 9.6
+  * Railsback & Grimm, Ch. 6, Ex. 6.2, 6.3
+* **Graduate Students,** also do the following:
+  * Railsback & Grimm, Ch. 6, Ex. 6.4, 6.5, 6.7
 
+### Notes on Homework:
+
+A hint for exercise 6.3:  Patches have integer coordinates (representing the center of the patch). How does the turtle determine the angle to face during `setup`? How does it determine the angle to face in `go-back`? Can you think of a different way to record the path so the `go-back` exactly retraces the path it took during `setup`? If you knew the direction the turtle was heading at each step during `setup`, could you use this heading information to exactly retrace the path?

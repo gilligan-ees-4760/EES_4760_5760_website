@@ -1,13 +1,13 @@
 ---
 title: 'Science with models: Butterfly mating'
-due_date: '2019-09-12'
+due_date: '2021-09-16'
 assignment_type: Homework
 short_assignment_type: HW
 assignment_number: 5
 weight: 5
 slug: homework_05
-pubdate: '2019-07-31'
-date: '2019-09-12'
+pubdate: '2021-07-31'
+date: '2021-09-16'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -16,17 +16,60 @@ output:
 
 * **Everyone:**
   * Railsback & Grimm, Ch. 4, Ex. 4.2, 4.4
+
+    For exercise 4.4, **instead of the way the exercise is described in the book, do the following:**
+
+    * Try adding "noise" to the landscape by adding a random number to the patch elevation.
+      1. Add a switch to the interface and call it "noise"
+      2. In the `ask patches` statement in `to setup`, change the elevation to this:
+         ```
+         ask patches
+         [
+           set elevation 200 + (100 * (sin (pxcor * 3.8) + sin (pycor * 3.8)))
+           if noise [ set elevation elevation + random-float 20.0 - 10.0 ]
+           set pcolor scale-color green elevation 0 400
+         ]
+         ```
+      3. In the `crt` statementin `to setup` (where you create the turtles), instead of
+         `setxy random-pxcor random-pycor` write `setxy 71 71` to start the turtles in the
+         middle of the hills.
+      Write up answers to the following questions and turn them in on Brightspace:
+
+      1. Compare the turtle behavior with `noise` off to `noise` on for several values of `q`.
+         How does the noise affect the movement?
+      2. Does this give you any insight into why the paths in the original (noise-free) model look
+         artificial and unlike what you might expect butterflies to do in the real world?
+
   * Railsback & Grimm, Ch. 5, Ex. 5.1, 5.2, 5.4, and 5.7.
-* **Graduate Students:**
+
+* **Graduate Students,** also do the following:
   * Railsback & Grimm, Ch. 5, exercises 5.5 and 5.8
 
 ### Notes on Homework:
 
-For exercise 5.1, you should have three versions of the model. Each version adds new changes on top of the previous version:
 
-* one version of the model that incorporates all the changes (listed with triangular bullets in the book) in section 5.2 (pp. 64--68), 
-* one version that starts with the previous version from 5.2 and also incorporates the additional changes in section 5.4 (p. 70),
-* one version that starts with the previous version from 5.4 and also incorporates the additional changes in section 5.5 (p. 73)
+* **Everyone:**For exercise 5.1, you should have three versions of the model. Each version adds new changes on top of the previous version:
 
-For exercise 5.2, look in the NetLogo dictionary for a command that does what you want. The point of this exercise is to start getting 
-you used to looking for new NetLogo commands when you want to do something you haven't yet learned about.
+  * one version of the model that incorporates all the changes (listed with triangular bullets in the book) in section 5.2 (pp. 64--68),
+  * one version that starts with the previous version from 5.2 and also incorporates the additional changes in section 5.4 (p. 70),
+  * one version that starts with the previous version from 5.4 and also incorporates the additional changes in section 5.5 (p. 73)
+
+  For exercise 5.2, look in the NetLogo dictionary for a command that does what you want. The point of this exercise is to start getting
+  you used to looking for new NetLogo commands when you want to do something you haven't yet learned about.
+
+  Exercise 5.7 asks you to answer a question about the modified model. Be sure to turn in an answer to the question (you can do this in
+  a separate text document or you can edit the "Info" tab in NetLogo to put your answer at the top of the info page for your model by pasting the following in and
+  editing to add your answer.
+
+  ```
+  # Answer to 5.7
+
+  answer goes here...
+
+  ```
+
+  If you prefer to hand-write your answer, that's fine. Just take a picture of it with your phone and upload it to Brightspace.
+
+* **Undergraduates:**
+* **Graduate Students:**For exercises 5.5 and 5.8, you need to answer questions about your models. Do this in a file that you upload to Brightspace, or write your answers on paper and take a picture and upload it, or edit the "Info" page of your model and put the answer there.
+

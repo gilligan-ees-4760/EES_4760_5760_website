@@ -1,12 +1,13 @@
 ---
 title: Research project report
-due_date: '2019-12-06'
+due_date: '2021-12-10'
 assignment_type: Semester Project Assignment
 short_assignment_type: Assignment
-weight: 18
+assignment_number: 17
+weight: 17
 slug: project_report
-pubdate: '2019-07-31'
-date: '2019-12-06'
+pubdate: '2021-07-31'
+date: '2021-12-10'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists

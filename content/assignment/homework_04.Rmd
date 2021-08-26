@@ -1,19 +1,19 @@
 ---
 title: Experimenting with NetLogo
-due_date: '2019-09-05'
+due_date: '2021-09-09'
 assignment_type: Homework
 short_assignment_type: HW
 assignment_number: 4
 weight: 4
 slug: homework_04
-pubdate: '2019-07-31'
-date: '2019-09-05'
+pubdate: '2021-07-31'
+date: '2021-09-09'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Homework
-Make a folder called "HW_4" in your Box folder and upload your work when you're done (Word or text files for the descriptions and ODD document, and `.nlogo` files for your NetLogo models).
+Upload your work to Brightspace when you're done (Word or text files for the descriptions and ODD document, and `.nlogo` files for your NetLogo models).
 
 * Railsback & Grimm, Chapter 2, exercises Exercises 3--4.
 
@@ -30,5 +30,3 @@ simple. Don't worry about getting everything right. If there are things you don'
 don't know how to express, you should just write a parenthetical note in your ODD document commenting
 on your difficulty. Come to class prepared to talk about how this exercise went and where
 you felt confused about trying to specify your model.
-
-As always, I recommend working with another classmate or in a group, comparing your different ways of approaching the exercises, and discussing any difficulties together.

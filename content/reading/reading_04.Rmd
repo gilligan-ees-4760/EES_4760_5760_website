@@ -1,22 +1,19 @@
 ---
 title: 'Specifying models: The ODD protocol'
-class_date: '2019-09-03'
+class_date: '2021-09-07'
 class_number: 4
 weight: 4
 slug: reading_04
-pubdate: '2019-07-31'
-date: '2019-09-03'
+pubdate: '2021-07-31'
+date: '2021-09-07'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
-## Homework
-
-Homework #3 is due today: Ex. 2.1--2.2. See the homework assignment sheet for details.
-
 ## Reading:
 
 ### Required Reading (everyone):
+
 * Agent-Based and Individual-Based Modeling, Ch. 3.
 
 ### Reading Notes:
@@ -24,6 +21,7 @@ Homework #3 is due today: Ex. 2.1--2.2. See the homework assignment sheet for de
 Read carefully through the different design principles. Some of them have meanings that are a bit different from what you might infer from colloquial use.
 
 For instance:
+
 * **Adaptation** does not mean a persistent change in a turtle's behavior similar to the biological/Darwinian sense of adaptation in species. Rather, it means the way an agent changes its behavior in response to its _immediate_ conditions. Thus, adaptation in the ODD sense might include behaviors such as eating when you are hungry (_eating_ is an **adaptation** to _hunger_), putting on warmer clothing when it's cold out (bundling up is an adaptation to cold), and running away from a predator.
 * The kind of persistent changes that arise over time from experience fall under the ODD design concept of **learning**: If there is more food near a river than on hills, turtles may **learn** to go to rivers when they are hungry. 
 

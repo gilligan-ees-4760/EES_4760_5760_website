@@ -1,13 +1,13 @@
 ---
-title: Programming agent sensing
-due_date: '2019-10-03'
+title: Analyzing model experiments
+due_date: '2021-10-05'
 assignment_type: Homework
 short_assignment_type: HW
 assignment_number: 9
-weight: 10
+weight: 9
 slug: homework_09
-pubdate: '2019-07-31'
-date: '2019-10-03'
+pubdate: '2021-07-31'
+date: '2021-10-05'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -15,11 +15,9 @@ output:
 ## Homework
 
 * **Everyone:**
-  * Railsback & Grimm, Ch. 10, Ex. 10.1, 10.2
-  * Railsback & Grimm, Ch. 11, Ex. 11.1, 11.2
-* **Graduate Students:**
-  * Railsback & Grimm, Ch. 11, Ex. 11.3
+  * Railsback & Grimm, Ch. 8, Ex. 8.1, 8.2
+  * Railsback & Grimm, Ch. 9, Ex. 9.1, 9.3, 9.4
+* **Graduate Students,** also do the following:
+  * Railsback & Grimm, Ch. 8, Ex. 8.3, 8.4
+  * Railsback & Grimm, Ch. 9, Ex. 9.6
 
-### Notes on Homework:
-
-This homework has been cancelled. You do not have to do it.

@@ -1,11 +1,11 @@
 ---
 title: Choosing Research Projects
-class_date: '2019-09-17'
+class_date: '2021-09-21'
 class_number: 8
 weight: 8
 slug: reading_08
-pubdate: '2019-07-31'
-date: '2019-09-17'
+pubdate: '2021-07-31'
+date: '2021-09-21'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -13,6 +13,7 @@ output:
 ## Reading:
 
 ### Required Reading (everyone):
+
 * Agent-Based and Individual-Based Modeling, Ch. 7.
 
 ### Reading Notes:

@@ -1,22 +1,19 @@
 ---
 title: The computer modeling cycle
-class_date: '2019-08-27'
+class_date: '2021-08-31'
 class_number: 2
 weight: 2
 slug: reading_02
-pubdate: '2019-07-31'
-date: '2019-08-27'
+pubdate: '2021-07-31'
+date: '2021-08-31'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
-## Homework
-
-Homework #1 is due today: Install NetLogo and Set up Box account. See the homework assignment sheet for details.
-
 ## Reading:
 
 ### Required Reading (everyone):
+
 * Agent-Based and Individual-Based Modeling, Ch. 1.
 * Handout: [P. Tyson, "Artificial Societies," Technology Review **100** (3), 15--17 (1997).](/files/reading/Tyson_Artificial_Societies_1997.pdf){target="_blank"}.
 
