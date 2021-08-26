@@ -9,3 +9,5 @@ db_checkpoints/
 old_databases/
 old_scripts/
 old_csv/
+EES_3310*
+EES-3310*
