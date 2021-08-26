@@ -1,0 +1,1136 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Reading Assignments},
+  pdfauthor={EES 4760/5760: Agent- and Individual-Based Computational Modeling},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{jglucida}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+
+\newcommand{\Ntwo}{\ce{N2}}
+\newcommand{\Otwo}{\ce{O2}}
+\newcommand{\Htwo}{\ce{H2}}
+\newcommand{\COO}{\ce{CO2}}
+\newcommand{\methane}{\ce{CH4}}
+
+\newcommand{\water}{\ce{H2O}}
+\newcommand{\silica}{\ce{SiO2}}
+\newcommand{\calcite}{\ce{CaCO3}}
+\newcommand{\CaSi}{\ce{CaSiO3}}
+\newcommand{\carbonic}{\ce{H2CO3}}
+\newcommand{\carbonicacid}{\carbonic}
+
+\newcommand{\Hplus}{\ce{H+}}
+\newcommand{\OH}{\ce{OH-}}
+\newcommand{\Caplus}{\ce{Ca^2+}}
+\newcommand{\Siplus}{\ce{Si^2+}}
+\newcommand{\carb}{\ce{CO3^2-}}
+\newcommand{\bicarb}{\ce{HCO3-}}
+\newcommand{\bicarbonate}{\bicarb}
+\newcommand{\carbonate}{\carb}
+\newcommand{\silicate}{\ce{SiO3^2-}}
+
+\newcommand{\degC}{\ensuremath{^\circ \mathrm{C}}}
+\newcommand{\degF}{\ensuremath{^\circ \mathrm{F}}}
+\newcommand{\pH}{p\ce{H}}
+\newcommand{\permil}{\permille}
+
+\newcommand{\Osixteen}{\ce{^{16}O}}
+\newcommand{\Oeightteen}{\ce{^{18}O}}
+\newcommand{\Ctwelve}{\ce{^{12}C}}
+\newcommand{\Cthirteen}{\ce{^{13}C}}
+\newcommand{\Cfourteen}{\ce{^{14}C}}
+\newcommand{\Hone}{\ce{^1H}}
+\newcommand{\deuterium}{\ce{^2H}}
+\newcommand{\tritium}{\ce{^3H}}
+
+\newcommand{\SLUGULATOR}{\textsc{slugulator}}
+\newcommand{\GEOCARB}{\textsc{geocarb}}
+\newcommand{\MODTRAN}{\textsc{modtran}}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Reading Assignments}
+\author{EES 4760/5760: Agent- and Individual-Based Computational
+Modeling}
+\date{Fall, 2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{general-instructions-for-reading-assignments}{%
+\section{General instructions for reading
+assignments}\label{general-instructions-for-reading-assignments}}
+
+\begin{itemize}
+\item
+  Do the assigned reading \emph{before\/} you come to class on the date
+  for which it is assigned. If you have questions or find the ideas
+  presented in the readings confusing, I encourage you to ask questions
+  in class.
+\item
+  Check the list of errata at
+  \url{http://www.railsback-grimm-abm-book.com/downloads-errata-2nd-edition/}.
+\item
+  Questions in the ``Reading Notes'\,' sections of the assignments are
+  for you to think about to make sure you understand the material, but
+  you do not have to write up your answers or turn them in.
+
+  You are responsible for all the assigned readings, but topics I have
+  highlighted in the reading notes are particularly important.
+\item
+  In addition to the questions I ask in the reading notes, look over the
+  ``Conclusions'' section at the end of each chapter in
+  \emph{Agent-Based Modeling} to check whether you understand the key
+  facts and concepts from the chapter.
+\end{itemize}
+
+\hypertarget{disclaimer}{%
+\subsection{Disclaimer}\label{disclaimer}}
+
+This is a schedule of reading assignments through the entire term. I
+have worked hard to plan the semester, but I may need to deviate from
+this schedule, if I decide that it's important to spend more time on
+some subjects.
+
+The most up-to-date versions of the reading assignments will be posted
+on the ``Schedule'' page of the
+\href{https://ees4760.jgilligan.org/schedule}{course web site}:
+\url{https://ees4760.jgilligan.org/schedule}
+
+\hypertarget{thu.-aug.-26-introduction}{%
+\section{Thu., Aug.~26: Introduction}\label{thu.-aug.-26-introduction}}
+
+\hypertarget{reading}{%
+\subsection{Reading:}\label{reading}}
+
+No new reading for today.
+
+\hypertarget{tue.-aug.-31-the-computer-modeling-cycle}{%
+\section{Tue., Aug.~31: The computer modeling
+cycle}\label{tue.-aug.-31-the-computer-modeling-cycle}}
+
+\hypertarget{reading-1}{%
+\subsection{Reading:}\label{reading-1}}
+
+\hypertarget{required-reading-everyone}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 1.
+\item
+  Handout: \href{/files/reading/Tyson_Artificial_Societies_1997.pdf}{P.
+  Tyson, ``Artificial Societies,'' Technology Review \textbf{100} (3),
+  15--17 (1997).}.
+\end{itemize}
+
+\hypertarget{reading-notes}{%
+\subsubsection{Reading Notes:}\label{reading-notes}}
+
+This reading sets the stage for answering the questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What is computational modeling and why is it useful in social and
+  natural science research?
+\item
+  What are agent based models? How are they different from other kinds
+  of models? What makes them useful for scientific research?
+\end{enumerate}
+
+The reading introduces the idea of a \textbf{modeling cycle}. You should
+understand the different steps in the modeling cycle. You should also
+think about why Railsback and Grimm describe modeling as a cycle, as
+opposed to a linear process with a start and stop.
+
+As to what makes agent-based modeling special, Steven Railsback and
+Volker Grimm are ecologists and \emph{Agent-Based Modeling} emphasizes
+aspects of agent-based modeling that are well suited for studying
+ecological systems. Others, such as social scientists, emphasize the
+aspects of agent-based modeling that are well suited for problems in
+social science. And still others, such as computer scientists, emphasize
+aspects of automated and autonomous things (ranging from packets of data
+on a network to swarms of robots or flying drones that need to
+coordinate their activities and avoid collisions). What all of these
+approaches have in common are their use of individuals or
+\textbf{agents} (what is an agent?), which inhabit some kind of space or
+\textbf{environment} (this could be physical space or an abstract space,
+such as a computer network). Agents \textbf{interact} with each other
+and with the environment, and they make \textbf{decisions} according to
+rules.
+
+The article ``Artificial Life'' gives you a feel for how an early
+agent-based model called ``Sugarscape'' was used as part of a very
+influential research project in the 1990s. Joshua Epstein and Robert
+Axtell who wrote Sugarscape are highly respected pioneers in agent-based
+modeling and the Sugarscape model set off a revolution in agent-based
+modeling by showing that a very simple model could reproduce complex
+phenomena that are observed in real societies. As you read through this
+article, think about what the different applications of agent-based
+models have in common. Do these suggest questions that you might be
+interested in exploring with agent-based models. Do you have questions,
+as you read this, about whether computer modeling can really tell you
+about real societies?
+
+Agent-based models are often used to examine \textbf{emergent}
+phenomena. Neither reading describes clearly what \emph{emergence}
+means. There is no simple definition, but during the semester we will
+pay a lot of attention to learning about emergence and trying to
+understand it. Do not worry if you don't understand emergence at this
+point. Emergence is difficult to put into words, and it's much easier to
+understand from experience. Over the course of the semester, we will
+work together to understand what emergence is and how to study it.
+
+\hypertarget{thu.-sep.-2-introduction-to-netlogo}{%
+\section{Thu., Sep.~2: Introduction to
+NetLogo}\label{thu.-sep.-2-introduction-to-netlogo}}
+
+\hypertarget{reading-2}{%
+\subsection{Reading:}\label{reading-2}}
+
+\hypertarget{required-reading-everyone-1}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 2.
+\end{itemize}
+
+\hypertarget{reading-notes-1}{%
+\subsubsection{Reading Notes:}\label{reading-notes-1}}
+
+Familiarize yourself with NetLogo. I recommend that you read through the
+chapter with NetLogo open on your computer. Feel free to play around
+with NetLogo and try things out. The homework consists of following the
+step-by-step creation of a model in section 2.3.
+
+\hypertarget{tue.-sep.-7-specifying-models-the-odd-protocol}{%
+\section{Tue., Sep.~7: Specifying models: The ODD
+protocol}\label{tue.-sep.-7-specifying-models-the-odd-protocol}}
+
+\hypertarget{reading-3}{%
+\subsection{Reading:}\label{reading-3}}
+
+\hypertarget{required-reading-everyone-2}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 3.
+\end{itemize}
+
+\hypertarget{reading-notes-2}{%
+\subsubsection{Reading Notes:}\label{reading-notes-2}}
+
+Read carefully through the different design principles. Some of them
+have meanings that are a bit different from what you might infer from
+colloquial use.
+
+For instance:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Adaptation} does not mean a persistent change in a turtle's
+  behavior similar to the biological/Darwinian sense of adaptation in
+  species. Rather, it means the way an agent changes its behavior in
+  response to its \emph{immediate} conditions. Thus, adaptation in the
+  ODD sense might include behaviors such as eating when you are hungry
+  (\emph{eating} is an \textbf{adaptation} to \emph{hunger}), putting on
+  warmer clothing when it's cold out (bundling up is an adaptation to
+  cold), and running away from a predator.
+\item
+  The kind of persistent changes that arise over time from experience
+  fall under the ODD design concept of \textbf{learning}: If there is
+  more food near a river than on hills, turtles may \textbf{learn} to go
+  to rivers when they are hungry.
+\end{itemize}
+
+You can download several useful documents related to the ODD protocol
+from the class web site:
+
+\begin{itemize}
+\tightlist
+\item
+  The journal article, \href{/files/odd/Grimm_2010_ODD_update.pdf}{V.
+  Grimm \emph{et al.} (2010). ``The ODD protocol: A review and first
+  update'' \emph{Ecological Modeling} \textbf{221}, 2760--68.}.
+  \url{https://ees4760.jgilligan.org/files/odd/Grimm_2010_ODD_update.pdf}
+\item
+  A Word document that provides
+  \href{/files/odd/Grimm_2010_odd_template.docx}{a template for writing
+  ODDs}:
+  \url{https://ees4760.jgilligan.org/files/odd/Grimm_2010_odd_template.docx}
+\item
+  Lists of scientific publications using agent-based and
+  individual-based models that either do or don't use the ODD protocol
+  (this appeared as \href{/files/odd/Grimm_2010_appendix_1.pdf}{Appendix
+  1} of the Grimm \emph{et al.} paper):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \url{https://ees4760.jgilligan.org/files/odd/Grimm_2010_appendix_1.pdf},
+  \item
+    \url{https://ees4760.jgilligan.org/files/odd/ch3_ex1_pubs_with_no_ODD.pdf},
+  \item
+    \url{https://ees4760.jgilligan.org/files/odd/ch3_ex2_pubs_with_ODD.pdf}.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{thu.-sep.-9-your-first-model}{%
+\section{Thu., Sep.~9: Your first
+model}\label{thu.-sep.-9-your-first-model}}
+
+\hypertarget{reading-4}{%
+\subsection{Reading:}\label{reading-4}}
+
+\hypertarget{required-reading-everyone-3}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 4.
+\end{itemize}
+
+\hypertarget{reading-notes-3}{%
+\subsubsection{Reading Notes:}\label{reading-notes-3}}
+
+For the reading, read Chapter 4 in \emph{Agent-Based Modeling} first and
+focus mostly on this chapter.
+
+It is worth noting that the Sugarscape model you read about for Aug.~27
+is very similar to the hilltopping model. Sugarscape was part of a very
+influential research project in the 1990s, in which Joshua Epstein and
+Robert Axtell showed that a very simple model could reproduce complex
+biological and economic phenomena that are observed in real societies
+and ecosystems. You may find it interesting at this point to look back
+at the ``Artificial Societies'' article and to play with the Sugarscape
+model in NetLogo.
+
+You can download an
+\href{/files/models/chapter_04/ButterflyModelODD.txt}{ODD for the
+butterfly model}, which is suitable to paste into the ``Info'' tab in
+NetLogo, from the class web site:
+\url{https://ees4760.jgilligan.org/files/models/chapter_04/ButterflyModelODD.txt}
+
+\hypertarget{tue.-sep.-14-using-models-for-science}{%
+\section{Tue., Sep.~14: Using models for
+science}\label{tue.-sep.-14-using-models-for-science}}
+
+\hypertarget{reading-5}{%
+\subsection{Reading:}\label{reading-5}}
+
+\hypertarget{required-reading-everyone-4}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 5.
+\end{itemize}
+
+\hypertarget{reading-notes-4}{%
+\subsubsection{Reading Notes:}\label{reading-notes-4}}
+
+This reading sets the stage for answering the big question, ``How can we
+use agent-based models to do science?'' There are several aspects to
+this question, which this chapter will introduce:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  How can we produce quantitative output from our models?
+\item
+  How can your models read and write data to and from files? (This is
+  important for connecting your model to other parts of your project)
+\item
+  How should we test our models to make sure they do what we think they
+  do? (More on this in Chapter 6)
+\item
+  Making your research reproducible by using version control and
+  documentation.
+\end{enumerate}
+
+A number of you may like to use Excel or statistical analysis tools,
+such as \texttt{R}, \texttt{SPSS}, or \texttt{Stata}. The material in
+this chapter about importing and exporting data using text or
+\texttt{.csv} files will be very useful for this. By default, NetLogo
+only allows you to read in data in simple text files. However, if comes
+with some extensions that you can use to read in data from other common
+file formats, including \texttt{.csv} and ArcGIS shapefiles and raster
+(grid) files.
+
+If you want to read in data from csv files, you may want to look at the
+documentation for the \texttt{csv} extension to NetLogo. To use it, you
+just put the line \texttt{includes\ {[}csv{]}} as the first line of your
+model, and then use functions from the extension, such as
+\texttt{let\ data\ csv:from-file\ "myfile.csv"}.
+
+To read in date from ArcGIS files, look at the documentation for the
+\texttt{GIS} extension. You would put the line
+\texttt{extensions\ {[}\ gis\ {]}} as the first line of your model, and
+then use functions, such as \texttt{gis:load-dataset}, which can load
+vector shape files (\texttt{.shp}) and raster grid files (\texttt{.grd}
+or \texttt{.asc}). The GIS extension offers a lot of functions for
+working with vector and raster GIS data. If you're interested in using
+GIS data in your models, take a look at the GIS examples in the NetLogo
+model library.
+
+You can download the
+\href{/files/models/chapter_05/ElevationData.txt}{data file} with the
+elevations for the realistic butterfly model from
+\url{https://ees4760.jgilligan.org/files/models/chapter_05/ElevationData.txt}
+
+\hypertarget{thu.-sep.-16-testing-and-validating-models}{%
+\section{Thu., Sep.~16: Testing and validating
+models}\label{thu.-sep.-16-testing-and-validating-models}}
+
+\hypertarget{reading-6}{%
+\subsection{Reading:}\label{reading-6}}
+
+\hypertarget{required-reading-everyone-5}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 6.
+\end{itemize}
+
+\hypertarget{reading-notes-5}{%
+\subsubsection{Reading Notes:}\label{reading-notes-5}}
+
+No one writes perfect programs. Errors in programs controlling medical
+equipment have killed people. Errors in computer models and data
+analysis code have not had such dire results, but have wasted lots of
+time for researchers and have caused public policy to proceed on
+incorrect assumptions. In many cases, these errors were uncovered only
+after a great deal of frustration because the original researchers would
+not share their computer codes with others who were suspicious of their
+results.
+
+You can never be certain that your model is correct, but the more
+aggressively you check for errors the more confident you can be that it
+does not have major problems.
+
+Two very important things you can do to ensure that your research does
+not suffer a similar fate are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Test your code. Assume your program has errors in it and make the
+  search for those errors a priority in your programming process. Some
+  things you can do in this regard are:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Write your code with tests that will help you find errors.
+  \item
+    Work with a partner: after one of you writes code, the other should
+    read it and check for errors.
+  \item
+    Break your program up into small chunks. It is easier to test and
+    find bugs if you are looking at a short block of code than if you
+    are looking at hundreds of lines of code.
+  \item
+    Independently reimplement submodels and check whether they agree
+    with the submodel you are using.
+  \end{itemize}
+\item
+  Publish your code. If you trust your results and believe they are
+  important enough to publish in a book or journal, then you should make
+  your code available (there are many free sites, such as
+  \href{https://github.com}{\texttt{github.com}} and
+  \href{https://openabm.org}{\texttt{openabm.org}} where people can
+  publish their models and other computer code).
+
+  The more that other researchers can read your code, the greater the
+  probability that they will find any errors, and if you make it easy
+  for others to use your code, it will help science because other people
+  can build on your work, and it will help your reputation because when
+  other people use your model or other code they are likely to cite the
+  publication in which you first announced it, so your work will get
+  attention.
+
+  Many scholarly journals demand that you make your code available as a
+  condition for publishing your paper, and federal funding agencies are
+  increasingly requiring that any research funded by their grants must
+  make its code and data available to other researchers and the public.
+\end{enumerate}
+
+\textbf{The Cultural Dissemination Model}
+
+The
+\href{/files/models/chapter_06/axelrod_culture_dissemination_1997.pdf}{paper
+describing the culture dissemination model} and a
+\href{files/models/chapter_06/CultureDissemination_Untested.nlogo}{NetLogo
+model} that implements the ODD, but with many errors, can be downloaded
+from the class web site:
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://ees4760.jgilligan.org/files/models/chapter_06/axelrod_culture_dissemination_1997.pdf},
+\item
+  and
+  \url{https://ees4760.jgilligan.org/files/models/chapter_06/CultureDissemination_Untested.nlogo}.
+\end{itemize}
+
+\hypertarget{tue.-sep.-21-choosing-research-projects}{%
+\section{Tue., Sep.~21: Choosing Research
+Projects}\label{tue.-sep.-21-choosing-research-projects}}
+
+\hypertarget{reading-7}{%
+\subsection{Reading:}\label{reading-7}}
+
+\hypertarget{required-reading-everyone-6}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-6}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 7.
+\end{itemize}
+
+\hypertarget{reading-notes-6}{%
+\subsubsection{Reading Notes:}\label{reading-notes-6}}
+
+There is not very much reading for today. Read Chapter 7 of
+\emph{Agent-Based Modeling} carefully (it's very short) The point of
+this chapter is to help you get ideas for your term research project.
+
+Before class, I want you to read through the research project assignment
+and think about what you might want to do for a research project. We
+will spend class talking about possible research projects.
+
+\hypertarget{thu.-sep.-23-emergence}{%
+\section{Thu., Sep.~23: Emergence}\label{thu.-sep.-23-emergence}}
+
+\hypertarget{reading-8}{%
+\subsection{Reading:}\label{reading-8}}
+
+\hypertarget{required-reading-everyone-7}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-7}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 8.
+\end{itemize}
+
+\hypertarget{reading-notes-7}{%
+\subsubsection{Reading Notes:}\label{reading-notes-7}}
+
+This is a major chapter. Emergence is one of the most important concepts
+in agent-based modeling, so pay close attention to the discussion in
+this chapter and think about how you can measure and assess emergence.
+
+This chapter also introduces a very important tool for doing experiments
+in NetLogo: \textbf{BehaviorSpace}. BehaviorSpace lets you repeatedly
+run a NetLogo model while varying the settings of any of the controls on
+your user interface. Where there is randomness (stochasticity) in the
+model, you can perform many runs at each set of control settings. This
+will let us perform \textbf{sensitivity analysis} to determine whether a
+certain emergent phenomenon we are investigating happens only for values
+of the parameters within a narrow range, or whether it happens over a
+wide range of the parameters. It will let us determine which parameters
+are most important for the phenomenon.
+
+For homework and your modeling projects you will use BehaviorSpace
+extensively. BehaviorSpace outputs large amounts of data to
+\texttt{.csv} files, which you can read into Excel, R, SPSS, or another
+tool where you can do statistical analysis and generate plots such as
+the ones in figures 8.3, 8.5, and 8.6.
+
+The format in which BehaviorSpace saves its data is very annoying to
+deal with in many tools. Indeed, it's almost impossible to do anything
+useful with it in Excel. Because of this, I have written a tool called
+\texttt{analyzeBehaviorspace} that can read the output of a
+BehaviorSpace run and allow you to interactively graph it and
+re-organize the data to make it more useful.
+
+You can either use this tool online in a web browser at
+\url{https://analyze-behaviorspace.jgilligan.org} or install it on your
+own computer. For details, see the description of
+\texttt{analyzeBehaviorspace} on the ``Reading Resources and Computing
+Tools for Research'' handout.
+
+As you read the chapter, be sure to try out the experiments with the
+birth-and-death model and the flocking model. Try reading the output of
+the behaviorspace runs into analyzeBehaviorspace (the web version or a
+local version installed on your computer), or your favorite statistical
+analysis software and try to generate plots similar to figures 8.3, 8.5,
+and 8.6.
+
+If you have time, try to play around with BehaviorSpace using those
+models (varying different parameters) or other models from the NetLogo
+library to explore the ways that changing parameters affects the models'
+behavior.
+
+\hypertarget{tue.-sep.-28-observation}{%
+\section{Tue., Sep.~28: Observation}\label{tue.-sep.-28-observation}}
+
+\hypertarget{reading-9}{%
+\subsection{Reading:}\label{reading-9}}
+
+\hypertarget{required-reading-everyone-8}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-8}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 9.
+\end{itemize}
+
+\hypertarget{reading-notes-8}{%
+\subsubsection{Reading Notes:}\label{reading-notes-8}}
+
+In this chapter, we examine how to detect and record the properties of a
+model that we want to study.
+
+The article, D. Kornhauser,
+\href{http://jasss.soc.surrey.ac.uk/12/2/1.html}{U. Wilensky, and W.
+Rand. (2009). ``Design guidelines for agent-based model visualization,''
+\emph{Journal of Artificial Societies and Social Simulation}
+\textbf{12}, 1} is available online at
+\url{http://jasss.soc.surrey.ac.uk/12/2/1.html}.
+
+I have posted a
+\href{/files/models/chapter_09/ch9_ex8_netlogo_exercises.pdf}{refresher
+guide} for NetLogo programming on the class web site at
+\url{https://ees4760.jgilligan.org/files/models/chapter_09/ch9_ex8_netlogo_exercises.pdf}
+
+\hypertarget{thu.-sep.-30-sensing}{%
+\section{Thu., Sep.~30: Sensing}\label{thu.-sep.-30-sensing}}
+
+\hypertarget{reading-10}{%
+\subsection{Reading:}\label{reading-10}}
+
+\hypertarget{required-reading-everyone-9}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-9}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 10.
+\end{itemize}
+
+\hypertarget{reading-notes-9}{%
+\subsubsection{Reading Notes:}\label{reading-notes-9}}
+
+Important programming concepts in this chapter include:
+
+\begin{description}
+\tightlist
+\item[Links:]
+Agents interact with their physical environment (patches around them)
+and with other agents nearby, but they can also interact in social
+networks, which can be represented by links.
+\item[Variable scope:]
+Understand the differences between global variables, local variables,
+patch variables, agent variables, and link variables. Understand how an
+agent can get the value of a global variable or variables belonging to a
+certain patch or link or another agent.
+\item[Entity detection:]
+Understand different ways to detect which agents or patches meet certain
+conditions (e.g., within a certain distance, have a certain color, have
+the largest or smallest values of some variable, etc.).
+\end{description}
+
+The agents' interactions, both with their environment and with each
+other through sensing. Part of the design concepts section of a model's
+ODD consists of specifying what the agents can sense: They might be able
+to sense other agents within a certain distance. They might only be able
+to detect other agents if they are within a certain angle (e.g., the
+agent might be able to look forward, but might not be able to see behind
+itself unless it turns around). Agents might be able to detect certain
+qualities of one another (e.g., I can see how tall you are, but I can't
+see how much money you have).
+
+Agents can interact both spatially and through networks of links. You
+can create many kinds of links so that agents can belong to many
+networks (e.g., family, co-workers, members of a church congregation,
+etc.).
+
+Sensing involves two steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Detect which entities your agent (or patch) will sense.
+\item
+  Get the values of the sensed variables from those entities.
+\end{enumerate}
+
+Be sure to code the Business Investor model as you read section 10.4.
+You will use it in Chapter 11 and it will form the basis for one of the
+team projects you will present. The other team project will use the
+Telemarketer model from section 13.3. This would be a good time for you
+and your teammates to get started on your team projects.
+
+\hypertarget{tue.-oct.-5-adaptive-behavior-and-objectives}{%
+\section{Tue., Oct.~5: Adaptive Behavior and
+Objectives}\label{tue.-oct.-5-adaptive-behavior-and-objectives}}
+
+\hypertarget{reading-11}{%
+\subsection{Reading:}\label{reading-11}}
+
+\hypertarget{required-reading-everyone-10}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-10}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 11.
+\end{itemize}
+
+\hypertarget{reading-notes-10}{%
+\subsubsection{Reading Notes:}\label{reading-notes-10}}
+
+Agents' behavior often consists of trying to achieve some
+\textbf{objective}.
+
+I have discussed the way that Adam Smith's ``invisible hand of the
+market'' is a kind of agent-based view of a nation's economy: Each
+person (agent) has an objective of trying to maximize his or her own
+wealth (that's the agent's \textbf{micromotive}), and in doing so, the
+population of agents manages unintentionally to maximize the total
+wealth of the nation (an emergent \textbf{macrobehavior} that results
+from the collective interactions of the agents and their micromotives).
+
+For Darwin, agents whose objectives are to survive and reproduce under
+changing environmental conditions achieve emergent phenomena of
+evolution and speciation.
+
+If we are going to program an agent-based model to simulate such an
+economy (we saw this in the Sugarscape models), you need to program your
+agents to try to achieve their objective (maximize their wealth). There
+are two approaches to this:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  You could program a sophisticated strategy into your agents.
+\item
+  You could program a simple strategy into your agents, but give them
+  the ability to learn from their experience and adapt their behavior
+  according to what they learn. (see section 11.3 for details and an
+  example)
+\end{enumerate}
+
+This chapter discusses different kinds of objectives you might have your
+agents employ. An important concept from decision theory and behavioral
+economics that might be new to you is \textbf{satisficing}. This term,
+introduced by Herbert Simon\footnote{Herbert Simon (1916--2001) was a
+  fascinating intellectual. Kind of a renaissance scholar, he made major
+  contributions to political science, economics, cognitive psychology,
+  and artificial intelligence. He won the Nobel Prize for economics in
+  1978. His publications have been cited more than 250,000 times and
+  even \texttt{r\ lubridate::year(lubridate::today())\ -\ 2001} years
+  after his death, they are still cited more than 10,000 times per year.}
+in 1956, refers to making decisions by choosing a ``good-enough'' option
+when it would take too much time and effort to determine which option is
+the absolute best. See section 11.4 for details and an example.
+
+\hypertarget{thu.-oct.-7-prediction}{%
+\section{Thu., Oct.~7: Prediction}\label{thu.-oct.-7-prediction}}
+
+\hypertarget{reading-12}{%
+\subsection{Reading:}\label{reading-12}}
+
+\hypertarget{required-reading-everyone-11}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-11}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 12.
+\end{itemize}
+
+\hypertarget{reading-notes-11}{%
+\subsubsection{Reading Notes:}\label{reading-notes-11}}
+
+In class, we will discuss the telemarketer model.
+
+For the teams working on the telemarketer model, the steps are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Build the model as described in the ODD.
+\item
+  Do the analyses in section 13.3.2
+\item
+  Next work on two extensions:
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \tightlist
+  \item
+    Mergers (section 13.5)
+  \item
+    Customers remember (section 13.6)
+  \end{enumerate}
+\end{enumerate}
+
+Before class on Thursday, everyone should read Chapter 13 and the ODD
+for the telemarketer model and be ready to discuss the model in class.
+This will be a chance for the teams working on the model to ask
+questions.
+
+\hypertarget{tue.-oct.-12-interaction}{%
+\section{Tue., Oct.~12: Interaction}\label{tue.-oct.-12-interaction}}
+
+\hypertarget{reading-13}{%
+\subsection{Reading:}\label{reading-13}}
+
+\hypertarget{required-reading-everyone-12}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-12}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 13.
+\end{itemize}
+
+\hypertarget{thu.-oct.-14-fall-break}{%
+\section{Thu., Oct.~14: Fall Break}\label{thu.-oct.-14-fall-break}}
+
+Fall Break, no class.
+
+\hypertarget{tue.-oct.-19-team-presentations}{%
+\section{Tue., Oct.~19: Team
+Presentations}\label{tue.-oct.-19-team-presentations}}
+
+\hypertarget{reading-14}{%
+\subsection{Reading:}\label{reading-14}}
+
+No new reading for today.
+
+\hypertarget{thu.-oct.-21-research-project-odds}{%
+\section{Thu., Oct.~21: Research Project
+ODDs}\label{thu.-oct.-21-research-project-odds}}
+
+\hypertarget{reading-15}{%
+\subsection{Reading:}\label{reading-15}}
+
+No new reading for today.
+
+\hypertarget{tue.-oct.-26-scheduling}{%
+\section{Tue., Oct.~26: Scheduling}\label{tue.-oct.-26-scheduling}}
+
+\hypertarget{reading-16}{%
+\subsection{Reading:}\label{reading-16}}
+
+\hypertarget{required-reading-everyone-13}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-13}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 14.
+\end{itemize}
+
+\hypertarget{reading-notes-12}{%
+\subsubsection{Reading Notes:}\label{reading-notes-12}}
+
+A good example of asynchronous updating is the
+\href{/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo}{model
+of breeding synchrony}, described in
+\href{/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf}{Jovani
+and Grimm (2008)} and in Chapter 23, which I have posted on the class
+web site:
+\url{https://ees4760.jgilligan.org/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo}
+
+\hypertarget{thu.-oct.-28-stochasticity}{%
+\section{Thu., Oct.~28:
+Stochasticity}\label{thu.-oct.-28-stochasticity}}
+
+\hypertarget{reading-17}{%
+\subsection{Reading:}\label{reading-17}}
+
+\hypertarget{required-reading-everyone-14}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-14}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 15.
+\end{itemize}
+
+\hypertarget{tue.-nov.-2-collectives}{%
+\section{Tue., Nov.~2: Collectives}\label{tue.-nov.-2-collectives}}
+
+\hypertarget{reading-18}{%
+\subsection{Reading:}\label{reading-18}}
+
+\hypertarget{required-reading-everyone-15}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-15}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 16.
+\end{itemize}
+
+\hypertarget{thu.-nov.-4-patterns}{%
+\section{Thu., Nov.~4: Patterns}\label{thu.-nov.-4-patterns}}
+
+\hypertarget{reading-19}{%
+\subsection{Reading:}\label{reading-19}}
+
+\hypertarget{required-reading-everyone-16}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-16}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 17--18.
+\end{itemize}
+
+\hypertarget{reading-notes-13}{%
+\subsubsection{Reading Notes:}\label{reading-notes-13}}
+
+You can download \href{/files/models/chapter_18/ch18_before_ODD.pdf}{the
+ODD for the BEFORE beech forest model}, which is described in section
+18.3, from the class web site:
+\url{https://ees4760.jgilligan.org/files/models/chapter_18/ch18_before_ODD.pdf}.
+
+I have also posted
+\href{/files/models/chapter_18/ch18_ex1_models_list.pdf}{a list of
+published models} in which observed patterns are important:
+\url{https://ees4760.jgilligan.org/files/models/chapter_18/ch18_ex1_models_list.pdf}
+
+\hypertarget{tue.-nov.-9-theory-development}{%
+\section{Tue., Nov.~9: Theory
+Development}\label{tue.-nov.-9-theory-development}}
+
+\hypertarget{reading-20}{%
+\subsection{Reading:}\label{reading-20}}
+
+\hypertarget{required-reading-everyone-17}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-17}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 19.
+\end{itemize}
+
+\hypertarget{reading-notes-14}{%
+\subsubsection{Reading Notes:}\label{reading-notes-14}}
+
+There is an implementation of the
+\href{/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo}{wood hoopoe
+model}, suitable for Exercise 2, on the class web site:
+\url{https://ees4760.jgilligan.org/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo}
+
+\hypertarget{thu.-nov.-11-parameterization-and-calibration}{%
+\section{Thu., Nov.~11: Parameterization and
+Calibration}\label{thu.-nov.-11-parameterization-and-calibration}}
+
+\hypertarget{reading-21}{%
+\subsection{Reading:}\label{reading-21}}
+
+\hypertarget{required-reading-everyone-18}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-18}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 20.
+\end{itemize}
+
+\hypertarget{tue.-nov.-16-parameterization-and-calibration-2}{%
+\section{Tue., Nov.~16: Parameterization and Calibration
+2}\label{tue.-nov.-16-parameterization-and-calibration-2}}
+
+\hypertarget{reading-22}{%
+\subsection{Reading:}\label{reading-22}}
+
+\hypertarget{required-reading-everyone-19}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-19}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 20.
+\end{itemize}
+
+\hypertarget{thu.-nov.-18-analyzing-abms}{%
+\section{Thu., Nov.~18: Analyzing
+ABMs}\label{thu.-nov.-18-analyzing-abms}}
+
+\hypertarget{reading-23}{%
+\subsection{Reading:}\label{reading-23}}
+
+\hypertarget{required-reading-everyone-20}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-20}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 22.
+\end{itemize}
+
+\hypertarget{tue.-nov.-23thu.-nov.-25-thanksgiving-break}{%
+\section{Tue., Nov.~23--Thu., Nov.~25: Thanksgiving
+Break}\label{tue.-nov.-23thu.-nov.-25-thanksgiving-break}}
+
+Thanksgiving Break, no class.
+
+\hypertarget{tue.-nov.-30-sensitivity-and-robustness}{%
+\section{Tue., Nov.~30: Sensitivity and
+Robustness}\label{tue.-nov.-30-sensitivity-and-robustness}}
+
+\hypertarget{reading-24}{%
+\subsection{Reading:}\label{reading-24}}
+
+\hypertarget{required-reading-everyone-21}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-21}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 23.
+\end{itemize}
+
+\hypertarget{reading-notes-15}{%
+\subsubsection{Reading Notes:}\label{reading-notes-15}}
+
+You can download the
+\href{/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo}{model
+of breeding synchrony}, described in
+\href{/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf}{Jovani
+and Grimm (2008)} and in section 23.4, from the class web site:
+\url{https://ees4760.jgilligan.org/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo}
+
+\hypertarget{thu.-dec.-2-looking-ahead-abms-beyond-this-course}{%
+\section{Thu., Dec.~2: Looking Ahead: ABMs Beyond this
+Course}\label{thu.-dec.-2-looking-ahead-abms-beyond-this-course}}
+
+\hypertarget{reading-25}{%
+\subsection{Reading:}\label{reading-25}}
+
+\hypertarget{required-reading-everyone-22}{%
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone-22}}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 24.
+\end{itemize}
+
+\hypertarget{tue.-dec.-7-presentations}{%
+\section{Tue., Dec.~7: Presentations}\label{tue.-dec.-7-presentations}}
+
+\hypertarget{reading-26}{%
+\subsection{Reading:}\label{reading-26}}
+
+No new reading for today.
+
+\hypertarget{thu.-dec.-9-presentations}{%
+\section{Thu., Dec.~9: Presentations}\label{thu.-dec.-9-presentations}}
+
+\hypertarget{reading-27}{%
+\subsection{Reading:}\label{reading-27}}
+
+No new reading for today.
+
+\end{document}

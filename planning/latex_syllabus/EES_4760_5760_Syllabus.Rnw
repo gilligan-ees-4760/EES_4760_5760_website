@@ -22,83 +22,135 @@
 <<r setup, include=F>>=
 library(pacman)
 p_load(knitr)
-p_load(rprojroot)
 p_load(RSQLite)
-p_load(tidyverse, magrittr, lubridate)
+p_load(DBI)
+p_load(tidyverse, magrittr, stringr, lubridate)
 p_load(xtable)
 p_load(assertthat)
+
+knitr::opts_chunk$set(warn=FALSE, message=FALSE, cache=FALSE, error=TRUE)
+
+library(semestr)
+# source("../init.R", chdir = TRUE)
 @
 <<r import_schedule, include=F>>=
 chapterpages <- function(chapter, pages, textbook, handout) {
-  result = ''
+  result = ""
   if (handout) {
-    result = paste0(result, '\\ (Handout)')
+    result = str_c(str_trim(result, "right"), "\\ (Handout)")
   }
   if (!is.na(chapter)) {
-    result = paste0(result, ', Ch.~', chapter)
+    result = str_c(result, " ",
+                   str_replace_all(chapter, "\\bCh\\.[[:space:]]+", "Ch.~"))
   }
   if (!is.na(pages)) {
-    result = paste0(result, ifelse(str_detect(pages, '[,- ]'), ', pp.~', ', p.~'))
+    result = str_c(result, " ", str_replace_all(pages, "p\\.[[:space:]]+", "p.~"))
   }
   result
+}
+
+restrictions <- function(opt, undergrad_only, grad_only) {
+  ret <- ""
+  if (opt) {
+    ret <- "\\ (optional)"
+  } else if (grad_only) {
+    ret <- "\\ (grad students only)"
+  } else if (undergrad_only) {
+    ret <- "\\ (undergrads only)"
+  }
+  ret
 }
 
 format_reading_item <- function(df) {
   df %>% rowwise() %>%
     mutate(reading = str_c(
-      ifelse(rd_break_before, '\\\\',''),
-      short_latex_title,
+      # ifelse(break_before, "\\\\",""),
+      ifelse(textbook, "\\emph{", ""),
+      title,
+      ifelse(textbook, "\\/}", ""),
       chapterpages(chapter, pages, textbook, handout)
     )) %>%
-    ungroup()
+    ungroup() %>%
+    mutate(reading = str_replace_all(reading, "(\\\\[a-zA-Z]+) +Ch\\.", "\\1\\\\ Ch."))
 }
 
 
-# calendar <- read_excel('../../Syllabus/Class Schedule.xlsx', 1)
-db_file <- find_rstudio_root_file('planning/EES_4760_5760.sqlite3')
-semester_db <- src_sqlite(db_file)
 
-text_codes <- semester_db %>% tbl("text_codes") %>% collect() %>%
-  mutate(latex_value = ifelse(is.na(latex_value), code_value, latex_value)) %>%
-  { set_names(.$latex_value, .$code_name) }
+# calendar <- read_excel("../../Syllabus/Class Schedule.xlsx", 1)
+semester <- load_semester_db("../EES-4760.sqlite3")
 
-calendar <- semester_db %>% tbl('calendar') %>%
-  left_join(tbl(semester_db, 'events'), by = 'event_id') %>%
-  collect() %>%
-  mutate(date = ymd(date),
-         latex_topic = ifelse(is.na(latex_topic), topic, latex_topic),
-         latex_event_descr = ifelse(is.na(latex_event_descr), event_descr, latex_event_descr))
+is_fall_semester <- semester$calendar$date[[1]] %>% month() > 7
 
-reading <- tbl(semester_db, 'reading_assignments') %>%
-  left_join(tbl(semester_db, 'reading_items'), by = 'reading_group') %>%
-  left_join(tbl(semester_db, 'reading_sources'), by = 'source_id') %>%
-  collect() %>%
-  arrange(reading_group, rd_item_id) %>%
-  mutate(textbook = ifelse(is.na(textbook), FALSE, as.logical(textbook)),
-         handout = ifelse(is.na(handout), FALSE, as.logical(handout)),
-         rd_break_before = ifelse(is.na(textbook), FALSE, as.logical(rd_break_before))) %>%
-  mutate(latex_title = ifelse(is.na(latex_title), markdown_title, latex_title),
-         short_latex_title = ifelse(is.na(short_latex_title), short_markdown_title, short_latex_title)) %>%
-  format_reading_item() %>%
-  select(reading_id, reading_group, reading) %>%
-  group_by(reading_id, reading_group) %>%
-  summarize(reading = str_c(reading, collapse = '; ')) %>%
-  ungroup() %>%
-  select(-reading_group)
+collapse_handouts <- function(strings, handout) {
+  ret_val <- "Handouts (on Brightspace)"
+  if (! all(handout)) {
+    ret_val <- str_c(strings, collapse = ", ")
+  }
+  ret_val
+}
 
-calendar <- calendar %>% collect() %>% left_join(reading, by = 'reading_id') %>%
-  arrange(class) %>%
-  select(class, date, topic = latex_topic, reading, event, event_descr = latex_event_descr)
+reading <- semester$rd_items %>%
+  select(rd_item_id, rd_grp_key, title = short_latex_title, chapter, pages,
+         textbook, handout, optional, undergraduate_only, graduate_only,
+         rd_break_before) %>%
+  format_reading_item() %>% filter(! is.na(reading)) %>%
+  arrange(rd_grp_key, handout, optional, graduate_only, undergraduate_only) %>%
+  group_by(rd_grp_key, handout) %>%
+  summarize(reading = collapse_handouts(reading, handout), .groups = "drop") %>%
+  arrange(rd_grp_key, handout) %>% group_by(rd_grp_key) %>%
+  summarize(reading = str_c(reading, collapse = ", ")) %>%
+  ungroup()
 
-midterm <- calendar %>% filter(event %in% c('MIDTERM_TEST', 'MIDTERM_EXAM')) %>% select(class, date, topic, event)
-spring_break <- calendar %>% filter(event == 'SPRING_BREAK') %>% select(class, date, topic, event)
-final_exam <- calendar %>% filter(event == 'FINAL_EXAM') %>% select(class, date, topic, event)
-alt_final_exam <- calendar %>% filter(event == 'ALT_FINAL_EXAM') %>% select(class, date, topic, event)
+get_event <- function(class, exam, holiday) {
+  res <- ifelse(is.na(holiday),
+                ifelse(is.na(exam),
+                       NA,
+                       exam),
+                holiday)
+  res
+}
+
+schedule <- prepare_schedule(semester)
+if (! tibble::has_name(schedule, "key_holiday"))
+  schedule <- schedule %>% mutate(key_holiday = NA_character_)
+if (! tibble::has_name(schedule, "key_event"))
+  schedule <- schedule %>% mutate(key_event = NA_character_)
+
+calendar <- schedule %>%
+  filter(! is.na(id_class) || ! is.na(id_holiday)) %>%
+  left_join(select(semester$class_topics, id_class = cal_id, rd_grp_key,
+                   by = "cal_id")) %>%
+  left_join(reading, by = c(key_class = "rd_grp_key")) %>%
+  arrange(date, id_class) %>%
+  mutate(cal_id = seq_along(date),
+         date = ymd(date), weekday = wday(date, label = TRUE),
+         month = month(date, label = TRUE), day = mday(date),
+         event = get_event(key_class, key_event, key_holiday),
+         reading = replace_na(reading, "No reading")) %>%
+  select(cal_id, class_num, date, weekday, month, day, topic, reading, event)
+
+if (is_fall_semester) {
+  short_holiday_keys <- "FALL_BREAK" # one-day
+  long_holiday_keys <- "THANKSGIVING_BREAK" # multi-day
+} else {
+  short_holiday_keys <- "MLK_DAY" # one-day
+  long_holiday_keys <- "SPRING_BREAK" # multi-day
+}
+
+midterm <- calendar %>% filter(event %in% c("MIDTERM_TEST", "MIDTERM_EXAM"))
+short_holiday <- calendar %>% filter(event %in% short_holiday_keys)
+long_holiday <- calendar %>% filter(event %in% long_holiday_keys)
+final_exam <- calendar %>% filter(event == "FINAL_EXAM")
+alt_final_exam <- calendar %>% filter(event == "ALT_FINAL_EXAM")
+take_home_final_exam <- calendar %>% filter(event == "TAKE_HOME_FINAL_EXAM")
 
 select_class <- function(calendar, class_no) {
-  class <- calendar %>% filter(class == class_no) %>% select(class, date, topic, reading) %>%
-    mutate(weekday = wday(date, label = TRUE), long.weekday = wday(date, label = TRUE, abbr = FALSE),
-           month = month(date, label = TRUE), long.month = month(date, label = TRUE, abbr = FALSE),
+  class <- calendar %>% filter(class_num == class_no) %>%
+    select(class_num, date, topic) %>%
+    mutate(weekday = wday(date, label = TRUE),
+           long.weekday = wday(date, label = TRUE, abbr = FALSE),
+           month = month(date, label = TRUE),
+           long.month = month(date, label = TRUE, abbr = FALSE),
            day = day(date))
   as.list(class)
 }
@@ -108,47 +160,49 @@ this_sheet_revision <- NA
 first_class <- 1
 last_class <- NA
 
-if(is.na(first_class)) first_class <- min(calendar$class, na.rm = T)
-if (is.na(last_class)) last_class <- max(calendar$class, na.rm = T)
+if(is.na(first_class)) first_class <- min(calendar$class_num, na.rm = T)
+if (is.na(last_class)) last_class <- max(calendar$class_num, na.rm = T)
 
-first_date <- calendar %>% filter(class == first_class) %>% select(date) %>% unlist() %>% as_date()
-last_date <- calendar %>% filter(class == last_class) %>% select(date) %>% unlist() %>% as_date()
+first_date <- calendar %>% filter(class_num == first_class) %>% select(date) %>%
+  unlist() %>% lubridate::as_date()
+last_date <- calendar %>% filter(class_num == last_class) %>% select(date) %>%
+  unlist() %>% lubridate::as_date()
 
 year_taught <- year(first_date)
 
 format_sheet_number <- function() {
   ifelse(is.null(this_sheet_revision), this_sheet,
-         paste0(this_sheet, " (", this_sheet_revision, ")"))
+         str_c(this_sheet, " (", this_sheet_revision, ")"))
 }
 
 format_month <- function(d, abbr = TRUE) {
   m <- month(d, label = TRUE, abbr = abbr)
-  if (abbr) m <- paste0(m, '.')
+  if (abbr) m <- str_c(m, ".")
   m
 }
 
 format_wday <- function(d, abbr = TRUE) {
   wd <- wday(d, label = TRUE, abbr = abbr)
-  if (abbr) wd <- paste0(wd, '.')
+  if (abbr) wd <- str_c(wd, ".")
   wd
 }
 
 format_class_date <- function(d, abbr = TRUE) {
-  paste0(format_month(d, abbr = abbr), "~", day(d))
+  str_c(format_month(d, abbr = abbr), "~", day(d))
 }
 
 format_class_day_date <- function(d, abbr_month = TRUE, abbr_wday = TRUE) {
-  paste0(format_wday(d, abbr_wday), ", ",
+  str_c(format_wday(d, abbr_wday), ", ",
          format_month(d, abbr_month), "~", day(d))
 }
 
 format_date_range_by_class_no <- function(calendar, classes, abbr = TRUE) {
-  dates <- calendar %>% filter(class %in% na.omit(classes)) %>%
+  dates <- calendar %>% filter(class_num %in% na.omit(classes)) %>%
     summarize(start = min(date, na.rm = T), stop = max(date, na.rm = T))
   with(dates, {
     output <- format_class_date(start, abbr)
     if(start != stop) {
-      output <- paste0(str_trim(output), '--',
+      output <- str_c(str_trim(output), "--",
              ifelse(month(stop) == month(start), day(stop),
                     format_class_date(stop, abbr)))
     }
@@ -162,7 +216,7 @@ format_date_range_by_topic_id <- function(calendar, topics, abbr = TRUE) {
   with(dates, {
     output <- format_class_date(start, abbr)
     if(start != stop) {
-      output <- paste0(str_trim(output), '--',
+      output <- str_c(str_trim(output), "--",
              ifelse(month(stop) == month(start), day(stop),
                     format_class_date(stop, abbr)))
     }
@@ -172,11 +226,12 @@ format_date_range_by_topic_id <- function(calendar, topics, abbr = TRUE) {
 
 format_date_range_by_event_id <- function(calendar, event_ids, abbr = TRUE) {
   dates <- calendar %>% filter(event %in% event_ids) %>%
-    select(date) %>% summarize(start = min(date, na.rm = T), stop = max(date, na.rm = T))
+    select(date) %>%
+    summarize(start = min(date, na.rm = T), stop = max(date, na.rm = T))
   with(dates, {
     output <- format_class_date(start, abbr)
     if(start != stop) {
-      output <- paste0(str_trim(output), '--',
+      output <- str_c(str_trim(output), "--",
              ifelse(month(stop) == month(start), day(stop),
                     format_class_date(stop, abbr)))
     }
@@ -184,140 +239,140 @@ format_date_range_by_event_id <- function(calendar, event_ids, abbr = TRUE) {
   })
 }
 
-format_day_date_range_by_event_id <- function(calendar, event_ids, abbr_month = TRUE, abbr_wday = TRUE) {
+format_day_date_range_by_event_id <- function(calendar, event_ids,
+                                              abbr_month = TRUE, abbr_wday = TRUE) {
   dates <- calendar %>% filter(event %in% event_ids) %>%
-    select(date) %>% summarize(start = min(date, na.rm = T), stop = max(date, na.rm = T))
+    select(date) %>%
+    summarize(start = min(date, na.rm = T), stop = max(date, na.rm = T))
   with(dates, {
     output <- format_class_day_date(start, abbr_month, abbr_wday)
     if (start != stop) {
-      output <- paste0(output, '--',
+      output <- str_c(output, "--",
                        format_class_day_date(stop, abbr_wday))
     }
   output})
 }
 
 
-append_newline_if_needed <- function(txt) {
+fixup_nl <- function(txt) {
   txt <- str_trim(txt)
-  txt[str_detect(txt, '[^\n]$')] <- str_c(txt, '\n')
+  txt[str_detect(txt, "[^\n]$")] <- str_c(txt, "\n")
   txt
-}
-
-expand_codes <- function(text, delim = c("<%", "%>")) {
-  invoke(knit_expand, .x = text_codes, text = text, delim = delim)
-}
-
-expand_code <- function(text) {
-  str_c("<%", text, "%>") %>% expand_codes()
 }
 
 make_section <- function(cal_entry) {
   d <- cal_entry$date
-  paste0('\\section[',
+  str_c("\\section[",
          format_class_date(d, abbr = TRUE),
-         ']{',
+         "]{",
          format_class_day_date(d, TRUE, TRUE),
-         ': ',
+         ": ",
          cal_entry$topic,
-         '}\n')
+         "}\n")
 }
 
 make_reading_assignment <- function(reading_entry) {
-  output <- '\\subsection{Reading}'
+  output <- "\\subsection{Reading}"
   if (is.na(reading_entry$reading)) {
-    output <- paste(str_trim(output),
-                   'No new reading for today.',
-                   '', sep = '\n')
+    output <- str_c(str_trim(output),
+                   "No new reading for today.",
+                   "", sep = "\n")
   } else {
-    output <- paste(str_trim(output),
-                   '\\begin{itemize}',
+    output <- str_c(str_trim(output),
+                   "\\begin{itemize}",
                    str_trim(reading_entry$reading),
-                   '\\end{itemize}',
-                   '', sep = '\n')
+                   "\\end{itemize}",
+                   "", sep = "\n")
   }
     if (! is.na(reading_entry$extra_reading)) {
-    output <- paste(str_trim(output),
-                    '\\subsection{Optional Extra Reading}',
-                    '\\begin{itemize}',
-                    append_newline_if_needed(reading_entry$extra_reading),
-                    '\\end{itemize}',
-                    '', sep = '\n'
+    output <- str_c(str_trim(output),
+                    "\\subsection{Optional Extra Reading}",
+                    "\\begin{itemize}",
+                    fixup_nl(reading_entry$extra_reading),
+                    "\\end{itemize}",
+                    "", sep = "\n"
     )
   }
   if (! is.na(reading_entry$reading_notes)) {
     output <- with(reading_entry,
-                   paste(str_trim(output), '',
+                   str_c(str_trim(output), "",
                     ifelse(is.na(reading) & is.na(extra_reading),
-                           '\\subsection{Notes}',
-                           '\\subsection{Reading Notes}'),
+                           "\\subsection{Notes}",
+                           "\\subsection{Reading Notes}"),
                     str_trim(reading_notes),
-                    '', sep = '\n'))
+                    "", sep = "\n"))
   }
   output
 }
 
 make_homework_assignment <- function(homework_entries) {
-  grad_hw <- homework_entries %>% filter(graduate_only & ! is.na(homework))
-  ugrad_hw <- homework_entries %>% filter(undergraduate_only & ! is.na(homework))
-  everyone_hw <- homework_entries %>% filter(!graduate_only & ! undergraduate_only & ! is.na(homework))
-  grad_notes <- homework_entries %>% filter(graduate_only & ! is.na(homework_notes))
-  ugrad_notes <- homework_entries %>% filter(undergraduate_only & ! is.na(homework_notes))
-  everyone_notes <- homework_entries %>% filter(!graduate_only & ! undergraduate_only & ! is.na(homework_notes))
-  output <- paste('\\subsection{Homework}',
-         'A the beginning of class today, turn in the following homework:',
-         '\\begin{itemize}',
-         '', sep = '\n')
+  grad_hw <- homework_entries %>%
+    filter(graduate_only & ! is.na(homework))
+  ugrad_hw <- homework_entries %>%
+    filter(undergraduate_only & ! is.na(homework))
+  everyone_hw <- homework_entries %>%
+    filter(!graduate_only & ! undergraduate_only & ! is.na(homework))
+  grad_notes <- homework_entries %>%
+    filter(graduate_only & ! is.na(homework_notes))
+  ugrad_notes <- homework_entries %>%
+    filter(undergraduate_only & ! is.na(homework_notes))
+  everyone_notes <- homework_entries %>%
+    filter(!graduate_only & ! undergraduate_only & ! is.na(homework_notes))
+  output <- str_c("\\subsection{Homework}",
+         "A the beginning of class today, turn in the following homework:",
+         "\\begin{itemize}",
+         "", sep = "\n")
     if (nrow(ugrad_hw) > 0) {
-      output <- paste(str_trim(output),
-                       str_c('\\item \\textbf{Undergraduate Students:} ',
+      output <- str_c(str_trim(output),
+                       str_c("\\item \\textbf{Undergraduate Students:} ",
                              str_trim(ugrad_hw$homework)),
-                      '', sep = '\n')
+                      "", sep = "\n")
     }
     if (nrow(grad_hw) > 0) {
-      output <- paste(str_trim(output),
-                       str_c('\\item \\textbf{Graduate Students:} ',
+      output <- str_c(str_trim(output),
+                       str_c("\\item \\textbf{Graduate Students:} ",
                              str_trim(grad_hw$homework)),
-                      '', sep = '\n')
+                      "", sep = "\n")
     }
     if (nrow(everyone_hw) > 0) {
-      output <- paste0(str_trim(output),
-                       str_c('\\item \\textbf{Everyone:} ',
+      output <- str_c(str_trim(output),
+                       str_c("\\item \\textbf{Everyone:} ",
                              str_trim(everyone_hw$homework)),
-                       '', sep = '\n')
+                       "", sep = "\n")
     }
-    output <- paste(str_trim(output),
-                    '\\end{itemize}',
-                    '', sep = '\n')
+    output <- str_c(str_trim(output),
+                    "\\end{itemize}",
+                    "", sep = "\n")
 
     if (nrow(grad_notes) > 0 || nrow(ugrad_notes) > 0 || nrow(everyone_notes) > 0) {
-      output <- paste(str_trim(output),
-                      '\\subsection{Notes on Homework}\n',
-                      '', sep = '\n')
+      output <- str_c(str_trim(output),
+                      "\\subsection{Notes on Homework}\n",
+                      "", sep = "\n")
       if (nrow(everyone_notes) > 0) {
-        output <- paste(str_trim(output),
+        output <- str_c(str_trim(output),
                         str_trim(everyone_notes$homework_notes),
-                        '', sep = '\n')
+                        "", sep = "\n")
       }
       if (nrow(grad_notes) > 0 || nrow(ugrad_notes) > 0) {
-        output <- paste(str_trim(output),
-                        '\\begin{itemize}',
-                        '', sep = '\n')
+        output <- str_c(str_trim(output),
+                        "\\begin{itemize}",
+                        "", sep = "\n")
         if (nrow(ugrad_notes) > 0) {
-          output <- paste(str_trim(output),
-                          str_c('\\item \\textbf{Undergraduate Students:} ',
+          output <- str_c(str_trim(output),
+                          str_c("\\item \\textbf{Undergraduate Students:} ",
                                 str_trim(ugrad_notes$homework_notes)),
-                          '', sep = '\n')
+                          "", sep = "\n")
         }
         if (nrow(grad_notes) > 0) {
-          output <- paste(str_trim(output),
-                          str_c('\\item \\textbf{Graduate Students:} ',
+          output <- str_c(str_trim(output),
+                          str_c("\\item \\textbf{Graduate Students:} ",
                                 str_trim(grad_notes$homework_notes)),
-                          '', sep = '\n')
+                          "", sep = "\n")
         }
 
-        output <- paste(str_trim(output),
-                        '\\end{itemize}',
-                        '', sep = '\n')
+        output <- str_c(str_trim(output),
+                        "\\end{itemize}",
+                        "", sep = "\n")
       }
     }
     output
@@ -325,101 +380,98 @@ make_homework_assignment <- function(homework_entries) {
 
 make_hw_section <- function(cal_entry) {
   d <- cal_entry$date
-  homework <- homework_assignments %>% filter(homework_id == cal_entry$homework_id)
-  homework_topic <- homework$short_homework %>% str_trim() %>% str_c(collapse = "\n")
-  str_c('\\section[',
+  str_c("\\section[",
          format_class_date(d, abbr = TRUE),
-         ']{',
+         "]{",
          format_class_day_date(d, TRUE, TRUE),
-         ': ',
-         str_c('Homework \\#', cal_entry$homework_num, ': ', homework_topic),
-         '}\n')
+         ": ",
+         str_c("Homework \\#", cal_entry$homework_num, ": ", cal_entry$homework_topic),
+         "}\n")
 }
 
 make_short_hw_assignment <- function(cal_entry) {
   d <- cal_entry$date
-  homework <- homework_assignments %>% filter(homework_id == cal_entry$homework_id)
-  homework_topic <- homework$short_homework %>% str_trim() %>% str_c(collapse = "\n")
   str_c( "\\subsection{Homework}",
-         str_c( "Homework \\#", cal_entry$homework_num, ": ", homework_topic,
+         str_c( "Homework \\#", cal_entry$homework_num, ": ", cal_entry$homework_topic,
                 " is due today.  See the homework assignment sheet for details."),
-         '', sep = '\n' )
+         "", sep = "\n" )
 }
 
 
 make_notice <- function(notice_entries) {
   if (length(notice_entries) > 1) {
-    output <- paste('\\subsection{Notices:}',
-                    '\\begin{itemize}',
-                    paste('\\item', notice_entries$notice,
-                          sep = ' ', collapse = '\n'),
-                    '\\end{itemize}',
-                    '', sep = '\n')
+    output <- str_c("\\subsection{Notices:}",
+                    "\\begin{itemize}",
+                    str_c("\\item", notice_entries$notice,
+                          sep = " ", collapse = "\n"),
+                    "\\end{itemize}",
+                    "", sep = "\n")
   } else {
-    output <- paste('\\subsection{Notice:}',
+    output <- str_c("\\subsection{Notice:}",
                     notice_entries$notice,
-                    '', sep = '\n')
+                    "", sep = "\n")
   }
   output
 }
 
 format_assignment_entry <- function(class_no) {
-  cal_entry <- calendar %>% filter(class == class_no)
-  hw_entry <- homework_assignments %>% filter(class == class_no)
+  cal_entry <- calendar %>% filter(class_num == class_no)
+  hw_entry <- homework_assignments %>% filter(class_num == class_no)
 
   output <- make_hw_section(cal_entry)
   if (cal_entry$has_homework) {
-    output <- paste(str_trim(output),
+    output <- str_c(str_trim(output),
                     make_homework_assignment(hw_entry),
-                    '', sep = '\n')
+                    "", sep = "\n")
   }
   knit_expand(text = output, this_class_no = class_no,
               this_class_date = cal_entry$date,
               calendar = calendar,
-              delim = c('<%','%>'))
+              delim = c("<%","%>"))
 }
 
 
 format_class_entry <- function(class_no) {
-  cal_entry <- calendar %>% filter(class == class_no)
-  hw_entry <- homework_assignments %>% filter(class == class_no)
-  reading_entry <- reading_assignments %>% filter(class == class_no)
-  notice_entry <- notices %>% filter(class == class_no)
+  cal_entry <- calendar %>% filter(class_num == class_no)
+  hw_entry <- homework_assignments %>% filter(class_num == class_no)
+  reading_entry <- reading_assignments %>% filter(class_num == class_no)
+  notice_entry <- notices %>% filter(class_num == class_no)
 
   output <- make_section(cal_entry)
   if (cal_entry$has_notice) {
-    output <- paste(str_trim(output),
+    output <- str_c(str_trim(output),
                     make_notice(notice_entry),
-                    '', sep = '\n')
+                    "", sep = "\n")
   }
   if (cal_entry$has_homework) {
     if(FALSE) {
-      output <- paste(str_trim(output),
+      output <- str_c(str_trim(output),
                       make_homework_assignment(hw_entry),
-                      '', sep = '\n')
+                      "", sep = "\n")
     } else {
-      output <- paste(str_trim(output),
+      output <- str_c(str_trim(output),
                       make_short_hw_assignment(cal_entry),
-                      '', sep = '\n')
+                      "", sep = "\n")
     }
   }
   if (cal_entry$has_reading) {
-    output <-paste(str_trim(output),
+    output <-str_c(str_trim(output),
                    make_reading_assignment(reading_entry),
-                   '', sep = '\n')
+                   "", sep = "\n")
   } else {
-    # output <- paste0(str_trim(output),
-    #                  '\\subsection{Reading}',
-    #                  'No new reading for today.',
-    #                  '', sep = '\n')
+    # output <- str_c(str_trim(output),
+    #                  "\\subsection{Reading}",
+    #                  "No new reading for today.",
+    #                  "", sep = "\n")
   }
   knit_expand(text = output, this_class_no = class_no,
               this_class_date = cal_entry$date,
               calendar = calendar,
-              delim = c('<%','%>'))
+              delim = c("<%","%>"))
 }
 
 @
+
 
 \SetupHandout
 \isbntrue
@@ -646,10 +698,9 @@ week with \NetLogo\ than in a month or more with the other systems I know of.
 \begin{center}
 	\begin{tabular}[t]{crr}
 		Class participation & 5\% &\\
-		Homework & 25\% &\\
-		Assigned Projects & 30\% &\\
+		Homework & 30\% &\\
+		Team Project & 25\% &\\
 		Research Project & 40\% &
-%    Feedback to Other Students & 5\%
 	\end{tabular}
 \end{center}
 
@@ -775,64 +826,91 @@ and the course web site for the detailed daily assignments.
 \setlength{\heavyrulewidth}{0.5pt}
 \setlength{\lightrulewidth}{0.05pt}
 \begin{center}
-<<r class_schedule, echo=F, results='asis'>>=
-one_line_events <- c('FALL_BREAK','MIDTERM_TEST','MIDTERM_EXAM')
+<<r class_schedule, echo=F, results="asis">>=
+one_line_events <- c("MIDTERM_TEST","MIDTERM_EXAM", short_holiday_keys)
 
-finals <- bind_rows(final_exam, alt_final_exam) %>% arrange(date)
+finals <- bind_rows(final_exam, alt_final_exam, take_home_final_exam) %>% arrange(date)
 which_final <- tail(finals, 1)$event
 delete_final <- head(finals,-1)$event
-schedule <- calendar %>%
-  arrange(date) %>%
-  mutate(wday = paste0(wday(date, label = T, abbr=T), '.,'), month = paste0(month(date, label = T, abbr=T), '.'),
-         day = day(date), short_reading = str_trim(reading), event = ifelse(is.na(event), '', event), foo = NA) %>%
-  select(wday, month, day, topic, short_reading = short_reading, event, foo)
+schedule <- calendar %>% arrange(date) %>%
+  mutate(wday = str_c(wday(date, label = T, abbr=T), ".,"), month = str_c(month(date, label = T, abbr=T), "."),
+         day = day(date), reading = str_trim(reading), event = ifelse(is.na(event), "", event), foo = NA) %>%
+  select(wday, month, day, topic, reading, event, foo)
 
 events <- schedule$event
 
-spring_break_rows <- which(events == 'SPRING_BREAK')
-special_rows <- which(events %in% one_line_events)
-
-if(FALSE) {
-  schedule_1 <- schedule[1:max(spring_break_rows),]
+short_holiday_rows <- which(events %in% short_holiday_keys)
+long_holiday_rows <- which(events %in% long_holiday_keys)
+if (is_fall_semester) {
+  long_holiday_name <- "Thanksgiving Break"
 } else {
-  schedule_1 <- schedule
+  long_holiday_name <- "Spring Break"
 }
 
-schedule_1[special_rows,] <- schedule_1[special_rows,] %>%
-  mutate(topic = paste0('\\multicolumn{2}{l}{\\bfseries\\scshape\\large ', topic, '} & \\\\%'))
-schedule_1$topic[spring_break_rows] <- ''
-schedule_1$topic[min(spring_break_rows)] <- paste0('\\multicolumn{2}{l}{\\multirow{', length(spring_break_rows), '}{*}{\\bfseries\\scshape\\Large Spring Break}} & \\\\%')
-final_exam_row <- which(schedule_1$event == which_final)
-schedule_1$topic[final_exam_row] <- '\\multicolumn{2}{l}{\\bfseries\\scshape\\large Take-Home Final Exam Due} & \\\\%'
-schedule_1 <- schedule_1 %>% filter(! event %in% delete_final) %>% select(-event)
+special_rows <- which(events %in% one_line_events)
 
- latex_schedule_1 <- schedule_1 %>% xtable(align = c("","l@{~}","c@{~}","r",">{\\raggedright}m{2.6in}",">{\\centering}m{2in}", "c")) %>%
-  print(print.results = FALSE, type = "latex",
-        booktabs = TRUE, floating = FALSE, latex.environment='center',
+# schedule_break_row <- fall_break_row
+schedule_break_row <- with(schedule, which(month == "Nov." & day == 25))
+message("Break row = ", schedule_break_row)
+# schedule_break_row <- 30
+
+special_rows_1 <- special_rows %>% keep(~.x <= schedule_break_row)
+special_rows_2 <- special_rows %>% discard(~.x %in% special_rows_1)
+special_rows_2 <- special_rows_2 - schedule_break_row
+
+has_long_holiday <- (length(long_holiday_rows) > 0)
+if (has_long_holiday) {
+  long_vac_on_first_page <- min(long_holiday_rows) < schedule_break_row
+} else {
+  long_vac_on_first_page <- FALSE
+}
+
+schedule_1 <- schedule[1:schedule_break_row,]
+schedule_1[special_rows_1,] <- schedule_1[special_rows_1,] %>%
+  mutate(topic = str_c("\\multicolumn{2}{l}{\\bfseries\\scshape\\large ", topic, "} & \\\\%"))
+if (has_long_holiday && long_vac_on_first_page) {
+  schedule_1$topic[long_holiday_rows] <- ""
+  schedule_1$topic[min(long_holiday_rows)] <-
+    str_c("\\multicolumn{2}{l}{\\multirow{3}{*}{\\bfseries\\scshape\\Large ",
+          long_holiday_name, "}} & \\\\%")
+}
+schedule_1 <- schedule_1 %>% select(-event)
+
+schedule_1 %>% xtable(align = c("","l@{~}","c@{~}","r",">{\\raggedright}m{2.6in}",">{\\centering}m{2in}", "c")) %>%
+  print(booktabs = TRUE, floating = FALSE, latex.environment="center",
         sanitize.text.function = identity,
         include.colnames = F, include.rownames = F,
-        hline.after = discard(seq(-1,nrow(schedule_1)), ~.x %in% head(spring_break_rows,-1)),
+        hline.after = discard(seq(-1,nrow(schedule_1)), ~ long_vac_on_first_page & .x %in% head(long_holiday_rows,-1)),
         add.to.row = list(pos = list(0),
-                          command = '\\multicolumn{3}{c}{\\bfseries Date} & \\multicolumn{1}{c}{\\bfseries Topic} &\\multicolumn{1}{c}{\\bfseries Reading} &\\\\\n')) %>% expand_codes()
- cat(latex_schedule_1)
+                          command = "\\multicolumn{3}{c}{\\bfseries Date} & \\multicolumn{1}{c}{\\bfseries Topic} &\\multicolumn{1}{c}{\\bfseries Reading} &\\\\\n"))
 @
 \end{center}
-%
-\iffalse
+
 \begin{center}
-<<r class_schedule_2, eval=F, echo=F, results='asis'>>=
-schedule_2 <- schedule[-(1:max(spring_break_rows)),]
+<<r class_schedule_2, echo=F, results="asis">>=
+schedule_2 <- schedule[-(1:schedule_break_row),]
+schedule_2[special_rows_2,] <- schedule_2[special_rows_2,] %>%
+  mutate(topic = str_c("\\multicolumn{2}{l}{\\bfseries\\scshape\\large ", topic, "} & \\\\%"))
+in_class_ex_line <- which(schedule_2$event %in% c("IN_CLASS_EXERCISE"))
+schedule_2[in_class_ex_line,] <- schedule_2[in_class_ex_line,] %>%
+  mutate(topic = str_c("\\bfseries\\scshape ", topic))
+if ( has_long_holiday && ! long_vac_on_first_page) {
+  long_holiday_rows <- long_holiday_rows - schedule_break_row
+  schedule_2$topic[long_holiday_rows] <- ""
+  schedule_2$topic[min(long_holiday_rows)] <-
+    str_c("\\multicolumn{2}{l}{\\multirow{3}{*}{\\bfseries\\scshape\\Large ",
+          long_holiday_name, "}} & \\\\%")
+}
 final_exam_row <- which(schedule_2$event == which_final)
-schedule_2$topic[final_exam_row] <- '\\multicolumn{2}{l}{\\bfseries\\scshape\\large Take-Home Final Exam Due} & \\\\%'
+schedule_2$topic[final_exam_row] <- "\\multicolumn{2}{l}{\\bfseries\\scshape\\large Take-Home Final Exam Due} & \\\\%"
 schedule_2 <- schedule_2 %>% filter(! event %in% delete_final) %>% select(-event)
 
 schedule_2 %>% xtable(align = c("","l@{~}","c@{~}","r",">{\\raggedright}m{2.6in}",">{\\centering}m{2in}", "c")) %>%
-  print(print.results = FALSE, booktabs = TRUE, floating = FALSE,  latex.environment="center",
+  print(booktabs = TRUE, floating = FALSE,  latex.environment="center",
         sanitize.text.function = identity, include.colnames = F, include.rownames = F,
-        hline.after = seq(-1,nrow(schedule_2)),
+        hline.after = discard(seq(-1,nrow(schedule_2)), ~ ! long_vac_on_first_page & .x %in% head(long_holiday_rows,-1)),
         add.to.row = list(pos = list(0),
-                          command = '\\multicolumn{3}{c}{\\bfseries Date} & \\multicolumn{1}{c}{\\bfseries Topic} &\\multicolumn{1}{c}{\\bfseries Reading} &\\\\\n')) %>% expand_codes()
-
+                          command = "\\multicolumn{3}{c}{\\bfseries Date} & \\multicolumn{1}{c}{\\bfseries Topic} &\\multicolumn{1}{c}{\\bfseries Reading} &\\\\\n"))
 @
 \end{center}
 \fi

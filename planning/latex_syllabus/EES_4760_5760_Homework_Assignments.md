@@ -17,8 +17,8 @@ output:
 # General instructions for homework assignments
 
 
-* Homework must be turned in on Brightspace by the beginning of class on the 
-  due date unless the assignment gives a different time or date. 
+* Homework must be turned in on Brightspace by 11:59 pm on the 
+  due date unless the assignment gives a different time. 
   * Late homework will lose 5% for every day it is late, but will not lose
     more than 50%, no matter how late it is (you can always get up to half
     credit for completing late homework).

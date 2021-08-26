@@ -160,8 +160,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
     email = "jonathan.gilligan@vanderbilt.edu"
     phone = "322-2420"
     url = "https://www.jonathangilligan.org"
-    office = "via Zoom (details on Brightspace)"
-    officeHours = "Tues. 2:00--3:00, Wed. 10:30--11:30, or by appointment"
+    office = "SC 5735 and on Zoom (details on Brightspace)"
+    officeHours = "Tues. 4:00--5:00 pm, Wed. 7:00--8:00 pm (on Zoom), or by appointment"
 
   [params.ta]
     hasTA = true

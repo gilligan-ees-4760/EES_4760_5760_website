@@ -1,6 +1,6 @@
 ---
 title: "Course Description"
-date: "2017-04-13T00:00:00"
+date: "2021-08-26T00:00:00"
 ---
 #### <a href="/files/EES_4760_5760_Syllabus.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="margin-right:0.25em;"></i> **Printable syllabus**</a>
 
@@ -10,12 +10,12 @@ date: "2017-04-13T00:00:00"
 
 #### Professor
 
-{{% PROF_INFO %}}
+{{< PROF_INFO >}}
 
 {{< IF_TA >}}
 #### Graduate Teaching Assistant
 
-{{% TA_INFO %}}
+{{< TA_INFO >}}
 {{< /IF_TA >}}
 
 #### Schedule
@@ -164,9 +164,7 @@ assigned material and ask questions if there are things you don't understand.
 
 ### Homework
 
-You will set up a Box folder for this course at <https://vanderbilt.box.com>
-and share it with me (put me in the role of Editor).
-Homework must be turned in electronically via the Box folder by 11:59 pm on the 
+Homework must be turned in electronically to Brightspace by 11:59 pm on the 
 day it is due.
 
 ### Projects
