@@ -9,11 +9,8 @@ date: "2017-04-13T00:00:00"
 **I expect you to complete the assigned reading before class on the day
 for which it is assigned.**
 
-**Homework will be due by 11:59 PM on the due date.** You will set up a 
-Box folder for this course at <https://vanderbilt.box.com>
-and share it with me (put me in the role of Editor), and you will turn in 
-homework by making a subfolder for each homework assignment and uploading 
-{{% NETLOGO %}} `.nlogo` model files or text files.
+**Homework will be due by 11:59 PM on the due date.** 
+You will turn in homework to Brightspace.
 
 
 ### General instructions for reading assignments
