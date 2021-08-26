@@ -675,7 +675,7 @@ I have chosen it for this course because it is free, it runs on all the major
 operating systems, its programming language is very easy to learn; and it allows
 you to easily create a visual representation of your model.
 
-You should download \NetLogo\ version 6.0.2 from
+You should download \NetLogo\ version 6.2.0 from
 \url{http://ccl.northwestern.edu/netlogo/download.shtml}
 and install it on your computer.
 
