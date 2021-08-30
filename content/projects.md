@@ -5,7 +5,7 @@ draft: false
 
 ## Team Projects
 
-Presentations and write-ups due Thursday, Oct. 10. Post your write-up to the course Box folder by the end of the day Friday, Oct. 11 (i.e., before midnight).
+Presentations due Thursday, Oct. 21. Post your write-up to Brighspace by 11:59 pm on Friday, Oct. 22.
 
 [Project assignment](/assignment/TeamProjectAssignment.pdf)
 
@@ -24,19 +24,16 @@ Presentations and write-ups due Thursday, Oct. 10. Post your write-up to the cou
 
 | Team # |       Project      |                     Members                 |      Exercises     |
 |-------:|:------------------:|:-------------------------------------------:|:------------------:|
-| 1      |  Business Investor |         Alyssa Chvasta & Nidhi Metha        |   10.3, 10.4       |
-| 2      |  Business Investor |    Samuel Heagney & Alex Rice-Slothower     |   10.3, 10.4       |
-| 3      |  Business Investor |         Andrew McKinnis & Jessica Mo        |   10.3, 10.4       |
-| 4      |  Telemarketer      |           Bowen He & Alex Ismodes           |   13.2, 13.6, 13.8 |
-| 5      |  Telemarketer      |        Michaela Peterson & Kat Turk         |   13.2, 13.6, 13.8 |
+|        |  Business Investor |         TBA                                 |   10.3, 10.4       |
+|        |  Telemarketer      |         TBA                                 |   13.2, 13.6, 13.8 |
 
 ## Individual Projects
 
 [Project assignment](/assignment/ResearchProjectAssignment.pdf)
 
-* Proposals due Fri. Sept. 27. Post to your course Box folder by the end of the day (i.e., before midnight).
-* Model analysis due Tues. Oct. 15.
-* ODD for extending model due Wed. Oct. 23
-* Draft model code due Fri. Nov. 8
-* Presentations Dec. 3--5.
-* Written report due Dec. 6.
+* Proposals due Tues. Sept. 28. Post to your course Box folder by the end of the day (i.e., by 11:59 pm).
+* Model analysis due Tues. Oct. 12.
+* ODD for extending model due Fri. Oct. 29.
+* Draft model code due Fri. Nov. 12
+* Presentations Dec. 7--9.
+* Written report due Dec. 10.
