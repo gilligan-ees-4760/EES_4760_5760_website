@@ -13,6 +13,20 @@ output:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Homework
+Some problems in this homework set call for you to write a NetLogo model and also answer questions about the model. For answering the questions, you may take any of these approaches:
+
+1. Edit the INFO page for your NetLogo model and add the following (this example is for exercise 5.4)
+   ```
+   # Exercise 5.4
+
+   When I ran the model ...
+   ```
+
+2. Write your answer in a Word file or other document file (text, PDF, etc.) with the title `homework_answers.docx` and put the homework answers in there, as follows:
+
+   **Exercise 5.4:** When I ran the model ...
+
+3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
 
 * **Everyone:**
   * Railsback & Grimm, Ch. 4, Ex. 4.2, 4.4
@@ -52,7 +66,11 @@ output:
 ### Notes on Homework:
 
 
-* **Everyone:**For exercise 5.1, you should have three versions of the model. Each version adds new changes on top of the previous version:
+* **Everyone:**When there is more than one file for a homework assignment, I recommend that you make a Zip file containing all of the files for the different parts of the assignment and upload the Zip file to Brighspace instead of uploading the files separately.  When a homework assignment has more than one problem, and each problem has multiple files, it can be helpful to have a separate folder for each problem, and put all of these folders into the ZIP file that you turn in.
+
+  There are many free software apps for creating and working with Zip files, such as [7Zip](https://www.7-zip.org/) for Windows and [Keka](https://www.keka.io/en/) and [iZip](https://apps.apple.com/us/app/izip-zip-unzip-unrar-tool/id413971331) for Mac.
+
+  For exercise 5.1, you should have three versions of the model. Each version adds new changes on top of the previous version:
 
   * one version of the model that incorporates all the changes (listed with triangular bullets in the book) in section 5.2 (pp. 64--68),
   * one version that starts with the previous version from 5.2 and also incorporates the additional changes in section 5.4 (p. 70),
@@ -61,12 +79,12 @@ output:
   For exercise 5.2, look in the NetLogo dictionary for a command that does what you want. The point of this exercise is to start getting
   you used to looking for new NetLogo commands when you want to do something you haven't yet learned about.
 
-  Exercise 5.7 asks you to answer a question about the modified model. Be sure to turn in an answer to the question (you can do this in
+  Exercises 5.4 and 5.7 ask you to answer a question about the modified model. Be sure to turn in an answer to the question (you can do this in
   a separate text document or you can edit the "Info" tab in NetLogo to put your answer at the top of the info page for your model by pasting the following in and
   editing to add your answer.
 
   ```
-  # Answer to 5.7
+  # Answer to 5.4
 
   answer goes here...
 

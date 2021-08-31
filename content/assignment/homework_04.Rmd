@@ -15,6 +15,25 @@ output:
 ## Homework
 Upload your work to Brightspace when you're done (Word or text files for the descriptions and ODD document, and `.nlogo` files for your NetLogo models).
 
+When there is more than one file for a homework assignment, I recommend that you make a Zip file containing all of the files for the different parts of the assignment and upload the Zip file to Brighspace instead of uploading the files separately.  When a homework assignment has more than one problem, and each problem has multiple files, it can be helpful to have a separate folder for each problem, and put all of these folders into the ZIP file that you turn in.
+
+There are many free software apps for creating and working with Zip files, such as [7Zip](https://www.7-zip.org/) for Windows and [Keka](https://www.keka.io/en/) and [iZip](https://apps.apple.com/us/app/izip-zip-unzip-unrar-tool/id413971331) for Mac.
+
+Some problems in this homework set call for you to write a NetLogo model and also answer questions about the model. For answering the questions, you may take any of these approaches:
+
+1. Edit the INFO page for your NetLogo model and add the following (this example is for exercise 2.3)
+   ```
+   # Exercise 2.3
+
+   When I ran the model ...
+   ```
+
+2. Write your answer in a Word file or other document file (text, PDF, etc.) with the title `homework_answers.docx` and put the homework answers in there, as follows:
+
+   **Exercise 2.3:** When I ran the model ...
+
+3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
+
 * Railsback & Grimm, Chapter 2, exercises Exercises 3--4.
 
   For exercise 4 in chapter 2, you will make seven sequential modifications of the basic mushroom hunt model. Each step modifies the previous one, so the last model will have all the modifications from the bulleted list in Ex. 2.4. Save each model with a new name, such as `ex_2_4a.nlogo`, `ex_2_4b.nlogo`, \dots, `ex_2_4g.nlogo`

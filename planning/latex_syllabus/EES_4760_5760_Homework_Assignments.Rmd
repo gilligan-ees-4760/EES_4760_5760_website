@@ -48,6 +48,10 @@ if (knitr::is_latex_output()) {
   * Late homework will lose 5% for every day it is late, but will not lose
     more than 50%, no matter how late it is (you can always get up to half
     credit for completing late homework).
+* When a homework assignment has more than one file, I encourage you to 
+  use a program like 7Zip (Windows) or iZip or Keka (Mac) to make a Zip
+  file containing all the different files for the assignment, and upload that 
+  to Brightspace.
 
 I encourage you to discuss homework assignments with your classmates. 
 Some assignments will explicitly tell you to work in a team with a classmate. 
