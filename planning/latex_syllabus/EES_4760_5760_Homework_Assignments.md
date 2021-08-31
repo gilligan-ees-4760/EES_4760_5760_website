@@ -22,6 +22,37 @@ output:
   * Late homework will lose 5% for every day it is late, but will not lose
     more than 50%, no matter how late it is (you can always get up to half
     credit for completing late homework).
+* When a homework assignment has more than one file, I encourage you to 
+  make a Zip file containing all the different files for the assignment, 
+  and upload that to Brightspace.
+  
+  There are many free software apps for creating and working with Zip files, 
+  such as [7Zip](https://www.7-zip.org/) (Windows) or 
+  [Keka](https://www.keka.io/en/) or [iZip](https://www.izip.com/) (Mac) 
+  * If a homework assignment has multiple exercises and each exercise has
+    multiple files, I encourage you to make separate folders for each
+    exercise (e.g., `ex_4.1` or `ex_4_1` for exercise 4.1) 
+    and then put all of the folders into a Zip file and upload the
+    Zip file to Brightspace. Then when Ms. Turk or I unzip it, 
+    the files for each exercise will be in a folder for that exercise.
+* When a homework assignment calls for you to write a NetLogo
+  model and answer questions about that model, you have three options:
+  
+  1. Answer the question in the NetLogo model by editing the 
+     INFO page for the model and adding lines like:
+     ```
+     # Exercise 5.4
+     
+     When I ran the model, this happened ...
+     ```
+  2. Answer the questions in a separate document (Word, text, PDF, etc.), so
+     you might have a file `ex_5_4.nlogo` with the model and a file 
+     `ex_5_4.docx` with the answer to the question about that model.
+  3. If the answer involves figures (diagrams, etc.) that are hard to make in 
+     Word, you might write the answer on paper, photograph it, and upload the
+     photo as something like `ex_5_4.jpg`.
+
+  For all of these options, it's generally a good idea to use 
 
 I encourage you to discuss homework assignments with your classmates. 
 Some assignments will explicitly tell you to work in a team with a classmate. 
@@ -111,6 +142,25 @@ This homework consists of reading and working through tutorials, so there is not
 ## Homework
 Upload your work to Brightspace when you're done (Word or text files for the descriptions and ODD document, and `.nlogo` files for your NetLogo models).
 
+When there is more than one file for a homework assignment, I recommend that you make a Zip file containing all of the files for the different parts of the assignment and upload the Zip file to Brighspace instead of uploading the files separately.  When a homework assignment has more than one problem, and each problem has multiple files, it can be helpful to have a separate folder for each problem, and put all of these folders into the ZIP file that you turn in.
+
+There are many free software apps for creating and working with Zip files, such as [7Zip](https://www.7-zip.org/) for Windows and [Keka](https://www.keka.io/en/) and [iZip](https://apps.apple.com/us/app/izip-zip-unzip-unrar-tool/id413971331) for Mac.
+
+Some problems in this homework set call for you to write a NetLogo model and also answer questions about the model. For answering the questions, you may take any of these approaches:
+
+1. Edit the INFO page for your NetLogo model and add the following (this example is for exercise 2.3)
+   ```
+   # Exercise 2.3
+
+   When I ran the model ...
+   ```
+
+2. Write your answer in a Word file or other document file (text, PDF, etc.) with the title `homework_answers.docx` and put the homework answers in there, as follows:
+
+   **Exercise 2.3:** When I ran the model ...
+
+3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
+
 * Railsback & Grimm, Chapter 2, exercises Exercises 3--4.
 
   For exercise 4 in chapter 2, you will make seven sequential modifications of the basic mushroom hunt model. Each step modifies the previous one, so the last model will have all the modifications from the bulleted list in Ex. 2.4. Save each model with a new name, such as `ex_2_4a.nlogo`, `ex_2_4b.nlogo`, \dots, `ex_2_4g.nlogo`
@@ -132,6 +182,20 @@ you felt confused about trying to specify your model.
 # Thu., Sep. 16: Science with models: Butterfly mating
 
 ## Homework
+Some problems in this homework set call for you to write a NetLogo model and also answer questions about the model. For answering the questions, you may take any of these approaches:
+
+1. Edit the INFO page for your NetLogo model and add the following (this example is for exercise 5.4)
+   ```
+   # Exercise 5.4
+
+   When I ran the model ...
+   ```
+
+2. Write your answer in a Word file or other document file (text, PDF, etc.) with the title `homework_answers.docx` and put the homework answers in there, as follows:
+
+   **Exercise 5.4:** When I ran the model ...
+
+3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
 
 * **Everyone:**
   * Railsback & Grimm, Ch. 4, Ex. 4.2, 4.4
@@ -171,7 +235,11 @@ you felt confused about trying to specify your model.
 ### Notes on Homework:
 
 
-* **Everyone:**For exercise 5.1, you should have three versions of the model. Each version adds new changes on top of the previous version:
+* **Everyone:**When there is more than one file for a homework assignment, I recommend that you make a Zip file containing all of the files for the different parts of the assignment and upload the Zip file to Brighspace instead of uploading the files separately.  When a homework assignment has more than one problem, and each problem has multiple files, it can be helpful to have a separate folder for each problem, and put all of these folders into the ZIP file that you turn in.
+
+  There are many free software apps for creating and working with Zip files, such as [7Zip](https://www.7-zip.org/) for Windows and [Keka](https://www.keka.io/en/) and [iZip](https://apps.apple.com/us/app/izip-zip-unzip-unrar-tool/id413971331) for Mac.
+
+  For exercise 5.1, you should have three versions of the model. Each version adds new changes on top of the previous version:
 
   * one version of the model that incorporates all the changes (listed with triangular bullets in the book) in section 5.2 (pp. 64--68),
   * one version that starts with the previous version from 5.2 and also incorporates the additional changes in section 5.4 (p. 70),
@@ -180,12 +248,12 @@ you felt confused about trying to specify your model.
   For exercise 5.2, look in the NetLogo dictionary for a command that does what you want. The point of this exercise is to start getting
   you used to looking for new NetLogo commands when you want to do something you haven't yet learned about.
 
-  Exercise 5.7 asks you to answer a question about the modified model. Be sure to turn in an answer to the question (you can do this in
+  Exercises 5.4 and 5.7 ask you to answer a question about the modified model. Be sure to turn in an answer to the question (you can do this in
   a separate text document or you can edit the "Info" tab in NetLogo to put your answer at the top of the info page for your model by pasting the following in and
   editing to add your answer.
 
   ```
-  # Answer to 5.7
+  # Answer to 5.4
 
   answer goes here...
 

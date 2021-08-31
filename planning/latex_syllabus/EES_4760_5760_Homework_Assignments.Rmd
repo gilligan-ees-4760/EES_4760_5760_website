@@ -49,9 +49,36 @@ if (knitr::is_latex_output()) {
     more than 50%, no matter how late it is (you can always get up to half
     credit for completing late homework).
 * When a homework assignment has more than one file, I encourage you to 
-  use a program like 7Zip (Windows) or iZip or Keka (Mac) to make a Zip
-  file containing all the different files for the assignment, and upload that 
-  to Brightspace.
+  make a Zip file containing all the different files for the assignment, 
+  and upload that to Brightspace.
+  
+  There are many free software apps for creating and working with Zip files, 
+  such as [7Zip](https://www.7-zip.org/) (Windows) or 
+  [Keka](https://www.keka.io/en/) or [iZip](https://www.izip.com/) (Mac) 
+  * If a homework assignment has multiple exercises and each exercise has
+    multiple files, I encourage you to make separate folders for each
+    exercise (e.g., `ex_4.1` or `ex_4_1` for exercise 4.1) 
+    and then put all of the folders into a Zip file and upload the
+    Zip file to Brightspace. Then when Ms. Turk or I unzip it, 
+    the files for each exercise will be in a folder for that exercise.
+* When a homework assignment calls for you to write a NetLogo
+  model and answer questions about that model, you have three options:
+  
+  1. Answer the question in the NetLogo model by editing the 
+     INFO page for the model and adding lines like:
+     ```
+     # Exercise 5.4
+     
+     When I ran the model, this happened ...
+     ```
+  2. Answer the questions in a separate document (Word, text, PDF, etc.), so
+     you might have a file `ex_5_4.nlogo` with the model and a file 
+     `ex_5_4.docx` with the answer to the question about that model.
+  3. If the answer involves figures (diagrams, etc.) that are hard to make in 
+     Word, you might write the answer on paper, photograph it, and upload the
+     photo as something like `ex_5_4.jpg`.
+
+  For all of these options, it's generally a good idea to use 
 
 I encourage you to discuss homework assignments with your classmates. 
 Some assignments will explicitly tell you to work in a team with a classmate. 
