@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE, cache=FALSE)
 ```
 ```{r initialize, eval=TRUE, include=FALSE}
 library(tidyverse)
-library(semestr)
+pacman::p_load_gh("jonathan-g/semestr")
 
 semester <- load_semester_db("../EES-4760.sqlite3")
 
@@ -67,16 +67,25 @@ if (knitr::is_latex_output()) {
   1. Answer the question in the NetLogo model by editing the 
      INFO page for the model and adding lines like:
      ```
-     # Exercise 5.4
+     # Exercise 2.3
      
      When I ran the model, this happened ...
      ```
   2. Answer the questions in a separate document (Word, text, PDF, etc.), so
-     you might have a file `ex_5_4.nlogo` with the model and a file 
-     `ex_5_4.docx` with the answer to the question about that model.
+     you might have a file `ex_2_3.nlogo` with the model and a file 
+     `ex_2_3.docx` with the answer to the question about that model, or you can
+     use one document called something like `homework_4.docx` that has the 
+     written answers to all the exercises:
+     
+     > * **Exercise 2.3:** I ran the model and this happened...
+     >
+     > * **Exercise 3.3:** Here is how I would use a model to answer questions
+     >   about the spread of COVID-19 ...
+     >
+     
   3. If the answer involves figures (diagrams, etc.) that are hard to make in 
      Word, you might write the answer on paper, photograph it, and upload the
-     photo as something like `ex_5_4.jpg`.
+     photo as something like `ex_2_3.jpg`.
 
   For all of these options, it's generally a good idea to use 
 

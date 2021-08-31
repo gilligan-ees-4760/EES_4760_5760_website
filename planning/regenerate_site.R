@@ -1,7 +1,7 @@
 library(rprojroot)
 library(tidyverse)
-library(blogdownDigest)
-library(semestr)
+pacman::p_load_gh("jonathan-g/blogdownDigest")
+pacman::p_load_gh("jonathan-g/semestr")
 # library(git2r)
 
 regenerate_site <- function(root = NULL, force = FALSE) {

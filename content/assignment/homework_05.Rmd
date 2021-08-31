@@ -79,18 +79,25 @@ Some problems in this homework set call for you to write a NetLogo model and als
   For exercise 5.2, look in the NetLogo dictionary for a command that does what you want. The point of this exercise is to start getting
   you used to looking for new NetLogo commands when you want to do something you haven't yet learned about.
 
-  Exercises 5.4 and 5.7 ask you to answer a question about the modified model. Be sure to turn in an answer to the question (you can do this in
-  a separate text document or you can edit the "Info" tab in NetLogo to put your answer at the top of the info page for your model by pasting the following in and
-  editing to add your answer.
+  Exercises 5.4 and 5.7 ask you to answer a question about the modified model. Be sure to turn in an answer to the question:
 
-  ```
-  # Answer to 5.4
+  Here are three possibilities:
 
-  answer goes here...
+  1. Edit the INFO page for your NetLogo model and add the following (this example is for exercise 5.4)
+     ```
+     # Exercise 5.4
 
-  ```
+     When I ran the model ...
+     ```
 
-  If you prefer to hand-write your answer, that's fine. Just take a picture of it with your phone and upload it to Brightspace.
+  2. Write your answer in a Word file or other document file (text, PDF, etc.) and put the homework answers there. You can either make a separate document for each exercise
+     (e.g., answers for exercise 5.4 go in `ex_5_4.docx`, answers for exercise 5.7 go in `ex_5_7.docx`), or you can make a single document file (e.g., with the
+     title `homework_5_answers.docx`) and put the homework answers in there, as follows:
+
+     > * **Exercise 5.4:** When I changed the value of _q_, ...
+     > * **Exercise 5.7:** If the butterflies stop when they reach a patch that has no higher neighbors ...
+
+  3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
 
 * **Undergraduates:**
 * **Graduate Students:**For exercises 5.5 and 5.8, you need to answer questions about your models. Do this in a file that you upload to Brightspace, or write your answers on paper and take a picture and upload it, or edit the "Info" page of your model and put the answer there.

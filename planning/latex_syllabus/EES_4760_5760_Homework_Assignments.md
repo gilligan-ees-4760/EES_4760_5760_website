@@ -41,16 +41,25 @@ output:
   1. Answer the question in the NetLogo model by editing the 
      INFO page for the model and adding lines like:
      ```
-     # Exercise 5.4
+     # Exercise 2.3
      
      When I ran the model, this happened ...
      ```
   2. Answer the questions in a separate document (Word, text, PDF, etc.), so
-     you might have a file `ex_5_4.nlogo` with the model and a file 
-     `ex_5_4.docx` with the answer to the question about that model.
+     you might have a file `ex_2_3.nlogo` with the model and a file 
+     `ex_2_3.docx` with the answer to the question about that model, or you can
+     use one document called something like `homework_4.docx` that has the 
+     written answers to all the exercises:
+     
+     > * **Exercise 2.3:** I ran the model and this happened...
+     >
+     > * **Exercise 3.3:** Here is how I would use a model to answer questions
+     >   about the spread of COVID-19 ...
+     >
+     
   3. If the answer involves figures (diagrams, etc.) that are hard to make in 
      Word, you might write the answer on paper, photograph it, and upload the
-     photo as something like `ex_5_4.jpg`.
+     photo as something like `ex_2_3.jpg`.
 
   For all of these options, it's generally a good idea to use 
 
@@ -144,7 +153,7 @@ Upload your work to Brightspace when you're done (Word or text files for the des
 
 When there is more than one file for a homework assignment, I recommend that you make a Zip file containing all of the files for the different parts of the assignment and upload the Zip file to Brighspace instead of uploading the files separately.  When a homework assignment has more than one problem, and each problem has multiple files, it can be helpful to have a separate folder for each problem, and put all of these folders into the ZIP file that you turn in.
 
-There are many free software apps for creating and working with Zip files, such as [7Zip](https://www.7-zip.org/) for Windows and [Keka](https://www.keka.io/en/) and [iZip](https://apps.apple.com/us/app/izip-zip-unzip-unrar-tool/id413971331) for Mac.
+There are many free software apps for creating and working with Zip files, such as [7Zip](https://www.7-zip.org/) for Windows and [Keka](https://www.keka.io/en/) and [iZip](https://www.izip.com) for Mac.
 
 Some problems in this homework set call for you to write a NetLogo model and also answer questions about the model. For answering the questions, you may take any of these approaches:
 
@@ -155,9 +164,12 @@ Some problems in this homework set call for you to write a NetLogo model and als
    When I ran the model ...
    ```
 
-2. Write your answer in a Word file or other document file (text, PDF, etc.) with the title `homework_answers.docx` and put the homework answers in there, as follows:
+2. Write your answer in a Word file or other document file (text, PDF, etc.) and put the homework answers there. You can either make a separate document for each exercise 
+   (e.g., answers for exercise 2.3 go in `ex_2_3.docx`, answers for exercise 3.3 go in `ex_3_3.docx`), or you can make a single document file (e.g., with the 
+   title `homework_4_answers.docx`) and put the homework answers in there, as follows:
 
-   **Exercise 2.3:** When I ran the model ...
+   > * **Exercise 2.3:** When I ran the model ...
+   > * **Exercise 3.3:** This is how I would use a model to answer questions about the spread of COVID-19 ...
 
 3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
 
@@ -237,7 +249,7 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
 * **Everyone:**When there is more than one file for a homework assignment, I recommend that you make a Zip file containing all of the files for the different parts of the assignment and upload the Zip file to Brighspace instead of uploading the files separately.  When a homework assignment has more than one problem, and each problem has multiple files, it can be helpful to have a separate folder for each problem, and put all of these folders into the ZIP file that you turn in.
 
-  There are many free software apps for creating and working with Zip files, such as [7Zip](https://www.7-zip.org/) for Windows and [Keka](https://www.keka.io/en/) and [iZip](https://apps.apple.com/us/app/izip-zip-unzip-unrar-tool/id413971331) for Mac.
+  There are many free software apps for creating and working with Zip files, such as [7Zip](https://www.7-zip.org/) for Windows and [Keka](https://www.keka.io/en/) and [iZip](https://www.izip.com) for Mac.
 
   For exercise 5.1, you should have three versions of the model. Each version adds new changes on top of the previous version:
 
@@ -248,18 +260,25 @@ Some problems in this homework set call for you to write a NetLogo model and als
   For exercise 5.2, look in the NetLogo dictionary for a command that does what you want. The point of this exercise is to start getting
   you used to looking for new NetLogo commands when you want to do something you haven't yet learned about.
 
-  Exercises 5.4 and 5.7 ask you to answer a question about the modified model. Be sure to turn in an answer to the question (you can do this in
-  a separate text document or you can edit the "Info" tab in NetLogo to put your answer at the top of the info page for your model by pasting the following in and
-  editing to add your answer.
+  Exercises 5.4 and 5.7 ask you to answer a question about the modified model. Be sure to turn in an answer to the question:
 
-  ```
-  # Answer to 5.4
+  Here are three possibilities:
 
-  answer goes here...
+  1. Edit the INFO page for your NetLogo model and add the following (this example is for exercise 5.4)
+     ```
+     # Exercise 5.4
 
-  ```
+     When I ran the model ...
+     ```
 
-  If you prefer to hand-write your answer, that's fine. Just take a picture of it with your phone and upload it to Brightspace.
+  2. Write your answer in a Word file or other document file (text, PDF, etc.) and put the homework answers there. You can either make a separate document for each exercise
+     (e.g., answers for exercise 5.4 go in `ex_5_4.docx`, answers for exercise 5.7 go in `ex_5_7.docx`), or you can make a single document file (e.g., with the
+     title `homework_5_answers.docx`) and put the homework answers in there, as follows:
+
+     > * **Exercise 5.4:** When I changed the value of _q_, ...
+     > * **Exercise 5.7:** If the butterflies stop when they reach a patch that has no higher neighbors ...
+
+  3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
 
 * **Undergraduates:**
 * **Graduate Students:**For exercises 5.5 and 5.8, you need to answer questions about your models. Do this in a file that you upload to Brightspace, or write your answers on paper and take a picture and upload it, or edit the "Info" page of your model and put the answer there.
