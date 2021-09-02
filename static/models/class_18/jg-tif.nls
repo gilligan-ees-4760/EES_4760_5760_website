@@ -1,0 +1,207 @@
+;===============================================================================
+; TIF (Testing is fun): Unit tests for the simulation software NetLogo.
+; Copyright (C) 2013 Pierre-Olivier Chasset
+; http://flow.chasset.net/netlogo-tif/
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU Affero General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU Affero General Public License for more details.
+;
+; You should have received a copy of the GNU Affero General Public License
+; along with this program. If not, see <http://www.gnu.org/licenses/>.
+;===============================================================================
+
+globals [ nbr current-nbr success fails current-test-unit ]
+
+to initialize-tests
+  set nbr 0
+  set current-nbr 0
+  set success 0
+  set fails 0
+end
+
+to set-context [ m ]  output-print m  end
+to test-that [ m ]  set current-nbr 0  set current-test-unit m  end
+
+to expect-that [ v1 mode ]
+  let message expect-that0 v1 mode
+  if (message != "") [ output-print (word "  **FAILS** " current-test-unit ", " message) ]
+end
+
+to resume-all-tests
+  output-print ""
+  ifelse (success = nbr)
+    [ output-print (word "All tests (" nbr ") passed. Congratulations.") ]
+    [ output-print (word "Tests finished with errors: " fails "/" nbr " tests failed!") ]
+end
+
+to-report expect-that0 [ v1 mode ]
+  set nbr nbr + 1
+  set current-nbr current-nbr + 1
+  if (1 = item 0 mode) [ report expect-true v1 ]
+  if (2 = item 0 mode) [ report expect-false v1 ]
+  if (3 = item 0 mode) [ report expect-equal v1 item 1 mode ]
+  if (4 = item 0 mode) [ report expect-identical v1 item 1 mode ]
+  if (5 = item 0 mode) [ report expect-less v1 item 1 mode ]
+  if (6 = item 0 mode) [ report expect-less-or-equal v1 item 1 mode ]
+  if (7 = item 0 mode) [ report expect-greater v1 item 1 mode ]
+  if (8 = item 0 mode) [ report expect-greater-or-equal v1 item 1 mode ]
+  if (9 = item 0 mode) [ report expect-unequal v1 item 1 mode ]
+  if (10 = item 0 mode) [ report expect-not-identical v1 item 1 mode ]
+end
+
+to-report expect-true [ v1 ]
+  ifelse (v1 = true) [
+    set success success + 1
+    report "" 
+  ] [
+    set fails fails + 1
+    report failed ifelse-value (v1 = false)
+      [ (word "expected true, got false instead.") ]
+      [ (word "expected a boolean, got " v1 " instead.") ]
+  ]
+end
+
+to-report expect-false [ v1 ]
+  ifelse (v1 = false) [
+    set success success + 1
+    report "" 
+  ] [
+    set fails fails + 1
+    report failed ifelse-value (v1 = true)
+      [ (word "expected false, got true instead.") ]
+      [ (word "expected a boolean, got " v1 " instead." ) ]
+  ]
+end
+
+to-report expect-equal [ v1 v2 ]
+  ifelse (is-number? v1 and is-number? v2 and v1 = v2) [
+    set success success + 1
+    report "" 
+  ] [
+    set fails fails + 1
+    if (is-number? v1 and is-number? v2) [
+      report failed (word "expected " v2 ", got " v1 " instead. The difference is " (v1 - v2) ".")
+    ]
+    if not is-number? v2 [ report failed word "Expect something that isn't a number: " v2 ]
+    if not is-number? v1 [ report failed word "Got something that isn't a number: " v1 ]
+    report failed (word "Wrong use of 'equals': use maybe 'is-identical' instead for non numbers comparison: " v1 " / " v2)
+  ]
+end
+
+to-report expect-unequal [ v1 v2 ]
+  ifelse (is-number? v1 and is-number? v2 and v1 != v2) [
+    set success success + 1
+    report "" 
+  ] [
+    set fails fails + 1
+    if (is-number? v1 and is-number? v2) [
+      report failed (word "did not expect " v1 ", but got it.")
+    ]
+    if not is-number? v2 [ report failed word "Expect something that isn't a number: " v2 ]
+    if not is-number? v1 [ report failed word "Got something that isn't a number: " v1 ]
+    report failed (word "Wrong use of 'unequal': use maybe 'is-not-identical' instead for non numbers comparison: " v1 " / " v2)
+  ]
+end
+
+to-report expect-less [ v1 v2 ]
+  ifelse (is-number? v1 and is-number? v2 and v1 < v2) [
+    set success success + 1
+    report "" 
+  ] [
+    set fails fails + 1
+    if (is-number? v1 and is-number? v2) [
+      report failed (word "expected " v1 " < " v2 ", but it wasn't.")
+    ]
+    if not is-number? v2 [ report failed word "Expect something that isn't a number: " v2 ]
+    if not is-number? v1 [ report failed word "Got something that isn't a number: " v1 ]
+    report failed (word "Wrong use of 'less': " v1 " / " v2)
+  ]
+end
+
+
+to-report expect-less-or-equal [ v1 v2 ]
+  ifelse (is-number? v1 and is-number? v2 and v1 <= v2) [
+    set success success + 1
+    report "" 
+  ] [
+    set fails fails + 1
+    if (is-number? v1 and is-number? v2) [
+      report failed (word "expected " v1 " <= " v2 ", but it wasn't.")
+    ]
+    if not is-number? v2 [ report failed word "Expect something that isn't a number: " v2 ]
+    if not is-number? v1 [ report failed word "Got something that isn't a number: " v1 ]
+    report failed (word "Wrong use of 'less-or-equal': " v1 " / " v2)
+  ]
+end
+
+
+to-report expect-greater [ v1 v2 ]
+  ifelse (is-number? v1 and is-number? v2 and v1 > v2) [
+    set success success + 1
+    report "" 
+  ] [
+    set fails fails + 1
+    if (is-number? v1 and is-number? v2) [
+      report failed (word "expected " v1 " > " v2 ", but it wasn't.")
+    ]
+    if not is-number? v2 [ report failed word "Expect something that isn't a number: " v2 ]
+    if not is-number? v1 [ report failed word "Got something that isn't a number: " v1 ]
+    report failed (word "Wrong use of 'greater': " v1 " / " v2)
+  ]
+end
+
+
+to-report expect-greater-or-equal [ v1 v2 ]
+  ifelse (is-number? v1 and is-number? v2 and v1 >= v2) [
+    set success success + 1
+    report "" 
+  ] [
+    set fails fails + 1
+    if (is-number? v1 and is-number? v2) [
+      report failed (word "expected " v1 " >= " v2 ", but it wasn't.")
+    ]
+    if not is-number? v2 [ report failed word "Expect something that isn't a number: " v2 ]
+    if not is-number? v1 [ report failed word "Got something that isn't a number: " v1 ]
+    report failed (word "Wrong use of 'greater-or-equal': " v1 " / " v2)
+  ]
+end
+
+to-report expect-identical [ v1 v2 ]
+  ifelse (v1 = v2) [
+    set success success + 1
+    report "" 
+  ] [
+    set fails fails + 1
+    report failed (word "expected " v2 " and got " v1 " instead.")
+  ]
+end
+
+to-report expect-not-identical [ v1 v2 ]
+  ifelse (v1 != v2) [
+    set success success + 1
+    report "" 
+  ] [
+    set fails fails + 1
+    report failed (word "did not expect " v1 " but got it.")
+  ]
+end
+
+
+to-report failed [ m ] report (word "test #" current-nbr ": " m) end
+to-report is-true report (list 1) end
+to-report is-false report (list 2) end
+to-report equals [ v2 ] report (list 3 v2) end
+to-report is-identical-to [ v2 ] report (list 4 v2) end
+to-report is-less-than [v2] report (list 5 v2) end
+to-report is-less-or-equal [v2] report (list 6 v2) end
+to-report is-greater-than [v2] report (list 7 v2) end
+to-report is-greater-or-equal [v2] report (list 8 v2) end
+to-report does-not-equal [v2] report (list 9 v2) end
+to-report is-not-identical-to [v2] report (list 10 v2) end
