@@ -14,11 +14,14 @@ output:
 ---
 ## Homework
 
+### Homework Exercises:
+
 * **Everyone:**
   * Railsback & Grimm, Ch. 6, Ex. 6.2, 6.3
 * **Graduate Students,** also do the following:
   * Railsback & Grimm, Ch. 6, Ex. 6.4, 6.5, 6.7
 
 ### Notes on Homework:
+
 
 A hint for exercise 6.3:  Patches have integer coordinates (representing the center of the patch). How does the turtle determine the angle to face during `setup`? How does it determine the angle to face in `go-back`? Can you think of a different way to record the path so the `go-back` exactly retraces the path it took during `setup`? If you knew the direction the turtle was heading at each step during `setup`, could you use this heading information to exactly retrace the path?

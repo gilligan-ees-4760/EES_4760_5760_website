@@ -14,8 +14,11 @@ output:
 ---
 ## Homework
 
+### Homework Exercises:
+
 * Turn in the written report for your team project on Brightspace.
 
 ### Notes on Homework:
+
 
 See the team project assignment sheet for details.

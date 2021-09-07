@@ -14,9 +14,12 @@ output:
 ---
 ## Homework
 
+### Homework Exercises:
+
 * You will make a ten-minute presentation in class about your model (seven minutes of talking and three minutes for questions).
 
 ### Notes on Homework:
+
 
 There will not be time to go into all the details in your presentation, so focus on:
 

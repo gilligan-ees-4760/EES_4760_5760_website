@@ -14,6 +14,8 @@ output:
 ---
 ## Homework
 
+### Homework Exercises:
+
 * **Everyone:**
   * Railsback & Grimm, Ch. 8, Ex. 8.1, 8.2
   * Railsback & Grimm, Ch. 9, Ex. 9.1, 9.3, 9.4
