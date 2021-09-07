@@ -42,10 +42,32 @@ init_git_tokens <- function(keyring = "git_access") {
                                            keyring = keyring))
 }
 
-publish <- function(ssh = FALSE) {
+publish <- function(ssh = NULL) {
   init_git_tokens()
+
+  if (is.null(ssh)) {
+    rep <- git2r::repository(".")
+    remotes <- c("origin", "publish")
+    pattern <- "^git@([a-zA-Z][a-zA-Z0-9_\\-.]+):"
+    ssh <- map_lgl(remotes, ~str_detect(git2r::remote_url(rep, .x),
+                                        pattern)) %>%
+      set_names(remotes)
+  }
+
+  if (length(ssh) < 2) {
+    ssh <- rep_len(ssh, 2)
+  }
+
+  cred <- imap(ssh,
+               ~if(.x) {
+                 NULL
+                 } else {
+                   git2r::cred_token(ifelse(.y == "origin", "GITLAB_PAT",
+                                            "GITHUB_PAT"))
+                 }
+  )
   git2r::push(".", name = "publish", refspec = "refs/heads/main",
-              credentials = ifelse(ssh, NULL, git2r::cred_token()))
+              credentials = cred$publish)
   git2r::push(".", name = "origin", refspec = "refs/heads/main",
-              credentials = ifelse(ssh, NULL, git2r::cred_token("GITLAB_PAT")))
+              credentials = cred$origin)
 }
