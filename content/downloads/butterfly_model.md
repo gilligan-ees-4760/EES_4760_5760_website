@@ -15,5 +15,5 @@ output: html_document
 ## Enhanced Butterfly Model
 
 * This is the [Enhanced Butterfly Model](/models/class_05/enhanced_butterfly_model_class_5.nlogo)
-  that we developed in class.
+  that we will write in class.
   <https://ees4760.jgilligan.org/models/class_05/enhanced_butterfly_model_class_5.nlogo>
