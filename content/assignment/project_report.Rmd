@@ -14,8 +14,11 @@ output:
 ---
 ## Homework
 
+### Homework Exercises:
+
 * Turn in a written report about your research project. Your report should follow the model of a research report for _Science_ magazine:
 
 ### Notes on Homework:
+
 
 See the project assignment sheet for details.

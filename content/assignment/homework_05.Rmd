@@ -13,6 +13,9 @@ output:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Homework
+
+### Preliminary Information
+
 Some problems in this homework set call for you to write a NetLogo model and also answer questions about the model. For answering the questions, you may take any of these approaches:
 
 1. Edit the INFO page for your NetLogo model and add the following (this example is for exercise 5.4)
@@ -27,6 +30,8 @@ Some problems in this homework set call for you to write a NetLogo model and als
    **Exercise 5.4:** When I ran the model ...
 
 3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
+
+### Homework Exercises:
 
 * **Everyone:**
   * Railsback & Grimm, Ch. 4, Ex. 4.2, 4.4
@@ -66,7 +71,8 @@ Some problems in this homework set call for you to write a NetLogo model and als
 ### Notes on Homework:
 
 
-* **Everyone:**When there is more than one file for a homework assignment, I recommend that you make a Zip file containing all of the files for the different parts of the assignment and upload the Zip file to Brighspace instead of uploading the files separately.  When a homework assignment has more than one problem, and each problem has multiple files, it can be helpful to have a separate folder for each problem, and put all of these folders into the ZIP file that you turn in.
+
+* **Everyone:** When there is more than one file for a homework assignment, I recommend that you make a Zip file containing all of the files for the different parts of the assignment and upload the Zip file to Brighspace instead of uploading the files separately.  When a homework assignment has more than one problem, and each problem has multiple files, it can be helpful to have a separate folder for each problem, and put all of these folders into the ZIP file that you turn in.
 
   There are many free software apps for creating and working with Zip files, such as [7Zip](https://www.7-zip.org/) for Windows and [Keka](https://www.keka.io/en/) and [iZip](https://www.izip.com) for Mac.
 
@@ -99,6 +105,5 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
   3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
 
-* **Undergraduates:**
-* **Graduate Students:**For exercises 5.5 and 5.8, you need to answer questions about your models. Do this in a file that you upload to Brightspace, or write your answers on paper and take a picture and upload it, or edit the "Info" page of your model and put the answer there.
+* **Graduate Students:** For exercises 5.5 and 5.8, you need to answer questions about your models. Do this in a file that you upload to Brightspace, or write your answers on paper and take a picture and upload it, or edit the "Info" page of your model and put the answer there.
 

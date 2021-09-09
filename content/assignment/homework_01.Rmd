@@ -13,7 +13,12 @@ output:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Homework
+
+### Preliminary Information
+
 **There is nothing for you to turn in**, but do the following task to prepare for next week:
+
+### Homework Exercises:
 
 * Download NetLogo version 6.2.0 from <https://ccl.northwestern.edu/netlogo/> and install it on your computer.
 

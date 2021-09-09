@@ -14,9 +14,12 @@ output:
 ---
 ## Homework
 
+### Homework Exercises:
+
 * Turn in a one-to-two page (double-spaced) proposal for your semester research project.
 
 ### Notes on Homework:
+
 
 This proposal should describe the topic you want to work on, 
 identify a published open-source model you want to work with,

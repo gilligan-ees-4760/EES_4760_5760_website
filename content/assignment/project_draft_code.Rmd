@@ -14,11 +14,14 @@ output:
 ---
 ## Homework
 
+### Homework Exercises:
+
 * Turn in a draft `.nlogo` file with your modified model. The ODD for your modified model should be included in the "Info" section of the model.
 
   You should _also_ turn in a document that describes what you are satisfied with about your draft model and what problems you are struggling with.
 
 ### Notes on Homework:
+
 
 The model code you turn in should run, but it does not need to be perfect. 
    

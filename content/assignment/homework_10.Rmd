@@ -14,6 +14,8 @@ output:
 ---
 ## Homework
 
+### Homework Exercises:
+
 * Railsback & Grimm, Ch. 10, Ex. 10.1, 10.2
 * Railsback & Grimm, Ch. 11, Ex. 11.1
 

@@ -14,8 +14,11 @@ output:
 ---
 ## Homework
 
+### Homework Exercises:
+
 * Turn in an ODD for extending your chosen model to ask new questions.
 
 ### Notes on Homework:
+
 
 See the semester research project assignment sheet for details.

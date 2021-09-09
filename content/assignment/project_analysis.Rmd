@@ -14,11 +14,14 @@ output:
 ---
 ## Homework
 
+### Homework Exercises:
+
 * Study the code and ODD of the model you chose for your semester research project, play with the model and run some BehaviorSpace experiments to examine its
   output.
 
   Turn in a 3--5 page (double-spaced) write-up about the model.
 
 ### Notes on Homework:
+
 
 See the project assignment sheet for details about this assignment.

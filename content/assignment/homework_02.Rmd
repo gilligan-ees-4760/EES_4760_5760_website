@@ -14,6 +14,8 @@ output:
 ---
 ## Homework
 
+### Homework Exercises:
+
 * As you read along with Section 2.3, follow along on your computer and build the _Mushroom Hunt_ model by typing in the code shown in the textbook. The whole program is shown on pages 27--29.
   **Save your model as `mushroom_hunt.nlogo`**.
 
@@ -24,6 +26,7 @@ output:
   **When you are done, turn your model in on Brightspace.**
 
 ### Notes on Homework:
+
 
 I recommend getting together with a classmate and working together on this assignment. Since the assignment consists of typing code in and running it, do not worry about your work being identical to your partner's. However, I strongly recommend that you type everything in yourself because you will not learn if you just copy someone else's code or download the code from a source on the web.
 

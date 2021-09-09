@@ -21,6 +21,7 @@ lessons:
   title: Your first model
   reading: /reading/reading_05
   assignment: homework_04
+  lecture: /slides/class_05
 - date: '2021-09-14'
   title: Using models for science
   reading: /reading/reading_06

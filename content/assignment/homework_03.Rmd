@@ -13,7 +13,12 @@ output:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
 ---
 ## Homework
+
+### Preliminary Information
+
 This homework consists of reading and working through tutorials, so there is nothing to turn in.
+
+### Homework Exercises:
 
 * Everyone should do exercises 1--2 in Chapter 2 of Railsback & Grimm. This consists of reading and working through tutorials, so there is nothing to turn in.
 

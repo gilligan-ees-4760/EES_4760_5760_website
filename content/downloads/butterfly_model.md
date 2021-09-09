@@ -9,11 +9,11 @@ output: html_document
 ---
 # Butterfly Model for In-Class Exercises on Sept. 9
  
-* [Basic Butterfly Model](/models/class_05/butterfly_model_class_5.nlogo) 
-  <https://ees4760.jgilligan.org/models/class_05/butterfly_model_class_5.nlogo>
+* Download the 
+  [Basic Butterfly Model](/models/class_05/butterfly_model_class_5.nlogo)
 
-## Enhanced Butterfly Model
-
-* This is the [Enhanced Butterfly Model](/models/class_05/enhanced_butterfly_model_class_5.nlogo)
+<!--
+* Download the 
+  [Enhanced Butterfly Model](/models/class_05/enhanced_butterfly_model_class_5.nlogo)
   that we will write in class.
-  <https://ees4760.jgilligan.org/models/class_05/enhanced_butterfly_model_class_5.nlogo>
+-->
