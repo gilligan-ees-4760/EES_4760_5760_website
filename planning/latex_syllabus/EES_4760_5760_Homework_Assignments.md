@@ -110,7 +110,12 @@ The most up-to-date versions of the homework assignments will be posted on the
 # Tue., Aug. 31: Set up NetLogo
 
 ## Homework
+
+### Preliminary Information
+
 **There is nothing for you to turn in**, but do the following task to prepare for next week:
+
+### Homework Exercises:
 
 * Download NetLogo version 6.2.0 from <https://ccl.northwestern.edu/netlogo/> and install it on your computer.
 
@@ -119,6 +124,8 @@ The most up-to-date versions of the homework assignments will be posted on the
 # Thu., Sep. 2: Introducing NetLogo
 
 ## Homework
+
+### Homework Exercises:
 
 * As you read along with Section 2.3, follow along on your computer and build the _Mushroom Hunt_ model by typing in the code shown in the textbook. The whole program is shown on pages 27--29.
   **Save your model as `mushroom_hunt.nlogo`**.
@@ -131,6 +138,7 @@ The most up-to-date versions of the homework assignments will be posted on the
 
 ### Notes on Homework:
 
+
 I recommend getting together with a classmate and working together on this assignment. Since the assignment consists of typing code in and running it, do not worry about your work being identical to your partner's. However, I strongly recommend that you type everything in yourself because you will not learn if you just copy someone else's code or download the code from a source on the web.
 
 If you run into trouble and cannot make your model work, do not worry. Ask a classmate for help, or email me (and attach your `.nlogo` model file), or simply come to class on Tuesday with questions about the problems you had getting your model to work.
@@ -140,7 +148,12 @@ If you run into trouble and cannot make your model work, do not worry. Ask a cla
 # Tue., Sep. 7: Becoming familiar with NetLogo
 
 ## Homework
+
+### Preliminary Information
+
 This homework consists of reading and working through tutorials, so there is nothing to turn in.
+
+### Homework Exercises:
 
 * Everyone should do exercises 1--2 in Chapter 2 of Railsback & Grimm. This consists of reading and working through tutorials, so there is nothing to turn in.
 
@@ -149,6 +162,9 @@ This homework consists of reading and working through tutorials, so there is not
 # Thu., Sep. 9: Experimenting with NetLogo
 
 ## Homework
+
+### Preliminary Information
+
 Upload your work to Brightspace when you're done (Word or text files for the descriptions and ODD document, and `.nlogo` files for your NetLogo models).
 
 When there is more than one file for a homework assignment, I recommend that you make a Zip file containing all of the files for the different parts of the assignment and upload the Zip file to Brighspace instead of uploading the files separately.  When a homework assignment has more than one problem, and each problem has multiple files, it can be helpful to have a separate folder for each problem, and put all of these folders into the ZIP file that you turn in.
@@ -173,6 +189,8 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
 3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
 
+### Homework Exercises:
+
 * Railsback & Grimm, Chapter 2, exercises Exercises 3--4.
 
   For exercise 4 in chapter 2, you will make seven sequential modifications of the basic mushroom hunt model. Each step modifies the previous one, so the last model will have all the modifications from the bulleted list in Ex. 2.4. Save each model with a new name, such as `ex_2_4a.nlogo`, `ex_2_4b.nlogo`, \dots, `ex_2_4g.nlogo`
@@ -182,6 +200,7 @@ Some problems in this homework set call for you to write a NetLogo model and als
   Write your answers in any convenient text format (a simple text file, a Word document, a `.pdf` file, or whatever suits you). Call the file `ex_3_3.docx` (or `ex_3_3.pdf`, etc.).
 
 ### Notes on Homework:
+
 
 My advice for Chapter 3, Exercise 3 is don't be too ambitious with your model, but keep it very
 simple. Don't worry about getting everything right. If there are things you don't feel sure about or
@@ -194,6 +213,9 @@ you felt confused about trying to specify your model.
 # Thu., Sep. 16: Science with models: Butterfly mating
 
 ## Homework
+
+### Preliminary Information
+
 Some problems in this homework set call for you to write a NetLogo model and also answer questions about the model. For answering the questions, you may take any of these approaches:
 
 1. Edit the INFO page for your NetLogo model and add the following (this example is for exercise 5.4)
@@ -208,6 +230,8 @@ Some problems in this homework set call for you to write a NetLogo model and als
    **Exercise 5.4:** When I ran the model ...
 
 3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
+
+### Homework Exercises:
 
 * **Everyone:**
   * Railsback & Grimm, Ch. 4, Ex. 4.2, 4.4
@@ -247,7 +271,8 @@ Some problems in this homework set call for you to write a NetLogo model and als
 ### Notes on Homework:
 
 
-* **Everyone:**When there is more than one file for a homework assignment, I recommend that you make a Zip file containing all of the files for the different parts of the assignment and upload the Zip file to Brighspace instead of uploading the files separately.  When a homework assignment has more than one problem, and each problem has multiple files, it can be helpful to have a separate folder for each problem, and put all of these folders into the ZIP file that you turn in.
+
+* **Everyone:** When there is more than one file for a homework assignment, I recommend that you make a Zip file containing all of the files for the different parts of the assignment and upload the Zip file to Brighspace instead of uploading the files separately.  When a homework assignment has more than one problem, and each problem has multiple files, it can be helpful to have a separate folder for each problem, and put all of these folders into the ZIP file that you turn in.
 
   There are many free software apps for creating and working with Zip files, such as [7Zip](https://www.7-zip.org/) for Windows and [Keka](https://www.keka.io/en/) and [iZip](https://www.izip.com) for Mac.
 
@@ -280,8 +305,7 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
   3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
 
-* **Undergraduates:**
-* **Graduate Students:**For exercises 5.5 and 5.8, you need to answer questions about your models. Do this in a file that you upload to Brightspace, or write your answers on paper and take a picture and upload it, or edit the "Info" page of your model and put the answer there.
+* **Graduate Students:** For exercises 5.5 and 5.8, you need to answer questions about your models. Do this in a file that you upload to Brightspace, or write your answers on paper and take a picture and upload it, or edit the "Info" page of your model and put the answer there.
 
 
 
@@ -289,15 +313,16 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
 ## Homework
 
+### Homework Exercises:
+
 * **Graduate Students:**
   * Graduate students should do Railsback & Grimm, Ex. 5.11
 
 ### Notes on Homework:
 
 
-* **Everyone:**
-* **Undergraduates:**
-* **Graduate Students:**You can download the journal article for this exercise, [R. Jovani & V. Grimm. (2008) "Breeding synchrony in colonial birds: From local stress to global harmony", _Proc. Royal Soc. London B_ **275**, 1567--63](/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf) from the class web site,
+
+* **Graduate Students:** You can download the journal article for this exercise, [R. Jovani & V. Grimm. (2008) "Breeding synchrony in colonial birds: From local stress to global harmony", _Proc. Royal Soc. London B_ **275**, 1567--63](/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf) from the class web site,
   <https://ees4760.jgilligan.org/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf>.
 
   You don't have to reproduce all of the figures in the paper. Focus on reproducing the information in Figure 2 (make a figure of colony synchrony versus NR and some other figures showing histograms of breeding dates for NR = 0.00, 0.08, 0.20, and 1.00 and comparing them to the histograms in Fig. 2.
@@ -314,9 +339,12 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
 ## Homework
 
+### Homework Exercises:
+
 * Turn in a one-to-two page (double-spaced) proposal for your semester research project.
 
 ### Notes on Homework:
+
 
 This proposal should describe the topic you want to work on, 
 identify a published open-source model you want to work with,
@@ -340,12 +368,15 @@ See the semester project assignment for details.
 
 ## Homework
 
+### Homework Exercises:
+
 * **Everyone:**
   * Railsback & Grimm, Ch. 6, Ex. 6.2, 6.3
 * **Graduate Students,** also do the following:
   * Railsback & Grimm, Ch. 6, Ex. 6.4, 6.5, 6.7
 
 ### Notes on Homework:
+
 
 A hint for exercise 6.3:  Patches have integer coordinates (representing the center of the patch). How does the turtle determine the angle to face during `setup`? How does it determine the angle to face in `go-back`? Can you think of a different way to record the path so the `go-back` exactly retraces the path it took during `setup`? If you knew the direction the turtle was heading at each step during `setup`, could you use this heading information to exactly retrace the path?
 
@@ -354,6 +385,8 @@ A hint for exercise 6.3:  Patches have integer coordinates (representing the cen
 # Tue., Oct. 5: Analyzing model experiments
 
 ## Homework
+
+### Homework Exercises:
 
 * **Everyone:**
   * Railsback & Grimm, Ch. 8, Ex. 8.1, 8.2
@@ -368,6 +401,8 @@ A hint for exercise 6.3:  Patches have integer coordinates (representing the cen
 
 ## Homework
 
+### Homework Exercises:
+
 * Railsback & Grimm, Ch. 10, Ex. 10.1, 10.2
 * Railsback & Grimm, Ch. 11, Ex. 11.1
 
@@ -377,12 +412,15 @@ A hint for exercise 6.3:  Patches have integer coordinates (representing the cen
 
 ## Homework
 
+### Homework Exercises:
+
 * Study the code and ODD of the model you chose for your semester research project, play with the model and run some BehaviorSpace experiments to examine its
   output.
 
   Turn in a 3--5 page (double-spaced) write-up about the model.
 
 ### Notes on Homework:
+
 
 See the project assignment sheet for details about this assignment.
 
@@ -392,9 +430,12 @@ See the project assignment sheet for details about this assignment.
 
 ## Homework
 
+### Homework Exercises:
+
 * Teams will give a presentation on their projects.
 
 ### Notes on Homework:
+
 
 See the team project assignment sheet for details on what I expect for the presentation.
 
@@ -404,9 +445,12 @@ See the team project assignment sheet for details on what I expect for the prese
 
 ## Homework
 
+### Homework Exercises:
+
 * Turn in the written report for your team project on Brightspace.
 
 ### Notes on Homework:
+
 
 See the team project assignment sheet for details.
 
@@ -416,9 +460,12 @@ See the team project assignment sheet for details.
 
 ## Homework
 
+### Homework Exercises:
+
 * Turn in an ODD for extending your chosen model to ask new questions.
 
 ### Notes on Homework:
+
 
 See the semester research project assignment sheet for details.
 
@@ -428,11 +475,14 @@ See the semester research project assignment sheet for details.
 
 ## Homework
 
+### Homework Exercises:
+
 * Turn in a draft `.nlogo` file with your modified model. The ODD for your modified model should be included in the "Info" section of the model.
 
   You should _also_ turn in a document that describes what you are satisfied with about your draft model and what problems you are struggling with.
 
 ### Notes on Homework:
+
 
 The model code you turn in should run, but it does not need to be perfect. 
    
@@ -447,9 +497,12 @@ See the project assignment sheet for details.
 
 ## Homework
 
+### Homework Exercises:
+
 * You will make a ten-minute presentation in class about your model (seven minutes of talking and three minutes for questions).
 
 ### Notes on Homework:
+
 
 There will not be time to go into all the details in your presentation, so focus on:
 
@@ -465,9 +518,12 @@ See the project assignment sheet for details.
 
 ## Homework
 
+### Homework Exercises:
+
 * Turn in a written report about your research project. Your report should follow the model of a research report for _Science_ magazine:
 
 ### Notes on Homework:
+
 
 See the project assignment sheet for details.
 
