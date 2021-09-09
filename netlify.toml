@@ -32,12 +32,17 @@
 
 [[redirects]]
   from = "/analyze_behaviorspace/*"
-  to = "https://shiny.jgilligan.org/ees4760/analyze_behaviorspace/:splat"
+  to = "https://shiny.jgilligan.org/ees-4760/analyze-behaviorspace/:splat"
+  status = 302
+
+[[redirects]]
+  from = "/analyze-behaviorspace/*"
+  to = "https://shiny.jgilligan.org/ees-4760/analyze-behaviorspace/:splat"
   status = 302
 
 [[redirects]]
   from = "/contour/*"
-  to = "https://shiny.jgilligan.org/ees4760/contour/:splat"
+  to = "https://shiny.jgilligan.org/ees-4760/contour/:splat"
   status = 302
 
 [[redirects]]
