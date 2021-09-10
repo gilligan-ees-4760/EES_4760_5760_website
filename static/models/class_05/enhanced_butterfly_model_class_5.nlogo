@@ -1,7 +1,8 @@
 globals [
-  ; q
-]  ; q is the probability that butterfly moves
-             ; directly to the highest surrounding patch
+  ; q ; q is the probability that butterfly moves
+      ; directly to the highest surrounding patch
+]
+
 patches-own
 [
   elevation
@@ -9,8 +10,9 @@ patches-own
 ]
 turtles-own
 [
-  origin
-  at-top?
+  origin ; in class, we called this "start-patch".
+         ; it's the patch where the turtle was first created
+  at-top? ; is the turtle at the highest point
 ]
 
 to setup
@@ -23,7 +25,9 @@ to setup
     set elevation 200 + (100 * (sin (pxcor * 3.8) +
       sin (pycor * 3.8)))
     set pcolor scale-color green elevation 0 400
-    set visited? false
+    set visited? false ; we have to initialize the patches-own
+                       ; variable, or we will get errors later on
+                       ; when we ask which patches have been visited
   ]; end of "ask patches"
 
   ; Create butterflies
@@ -33,10 +37,10 @@ to setup
     ; Set initial location to random patch
     ; setxy random-pxcor random-pycor
     setxy (71 + random 5 - 2.5) (71 + random 5 - 2.5)
-    set visited? true
-    set origin patch-here
+    set visited? true     ; this patch has now been visited
+    set at-top? false     ; set the turtles-own variable "at-top?"
+    set origin patch-here ; set the turtles-own variable "origin"
     pen-down
-    set at-top? false
   ]
 
   ; Initialize the "q" parameter
@@ -46,6 +50,8 @@ to setup
 end  ; of setup procedure
 
 to go  ; This is the master schedule
+  ; only the turtles who are not at the top of a hill
+  ; should move.
   ask turtles with [not at-top?] [move]
   tick
   if ticks >= 1000 or all? turtles [at-top?]  [stop]
@@ -58,12 +64,22 @@ to move ; The butterfly move procedure, in turtle context
   [uphill elevation] ; Move deterministically uphill
   [move-to one-of neighbors] ; Or move randomly
   set visited? true
+  ; A turtle is at the top of a hill if its patch is the
+  ; highest one within a radius of 3.
   if elevation >= max [elevation] of patches in-radius 3
   [ set at-top? true]
 end; of move procedure
 
+to-report distance-moved
+  report distance origin
+end
+
 to-report corridor-width
-  let wid (count patches with [visited?]) / (mean [distance origin] of turtles)
+  ; In class I defined corridor width as the number of patches
+  ; visited divided by the sum of distance-moved, but the
+  ; textbook uses the average distance-moved, so I have changed
+  ; the model to use this instead.
+  let wid (count patches with [visited?]) / (mean [distance-moved] of turtles)
   report wid
 end
 @#$#@#$#@
@@ -505,7 +521,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.0
+NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
