@@ -1,5 +1,3 @@
-__includes [ "jg-tif.nls" ]
-
 globals
 [
   profit-min
@@ -36,7 +34,6 @@ patches-own
 
 to setup
   ca
-  initialize-tests
   initialize-globals
   initialize-patches
 
@@ -75,7 +72,6 @@ to go
 
   if ticks >= max-ticks
   [
-    resume-all-tests
     output-print (word "Total wealth: " precision total-wealth 2)
     output-print (word "Mean wealth: " precision mean-wealth 2)
     stop
@@ -93,9 +89,6 @@ to initialize-globals
   set profit-max 10000
   ; set risk-min 0.02
   ; set risk-max 0.5
-
-  test-that "risk-min <= risk-max"
-  expect-that risk-min is-less-or-equal risk-max
 
   if risk-min > risk-max
   [
@@ -186,16 +179,6 @@ to-report find-best-patch ; turtle reporter
 
   let best-candidate max-one-of candidates [ expected-utility-of myself]
 
-  ;
-  ; Consistency tests
-  ;
-  test-that "No other turtles on candidates"
-  ; is-identical-to checks that two lists or agent-sets have identical members
-  expect-that (turtles-on candidates) is-identical-to (turtle-set self)
-
-  test-that "Expected utility of self <= expected utility of best candidate"
-  expect-that ([expected-utility-of myself] of patch-here) is-less-or-equal ([expected-utility-of myself] of best-candidate)
-
   report best-candidate
 end
 
@@ -284,44 +267,6 @@ to color-turtles
     [
       color-turtle max-wealth
     ]
-end
-
-;
-;  TESTING ROUTINES
-;
-
-to test-patch-consistency
-  set-context "Testing globals for consistency."
-  test-that "profit-min >= 0"
-  expect-that profit-min is-greater-or-equal 0
-  test-that "profit-max >= profit-min"
-  expect-that profit-max is-greater-or-equal profit-min
-  test-that "risk-min >= 0"
-  expect-that risk-min is-greater-or-equal 0
-  test-that "risk-max >= risk-min"
-  expect-that risk-max is-greater-or-equal risk-min
-
-  set-context "Testing all patches for consistency"
-  ask patches
-  [
-    test-that (word "profit >= profit-min for " self)
-    expect-that profit is-greater-or-equal profit-min
-    test-that (word "profit < profit-max for "self)
-    expect-that profit is-less-than profit-max
-    test-that (word "p-failure >= risk-min for " self)
-    expect-that p-failure is-greater-or-equal risk-min
-    test-that (word "p-failure < risk-max for " self)
-    expect-that p-failure is-less-than risk-max
-  ]
-end
-
-to test-turtle-consistency
-  set-context "Testing all turtles for consistency"
-  ask turtles
-  [
-    test-that (word "wealth >= 0 for " self)
-    expect-that wealth is-greater-or-equal 0
-  ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -1002,7 +947,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.0
+NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
