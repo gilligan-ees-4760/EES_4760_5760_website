@@ -21,10 +21,7 @@ output: html_document
   with modifications:<br/>
   <https://ees4760.jgilligan.org/models/class_06/butterfly_class_06b.nlogo>
 * Versions of the butterfly model with code for testing:<br/>
-  <https://ees4760.jgilligan.org/models/class_06/butterfly_class_06c.nlogo> 
-  and 
-  <https://ees4760.jgilligan.org/models/class_06/butterfly_class_06c_testing.nlogo> 
-* The NetLogo "[Testing Is Fun](/models/class_06/jg-tif.nls)" library<br/>
-  <https://ees4760.jgilligan.org/models/class_06/jg-tif.nls>
+  * <https://ees4760.jgilligan.org/models/class_06/butterfly_class_06c.nlogo>
+  * <https://ees4760.jgilligan.org/models/class_06/butterfly_class_06c_testing.nlogo> 
 * A [digital elevation map](/models/class_06/ElevationData.txt) of real hills<br/>
   <https://ees4760.jgilligan.org/models/class_06/ElevationData.txt>

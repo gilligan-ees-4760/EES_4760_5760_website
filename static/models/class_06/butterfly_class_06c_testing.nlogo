@@ -1,4 +1,3 @@
-__includes["jg-tif.nls"]
 globals [
   ;q
   ]        ; q is the probability that a butterfly moves
@@ -16,8 +15,7 @@ to setup
 
   ca
 
-  initialize-tests
-  set q precision q 2
+    set q precision q 2
 
   let x0 74
   let y0 74
@@ -60,21 +58,15 @@ to setup
 end           ; of setup procedure
 
 to go  ;  This is the master schedule
-  set-context "Moving turtles"
   ask turtles with [not finished?] [move]
-
-  set-context "Testing consistency"
-  test-that "number of visited patches should equal number of yellow patches"
-  expect-that (count patches with [visited?]) equals (count patches with [pcolor = yellow])
+  if (count patches with [visited?]) != (count patches with [pcolor = yellow])
+  [ print "# visited patches does not match # yellow patches." ]
 
   tick
   ; stop when all the butterflies are at the summit, or
   ; 1000 ticks, whichever comes first
   if ticks >= 1000 or all? turtles [finished?]
-  [
-    resume-all-tests
-    stop
-  ]
+  [ stop ]
 end ; of go
 
 to move  ; The butterfly move procedure, in turtle context
@@ -86,8 +78,8 @@ to move  ; The butterfly move procedure, in turtle context
       move-to max-one-of neighbors [elevation]
       ; move-to max-one-of (patch-set [ self neighbors ]) [elevation]
       ; uphill elevation
-      test-that (word "Turtle " self " should not move downhill")
-      expect-that elevation is-greater-or-equal current-elevation
+      if elevation < current-elevation
+      [ show "Turtle is moving downhill." ]
     ]            ; Move uphill
     [ move-to one-of neighbors ]    ; Otherwise move randomly
   set visited? true
@@ -194,9 +186,9 @@ NIL
 1
 
 SLIDER
-20
+15
 105
-192
+187
 138
 q
 q
@@ -209,9 +201,9 @@ NIL
 HORIZONTAL
 
 MONITOR
-20
+15
 150
-114
+109
 195
 Corridor Width
 corridor-width
@@ -248,12 +240,29 @@ NIL
 1
 
 BUTTON
-20
-205
-112
-238
-erase trails
+15
+240
+107
+273
+Erase trails
 clear-drawing
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+15
+200
+112
+233
+Increment q
+set q q + 0.1\nset q precision q 2\nif q > 1 [ set q 1 ]
 NIL
 1
 T
@@ -604,7 +613,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.0
+NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

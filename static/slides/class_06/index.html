@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="Jonathan Gilligan">
+<title>From Animations To Science</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css">
+<style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+<style type="text/css">
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+  </style>
+<!-- theme = solarized_jg --><link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+<!-- Printing and PDF exports --><script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><!--[if lt IE 9]>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
+  <![endif]--><script src="../../lecture_lib/library/header-attrs-2.10.1/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class="center" id="title"><h1 class="title">From Animations To Science</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based and Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #6:
+       Tuesday, September 14
+      2021
+    </h3>
+	<!-- end title slide -->
+</section><section><section id="download-sec" class="title-slide slide level1 center"><h1 class="center">Download files</h1>
+
+</section><section id="download-files" class="slide level2 eighty"><h2 class="eighty">Download files for Butterfly model</h2>
+<style>
+.reveal .stretch code { max-height:100%; }
+</style>
+<p>Download the following files from the Download page on the class web site:</p>
+<ul>
+<li>A single ZIP file with all the files in it:<br><a href="https://ees4760.jgilligan.org/models/class_06/class_06.zip" class="uri">https://ees4760.jgilligan.org/models/class_06/class_06.zip</a>
+<ul>
+<li>Unzip after downloading.</li>
+</ul>
+</li>
+<li>Or individual files listed on Download page <a href="https://ees4760.jgilligan.org/downloads/butterfly_science/" class="uri">https://ees4760.jgilligan.org/downloads/butterfly_science/</a>
+</li>
+<li>Start NetLogo and load <code>butterfly_class_06a.nlogo</code>
+</li>
+</ul></section></section><section><section id="project-sec" class="title-slide slide level1 center"><h1 class="center">Projects</h1>
+
+</section><section id="projects" class="slide level2 eighty"><h2 class="eighty">Individual Semester Project</h2>
+<ul>
+<li>Semester Project:
+<ul>
+<li>Pick a model from an open-source repository (<a href="https://www.comses.net/codebases/">CoMSES OpenABM</a>), or NetLogo “model library” that you want to work with.
+<ul>
+<li>Next Tuesday (Sept. 21) we’ll discuss choosing a project model in class.</li>
+</ul>
+</li>
+<li>Tue. Sept. 28:
+<ul>
+<li>One-page description of model and thoughts for extending it</li>
+</ul>
+</li>
+<li>Tue. Oct. 12: Examine ODD and code.
+<ul>
+<li>Short write-up of how model works and output from running it</li>
+</ul>
+</li>
+<li>Fri. Oct. 29: ODD for extending model</li>
+<li>Tue–Thu. Dec. 7–9: Presentations on experiments with extended models</li>
+<li>Fri. Dec. 10: Write-up of research project (around 10 pages)</li>
+</ul>
+</li>
+</ul></section><section id="team-project" class="slide level2"><h2>Team Project</h2>
+<ul>
+<li>Team Project:
+<ul>
+<li>Each team (2–3 students) will code a model from an ODD in the textbook:
+<ul>
+<li>The <em>Business Investor Model</em> (Ch. 10) studies the <em>adaptive behavior</em> design concept</li>
+<li>The <em>Telemarketer Model</em> (Ch. 13) studies the <em>interaction</em> design concept.</li>
+</ul>
+</li>
+<li>By Friday Sept. 17, complete the survey on Brightspace to indicate your first choice model.
+<ul>
+<li>
+<strong>Optionally:</strong> If you and 1–2 classmates want to work together as a team say who is on your team.</li>
+</ul>
+</li>
+<li>Use model to do exercises from book</li>
+<li>Make presentation about what you learned (Tues. Oct. 19).</li>
+<li>Short written report Fri. Oct. 22.</li>
+</ul>
+</li>
+<li class="fragment">Detailed Assignments on <a href="https://ees4760.jgilligan.org/projects/">course web site</a>.</li>
+</ul></section></section><section><section id="behaviorspace-sec" class="title-slide slide level1 center"><h1 class="center">Behaviorspace</h1>
+
+</section><section id="behaviorspace" class="slide level2"><h2>Running Experiments: BehaviorSpace</h2>
+<ul>
+<li class="fragment">Vary any parameter that has a control on the model’s interface</li>
+<li class="fragment">Writes output to <code>.csv</code> spreadsheet file (table output is the most useful).</li>
+<li class="fragment">Note: Data written in spreadsheet might be out of order.</li>
+</ul>
+<div class="stretch fragment">
+<pre><code>"BehaviorSpace results (NetLogo 6.2.0)"
+"enhanced_butterfly_model_class_5.nlogo"
+"vary-q-final-only"
+"09/08/2021 23:22:51:278 -0500"
+"min-pxcor","max-pxcor","min-pycor","max-pycor"
+"0","149","0","149"
+"[run number]","q","[step]","corridor-width"
+"7","0","999","430.47369975615385"
+"18","0","999","435.05661274391844"
+"20","0","999","414.9412750152147"
+"6","0","999","438.3850168325291"
+"3","0","999","445.7111467510242"
+"1","0","999","429.070105050936"
+"19","0","999","420.9500983108795"
+"5","0","999","433.5280318654752"</code></pre>
+</div>
+</section><section id="analyzing-behaviorspace" class="slide level2"><h2>Analyzing Behaviorspace Output</h2>
+<ul>
+<li class="fragment">Behaviorspace output format is annoying<ul>
+<li class="fragment">Each line is some tick of some run</li>
+<li class="fragment">How to organize, and average over runs?</li>
+</ul>
+</li>
+<li class="fragment">analyzeBehaviorspace app<ul>
+<li class="fragment"><a href="https://ees4760.jgilligan.org/analyze_behaviorspace" class="uri">https://ees4760.jgilligan.org/analyze_behaviorspace</a>
+</li>
+<li class="fragment">Or install on your own computer using R<ul>
+<li><p>Instructions at <a href="https://github.com/jonathan-g/analyzeBehaviorspace" class="uri">https://github.com/jonathan-g/analyzeBehaviorspace</a></p></li>
+<li>
+<p>After installing:</p>
+<pre><code>library(analyzeBehaviorspace)
+launch_abs()</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section></section><section><section id="emergence-sec" class="title-slide slide level1 center"><h1 class="center">Emergence</h1>
+
+</section><section id="emergence" class="slide level2"><h2>Emergence</h2>
+<ul>
+<li class="fragment">A tricky concept.</li>
+<li class="fragment">Joshua Epstein in <em>Growing Artificial Societies:</em> “stable macroscopic patterns arising from the local interaction of agents.”</li>
+<li class="fragment">Epstein ten years later: “I have always been uncomfortable with the vagueness and occasional mysticism surrounding this word.”</li>
+<li class="fragment">Epstein now prefers to talk about “<em>Generative</em> Social Science”</li>
+</ul></section></section><section><section id="butterfly-sec" class="title-slide slide level1 center"><h1 class="center">More Experiments with the Butterfly Model</h1>
+
+</section><section id="butterfly-models" class="slide level2 eighty"><h2 class="eighty">More Experiments with the Butterfly Model</h2>
+<ul>
+<li>
+<p>You should have downloaded:</p>
+<ul>
+<li><p>Various versions of NetLogo butterfly models.</p></li>
+<li><p>A digital elevation map of real hills<br><a href="https://ees4760.jgilligan.org/models/class_06/ElevationData.txt" class="uri">https://ees4760.jgilligan.org/models/class_06/ElevationData.txt</a></p></li>
+</ul>
+</li>
+<li><p>Start NetLogo and load <code>butterfly_class_06a.nlogo</code></p></li>
+</ul></section><section id="plot-corridor-width" class="slide level2"><h2>Plot Corridor Width</h2>
+<ul>
+<li>
+<p>On the interface tab, add a plot</p>
+<p><img data-src="assets/images/plot_dlg.png" height="600" alt="plot dialog box"></p>
+</li>
+<li>
+<p>On the code tab, add a line to <code>go</code> to plot the corridor width</p>
+<pre><code>plot corridor-width</code></pre>
+</li>
+</ul></section><section id="enhance-interface" class="slide level2"><h2>Enhance Interface</h2>
+<ul>
+<li>
+<p>Add a button to export the plot to a file:</p>
+<pre><code>export-plot "Corridor-width" (word "corridor-output-for-q-" (precision q 2) ".csv")          </code></pre>
+<ul>
+<li>
+<code>precision q 2</code> rounds <code>q</code> off to two decimal places.</li>
+<li>
+<code>word</code> combines several different things into a single text string: <br>“<code>corridor-output-for-q-0.40.csv</code>”.
+<ul>
+<li>
+<p>Parentheses tell NetLogo which things <code>word</code> should apply to:</p>
+<pre><code>(word a b c d ... q)</code></pre>
+<p>will combine the values of variables <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code>, …, <code>q</code> into a single text string.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Add a button to increment <em>q</em> by 0.1</p></li>
+</ul></section><section id="behaviorspace-experiments" class="slide level2 eighty"><h2 class="eighty">BehaviorSpace</h2>
+<ul>
+<li><p>If your model is having problems, compare it to <code>butterfly_class_06b.nlogo</code></p></li>
+<li>
+<p>Open BehaviorSpace and create an experiment</p>
+<ul>
+<li>Call it <code>experiment</code>
+</li>
+<li>Vary <code>real-terrain</code> between <code>false</code> and <code>true</code>
+</li>
+<li>Vary <code>q</code> from 0 to 1 in steps of 0.2</li>
+<li>Run 20 repetitions for each value of <code>q</code>.</li>
+<li>Measure <code>corridor-width</code> at the last tick only</li>
+<li>Set time limit to 0 to let model run until it stops</li>
+</ul>
+</li>
+<li class="fragment">
+<p>Run BehaviorSpace experiment</p>
+<ul>
+<li>Save “table” output</li>
+<li>Speed things up by unchecking “Update view” and “Update plots and monitors”</li>
+</ul>
+</li>
+<li class="fragment"><p>Open the analyzeBehaviorspace app at <a href="https://ees4760.jgilligan.org/analyze_behaviorspace" class="uri">https://ees4760.jgilligan.org/analyze_behaviorspace</a> <br>and use it to compare the relationship between corridor width and <code>q</code> for each terrain</p></li>
+</ul></section></section><section><section id="practice-sec" class="title-slide slide level1 center"><h1 class="center">Practice</h1>
+
+</section><section id="practice" class="slide level2 ninety"><h2 class="ninety">Practice</h2>
+<ul>
+<li>Work together with a partner</li>
+<li>Add a button to erase the tracks of the turtles (Exercise 5.2)</li>
+<li>Using the realistic terrain, play with <em>q</em> and see what values do best at helping butterflies find mates near hilltops.</li>
+</ul></section></section><section><section id="testing-sec" class="title-slide slide level1 center"><h1 class="center">Testing</h1>
+
+</section><section id="trails" class="slide level2 ninety"><h2 class="ninety">Leaving trails</h2>
+<div class="leftslide">
+<p>Turtles leave trails with the pen (because you told them <code>pen-down</code> when you created them in <code>to-setup</code>). The pens are the same color as the turtles, so it’s hard to tell the difference between turtles and trails.</p>
+<p>It would be nice to color patches they visited yellow so you could erase the pen trails and see the red turtles contrasting with the yellow trails of visited patches.</p>
+</div>
+<ul>
+<li><p>Open the original “<code>butterfly_class_06a.nlogo</code>”</p></li>
+<li>
+<p>Add code to color patches yellow when a turtle visits them:</p>
+<ul>
+<li>
+<p>At the end of <code>to move</code>, add</p>
+<pre><code>set pcolor yellow</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Add a button to the interface to erase the pen trails:</p>
+<ul>
+<li>Give the button the command <code>clear-drawing</code> and the display name “erase trails”</li>
+</ul>
+</li>
+</ul></section><section id="testing-models" class="slide level2 eightyfive"><h2 class="eightyfive">Testing Models</h2>
+<ul>
+<li>Using monitors</li>
+<li>Testing for consistency
+<ul>
+<li><p>Open the original <code>butterfly_class_06c.nlogo</code></p></li>
+<li>
+<p>In <code>to go</code>, after the turtles move add:</p>
+<pre><code>if (count patches with [visited?]) != (count patches with [pcolor = yellow])
+[ print "# visited patches does not match # yellow patches." ]</code></pre>
+</li>
+</ul>
+</li>
+</ul></section><section id="netlogo-output" class="slide level2"><h2>NetLogo output</h2>
+<ul>
+<li>Four commands to output to <em>Command Center</em>:
+<ul>
+<li>
+<code>show</code> Indicates which turtle or patch used it. Ends the line after the command.</li>
+<li>
+<code>print</code> Ends the line after the command.</li>
+<li>
+<code>type</code> Does not end the line.</li>
+<li>
+<code>write</code> Does not end the line. Text strings are quoted.</li>
+</ul>
+</li>
+<li>Similar commands output to the <em>Output</em> area
+<ul>
+<li><code>output-show</code></li>
+<li><code>output-print</code></li>
+<li><code>output-type</code></li>
+<li><code>output-write</code></li>
+</ul>
+</li>
+<li>See the “<strong><a href="https://ccl.northwestern.edu/netlogo/docs/programming.html#output">Output</a></strong> section of the <strong><a href="https://ccl.northwestern.edu/netlogo/docs/programming.html">Programming Guide</a></strong> in the <em><a href="https://ccl.northwestern.edu/netlogo/docs/">NetLogo User Manual</a></em>.</li>
+</ul></section><section id="more-testing" class="slide level2"><h2>More testing</h2>
+<ul>
+<li>
+<p>In <code>to move</code> replace the <code>ifelse</code> block with this:</p>
+<pre><code>ifelse random-float 1 &lt; q
+[
+  ; move uphill
+  let current-elevation elevation
+  move-to max-one-of neighbors [elevation]
+  if elevation &lt; current-elevation
+  [ show "Turtle is moving downhill." ]
+] 
+[ move-to one-of neighbors ] ; move randomly</code></pre>
+</li>
+<li><p>Why does the turtle sometimes move downhill when it should be moving uphill?</p></li>
+</ul></section></section>
+</div>
+  </div>
+  <!--
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.js"></script>
+  <!-- -->
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script><!-- --><script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Display the page number of the current slide
+        showSlideNumber: 'speaker',
+        // Push each slide change to the browser history
+        history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Loop the presentation
+        loop: false,
+        // Change the presentation direction to be RTL
+        rtl: false,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
+        ],
+        shift_keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'C' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'B' is pressed
+    	    88: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'X' is pressed
+    	    82: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'R' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'D' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'S',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'H',
+      	      });
+    </script><script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_06">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_06"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_06">https://ees4760.jgilligan.org/slides/class_06</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_06/EES_4760_5760_class_06_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_06/EES_4760_5760_class_06_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script><script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script><script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script><script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }
+
+  Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script><script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    // console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+</body>
+</html>

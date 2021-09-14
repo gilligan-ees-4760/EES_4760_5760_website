@@ -1,13 +1,13 @@
 globals [
-  ;q
-  ]        ; q is the probability that a butterfly moves
-                     ; directly to the highest surrounding patch
+  ;q   ; q is the probability that a butterfly moves
+       ; directly to the highest surrounding patch
+  ]
 patches-own [
   elevation
   visited?
   ]
 turtles-own [
-  initial-patch
+  start-patch
   finished?
   ]
 
@@ -49,7 +49,7 @@ to setup
      ; setxy x0 + random 10 - 5 y0 + random 10 - 5
      ; setxy x0 y0
      setxy random-pxcor random-pycor
-     set initial-patch patch-here
+     set start-patch patch-here
      set finished? false
      pen-down
    ]
@@ -110,7 +110,7 @@ end
 ;
 to-report corridor-width
   let pcount count patches with [visited?]
-  let dist mean [distance initial-patch] of turtles
+  let dist mean [distance start-patch] of turtles
   ifelse dist = 0
   [report 1]
   [report pcount / dist]
@@ -210,7 +210,7 @@ SWITCH
 53
 real-terrain
 real-terrain
-1
+0
 1
 -1000
 
@@ -255,7 +255,24 @@ BUTTON
 117
 243
 Increment q
-set q q + 0.1\nset q precision q 2
+set q q + 0.1\nset q precision q 2\nif q > 1 [ set q 1 ]
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+20
+255
+137
+288
+Erace trails
+clear-drawing
 NIL
 1
 T
@@ -606,7 +623,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.0
+NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
