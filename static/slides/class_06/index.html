@@ -195,7 +195,7 @@ launch_abs()</code></pre>
 <p>On the code tab, add a line to <code>go</code> to plot the corridor width</p>
 <pre><code>plot corridor-width</code></pre>
 </li>
-</ul></section><section id="enhance-interface" class="slide level2"><h2>Enhance Interface</h2>
+</ul></section><section id="enhance-interface" class="slide level2 seventyfive"><h2 class="seventyfive">Enhance Interface</h2>
 <ul>
 <li>
 <p>Add a button to export the plot to a file:</p>
@@ -216,6 +216,16 @@ launch_abs()</code></pre>
 </ul>
 </li>
 <li><p>Add a button to increment <em>q</em> by 0.1</p></li>
+<li>
+<p>Add a switch <code>concentrate-turtles</code> and edit <code>to setup</code> to change the code for <code>crt 500</code> to include this:</p>
+<pre><code>ifelse concentrate-turtles
+[
+  setxy x0 + random 10 - 5 y0 + random 10 - 5
+]
+[
+  setxy random-pxcor random-pycor
+]</code></pre>
+</li>
 </ul></section><section id="behaviorspace-experiments" class="slide level2 eighty"><h2 class="eighty">BehaviorSpace</h2>
 <ul>
 <li><p>If your model is having problems, compare it to <code>butterfly_class_06b.nlogo</code></p></li>
@@ -227,8 +237,10 @@ launch_abs()</code></pre>
 <li>Vary <code>real-terrain</code> between <code>false</code> and <code>true</code>
 </li>
 <li>Vary <code>q</code> from 0 to 1 in steps of 0.2</li>
+<li>set <code>concentrate-turtles</code> to <code>true</code>
+</li>
 <li>Run 20 repetitions for each value of <code>q</code>.</li>
-<li>Measure <code>corridor-width</code> at the last tick only</li>
+<li>Measure <code>corridor-width</code> and <code>mean-elevation</code> at the last tick only</li>
 <li>Set time limit to 0 to let model run until it stops</li>
 </ul>
 </li>
@@ -240,7 +252,9 @@ launch_abs()</code></pre>
 </ul>
 </li>
 <li class="fragment"><p>Open the analyzeBehaviorspace app at <a href="https://ees4760.jgilligan.org/analyze_behaviorspace" class="uri">https://ees4760.jgilligan.org/analyze_behaviorspace</a> <br>and use it to compare the relationship between corridor width and <code>q</code> for each terrain</p></li>
-</ul></section></section><section><section id="practice-sec" class="title-slide slide level1 center"><h1 class="center">Practice</h1>
+</ul></section><section id="behaviorspace-experiments-fig" class="slide level2"><h2>BehaviorSpace</h2>
+<p><img data-src="assets/images/behaviorspace-setup.png"></p>
+</section></section><section><section id="practice-sec" class="title-slide slide level1 center"><h1 class="center">Practice</h1>
 
 </section><section id="practice" class="slide level2 ninety"><h2 class="ninety">Practice</h2>
 <ul>
@@ -306,7 +320,7 @@ launch_abs()</code></pre>
 <li><code>output-write</code></li>
 </ul>
 </li>
-<li>See the “<strong><a href="https://ccl.northwestern.edu/netlogo/docs/programming.html#output">Output</a></strong> section of the <strong><a href="https://ccl.northwestern.edu/netlogo/docs/programming.html">Programming Guide</a></strong> in the <em><a href="https://ccl.northwestern.edu/netlogo/docs/">NetLogo User Manual</a></em>.</li>
+<li>See the "<strong><a href="https://ccl.northwestern.edu/netlogo/docs/programming.html#output">Output</a></strong> section of the <strong><a href="https://ccl.northwestern.edu/netlogo/docs/programming.html">Programming Guide</a></strong> in the <em><a href="https://ccl.northwestern.edu/netlogo/docs/">NetLogo User Manual</a></em>.</li>
 </ul></section><section id="more-testing" class="slide level2"><h2>More testing</h2>
 <ul>
 <li>
@@ -335,8 +349,6 @@ launch_abs()</code></pre>
       Reveal.initialize({
         // Display controls in the bottom right corner
         controls: false,
-        // Display a presentation progress bar
-        progress: true,
         // Display the page number of the current slide
         slideNumber: 'c/t',
         // Display the page number of the current slide
@@ -345,48 +357,14 @@ launch_abs()</code></pre>
         history: true,
         //  Enable hashing slide content to URL
         hash: true,
-        // Enable keyboard shortcuts for navigation
-        keyboard: true,
-        // Enable the slide overview mode
-        overview: true,
         // Vertical centering of slides
         center: false,
-        // Enables touch navigation on devices with touch input
-        touch: true,
-        // Loop the presentation
-        loop: false,
-        // Change the presentation direction to be RTL
-        rtl: false,
-        // Turns fragments on and off globally
-        fragments: true,
         // Don't separate fragments in PDF rendering
         pdfSeparateFragments: false,
-        // Flags if the presentation is running in an embedded mode,
-        // i.e. contained within a limited portion of the screen
-        embedded: false,
-        // Flags if we should show a help overlay when the questionmark
-        // key is pressed
-        help: true,
-        // Flags if speaker notes should be visible to all viewers
-        showNotes: false,
-        // Number of milliseconds between automatically proceeding to the
-        // next slide, disabled when set to 0, this value can be overwritten
-        // by using a data-autoslide attribute on your slides
-        autoSlide: 0,
-        // Stop auto-sliding after user input
-        autoSlideStoppable: true,
-        // Enable slide navigation via mouse wheel
-        mouseWheel: false,
-        // Opens links in an iframe preview overlay
-        previewLinks: false,
         // Transition style
         transition: 'slide', // none/fade/slide/convex/concave/zoom
-        // Transition speed
-        transitionSpeed: 'default', // default/fast/slow
         // Transition style for full page slide backgrounds
         backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
-        // Number of slides away from the current that are visible
-        viewDistance: 3,
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.

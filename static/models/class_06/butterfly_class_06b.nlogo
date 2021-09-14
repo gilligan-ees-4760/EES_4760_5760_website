@@ -48,7 +48,13 @@ to setup
      ; Set initial location of butterflies
      ; setxy x0 + random 10 - 5 y0 + random 10 - 5
      ; setxy x0 y0
-     setxy random-pxcor random-pycor
+     ifelse concentrate-turtles
+     [
+       setxy x0 + random 10 - 5 y0 + random 10 - 5
+     ]
+     [
+       setxy random-pxcor random-pycor
+     ]
      set start-patch patch-here
      set finished? false
      pen-down
@@ -117,9 +123,9 @@ to-report corridor-width
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-220
+235
 10
-678
+693
 469
 -1
 -1
@@ -144,10 +150,10 @@ ticks
 30.0
 
 BUTTON
-15
-20
-86
-53
+5
+10
+76
+43
 NIL
 setup
 NIL
@@ -161,10 +167,10 @@ NIL
 1
 
 BUTTON
-15
-60
-79
-94
+5
+50
+69
+84
 NIL
 go
 T
@@ -178,25 +184,25 @@ NIL
 1
 
 SLIDER
-20
-105
-192
-138
+10
+95
+182
+128
 q
 q
 0
 1
-0.4
+1.0
 0.01
 1
 NIL
 HORIZONTAL
 
 MONITOR
-20
-150
-114
-195
+10
+140
+104
+185
 Corridor Width
 corridor-width
 2
@@ -204,20 +210,20 @@ corridor-width
 11
 
 SWITCH
-95
-20
-205
-53
+85
+10
+195
+43
 real-terrain
 real-terrain
-0
+1
 1
 -1000
 
 PLOT
-695
+710
 10
-1165
+1180
 385
 corridor width
 Ticks
@@ -233,9 +239,9 @@ PENS
 "default" 1.0 0 -16777216 true "" ""
 
 BUTTON
-920
+935
 420
-1002
+1017
 453
 save plot
 export-plot \"corridor width\" (word \"corridor-output-for-q-\" (precision q 2) \".csv\")
@@ -250,10 +256,10 @@ NIL
 1
 
 BUTTON
-20
-210
-117
-243
+10
+200
+107
+233
 Increment q
 set q q + 0.1\nset q precision q 2\nif q > 1 [ set q 1 ]
 NIL
@@ -267,10 +273,10 @@ NIL
 1
 
 BUTTON
-20
-255
-137
-288
+10
+245
+127
+278
 Erace trails
 clear-drawing
 NIL
@@ -282,6 +288,17 @@ NIL
 NIL
 NIL
 1
+
+SWITCH
+85
+45
+230
+78
+concentrate-turtles
+concentrate-turtles
+0
+1
+-1000
 
 @#$#@#$#@
 # Butterfly Model ODD Description
@@ -632,15 +649,26 @@ NetLogo 6.2.0
     <setup>setup</setup>
     <go>go</go>
     <metric>corridor-width</metric>
+    <metric>mean [elevation] of turtles</metric>
     <steppedValueSet variable="q" first="0" step="0.1" last="1"/>
+    <enumeratedValueSet variable="real-terrain">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="concentrate-turtles">
+      <value value="true"/>
+    </enumeratedValueSet>
   </experiment>
   <experiment name="terrrain-experiment" repetitions="20" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>go</go>
     <metric>corridor-width</metric>
+    <metric>mean [elevation] of turtles</metric>
     <steppedValueSet variable="q" first="0" step="0.2" last="1"/>
     <enumeratedValueSet variable="real-terrain">
       <value value="false"/>
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="concentrate-turtles">
       <value value="true"/>
     </enumeratedValueSet>
   </experiment>
