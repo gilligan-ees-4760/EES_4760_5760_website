@@ -14,7 +14,6 @@ output: html_document
 * [Printable PDF](/files/odd/business_investor_odd.pdf)
 * [Text file](/files/odd/business_investor_odd.md) that you can paste into the "info" tab in your NetLogo model.
 * [NetLogo template](/models/team_projects/business_investor_template.nlogo)
-* [Testing Is Fun module](/models/team_projects/jg-tif.nls)
 
 ## Telemarketer Model:
 
@@ -22,4 +21,3 @@ output: html_document
 * [Text file](/files/odd/telemarketer_odd.md) that you can paste into the "info" tab in your NetLogo model.
 * [Figure for ODD](/files/odd/fig_13_1.jpg)
 * [NetLogo template](/models/team_projects/telemarketer_template.nlogo)
-* [Testing Is Fun module](/models/team_projects/jg-tif.nls)

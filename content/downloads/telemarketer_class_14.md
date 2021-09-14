@@ -10,8 +10,6 @@ output: html_document
 # Telemarketer models for in-class exercises
 
 * [class_14_models.zip](/models/class_14/class_14_models.zip), which contains:
-  * Testing Is Fun library:
-    * [jg-tif.nls](/models/class_14/jg-tif.nls)
   * NetLogo telemarketer models:
     * [telemarketer_class_14.nlogo](/models/class_14/telemarketer_class_14.nlogo)
     * [telemarketer_non_spatial_class_14.nlogo](/models/class_14/telemarketer_class_14.nlogo)

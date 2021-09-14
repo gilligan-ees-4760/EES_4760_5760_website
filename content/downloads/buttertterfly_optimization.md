@@ -14,8 +14,6 @@ output: html_document
   <https://ees4760.jgilligan.org/models/class_07/butterfly_class_7.nlogo>
 * [Elevation data](/models/class_07/ElevationData.txt) for Butterfly model
   <https://ees4760.jgilligan.org/models/class_07/ElevationData.txt>
-* [Testing Is Fun](/models/class_07/jg-tif.nls) library:
-  <https://ees4760.jgilligan.org/models/class_07/jg-tif.nls>
 * [BehaviorSpace output](/models/class_07/butterfly_class_7%20optimize-mating-table.csv)
   for optimizing mating for butterflies starting at the edge of the world:
   <https://ees4760.jgilligan.org/models/class_07/butterfly_class_7%20optimize-mating-table.csv>
