@@ -331,6 +331,10 @@ body {
   font-family: "Anonymous Pro", monospace;
   color: #268bd2; }
 
+.reveal span.code {
+  font-family: "Anonymous Pro", monospace;
+  color: #268bd2; }
+
 .reveal pre code {
   font-size: 1.3em;
   line-height: 1.2em;

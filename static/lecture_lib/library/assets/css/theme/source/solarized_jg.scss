@@ -151,6 +151,11 @@ $codeBackgroundColor: #C0C0C0;
 	color: $inlineCodeColor;
 }
 
+.reveal span.code {
+  font-family: $codeFont;
+  color: $inlineCodeColor;
+}
+
 .reveal pre code {
   font-size: 1.3em;
   line-height: 1.2em;

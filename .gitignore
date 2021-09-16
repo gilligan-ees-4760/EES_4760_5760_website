@@ -1,25 +1,66 @@
-/blogdown/
-/docs/
-/lectures/semester/
-/lectures/old_semester/
-/lectures/old-semester/
-/public/
-/planning/*.zip
-/planning/*.xlsx
-/temp.R
-*cache/
+# RStudio project files
+#
 .Rproj.user/
-node_modules/
-Corel Auto-Preserve/
 .RData
 .Ruserdata
 .Rhistory
 .DS_Store
 *.Rproj
-*.out
-*.log
+
+#
+# Blogdown temporary files
+#
+/blogdown/
+/temp.R
+*cache/
+
+#
+# Subdirectory for preparing lectures (this should be a separate git project)
+#
+/docs/
+/lectures/semester/
+/lectures/old_semester/
+/lectures/old-semester/
+
+#
+# Hugo working files
+#
+
+/public/
+
+#
+# Project local working files that should not be committed
+#
+/planning/*.zip
+/planning/*.xlsx
+node_modules/
+
+#
+# Paint Shop Pro working files
+#
+
+Corel Auto-Preserve/
+
+#
+# LaTeX temporary working files
+#
+
 *.aux
+*.bak
+*.bbl
+*.blg
+*.glo
+*.ilg
+*.lof
+*.log
+*.lot
+*.out
+*.toc
 *.synctex.gz
 *-concordance.tex
-*.bak
-.Rproj.user
+
+#
+# NetLog temporary files
+#
+
+*.tmp.nlogo

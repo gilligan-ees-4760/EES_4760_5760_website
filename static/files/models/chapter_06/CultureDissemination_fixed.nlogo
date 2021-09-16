@@ -22,7 +22,7 @@ to setup
   ca
   reset-ticks
 
-  set test-output-on? false
+  ; set test-output-on? false
 
   set time-since-last-change 0
 
@@ -55,8 +55,8 @@ to setup
 
     if file-exists? "interact-test-output.csv"
     [
-      file-delete "update-test-output.csv"
-      file-open "update-test-output.csv"
+      file-delete "interact-test-output.csv"
+      file-open "interact-test-output.csv"
       file-print (word "Prob-interact,The-rand-number,"
         "My-var1,My-var2,My-var3,My-var4,My-var5,Their-var1,Their-var2,Their-var3,Their-var4,Their-var5,"
         "The-rand-var,New-var1,New-var2,New-var3,New-var4,New-var5")
@@ -91,10 +91,11 @@ to interact  ; a patch procedure
   ; Create a string to hold one line of test output
   let a-test-output-string " "
 
+  set a-site-changed? false
   let the-neighbor one-of neighbors4
 
   let prob-interact similarity-with the-neighbor
-  let the-rand-number random 1.0
+  let the-rand-number random-float 1.0
 
   ; Add interaction probability and random number to test output
   if test-output-on?
@@ -175,7 +176,7 @@ to update-similarity   ; a patch procedure
     set test-output-string (word test-output-string my-similarity ",")
   ]
 
-  set mean-similarity (mean-similarity / 4)
+  set mean-similarity (mean-similarity / (count neighbors4))
 
   set pcolor scale-color red mean-similarity 0.0 1.0
 
@@ -338,7 +339,7 @@ true
 false
 "" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot count turtles"
+"default" 1.0 0 -16777216 true "" ""
 
 PLOT
 576
@@ -349,14 +350,14 @@ Similarity histogram
 Similarity with neighbor
 Number of site borders
 0.0
-1.0
+1.21
 0.0
 10.0
 true
 false
 "" ""
 PENS
-"default" 0.2 1 -16777216 true "" "plot count turtles"
+"default" 0.2 1 -16777216 true "" ""
 
 SWITCH
 92
@@ -365,7 +366,7 @@ SWITCH
 55
 test-output-on?
 test-output-on?
-1
+0
 1
 -1000
 
@@ -373,7 +374,7 @@ test-output-on?
 # Axelrod's 1997 Model of Dissemination of Culture
 This is an implementation of the culture dissemination model described by: Axelrod R. 1997. The dissemination of culture: a model with local convergence and global polarization. Journal of Conflict Research 41: 203-226.
 
-This version has not been tested for software errors.
+This version has known software errors corrected.
 
 Following is an ODD description developed from Axelrod (1997).
 
