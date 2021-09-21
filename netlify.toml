@@ -3,9 +3,7 @@
 
 [build]
   publish = "public/"
-  command = ["git submodule update --remote",
-             "cd themes/hugo-syllabus && git status",
-             "hugo"]
+  command = "git submodule update --remote && cd themes/hugo-syllabus && git status && cd ../.. && hugo"
 
 [[redirects]]
   from = "https://www.ees4760.jgilligan.org/*"
