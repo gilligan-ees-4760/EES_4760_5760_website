@@ -1,6 +1,12 @@
 [Settings]
   ID = "ees4760"
 
+[build]
+  publish = "public/"
+  command = ["git submodule update --remote",
+             "cd themes/hugo-syllabus && git status",
+             "hugo"]
+
 [[redirects]]
   from = "https://www.ees4760.jgilligan.org/*"
   to   = "https://ees4760.jgilligan.org/:splat"
