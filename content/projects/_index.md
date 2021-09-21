@@ -9,7 +9,7 @@ date: "2017-04-13T00:00:00"
 Your team will make a presentation about your project on Tuesday, Oct. 19. 
 Your write-up will be due on to Brighspace by 11:59 pm on Friday, Oct. 22.
 
-[Project assignment](/assignment/TeamProjectAssignment.pdf)
+* [Project assignment](/assignment/TeamProjectAssignment.pdf)
 
 ### ODDs:
 
