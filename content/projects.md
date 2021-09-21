@@ -1,6 +1,7 @@
 ---
 title: Projects
 draft: false
+date: "2017-04-13T00:00:00"
 ---
 
 ## Team Projects
@@ -33,7 +34,7 @@ Your write-up will be due on to Brighspace by 11:59 pm on Friday, Oct. 22.
 |   4    |  Business Investor | Sarah Habeck, Clark Kaminsky, Nolan Siegel  |   10.3, 10.4       |
 |   5    |  Business Investor |   Yasmeen Minniefield, Precious Ukachukwu   |   10.3, 10.4       |
 |   6    |  Telemarketer      |   Madeline Allen, Daniel Gonzalez           |   13.2, 13.6, 13.8 |
-|   7    |  Telemarketer      |   Zachary Bloom, 'Ana Stringer               |   13.2, 13.6, 13.8 |
+|   7    |  Telemarketer      |   Zachary Bloom, 'Ana Stringer              |   13.2, 13.6, 13.8 |
 |   8    |  Telemarketer      |   Natalie Elliott, Ben Gode, Robin Young    |   13.2, 13.6, 13.8 |
 |   9    |  Telemarketer      |   Tanya Iyer, Tatiana Singleton             |   13.2, 13.6, 13.8 |
 |  10    |  Telemarketer      | Joshua McDuffie, Miguel Moravec, Mostafa Farhadian  | 13.2, 13.6, 13.8 |
