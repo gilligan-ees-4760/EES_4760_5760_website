@@ -1,0 +1,23 @@
+{{ define "body" }}
+<body style="background-image:url({{ .Site.Params.background | relURL }});background-size:{{ .Site.Params.backgroundSize | safeCSS  }};background-repeat:{{ .Site.Params.backgroundRepeat | safeCSS }};background-color:{{ .Site.Params.backgroundColor | safeCSS }};background-blend-mode:{{ .Site.Params.backgroundBlendMode | safeCSS }}">
+  <div class="grid-y medium-grid-frame">
+    {{ partial "topbar.html" . }}
+    <div class="grid-x medium-auto medium-cell-block-container">
+      <div class="grid-container small-12 fill-y medium-cell-block-y">
+        <div class="grid-y fill-y grid-margin-y">
+          <div class="cell auto show-for-medium">
+          </div>
+          <div class="grid-x grid-padding-x grid-padding-y shrink scrollable-content medium-cell-block-container main-content-cell">
+            <div class="cell main-cell">
+            {{ .Content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cell footer shrink">
+      {{ partial "footer.html" . }}
+    </div>
+  </div>
+</body>
+{{ end }}
