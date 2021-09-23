@@ -4,10 +4,15 @@
 %
 \documentclass[
 ]{article}
+\title{Reading Assignments}
+\author{EES 4760/5760: Agent- and Individual-Based Computational
+Modeling}
+\date{Fall, 2021}
+
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -105,14 +110,9 @@
 \newcommand{\SLUGULATOR}{\textsc{slugulator}}
 \newcommand{\GEOCARB}{\textsc{geocarb}}
 \newcommand{\MODTRAN}{\textsc{modtran}}
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-
-\title{Reading Assignments}
-\author{EES 4760/5760: Agent- and Individual-Based Computational
-Modeling}
-\date{Fall, 2021}
 
 \begin{document}
 \maketitle
@@ -744,10 +744,16 @@ Sensing involves two steps:
 \end{enumerate}
 
 Be sure to code the Business Investor model as you read section 10.4.
-You will use it in Chapter 11 and it will form the basis for one of the
-team projects you will present. The other team project will use the
-Telemarketer model from section 13.3. This would be a good time for you
-and your teammates to get started on your team projects.
+You will also use it in Chapters 11 and 12, and it will form the basis
+for one of the team projects.
+
+In addition to the assigned reading from the textbook, read the ODD for
+your team project before you come to class. The ODDs are posted on
+Brightspace and \href{https://ees4760.jgilligan.org/projects/}{the class
+web site}.
+
+For some of the class period, you and your team will start translating
+the ODD for your project model into NetLogo code.
 
 \hypertarget{tue.-oct.-5-adaptive-behavior-and-objectives}{%
 \section{Tue., Oct.~5: Adaptive Behavior and
