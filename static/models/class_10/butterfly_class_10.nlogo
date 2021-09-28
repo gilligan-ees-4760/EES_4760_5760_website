@@ -54,6 +54,9 @@ to setup
 end           ; of setup procedure
 
 to go  ;  This is the master schedule
+  ifelse draw-paths?
+  [ask turtles [pen-down]]
+  [ask turtles [pen-up]]
   ask turtles with [not finished?] [move]
   update-display
   tick
@@ -199,7 +202,7 @@ q
 q
 0
 1
-0.6
+0.4
 0.01
 1
 NIL
@@ -207,9 +210,9 @@ HORIZONTAL
 
 MONITOR
 20
-350
+365
 114
-395
+410
 Corridor Width
 corridor-width
 2
@@ -271,9 +274,9 @@ patch-coloring
 
 BUTTON
 135
-290
+320
 232
-323
+353
 Erase paths
 clear-drawing
 NIL
@@ -299,9 +302,9 @@ show-butterflies?
 
 BUTTON
 20
-290
+320
 132
-323
+353
 Update Display
 update-display
 NIL
@@ -322,6 +325,17 @@ SWITCH
 show-labels?
 show-labels?
 1
+1
+-1000
+
+SWITCH
+20
+275
+142
+308
+draw-paths?
+draw-paths?
+0
 1
 -1000
 
@@ -664,7 +678,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.0
+NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

@@ -57,6 +57,9 @@ to setup
 end           ; of setup procedure
 
 to go  ;  This is the master schedule
+  ifelse draw-paths?
+  [ask turtles [pen-down]]
+  [ask turtles [pen-up]]
   ask turtles with [not finished?] [move]
   update-display
   tick
@@ -72,7 +75,6 @@ to move  ; The butterfly move procedure, in turtle context
     [
       move-to max-one-of neighbors [elevation] ; Move uphill
       set color red
-
     ]
     [
       move-to one-of neighbors ; Otherwise move randomly
@@ -85,16 +87,16 @@ end ; of move procedure
 to build-hills
   ask patches
   [
-         ; Patch elevation decreases linearly with distance from the center
-       ; of hills. Hills are at (30, 30) and (120, 100). The first hill is
-       ; 100 units high. The second hill is 50 units high.
+    ; Patch elevation decreases linearly with distance from the center
+    ; of hills. Hills are at (30, 30) and (120, 100). The first hill is
+    ; 100 units high. The second hill is 50 units high.
 
-      let elev1 100 - distancexy 30 30
-      let elev2 50 - distancexy 120 100
+    let elev1 100 - distancexy 30 30
+    let elev2 50 - distancexy 120 100
 
-      ifelse elev1 > elev2
-         [set elevation elev1]
-         [set elevation elev2]
+    ifelse elev1 > elev2
+    [set elevation elev1]
+    [set elevation elev2]
   ]
 end
 
@@ -130,8 +132,9 @@ to update-display
   ifelse show-butterflies?
   [ ask turtles [show-turtle]]
   [ ask turtles [hide-turtle]]
-  if show-labels?
+  ifelse show-labels?
   [ ask turtles with [chosen?] [set label elevation] ]
+  [ ask turtles with [chosen?] [set label ""] ]
 end
 
 ;  Corridor width is the number of patches visited by butterflies
@@ -225,7 +228,7 @@ q
 q
 0
 1
-1.0
+0.4
 0.01
 1
 NIL
@@ -233,9 +236,9 @@ HORIZONTAL
 
 MONITOR
 20
-350
+370
 114
-395
+415
 Corridor Width
 corridor-width
 2
@@ -297,9 +300,9 @@ patch-coloring
 
 BUTTON
 135
-290
+315
 232
-323
+348
 Erase paths
 clear-drawing
 NIL
@@ -325,9 +328,9 @@ show-butterflies?
 
 MONITOR
 120
-350
+370
 217
-395
+415
 mean elevation
 mean [elevation] of turtles
 2
@@ -336,9 +339,9 @@ mean [elevation] of turtles
 
 BUTTON
 20
-290
+315
 132
-323
+348
 Update Display
 update-display
 NIL
@@ -364,9 +367,9 @@ show-labels?
 
 MONITOR
 20
-410
+430
 112
-455
+475
 Mean turtles
 mean [count turtles-here] of patches with [any? turtles-here]
 2
@@ -375,9 +378,9 @@ mean [count turtles-here] of patches with [any? turtles-here]
 
 MONITOR
 125
-410
+430
 232
-455
+475
 Fraction crowded
 fraction-crowded
 2
@@ -386,9 +389,9 @@ fraction-crowded
 
 PLOT
 775
-35
+10
 975
-185
+160
 Patch density
 Turtles per patch
 count
@@ -404,9 +407,9 @@ PENS
 
 PLOT
 775
-200
+175
 975
-350
+325
 Fraction crowded
 Tick
 Percent
@@ -422,9 +425,9 @@ PENS
 
 PLOT
 775
-355
+330
 975
-505
+480
 Mean elevation
 tick
 Elevation
@@ -437,6 +440,17 @@ false
 "" ""
 PENS
 "default" 1.0 0 -16777216 true "" "plot mean [elevation] of turtles"
+
+SWITCH
+20
+275
+142
+308
+draw-paths?
+draw-paths?
+0
+1
+-1000
 
 @#$#@#$#@
 # Butterfly Model ODD Description
@@ -777,7 +791,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.0
+NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
