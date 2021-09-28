@@ -42,6 +42,38 @@ init_git_tokens <- function(keyring = "git_access") {
                                            keyring = keyring))
 }
 
+config_cred <- function(val, lbl) {
+  if(val) {
+    url <- git2r::remote_url(rep, lbl)
+    key_path <- NULL
+    # message("url = ", url)
+    if (str_starts(url, fixed("git@github.com"))) {
+      key_path <- git2r::ssh_path(file.path("github.com",
+                                            "id_ed25519_gh"))
+    } else if (str_starts(url, fixed("git@gitlab.com"))) {
+      key_path <- git2r::ssh_path(file.path("gitlab.com",
+                                            "id_ed25519_gl_com"))
+    } else if (str_starts(url, fixed("git@gitlab.jgilligan.org"))) {
+      key_path <- git2r::ssh_path(file.path("jg_gitlab", "id_ed25519"))
+    }
+    if (! is.null(key_path)) {
+      # message("key_path = ", key_path)
+      git2r::cred_ssh_key(
+        publickey = str_c(key_path, ".pub"),
+        privatekey = key_path,
+        passphrase = keyring::key_get("SSH_KEY_PASSWORD",
+                                      keyring = "git_access",
+                                      username = "jonathan")
+      )
+    } else {
+      NULL
+    }
+  } else {
+    git2r::cred_token(ifelse(lbl == "origin", "GITLAB_PAT",
+                             "GITHUB_PAT"))
+  }
+}
+
 publish <- function(ssh = NULL) {
   init_git_tokens()
 
@@ -58,37 +90,7 @@ publish <- function(ssh = NULL) {
     ssh <- rep_len(ssh, 2)
   }
 
-  cred <- imap(ssh,
-               ~if(.x) {
-                 url <- git2r::remote_url(rep, .y)
-                 key_path <- NULL
-                 # message("url = ", url)
-                 if (str_starts(url, fixed("git@github.com"))) {
-                   key_path <- ssh_path(file.path("github.com",
-                                                  "id_ed25519_gh"))
-                 } else if (str_starts(url, fixed("git@gitlab.com"))) {
-                   key_path <- ssh_path(file.path("gitlab.com",
-                                                  "id_ed25519_gl_com"))
-                 } else if (str_starts(url, fixed("git@gitlab.jgilligan.org"))) {
-                   key_path <- ssh_path(file.path("jg_gitlab", "id_ed25519"))
-                 }
-                 if (! is.null(key_path)) {
-                   # message("key_path = ", key_path)
-                   cred_ssh_key(
-                     publickey = str_c(key_path, ".pub"),
-                     privatekey = key_path,
-                     passphrase = keyring::key_get("SSH_KEY_PASSWORD",
-                                                   keyring = "git_access",
-                                                   username = "jonathan")
-                   )
-                 } else {
-                   NULL
-                 }
-               } else {
-                 git2r::cred_token(ifelse(.y == "origin", "GITLAB_PAT",
-                                          "GITHUB_PAT"))
-               }
-  )
+  cred <- imap(ssh, config_cred)
   git2r::push(".", name = "publish", refspec = "refs/heads/main",
               credentials = cred$publish)
   git2r::push(".", name = "origin", refspec = "refs/heads/main",
