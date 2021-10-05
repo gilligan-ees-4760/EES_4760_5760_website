@@ -38,7 +38,7 @@ to setup
   initialize-globals
   initialize-patches
 
-  crt num-turtles
+  crt num-investors
   [
     initialize-turtle
   ]
@@ -355,7 +355,7 @@ sense-radius
 sense-radius
 0
 10
-2.0
+10.0
 1
 1
 NIL
@@ -405,7 +405,7 @@ CHOOSER
 vision-mode
 vision-mode
 "neighbors" "radius" "links"
-0
+1
 
 SLIDER
 5
@@ -416,7 +416,7 @@ max-ticks
 max-ticks
 0
 500
-30.0
+25.0
 1
 1
 NIL
@@ -427,11 +427,11 @@ SLIDER
 55
 177
 88
-num-turtles
-num-turtles
+num-investors
+num-investors
 0
 381
-10.0
+100.0
 1
 1
 NIL
@@ -446,7 +446,7 @@ risk-min
 risk-min
 0
 1
-0.05
+0.01
 0.01
 1
 NIL
@@ -461,7 +461,7 @@ risk-max
 risk-max
 0
 1
-0.25
+0.1
 0.01
 1
 NIL
@@ -492,7 +492,7 @@ CHOOSER
 turtle-coloring-mode
 turtle-coloring-mode
 "wealth" "red"
-0
+1
 
 BUTTON
 5
@@ -520,7 +520,7 @@ risk-multiplier
 risk-multiplier
 0
 2
-1.0
+2.0
 0.01
 1
 NIL
@@ -1016,7 +1016,10 @@ NetLogo 6.2.0
     <go>go</go>
     <timeLimit steps="25"/>
     <metric>mean-wealth</metric>
-    <enumeratedValueSet variable="failure-max">
+    <enumeratedValueSet variable="risk-min">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="risk-max">
       <value value="0.1"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="turtle-coloring-mode">
@@ -1024,9 +1027,6 @@ NetLogo 6.2.0
     </enumeratedValueSet>
     <enumeratedValueSet variable="vision-mode">
       <value value="&quot;radius&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="failure-min">
-      <value value="0.01"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="color-patches-by">
       <value value="&quot;exp utility&quot;"/>
@@ -1044,7 +1044,10 @@ NetLogo 6.2.0
     <go>go</go>
     <timeLimit steps="25"/>
     <metric>mean-wealth</metric>
-    <enumeratedValueSet variable="failure-max">
+    <enumeratedValueSet variable="risk-min">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="risk-max">
       <value value="0.1"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="turtle-coloring-mode">
@@ -1052,9 +1055,6 @@ NetLogo 6.2.0
     </enumeratedValueSet>
     <enumeratedValueSet variable="vision-mode">
       <value value="&quot;radius&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="failure-min">
-      <value value="0.01"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="color-patches-by">
       <value value="&quot;exp utility&quot;"/>
@@ -1080,7 +1080,7 @@ NetLogo 6.2.0
     <enumeratedValueSet variable="sense-radius">
       <value value="10"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="failure-min">
+    <enumeratedValueSet variable="risk-min">
       <value value="0.01"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="risk-multiplier">
@@ -1093,7 +1093,7 @@ NetLogo 6.2.0
       <value value="100"/>
     </enumeratedValueSet>
     <steppedValueSet variable="profit-multiplier" first="0.5" step="0.05" last="1"/>
-    <enumeratedValueSet variable="failure-max">
+    <enumeratedValueSet variable="risk-max">
       <value value="0.1"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="turtle-coloring-mode">
@@ -1115,7 +1115,7 @@ NetLogo 6.2.0
     <enumeratedValueSet variable="sense-radius">
       <value value="10"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="failure-min">
+    <enumeratedValueSet variable="risk-min">
       <value value="0.01"/>
     </enumeratedValueSet>
     <steppedValueSet variable="risk-multiplier" first="1" step="0.1" last="2"/>
@@ -1128,7 +1128,7 @@ NetLogo 6.2.0
     <enumeratedValueSet variable="profit-multiplier">
       <value value="1"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="failure-max">
+    <enumeratedValueSet variable="risk-max">
       <value value="0.1"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="turtle-coloring-mode">
