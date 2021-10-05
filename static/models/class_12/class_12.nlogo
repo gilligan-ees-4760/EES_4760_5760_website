@@ -43,6 +43,12 @@ to setup
     initialize-turtle
   ]
 
+  ask links [ set color yellow ]
+
+  color-patches
+  color-turtles
+  draw-links
+
 
   reset-ticks
 end
@@ -64,6 +70,7 @@ to go
   set g-max-utility max [expected-utility-of nobody] of patches
 
   color-turtles
+  draw-links
 
   set-current-plot-pen "mean"
   plot mean-wealth
@@ -271,15 +278,21 @@ to color-turtles
       color-turtle max-wealth
     ]
 end
+
+to draw-links
+  ifelse show-links?
+  [ ask links [ show-link ]]
+  [ ask links [ hide-link ]]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-446
-247
+308
+3
+791
+487
 -1
 -1
-12.0
+25.0
 1
 10
 1
@@ -433,7 +446,7 @@ risk-min
 risk-min
 0
 1
-0.1
+0.05
 0.01
 1
 NIL
@@ -448,7 +461,7 @@ risk-max
 risk-max
 0
 1
-0.1
+0.25
 0.01
 1
 NIL
@@ -479,13 +492,13 @@ CHOOSER
 turtle-coloring-mode
 turtle-coloring-mode
 "wealth" "red"
-1
+0
 
 BUTTON
 5
-490
+525
 107
-523
+558
 Do coloring
 color-patches\ncolor-turtles
 NIL
@@ -515,9 +528,9 @@ HORIZONTAL
 
 BUTTON
 5
-530
+565
 112
-563
+598
 set up turtle 5
 ask turtle 5\n[\nmove-to patch 9 9\nset shape \"default\"\nset heading 45\nfd 1.25\n]\n
 NIL
@@ -546,10 +559,10 @@ NIL
 HORIZONTAL
 
 BUTTON
-471
-15
-534
-49
+115
+565
+178
+599
 Donut
 ask turtle 5 [ \n  ask (patch-set [neighbors] of [neighbors] of self) with                      \n    [not member? self [(patch-set neighbors patch-here)] of myself] \n  [ \n  set pcolor blue\n  ]\n]
 NIL
@@ -563,10 +576,10 @@ NIL
 1
 
 SLIDER
-471
-59
-644
-92
+5
+485
+178
+518
 number-of-links
 number-of-links
 0
@@ -576,6 +589,17 @@ number-of-links
 1
 NIL
 HORIZONTAL
+
+SWITCH
+115
+525
+232
+558
+show-links?
+show-links?
+1
+1
+-1000
 
 @#$#@#$#@
 # Business Investor Model
