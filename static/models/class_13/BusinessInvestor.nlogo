@@ -43,6 +43,9 @@ to setup
     initialize-turtle
   ]
 
+  color-patches
+  color-turtles
+
   reset-ticks
 end
 
@@ -214,6 +217,11 @@ end
 
 to color-patches
   ;ifelse patch-color-mode = 1
+  ifelse color-patches-by = "black"
+  [
+    ask patches [ set pcolor black ]
+  ]
+  [
   ifelse color-patches-by = "profit"
   [
     ask patches
@@ -235,10 +243,17 @@ to color-patches
        ]
      ]
     ]
+      [
+        ifelse color-patches-by = "exp utility"
     [
       ask patches
       [
         set pcolor scale-color magenta (expected-utility-of nobody) 0 g-max-utility
+      ]
+    ]
+        [
+          error "unknown patch coloring mode"
+        ]
       ]
     ]
   ]
@@ -374,8 +389,8 @@ CHOOSER
 460
 color-patches-by
 color-patches-by
-"profit" "p-failure" "exp utility"
-2
+"black" "profit" "p-failure" "exp utility"
+3
 
 CHOOSER
 5
@@ -385,7 +400,7 @@ CHOOSER
 vision-mode
 vision-mode
 "neighbors" "radius"
-1
+0
 
 SLIDER
 5
@@ -472,13 +487,13 @@ CHOOSER
 turtle-coloring-mode
 turtle-coloring-mode
 "wealth" "red"
-0
+1
 
 BUTTON
 5
-520
-107
-553
+555
+75
+588
 Do coloring
 color-patches\ncolor-turtles
 NIL
@@ -530,7 +545,7 @@ time-horizon
 time-horizon
 1
 25
-5.0
+25.0
 1
 1
 NIL
