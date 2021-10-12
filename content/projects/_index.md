@@ -33,9 +33,9 @@ Your write-up will be due on to Brighspace by 11:59 pm on Friday, Oct. 22.
 |   3    |  Business Investor |   Michelle Gordon, Tara Menon               |   10.3, 10.4, 11.2 |
 |   4    |  Business Investor | Sarah Habeck, Clark Kaminsky, Nolan Siegel  |   10.3, 10.4, 11.2 |
 |   5    |  Business Investor |   Yasmeen Minniefield, Precious Ukachukwu   |   10.3, 10.4, 11.2 |
-|   6    |  Telemarketer      |   Madeline Allen, Daniel Gonzalez           |   13.2, 13.3, 13.4 |
-|   7    |  Telemarketer      |   Zachary Bloom, 'Ana Stringer              |   13.2, 13.4, 13.5 |
-|   8    |  Telemarketer      |   Natalie Elliott, Ben Gode, Robin Young    |   13.2, 13.6, 13.8 |
+|   6    |  Telemarketer      |   Madeline Allen, Daniel Gonzalez           |   13.2, 13.3, 13.5 |
+|   7    |  Telemarketer      |   Zachary Bloom, 'Ana Stringer              |   13.2, 13.3, 13.4 |
+|   8    |  Telemarketer      |   Natalie Elliott, Ben Gode, Robin Young    |   13.2, 13.4, 13.5 |
 |   9    |  Telemarketer      |   Tanya Iyer, Tatiana Singleton             |   13.2, 13.6, 13.8 |
 |  10    |  Telemarketer      | Joshua McDuffie, Miguel Moravec, Mostafa Farhadian  | 13.2, 13.5, 13.7 |
 
