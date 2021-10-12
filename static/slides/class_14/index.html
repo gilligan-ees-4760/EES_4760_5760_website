@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="Jonathan Gilligan">
+<title>Interaction and Telemarketers</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css">
+<style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+<style type="text/css">
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+  </style>
+<!-- theme = solarized_jg --><link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+<!-- Printing and PDF exports --><script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><!--[if lt IE 9]>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
+  <![endif]--><script src="../../lecture_lib/library/header-attrs-2.11.2.9000/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class="center" id="title"><h1 class="title">Interaction and Telemarketers</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based and Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #14:
+       Tuesday October 12
+      2021
+    </h3>
+	<!-- end title slide -->
+</section><section id="getting-started" class="slide level2"><h2>Getting Started</h2>
+<ul>
+<li>Download files for “Telemarketer Models” from the download page on the course web site: <a href="/downloads/telemarketer_class_14">ees4760.jgilligan.org/downloads/telemarketer_class_14</a>.</li>
+</ul></section><section><section id="telemarketer-sec" class="title-slide slide level1 center" data-skip="true"><h1 class="center" data-skip="true">Telemarketer Model</h1>
+
+</section><section id="telemarketer" class="slide level2"><h2>Telemarketer Model</h2>
+<ul>
+<li>Telemarketing firms interact
+<ul>
+<li>Telemarketer calls patches</li>
+<li>If patch has received a previous call that tick, it hangs up</li>
+<li>If patch has not received a previous call that tick, it buys something</li>
+<li>Interaction is indirect, mediated by patches</li>
+</ul>
+</li>
+<li class="fragment">Accounting:<ul>
+<li>Net profit = 2 × sales − 50 × size</li>
+<li>If balance &lt; 0, firm goes bankrupt</li>
+</ul>
+</li>
+<li class="fragment">Growth<ul>
+<li>If balance &gt; growth threshold, firm increases size proportional to excess balance</li>
+</ul>
+</li>
+</ul></section><section id="interactions" class="slide level2"><h2>Telemarketer Interactions</h2>
+<ul>
+<li>
+<strong>Indirect interactions:</strong>
+<ul>
+<li>Customers (patches) only buy from the first marketer (turtle) to call them that tick.</li>
+<li>If one marketer calls a customer, that prevents other marketers from selling to that customer.</li>
+<li>Competition</li>
+</ul>
+</li>
+<li class="fragment"><strong>Direct interactions:</strong>
+<ul>
+<li>When one telemarketing company goes broke, a larger one may buy it.</li>
+<li>Create persistent owner/subsidiary relationship.</li>
+<li>Direct transfer of money each tick.</li>
+</ul>
+</li>
+</ul></section></section><section><section id="tm-results-sec" class="title-slide slide level1 center" data-skip="true"><h1 class="center" data-skip="true">Results</h1>
+
+</section><section id="results" class="slide level2"><h2>Results</h2>
+<p><img data-src="assets/fig/time_series-1.png"></p>
+</section><section id="tm-variation" class="slide level2"><h2>Variation</h2>
+<p><img data-src="assets/fig/time_series_bands-1.png"></p>
+</section><section id="tm-median-weeks" class="slide level2"><h2>Median Weeks in Business</h2>
+<p><img data-src="assets/fig/median_lifetime-1.png"></p>
+</section></section><section><section id="merger-sec" class="title-slide slide level1 center" data-skip="true"><h1 class="center" data-skip="true">Mergers</h1>
+
+</section><section id="mergers" class="slide level2"><h2>Mergers</h2>
+<ul>
+<li>Instead of going bankrupt when the bank balance drops below 0,<br>firms look for acquisition partner
+<ul>
+<li>Find a company that’s bigger and has enough money to pay off deficit.</li>
+<li>If it finds a parent, parent pays off deficit
+<ul>
+<li>child firm ends up with zero balance</li>
+</ul>
+</li>
+<li class="fragment">In future turns, child pays parent 50% of its net profits.</li>
+<li class="fragment">In future, if child’s balance becomes negative:<ul>
+<li>If parent has enough money, it pays child’s deficit</li>
+<li>If parent does not have enough money, child dies.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section><section id="merger-implementation" class="slide level2"><h2>Implementing Mergers</h2>
+<ul>
+<li>Turtles-own variable: parent
+<ul>
+<li>Initialize <code>set parent nobody</code> in <code>to setup</code>
+</li>
+<li>When a merger happens, the broke turtle being acquired sets <code>parent</code> to the larger turtle buying it.
+<ul>
+<li>The owner does not have a record of the turtles it owns.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment">Links<ul>
+<li>No special initialization</li>
+<li>When a merger happens, create a directed link from the owner to the subsidiary.
+<ul>
+<li>Now turtles can track both their owners and their subsidiaries.</li>
+<li>Easier to keep track of relationships</li>
+<li>Relationships can be displayed on the model view.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section><section id="merger-results" class="slide level2"><h2>Results</h2>
+<p><img data-src="assets/fig/time_series_merger_bands-1.png"></p>
+</section><section id="merger-variation" class="slide level2"><h2>Variation</h2>
+<p><img data-src="assets/fig/time_series_merger-1.png"></p>
+</section><section id="merger-median-weeks" class="slide level2"><h2>Median Weeks in Business</h2>
+<p><img data-src="assets/fig/median_lifetime_merger-1.png"></p>
+</section></section>
+</div>
+  </div>
+  <!--
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.js"></script>
+  <!-- -->
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script><!-- --><script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Display the page number of the current slide
+        showSlideNumber: 'speaker',
+        // Push each slide change to the browser history
+        history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Loop the presentation
+        loop: false,
+        // Change the presentation direction to be RTL
+        rtl: false,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
+        ],
+        shift_keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'C' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'B' is pressed
+    	    88: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'X' is pressed
+    	    82: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'R' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'D' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'S',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'H',
+      	      });
+    </script><script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_14">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_14"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_14">https://ees4760.jgilligan.org/slides/class_14</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_14/EES_4760_5760_class_14_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_14/EES_4760_5760_class_14_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script><script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script><script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script><script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }
+
+  Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script><script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    // console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+</body>
+</html>
