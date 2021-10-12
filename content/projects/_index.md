@@ -26,6 +26,28 @@ Your write-up will be due on to Brighspace by 11:59 pm on Friday, Oct. 22.
 
 ### Teams:
 
+Originally, when I set the assignments for the team projects, this table and 
+the PDF assignments had assigned all of the teams to do the same exercises:
+  * The Business Investor teams were assigned exercises 10.3 and 10.4 
+  * The Telemarketer teams were assigned exercises 13.2, 13.6, and 13.8
+  
+I forgot to update this assignment table when I assigned the teams on 
+Brightspace and assigned different exercises there. 
+
+On October 12, I updated this web site to match the table on Brightspace, but 
+if you already started working on the original exercises, you may stick with 
+the original for full credit. 
+I don't want you to suffer for my mistake in not keeping the assignments on 
+this web site synchronized with the assignments on Brightspace.
+
+But if you have not already started on the exercises, I would recommend doing
+the ones assigned here. Especially if you are working on the telemarketer
+model, I have mixed the exercises up so that each team will do a different set
+of exercises, so the presentations will be more diverse.
+
+Regardless, you will get full credit whether your team does the updated 
+assignment given here or the original assignment.
+
 | Team # |       Project      |                     Members                 |      Exercises     |
 |-------:|:------------------:|:-------------------------------------------:|:------------------:|
 |   1    |  Business Investor |   Allister Barnes, Davis Kornblum           |   10.3, 10.4, 11.2 |
