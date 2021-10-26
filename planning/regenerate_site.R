@@ -42,9 +42,9 @@ init_git_tokens <- function(keyring = "git_access") {
                                            keyring = keyring))
 }
 
-config_cred <- function(val, lbl) {
+config_cred <- function(val, lbl, repo) {
   if(val) {
-    url <- git2r::remote_url(rep, lbl)
+    url <- git2r::remote_url(repo, lbl)
     key_path <- NULL
     # message("url = ", url)
     if (str_starts(url, fixed("git@github.com"))) {
@@ -74,14 +74,14 @@ config_cred <- function(val, lbl) {
   }
 }
 
-publish <- function(ssh = NULL) {
+publish <- function(ssh = NULL, repo = ".") {
   init_git_tokens()
+  repo = git2r::repository(repo)
 
   if (is.null(ssh)) {
-    rep <- git2r::repository(".")
     remotes <- c("origin", "publish")
     pattern <- "^git@([a-zA-Z][a-zA-Z0-9_\\-.]+):"
-    ssh <- map_lgl(remotes, ~str_detect(git2r::remote_url(rep, .x),
+    ssh <- map_lgl(remotes, ~str_detect(git2r::remote_url(repo, .x),
                                         pattern)) %>%
       set_names(remotes)
   }
@@ -90,7 +90,7 @@ publish <- function(ssh = NULL) {
     ssh <- rep_len(ssh, 2)
   }
 
-  cred <- imap(ssh, config_cred)
+  cred <- imap(ssh, config_cred, repo = repo)
   git2r::push(".", name = "publish", refspec = "refs/heads/main",
               credentials = cred$publish)
   git2r::push(".", name = "origin", refspec = "refs/heads/main",
