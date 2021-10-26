@@ -13,5 +13,8 @@ output: html_document
   * Mousetrap models:
     * [Mousetrap_Ch14.nlogo](/models/class_17/Mousetrap_Ch14.nlogo)
     * [Mousetrap_Ch14_v2.nlogo](/models/class_17/Mousetrap_Ch14_v2.nlogo)
+
+<!--    
   * Breeding Synchrony:
     * [Ch_23_4_breeding_synchrony.nlogo](/models/class_23/Ch_23_4_breeding_synchrony.nlogo)
+-->
