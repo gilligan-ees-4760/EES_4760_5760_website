@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="Jonathan Gilligan">
+<title>Stochasticity</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css">
+<style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+<style type="text/css">
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+  </style>
+<!-- theme = solarized_jg --><link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+<!-- Printing and PDF exports --><script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><!--[if lt IE 9]>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
+  <![endif]--><script src="../../lecture_lib/library/header-attrs-2.11.2.9000/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class="center" id="title"><h1 class="title">Stochasticity</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based and Individual-Based Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #18:
+       Thursday, October 28
+      2021
+    </h3>
+	<!-- end title slide -->
+</section><section id="model-download" class="slide level2 center"><h2 class="center">Stochastic Business Investor model</h2>
+<p>On <a href="https://ees4760.jgilligan.org/downloads/stochasticity_class_18/">“downloads” page</a></p>
+<p><a href="https://ees4760.jgilligan.org/models/class_18/class_18_models.zip" class="uri">https://ees4760.jgilligan.org/models/class_18/class_18_models.zip</a></p>
+</section><section><section id="stochasticity-sec" class="title-slide slide level1" data-skip="true"><h1 data-skip="true">Stochasticity</h1>
+
+</section><section id="stochasticity" class="slide level2"><h2>Stochasticity:</h2>
+<h3 id="why-do-we-use-random-numbers">Why do we use random numbers?</h3>
+<ul>
+<li class="fragment">To “inject ignorance” into a model:<ul>
+<li class="fragment"><p>We want to represent some kind of variability <em>but</em></p></li>
+<li class="fragment">
+<p>We do not want all the details of what causes the variability</p>
+<pre><code>ask patches [set profit 1000 + (random 1000)]
+ask turtles [ if random-float 1.0 &lt; mortality-prob [die] ]</code></pre>
+</li>
+</ul>
+</li>
+</ul></section><section id="uses" class="slide level2"><h2>Common uses of stochasticity</h2>
+<ul>
+<li>
+<p>Initialization</p>
+<pre><code>set fish-length random-normal 50 10</code></pre>
+<p>Pick a random number from a normal distribution with mean 50 and standard deviation 10</p>
+</li>
+<li>
+<p>In submodels</p>
+<pre><code>ifelse random-float 1.0 &lt; q
+[ uphill elevation ]
+[ move-to one-of neighbors ]</code></pre>
+</li>
+</ul></section><section id="guidance" class="slide level2"><h2>Guidance for Stochasticity</h2>
+<ul>
+<li class="fragment"><strong>Do</strong> use stochasticity to initialize model differently on different runs
+<ul>
+<li class="fragment">Makes sure that effects you see are not <em>artifacts</em> of a specific initialization</li>
+</ul>
+</li>
+<li class="fragment"><strong>Do</strong> use stochasticity to simplify representation of very complex processes
+<ul>
+<li class="fragment">If wild dogs live an average of 5 years:<ul>
+<li class="fragment">instead of a detailed submodel that determines exactly when each dog will die,</li>
+<li class="fragment">let dogs die at random with a 20% probability of dying each tick.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment"><strong>Don’t</strong> use too much stochasticity
+<ul>
+<li class="fragment">If you put too many different sources of randomness into your models every run may be <em>so different</em> you can’t discover any general properties.</li>
+</ul>
+</li>
+</ul></section></section><section><section id="distribution-sec" class="title-slide slide level1" data-skip="true"><h1 data-skip="true">Distributions</h1>
+
+</section><section id="what-is-distribution" class="slide level2" data-transition="fade-out"><h2 data-transition="fade-out">What is a Distribution?</h2>
+<p><img data-src="assets/fig/distribution-1.png"></p>
+</section><section id="what-is-distribution-2" class="slide level2" data-transition="fade-in"><h2 data-transition="fade-in">What is a Distribution?</h2>
+<ul>
+<li>
+<p>In simulation programming, an algorithm that produces (pseudo)random numbers that fit a particular statistical distribution.</p>
+<pre><code>let x1 random-normal 1.0  0.25
+let x2 random-gamma  2.0  4.0</code></pre>
+</li>
+</ul>
+<p><img data-src="assets/fig/distribution2-1.png"></p>
+</section><section id="distributions" class="slide level2"><h2>Distributions in NetLogo</h2>
+<ul>
+<li>Continuous (real-number)
+<ul>
+<li>Uniform: <span class="code">random-float <em>upper-limit</em></span>
+</li>
+<li>Normal: <span class="code">random-normal <em>mean</em> <em>sd</em></span> (beware of outliers)</li>
+<li class="fragment">Also: <code>random-gamma</code>, <code>random-exponential</code>
+</li>
+</ul>
+</li>
+<li class="fragment">Discrete (integer):<ul>
+<li class="fragment">Uniform: <span class="code">random <em>upper-limit</em></span>
+<ul>
+<li>0 to <span class="code"><em>upper-limit</em> - 1</span>
+</li>
+</ul>
+</li>
+<li class="fragment">Poisson: <span class="code">random-poisson <em>mean</em></span>
+<ul>
+<li>
+<code>mean</code> = average value</li>
+</ul>
+</li>
+<li class="fragment">Bernoulli (<code>true</code> or <code>false</code>): <code>random-float 1.0 &lt; p</code>
+<ul>
+<li>
+<code>true</code> with probability <code>p</code>
+</li>
+<li>See <code>random-bernoulli</code> reporter on p. 200 of the textbook.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section></section><section><section id="controlling-sec" class="title-slide slide level1" data-skip="true"><h1 data-skip="true">Controlling randomness</h1>
+
+</section><section id="controlling" class="slide level2" data-transition="fade-out"><h2 data-transition="fade-out">Controlling randomness</h2>
+<ul>
+<li>
+<code>random-seed</code> <em>number</em>
+<ul>
+<li>
+<p>As long as <em>number</em> is the same, you get the same sequence of random numbers</p>
+<pre><code>to setup
+    clear-all
+    random-seed 12345
+    ...
+end</code></pre>
+</li>
+</ul>
+</li>
+</ul></section><section id="controlling-2" class="slide level2" data-transition="fade-in"><h2 data-transition="fade-in">Controlling randomness</h2>
+<ul>
+<li>
+<p><code>with-local-randomness [ commands ]</code><br> Runs without changing sequence of random numbers in other parts of the model</p>
+<pre><code>to move
+  with-local-randomness
+  [
+    random-seed 565656
+    ...
+  ]
+end</code></pre>
+</li>
+</ul></section><section id="visualization" class="slide level2"><h2>How can we see a distribution?</h2>
+<ul>
+<li>
+<p>Histograms</p>
+<pre><code>to plot-histogram-normal
+  clear-all
+  set-plot-pen-mode 1 ; bar mode
+  set-plot-pen-interval 0.1
+  set-plot-x-range -1 3
+  let x (list)
+  ; fill x with 5000 random numbers from a normal distribution        
+  repeat 5000 [ set x fput (random-normal 1.0 0.25) x]      
+  histogram x
+end</code></pre>
+</li>
+</ul>
+<p><img data-src="assets/images/histogram.png" height="300" alt="histogram"></p>
+</section><section id="uniform" class="slide level2"><h2>Uniform distributions</h2>
+<ul>
+<li>Integer: <code>random n</code> gives an integer <span class="math inline">\(i\)</span>: <span class="math inline">\(0 \le i &lt; n\)</span>
+<ul>
+<li>From 0 to <span class="math inline">\((n - 1)\)</span>
+</li>
+</ul>
+</li>
+<li>Continuous: <code>random-float z</code> gives a number <span class="math inline">\(x\)</span>: <span class="math inline">\(0 \le x &lt; z\)</span>
+<ul>
+<li>
+<p>Should we worry that <span class="math inline">\(x &lt; z\)</span> ?</p>
+<pre><code>to test
+  let num_draws 10000
+  let max-rand 0
+  repeat num_draws
+  [
+    let x random-float 1000
+    if x &gt; max-rand [ set max-rand x ]
+  ]
+  show max-rand
+end</code></pre>
+<pre><code>observer&gt; test
+observer: 999.9869678378017</code></pre>
+</li>
+</ul>
+</li>
+</ul></section><section id="poisson" class="slide level2"><h2>Poisson distribution</h2>
+<ul>
+<li>For countable things that happen at a small rate.
+<ul>
+<li>
+<p>On every turn a random number of agents turn red,<br>with an average of 5% of agents</p>
+<div class="ninety">
+<pre><code>ask n-of (random-poisson (0.05 * count turtles)) turtles 
+[set color red]        </code></pre>
+</div>
+<p>or</p>
+<pre><code>let n-red random-poisson (0.05 * count turtles)
+ask n-of n-red turtles [set color red]</code></pre>
+</li>
+</ul>
+</li>
+</ul></section><section id="normal" class="slide level2"><h2>Normal distribution</h2>
+<ul>
+<li>
+<p>For measurable things with an average value</p>
+<pre><code>set weight random-normal 150 20  ; weight in pounds       
+set height random-normal 70 2    ; height in inches</code></pre>
+</li>
+<li class="fragment">
+<p>Be careful of outliers. There is no limit, so there is a small probability of getting a very large value or a negative value.</p>
+<pre><code>repeat 5000 [
+  let x random-normal 30 10
+  if x &lt; 0 [ print x ]
+]</code></pre>
+</li>
+</ul></section><section id="lognormal" class="slide level2 ninety"><h2 class="ninety">Lognormal distribution</h2>
+<ul>
+<li>
+<p>If you want something like a normal distribution, but where the result <strong>must</strong> be positive, try a lognormal distribution:</p>
+<pre><code>to-report random-lognormal [ m s ]
+  let mm ln m
+  let ss (ln ((m + s) / (m - s))) / 2
+  report exp (random-normal mm ss)
+end</code></pre>
+</li>
+</ul>
+<div class="bare fragment">
+<p><img data-src="assets/fig/lognorm-1.png"></p>
+</div>
+</section></section><section><section id="stochastic-investor-sec" class="title-slide slide level1 center"><h1 class="center">Stochastic Business Investors</h1>
+
+</section><section id="stochastic-investors" class="slide level2 ninety"><h2 class="ninety">Stochastic Business Investors</h2>
+<p>Model: <a href="https://ees4760.jgilligan.org/models/class_18/business_investor_class_18.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_18/business_investor_class_18.nlogo</a></p>
+<h3 style="padding-top:50px;" id="original-model">Original model:</h3>
+<ul>
+<li><p>Investors move to neighbor with highest expected utility (including own patch)</p></li>
+<li>
+<p>Average over 10,000 runs:</p>
+<table>
+<thead><tr class="header">
+<th style="text-align: center;">Alternative</th>
+<th style="text-align: right;">Frequency</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Higher profit, lower risk</td>
+<td style="text-align: right;">78%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Higher profit, higher risk</td>
+<td style="text-align: right;">9.3%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Lower profit, lower risk</td>
+<td style="text-align: right;">3.4%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Lower profit, higher risk</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Don’t move</td>
+<td style="text-align: right;">92.1%</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>Mean wealth = $212,434</p></li>
+<li><p>Total wealth = $5,310,861</p></li>
+</ul></section><section id="stochastic-model" class="slide level2"><h2>Stochastic Model</h2>
+<h3 id="original-model-1">Original model:</h3>
+<table>
+<thead><tr class="header">
+<th style="text-align: center;">Alternative</th>
+<th style="text-align: right;">Frequency</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Higher profit, lower risk</td>
+<td style="text-align: right;">78%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Higher profit, higher risk</td>
+<td style="text-align: right;">9.3%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Lower profit, lower risk</td>
+<td style="text-align: right;">3.4%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Lower profit, higher risk</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Don’t move</td>
+<td style="text-align: right;">92.1%</td>
+</tr>
+</tbody>
+</table>
+<h3 style="padding-top:50px;" id="stochastic-model-1">Stochastic model</h3>
+<ul>
+<li>If there are neighbors with higher profit and lower risk:
+<ul>
+<li>78% probability of moving to one of them</li>
+</ul>
+</li>
+<li>Otherwise, if there are neighbors with higher profit and higher risk:
+<ul>
+<li>9.3% probability of moving to one of them</li>
+</ul>
+</li>
+<li>etc.</li>
+</ul></section><section id="compare-models" class="slide level2"><h2>Compare models:</h2>
+<p><img data-src="assets/fig/compare-models-1.png"></p>
+</section></section>
+</div>
+  </div>
+  <!--
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.js"></script>
+  <!-- -->
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script><!-- --><script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Display the page number of the current slide
+        showSlideNumber: 'speaker',
+        // Push each slide change to the browser history
+        history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Loop the presentation
+        loop: false,
+        // Change the presentation direction to be RTL
+        rtl: false,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true }
+        ],
+        shift_keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'C' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'B' is pressed
+    	    88: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'X' is pressed
+    	    82: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'R' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'D' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'S',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'H',
+      	      });
+    </script><script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_18">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_18"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_18">https://ees4760.jgilligan.org/slides/class_18</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_18/EES_4760_5760_class_18_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_18/EES_4760_5760_class_18_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script><script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+  </script><script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script><script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }
+
+  Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script><script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    // console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+</body>
+</html>

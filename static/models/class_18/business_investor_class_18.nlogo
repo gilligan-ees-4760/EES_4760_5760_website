@@ -321,23 +321,33 @@ to-report random-bernoulli [p]
 end
 
 to-report p-hplr
-  report n-hplr / mv-hplr
+  if mv-hplr > 0
+  [ report n-hplr / mv-hplr ]
+  report 0
 end
 
 to-report p-lplr
-  report n-lplr / mv-lplr
+  if mv-lplr > 0
+  [ report n-lplr / mv-lplr ]
+  report 0
 end
 
 to-report p-hphr
-  report n-hphr / mv-hphr
+  if mv-hphr > 0
+  [ report n-hphr / mv-hphr ]
+  report 0
 end
 
 to-report p-lphr
-  report n-lphr / mv-lphr
+  if mv-lphr > 0
+  [ report n-lphr / mv-lphr ]
+  report 0
 end
 
 to-report p-same
-    report n-same / moves
+  if moves > 0
+  [ report n-same / moves ]
+  report 0
 end
 
 to-report pct-format [x n-places]
@@ -596,7 +606,7 @@ SWITCH
 149
 stochastic?
 stochastic?
-0
+1
 1
 -1000
 
@@ -609,7 +619,7 @@ p-high-profit-low-risk
 p-high-profit-low-risk
 0
 100
-78.0
+83.4
 0.1
 1
 %
@@ -624,7 +634,7 @@ p-high-profit-high-risk
 p-high-profit-high-risk
 0
 100
-9.3
+5.4
 0.1
 1
 %
@@ -639,7 +649,7 @@ p-low-profit-low-risk
 p-low-profit-low-risk
 0
 100
-3.4
+4.9
 0.2
 1
 %
@@ -1137,7 +1147,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.0
+NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
