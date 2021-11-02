@@ -1,5 +1,3 @@
-; __includes ["jg-tif.nls"]
-
 breed [ dogs dog ]
 breed [ packs pack ]
 breed [ disperser-groups disperser-group ]
