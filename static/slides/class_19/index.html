@@ -67,97 +67,99 @@ globals []
 
 turtles-own
 [
-sex
-age
+  sex
+  age
 ]
 
 dogs-own
 [
-has-ball?
+  has-ball?
 ]
 
 cats-own
 [
-has-scratching-post?
-claw-length
+  has-scratching-post?
+  claw-length
 ]</code></pre>
 </section><section id="breed-context" class="slide level2"><h2>Breeds and Contexts</h2>
 <ul>
 <li>All breeds are evaluated in turtle context.</li>
 </ul>
 <pre><code>to go
-tick
+  tick
 
-ask turtles [ set age age + 1 ]
-ask dogs [ if has-ball? [ fetch ] ]
-ask cats [ if has-scratching-post? [ scratch ] ]
-ask turtles [
-; this will make an error
-if has-scratching-post? [ scratch ]
-]
+  ask turtles [ set age age + 1 ]
+  ask dogs [ if has-ball? [ fetch ] ]
+  ask cats [ if has-scratching-post? [ scratch ] ]
+  ask turtles [
+    ; this will make an error
+    if has-scratching-post? [ scratch ]
+  ]
 end</code></pre>
 <ul>
 <li>Common error: Ask one breed (wolf) to do another breed’s (sheep’s) function.</li>
 </ul></section><section id="error-checking" class="slide level2"><h2>Checking for Errors:</h2>
 <p>Good idea: Check that the right breed is calling the function:</p>
 <pre><code>to do-cat-stuff
-if not is-cat? self 
-[
-print (word "Error: turtle " self " is not a cat.")
-stop
-]
+  if not is-cat? self 
+  [
+    print (word "Error: turtle " self " is not a cat.")
+    stop
+  ]
 
-if has-scratching-post? [ scratch ]
+  if has-scratching-post? [ scratch ]
 end</code></pre>
 </section><section id="turtles-breeds" class="slide level2"><h2>Turtles vs. Breeds</h2>
 <ul>
 <li><p>If you have breeds, there will still always be <code>turtles</code>.</p></li>
 <li><p><code>ask turtles [...]</code> will ask all breeds of turtle.</p></li>
 <li><p><code>ask dogs [...]</code> will only ask the dogs.</p></li>
-<li><p>Many <code>turtles-</code> commands have a breed-specific version:</p></li>
-</ul>
+<li>
+<p>Many <code>turtles-</code> commands have a breed-specific version:</p>
 <pre><code>if any? turtles-here
 [
-ask turtles-here [forward 10]
+  ask turtles-here [forward 10]
 ]
 
 if any? dogs-on neighbors and any? cats in-radius 5 
 [
-ask dogs-on neighbors
-[
-chase min-one-of cats [distance myself]
-]
+  ask dogs-on neighbors
+  [
+  chase min-one-of cats [distance myself]
+  ]
 ]</code></pre>
-</section><section id="link-breeds" class="slide level2"><h2>Breeds of links</h2>
+</li>
+</ul></section><section id="link-breeds" class="slide level2"><h2>Breeds of links</h2>
 <ul>
-<li>Links can also have breeds.</li>
-</ul>
+<li>
+<p>Links can also have breeds.</p>
 <pre><code>undirected-link-breed [friendships friendship]   ; between friends
 directed-link-breed [children-of child-of]       ; from parent to children          
 directed-link-breed [employees employee]         ; from boss to employees
 
 to befriend [ new-friend ]
-create-friendship-with new-friend ; create friendship
+  create-friendship-with new-friend ; create friendship
 end
 
 to breed [ n ] ; executed in context of parent
-create-turtles n [ 
-create-child-of-from myself ; points from parent to new turtle
-]  
+  create-turtles n [ 
+    create-child-of-from myself ; points from parent to new turtle
+  ]  
 end
 
 to hire [ employee-set ]
-create-employees-to employee-set
+  create-employees-to employee-set
 end</code></pre>
-</section><section id="more-breeds" class="slide level2"><h2>More about Breeds</h2>
+</li>
+</ul></section><section id="more-breeds" class="slide level2"><h2>More about Breeds</h2>
 <ul>
-<li>You can change the breed of a turtle or link with <code>set-breed</code>:</li>
-</ul>
+<li>
+<p>You can change the breed of a turtle or link with <code>set-breed</code>:</p>
 <pre><code>ask one-of cats [ set breed dog ]
 ask one-of friendships [ set undirected-link-breed enmities ]</code></pre>
-<ul>
-<li>You can specify the default shape of new individuals of a breed (doesn’t affect any already created)</li>
-</ul>
+</li>
+<li>
+<p>You can specify the default shape of new individuals of a breed (doesn’t affect any already created)</p>
 <pre><code>set-default-turtle-shape "circle"
 create-cats 1 ; default turtle shape
 
@@ -166,10 +168,9 @@ set-sefault-shape dogs "dog"
 create-cats 1 ; has "cat" shape
 
 ask one-of cats [ set breed dogs ] ; cat becomes dog and changes shape 
-; to "dog"</code></pre>
-<ul>
-<li>
-<strong>Note:</strong> some shapes, like “cat” and “dog” must be imported into the model from the shapes library, using the shapes editor</li>
+                                   ; to "dog"</code></pre>
+</li>
+<li><p><strong>Note:</strong> some shapes, like “cat” and “dog” must be imported into the model from the shapes library, using the shapes editor</p></li>
 </ul></section></section><section><section id="wild-dog-sec" class="title-slide slide level1 center"><h1 class="center">Wild Dog Model</h1>
 
 </section><section id="wild-dog" class="slide level2"><h2>Wild Dog Model</h2>
@@ -183,7 +184,8 @@ ask one-of cats [ set breed dogs ] ; cat becomes dog and changes shape
 </section><section id="survival" class="slide level2 eighty"><h2 class="eighty">Survival of endangered wild dogs (<em>Lycaon pictus</em>)<br>in South African nature reserves.</h2>
 <ul>
 <li>Dogs form packs</li>
-<li>Dogs in packs have social structure:</li>
+<li>Dogs in packs have social structure:
+<ul>
 <li>
 <strong>Alpha</strong>: One male, one female</li>
 <li><strong>Subordinate adults</strong></li>
@@ -191,18 +193,27 @@ ask one-of cats [ set breed dogs ] ; cat becomes dog and changes shape
 <strong>yearling</strong> (1–2 years old)</li>
 <li>
 <strong>pup</strong> (&lt;1 year old)</li>
-<li class="fragment">When juvenile dogs reach adulthood, if they can’t be dominant (alpha), they either:</li>
+<li class="fragment">When juvenile dogs reach adulthood, if they can’t be dominant (alpha): they either:<ul>
 <li>leave pack (disperse), either alone or with adult siblings of same sex,</li>
 <li>or stay and hope to become alpha one day.</li>
-<li class="fragment">When dogs disperse from a pack, they form single-sex disperser groups of one or more disperser dogs.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment">When dogs disperse from a pack, they form single-sex disperser groups of one or more disperser dogs.<ul>
 <li>All the dispersers of a given sex that leave a pack in the same tick form a disperser group.</li>
 <li>When opposite-sex disperser groups meet, if they are not from same birth-pack, they may join and form a new pack.</li>
+</ul>
+</li>
 <li class="fragment">Disperser dogs have very high mortality rates.</li>
 </ul></section><section id="detailed-rules" class="slide level2"><h2>Detailed rules:</h2>
 <ul>
-<li>Dispersal:</li>
+<li>Dispersal:
+<ul>
 <li>Two or more subordinates of same sex: always disperse</li>
 <li>One subordinate of its sex: 50% probability to disperse</li>
+</ul>
+</li>
 <li>Mortality (probability of dying each tick)</li>
 </ul>
 <div class="mtop-3">
@@ -233,9 +244,12 @@ ask one-of cats [ set breed dogs ] ; cat becomes dog and changes shape
 </div>
 </section><section id="management" class="slide level2"><h2>Management Options</h2>
 <ul>
-<li>Increase size of park:</li>
+<li>Increase size of park:
+<ul>
 <li>Larger park has greater carrying capacity</li>
 <li>Larger park makes it harder for disperser groups to meet.</li>
+</ul>
+</li>
 <li>Decrease mortality of dispersers.</li>
 </ul></section><section id="characteristics" class="slide level2"><h2>Characteristics of Dogs</h2>
 <ul>
@@ -246,36 +260,39 @@ ask one-of cats [ set breed dogs ] ; cat becomes dog and changes shape
 </ul></section><section id="programming" class="slide level2"><h2>Programming aspects</h2>
 <ul>
 <li>Lots of things to keep track of.</li>
-<li>At end of each tick:</li>
+<li>At end of each tick:
+<ul>
 <li>Social status must match age</li>
 <li>A pack can have at most one alpha of each sex</li>
 <li>A pack can’t have subordinates without an alpha of that sex (they would become alpha)</li>
 <li>A pack can’t have more than one subordinate of each sex (they would disperse)</li>
 <li>All dogs in disperser packs have status “disperser”</li>
+</ul>
+</li>
 <li>Good to implement consistency checks to make sure packs and dogs follow these rules.</li>
 </ul></section><section id="p-extinct" class="slide level2 ninety"><h2 class="ninety">Calculating Probability of Extinction within 100 years</h2>
 <pre><code>to go
-if ticks &gt;= years-to-simulate or not any? dogs
-[
-if ticks &lt; years-to-simulate
-[
-set time-to-extinction ticks
-set extinct? true
-]
-stop
-]
-step ; "step" does all the work of mating, aging, dispersing, dying, etc.
+  if ticks &gt;= years-to-simulate or not any? dogs
+  [
+    if ticks &lt; years-to-simulate
+    [
+      set time-to-extinction ticks
+      set extinct? true
+    ]
+    stop
+  ]
+  step ; "step" does all the work of mating, aging, dispersing, dying, etc.
 end</code></pre>
 <div class="fragment">
 <pre><code>to get-p-extinct [ n-runs ]
-let n-extinct 0
-repeat n-runs 
-[
-setup
-while [ticks &lt; years-to-simulate and not extinct?] [ go ]
-if extinct? [ set n-extinct n-extinct + 1 ]
-]
-set p-extinction n-extinct / n-runs
+  let n-extinct 0
+  repeat n-runs 
+  [
+    setup
+    while [ticks &lt; years-to-simulate and not extinct?] [ go ]
+    if extinct? [ set n-extinct n-extinct + 1 ]
+  ]
+  set p-extinction n-extinct / n-runs
 end</code></pre>
 </div>
 </section></section><section><section id="experiment-sec" class="title-slide slide level1 center"><h1 class="center">Behaviorspace Experiments</h1>
