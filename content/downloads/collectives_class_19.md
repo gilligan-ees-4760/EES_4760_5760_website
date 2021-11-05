@@ -14,5 +14,7 @@ output: html_document
     * NetLogo model: [wild_dogs.nlogo](/models/class_19/wild_dogs.nlogo)
     * ODD:  [wild_dog_odd.pdf](/models/class_19/wild_dog_odd.pdf)
   * Behaviorspace output:
-    * [wild_dogs vary_initialization_pe-table.csv](/models/class_19/wild_dogs vary_initialization_pe-table.csv)
-    * [wild_dogs vary_meeting_disp_mortality_pe-table.csv](/models/class_19/wild_dogs vary_meeting_disp_mortality_pe-table.csv)
+    * Varying initialization (number and size of packs at beginning): 
+      [wild_dogs vary_initialization_pe-table.csv](/models/class_19/wild_dogs%20vary_initialization_pe-table.csv)
+    * Varying disperser pack parameters (meeting rate and mortality): 
+      [wild_dogs vary_meeting_disp_mortality_pe-table.csv](/models/class_19/wild_dogs%20vary_meeting_disp_mortality_pe-table.csv)
