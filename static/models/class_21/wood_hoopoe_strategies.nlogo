@@ -266,6 +266,11 @@ to-report go-scouting-direct?
 end
 
 to-report go-scouting-indirect?
+  ; This alternative approximates the direct decision-making to maximize the probability of reproducing,
+  ; but instead of calculating the exact probability, it estimates it based on the number of subordinate
+  ; elders in the next, and randomly decides whether to go foraying with a probability of
+  ; 1 - 0.5 ^ (# subordinate elders),
+  ; so for no elders, it's 0, for 1 elder, p = 50%, for 2 elders it's 75%, for 3 elders it's 87.5%, etc.
   ifelse random-bernoulli (1.0 - 0.5 ^ (elders false))
   [ report true ]
   [ report false ]
@@ -653,7 +658,7 @@ p-scout
 p-scout
 0
 1
-0.1
+0.2
 0.01
 1
 NIL
@@ -1009,7 +1014,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.0
+NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

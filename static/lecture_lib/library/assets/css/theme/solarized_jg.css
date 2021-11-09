@@ -10,35 +10,41 @@
  */
 html * {
   color-profile: sRGB;
-  rendering-intent: auto; }
+  rendering-intent: auto;
+}
 
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
 body {
   background: #fdf6e3;
-  background-color: #fdf6e3; }
+  background-color: #fdf6e3;
+}
 
 .reveal {
   font-family: "Noto Sans", sans-serif;
   font-size: 52px;
   font-weight: normal;
-  color: #657b83; }
+  color: #657b83;
+}
 
 ::selection {
   color: #fff;
   background: #d33682;
-  text-shadow: none; }
+  text-shadow: none;
+}
 
 ::-moz-selection {
   color: #fff;
   background: #d33682;
-  text-shadow: none; }
+  text-shadow: none;
+}
 
 .reveal .slides section,
 .reveal .slides section > section {
   line-height: 1.3;
-  font-weight: inherit; }
+  font-weight: inherit;
+}
 
 /*********************************************
  * HEADERS
@@ -57,75 +63,93 @@ body {
   letter-spacing: normal;
   text-transform: none;
   text-shadow: none;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+}
 
 .reveal h1 {
-  font-size: 3.77em; }
+  font-size: 3.77em;
+}
 
 .reveal h2 {
-  font-size: 2.11em; }
+  font-size: 2.11em;
+}
 
 .reveal h3 {
-  font-size: 1.55em; }
+  font-size: 1.55em;
+}
 
 .reveal h4 {
-  font-size: 1em; }
+  font-size: 1em;
+}
 
 .reveal h1 {
-  text-shadow: none; }
+  text-shadow: none;
+}
 
 /*********************************************
  * OTHER
  *********************************************/
 .reveal p {
   margin: 20px 0;
-  line-height: 1.3; }
+  line-height: 1.3;
+}
 
 /* Ensure certain elements are never larger than the slide itself */
 .reveal img,
 .reveal video,
 .reveal iframe {
   max-width: 95%;
-  max-height: 95%; }
+  max-height: 95%;
+}
 
 .reveal strong,
 .reveal b {
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .reveal em {
-  font-style: italic; }
+  font-style: italic;
+}
 
 .reveal ol,
 .reveal dl,
 .reveal ul {
   display: inline-block;
   text-align: left;
-  margin: 0 0 0 1em; }
+  margin: 0 0 0 1em;
+}
 
 .reveal ol {
-  list-style-type: decimal; }
+  list-style-type: decimal;
+}
 
 .reveal ul {
-  list-style-type: disc; }
+  list-style-type: disc;
+}
 
 .reveal ul ul {
-  list-style-type: square; }
+  list-style-type: square;
+}
 
 .reveal ul ul ul {
-  list-style-type: circle; }
+  list-style-type: circle;
+}
 
 .reveal ul ul,
 .reveal ul ol,
 .reveal ol ol,
 .reveal ol ul {
   display: block;
-  margin-left: 40px; }
+  margin-left: 40px;
+}
 
 .reveal dt {
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .reveal dd {
-  margin-left: 40px; }
+  margin-left: 40px;
+}
 
 .reveal blockquote {
   display: block;
@@ -135,14 +159,17 @@ body {
   padding: 5px;
   font-style: italic;
   background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
 
 .reveal blockquote p:first-child,
 .reveal blockquote p:last-child {
-  display: inline-block; }
+  display: inline-block;
+}
 
 .reveal q {
-  font-style: italic; }
+  font-style: italic;
+}
 
 .reveal pre {
   display: block;
@@ -154,61 +181,74 @@ body {
   font-family: "Anonymous Pro", monospace;
   line-height: 1.2em;
   word-wrap: break-word;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15); }
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
 
 .reveal code {
   font-family: "Anonymous Pro", monospace;
-  text-transform: none; }
+  text-transform: none;
+}
 
 .reveal pre code {
   display: block;
   padding: 5px;
   overflow: auto;
   max-height: 400px;
-  word-wrap: normal; }
+  word-wrap: normal;
+}
 
 .reveal table {
   margin: auto;
   border-collapse: collapse;
-  border-spacing: 0; }
+  border-spacing: 0;
+}
 
 .reveal table th {
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .reveal table th,
 .reveal table td {
   text-align: left;
   padding: 0.2em 0.5em 0.2em 0.5em;
-  border-bottom: 1px solid; }
+  border-bottom: 1px solid;
+}
 
-.reveal table th[align="center"],
-.reveal table td[align="center"] {
-  text-align: center; }
+.reveal table th[align=center],
+.reveal table td[align=center] {
+  text-align: center;
+}
 
-.reveal table th[align="right"],
-.reveal table td[align="right"] {
-  text-align: right; }
+.reveal table th[align=right],
+.reveal table td[align=right] {
+  text-align: right;
+}
 
 .reveal table tbody tr:last-child th,
 .reveal table tbody tr:last-child td {
-  border-bottom: none; }
+  border-bottom: none;
+}
 
 .reveal sup {
   vertical-align: super;
-  font-size: smaller; }
+  font-size: smaller;
+}
 
 .reveal sub {
   vertical-align: sub;
-  font-size: smaller; }
+  font-size: smaller;
+}
 
 .reveal small {
   display: inline-block;
   font-size: 0.6em;
   line-height: 1.2em;
-  vertical-align: top; }
+  vertical-align: top;
+}
 
 .reveal small * {
-  vertical-align: top; }
+  vertical-align: top;
+}
 
 /*********************************************
  * LINKS
@@ -216,18 +256,21 @@ body {
 .reveal a {
   color: #268bd2;
   text-decoration: none;
-  -webkit-transition: color .15s ease;
-  -moz-transition: color .15s ease;
-  transition: color .15s ease; }
+  -webkit-transition: color 0.15s ease;
+  -moz-transition: color 0.15s ease;
+  transition: color 0.15s ease;
+}
 
 .reveal a:hover {
   color: #78b9e6;
   text-shadow: none;
-  border: none; }
+  border: none;
+}
 
 .reveal .roll span:after {
   color: #fff;
-  background: #1a6091; }
+  background: #1a6091;
+}
 
 /*********************************************
  * IMAGES
@@ -236,84 +279,104 @@ body {
   margin: 15px 0px;
   background: rgba(255, 255, 255, 0.12);
   border: 4px solid #657b83;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
 
 .reveal section img.plain {
   border: 0;
-  box-shadow: none; }
+  box-shadow: none;
+}
 
 .reveal a img {
-  -webkit-transition: all .15s linear;
-  -moz-transition: all .15s linear;
-  transition: all .15s linear; }
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+}
 
 .reveal a:hover img {
   background: rgba(255, 255, 255, 0.2);
   border-color: #268bd2;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+}
 
 /*********************************************
  * NAVIGATION CONTROLS
  *********************************************/
 .reveal .controls {
-  color: #268bd2; }
+  color: #268bd2;
+}
 
 /*********************************************
  * PROGRESS BAR
  *********************************************/
 .reveal .progress {
   background: rgba(0, 0, 0, 0.2);
-  color: #268bd2; }
+  color: #268bd2;
+}
 
 .reveal .progress span {
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
-  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
 
 /*********************************************
  * PRINT BACKGROUND
  *********************************************/
 @media print {
   .backgrounds {
-    background-color: #fdf6e3; } }
-
+    background-color: #fdf6e3;
+  }
+}
 .reveal h1 {
-  margin-bottom: 50px; }
+  margin-bottom: 50px;
+}
 
 .reveal .h3 {
-  margin-top: 10px; }
+  margin-top: 10px;
+}
 
 .reveal .subtitle {
-  font-size: 52px; }
+  font-size: 52px;
+}
 
 .reveal .author {
   font-size: 1.2em;
-  text-transform: none; }
+  text-transform: none;
+}
 
 .reveal .date {
-  font-size: 0.8em; }
+  font-size: 0.8em;
+}
 
 .reveal blockquote {
-  box-shadow: none; }
+  box-shadow: none;
+}
 
 .reveal ol {
-  margin-left: 2em; }
+  margin-left: 2em;
+}
 
 .reveal ol[type=A] {
-  list-style-type: upper-alpha; }
+  list-style-type: upper-alpha;
+}
 
 .reveal ol[type=a] {
-  list-style-type: lower-alpha; }
+  list-style-type: lower-alpha;
+}
 
 .reveal sub {
-  font-size: 60%; }
+  font-size: 60%;
+}
 
 .reveal sup {
-  font-size: 60%; }
+  font-size: 60%;
+}
 
 .reveal .small {
   font-size: 0.6em;
-  line-height: 1.2em; }
+  line-height: 1.2em;
+}
 
 .reveal pre {
   display: block;
@@ -325,15 +388,18 @@ body {
   font-family: monospace;
   line-height: 1.2em;
   word-wrap: break-word;
-  box-shadow: none; }
+  box-shadow: none;
+}
 
 .reveal code {
   font-family: "Anonymous Pro", monospace;
-  color: #268bd2; }
+  color: #268bd2;
+}
 
 .reveal span.code {
   font-family: "Anonymous Pro", monospace;
-  color: #268bd2; }
+  color: #268bd2;
+}
 
 .reveal pre code {
   font-size: 1.3em;
@@ -345,7 +411,8 @@ body {
   padding: 5px;
   max-height: 100%;
   overflow: visible;
-  word-wrap: normal; }
+  word-wrap: normal;
+}
 
 .reveal .slides .leftslide section,
 .reveal .slides .leftslide div,
@@ -354,7 +421,8 @@ body {
 .reveal .leftslide ol,
 .reveal .leftslide li,
 .reveal .leftslide blockquote {
-  text-align: left; }
+  text-align: left;
+}
 
 .reveal .slides .leftslide section,
 .reveal .slides .leftslide div,
@@ -362,48 +430,59 @@ body {
 .reveal .leftslide ul,
 .reveal .leftslide ol,
 .reveal .leftslide li {
-  width: 100%; }
+  width: 100%;
+}
 
 .reveal .leftslide p,
 .reveal .leftslide ul,
 .reveal .leftslide ol {
-  margin-left: 1em; }
+  margin-left: 1em;
+}
 
 .reveal .leftslide table {
-  margin-left: 0; }
+  margin-left: 0;
+}
 
 .reveal .leftslide h1,
 .reveal .leftslide h2 {
-  text-align: center; }
+  text-align: center;
+}
 
 .reveal .toptitle h1,
 .reveal .toptitle h2 {
   top: 50px;
-  margin-bottom: 6in; }
+  margin-bottom: 6in;
+}
 
 .reveal .whiteslide section {
-  background-color: white; }
+  background-color: white;
+}
 
 .reveal .blackslide section {
-  background-color: black; }
+  background-color: black;
+}
 
 .reveal .whitebox div,
 .reveal .whitebox p,
 .reveal .whitebox img {
-  background-color: white; }
+  background-color: white;
+}
 
 .reveal div.whitebox1 > p:first-child,
 .reveal div.whitebox1 > img:first-child {
-  background-color: white; }
+  background-color: white;
+}
 
 .reveal .yellowbox div,
 .reveal .yellowbox p,
 .reveal .yellowbox img {
-  background-color: yellow; }
+  background-color: yellow;
+}
 
 .reveal div.yellowbox1 > p:first-child,
 .reveal div.yellowbox1 > img:first-child {
-  background-color: yellow; }
+  background-color: yellow;
+}
 
 .reveal .nomargin div,
 .reveal .nomargin p,
@@ -413,66 +492,82 @@ body {
 .reveal .nomargin li,
 .reveal .nomargin blockquote,
 .reveal .momargin img {
-  margin: 0; }
+  margin: 0;
+}
 
 .reveal .slides section .fragment.highlight-med-blue,
 .reveal .slides section .fragment.highlight-current-med-blue,
 .reveal .slides section .fragment.highlight-dark-green,
 .reveal .slides section .fragment.highlight-current-dark-green {
   opacity: 1;
-  visibility: inherit; }
+  visibility: inherit;
+}
 
 .reveal .slides section .fragment.highlight-med-blue.visible {
   color: #4080C0;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .reveal .slides section .fragment.highlight-dark-green.visible {
   color: #008000;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .reveal .slides section .fragment.highlight-med-blue.visible {
   color: #4080C0;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .reveal .slides section .fragment.highlight-current-med-blue.current-fragment {
   color: #4080C0;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .reveal .slides section .fragment.highlight-current-dark-green.current-fragment {
   color: #008000;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .reveal .slides section .fragment.highlight-green.visible {
   color: #4fa843;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .reveal .slides section .fragment.highlight-green.visible {
   color: #4fa843;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .reveal .slides section .fragment.highlight-current-green.current-fragment {
   color: #4fa843;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .reveal .hidetitle h1,
 .reveal .hidetitle h2 {
-  display: none; }
+  display: none;
+}
 
 .reveal h1 {
-  font-size: 2.0em; }
+  font-size: 2em;
+}
 
 .reveal h2 {
-  font-size: 1.5em; }
+  font-size: 1.5em;
+}
 
 .reveal h3 {
-  font-size: 1.25em; }
+  font-size: 1.25em;
+}
 
 .reveal h4 {
-  font-size: 1em; }
+  font-size: 1em;
+}
 
 .reveal .slides > section,
 .reveal .slidex > section > section {
-  padding: 0 0; }
+  padding: 0 0;
+}
 
 .reveal table,
 .reveal table th,
@@ -480,19 +575,23 @@ body {
   border-width: 2px;
   border-style: solid;
   border-color: gray;
-  border-collapse: collapse; }
+  border-collapse: collapse;
+}
 
 .reveal table {
   border-spacing: 2px;
-  font-size: 0.7em; }
+  font-size: 0.7em;
+}
 
 .reveal table th,
 .reveal table td {
   padding-left: 10px;
-  padding-right: 25px; }
+  padding-right: 25px;
+}
 
 .reveal table th {
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .reveal .bordered table,
 .reveal .bordered table thead,
@@ -509,7 +608,8 @@ body {
 .reveal div.bordered {
   border-width: 2px;
   border-style: solid;
-  border-color: black; }
+  border-color: black;
+}
 
 .reveal .noborder table,
 .reveal .noborder thead,
@@ -526,14 +626,17 @@ body {
 .reveal div.noborder,
 .reveal img.noborder,
 .reveal .noborder img {
-  border-style: none; }
+  border-style: none;
+}
 
 .reveal .leftlist ol,
 .reveal .leftlist ul {
-  width: 100%; }
+  width: 100%;
+}
 
 .reveal .stretch code {
-  max-height: 100%; }
+  max-height: 100%;
+}
 
 .reveal h1.mtop-half,
 .reveal h2.mtop-half,
@@ -544,7 +647,8 @@ body {
 .reveal div.bare.mtop-half,
 .reveal section.mtop-half,
 .reveal section.bare.mtop-half {
-  margin-top: 0.5rem; }
+  margin-top: 0.5rem;
+}
 
 .reveal h1.mtop-1,
 .reveal h2.mtop-1,
@@ -555,7 +659,8 @@ body {
 .reveal div.bare.mtop-1,
 .reveal section.mtop-1,
 .reveal section.bare.mtop-1 {
-  margin-top: 1rem; }
+  margin-top: 1rem;
+}
 
 .reveal h1.mtop-2,
 .reveal h2.mtop-2,
@@ -566,7 +671,8 @@ body {
 .reveal div.bare.mtop-2,
 .reveal section.mtop-2,
 .reveal section.bare.mtop-2 {
-  margin-top: 2rem; }
+  margin-top: 2rem;
+}
 
 .reveal h1.mtop-3,
 .reveal h2.mtop-3,
@@ -578,7 +684,8 @@ body {
 .reveal div.bare.mtop-3,
 .reveal section.mtop-3,
 .reveal section.bare.mtop-3 {
-  margin-top: 3rem; }
+  margin-top: 3rem;
+}
 
 .reveal h1.mbot-half,
 .reveal h2.mbot-half,
@@ -589,7 +696,8 @@ body {
 .reveal div.bare.mbot-half,
 .reveal section.mbot-half,
 .reveal section.bare.mbot-half {
-  margin-bottom: 0.5rem; }
+  margin-bottom: 0.5rem;
+}
 
 .reveal h1.mbot-1,
 .reveal h2.mbot-1,
@@ -600,7 +708,8 @@ body {
 .reveal div.bare.mbot-1,
 .reveal section.mbot-1,
 .reveal section.bare.mbot-1 {
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+}
 
 .reveal h1.mbot-2,
 .reveal h2.mbot-2,
@@ -611,7 +720,8 @@ body {
 .reveal div.bare.mbot-2,
 .reveal section.mbot-2,
 .reveal section.bare.mbot-2 {
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+}
 
 .reveal h1.mbot-3,
 .reveal h2.mbot-3,
@@ -622,7 +732,8 @@ body {
 .reveal div.bare.mbot-3,
 .reveal section.mbot-3,
 .reveal section.bare.mbot-3 {
-  margin-bottom: 3rem; }
+  margin-bottom: 3rem;
+}
 
 .reveal h1.mleft-half,
 .reveal h2.mleft-half,
@@ -633,7 +744,8 @@ body {
 .reveal div.bare.mleft-half,
 .reveal section.mleft-half,
 .reveal section.bare.mleft-half {
-  margin-left: 0.5rem; }
+  margin-left: 0.5rem;
+}
 
 .reveal h1.mleft-1,
 .reveal h2.mleft-1,
@@ -644,7 +756,8 @@ body {
 .reveal div.bare.mleft-1,
 .reveal section.mleft-1,
 .reveal section.bare.mleft-1 {
-  margin-left: 1rem; }
+  margin-left: 1rem;
+}
 
 .reveal h1.mleft-2,
 .reveal h2.mleft-2,
@@ -655,7 +768,8 @@ body {
 .reveal div.bare.mleft-2,
 .reveal section.mleft-2,
 .reveal section.bare.mleft-2 {
-  margin-left: 2rem; }
+  margin-left: 2rem;
+}
 
 .reveal h1.mleft-3,
 .reveal h2.mleft-3,
@@ -666,7 +780,8 @@ body {
 .reveal div.bare.mleft-3,
 .reveal section.mleft-3,
 .reveal section.bare.mleft-3 {
-  margin-left: 3rem; }
+  margin-left: 3rem;
+}
 
 .reveal h1.mright-half,
 .reveal h2.mright-half,
@@ -677,7 +792,8 @@ body {
 .reveal div.bare.mright-half,
 .reveal section.mright-half,
 .reveal section.bare.mright-half {
-  margin-right: 0.5rem; }
+  margin-right: 0.5rem;
+}
 
 .reveal h1.mright-1,
 .reveal h2.mright-1,
@@ -688,7 +804,8 @@ body {
 .reveal div.bare.mright-1,
 .reveal section.mright-1,
 .reveal section.bare.mright-1 {
-  margin-right: 1rem; }
+  margin-right: 1rem;
+}
 
 .reveal h1.mright-2,
 .reveal h2.mright-2,
@@ -699,7 +816,8 @@ body {
 .reveal div.bare.mright-2,
 .reveal section.mright-2,
 .reveal section.bare.mright-2 {
-  margin-right: 2rem; }
+  margin-right: 2rem;
+}
 
 .reveal h1.mright-3,
 .reveal h2.mright-3,
@@ -710,103 +828,120 @@ body {
 .reveal div.bare.mright-3,
 .reveal section.mright-3,
 .reveal section.bare.mright-3 {
-  margin-right: 3rem; }
+  margin-right: 3rem;
+}
 
 .reveal div.ptop-half,
 .reveal div.bare.ptop-half,
 .reveal section.ptop-half,
 .reveal section.bare.ptop-half {
-  padding-top: 0.5rem; }
+  padding-top: 0.5rem;
+}
 
 .reveal div.ptop-1,
 .reveal div.bare.ptop-1,
 .reveal section.ptop-1,
 .reveal section.bare.ptop-1 {
-  padding-top: 1rem; }
+  padding-top: 1rem;
+}
 
 .reveal div.ptop-2,
 .reveal div.bare.ptop-2,
 .reveal section.ptop-2,
 .reveal section.bare.ptop-2 {
-  padding-top: 2rem; }
+  padding-top: 2rem;
+}
 
 .reveal div.ptop-3,
 .reveal div.bare.ptop-3,
 .reveal section.ptop-3,
 .reveal section.bare.ptop-3 {
-  padding-top: 3rem; }
+  padding-top: 3rem;
+}
 
 .reveal div.pbot-half,
 .reveal div.bare.pbot-half,
 .reveal section.pbot-half,
 .reveal section.bare.pbot-half {
-  padding-bottom: 0.5rem; }
+  padding-bottom: 0.5rem;
+}
 
 .reveal div.pbot-1,
 .reveal div.bare.pbot-1,
 .reveal section.pbot-1,
 .reveal section.bare.pbot-1 {
-  padding-bottom: 1rem; }
+  padding-bottom: 1rem;
+}
 
 .reveal div.pbot-2,
 .reveal div.bare.pbot-2,
 .reveal section.pbot-2,
 .reveal section.bare.pbot-2 {
-  padding-bottom: 2rem; }
+  padding-bottom: 2rem;
+}
 
 .reveal div.pbot-3,
 .reveal div.bare.pbot-3,
 .reveal section.pbot-3,
 .reveal section.bare.pbot-3 {
-  padding-bottom: 3rem; }
+  padding-bottom: 3rem;
+}
 
 .reveal div.pleft-half,
 .reveal div.bare.pleft-half,
 .reveal section.pleft-half,
 .reveal section.bare.pleft-half {
-  padding-left: 0.5rem; }
+  padding-left: 0.5rem;
+}
 
 .reveal div.pleft-1,
 .reveal div.bare.pleft-1,
 .reveal section.pleft-1,
 .reveal section.bare.pleft-1 {
-  padding-left: 1rem; }
+  padding-left: 1rem;
+}
 
 .reveal div.pleft-2,
 .reveal div.bare.pleft-2,
 .reveal section.pleft-2,
 .reveal section.bare.pleft-2 {
-  padding-left: 2rem; }
+  padding-left: 2rem;
+}
 
 .reveal div.pleft-3,
 .reveal div.bare.pleft-3,
 .reveal section.pleft-3,
 .reveal section.bare.pleft-3 {
-  padding-left: 3rem; }
+  padding-left: 3rem;
+}
 
 .reveal div.pright-half,
 .reveal div.bare.pright-half,
 .reveal section.pright-half,
 .reveal section.bare.pright-half {
-  padding-right: 0.5rem; }
+  padding-right: 0.5rem;
+}
 
 .reveal div.pright-1,
 .reveal div.bare.pright-1,
 .reveal section.pright-1,
 .reveal section.bare.pright-1 {
-  padding-right: 1rem; }
+  padding-right: 1rem;
+}
 
 .reveal div.pright-2,
 .reveal div.bare.pright-2,
 .reveal section.pright-2,
 .reveal section.bare.pright-2 {
-  padding-right: 2rem; }
+  padding-right: 2rem;
+}
 
 .reveal div.pright-3,
 .reveal div.bare.pright-3,
 .reveal section.pright-3,
 .reveal section.bare.pright-3 {
-  padding-right: 3rem; }
+  padding-right: 3rem;
+}
 
 .reveal h1.mtop-half-em,
 .reveal h2.mtop-half-em,
@@ -817,7 +952,8 @@ body {
 .reveal div.bare.mtop-half-em,
 .reveal section.mtop-half-em,
 .reveal section.bare.mtop-half-em {
-  margin-top: 0.5em; }
+  margin-top: 0.5em;
+}
 
 .reveal h1.mtop-1-em,
 .reveal h2.mtop-1-em,
@@ -828,7 +964,8 @@ body {
 .reveal div.bare.mtop-1-em,
 .reveal section.mtop-1-em,
 .reveal section.bare.mtop-1-em {
-  margin-top: 1em; }
+  margin-top: 1em;
+}
 
 .reveal h1.mtop-2-em,
 .reveal h2.mtop-2-em,
@@ -839,7 +976,8 @@ body {
 .reveal div.bare.mtop-2-em,
 .reveal section.mtop-2-em,
 .reveal section.bare.mtop-2-em {
-  margin-top: 2em; }
+  margin-top: 2em;
+}
 
 .reveal h1.mtop-3-em,
 .reveal h2.mtop-3-em,
@@ -850,7 +988,8 @@ body {
 .reveal div.bare.mtop-3-em,
 .reveal section.mtop-3-em,
 .reveal section.bare.mtop-3-em {
-  margin-top: 3em; }
+  margin-top: 3em;
+}
 
 .reveal h1.mbot-half-em,
 .reveal h2.mbot-half-em,
@@ -861,7 +1000,8 @@ body {
 .reveal div.bare.mbot-half-em,
 .reveal section.mbot-half-em,
 .reveal section.bare.mbot-half-em {
-  margin-bottom: 0.5em; }
+  margin-bottom: 0.5em;
+}
 
 .reveal h1.mbot-1-em,
 .reveal h2.mbot-1-em,
@@ -872,7 +1012,8 @@ body {
 .reveal div.bare.mbot-1-em,
 .reveal section.mbot-1-em,
 .reveal section.bare.mbot-1-em {
-  margin-bottom: 1em; }
+  margin-bottom: 1em;
+}
 
 .reveal h1.mbot-2-em,
 .reveal h2.mbot-2-em,
@@ -883,7 +1024,8 @@ body {
 .reveal div.bare.mbot-2-em,
 .reveal section.mbot-2-em,
 .reveal section.bare.mbot-2-em {
-  margin-bottom: 2em; }
+  margin-bottom: 2em;
+}
 
 .reveal h1.mbot-3-em,
 .reveal h2.mbot-3-em,
@@ -894,55 +1036,64 @@ body {
 .reveal div.bare.mbot-3-em,
 .reveal section.mbot-3-em,
 .reveal section.bare.mbot-3-em {
-  margin-bottom: 3em; }
+  margin-bottom: 3em;
+}
 
 .reveal div.ptop-half-em,
 .reveal div.bare.ptop-half-em,
 .reveal section.ptop-half-em,
 .reveal section.bare.ptop-half-em {
-  padding-top: 0.5em; }
+  padding-top: 0.5em;
+}
 
 .reveal div.ptop-1-em,
 .reveal div.bare.ptop-1-em,
 .reveal section.ptop-1-em,
 .reveal section.bare.ptop-1-em {
-  padding-top: 1em; }
+  padding-top: 1em;
+}
 
 .reveal div.ptop-2-em,
 .reveal div.bare.ptop-2-em,
 .reveal section.ptop-2-em,
 .reveal section.bare.ptop-2-em {
-  padding-top: 2em; }
+  padding-top: 2em;
+}
 
 .reveal div.ptop-3-em,
 .reveal div.bare.ptop-3-em,
 .reveal section.ptop-3-em,
 .reveal section.bare.ptop-3-em {
-  padding-top: 3em; }
+  padding-top: 3em;
+}
 
 .reveal div.pbot-half-em,
 .reveal div.bare.pbot-half-em,
 .reveal section.pbot-half-em,
 .reveal section.bare.pbot-half-em {
-  padding-bottom: 0.5em; }
+  padding-bottom: 0.5em;
+}
 
 .reveal div.pbot-1-em,
 .reveal div.bare.pbot-1-em,
 .reveal section.pbot-1-em,
 .reveal section.bare.pbot-1-em {
-  padding-bottom: 1em; }
+  padding-bottom: 1em;
+}
 
 .reveal div.pbot-2-em,
 .reveal div.bare.pbot-2-em,
 .reveal section.pbot-2-em,
 .reveal section.bare.pbot-2-em {
-  padding-bottom: 2em; }
+  padding-bottom: 2em;
+}
 
 .reveal div.pbot-3-em,
 .reveal div.bare.pbot-3-em,
 .reveal section.pbot-3-em,
 .reveal section.bare.pbot-3-em {
-  padding-bottom: 3em; }
+  padding-bottom: 3em;
+}
 
 .reveal .bare div > p,
 .reveal .bare div > img,
@@ -952,7 +1103,8 @@ body {
 .reveal .bare img {
   margin: 0;
   border: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 .reveal .flush div,
 .reveal .flush img,
@@ -961,16 +1113,19 @@ body {
 .reveal .flush p {
   margin: 0;
   padding: 0;
-  border: none; }
+  border: none;
+}
 
 .reveal .credit div,
 .reveal .credit p {
-  text-align: right; }
+  text-align: right;
+}
 
 .reveal .credit div,
 .reveal .credit p,
 .reveal .credit ul {
-  font-size: 30%; }
+  font-size: 30%;
+}
 
 .reveal .credit p,
 .reveal .credit ul,
@@ -978,114 +1133,136 @@ body {
 .reveal .credit li,
 .reveal .credit a:link,
 .reveal .credit a:visited {
-  color: #a0a0a0; }
+  color: #a0a0a0;
+}
 
 .reveal .leftalign div,
 .reveal .leftalign p,
 .reveal .leftalign ul,
 .reveal .leftalign ol {
-  text-align: left; }
+  text-align: left;
+}
 
 .reveal .rightalign div,
 .reveal .rightalign p,
 .reveal .rightalign ul,
 .reveal .rightalign ol {
-  text-align: right; }
+  text-align: right;
+}
 
 .reveal .centeralign div,
 .reveal .centeralign p,
 .reveal .centeralign ul,
 .reveal .centeralign ol {
-  text-align: center; }
+  text-align: center;
+}
 
 .reveal .slides div.column {
   width: 49%;
-  vertical-align: top; }
+  vertical-align: top;
+}
 
 .reveal div.topalign {
-  vertical-align: top; }
+  vertical-align: top;
+}
 
 .reveal div.leftcol {
   text-align: left;
-  margin-right: auto; }
+  margin-right: auto;
+}
 
 .reveal div.rightcol {
   text-align: right;
-  margin-left: auto; }
+  margin-left: auto;
+}
 
 .reveal div.centercol {
   text-align: center;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+}
 
 .reveal div.vtop,
 .reveal p.vtop,
 .reveal span.vtop,
 .reveal img.vtop {
-  vertical-align: top; }
+  vertical-align: top;
+}
 
 .reveal div.vbot,
 .reveal p.vbot,
 .reveal span.vbot,
 .reveal img.vbot {
-  vertical-align: bottom; }
+  vertical-align: bottom;
+}
 
 .reveal div.vmid,
 .reveal p.vmid,
 .reveal span.vmid,
 .reveal img.vmid {
-  vertical-align: middle; }
+  vertical-align: middle;
+}
 
 .reveal div.vcenter {
   display: flex;
-  align-items: center; }
+  align-items: center;
+}
 
 .reveal .textcenter div,
 .reveal .textcenter p {
-  text-align: center; }
+  text-align: center;
+}
 
 .reveal .textleft div,
 .reveal .textleft p {
-  text-align: left; }
+  text-align: left;
+}
 
 .reveal .textleft ul,
 .reveal .textleft ol,
 .reveal .textleft dl {
-  display: block; }
+  display: block;
+}
 
 .reveal .textright div,
 .reveal .textright p {
-  text-align: right; }
+  text-align: right;
+}
 
 .reveal .centertext div,
 .reveal .centertext p {
-  text-align: center; }
+  text-align: center;
+}
 
 .reveal .textright ul,
 .reveal .textright ol,
 .reveal .textright dl {
-  display: block; }
+  display: block;
+}
 
 .reveal .whitetitle h1,
 .reveal .whitetitle h2,
 .reveal .whitetitle h3,
 .reveal .whitetitle h4,
 .reveal .whitetitle h5 {
-  color: white; }
+  color: white;
+}
 
 .reveal .yellowtitle h1,
 .reveal .yellowtitle h2,
 .reveal .yellowtitle h3,
 .reveal .yellowtitle h4,
 .reveal .yellowtitle h5 {
-  color: yellow; }
+  color: yellow;
+}
 
 .reveal .blacktitle h1,
 .reveal .blacktitle h2,
 .reveal .blacktitle h3,
 .reveal .blacktitle h4,
 .reveal .blacktitle h5 {
-  color: black; }
+  color: black;
+}
 
 .reveal .blacktext section,
 .reveal .blacktext div,
@@ -1097,7 +1274,8 @@ body {
 .reveal span.blacktext,
 .reveal .blacktext a:link,
 .reveal .blacktext a:visited {
-  color: black; }
+  color: black;
+}
 
 .reveal .yellowtext section,
 .reveal .yellowtext div,
@@ -1109,7 +1287,8 @@ body {
 .reveal span.yellowtext,
 .reveal .yellowtext a:link,
 .reveal .yellowtext a:visited {
-  color: yellow; }
+  color: yellow;
+}
 
 .reveal .darkredtext section,
 .reveal .darkredtext div,
@@ -1121,7 +1300,8 @@ body {
 .reveal span.darkredtext,
 .reveal .darkredtext a:link,
 .reveal .darkredtext a:visited {
-  color: darkred; }
+  color: darkred;
+}
 
 .reveal .darkbluetext section,
 .reveal .darkbluetext div,
@@ -1133,7 +1313,8 @@ body {
 .reveal span.darkbluetext,
 .reveal .darkbluetext a:link,
 .reveal .darkbluetext a:visited {
-  color: darkblue; }
+  color: darkblue;
+}
 
 .reveal .darkgreentext section,
 .reveal .darkgreentext div,
@@ -1145,87 +1326,108 @@ body {
 .reveal span.darkgreentext,
 .reveal .darkgreentext a:link,
 .reveal .darkgreentext a:visited {
-  color: darkgreen; }
+  color: darkgreen;
+}
 
 .reveal .t95 h1,
 .reveal .ninetyfive h1 {
-  font-size: 2.1em; }
+  font-size: 2.1em;
+}
 
 .reveal .t95 h2,
 .reveal .ninetyfive h2 {
-  font-size: 1.575em; }
+  font-size: 1.575em;
+}
 
 .reveal .t90 h1,
 .reveal .ninety h1 {
-  font-size: 2.2em; }
+  font-size: 2.2em;
+}
 
 .reveal .t90 h2,
 .reveal .ninety h2 {
-  font-size: 1.65em; }
+  font-size: 1.65em;
+}
 
 .reveal .t85 h1,
 .reveal .eightyfive h1 {
-  font-size: 2.36em; }
+  font-size: 2.36em;
+}
 
 .reveal .t85 h2,
 .reveal .eightyfive h2 {
-  font-size: 1.77em; }
+  font-size: 1.77em;
+}
 
 .reveal .t80 h1,
 .reveal .eighty h1 {
-  font-size: 2.5em; }
+  font-size: 2.5em;
+}
 
 .reveal .t80 h2,
 .reveal .eighty h2 {
-  font-size: 1.875em; }
+  font-size: 1.875em;
+}
 
 .reveal .t75 h1,
 .reveal .seventyfive h1 {
-  font-size: 2.66em; }
+  font-size: 2.66em;
+}
 
 .reveal .t75 h2,
 .reveal .seventyfive h2 {
-  font-size: 1.995em; }
+  font-size: 1.995em;
+}
 
 .reveal .t70 h1,
 .reveal .seventy h1 {
-  font-size: 2.84em; }
+  font-size: 2.84em;
+}
 
 .reveal .t70 h2,
 .reveal .seventy h2 {
-  font-size: 2.13em; }
+  font-size: 2.13em;
+}
 
 .reveal .t65 h1,
 .reveal .sixtyfive h1 {
-  font-size: 3.08em; }
+  font-size: 3.08em;
+}
 
 .reveal .t65 h2,
 .reveal .sixtyfive h2 {
-  font-size: 2.31em; }
+  font-size: 2.31em;
+}
 
 .reveal .t60 h1,
 .reveal .sixty h1 {
-  font-size: 3.34em; }
+  font-size: 3.34em;
+}
 
 .reveal .t60 h2,
 .reveal .sixty h2 {
-  font-size: 2.505em; }
+  font-size: 2.505em;
+}
 
 .reveal .t55 h1,
 .reveal .fiftyfive h1 {
-  font-size: 3.64em; }
+  font-size: 3.64em;
+}
 
 .reveal .t55 h2,
 .reveal .fiftyfive h2 {
-  font-size: 2.73em; }
+  font-size: 2.73em;
+}
 
 .reveal .t50 h1,
 .reveal .fifty h1 {
-  font-size: 4em; }
+  font-size: 4em;
+}
 
 .reveal .t50 h2,
 .reveal .fifty h2 {
-  font-size: 3em; }
+  font-size: 3em;
+}
 
 .reveal .t100,
 .reveal .hundred,
@@ -1234,7 +1436,8 @@ h1.hundred,
 h2.t100,
 h2.hundred,
 div.hundred {
-  font-size: 100% !important; }
+  font-size: 100% !important;
+}
 
 .reveal .t95,
 .reveal .ninetyfive,
@@ -1242,7 +1445,8 @@ h1.t95,
 h1.ninetyfive,
 h2.t95,
 h2.ninetyfive {
-  font-size: 95%; }
+  font-size: 95%;
+}
 
 .reveal .t90,
 .reveal .ninety,
@@ -1250,7 +1454,8 @@ h1.t90,
 h1.ninety,
 h2.t90,
 h2.ninety {
-  font-size: 90%; }
+  font-size: 90%;
+}
 
 .reveal .t85,
 .reveal .eightyfive,
@@ -1258,7 +1463,8 @@ h1.t85,
 h1.eightyfive,
 h2.t85,
 h2.eightyfive {
-  font-size: 85%; }
+  font-size: 85%;
+}
 
 .reveal .t80,
 .reveal .eighty,
@@ -1266,15 +1472,15 @@ h1.t80,
 h1.eighty,
 h2.t80,
 h2.eighty {
-  font-size: 80%; }
+  font-size: 80%;
+}
 
 .reveal .t75,
 .reveal .seventyfive,
-h1.t75
-h1.seventyfive,
-h2.t75
-h2.seventyfive {
-  font-size: 75%; }
+h1.t75 h1.seventyfive,
+h2.t75 h2.seventyfive {
+  font-size: 75%;
+}
 
 .reveal .t70,
 .reveal .seventy,
@@ -1282,7 +1488,8 @@ h1.t70,
 h1.seventy,
 h2.t70,
 h2.seventy {
-  font-size: 70%; }
+  font-size: 70%;
+}
 
 .reveal .t65,
 .reveal .sixtyfive,
@@ -1290,7 +1497,8 @@ h1.t65,
 h1.sixtyfive,
 h2.t65,
 h2.sixtyfive {
-  font-size: 65%; }
+  font-size: 65%;
+}
 
 .reveal .t60,
 .reveal .sixty,
@@ -1298,7 +1506,8 @@ h1.t60,
 h1.sixty,
 h2.t60,
 h2.sixty {
-  font-size: 60%; }
+  font-size: 60%;
+}
 
 .reveal .t55,
 .reveal .fiftyfive,
@@ -1306,7 +1515,8 @@ h1.t55,
 h1.fiftyfive,
 h2.t55,
 h2.fiftyfive {
-  font-size: 55%; }
+  font-size: 55%;
+}
 
 .reveal .t50,
 .reveal .fifty,
@@ -1314,6 +1524,7 @@ h1.t50,
 h1.fifty,
 h2.t50,
 h2.fifty {
-  font-size: 50%; }
+  font-size: 50%;
+}
 
 /*# sourceMappingURL=solarized_jg.css.map */
