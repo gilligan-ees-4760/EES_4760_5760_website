@@ -99,6 +99,7 @@ lessons:
 - date: '2021-11-11'
   title: Parameterization and Calibration
   reading: /reading/reading_22
+  lecture: /slides/class_22
 - date: '2021-11-12'
   assignment: project_draft_code
 - date: '2021-11-16'
