@@ -215,7 +215,7 @@
 <li>Does model reproduce patterns?</li>
 </ul></section><section id="woodhoopoe-strategies" class="slide level2"><h2>Developing Alternative Strategies</h2>
 <p><a href="https://ees4760.jgilligan.org/models/class_21/wood_hoopoe_strategies.nlogo" style="font-size:80%;">https://ees4760.jgilligan.org/models/class_21/wood_hoopoe_strategies.nlogo</a></p>
-</section><section id="alternative-strategies" class="slide level2 eightyfive"><h2 class="eightyfive">Alternative Strategies:</h2>
+</section><section id="alternative-strategies" class="slide level2 eighty"><h2 class="eighty">Alternative Strategies:</h2>
 <ol type="1">
 <li>
 <strong>Random:</strong> Subordinates go scouting randomly with probability <code>p-scout</code>.</li>
@@ -224,9 +224,10 @@
 <li class="fragment"><strong>Direct:</strong> Subordinates calculate the probability of reproducing within a certain time horizon if they go scouting or if they stay in the next and wait to become alpha. They choose the option that gives the greatest probability of reproducing.</li>
 <li class="fragment"><strong>Indirect:</strong> Approximate the direct method by scouting randomly, with a probability that depends on the number of subordinate adults older then them: <span class="math display">\[ P_{\text{scout}} = 1 - \left(\frac{1}{2}\right)^{\text{# elder subordinates}} \]</span>
 <ul>
-<li>For 0 elders, <em>P</em><sub>scout</sub> = 50%</li>
-<li>For 1 elder, <em>P</em><sub>scout</sub> = 75%</li>
-<li>For 2 elders, <em>P</em><sub>scout</sub> = 87.5%</li>
+<li>For 0 elders, <em>P</em><sub>scout</sub> = 0%</li>
+<li>For 1 elder, <em>P</em><sub>scout</sub> = 50%</li>
+<li>For 2 elders, <em>P</em><sub>scout</sub> = 75%</li>
+<li>For 3 elders, <em>P</em><sub>scout</sub> = 87.5%</li>
 <li>…</li>
 </ul>
 </li>
