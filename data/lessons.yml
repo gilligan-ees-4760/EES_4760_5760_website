@@ -121,6 +121,7 @@ lessons:
 - date: '2021-12-02'
   title: 'Looking Ahead: ABMs Beyond this Course'
   reading: /reading/reading_26
+  lecture: /slides/class_26
 - date: '2021-12-07'
   title: Presentations
   assignment: project_presentation
