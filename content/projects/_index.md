@@ -73,3 +73,22 @@ assignment given here or the original assignment.
 * Draft model code due Fri. Nov. 12
 * Presentations Dec. 7--9.
 * Written report due Dec. 10.
+
+
+### Presentation Schedule
+
+| Tuesday Dec. 7      | Thursday Dec. 9     |
+|:-------------------:|:-------------------:|
+| Maddie Allen        | Allister Barnes     |
+| Mostafa Farhadan    | Zachary Bloom       |
+| Ben Gode            | Marin Boyle         |
+| Daniel Gonzalez     | Natalie Elliot      |
+| Sarah Habeck        | Michelle Gordon     |
+| Tanya Iyer          | Marisa Kim          |
+| Clark Kaminsky      | Davis Kornblum      |
+| Nolan Siegel        | Tara Menon          |
+| Tatiyanna Singleton | Yasmeen Minniefield |
+| 'Ana Stringer       | Miguel Moravec      |
+| Robin Young         | Precious Ukachukwu  |
+
+
