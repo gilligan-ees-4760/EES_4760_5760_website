@@ -146,8 +146,11 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
   fullCourseName = "EES 4760/5760: Agent- and Individual-Based Computational Modeling"
   semester = "Fall 2021"
   courseCatalogEntry = " Applications in natural, social, and behavioral sciences and engineering. Designing, programming, and documenting models. Using models for experiments. Examples from environmental science, ecology, economics, urban planning, and medicine. Familiarity with basic statistics and proficiency in algebra are expected. [3] (MNS)"
-  fontAwesomePro = "sha384-POYwD7xcktv3gUeZO5s/9nUbRJG/WOmV6jfEGikMJu77LGYO8Rfs2X7URG822aum"
   siteGitHub = "https://github.com/gilligan-ees-4760/EES_4760_5760_website.git"
+
+  [params.fontAwesomePro]
+    key = "sha384-POYwD7xcktv3gUeZO5s/9nUbRJG/WOmV6jfEGikMJu77LGYO8Rfs2X7URG822aum"
+    kit = "536cbb4daa"
 
   [params.lectures]
     times = "TR 11:10--12:25"
