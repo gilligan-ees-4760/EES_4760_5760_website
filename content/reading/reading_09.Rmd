@@ -1,14 +1,15 @@
 ---
 title: Emergence
-class_date: '2021-09-23'
+class_date: '2024-09-18'
 class_number: 9
 weight: 9
 slug: reading_09
-pubdate: '2021-07-31'
-date: '2021-09-23'
+pubdate: '2024-07-31'
+date: '2024-09-18'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+pdf_url: /files/reading_asgts/reading_09.pdf
 ---
 ## Reading:
 

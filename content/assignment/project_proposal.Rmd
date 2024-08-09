@@ -1,20 +1,26 @@
 ---
 title: Research project proposal
-due_date: '2021-09-28'
+due_date: '2024-09-23'
 assignment_type: Semester Project Assignment
 short_assignment_type: Assignment
 assignment_number: 7
 weight: 7
 slug: project_proposal
-pubdate: '2021-07-31'
-date: '2021-09-28'
+pubdate: '2024-07-31'
+date: '2024-09-23'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+pdf_url: /files/homework_asgts/project_proposal.pdf
 ---
 ## Homework
 
 ### Homework Exercises:
+
+
 
 * Turn in a one-to-two page (double-spaced) proposal for your semester research project.
 

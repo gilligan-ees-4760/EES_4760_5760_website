@@ -1,14 +1,15 @@
 ---
 title: Using models for science
-class_date: '2021-09-14'
+class_date: '2024-09-09'
 class_number: 6
 weight: 6
 slug: reading_06
-pubdate: '2021-07-31'
-date: '2021-09-14'
+pubdate: '2024-07-31'
+date: '2024-09-09'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+pdf_url: /files/reading_asgts/reading_06.pdf
 ---
 ## Reading:
 

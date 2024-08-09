@@ -1,20 +1,26 @@
 ---
 title: Research project model analysis
-due_date: '2021-10-12'
+due_date: '2024-10-07'
 assignment_type: Semester Project Assignment
 short_assignment_type: Assignment
 assignment_number: 11
 weight: 11
 slug: project_analysis
-pubdate: '2021-07-31'
-date: '2021-10-12'
+pubdate: '2024-07-31'
+date: '2024-10-07'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+pdf_url: /files/homework_asgts/project_analysis.pdf
 ---
 ## Homework
 
 ### Homework Exercises:
+
+
 
 * Study the code and ODD of the model you chose for your semester research project, play with the model and run some BehaviorSpace experiments to examine its
   output.

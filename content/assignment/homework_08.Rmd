@@ -1,24 +1,35 @@
 ---
 title: Testing and debugging
-due_date: '2021-10-01'
+due_date: '2024-09-27'
 assignment_type: Homework
 short_assignment_type: HW
 assignment_number: 8
 weight: 8
 slug: homework_08
-pubdate: '2021-07-31'
-date: '2021-10-01'
+pubdate: '2024-07-31'
+date: '2024-09-27'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+pdf_url: /files/homework_asgts/homework_08.pdf
 ---
 ## Homework
 
 ### Homework Exercises:
 
 * **Everyone:**
+
+
+
   * Railsback & Grimm, Ch. 6, Ex. 6.2, 6.3
+
 * **Graduate Students,** also do the following:
+
+
+
   * Railsback & Grimm, Ch. 6, Ex. 6.4, 6.5, 6.7
 
 ### Notes on Homework:

@@ -1,14 +1,15 @@
 ---
 title: Adaptive Behavior and Objectives
-class_date: '2021-10-05'
+class_date: '2024-09-30'
 class_number: 12
 weight: 12
 slug: reading_12
-pubdate: '2021-07-31'
-date: '2021-10-05'
+pubdate: '2024-07-31'
+date: '2024-09-30'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+pdf_url: /files/reading_asgts/reading_12.pdf
 ---
 ## Reading:
 

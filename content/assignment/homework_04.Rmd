@@ -1,16 +1,20 @@
 ---
 title: Experimenting with NetLogo
-due_date: '2021-09-09'
+due_date: '2024-09-04'
 assignment_type: Homework
 short_assignment_type: HW
 assignment_number: 4
 weight: 4
 slug: homework_04
-pubdate: '2021-07-31'
-date: '2021-09-09'
+pubdate: '2024-07-31'
+date: '2024-09-04'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+pdf_url: /files/homework_asgts/homework_04.pdf
 ---
 ## Homework
 
@@ -41,6 +45,8 @@ Some problems in this homework set call for you to write a NetLogo model and als
 3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
 
 ### Homework Exercises:
+
+
 
 * Railsback & Grimm, Chapter 2, exercises Exercises 3--4.
 

@@ -1,20 +1,26 @@
 ---
 title: Programming agent sensing
-due_date: '2021-10-07'
+due_date: '2024-10-02'
 assignment_type: Homework
 short_assignment_type: HW
 assignment_number: 10
 weight: 10
 slug: homework_10
-pubdate: '2021-07-31'
-date: '2021-10-07'
+pubdate: '2024-07-31'
+date: '2024-10-02'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+pdf_url: /files/homework_asgts/homework_10.pdf
 ---
 ## Homework
 
 ### Homework Exercises:
+
+
 
 * Railsback & Grimm, Ch. 10, Ex. 10.1, 10.2
 * Railsback & Grimm, Ch. 11, Ex. 11.1

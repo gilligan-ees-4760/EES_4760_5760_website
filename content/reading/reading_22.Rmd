@@ -1,14 +1,15 @@
 ---
 title: Parameterization and Calibration
-class_date: '2021-11-11'
+class_date: '2024-11-06'
 class_number: 22
 weight: 22
 slug: reading_22
-pubdate: '2021-07-31'
-date: '2021-11-11'
+pubdate: '2024-07-31'
+date: '2024-11-06'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+pdf_url: /files/reading_asgts/reading_22.pdf
 ---
 ## Reading:
 

@@ -1,17 +1,17 @@
 ---
 title: Using models for science
-class_date: '2021-09-14'
+class_date: '2024-09-09'
 class_number: 6
 weight: 6
 slug: reading_06
-pubdate: '2021-07-31'
-date: '2021-09-14'
+pubdate: '2024-07-31'
+date: '2024-09-09'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+pdf_url: /files/reading_asgts/reading_06.pdf
 ---
 
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <div id="reading" class="section level2">
@@ -37,7 +37,7 @@ importing and exporting data using text or <code>.csv</code> files will be very 
 By default, NetLogo only allows you to read in data in simple text files. However, if comes with some extensions that you can use to read in
 data from other common file formats, including <code>.csv</code> and ArcGIS shapefiles and raster (grid) files.</p>
 <p>If you want to read in data from csv files, you may want to
-look at the documentation for the  extension to NetLogo. To use it, you just put the line <code>includes [csv]</code> as the first line of your
+look at the documentation for the extension to NetLogo. To use it, you just put the line <code>includes [csv]</code> as the first line of your
 model, and then use functions from the extension, such as <code>let data csv:from-file "myfile.csv"</code>.</p>
 <p>To read in date from ArcGIS files, look at the documentation for the <code>GIS</code> extension. You would put the line <code>extensions [ gis ]</code> as the
 first line of your model, and then use functions, such as <code>gis:load-dataset</code>, which can load vector shape files (<code>.shp</code>)

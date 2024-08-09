@@ -1,14 +1,15 @@
 ---
 title: Prediction
-class_date: '2021-10-07'
+class_date: '2024-10-02'
 class_number: 13
 weight: 13
 slug: reading_13
-pubdate: '2021-07-31'
-date: '2021-10-07'
+pubdate: '2024-07-31'
+date: '2024-10-02'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+pdf_url: /files/reading_asgts/reading_13.pdf
 ---
 ## Reading:
 

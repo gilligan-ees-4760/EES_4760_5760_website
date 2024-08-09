@@ -1,14 +1,15 @@
 ---
 title: Analyzing ABMs
-class_date: '2021-11-18'
+class_date: '2024-11-13'
 class_number: 24
 weight: 24
 slug: reading_24
-pubdate: '2021-07-31'
-date: '2021-11-18'
+pubdate: '2024-07-31'
+date: '2024-11-13'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+pdf_url: /files/reading_asgts/reading_24.pdf
 ---
 ## Reading:
 

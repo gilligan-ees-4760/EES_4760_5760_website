@@ -1,14 +1,15 @@
 ---
 title: Sensing
-class_date: '2021-09-30'
+class_date: '2024-09-25'
 class_number: 11
 weight: 11
 slug: reading_11
-pubdate: '2021-07-31'
-date: '2021-09-30'
+pubdate: '2024-07-31'
+date: '2024-09-25'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+pdf_url: /files/reading_asgts/reading_11.pdf
 ---
 ## Reading:
 
@@ -17,6 +18,10 @@ output:
 * Agent-Based and Individual-Based Modeling, Ch. 10.
 
 ### Reading Notes:
+
+In addition to the assigned reading from the textbook, read the ODD for your team project before you come to class. The ODDs are posted on Brightspace and [the class web site](https://ees4760.jgilligan.org/projects/).
+
+For some of the class period, you and your team will start translating the ODD for your project model into NetLogo code.
 
 Important programming concepts in this chapter include:
 
@@ -39,7 +44,3 @@ Sensing involves two steps:
 1. Get the values of the sensed variables from those entities.
 
 Be sure to code the Business Investor model as you read section 10.4. You will also use it in Chapters 11 and 12, and it will form the basis for one of the team projects.
-
-In addition to the assigned reading from the textbook, read the ODD for your team project before you come to class. The ODDs are posted on Brightspace and [the class web site](https://ees4760.jgilligan.org/projects/).
-
-For some of the class period, you and your team will start translating the ODD for your project model into NetLogo code.

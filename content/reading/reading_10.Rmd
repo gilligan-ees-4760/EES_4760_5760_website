@@ -1,14 +1,15 @@
 ---
 title: Observation
-class_date: '2021-09-28'
+class_date: '2024-09-23'
 class_number: 10
 weight: 10
 slug: reading_10
-pubdate: '2021-07-31'
-date: '2021-09-28'
+pubdate: '2024-07-31'
+date: '2024-09-23'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
+pdf_url: /files/reading_asgts/reading_10.pdf
 ---
 ## Reading:
 
