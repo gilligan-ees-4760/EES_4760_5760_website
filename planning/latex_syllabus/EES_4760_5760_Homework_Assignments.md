@@ -1,7 +1,7 @@
 ---
 title: "Homework Assignments"
 author: "EES 4760/5760: Agent- and Individual-Based Computational Modeling"
-date: "Fall, 2021"
+date: "Fall, 2024"
 output:
   pdf_document: 
     includes:
@@ -11,6 +11,7 @@ output:
   html_document:
     df_print: paged
 ---
+
 
 
 
@@ -107,7 +108,7 @@ The most up-to-date versions of the homework assignments will be posted on the
 <https://ees4760.jgilligan.org/schedule>
 
 
-# Tue., Aug. 31: Set up NetLogo
+# Mon., Aug. 26: Set up NetLogo
 
 ## Homework
 
@@ -117,15 +118,19 @@ The most up-to-date versions of the homework assignments will be posted on the
 
 ### Homework Exercises:
 
+
+
 * Download NetLogo version 6.2.0 from <https://ccl.northwestern.edu/netlogo/> and install it on your computer.
 
 
 
-# Thu., Sep. 2: Introducing NetLogo
+# Wed., Aug. 28: Introducing NetLogo
 
 ## Homework
 
 ### Homework Exercises:
+
+
 
 * As you read along with Section 2.3, follow along on your computer and build the _Mushroom Hunt_ model by typing in the code shown in the textbook. The whole program is shown on pages 27--29.
   **Save your model as `mushroom_hunt.nlogo`**.
@@ -145,7 +150,7 @@ If you run into trouble and cannot make your model work, do not worry. Ask a cla
 
 
 
-# Tue., Sep. 7: Becoming familiar with NetLogo
+# Mon., Sep. 2: Becoming familiar with NetLogo
 
 ## Homework
 
@@ -155,11 +160,13 @@ This homework consists of reading and working through tutorials, so there is not
 
 ### Homework Exercises:
 
+
+
 * Everyone should do exercises 1--2 in Chapter 2 of Railsback & Grimm. This consists of reading and working through tutorials, so there is nothing to turn in.
 
 
 
-# Thu., Sep. 9: Experimenting with NetLogo
+# Wed., Sep. 4: Experimenting with NetLogo
 
 ## Homework
 
@@ -191,6 +198,8 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
 ### Homework Exercises:
 
+
+
 * Railsback & Grimm, Chapter 2, exercises Exercises 3--4.
 
   For exercise 4 in chapter 2, you will make seven sequential modifications of the basic mushroom hunt model. Each step modifies the previous one, so the last model will have all the modifications from the bulleted list in Ex. 2.4. Save each model with a new name, such as `ex_2_4a.nlogo`, `ex_2_4b.nlogo`, \dots, `ex_2_4g.nlogo`
@@ -210,7 +219,7 @@ you felt confused about trying to specify your model.
 
 
 
-# Thu., Sep. 16: Science with models: Butterfly mating
+# Wed., Sep. 11: Science with models: Butterfly mating
 
 ## Homework
 
@@ -234,6 +243,9 @@ Some problems in this homework set call for you to write a NetLogo model and als
 ### Homework Exercises:
 
 * **Everyone:**
+
+
+
   * Railsback & Grimm, Ch. 4, Ex. 4.2, 4.4
 
     For exercise 4.4, **instead of the way the exercise is described in the book, do the following:**
@@ -266,6 +278,9 @@ Some problems in this homework set call for you to write a NetLogo model and als
   * Railsback & Grimm, Ch. 5, Ex. 5.1, 5.2, 5.4, and 5.7.
 
 * **Graduate Students,** also do the following:
+
+
+
   * Railsback & Grimm, Ch. 5, exercises 5.5 and 5.8
 
 ### Notes on Homework:
@@ -309,13 +324,16 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
 
 
-# Thu., Sep. 23: Reproducing a model from its ODD
+# Wed., Sep. 18: Reproducing a model from its ODD
 
 ## Homework
 
 ### Homework Exercises:
 
 * **Graduate Students:**
+
+
+
   * Graduate students should do Railsback & Grimm, Ex. 5.11
 
 ### Notes on Homework:
@@ -335,11 +353,13 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
 
 
-# Tue., Sep. 28: Research project proposal
+# Mon., Sep. 23: Research project proposal
 
 ## Homework
 
 ### Homework Exercises:
+
+
 
 * Turn in a one-to-two page (double-spaced) proposal for your semester research project.
 
@@ -364,55 +384,48 @@ See the semester project assignment for details.
 
 
 
-# Fri., Oct. 1: Testing and debugging models
+# Mon., Sep. 30: Analyzing model experiments
 
 ## Homework
 
 ### Homework Exercises:
 
 * **Everyone:**
-  * Railsback & Grimm, Ch. 6, Ex. 6.2, 6.3
-* **Graduate Students,** also do the following:
-  * Railsback & Grimm, Ch. 6, Ex. 6.4, 6.5, 6.7
-
-### Notes on Homework:
-
-
-A hint for exercise 6.3:  Patches have integer coordinates (representing the center of the patch). How does the turtle determine the angle to face during `setup`? How does it determine the angle to face in `go-back`? Can you think of a different way to record the path so the `go-back` exactly retraces the path it took during `setup`? If you knew the direction the turtle was heading at each step during `setup`, could you use this heading information to exactly retrace the path?
 
 
 
-# Tue., Oct. 5: Analyzing model experiments
-
-## Homework
-
-### Homework Exercises:
-
-* **Everyone:**
   * Railsback & Grimm, Ch. 8, Ex. 8.1, 8.2
   * Railsback & Grimm, Ch. 9, Ex. 9.1, 9.3, 9.4
+
 * **Graduate Students,** also do the following:
+
+
+
   * Railsback & Grimm, Ch. 8, Ex. 8.3, 8.4
   * Railsback & Grimm, Ch. 9, Ex. 9.6
 
 
 
-# Thu., Oct. 7: Programming agent sensing
+# Wed., Oct. 2: Programming agent sensing
 
 ## Homework
 
 ### Homework Exercises:
+
+
 
 * Railsback & Grimm, Ch. 10, Ex. 10.1, 10.2
 * Railsback & Grimm, Ch. 11, Ex. 11.1
 
 
 
-# Tue., Oct. 12: Analysis of a published model
+# Mon., Oct. 7: Analysis of a published model
 
 ## Homework
 
 ### Homework Exercises:
+
+
 
 * Study the code and ODD of the model you chose for your semester research project, play with the model and run some BehaviorSpace experiments to examine its
   output.
@@ -426,11 +439,13 @@ See the project assignment sheet for details about this assignment.
 
 
 
-# Thu., Oct. 21: Team modeling project presentations
+# Mon., Oct. 21: Team modeling project presentations
 
 ## Homework
 
 ### Homework Exercises:
+
+
 
 * Teams will give a presentation on their projects.
 
@@ -441,63 +456,13 @@ See the team project assignment sheet for details on what I expect for the prese
 
 
 
-# Fri., Oct. 22: Team modeling project reports
+# Mon., Dec. 2: Research project presentations
 
 ## Homework
 
 ### Homework Exercises:
 
-* Turn in the written report for your team project on Brightspace.
 
-### Notes on Homework:
-
-
-See the team project assignment sheet for details.
-
-
-
-# Fri., Oct. 29: Research project ODD
-
-## Homework
-
-### Homework Exercises:
-
-* Turn in an ODD for extending your chosen model to ask new questions.
-
-### Notes on Homework:
-
-
-See the semester research project assignment sheet for details.
-
-
-
-# Fri., Nov. 12: Draft model code for research project
-
-## Homework
-
-### Homework Exercises:
-
-* Turn in a draft `.nlogo` file with your modified model. The ODD for your modified model should be included in the "Info" section of the model.
-
-  You should _also_ turn in a document that describes what you are satisfied with about your draft model and what problems you are struggling with.
-
-### Notes on Homework:
-
-
-The model code you turn in should run, but it does not need to be perfect. 
-   
-The point of this deadline is so that you can check in with me about how
-things are going so I can give you feedback and suggestions.
-
-See the project assignment sheet for details.
-
-
-
-# Tue., Dec. 7: Research project presentations
-
-## Homework
-
-### Homework Exercises:
 
 * You will make a ten-minute presentation in class about your model (seven minutes of talking and three minutes for questions).
 
@@ -514,11 +479,13 @@ See the project assignment sheet for details.
 
 
 
-# Fri., Dec. 10: Research project report
+# Wed., Dec. 4: Research project report
 
 ## Homework
 
 ### Homework Exercises:
+
+
 
 * Turn in a written report about your research project. Your report should follow the model of a research report for _Science_ magazine:
 

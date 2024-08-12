@@ -4,22 +4,20 @@
 %
 \documentclass[
 ]{article}
-\title{Reading Assignments}
-\author{EES 4760/5760: Agent- and Individual-Based Computational
-Modeling}
-\date{Fall, 2021}
-
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -38,14 +36,6 @@ Modeling}
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Reading Assignments},
-  pdfauthor={EES 4760/5760: Agent- and Individual-Based Computational Modeling},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \makeatletter
@@ -113,13 +103,25 @@ Modeling}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Reading Assignments},
+  pdfauthor={EES 4760/5760: Agent- and Individual-Based Computational Modeling},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Reading Assignments}
+\author{EES 4760/5760: Agent- and Individual-Based Computational
+Modeling}
+\date{Fall, 2024}
 
 \begin{document}
 \maketitle
 
-\hypertarget{general-instructions-for-reading-assignments}{%
 \section{General instructions for reading
-assignments}\label{general-instructions-for-reading-assignments}}
+assignments}\label{general-instructions-for-reading-assignments}
 
 \begin{itemize}
 \item
@@ -144,8 +146,7 @@ assignments}\label{general-instructions-for-reading-assignments}}
   facts and concepts from the chapter.
 \end{itemize}
 
-\hypertarget{disclaimer}{%
-\subsection{Disclaimer}\label{disclaimer}}
+\subsection{Disclaimer}\label{disclaimer}
 
 This is a schedule of reading assignments through the entire term. I
 have worked hard to plan the semester, but I may need to deviate from
@@ -157,24 +158,19 @@ on the ``Schedule'' page of the
 \href{https://ees4760.jgilligan.org/schedule}{course web site}:
 \url{https://ees4760.jgilligan.org/schedule}
 
-\hypertarget{thu.-aug.-26-introduction}{%
-\section{Thu., Aug.~26: Introduction}\label{thu.-aug.-26-introduction}}
+\section{Wed., Aug.~21: Introduction}\label{wed.-aug.-21-introduction}
 
-\hypertarget{reading}{%
-\subsection{Reading:}\label{reading}}
+\subsection{Reading:}\label{reading}
 
 No new reading for today.
 
-\hypertarget{tue.-aug.-31-the-computer-modeling-cycle}{%
-\section{Tue., Aug.~31: The computer modeling
-cycle}\label{tue.-aug.-31-the-computer-modeling-cycle}}
+\section{Mon., Aug.~26: The computer modeling
+cycle}\label{mon.-aug.-26-the-computer-modeling-cycle}
 
-\hypertarget{reading-1}{%
-\subsection{Reading:}\label{reading-1}}
+\subsection{Reading:}\label{reading-1}
 
-\hypertarget{required-reading-everyone}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone}}
+(everyone):}\label{required-reading-everyone}
 
 \begin{itemize}
 \tightlist
@@ -186,8 +182,7 @@ cycle}\label{tue.-aug.-31-the-computer-modeling-cycle}}
   15--17 (1997).}.
 \end{itemize}
 
-\hypertarget{reading-notes}{%
-\subsubsection{Reading Notes:}\label{reading-notes}}
+\subsubsection{Reading Notes:}\label{reading-notes}
 
 This reading sets the stage for answering the questions:
 
@@ -245,16 +240,13 @@ point. Emergence is difficult to put into words, and it's much easier to
 understand from experience. Over the course of the semester, we will
 work together to understand what emergence is and how to study it.
 
-\hypertarget{thu.-sep.-2-introduction-to-netlogo}{%
-\section{Thu., Sep.~2: Introduction to
-NetLogo}\label{thu.-sep.-2-introduction-to-netlogo}}
+\section{Wed., Aug.~28: Introduction to
+NetLogo}\label{wed.-aug.-28-introduction-to-netlogo}
 
-\hypertarget{reading-2}{%
-\subsection{Reading:}\label{reading-2}}
+\subsection{Reading:}\label{reading-2}
 
-\hypertarget{required-reading-everyone-1}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-1}}
+(everyone):}\label{required-reading-everyone-1}
 
 \begin{itemize}
 \tightlist
@@ -262,24 +254,20 @@ NetLogo}\label{thu.-sep.-2-introduction-to-netlogo}}
   Agent-Based and Individual-Based Modeling, Ch. 2.
 \end{itemize}
 
-\hypertarget{reading-notes-1}{%
-\subsubsection{Reading Notes:}\label{reading-notes-1}}
+\subsubsection{Reading Notes:}\label{reading-notes-1}
 
 Familiarize yourself with NetLogo. I recommend that you read through the
 chapter with NetLogo open on your computer. Feel free to play around
 with NetLogo and try things out. The homework consists of following the
 step-by-step creation of a model in section 2.3.
 
-\hypertarget{tue.-sep.-7-specifying-models-the-odd-protocol}{%
-\section{Tue., Sep.~7: Specifying models: The ODD
-protocol}\label{tue.-sep.-7-specifying-models-the-odd-protocol}}
+\section{Mon., Sep.~2: Specifying models: The ODD
+protocol}\label{mon.-sep.-2-specifying-models-the-odd-protocol}
 
-\hypertarget{reading-3}{%
-\subsection{Reading:}\label{reading-3}}
+\subsection{Reading:}\label{reading-3}
 
-\hypertarget{required-reading-everyone-2}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-2}}
+(everyone):}\label{required-reading-everyone-2}
 
 \begin{itemize}
 \tightlist
@@ -287,8 +275,7 @@ protocol}\label{tue.-sep.-7-specifying-models-the-odd-protocol}}
   Agent-Based and Individual-Based Modeling, Ch. 3.
 \end{itemize}
 
-\hypertarget{reading-notes-2}{%
-\subsubsection{Reading Notes:}\label{reading-notes-2}}
+\subsubsection{Reading Notes:}\label{reading-notes-2}
 
 Read carefully through the different design principles. Some of them
 have meanings that are a bit different from what you might infer from
@@ -346,16 +333,13 @@ from the class web site:
   \end{itemize}
 \end{itemize}
 
-\hypertarget{thu.-sep.-9-your-first-model}{%
-\section{Thu., Sep.~9: Your first
-model}\label{thu.-sep.-9-your-first-model}}
+\section{Wed., Sep.~4: Your first
+model}\label{wed.-sep.-4-your-first-model}
 
-\hypertarget{reading-4}{%
-\subsection{Reading:}\label{reading-4}}
+\subsection{Reading:}\label{reading-4}
 
-\hypertarget{required-reading-everyone-3}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-3}}
+(everyone):}\label{required-reading-everyone-3}
 
 \begin{itemize}
 \tightlist
@@ -363,8 +347,7 @@ model}\label{thu.-sep.-9-your-first-model}}
   Agent-Based and Individual-Based Modeling, Ch. 4.
 \end{itemize}
 
-\hypertarget{reading-notes-3}{%
-\subsubsection{Reading Notes:}\label{reading-notes-3}}
+\subsubsection{Reading Notes:}\label{reading-notes-3}
 
 For the reading, read Chapter 4 in \emph{Agent-Based Modeling} first and
 focus mostly on this chapter.
@@ -384,16 +367,13 @@ butterfly model}, which is suitable to paste into the ``Info'' tab in
 NetLogo, from the class web site:
 \url{https://ees4760.jgilligan.org/files/models/chapter_04/ButterflyModelODD.txt}
 
-\hypertarget{tue.-sep.-14-using-models-for-science}{%
-\section{Tue., Sep.~14: Using models for
-science}\label{tue.-sep.-14-using-models-for-science}}
+\section{Mon., Sep.~9: Using models for
+science}\label{mon.-sep.-9-using-models-for-science}
 
-\hypertarget{reading-5}{%
-\subsection{Reading:}\label{reading-5}}
+\subsection{Reading:}\label{reading-5}
 
-\hypertarget{required-reading-everyone-4}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-4}}
+(everyone):}\label{required-reading-everyone-4}
 
 \begin{itemize}
 \tightlist
@@ -401,8 +381,7 @@ science}\label{tue.-sep.-14-using-models-for-science}}
   Agent-Based and Individual-Based Modeling, Ch. 5.
 \end{itemize}
 
-\hypertarget{reading-notes-4}{%
-\subsubsection{Reading Notes:}\label{reading-notes-4}}
+\subsubsection{Reading Notes:}\label{reading-notes-4}
 
 This reading sets the stage for answering the big question, ``How can we
 use agent-based models to do science?'' There are several aspects to
@@ -454,16 +433,13 @@ You can download the
 elevations for the realistic butterfly model from
 \url{https://ees4760.jgilligan.org/files/models/chapter_05/ElevationData.txt}
 
-\hypertarget{thu.-sep.-16-testing-and-validating-models}{%
-\section{Thu., Sep.~16: Testing and validating
-models}\label{thu.-sep.-16-testing-and-validating-models}}
+\section{Wed., Sep.~11: Testing and validating
+models}\label{wed.-sep.-11-testing-and-validating-models}
 
-\hypertarget{reading-6}{%
-\subsection{Reading:}\label{reading-6}}
+\subsection{Reading:}\label{reading-6}
 
-\hypertarget{required-reading-everyone-5}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-5}}
+(everyone):}\label{required-reading-everyone-5}
 
 \begin{itemize}
 \tightlist
@@ -471,8 +447,7 @@ models}\label{thu.-sep.-16-testing-and-validating-models}}
   Agent-Based and Individual-Based Modeling, Ch. 6.
 \end{itemize}
 
-\hypertarget{reading-notes-5}{%
-\subsubsection{Reading Notes:}\label{reading-notes-5}}
+\subsubsection{Reading Notes:}\label{reading-notes-5}
 
 No one writes perfect programs. Errors in programs controlling medical
 equipment have killed people. Errors in computer models and data
@@ -552,16 +527,13 @@ from the class web site:
   \url{https://ees4760.jgilligan.org/files/models/chapter_06/CultureDissemination_Untested.nlogo}.
 \end{itemize}
 
-\hypertarget{tue.-sep.-21-choosing-research-projects}{%
-\section{Tue., Sep.~21: Choosing Research
-Projects}\label{tue.-sep.-21-choosing-research-projects}}
+\section{Mon., Sep.~16: Choosing Research
+Projects}\label{mon.-sep.-16-choosing-research-projects}
 
-\hypertarget{reading-7}{%
-\subsection{Reading:}\label{reading-7}}
+\subsection{Reading:}\label{reading-7}
 
-\hypertarget{required-reading-everyone-6}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-6}}
+(everyone):}\label{required-reading-everyone-6}
 
 \begin{itemize}
 \tightlist
@@ -569,8 +541,7 @@ Projects}\label{tue.-sep.-21-choosing-research-projects}}
   Agent-Based and Individual-Based Modeling, Ch. 7.
 \end{itemize}
 
-\hypertarget{reading-notes-6}{%
-\subsubsection{Reading Notes:}\label{reading-notes-6}}
+\subsubsection{Reading Notes:}\label{reading-notes-6}
 
 There is not very much reading for today. Read Chapter 7 of
 \emph{Agent-Based Modeling} carefully (it's very short) The point of
@@ -580,15 +551,12 @@ Before class, I want you to read through the research project assignment
 and think about what you might want to do for a research project. We
 will spend class talking about possible research projects.
 
-\hypertarget{thu.-sep.-23-emergence}{%
-\section{Thu., Sep.~23: Emergence}\label{thu.-sep.-23-emergence}}
+\section{Wed., Sep.~18: Emergence}\label{wed.-sep.-18-emergence}
 
-\hypertarget{reading-8}{%
-\subsection{Reading:}\label{reading-8}}
+\subsection{Reading:}\label{reading-8}
 
-\hypertarget{required-reading-everyone-7}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-7}}
+(everyone):}\label{required-reading-everyone-7}
 
 \begin{itemize}
 \tightlist
@@ -596,8 +564,7 @@ will spend class talking about possible research projects.
   Agent-Based and Individual-Based Modeling, Ch. 8.
 \end{itemize}
 
-\hypertarget{reading-notes-7}{%
-\subsubsection{Reading Notes:}\label{reading-notes-7}}
+\subsubsection{Reading Notes:}\label{reading-notes-7}
 
 This is a major chapter. Emergence is one of the most important concepts
 in agent-based modeling, so pay close attention to the discussion in
@@ -645,15 +612,12 @@ models (varying different parameters) or other models from the NetLogo
 library to explore the ways that changing parameters affects the models'
 behavior.
 
-\hypertarget{tue.-sep.-28-observation}{%
-\section{Tue., Sep.~28: Observation}\label{tue.-sep.-28-observation}}
+\section{Mon., Sep.~23: Observation}\label{mon.-sep.-23-observation}
 
-\hypertarget{reading-9}{%
-\subsection{Reading:}\label{reading-9}}
+\subsection{Reading:}\label{reading-9}
 
-\hypertarget{required-reading-everyone-8}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-8}}
+(everyone):}\label{required-reading-everyone-8}
 
 \begin{itemize}
 \tightlist
@@ -661,8 +625,7 @@ behavior.
   Agent-Based and Individual-Based Modeling, Ch. 9.
 \end{itemize}
 
-\hypertarget{reading-notes-8}{%
-\subsubsection{Reading Notes:}\label{reading-notes-8}}
+\subsubsection{Reading Notes:}\label{reading-notes-8}
 
 In this chapter, we examine how to detect and record the properties of a
 model that we want to study.
@@ -679,15 +642,12 @@ I have posted a
 guide} for NetLogo programming on the class web site at
 \url{https://ees4760.jgilligan.org/files/models/chapter_09/ch9_ex8_netlogo_exercises.pdf}
 
-\hypertarget{thu.-sep.-30-sensing}{%
-\section{Thu., Sep.~30: Sensing}\label{thu.-sep.-30-sensing}}
+\section{Wed., Sep.~25: Sensing}\label{wed.-sep.-25-sensing}
 
-\hypertarget{reading-10}{%
-\subsection{Reading:}\label{reading-10}}
+\subsection{Reading:}\label{reading-10}
 
-\hypertarget{required-reading-everyone-9}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-9}}
+(everyone):}\label{required-reading-everyone-9}
 
 \begin{itemize}
 \tightlist
@@ -695,8 +655,15 @@ guide} for NetLogo programming on the class web site at
   Agent-Based and Individual-Based Modeling, Ch. 10.
 \end{itemize}
 
-\hypertarget{reading-notes-9}{%
-\subsubsection{Reading Notes:}\label{reading-notes-9}}
+\subsubsection{Reading Notes:}\label{reading-notes-9}
+
+In addition to the assigned reading from the textbook, read the ODD for
+your team project before you come to class. The ODDs are posted on
+Brightspace and \href{https://ees4760.jgilligan.org/projects/}{the class
+web site}.
+
+For some of the class period, you and your team will start translating
+the ODD for your project model into NetLogo code.
 
 Important programming concepts in this chapter include:
 
@@ -747,24 +714,13 @@ Be sure to code the Business Investor model as you read section 10.4.
 You will also use it in Chapters 11 and 12, and it will form the basis
 for one of the team projects.
 
-In addition to the assigned reading from the textbook, read the ODD for
-your team project before you come to class. The ODDs are posted on
-Brightspace and \href{https://ees4760.jgilligan.org/projects/}{the class
-web site}.
+\section{Mon., Sep.~30: Adaptive Behavior and
+Objectives}\label{mon.-sep.-30-adaptive-behavior-and-objectives}
 
-For some of the class period, you and your team will start translating
-the ODD for your project model into NetLogo code.
+\subsection{Reading:}\label{reading-11}
 
-\hypertarget{tue.-oct.-5-adaptive-behavior-and-objectives}{%
-\section{Tue., Oct.~5: Adaptive Behavior and
-Objectives}\label{tue.-oct.-5-adaptive-behavior-and-objectives}}
-
-\hypertarget{reading-11}{%
-\subsection{Reading:}\label{reading-11}}
-
-\hypertarget{required-reading-everyone-10}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-10}}
+(everyone):}\label{required-reading-everyone-10}
 
 \begin{itemize}
 \tightlist
@@ -772,8 +728,7 @@ Objectives}\label{tue.-oct.-5-adaptive-behavior-and-objectives}}
   Agent-Based and Individual-Based Modeling, Ch. 11.
 \end{itemize}
 
-\hypertarget{reading-notes-10}{%
-\subsubsection{Reading Notes:}\label{reading-notes-10}}
+\subsubsection{Reading Notes:}\label{reading-notes-10}
 
 Agents' behavior often consists of trying to achieve some
 \textbf{objective}.
@@ -821,15 +776,12 @@ in 1956, refers to making decisions by choosing a ``good-enough'' option
 when it would take too much time and effort to determine which option is
 the absolute best. See section 11.4 for details and an example.
 
-\hypertarget{thu.-oct.-7-prediction}{%
-\section{Thu., Oct.~7: Prediction}\label{thu.-oct.-7-prediction}}
+\section{Wed., Oct.~2: Prediction}\label{wed.-oct.-2-prediction}
 
-\hypertarget{reading-12}{%
-\subsection{Reading:}\label{reading-12}}
+\subsection{Reading:}\label{reading-12}
 
-\hypertarget{required-reading-everyone-11}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-11}}
+(everyone):}\label{required-reading-everyone-11}
 
 \begin{itemize}
 \tightlist
@@ -837,8 +789,7 @@ the absolute best. See section 11.4 for details and an example.
   Agent-Based and Individual-Based Modeling, Ch. 12.
 \end{itemize}
 
-\hypertarget{reading-notes-11}{%
-\subsubsection{Reading Notes:}\label{reading-notes-11}}
+\subsubsection{Reading Notes:}\label{reading-notes-11}
 
 In class, we will discuss the telemarketer model.
 
@@ -869,15 +820,12 @@ for the telemarketer model and be ready to discuss the model in class.
 This will be a chance for the teams working on the model to ask
 questions.
 
-\hypertarget{tue.-oct.-12-interaction}{%
-\section{Tue., Oct.~12: Interaction}\label{tue.-oct.-12-interaction}}
+\section{Mon., Oct.~7: Interaction}\label{mon.-oct.-7-interaction}
 
-\hypertarget{reading-13}{%
-\subsection{Reading:}\label{reading-13}}
+\subsection{Reading:}\label{reading-13}
 
-\hypertarget{required-reading-everyone-12}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-12}}
+(everyone):}\label{required-reading-everyone-12}
 
 \begin{itemize}
 \tightlist
@@ -885,38 +833,30 @@ questions.
   Agent-Based and Individual-Based Modeling, Ch. 13.
 \end{itemize}
 
-\hypertarget{thu.-oct.-14-fall-break}{%
-\section{Thu., Oct.~14: Fall Break}\label{thu.-oct.-14-fall-break}}
+\section{Wed., Oct.~9: Team
+Presentations}\label{wed.-oct.-9-team-presentations}
+
+\subsection{Reading:}\label{reading-14}
+
+No new reading for today.
+
+\section{Mon., Oct.~14: Fall Break}\label{mon.-oct.-14-fall-break}
 
 Fall Break, no class.
 
-\hypertarget{tue.-oct.-19-team-presentations}{%
-\section{Tue., Oct.~19: Team
-Presentations}\label{tue.-oct.-19-team-presentations}}
+\section{Wed., Oct.~16: Research Project
+ODDs}\label{wed.-oct.-16-research-project-odds}
 
-\hypertarget{reading-14}{%
-\subsection{Reading:}\label{reading-14}}
+\subsection{Reading:}\label{reading-15}
 
 No new reading for today.
 
-\hypertarget{thu.-oct.-21-research-project-odds}{%
-\section{Thu., Oct.~21: Research Project
-ODDs}\label{thu.-oct.-21-research-project-odds}}
+\section{Mon., Oct.~21: Scheduling}\label{mon.-oct.-21-scheduling}
 
-\hypertarget{reading-15}{%
-\subsection{Reading:}\label{reading-15}}
+\subsection{Reading:}\label{reading-16}
 
-No new reading for today.
-
-\hypertarget{tue.-oct.-26-scheduling}{%
-\section{Tue., Oct.~26: Scheduling}\label{tue.-oct.-26-scheduling}}
-
-\hypertarget{reading-16}{%
-\subsection{Reading:}\label{reading-16}}
-
-\hypertarget{required-reading-everyone-13}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-13}}
+(everyone):}\label{required-reading-everyone-13}
 
 \begin{itemize}
 \tightlist
@@ -924,8 +864,7 @@ No new reading for today.
   Agent-Based and Individual-Based Modeling, Ch. 14.
 \end{itemize}
 
-\hypertarget{reading-notes-12}{%
-\subsubsection{Reading Notes:}\label{reading-notes-12}}
+\subsubsection{Reading Notes:}\label{reading-notes-12}
 
 A good example of asynchronous updating is the
 \href{/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo}{model
@@ -935,16 +874,12 @@ and Grimm (2008)} and in Chapter 23, which I have posted on the class
 web site:
 \url{https://ees4760.jgilligan.org/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo}
 
-\hypertarget{thu.-oct.-28-stochasticity}{%
-\section{Thu., Oct.~28:
-Stochasticity}\label{thu.-oct.-28-stochasticity}}
+\section{Wed., Oct.~23: Stochasticity}\label{wed.-oct.-23-stochasticity}
 
-\hypertarget{reading-17}{%
-\subsection{Reading:}\label{reading-17}}
+\subsection{Reading:}\label{reading-17}
 
-\hypertarget{required-reading-everyone-14}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-14}}
+(everyone):}\label{required-reading-everyone-14}
 
 \begin{itemize}
 \tightlist
@@ -952,15 +887,12 @@ Stochasticity}\label{thu.-oct.-28-stochasticity}}
   Agent-Based and Individual-Based Modeling, Ch. 15.
 \end{itemize}
 
-\hypertarget{tue.-nov.-2-collectives}{%
-\section{Tue., Nov.~2: Collectives}\label{tue.-nov.-2-collectives}}
+\section{Mon., Oct.~28: Collectives}\label{mon.-oct.-28-collectives}
 
-\hypertarget{reading-18}{%
-\subsection{Reading:}\label{reading-18}}
+\subsection{Reading:}\label{reading-18}
 
-\hypertarget{required-reading-everyone-15}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-15}}
+(everyone):}\label{required-reading-everyone-15}
 
 \begin{itemize}
 \tightlist
@@ -968,15 +900,12 @@ Stochasticity}\label{thu.-oct.-28-stochasticity}}
   Agent-Based and Individual-Based Modeling, Ch. 16.
 \end{itemize}
 
-\hypertarget{thu.-nov.-4-patterns}{%
-\section{Thu., Nov.~4: Patterns}\label{thu.-nov.-4-patterns}}
+\section{Wed., Oct.~30: Patterns}\label{wed.-oct.-30-patterns}
 
-\hypertarget{reading-19}{%
-\subsection{Reading:}\label{reading-19}}
+\subsection{Reading:}\label{reading-19}
 
-\hypertarget{required-reading-everyone-16}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-16}}
+(everyone):}\label{required-reading-everyone-16}
 
 \begin{itemize}
 \tightlist
@@ -984,8 +913,7 @@ Stochasticity}\label{thu.-oct.-28-stochasticity}}
   Agent-Based and Individual-Based Modeling, Ch. 17--18.
 \end{itemize}
 
-\hypertarget{reading-notes-13}{%
-\subsubsection{Reading Notes:}\label{reading-notes-13}}
+\subsubsection{Reading Notes:}\label{reading-notes-13}
 
 You can download \href{/files/models/chapter_18/ch18_before_ODD.pdf}{the
 ODD for the BEFORE beech forest model}, which is described in section
@@ -997,16 +925,13 @@ I have also posted
 published models} in which observed patterns are important:
 \url{https://ees4760.jgilligan.org/files/models/chapter_18/ch18_ex1_models_list.pdf}
 
-\hypertarget{tue.-nov.-9-theory-development}{%
-\section{Tue., Nov.~9: Theory
-Development}\label{tue.-nov.-9-theory-development}}
+\section{Mon., Nov.~4: Theory
+Development}\label{mon.-nov.-4-theory-development}
 
-\hypertarget{reading-20}{%
-\subsection{Reading:}\label{reading-20}}
+\subsection{Reading:}\label{reading-20}
 
-\hypertarget{required-reading-everyone-17}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-17}}
+(everyone):}\label{required-reading-everyone-17}
 
 \begin{itemize}
 \tightlist
@@ -1014,24 +939,20 @@ Development}\label{tue.-nov.-9-theory-development}}
   Agent-Based and Individual-Based Modeling, Ch. 19.
 \end{itemize}
 
-\hypertarget{reading-notes-14}{%
-\subsubsection{Reading Notes:}\label{reading-notes-14}}
+\subsubsection{Reading Notes:}\label{reading-notes-14}
 
 There is an implementation of the
 \href{/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo}{wood hoopoe
 model}, suitable for Exercise 2, on the class web site:
 \url{https://ees4760.jgilligan.org/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo}
 
-\hypertarget{thu.-nov.-11-parameterization-and-calibration}{%
-\section{Thu., Nov.~11: Parameterization and
-Calibration}\label{thu.-nov.-11-parameterization-and-calibration}}
+\section{Wed., Nov.~6: Parameterization and
+Calibration}\label{wed.-nov.-6-parameterization-and-calibration}
 
-\hypertarget{reading-21}{%
-\subsection{Reading:}\label{reading-21}}
+\subsection{Reading:}\label{reading-21}
 
-\hypertarget{required-reading-everyone-18}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-18}}
+(everyone):}\label{required-reading-everyone-18}
 
 \begin{itemize}
 \tightlist
@@ -1039,16 +960,13 @@ Calibration}\label{thu.-nov.-11-parameterization-and-calibration}}
   Agent-Based and Individual-Based Modeling, Ch. 20.
 \end{itemize}
 
-\hypertarget{tue.-nov.-16-parameterization-and-calibration-2}{%
-\section{Tue., Nov.~16: Parameterization and Calibration
-2}\label{tue.-nov.-16-parameterization-and-calibration-2}}
+\section{Mon., Nov.~11: Parameterization and Calibration
+2}\label{mon.-nov.-11-parameterization-and-calibration-2}
 
-\hypertarget{reading-22}{%
-\subsection{Reading:}\label{reading-22}}
+\subsection{Reading:}\label{reading-22}
 
-\hypertarget{required-reading-everyone-19}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-19}}
+(everyone):}\label{required-reading-everyone-19}
 
 \begin{itemize}
 \tightlist
@@ -1056,16 +974,13 @@ Calibration}\label{thu.-nov.-11-parameterization-and-calibration}}
   Agent-Based and Individual-Based Modeling, Ch. 20.
 \end{itemize}
 
-\hypertarget{thu.-nov.-18-analyzing-abms}{%
-\section{Thu., Nov.~18: Analyzing
-ABMs}\label{thu.-nov.-18-analyzing-abms}}
+\section{Wed., Nov.~13: Analyzing
+ABMs}\label{wed.-nov.-13-analyzing-abms}
 
-\hypertarget{reading-23}{%
-\subsection{Reading:}\label{reading-23}}
+\subsection{Reading:}\label{reading-23}
 
-\hypertarget{required-reading-everyone-20}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-20}}
+(everyone):}\label{required-reading-everyone-20}
 
 \begin{itemize}
 \tightlist
@@ -1073,22 +988,13 @@ ABMs}\label{thu.-nov.-18-analyzing-abms}}
   Agent-Based and Individual-Based Modeling, Ch. 22.
 \end{itemize}
 
-\hypertarget{tue.-nov.-23thu.-nov.-25-thanksgiving-break}{%
-\section{Tue., Nov.~23--Thu., Nov.~25: Thanksgiving
-Break}\label{tue.-nov.-23thu.-nov.-25-thanksgiving-break}}
+\section{Mon., Nov.~18: Sensitivity and
+Robustness}\label{mon.-nov.-18-sensitivity-and-robustness}
 
-Thanksgiving Break, no class.
+\subsection{Reading:}\label{reading-24}
 
-\hypertarget{tue.-nov.-30-sensitivity-and-robustness}{%
-\section{Tue., Nov.~30: Sensitivity and
-Robustness}\label{tue.-nov.-30-sensitivity-and-robustness}}
-
-\hypertarget{reading-24}{%
-\subsection{Reading:}\label{reading-24}}
-
-\hypertarget{required-reading-everyone-21}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-21}}
+(everyone):}\label{required-reading-everyone-21}
 
 \begin{itemize}
 \tightlist
@@ -1096,8 +1002,7 @@ Robustness}\label{tue.-nov.-30-sensitivity-and-robustness}}
   Agent-Based and Individual-Based Modeling, Ch. 23.
 \end{itemize}
 
-\hypertarget{reading-notes-15}{%
-\subsubsection{Reading Notes:}\label{reading-notes-15}}
+\subsubsection{Reading Notes:}\label{reading-notes-15}
 
 You can download the
 \href{/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo}{model
@@ -1106,16 +1011,13 @@ of breeding synchrony}, described in
 and Grimm (2008)} and in section 23.4, from the class web site:
 \url{https://ees4760.jgilligan.org/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo}
 
-\hypertarget{thu.-dec.-2-looking-ahead-abms-beyond-this-course}{%
-\section{Thu., Dec.~2: Looking Ahead: ABMs Beyond this
-Course}\label{thu.-dec.-2-looking-ahead-abms-beyond-this-course}}
+\section{Wed., Nov.~20: Looking Ahead: ABMs Beyond this
+Course}\label{wed.-nov.-20-looking-ahead-abms-beyond-this-course}
 
-\hypertarget{reading-25}{%
-\subsection{Reading:}\label{reading-25}}
+\subsection{Reading:}\label{reading-25}
 
-\hypertarget{required-reading-everyone-22}{%
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-22}}
+(everyone):}\label{required-reading-everyone-22}
 
 \begin{itemize}
 \tightlist
@@ -1123,19 +1025,20 @@ Course}\label{thu.-dec.-2-looking-ahead-abms-beyond-this-course}}
   Agent-Based and Individual-Based Modeling, Ch. 24.
 \end{itemize}
 
-\hypertarget{tue.-dec.-7-presentations}{%
-\section{Tue., Dec.~7: Presentations}\label{tue.-dec.-7-presentations}}
+\section{Mon., Nov.~25--Wed., Nov.~27: Thanksgiving
+Break}\label{mon.-nov.-25wed.-nov.-27-thanksgiving-break}
 
-\hypertarget{reading-26}{%
-\subsection{Reading:}\label{reading-26}}
+Thanksgiving Break, no class.
+
+\section{Mon., Dec.~2: Presentations}\label{mon.-dec.-2-presentations}
+
+\subsection{Reading:}\label{reading-26}
 
 No new reading for today.
 
-\hypertarget{thu.-dec.-9-presentations}{%
-\section{Thu., Dec.~9: Presentations}\label{thu.-dec.-9-presentations}}
+\section{Wed., Dec.~4: Presentations}\label{wed.-dec.-4-presentations}
 
-\hypertarget{reading-27}{%
-\subsection{Reading:}\label{reading-27}}
+\subsection{Reading:}\label{reading-27}
 
 No new reading for today.
 

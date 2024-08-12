@@ -1,7 +1,7 @@
 ---
 title: "Homework Assignments"
 author: "EES 4760/5760: Agent- and Individual-Based Computational Modeling"
-date: "Fall, 2021"
+date: "Fall, 2024"
 output:
   pdf_document: 
     includes:
@@ -14,10 +14,11 @@ output:
 ```{r setup, include=FALSE, message = FALSE, warning=FALSE, cache=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE, cache=FALSE)
 ```
-```{r initialize, eval=TRUE, include=FALSE}
+```{r load_libs, eval=TRUE, include=FALSE, cache=FALSE}
 library(tidyverse)
 pacman::p_load_gh("jonathan-g/semestr")
-
+```
+```{r initialize, eval=TRUE, include=FALSE, cache_extra=list(file.mtime("../EES-4760.sqlite3", file.size("../EES-4760.sqlite3")))}
 semester <- load_semester_db("../EES-4760.sqlite3")
 
 # output_to <- knitr::opts_knit$get("rmarkdown.pandoc.to")
@@ -194,7 +195,14 @@ format_hw_entry <- function(d, schedule, semester) {
       cal_key = key,
       cal_id = id
     )
-    this_item <- semestr:::expand_codes(this_item, context, semester)
+    
+    sg <- with(new.env(), 
+               for (v in ls(semestr:::.globals)) { 
+                 assign(v, get(v, envir = semestr:::.globals))
+                 }
+               )
+    this_item <- semestr:::expand_codes(this_item, context, semester, schedule, 
+                                        envir = sg)
   }
   this_item
 }
@@ -215,7 +223,7 @@ make_homework_schedule <- function(schedule, semester) {
 ```
 ```{r generate_assignments, echo=FALSE, include=TRUE, results="asis", dependson="define_functions"}
 schedule <- assemble_schedule(semester)  %>%
-  dplyr::filter(! is.na(id_class) || ! is.na(id_holiday))
+  dplyr::filter(! is.na(id_class) | ! is.na(id_holiday))
 
 schedule <- make_homework_schedule(schedule, semester)
 cat(schedule)

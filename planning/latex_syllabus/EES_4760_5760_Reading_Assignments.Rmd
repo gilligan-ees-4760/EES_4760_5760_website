@@ -1,7 +1,7 @@
 ---
 title: "Reading Assignments"
 author: "EES 4760/5760: Agent- and Individual-Based Computational Modeling"
-date: "Fall, 2021"
+date: "Fall, 2024"
 output:
   pdf_document: 
     includes:
@@ -13,10 +13,11 @@ output:
 ```{r setup, include=FALSE, message = FALSE, warning=FALSE, cache=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE, cache=FALSE)
 ```
-```{r initialize, eval=TRUE, include=FALSE}
+```{r load_libs, eval=TRUE, include=FALSE, cache=FALSE}
 library(tidyverse)
-library(semestr)
-
+pacman::p_load_gh("jonathan-g/semestr")
+```
+```{r initialize, eval=TRUE, include=FALSE, cache_extra=list(file.mtime("../EES-4760.sqlite3", file.size("../EES-4760.sqlite3")))}
 semester <- load_semester_db("../EES-4760.sqlite3")
 
 # output_to <- knitr::opts_knit$get("rmarkdown.pandoc.to")
@@ -99,34 +100,47 @@ make_rd_asgt_for_master <- function(id, schedule, semester) {
                by = "rd_grp_key")
   if (nrow(reading) >= 1) {
     rd_date <- unique(reading$date)
-    assertthat::assert_that(length(rd_date) == 1,
-                            msg = "A calendar ID should have a unique date (make_rd_for_master)")
+    assertthat::assert_that(
+      length(rd_date) == 1,
+      msg = "A calendar ID should have a unique date (make_rd_for_master)"
+      )
     rd_topic <- unique(reading$topic)
-    assertthat::assert_that(length(rd_topic) == 1,
-                            msg = "A calendar ID should have a unique topic (make_rd_for_master)")
+    assertthat::assert_that(
+      length(rd_topic) == 1,
+      msg = "A calendar ID should have a unique topic (make_rd_for_master)"
+      )
     class_num <- unique(reading$class_num)
-    assertthat::assert_that(length(rd_date) == 1,
-                            msg = "A calendar ID should have a unique class # (make_rd_for_master)")
+    assertthat::assert_that(
+      length(rd_date) == 1,
+      msg = "A calendar ID should have a unique class # (make_rd_for_master)"
+      )
     key <- unique(reading$rd_grp_key)
-    assertthat::assert_that(length(key) == 1,
-                            msg = "A calendar ID should have a unique reading key # (make_rd_for_master)")
+    assertthat::assert_that(
+      length(key) == 1,
+      msg = "A calendar ID should have a unique reading key # (make_rd_for_master)"
+      )
     if (is.na(rd_topic)) {
       cal_entry <- schedule %>% dplyr::filter(id_class == id)
-      assertthat::assert_that(nrow(cal_entry) == 1, 
-                              msg = "A calendar ID should have a unique schedule entry (make_rd_for_master)")
+      assertthat::assert_that(
+        nrow(cal_entry) == 1, 
+        msg = "A calendar ID should have a unique schedule entry (make_rd_for_master)"
+        )
       rd_topic <- cal_entry$topic
     }
   } else {
     cal_entry <- schedule %>% dplyr::filter(id_class == id)
-    assertthat::assert_that(nrow(cal_entry) == 1, 
-                            msg = "A calendar ID should have a unique schedule entry (make_rd_for_master)")
+    assertthat::assert_that(
+      nrow(cal_entry) == 1, 
+      msg = "A calendar ID should have a unique schedule entry (make_rd_for_master)"
+      )
     rd_date <- cal_entry$date
     rd_topic <- cal_entry$topic
     class_num <- cal_entry$class_num
     key <- cal_entry$key_class
   }
 
-  this_reading_asgt <- semestr:::make_reading_assignment(reading) %>% escape_dollar()
+  this_reading_asgt <- semestr:::make_reading_assignment(reading) %>% 
+    escape_dollar()
   
   if (! is.null(semester$notices)) {
     notices <- semester$notices %>%
@@ -141,7 +155,8 @@ make_rd_asgt_for_master <- function(id, schedule, semester) {
   
   section_heading <-  format_section_heading(
     title = rd_topic,
-    class_date = format_class_day_date(rd_date, abbr_month = TRUE, abbr_wday = TRUE),
+    class_date = format_class_day_date(rd_date, abbr_month = TRUE, 
+                                       abbr_wday = TRUE),
     class_number = class_num
   )
     
@@ -168,18 +183,26 @@ make_holiday_entry_for_master <- function(id, schedule, semester) {
                by = "holiday_key") %>%
     dplyr::distinct()
   holiday_date <- unique(holiday$date)
-  assertthat::assert_that(length(holiday_date) == 1,
-                          msg = "A calendar ID should have a unique date (make_holiday_entry_for_master)")
+  assertthat::assert_that(
+    length(holiday_date) == 1,
+    msg = "A calendar ID should have a unique date (make_holiday_entry_for_master)"
+  )
   holiday_topic <- unique(holiday$topic)
-  assertthat::assert_that(length(holiday_topic) == 1,
-                          msg = "A calendar ID should have a unique topic (make_holiday_entry_for_master)")
+  assertthat::assert_that(
+    length(holiday_topic) == 1,
+    msg = "A calendar ID should have a unique topic (make_holiday_entry_for_master)"
+  )
   key <- unique(holiday$holiday_key)
-  assertthat::assert_that(length(key) == 1,
-                          msg = "A calendar ID should have a unique holiday key # (make_holiday_entry_for_master)")
+  assertthat::assert_that(
+    length(key) == 1,
+    msg = "A calendar ID should have a unique holiday key # (make_holiday_entry_for_master)"
+  )
   holiday_name <- unique(holiday$holiday_name)
-  assertthat::assert_that(length(key) == 1,
-                          msg = "A calendar ID should have a unique holiday name # (make_holiday_entry_for_master)")
-
+  assertthat::assert_that(
+    length(key) == 1,
+    msg = "A calendar ID should have a unique holiday name # (make_holiday_entry_for_master)"
+  )
+  
   this_holiday_entry <- stringr::str_c(holiday_name, ", no class." )
   
   holiday_dates <- semester$holidays %>% 
@@ -232,7 +255,8 @@ format_class_entry <- function(d, schedule, semester) {
   } else if (! is.na(entry$id_holiday)) {
     type <- "holiday"
     id <- entry$id_holiday
-    this_item <- make_holiday_entry_for_master(entry$id_holiday, schedule, semester)
+    this_item <- make_holiday_entry_for_master(entry$id_holiday, schedule, 
+                                               semester)
   }
   # dbg_checkpoint("g_date", d)
   if (! is.na(type) && ! is.na(this_item)) {
@@ -245,7 +269,14 @@ format_class_entry <- function(d, schedule, semester) {
       cal_id = id,
       class_num = entry$class_num
     )
-    this_item <- semestr:::expand_codes(this_item, context, semester)
+    
+    sg <- with(new.env(), 
+               for (v in ls(semestr:::.globals)) { 
+                 assign(v, get(v, envir = semestr:::.globals))
+                 }
+               )
+    this_item <- semestr:::expand_codes(this_item, context, semester, schedule, 
+                                        envir = sg)
   }
   this_item
 }
@@ -266,7 +297,7 @@ make_reading_schedule <- function(schedule, semester) {
 ```
 ```{r generate_assignments, echo=FALSE, include=TRUE, results="asis", dependson="define_functions"}
 schedule <- assemble_schedule(semester)  %>%
-  dplyr::filter(! is.na(id_class) || ! is.na(id_holiday))
+  dplyr::filter(! is.na(id_class) | ! is.na(id_holiday))
 
 schedule <- make_reading_schedule(schedule, semester)
 cat(schedule)

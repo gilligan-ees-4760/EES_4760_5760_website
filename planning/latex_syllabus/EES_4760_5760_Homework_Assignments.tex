@@ -4,22 +4,20 @@
 %
 \documentclass[
 ]{article}
-\title{Homework Assignments}
-\author{EES 4760/5760: Agent- and Individual-Based Computational
-Modeling}
-\date{Fall, 2021}
-
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -38,14 +36,6 @@ Modeling}
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Homework Assignments},
-  pdfauthor={EES 4760/5760: Agent- and Individual-Based Computational Modeling},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \makeatletter
@@ -113,13 +103,25 @@ Modeling}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Homework Assignments},
+  pdfauthor={EES 4760/5760: Agent- and Individual-Based Computational Modeling},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Homework Assignments}
+\author{EES 4760/5760: Agent- and Individual-Based Computational
+Modeling}
+\date{Fall, 2024}
 
 \begin{document}
 \maketitle
 
-\hypertarget{general-instructions-for-homework-assignments}{%
 \section{General instructions for homework
-assignments}\label{general-instructions-for-homework-assignments}}
+assignments}\label{general-instructions-for-homework-assignments}
 
 \begin{itemize}
 \item
@@ -210,9 +212,8 @@ someone else has done for you or which you copied from someone else.} If
 you are unsure about how the honor code applies to an assignment, please
 ask me.
 
-\hypertarget{homework-policy-extra-credit-options}{%
 \subsection{Homework Policy: Extra-Credit
-Options}\label{homework-policy-extra-credit-options}}
+Options}\label{homework-policy-extra-credit-options}
 
 Some homework problems are assigned to graduate students only.
 Undergraduate students may choose to do any of these problems that
@@ -229,8 +230,7 @@ homework only counts toward your homework grade for the semester and
 cannot compensate for missed work on other assignments, such as the team
 project or research project.
 
-\hypertarget{disclaimer}{%
-\subsection{Disclaimer}\label{disclaimer}}
+\subsection{Disclaimer}\label{disclaimer}
 
 This is a schedule of homework assignments through the entire term. I
 have worked hard to plan the semester, but I may need to deviate from
@@ -241,21 +241,17 @@ on the ``Schedule'' page of the
 \href{https://ees4760.jgilligan.org/schedule}{course web site}:
 \url{https://ees4760.jgilligan.org/schedule}
 
-\hypertarget{tue.-aug.-31-set-up-netlogo}{%
-\section{Tue., Aug.~31: Set up
-NetLogo}\label{tue.-aug.-31-set-up-netlogo}}
+\section{Mon., Aug.~26: Set up
+NetLogo}\label{mon.-aug.-26-set-up-netlogo}
 
-\hypertarget{homework}{%
-\subsection{Homework}\label{homework}}
+\subsection{Homework}\label{homework}
 
-\hypertarget{preliminary-information}{%
-\subsubsection{Preliminary Information}\label{preliminary-information}}
+\subsubsection{Preliminary Information}\label{preliminary-information}
 
 \textbf{There is nothing for you to turn in}, but do the following task
 to prepare for next week:
 
-\hypertarget{homework-exercises}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises}}
+\subsubsection{Homework Exercises:}\label{homework-exercises}
 
 \begin{itemize}
 \tightlist
@@ -265,15 +261,12 @@ to prepare for next week:
   computer.
 \end{itemize}
 
-\hypertarget{thu.-sep.-2-introducing-netlogo}{%
-\section{Thu., Sep.~2: Introducing
-NetLogo}\label{thu.-sep.-2-introducing-netlogo}}
+\section{Wed., Aug.~28: Introducing
+NetLogo}\label{wed.-aug.-28-introducing-netlogo}
 
-\hypertarget{homework-1}{%
-\subsection{Homework}\label{homework-1}}
+\subsection{Homework}\label{homework-1}
 
-\hypertarget{homework-exercises-1}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-1}}
+\subsubsection{Homework Exercises:}\label{homework-exercises-1}
 
 \begin{itemize}
 \item
@@ -291,8 +284,7 @@ NetLogo}\label{thu.-sep.-2-introducing-netlogo}}
   \textbf{When you are done, turn your model in on Brightspace.}
 \end{itemize}
 
-\hypertarget{notes-on-homework}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework}}
+\subsubsection{Notes on Homework:}\label{notes-on-homework}
 
 I recommend getting together with a classmate and working together on
 this assignment. Since the assignment consists of typing code in and
@@ -306,22 +298,17 @@ Ask a classmate for help, or email me (and attach your \texttt{.nlogo}
 model file), or simply come to class on Tuesday with questions about the
 problems you had getting your model to work.
 
-\hypertarget{tue.-sep.-7-becoming-familiar-with-netlogo}{%
-\section{Tue., Sep.~7: Becoming familiar with
-NetLogo}\label{tue.-sep.-7-becoming-familiar-with-netlogo}}
+\section{Mon., Sep.~2: Becoming familiar with
+NetLogo}\label{mon.-sep.-2-becoming-familiar-with-netlogo}
 
-\hypertarget{homework-2}{%
-\subsection{Homework}\label{homework-2}}
+\subsection{Homework}\label{homework-2}
 
-\hypertarget{preliminary-information-1}{%
-\subsubsection{Preliminary
-Information}\label{preliminary-information-1}}
+\subsubsection{Preliminary Information}\label{preliminary-information-1}
 
 This homework consists of reading and working through tutorials, so
 there is nothing to turn in.
 
-\hypertarget{homework-exercises-2}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-2}}
+\subsubsection{Homework Exercises:}\label{homework-exercises-2}
 
 \begin{itemize}
 \tightlist
@@ -331,16 +318,12 @@ there is nothing to turn in.
   nothing to turn in.
 \end{itemize}
 
-\hypertarget{thu.-sep.-9-experimenting-with-netlogo}{%
-\section{Thu., Sep.~9: Experimenting with
-NetLogo}\label{thu.-sep.-9-experimenting-with-netlogo}}
+\section{Wed., Sep.~4: Experimenting with
+NetLogo}\label{wed.-sep.-4-experimenting-with-netlogo}
 
-\hypertarget{homework-3}{%
-\subsection{Homework}\label{homework-3}}
+\subsection{Homework}\label{homework-3}
 
-\hypertarget{preliminary-information-2}{%
-\subsubsection{Preliminary
-Information}\label{preliminary-information-2}}
+\subsubsection{Preliminary Information}\label{preliminary-information-2}
 
 Upload your work to Brightspace when you're done (Word or text files for
 the descriptions and ODD document, and \texttt{.nlogo} files for your
@@ -400,8 +383,7 @@ When I ran the model ...
   photo.
 \end{enumerate}
 
-\hypertarget{homework-exercises-3}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-3}}
+\subsubsection{Homework Exercises:}\label{homework-exercises-3}
 
 \begin{itemize}
 \item
@@ -421,8 +403,7 @@ When I ran the model ...
   the file \texttt{ex\_3\_3.docx} (or \texttt{ex\_3\_3.pdf}, etc.).
 \end{itemize}
 
-\hypertarget{notes-on-homework-1}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework-1}}
+\subsubsection{Notes on Homework:}\label{notes-on-homework-1}
 
 My advice for Chapter 3, Exercise 3 is don't be too ambitious with your
 model, but keep it very simple. Don't worry about getting everything
@@ -432,16 +413,12 @@ document commenting on your difficulty. Come to class prepared to talk
 about how this exercise went and where you felt confused about trying to
 specify your model.
 
-\hypertarget{thu.-sep.-16-science-with-models-butterfly-mating}{%
-\section{Thu., Sep.~16: Science with models: Butterfly
-mating}\label{thu.-sep.-16-science-with-models-butterfly-mating}}
+\section{Wed., Sep.~11: Science with models: Butterfly
+mating}\label{wed.-sep.-11-science-with-models-butterfly-mating}
 
-\hypertarget{homework-4}{%
-\subsection{Homework}\label{homework-4}}
+\subsection{Homework}\label{homework-4}
 
-\hypertarget{preliminary-information-3}{%
-\subsubsection{Preliminary
-Information}\label{preliminary-information-3}}
+\subsubsection{Preliminary Information}\label{preliminary-information-3}
 
 Some problems in this homework set call for you to write a NetLogo model
 and also answer questions about the model. For answering the questions,
@@ -471,11 +448,9 @@ When I ran the model ...
   photo.
 \end{enumerate}
 
-\hypertarget{homework-exercises-4}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-4}}
+\subsubsection{Homework Exercises:}\label{homework-exercises-4}
 
 \begin{itemize}
-\tightlist
 \item
   \textbf{Everyone:}
 
@@ -542,8 +517,7 @@ ask patches
   \end{itemize}
 \end{itemize}
 
-\hypertarget{notes-on-homework-2}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework-2}}
+\subsubsection{Notes on Homework:}\label{notes-on-homework-2}
 
 \begin{itemize}
 \item
@@ -632,18 +606,14 @@ When I ran the model ...
   there.
 \end{itemize}
 
-\hypertarget{thu.-sep.-23-reproducing-a-model-from-its-odd}{%
-\section{Thu., Sep.~23: Reproducing a model from its
-ODD}\label{thu.-sep.-23-reproducing-a-model-from-its-odd}}
+\section{Wed., Sep.~18: Reproducing a model from its
+ODD}\label{wed.-sep.-18-reproducing-a-model-from-its-odd}
 
-\hypertarget{homework-5}{%
-\subsection{Homework}\label{homework-5}}
+\subsection{Homework}\label{homework-5}
 
-\hypertarget{homework-exercises-5}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-5}}
+\subsubsection{Homework Exercises:}\label{homework-exercises-5}
 
 \begin{itemize}
-\tightlist
 \item
   \textbf{Graduate Students:}
 
@@ -654,8 +624,7 @@ ODD}\label{thu.-sep.-23-reproducing-a-model-from-its-odd}}
   \end{itemize}
 \end{itemize}
 
-\hypertarget{notes-on-homework-3}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework-3}}
+\subsubsection{Notes on Homework:}\label{notes-on-homework-3}
 
 \begin{itemize}
 \item
@@ -688,15 +657,12 @@ ODD}\label{thu.-sep.-23-reproducing-a-model-from-its-odd}}
   \end{itemize}
 \end{itemize}
 
-\hypertarget{tue.-sep.-28-research-project-proposal}{%
-\section{Tue., Sep.~28: Research project
-proposal}\label{tue.-sep.-28-research-project-proposal}}
+\section{Mon., Sep.~23: Research project
+proposal}\label{mon.-sep.-23-research-project-proposal}
 
-\hypertarget{homework-6}{%
-\subsection{Homework}\label{homework-6}}
+\subsection{Homework}\label{homework-6}
 
-\hypertarget{homework-exercises-6}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-6}}
+\subsubsection{Homework Exercises:}\label{homework-exercises-6}
 
 \begin{itemize}
 \tightlist
@@ -705,8 +671,7 @@ proposal}\label{tue.-sep.-28-research-project-proposal}}
   research project.
 \end{itemize}
 
-\hypertarget{notes-on-homework-4}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework-4}}
+\subsubsection{Notes on Homework:}\label{notes-on-homework-4}
 
 This proposal should describe the topic you want to work on, identify a
 published open-source model you want to work with, and and describe how
@@ -723,60 +688,14 @@ experience in programming.
 
 See the semester project assignment for details.
 
-\hypertarget{fri.-oct.-1-testing-and-debugging-models}{%
-\section{Fri., Oct.~1: Testing and debugging
-models}\label{fri.-oct.-1-testing-and-debugging-models}}
+\section{Mon., Sep.~30: Analyzing model
+experiments}\label{mon.-sep.-30-analyzing-model-experiments}
 
-\hypertarget{homework-7}{%
-\subsection{Homework}\label{homework-7}}
+\subsection{Homework}\label{homework-7}
 
-\hypertarget{homework-exercises-7}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-7}}
+\subsubsection{Homework Exercises:}\label{homework-exercises-7}
 
 \begin{itemize}
-\tightlist
-\item
-  \textbf{Everyone:}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Railsback \& Grimm, Ch. 6, Ex. 6.2, 6.3
-  \end{itemize}
-\item
-  \textbf{Graduate Students,} also do the following:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Railsback \& Grimm, Ch. 6, Ex. 6.4, 6.5, 6.7
-  \end{itemize}
-\end{itemize}
-
-\hypertarget{notes-on-homework-5}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework-5}}
-
-A hint for exercise 6.3: Patches have integer coordinates (representing
-the center of the patch). How does the turtle determine the angle to
-face during \texttt{setup}? How does it determine the angle to face in
-\texttt{go-back}? Can you think of a different way to record the path so
-the \texttt{go-back} exactly retraces the path it took during
-\texttt{setup}? If you knew the direction the turtle was heading at each
-step during \texttt{setup}, could you use this heading information to
-exactly retrace the path?
-
-\hypertarget{tue.-oct.-5-analyzing-model-experiments}{%
-\section{Tue., Oct.~5: Analyzing model
-experiments}\label{tue.-oct.-5-analyzing-model-experiments}}
-
-\hypertarget{homework-8}{%
-\subsection{Homework}\label{homework-8}}
-
-\hypertarget{homework-exercises-8}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-8}}
-
-\begin{itemize}
-\tightlist
 \item
   \textbf{Everyone:}
 
@@ -799,15 +718,12 @@ experiments}\label{tue.-oct.-5-analyzing-model-experiments}}
   \end{itemize}
 \end{itemize}
 
-\hypertarget{thu.-oct.-7-programming-agent-sensing}{%
-\section{Thu., Oct.~7: Programming agent
-sensing}\label{thu.-oct.-7-programming-agent-sensing}}
+\section{Wed., Oct.~2: Programming agent
+sensing}\label{wed.-oct.-2-programming-agent-sensing}
 
-\hypertarget{homework-9}{%
-\subsection{Homework}\label{homework-9}}
+\subsection{Homework}\label{homework-8}
 
-\hypertarget{homework-exercises-9}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-9}}
+\subsubsection{Homework Exercises:}\label{homework-exercises-8}
 
 \begin{itemize}
 \tightlist
@@ -817,15 +733,12 @@ sensing}\label{thu.-oct.-7-programming-agent-sensing}}
   Railsback \& Grimm, Ch. 11, Ex. 11.1
 \end{itemize}
 
-\hypertarget{tue.-oct.-12-analysis-of-a-published-model}{%
-\section{Tue., Oct.~12: Analysis of a published
-model}\label{tue.-oct.-12-analysis-of-a-published-model}}
+\section{Mon., Oct.~7: Analysis of a published
+model}\label{mon.-oct.-7-analysis-of-a-published-model}
 
-\hypertarget{homework-10}{%
-\subsection{Homework}\label{homework-10}}
+\subsection{Homework}\label{homework-9}
 
-\hypertarget{homework-exercises-10}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-10}}
+\subsubsection{Homework Exercises:}\label{homework-exercises-9}
 
 \begin{itemize}
 \item
@@ -836,20 +749,16 @@ model}\label{tue.-oct.-12-analysis-of-a-published-model}}
   Turn in a 3--5 page (double-spaced) write-up about the model.
 \end{itemize}
 
-\hypertarget{notes-on-homework-6}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework-6}}
+\subsubsection{Notes on Homework:}\label{notes-on-homework-5}
 
 See the project assignment sheet for details about this assignment.
 
-\hypertarget{thu.-oct.-21-team-modeling-project-presentations}{%
-\section{Thu., Oct.~21: Team modeling project
-presentations}\label{thu.-oct.-21-team-modeling-project-presentations}}
+\section{Mon., Oct.~21: Team modeling project
+presentations}\label{mon.-oct.-21-team-modeling-project-presentations}
 
-\hypertarget{homework-11}{%
-\subsection{Homework}\label{homework-11}}
+\subsection{Homework}\label{homework-10}
 
-\hypertarget{homework-exercises-11}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-11}}
+\subsubsection{Homework Exercises:}\label{homework-exercises-10}
 
 \begin{itemize}
 \tightlist
@@ -857,95 +766,17 @@ presentations}\label{thu.-oct.-21-team-modeling-project-presentations}}
   Teams will give a presentation on their projects.
 \end{itemize}
 
-\hypertarget{notes-on-homework-7}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework-7}}
+\subsubsection{Notes on Homework:}\label{notes-on-homework-6}
 
 See the team project assignment sheet for details on what I expect for
 the presentation.
 
-\hypertarget{fri.-oct.-22-team-modeling-project-reports}{%
-\section{Fri., Oct.~22: Team modeling project
-reports}\label{fri.-oct.-22-team-modeling-project-reports}}
+\section{Mon., Dec.~2: Research project
+presentations}\label{mon.-dec.-2-research-project-presentations}
 
-\hypertarget{homework-12}{%
-\subsection{Homework}\label{homework-12}}
+\subsection{Homework}\label{homework-11}
 
-\hypertarget{homework-exercises-12}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-12}}
-
-\begin{itemize}
-\tightlist
-\item
-  Turn in the written report for your team project on Brightspace.
-\end{itemize}
-
-\hypertarget{notes-on-homework-8}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework-8}}
-
-See the team project assignment sheet for details.
-
-\hypertarget{fri.-oct.-29-research-project-odd}{%
-\section{Fri., Oct.~29: Research project
-ODD}\label{fri.-oct.-29-research-project-odd}}
-
-\hypertarget{homework-13}{%
-\subsection{Homework}\label{homework-13}}
-
-\hypertarget{homework-exercises-13}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-13}}
-
-\begin{itemize}
-\tightlist
-\item
-  Turn in an ODD for extending your chosen model to ask new questions.
-\end{itemize}
-
-\hypertarget{notes-on-homework-9}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework-9}}
-
-See the semester research project assignment sheet for details.
-
-\hypertarget{fri.-nov.-12-draft-model-code-for-research-project}{%
-\section{Fri., Nov.~12: Draft model code for research
-project}\label{fri.-nov.-12-draft-model-code-for-research-project}}
-
-\hypertarget{homework-14}{%
-\subsection{Homework}\label{homework-14}}
-
-\hypertarget{homework-exercises-14}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-14}}
-
-\begin{itemize}
-\item
-  Turn in a draft \texttt{.nlogo} file with your modified model. The ODD
-  for your modified model should be included in the ``Info'' section of
-  the model.
-
-  You should \emph{also} turn in a document that describes what you are
-  satisfied with about your draft model and what problems you are
-  struggling with.
-\end{itemize}
-
-\hypertarget{notes-on-homework-10}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework-10}}
-
-The model code you turn in should run, but it does not need to be
-perfect.
-
-The point of this deadline is so that you can check in with me about how
-things are going so I can give you feedback and suggestions.
-
-See the project assignment sheet for details.
-
-\hypertarget{tue.-dec.-7-research-project-presentations}{%
-\section{Tue., Dec.~7: Research project
-presentations}\label{tue.-dec.-7-research-project-presentations}}
-
-\hypertarget{homework-15}{%
-\subsection{Homework}\label{homework-15}}
-
-\hypertarget{homework-exercises-15}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-15}}
+\subsubsection{Homework Exercises:}\label{homework-exercises-11}
 
 \begin{itemize}
 \tightlist
@@ -954,8 +785,7 @@ presentations}\label{tue.-dec.-7-research-project-presentations}}
   (seven minutes of talking and three minutes for questions).
 \end{itemize}
 
-\hypertarget{notes-on-homework-11}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework-11}}
+\subsubsection{Notes on Homework:}\label{notes-on-homework-7}
 
 There will not be time to go into all the details in your presentation,
 so focus on:
@@ -973,15 +803,12 @@ so focus on:
 
 See the project assignment sheet for details.
 
-\hypertarget{fri.-dec.-10-research-project-report}{%
-\section{Fri., Dec.~10: Research project
-report}\label{fri.-dec.-10-research-project-report}}
+\section{Wed., Dec.~4: Research project
+report}\label{wed.-dec.-4-research-project-report}
 
-\hypertarget{homework-16}{%
-\subsection{Homework}\label{homework-16}}
+\subsection{Homework}\label{homework-12}
 
-\hypertarget{homework-exercises-16}{%
-\subsubsection{Homework Exercises:}\label{homework-exercises-16}}
+\subsubsection{Homework Exercises:}\label{homework-exercises-12}
 
 \begin{itemize}
 \tightlist
@@ -991,8 +818,7 @@ report}\label{fri.-dec.-10-research-project-report}}
   magazine:
 \end{itemize}
 
-\hypertarget{notes-on-homework-12}{%
-\subsubsection{Notes on Homework:}\label{notes-on-homework-12}}
+\subsubsection{Notes on Homework:}\label{notes-on-homework-8}
 
 See the project assignment sheet for details.
 
