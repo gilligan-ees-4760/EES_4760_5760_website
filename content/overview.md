@@ -47,15 +47,16 @@ research in many fields, including anthropology, civil engineering, computer
 science, ecology, economics, epidemiology, marketing, medicine, political 
 science, public policy, robotics, sociology, transportation, and urban planning.
 
-Agent-based modeling is used to study how individual agents (which can represent 
-people, animals, plants, cars, robots, or packets of information in a 
-communications network) making simple decisions can produce complex and 
-unexpected collective behavior through their interactions. Agent-based models 
-have been used to investigate  racial segregation in American cities,
-traffic jams, adaptation to global warming, disease outbreaks, inflammatory 
-response to wound infections, ecosystem dynamics, impacts of changing land-use 
-on tropical rain forests, political instability, and market penetration of home 
-solar-energy systems.
+Agent-based modeling is used to study how individual agents (which can represent
+a wide range of things, such as people, animals, plants, cars, robots,
+or packets of information in a communications network)
+that make simple decisions or execute simple behaviors, can produce complex and
+unexpected collective behavior through their interactions. Agent-based models
+have been used to investigate racial segregation in American cities, traffic
+jams, adaptation to global warming, disease outbreaks, inflammatory response to
+wound infections, ecosystem dynamics, impacts of changing land-use on tropical
+rain forests, political instability, and market penetration of home solar-energy
+systems.
 
 This course will provide an introduction to agent and individual-based modeling. 
 You will learn how to design, program, and document agent-based computational 
@@ -69,6 +70,24 @@ We will use the {{% NETLOGO %}} environment for writing and running agent-based
 models. 
 {{% NETLOGO %}} is a widely used system that is both powerful and easy to learn, 
 so you can quickly start to program your own models.
+
+# **Goals for the Course**
+
+My goals for this course are that at the end of the semester:
+* You will understand what scientific modeling is, including
+  mathematical and computational modeling.
+* You will become skilled with the {{% NETLOGO %}} programming language and
+  be able to use it for coding complete agent-based models.
+* You will be able to use the ODD (Overview, Design concepts, and
+  Details) method to document your own agent-based models and to understand
+  how other people's models work.
+* You will be able to use computational models scientifically,
+  performing experiments and interpreting their results in order to learn
+  about the causes and mechanisms of complex systems phenomena in the real
+  world.
+* You will understand the Pattern Oriented Modeling methodology and be
+  able to use it to design, conduct, and interpret experiments with
+  agent-based models.
 
 # **Structure of the Course:**
 
@@ -95,18 +114,24 @@ I divide the semester into three parts:
 
 ## Reading Material
 
-There is one required textbook.
-Supplementary reading on the Internet or in handouts will also be assigned 
-during the term.
+There is one required textbook and one optional one, which I recommend primarily
+to students who are interested in social-science applications of agent-based
+modeling.
+From time to time during the term, I will assign supplementary reading on the
+Internet or in handouts that I will post to the class web site.
 
-### Textbook
+### Textbooks 
 
-* {{% LONG_RAILSBACK %}}
+* **Required:**
+  * {{% LONG_RAILSBACK %}}
 
     There is a companion web site to the book,
     <http://railsback-grimm-abm-book.com/>
     where you can find errata in the textbook and download supporting data files 
     and {{% NETLOGO %}} models for some of the exercises.
+
+* **Recommended (optional):**
+  * {{% LONG_SMALDINO %}}
 
 ## Additional Resources
 
@@ -148,6 +173,13 @@ these systems are much harder to learn and much harder for even experts to write
 models in. My experience is that for most modeling projects, you can get more 
 done in a week with {{% NETLOGO %}} than in a month or more with the other 
 systems I know of.
+
+Optionally, you may want to install {{% RSTATS %}} statistical software, 
+which can help with analyzing data from {{% NETLOGO %}} computational 
+experiments. 
+There is more information bout downloading and installing R on the
+[Tools](/tools) page on the
+[class website](/).
 
 # **Assignments**
  

@@ -22,9 +22,8 @@
 <<r setup, include=F>>=
 library(pacman)
 p_load(knitr)
-p_load(RSQLite)
-p_load(DBI)
-p_load(tidyverse, magrittr, stringr, lubridate)
+p_load(magrittr)
+p_load(tidyverse)
 p_load(xtable)
 p_load(assertthat)
 
@@ -76,8 +75,7 @@ format_reading_item <- function(df) {
 
 
 
-# calendar <- read_excel("../../Syllabus/Class Schedule.xlsx", 1)
-semester <- load_semester_db("../EES-4760.sqlite3")
+semester <- load_semester_db("../EES-4760.sqlite3", ignore_root = TRUE)
 
 is_fall_semester <- semester$calendar$date[[1]] %>% month() > 7
 
@@ -111,16 +109,33 @@ get_event <- function(class, exam, holiday) {
 }
 
 schedule <- prepare_schedule(semester)
-if (! tibble::has_name(schedule, "key_holiday"))
+if (! tibble::has_name(schedule, "key_holiday")) {
   schedule <- schedule %>% mutate(key_holiday = NA_character_)
-if (! tibble::has_name(schedule, "key_event"))
+}
+if (! tibble::has_name(schedule, "key_exam")) {
+  schedule <- schedule %>% mutate(key_exam = NA_character_)
+}
+if (! tibble::has_name(schedule, "key_event")) {
   schedule <- schedule %>% mutate(key_event = NA_character_)
+}
+if (!tibble::has_name(schedule, "id_hw")) {
+  schedule <- schedule %>% mutate(id_hw = NA_character_)
+}
+if (!tibble::has_name(schedule, "id_holiday")) {
+  schedule <- schedule %>% mutate(id_holiday = NA_character_)
+}
+if (!tibble::has_name(schedule, "id_exam")) {
+  schedule <- schedule %>% mutate(id_exam = NA_character_)
+}
+if (!tibble::has_name(schedule, "id_event")) {
+  schedule <- schedule %>% mutate(id_event = NA_character_)
+}
 
 calendar <- schedule %>%
-  filter(! is.na(id_class) || ! is.na(id_holiday)) %>%
+  filter(! is.na(id_class) | ! is.na(id_holiday) | ! is.na(id_event)) %>%
   left_join(select(semester$class_topics, id_class = cal_id, rd_grp_key,
                    by = "cal_id")) %>%
-  left_join(reading, by = c(key_class = "rd_grp_key")) %>%
+  left_join(reading, by = "rd_grp_key") %>%
   arrange(date, id_class) %>%
   mutate(cal_id = seq_along(date),
          date = ymd(date), weekday = wday(date, label = TRUE),
@@ -505,7 +520,7 @@ format_class_entry <- function(class_no) {
 \label{sec:Professor}
 \ProfName\\
 \ProfDescr\\
-\ProfOffice, \ProfPhone\\
+\ProfOffice\\
 \ProfEmail\\
 \ProfOfficeHours
 %
@@ -564,8 +579,9 @@ political science, public policy, robotics, sociology, transportation, and
 urban planning.
 
 Agent-based modeling is used to study how individual agents (which can represent
-people, animals, plants, cars, robots, or packets of information in a
-communications network) making simple decisions can produce complex and
+a wide range of things, such as people, animals, plants, cars, robots,
+or packets of information in a communications network)
+that make simple decisions or execute simple behaviors, can produce complex and
 unexpected collective behavior through their interactions. Agent-based models
 have been used to investigate racial segregation in American cities, traffic
 jams, adaptation to global warming, disease outbreaks, inflammatory response to
@@ -585,17 +601,30 @@ We will use the \NetLogo\ environment for writing and running agent-based models
 \NetLogo\ is a widely used system that is both powerful and easy to learn, so
 you can quickly start to program your own models.
 
-\iffalse
+\iftrue
 \section[Goals]{Goals for the Course}
 My goals for this course are that at the end of the semester:
 \begin{itemize}
-    \item
+    \item You will understand what scientific modeling is, including
+    mathematical and computational modeling.
+    \item You will become skilled with the \NetLogo\ programming language and
+    be able to use it for coding complete agent-based models.
+    \item You will be able to use the ODD (Overview, Design concepts, and
+    Details) method to document your own agent-based models and to understand
+    how other people's models work.
+    \item You will be able to use computational models scientifically,
+    performing experiments and interpreting their results in order to learn
+    about the causes and mechanisms of complex systems phenomena in the real
+    world.
+    \item You will understand the Pattern Oriented Modeling methodology and be
+    able to use it to design, conduct, and interpret experiments with
+    agent-based models.
 \end{itemize}
 \fi
 %
 %
 %
-%\clearpage
+\clearpage
 \section[Structure]{Structure of the Course:}
 I divide the semester into three parts:
 \begin{enumerate}
@@ -621,29 +650,36 @@ I divide the semester into three parts:
 %
 %
 %
-\pagebreak
+% \pagebreak
 \subsection{Reading Material}
-There is one required textbook.
+There is one required textbook and one optional one, which I recommend primarily
+to students who are interested in social-science applications of agent-based
+modeling.
 From time to time during the term, I will assign supplementary reading on the
 Internet or in handouts that I will post to the class web site.
 
 \subsubsection{Textbooks}
 \begin{itemize}
-	%
-	\item \LongRailsback.
-	% \item \LongGrowing
+  \item \textbf{Required:}
+    \begin{itemize}
+	  %
+	    \item \LongRailsback.
+
+      There is a companion web site to \emph{\Railsback}, \RailsbackURL, that
+      has additional useful information.
+
+      All textbooks have errors. The authors maintain a list of errors that have
+      been reported to them and you can download it from the book's web site at
+      \RailsbackURL\ or from the course web site at
+      \url{https://ees4760.jgilligan.org/files/Railsback_Grimm_2012_Errata.pdf}.
+    \end{itemize}
+
+  \item \textbf{Recommended (optional):}
+    \begin{itemize}
+	  %
+	    \item \LongSmaldino.
+    \end{itemize}
 \end{itemize}
-
-There is a companion web site to \emph{\Railsback}, \RailsbackURL, that has
-additional useful information.
-
-All textbooks have errors. The authors maintain a list of errors that have been
-reported to them and you can download it from the book's web site at
-\RailsbackURL\ or from the course web site at
-\url{https://ees4760.jgilligan.org/files/Railsback_Grimm_2012_Errata.pdf}.
-
-You can download the \NetLogo\ program from \NetLogoURL. It runs on Windows,
-Mac, and Linux systems.
 
 \subsubsection{Additional Resources}
 This course only scratches the surface of what is possible with agent-based
@@ -675,7 +711,7 @@ I have chosen it for this course because it is free, it runs on all the major
 operating systems, its programming language is very easy to learn; and it allows
 you to easily create a visual representation of your model.
 
-You should download \NetLogo\ version 6.2.0 from
+You should download \NetLogo\ version 6.4.0 (the latest version) from
 \url{http://ccl.northwestern.edu/netlogo/download.shtml}
 and install it on your computer.
 
@@ -688,6 +724,12 @@ and are better suited for large and complex models. However, these systems are
 much harder to learn and much harder for even experts to write models in.
 My experience is that for most modeling projects, you can get more done in a
 week with \NetLogo\ than in a month or more with the other systems I know of.
+
+Optionally, you may want to install the free R statistical software, which can
+help with analyzing data from \NetLogo\ computational experiments. There is more
+information bout downloading and installing R on the
+\href{https://ees4760.jgilligan.org/tools}{Tools} page on the
+\href{https://ees4760.jgilligan.org}{class website}.
 
 %\clearpage
 \subsection{Graded Work}
@@ -832,7 +874,14 @@ which_final <- tail(finals, 1)$event
 delete_final <- head(finals,-1)$event
 schedule <- calendar %>% arrange(date) %>%
   mutate(wday = str_c(wday(date, label = T, abbr=T), ".,"), month = str_c(month(date, label = T, abbr=T), "."),
-         day = day(date), reading = str_trim(reading), event = ifelse(is.na(event), "", event), foo = NA) %>%
+         day = day(date),
+         topic = with(
+           as.list(semester$text_codes$latex),
+           map_chr(topic, ~knit_expand(text = .x, calendar = calendar,
+                                       delim = c("<%","%>")))
+         ),
+         reading = str_replace_all(reading, "&", "\\&") %>% str_trim(),
+         event = ifelse(is.na(event), "", event), foo = NA) %>%
   select(wday, month, day, topic, reading, event, foo)
 
 events <- schedule$event
@@ -848,7 +897,11 @@ if (is_fall_semester) {
 special_rows <- which(events %in% one_line_events)
 
 # schedule_break_row <- fall_break_row
-schedule_break_row <- with(schedule, which(month == "Nov." & day == 25))
+#
+# schedule_break_row <- with(schedule, which(month == "Mar." & day == 15))
+# schedule_break_row <- max(short_holiday_rows)
+schedule_break_row <- max(c(nrow(calendar) %/% 2L, min(long_holiday_rows) - 1L,
+                            20L))
 message("Break row = ", schedule_break_row)
 # schedule_break_row <- 30
 
@@ -863,22 +916,28 @@ if (has_long_holiday) {
   long_vac_on_first_page <- FALSE
 }
 
-schedule_1 <- schedule[1:schedule_break_row,]
+schedule_1 <- head(schedule, schedule_break_row)
 schedule_1[special_rows_1,] <- schedule_1[special_rows_1,] %>%
-  mutate(topic = str_c("\\multicolumn{2}{l}{\\bfseries\\scshape\\large ", topic, "} & \\\\%"))
+  mutate(topic = str_c("\\multicolumn{2}{l}{\\bfseries\\scshape\\large ",
+                       topic, "} & \\\\%"))
 if (has_long_holiday && long_vac_on_first_page) {
   schedule_1$topic[long_holiday_rows] <- ""
+  schedule_1$reading[long_holiday_rows] <- ""
   schedule_1$topic[min(long_holiday_rows)] <-
-    str_c("\\multicolumn{2}{l}{\\multirow{3}{*}{\\bfseries\\scshape\\Large ",
-          long_holiday_name, "}} & \\\\%")
+    str_c("\\multicolumn{2}{l}{\\multirow{",  length(long_holiday_rows),
+          "}{*}{\\bfseries\\scshape\\Large ", long_holiday_name, "}} & \\\\%")
 }
 schedule_1 <- schedule_1 %>% select(-event)
 
-schedule_1 %>% xtable(align = c("","l@{~}","c@{~}","r",">{\\raggedright}m{2.6in}",">{\\centering}m{2in}", "c")) %>%
+schedule_1 %>%
+  xtable(align = c("", "l@{~}", "c@{~}", "r", ">{\\raggedright}m{2.6in}",
+                   ">{\\centering}m{2in}", "c")) %>%
   print(booktabs = TRUE, floating = FALSE, latex.environment="center",
         sanitize.text.function = identity,
         include.colnames = F, include.rownames = F,
-        hline.after = discard(seq(-1,nrow(schedule_1)), ~ long_vac_on_first_page & .x %in% head(long_holiday_rows,-1)),
+        hline.after = discard(seq(-1,nrow(schedule_1)),
+                              ~ long_vac_on_first_page &
+                                .x %in% head(long_holiday_rows,-1)),
         add.to.row = list(pos = list(0),
                           command = "\\multicolumn{3}{c}{\\bfseries Date} & \\multicolumn{1}{c}{\\bfseries Topic} &\\multicolumn{1}{c}{\\bfseries Reading} &\\\\\n"))
 @
@@ -886,31 +945,36 @@ schedule_1 %>% xtable(align = c("","l@{~}","c@{~}","r",">{\\raggedright}m{2.6in}
 
 \begin{center}
 <<r class_schedule_2, echo=F, results="asis">>=
-schedule_2 <- schedule[-(1:schedule_break_row),]
+schedule_2 <- tail(schedule, -schedule_break_row)
 schedule_2[special_rows_2,] <- schedule_2[special_rows_2,] %>%
-  mutate(topic = str_c("\\multicolumn{2}{l}{\\bfseries\\scshape\\large ", topic, "} & \\\\%"))
+  mutate(topic = str_c("\\multicolumn{2}{l}{\\bfseries\\scshape\\large ",
+                       topic, "} & \\\\%"))
 in_class_ex_line <- which(schedule_2$event %in% c("IN_CLASS_EXERCISE"))
 schedule_2[in_class_ex_line,] <- schedule_2[in_class_ex_line,] %>%
   mutate(topic = str_c("\\bfseries\\scshape ", topic))
 if ( has_long_holiday && ! long_vac_on_first_page) {
   long_holiday_rows <- long_holiday_rows - schedule_break_row
   schedule_2$topic[long_holiday_rows] <- ""
+  schedule_2$reading[long_holiday_rows] <- ""
   schedule_2$topic[min(long_holiday_rows)] <-
     str_c("\\multicolumn{2}{l}{\\multirow{3}{*}{\\bfseries\\scshape\\Large ",
           long_holiday_name, "}} & \\\\%")
 }
-final_exam_row <- which(schedule_2$event == which_final)
-schedule_2$topic[final_exam_row] <- "\\multicolumn{2}{l}{\\bfseries\\scshape\\large Take-Home Final Exam Due} & \\\\%"
-schedule_2 <- schedule_2 %>% filter(! event %in% delete_final) %>% select(-event)
+schedule_2 <- schedule_2 %>% select(-event)
 
-schedule_2 %>% xtable(align = c("","l@{~}","c@{~}","r",">{\\raggedright}m{2.6in}",">{\\centering}m{2in}", "c")) %>%
+schedule_2 %>%
+  mutate(topic = str_replace_all(topic, "([^\\\\])([#%$])", "\\1\\\\\\2")) %>%
+  xtable(align = c("", "l@{~}", "c@{~}", "r", ">{\\raggedright}m{2.6in}",
+                   ">{\\centering}m{2in}", "c")) %>%
   print(booktabs = TRUE, floating = FALSE,  latex.environment="center",
-        sanitize.text.function = identity, include.colnames = F, include.rownames = F,
-        hline.after = discard(seq(-1,nrow(schedule_2)), ~ ! long_vac_on_first_page & .x %in% head(long_holiday_rows,-1)),
+        sanitize.text.function = identity,
+        include.colnames = F,  include.rownames = F,
+        hline.after = discard(seq(-1,nrow(schedule_2)),
+                              ~ ! long_vac_on_first_page &
+                                .x %in% head(long_holiday_rows,-1)),
         add.to.row = list(pos = list(0),
                           command = "\\multicolumn{3}{c}{\\bfseries Date} & \\multicolumn{1}{c}{\\bfseries Topic} &\\multicolumn{1}{c}{\\bfseries Reading} &\\\\\n"))
 @
 \end{center}
-\fi
 %
 \end{document}

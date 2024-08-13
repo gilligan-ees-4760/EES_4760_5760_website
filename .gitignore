@@ -6,14 +6,12 @@
 .Rhistory
 .DS_Store
 *.Rproj
-
 #
 # Blogdown temporary files
 #
 /blogdown/
 /temp.R
 *cache/
-
 #
 # Subdirectory for preparing lectures (this should be a separate git project)
 #
@@ -21,30 +19,24 @@
 /lectures/semester/
 /lectures/old_semester/
 /lectures/old-semester/
-
 #
 # Hugo working files
 #
-
 /public/
-
+.hugo_build.lock
 #
 # Project local working files that should not be committed
 #
 /planning/*.zip
 /planning/*.xlsx
 node_modules/
-
 #
 # Paint Shop Pro working files
 #
-
 Corel Auto-Preserve/
-
 #
 # LaTeX temporary working files
 #
-
 *.aux
 *.bak
 *.bbl
@@ -58,9 +50,7 @@ Corel Auto-Preserve/
 *.toc
 *.synctex.gz
 *-concordance.tex
-
 #
-# NetLog temporary files
+# NetLogo temporary files
 #
-
 *.tmp.nlogo

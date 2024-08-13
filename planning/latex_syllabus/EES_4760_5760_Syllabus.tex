@@ -1,4 +1,4 @@
-\documentclass[11pt,twoside]{jgsyllabus}\usepackage[]{graphicx}\usepackage[]{color}
+\documentclass[11pt,twoside]{jgsyllabus}\usepackage[]{graphicx}\usepackage[]{xcolor}
 % maxwidth is the original width if it is less than linewidth
 % otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
@@ -13,10 +13,10 @@
 
 \definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
 \newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
-\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlsng}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
 \newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
 \newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
-\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hldef}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
 \newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
@@ -107,7 +107,7 @@
 \label{sec:Professor}
 \ProfName\\
 \ProfDescr\\
-\ProfOffice, \ProfPhone\\
+\ProfOffice\\
 \ProfEmail\\
 \ProfOfficeHours
 %
@@ -166,8 +166,9 @@ political science, public policy, robotics, sociology, transportation, and
 urban planning.
 
 Agent-based modeling is used to study how individual agents (which can represent
-people, animals, plants, cars, robots, or packets of information in a
-communications network) making simple decisions can produce complex and
+a wide range of things, such as people, animals, plants, cars, robots,
+or packets of information in a communications network)
+that make simple decisions or execute simple behaviors, can produce complex and
 unexpected collective behavior through their interactions. Agent-based models
 have been used to investigate racial segregation in American cities, traffic
 jams, adaptation to global warming, disease outbreaks, inflammatory response to
@@ -187,17 +188,30 @@ We will use the \NetLogo\ environment for writing and running agent-based models
 \NetLogo\ is a widely used system that is both powerful and easy to learn, so
 you can quickly start to program your own models.
 
-\iffalse
+\iftrue
 \section[Goals]{Goals for the Course}
 My goals for this course are that at the end of the semester:
 \begin{itemize}
-    \item
+    \item You will understand what scientific modeling is, including
+    mathematical and computational modeling.
+    \item You will become skilled with the \NetLogo\ programming language and
+    be able to use it for coding complete agent-based models.
+    \item You will be able to use the ODD (Overview, Design concepts, and
+    Details) method to document your own agent-based models and to understand
+    how other people's models work.
+    \item You will be able to use computational models scientifically,
+    performing experiments and interpreting their results in order to learn
+    about the causes and mechanisms of complex systems phenomena in the real
+    world.
+    \item You will understand the Pattern Oriented Modeling methodology and be
+    able to use it to design, conduct, and interpret experiments with
+    agent-based models.
 \end{itemize}
 \fi
 %
 %
 %
-%\clearpage
+\clearpage
 \section[Structure]{Structure of the Course:}
 I divide the semester into three parts:
 \begin{enumerate}
@@ -223,29 +237,36 @@ I divide the semester into three parts:
 %
 %
 %
-\pagebreak
+% \pagebreak
 \subsection{Reading Material}
-There is one required textbook.
+There is one required textbook and one optional one, which I recommend primarily
+to students who are interested in social-science applications of agent-based
+modeling.
 From time to time during the term, I will assign supplementary reading on the
 Internet or in handouts that I will post to the class web site.
 
 \subsubsection{Textbooks}
 \begin{itemize}
-	%
-	\item \LongRailsback.
-	% \item \LongGrowing
+  \item \textbf{Required:}
+    \begin{itemize}
+	  %
+	    \item \LongRailsback.
+
+      There is a companion web site to \emph{\Railsback}, \RailsbackURL, that
+      has additional useful information.
+
+      All textbooks have errors. The authors maintain a list of errors that have
+      been reported to them and you can download it from the book's web site at
+      \RailsbackURL\ or from the course web site at
+      \url{https://ees4760.jgilligan.org/files/Railsback_Grimm_2012_Errata.pdf}.
+    \end{itemize}
+
+  \item \textbf{Recommended (optional):}
+    \begin{itemize}
+	  %
+	    \item \LongSmaldino.
+    \end{itemize}
 \end{itemize}
-
-There is a companion web site to \emph{\Railsback}, \RailsbackURL, that has
-additional useful information.
-
-All textbooks have errors. The authors maintain a list of errors that have been
-reported to them and you can download it from the book's web site at
-\RailsbackURL\ or from the course web site at
-\url{https://ees4760.jgilligan.org/files/Railsback_Grimm_2012_Errata.pdf}.
-
-You can download the \NetLogo\ program from \NetLogoURL. It runs on Windows,
-Mac, and Linux systems.
 
 \subsubsection{Additional Resources}
 This course only scratches the surface of what is possible with agent-based
@@ -277,7 +298,7 @@ I have chosen it for this course because it is free, it runs on all the major
 operating systems, its programming language is very easy to learn; and it allows
 you to easily create a visual representation of your model.
 
-You should download \NetLogo\ version 6.2.0 from
+You should download \NetLogo\ version 6.4.0 (the latest version) from
 \url{http://ccl.northwestern.edu/netlogo/download.shtml}
 and install it on your computer.
 
@@ -290,6 +311,12 @@ and are better suited for large and complex models. However, these systems are
 much harder to learn and much harder for even experts to write models in.
 My experience is that for most modeling projects, you can get more done in a
 week with \NetLogo\ than in a month or more with the other systems I know of.
+
+Optionally, you may want to install the free R statistical software, which can
+help with analyzing data from \NetLogo\ computational experiments. There is more
+information bout downloading and installing R on the
+\href{https://ees4760.jgilligan.org/tools}{Tools} page on the
+\href{https://ees4760.jgilligan.org}{class website}.
 
 %\clearpage
 \subsection{Graded Work}
@@ -403,8 +430,8 @@ you should realize that it is subject to change during the semester.
 %
 %\end{document}
 
-\cleardoublepage
-%\clearpage
+%\cleardoublepage
+\clearpage
 \appendix
 \setcounter{secnumdepth}{0}
 \newcommand{\maybehline}{\hline}%
@@ -426,83 +453,83 @@ and the course web site for the detailed daily assignments.
 \setlength{\heavyrulewidth}{0.5pt}
 \setlength{\lightrulewidth}{0.05pt}
 \begin{center}
-% latex table generated in R 4.1.1 by xtable 1.8-4 package
-% Thu Aug 26 03:30:18 2021
+% latex table generated in R 4.4.1 by xtable 1.8-4 package
+% Mon Aug 12 18:51:59 2024
 \begin{tabular}{l@{~}c@{~}r>{\raggedright}m{2.6in}>{\centering}m{2in}c}
   \toprule
   \multicolumn{3}{c}{\bfseries Date} & \multicolumn{1}{c}{\bfseries Topic} &\multicolumn{1}{c}{\bfseries Reading} &\\
  \midrule
-Thu., & Aug. &  26 & Introduction & No reading &  \\
+Wed., & Aug. &  21 & Introduction & No reading &  \\ 
    \midrule
-Tue., & Aug. &  31 & The computer modeling cycle & \emph{Railsback \& Grimm\/} Ch.~1, Handouts (on Brightspace) &  \\
+Mon., & Aug. &  26 & The computer modeling cycle & \emph{Railsback \& Grimm\/} Ch.~1, Handouts (on Brightspace) &  \\ 
    \midrule
-Thu., & Sep. &   2 & Introduction to \NetLogo & \emph{Railsback \& Grimm\/} Ch.~2 &  \\
+Wed., & Aug. &  28 & Introduction to \NetLogo{} & \emph{Railsback \& Grimm\/} Ch.~2 &  \\ 
    \midrule
-Tue., & Sep. &   7 & Specifying models: The ODD protocol & \emph{Railsback \& Grimm\/} Ch.~3 &  \\
+Mon., & Sep. &   2 & Specifying models: The ODD protocol & \emph{Railsback \& Grimm\/} Ch.~3 &  \\ 
    \midrule
-Thu., & Sep. &   9 & Your first model & \emph{Railsback \& Grimm\/} Ch.~4 &  \\
+Wed., & Sep. &   4 & Your first model & \emph{Railsback \& Grimm\/} Ch.~4 &  \\ 
    \midrule
-Tue., & Sep. &  14 & Using models for science & \emph{Railsback \& Grimm\/} Ch.~5 &  \\
+Mon., & Sep. &   9 & Using models for science & \emph{Railsback \& Grimm\/} Ch.~5 &  \\ 
    \midrule
-Thu., & Sep. &  16 & Testing and validating models & \emph{Railsback \& Grimm\/} Ch.~6 &  \\
+Wed., & Sep. &  11 & Testing and validating models & \emph{Railsback \& Grimm\/} Ch.~6 &  \\ 
    \midrule
-Tue., & Sep. &  21 & Choosing Research Projects & \emph{Railsback \& Grimm\/} Ch.~7 &  \\
+Mon., & Sep. &  16 & Choosing Research Projects & \emph{Railsback \& Grimm\/} Ch.~7 &  \\ 
    \midrule
-Thu., & Sep. &  23 & Emergence & \emph{Railsback \& Grimm\/} Ch.~8 &  \\
+Wed., & Sep. &  18 & Emergence & \emph{Railsback \& Grimm\/} Ch.~8 &  \\ 
    \midrule
-Tue., & Sep. &  28 & Observation & \emph{Railsback \& Grimm\/} Ch.~9 &  \\
+Mon., & Sep. &  23 & Observation & \emph{Railsback \& Grimm\/} Ch.~9 &  \\ 
    \midrule
-Thu., & Sep. &  30 & Sensing & \emph{Railsback \& Grimm\/} Ch.~10 &  \\
+Wed., & Sep. &  25 & Sensing & \emph{Railsback \& Grimm\/} Ch.~10 &  \\ 
    \midrule
-Tue., & Oct. &   5 & Adaptive Behavior and Objectives & \emph{Railsback \& Grimm\/} Ch.~11 &  \\
+Mon., & Sep. &  30 & Adaptive Behavior and Objectives & \emph{Railsback \& Grimm\/} Ch.~11 &  \\ 
    \midrule
-Thu., & Oct. &   7 & Prediction & \emph{Railsback \& Grimm\/} Ch.~12 &  \\
+Wed., & Oct. &   2 & Prediction & \emph{Railsback \& Grimm\/} Ch.~12 &  \\ 
    \midrule
-Tue., & Oct. &  12 & Interaction & \emph{Railsback \& Grimm\/} Ch.~13 &  \\
+Mon., & Oct. &   7 & Interaction & \emph{Railsback \& Grimm\/} Ch.~13 &  \\ 
    \midrule
-Thu., & Oct. &  14 & \multicolumn{2}{l}{\bfseries\scshape\large Fall Break} & \\% & No reading &  \\
+Wed., & Oct. &   9 & Team Presentations & No reading &  \\ 
    \midrule
-Tue., & Oct. &  19 & Team Presentations & No reading &  \\
+Mon., & Oct. &  14 & \multicolumn{2}{l}{\bfseries\scshape\large Fall Break} & \\% & No reading &  \\ 
    \midrule
-Thu., & Oct. &  21 & Research Project ODDs & No reading &  \\
+Wed., & Oct. &  16 & Research Project ODDs & No reading &  \\ 
    \midrule
-Tue., & Oct. &  26 & Scheduling & \emph{Railsback \& Grimm\/} Ch.~14 &  \\
+Mon., & Oct. &  21 & Scheduling & \emph{Railsback \& Grimm\/} Ch.~14 &  \\ 
    \midrule
-Thu., & Oct. &  28 & Stochasticity & \emph{Railsback \& Grimm\/} Ch.~15 &  \\
+Wed., & Oct. &  23 & Stochasticity & \emph{Railsback \& Grimm\/} Ch.~15 &  \\ 
    \midrule
-Tue., & Nov. &   2 & Collectives & \emph{Railsback \& Grimm\/} Ch.~16 &  \\
+Mon., & Oct. &  28 & Collectives & \emph{Railsback \& Grimm\/} Ch.~16 &  \\ 
    \midrule
-Thu., & Nov. &   4 & Patterns & \emph{Railsback \& Grimm\/} Ch.~17--18 &  \\
+Wed., & Oct. &  30 & Patterns & \emph{Railsback \& Grimm\/} Ch.~17--18 &  \\ 
    \midrule
-Tue., & Nov. &   9 & Theory Development & \emph{Railsback \& Grimm\/} Ch.~19 &  \\
+Mon., & Nov. &   4 & Theory Development & \emph{Railsback \& Grimm\/} Ch.~19 &  \\ 
    \midrule
-Thu., & Nov. &  11 & Parameterization and Calibration & \emph{Railsback \& Grimm\/} Ch.~20 &  \\
+Wed., & Nov. &   6 & Parameterization and Calibration & \emph{Railsback \& Grimm\/} Ch.~20 &  \\ 
    \midrule
-Tue., & Nov. &  16 & Parameterization and Calibration 2 & \emph{Railsback \& Grimm\/} Ch.~20 &  \\
+Mon., & Nov. &  11 & Parameterization and Calibration 2 & \emph{Railsback \& Grimm\/} Ch.~20 &  \\ 
    \midrule
-Thu., & Nov. &  18 & Analyzing ABMs & \emph{Railsback \& Grimm\/} Ch.~22 &  \\
+Wed., & Nov. &  13 & Analyzing ABMs & \emph{Railsback \& Grimm\/} Ch.~22 &  \\ 
    \midrule
-Tue., & Nov. &  23 & \multicolumn{2}{l}{\multirow{3}{*}{\bfseries\scshape\Large Thanksgiving Break}} & \\% & No reading &  \\
-  Thu., & Nov. &  25 &  & No reading &  \\
+Mon., & Nov. &  18 & Sensitivity and Robustness & \emph{Railsback \& Grimm\/} Ch.~23 &  \\ 
+   \midrule
+Wed., & Nov. &  20 & Looking Ahead: ABMs Beyond this Course & \emph{Railsback \& Grimm\/} Ch.~24 &  \\ 
    \bottomrule
 \end{tabular}
 
 \end{center}
 
 \begin{center}
-% latex table generated in R 4.1.1 by xtable 1.8-4 package
-% Thu Aug 26 03:30:18 2021
+% latex table generated in R 4.4.1 by xtable 1.8-4 package
+% Mon Aug 12 18:51:59 2024
 \begin{tabular}{l@{~}c@{~}r>{\raggedright}m{2.6in}>{\centering}m{2in}c}
   \toprule
   \multicolumn{3}{c}{\bfseries Date} & \multicolumn{1}{c}{\bfseries Topic} &\multicolumn{1}{c}{\bfseries Reading} &\\
  \midrule
-Tue., & Nov. &  30 & Sensitivity and Robustness & \emph{Railsback \& Grimm\/} Ch.~23 &  \\
+Mon., & Nov. &  25 & \multicolumn{2}{l}{\multirow{3}{*}{\bfseries\scshape\Large Thanksgiving Break}} & \\% &  &  \\ 
+  Wed., & Nov. &  27 &  &  &  \\ 
    \midrule
-Thu., & Dec. &   2 & Looking Ahead: ABMs Beyond this Course & \emph{Railsback \& Grimm\/} Ch.~24 &  \\
+Mon., & Dec. &   2 & Presentations & No reading &  \\ 
    \midrule
-Tue., & Dec. &   7 & Presentations & No reading &  \\
-   \midrule
-Thu., & Dec. &   9 & Presentations & No reading &  \\
+Wed., & Dec. &   4 & Presentations & No reading &  \\ 
    \bottomrule
 \end{tabular}
 
