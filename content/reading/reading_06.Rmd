@@ -17,6 +17,10 @@ pdf_url: /files/reading_asgts/reading_06.pdf
 
 * Agent-Based and Individual-Based Modeling, Ch. 5.
 
+### Optional Extra Reading:
+
+* Modeling Social Behavior, Ch. 3.
+
 ### Reading Notes:
 
 This reading sets the stage for answering the big question, "How can we use agent-based models to do science?"
@@ -45,3 +49,13 @@ If you're interested in using GIS data in your models, take a look at the GIS ex
 You can download the [data file](/files/models/chapter_05/ElevationData.txt) with the elevations for the realistic butterfly model from 
 <https://ees4760.jgilligan.org/files/models/chapter_05/ElevationData.txt>
 
+
+The chapter from _Modeling Social Behavior_ is an optional supplementary reading. I strongly recommend that graduate students and students interested in social systems and social science read this. 
+
+The main reading for today, from Railsback & Grimm presents a model of an ecological system. This chapter presents a famous agent-based model of racial segregation in housing. 
+This model is historically important, and also controversial. It was perhaps the first agent-based model ever used to study a research problem in social sicence, and it was written 
+by a researcher who went on to win the Nobel Prize in economics. However, the model is problematic and has been criticized because it is often interpreted in ways that minimize the role 
+of institutional racism in driving segregation (e.g., government policies that explicitly prohibited racially integrated housing across large parts of the entire United States). 
+This chapter presents the model and also discusses the challenges of using it effectively for science and the importance of considering the actual historical context of the social system
+being modeled. Specifically, this model does not account for the historical segregationist policies, so it's important not to assume that experiments using this model can tell us about
+real-world segregation in the U.S., but nonetheless, the model can help us identicy potentially important obstacles to remedying the segregated housing patterns that those policies produced.
