@@ -1,0 +1,50 @@
+/*Github Ribbon Test*/
+/* Source: https://github.com/dciccale/css3-github-ribbon */
+/* Define classes for example, definition, problem etc. */
+/* Choose meaningful colors for background and text */
+
+.example {
+  background-color: #121621;
+  top: 1.2em;
+  right: -3.2em;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-box-shadow: 0 0 0 1px #1d212e inset,0 0 2px 1px #fff inset,0 0 1em #888;
+  -moz-box-shadow: 0 0 0 1px #1d212e inset,0 0 2px 1px #fff inset,0 0 1em #888;
+  box-shadow: 0 0 0 1px #1d212e inset,0 0 2px 1px #fff inset,0 0 1em #888;
+  color: #FF0;
+  display: block;
+  padding: .6em 3.5em;
+  position: absolute;
+  font: bold .82em sans-serif;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 1px -1px 8px rgba(0,0,0,0.60);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.definition {
+  background-color: #a00;
+  top: 1.2em;
+  right: -3.2em;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-box-shadow: 0 0 0 1px #1d212e inset,0 0 2px 1px #fff inset,0 0 1em #888;
+  -moz-box-shadow: 0 0 0 1px #1d212e inset,0 0 2px 1px #fff inset,0 0 1em #888;
+  box-shadow: 0 0 0 1px #1d212e inset,0 0 2px 1px #fff inset,0 0 1em #888;
+  color: #FFF;
+  display: block;
+  padding: .6em 3.5em;
+  position: absolute;
+  font: bold .82em sans-serif;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 1px -1px 8px rgba(0,0,0,0.60);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlcyI6WyJyaWJib25zLmNzcyJdLCJzb3VyY2VzQ29udGVudCI6WyIvKkdpdGh1YiBSaWJib24gVGVzdCovXHJcbi8qIFNvdXJjZTogaHR0cHM6Ly9naXRodWIuY29tL2RjaWNjYWxlL2NzczMtZ2l0aHViLXJpYmJvbiAqL1xyXG4vKiBEZWZpbmUgY2xhc3NlcyBmb3IgZXhhbXBsZSwgZGVmaW5pdGlvbiwgcHJvYmxlbSBldGMuICovXHJcbi8qIENob29zZSBtZWFuaW5nZnVsIGNvbG9ycyBmb3IgYmFja2dyb3VuZCBhbmQgdGV4dCAqL1xyXG5cclxuLmV4YW1wbGUge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICMxMjE2MjE7XHJcbiAgdG9wOiAxLjJlbTtcclxuICByaWdodDogLTMuMmVtO1xyXG4gIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoNDVkZWcpO1xyXG4gIC1tb3otdHJhbnNmb3JtOiByb3RhdGUoNDVkZWcpO1xyXG4gIHRyYW5zZm9ybTogcm90YXRlKDQ1ZGVnKTtcclxuICAtd2Via2l0LWJveC1zaGFkb3c6IDAgMCAwIDFweCAjMWQyMTJlIGluc2V0LDAgMCAycHggMXB4ICNmZmYgaW5zZXQsMCAwIDFlbSAjODg4O1xyXG4gIC1tb3otYm94LXNoYWRvdzogMCAwIDAgMXB4ICMxZDIxMmUgaW5zZXQsMCAwIDJweCAxcHggI2ZmZiBpbnNldCwwIDAgMWVtICM4ODg7XHJcbiAgYm94LXNoYWRvdzogMCAwIDAgMXB4ICMxZDIxMmUgaW5zZXQsMCAwIDJweCAxcHggI2ZmZiBpbnNldCwwIDAgMWVtICM4ODg7XHJcbiAgY29sb3I6ICNGRjA7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgcGFkZGluZzogLjZlbSAzLjVlbTtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgZm9udDogYm9sZCAuODJlbSBzYW5zLXNlcmlmO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgdGV4dC1zaGFkb3c6IDFweCAtMXB4IDhweCByZ2JhKDAsMCwwLDAuNjApO1xyXG4gIC13ZWJraXQtdXNlci1zZWxlY3Q6IG5vbmU7XHJcbiAgLW1vei11c2VyLXNlbGVjdDogbm9uZTtcclxuICB1c2VyLXNlbGVjdDogbm9uZTtcclxufVxyXG5cclxuLmRlZmluaXRpb24ge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNhMDA7XHJcbiAgdG9wOiAxLjJlbTtcclxuICByaWdodDogLTMuMmVtO1xyXG4gIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoNDVkZWcpO1xyXG4gIC1tb3otdHJhbnNmb3JtOiByb3RhdGUoNDVkZWcpO1xyXG4gIHRyYW5zZm9ybTogcm90YXRlKDQ1ZGVnKTtcclxuICAtd2Via2l0LWJveC1zaGFkb3c6IDAgMCAwIDFweCAjMWQyMTJlIGluc2V0LDAgMCAycHggMXB4ICNmZmYgaW5zZXQsMCAwIDFlbSAjODg4O1xyXG4gIC1tb3otYm94LXNoYWRvdzogMCAwIDAgMXB4ICMxZDIxMmUgaW5zZXQsMCAwIDJweCAxcHggI2ZmZiBpbnNldCwwIDAgMWVtICM4ODg7XHJcbiAgYm94LXNoYWRvdzogMCAwIDAgMXB4ICMxZDIxMmUgaW5zZXQsMCAwIDJweCAxcHggI2ZmZiBpbnNldCwwIDAgMWVtICM4ODg7XHJcbiAgY29sb3I6ICNGRkY7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgcGFkZGluZzogLjZlbSAzLjVlbTtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgZm9udDogYm9sZCAuODJlbSBzYW5zLXNlcmlmO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgdGV4dC1zaGFkb3c6IDFweCAtMXB4IDhweCByZ2JhKDAsMCwwLDAuNjApO1xyXG4gIC13ZWJraXQtdXNlci1zZWxlY3Q6IG5vbmU7XHJcbiAgLW1vei11c2VyLXNlbGVjdDogbm9uZTtcclxuICB1c2VyLXNlbGVjdDogbm9uZTtcclxufSJdLCJmaWxlIjoicmliYm9ucy5jc3MifQ== */
