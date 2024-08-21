@@ -846,7 +846,7 @@ you should realize that it is subject to change during the semester.
 %
 %\end{document}
 
-%\cleardoublepage
+\cleardoublepage
 \clearpage
 \appendix
 \setcounter{secnumdepth}{0}
