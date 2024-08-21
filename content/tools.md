@@ -15,8 +15,8 @@ title: Tools
 ### Explore Published Models
 
 1. [The OpenABM Library](https://www.comses.net/codebases/)
-2. [{{<NETLOGO>}} User Community Models](https://ccl.northwestern.edu/netlogo/models/community/index.cgi)
-3. [{{<NETLOGO>}} Modeling Commons](http://modelingcommons.org/)
+2. [{{<NETLOGO>}} User Community Models](https://ccl.northwestern.edu/netlogo/models/community/)
+3. [{{<NETLOGO>}} Modeling Commons](https://modelingcommons.org/)
 
 ## Analyze Behaviorspace Tool
 
@@ -49,5 +49,6 @@ familiar with {{<RSTATS>}} may find that it is a powerful tool for analyzing
    and papers.
 4. [R for Data Science](https://r4ds.had.co.nz/): A free open-source book on
    using {{<RSTATS>}} for data science.
-5. [RNetLogo](http://rnetlogo.r-forge.r-project.org/): An {{<RSTATS>}} 
-   package for running {{<NETLOGO>}} models from within {{<RSTATS>}}.
+5. {{<NETLOGO>}} comes with interfaces to both {{<RSTATS>}} and Python that lets 
+   you run {{<RSTATS>}} and Python code from {{<NETLOGO>}}, and run 
+   {{<NETLOGO>}} code from {{<RSTATS>}} and Python.

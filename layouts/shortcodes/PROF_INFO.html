@@ -1,8 +1,13 @@
 {{ if isset .Site.Params.prof "url" -}}
-<a href="{{ .Site.Params.prof.url }}", target="_blank">{{ .Site.Params.prof.name | markdownify }}</a>
-{{- else -}}
+<a href="{{ .Site.Params.prof.url }}", target="_blank">
+{{- end -}}
 {{ .Site.Params.prof.name | markdownify }}
-{{- end }}<br/>
+{{ if isset .Site.Params.prof "url" -}}
+</a>
+{{- end -}}
+{{ if isset .Site.Params.prof "pronouns" }} (
+{{- .Site.Params.prof.pronouns | markdownify -}}
+) {{ end }}<br/>
 Office: {{ .Site.Params.prof.office | markdownify }}<br/>
 Email: <a href="mailto:{{.Site.Params.prof.email}}?subject=EES 3310">{{.Site.Params.prof.email}}</a><br/>
 Office Hours: {{ .Site.Params.prof.officeHours | markdownify }}

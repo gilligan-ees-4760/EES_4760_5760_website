@@ -1,5 +1,5 @@
 ;--------------------------------------------------------------------------------------
-; This program was developed using NetLogo 3.1.4 (http://ccl.northwestern.edu/netlogo)
+; This program was developed using NetLogo 3.1.4 (https://ccl.northwestern.edu/netlogo)
 ; by Roger Jovani and Volker Grimm in Leipzig (Germany) and Sevilla (Spain), 2007
 ;
 ; It implements the model described in:
@@ -349,7 +349,7 @@ Map (aerial view) of the colony. Each small square is a female. Darker greens sh
 @#$#@#$#@
 # Breeding Synchrony Model
 
-This program was developed using NetLogo 3.1.4 (http://ccl.northwestern.edu/netlogo)
+This program was developed using NetLogo 3.1.4 (https://ccl.northwestern.edu/netlogo)
 by Roger Jovani and Volker Grimm in Leipzig (Germany) and Sevilla (Spain), 2007
  
 It implements the model described in: 

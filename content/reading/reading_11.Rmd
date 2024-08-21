@@ -19,7 +19,7 @@ pdf_url: /files/reading_asgts/reading_11.pdf
 
 ### Reading Notes:
 
-In addition to the assigned reading from the textbook, read the ODD for your team project before you come to class. The ODDs are posted on Brightspace and [the class web site](https://ees4760.jgilligan.org/projects/).
+In addition to the assigned reading from the textbook, read the ODD for your team project before you come to class. The ODDs are posted on Brightspace and [the class web site](/projects/).
 
 For some of the class period, you and your team will start translating the ODD for your project model into NetLogo code.
 

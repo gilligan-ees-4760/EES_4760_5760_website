@@ -46,7 +46,7 @@ if (knitr::is_latex_output()) {
   which it is assigned. If you have questions or find the ideas presented in 
   the readings confusing, I encourage you to ask questions in class.
 * Check the list of errata at 
-  <http://www.railsback-grimm-abm-book.com/downloads-errata-2nd-edition/>.
+  <https://www.railsback-grimm-abm-book.com/downloads-errata-2nd-edition/>.
 * Questions in the ``Reading Notes'' sections of the assignments are for you 
   to think about to make sure you understand the material, but you do not have 
   to write up your answers or turn them in.

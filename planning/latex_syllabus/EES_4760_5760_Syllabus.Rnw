@@ -518,19 +518,16 @@ format_class_entry <- function(class_no) {
 \ClassMeetings
 \subsection{Professor}
 \label{sec:Professor}
-\ProfName\\
+\ProfName\ (\ProfPronouns)\\
 \ProfDescr\\
 \ProfOffice\\
 \ProfEmail\\
 \ProfOfficeHours
 %
-%To book time during my office hours, send me an email
-%or make an appointment on line via Google calendar at
-%\url{http://bit.ly/o9ka5e}
 \ifTA
 \subsection{Teaching Assistant}
 \label{sec:TA}
-\TaName\\
+\TaName\ (\TaPronouns)\\
 \TaOfficeLoc\ifTaPhone , \TaPhone\fi\\
 \TaEmail\\
 \TaOfficeHours
@@ -669,15 +666,21 @@ Internet or in handouts that I will post to the class web site.
       has additional useful information.
 
       All textbooks have errors. The authors maintain a list of errors that have
-      been reported to them and you can download it from the book's web site at
-      \RailsbackURL\ or from the course web site at
-      \url{https://ees4760.jgilligan.org/files/Railsback_Grimm_2012_Errata.pdf}.
+      been reported to them and you can read it on the book's web site at
+      \url{https://www.railsback-grimm-abm-book.com/downloads-errata-2nd-edition/}.
+      As of the start of the semester, only two small errors have been reported.
     \end{itemize}
 
   \item \textbf{Recommended (optional):}
     \begin{itemize}
 	  %
 	    \item \LongSmaldino.
+
+	    This book is optional. Nothing we will do this semester requires this book.
+	    It is especially recommended for graduate students and students who are
+	    interested in applying agent-based modeling to social science and social
+	    systems. The book may be especially useful for finding interesting models
+	    to work with for your semester research project.
     \end{itemize}
 \end{itemize}
 
@@ -712,7 +715,7 @@ operating systems, its programming language is very easy to learn; and it allows
 you to easily create a visual representation of your model.
 
 You should download \NetLogo\ version 6.4.0 (the latest version) from
-\url{http://ccl.northwestern.edu/netlogo/download.shtml}
+\url{https://ccl.northwestern.edu/netlogo/download.shtml}
 and install it on your computer.
 
 \NetLogo\ has been used widely both for education and also for research-grade

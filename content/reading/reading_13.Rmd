@@ -26,8 +26,8 @@ For the teams working on the telemarketer model, the steps are:
 1. Build the model as described in the ODD.
 1. Do the analyses in section 13.3.2
 1. Next work on two extensions:
-      1. Mergers (section 13.5)
-      1. Customers remember (section 13.6)
+   1. Mergers (section 13.5)
+   1. Customers remember (section 13.6)
 
 Before class on Thursday, everyone should read Chapter 13 and the ODD for the telemarketer model and be ready to discuss the model in class.
 This will be a chance for the teams working on the model to ask questions.

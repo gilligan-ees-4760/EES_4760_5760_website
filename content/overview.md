@@ -126,7 +126,7 @@ Internet or in handouts that I will post to the class web site.
   * {{% LONG_RAILSBACK %}}
 
     There is a companion web site to the book,
-    <http://railsback-grimm-abm-book.com/>
+    <https://railsback-grimm-abm-book.com/>
     where you can find errata in the textbook and download supporting data files 
     and {{% NETLOGO %}} models for some of the exercises.
 
@@ -144,7 +144,7 @@ tools that you may find useful or interesting if your want to learn more.
 
 ## Class Web Site
 
-In addition to the Blackboard web site, I have set up a server at 
+In addition to Brightspace, I have set up a server at 
 <https://ees4760.jgilligan.org>, 
 where I post the web versions of class slides and interactive web-based 
 applications to that can be useful for working with data output from agent-based 

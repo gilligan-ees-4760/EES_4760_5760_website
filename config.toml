@@ -74,7 +74,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
 [author]
   name = "Jonathan Gilligan"
   bio = ""
-  job = "Associate Professor"
+  job = "Professor"
   location = "Vanderbilt University"
   gravatarEmail = "jonathan.gilligan@gmail.com"
   # Your profile picture
@@ -159,11 +159,12 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
   [params.prof]
     name = "Jonathan Gilligan"
     lastname = "Gilligan"
+    pronouns = "they/them/theirs"
     title = "Prof."
     email = "jonathan.gilligan@vanderbilt.edu"
     url = "https://www.jonathangilligan.org"
     office = "SC 5735"
-    officeHours = "TBA, or by appointment"
+    officeHours = "M 10:00--11:00, T 11:00--12:00, or by appointment"
 
   [params.ta]
     hasTA = false

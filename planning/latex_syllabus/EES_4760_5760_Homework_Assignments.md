@@ -120,7 +120,7 @@ The most up-to-date versions of the homework assignments will be posted on the
 
 
 
-* Download NetLogo version 6.2.0 from <https://ccl.northwestern.edu/netlogo/> and install it on your computer.
+* Download NetLogo version 6.4.0 from <https://ccl.northwestern.edu/netlogo/> and install it on your computer.
 
 
 
