@@ -29,5 +29,5 @@ For the teams working on the telemarketer model, the steps are:
    1. Mergers (section 13.5)
    1. Customers remember (section 13.6)
 
-Before class on Thursday, everyone should read Chapter 13 and the ODD for the telemarketer model and be ready to discuss the model in class.
+Before class, everyone should read Chapter 13 and the ODD for the telemarketer model and be ready to discuss the model in class.
 This will be a chance for the teams working on the model to ask questions.

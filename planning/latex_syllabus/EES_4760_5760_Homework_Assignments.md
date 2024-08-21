@@ -146,7 +146,7 @@ The most up-to-date versions of the homework assignments will be posted on the
 
 I recommend getting together with a classmate and working together on this assignment. Since the assignment consists of typing code in and running it, do not worry about your work being identical to your partner's. However, I strongly recommend that you type everything in yourself because you will not learn if you just copy someone else's code or download the code from a source on the web.
 
-If you run into trouble and cannot make your model work, do not worry. Ask a classmate for help, or email me (and attach your `.nlogo` model file), or simply come to class on Tuesday with questions about the problems you had getting your model to work.
+If you run into trouble and cannot make your model work, do not worry. Ask a classmate for help, or email me (and attach your `.nlogo` model file), or simply come to class with questions about the problems you had getting your model to work.
 
 
 

@@ -63,7 +63,7 @@ the PDF assignments had assigned all of the teams to do the same exercises:
 <!--
 ### Presentation Schedule
 
-| Tuesday Dec. 7      | Thursday Dec. 9     |
+| Monday Dec. 2       | Wednesday Dec. 4    |
 |:-------------------:|:-------------------:|
 | Maddie Allen        | Allister Barnes     |
 | Mostafa Farhadan    | Zachary Bloom       |

@@ -1,0 +1,201 @@
+\documentclass{jghandout}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,breaklines=true}
+
+\LoadCourseInfo
+\iffalse
+\include{CourseInfo}
+\fi
+
+\DueDate{}
+\LongDueDate{Proposal due Sept.~23.\\
+    Model analysis due Oct.~7.\\
+    ODD for extending the model due Oct.~25.\\
+    Draft model code due Nov.~8.\\
+    Presentations Dec.~2--4.\\
+    Written Report due Dec.~6}
+
+\SetTitle{Undergraduate Student Research Project}
+
+\setcounter{secnumdepth}{0}
+
+\SetupHandout{}
+
+\date{\longduedate}
+\fancyhead[R]{}
+\fancyhead[L]{}
+\fancyhead[C]{\ShortTitle}
+
+
+\begin{document}
+    \maketitle
+
+\noindent
+You will choose a research area, find an existing agent-based model relevant to
+that area, study the model, develop a new research question and modify the model
+to address it, and perform and analyze experiments with your modified model.
+
+The project is broken into the following steps:
+\begin{description}
+  \item[Project Proposal:] \textbf{By the end of the day Monday, Sept.~23, turn
+   in a one-to-two page (double-spaced) proposal describing the topic you want
+   to work on and identifying a published open-source model you want to work
+   with and how you think you might want to extend it.}
+
+    You should consult the textbook, the Model Library in NetLogo, the reading
+    and computational tools resource I handed out on the first day of class
+    (also on Brightspace), and the repositories of models listed in that
+    handout.
+
+    The supplementary textbook, \emph{Modeling Social Behavior}, by
+    Paul Smaldino, also includes a number of interesting models that you could
+    adapt for research projects.
+
+    \item[Model Analysis:] Study the ODD and the code of the model (if the model
+     does not have a published ODD, try to write your own to describe what it
+     does). Play with the model and run some BehaviorSpace experiments to examine
+     its output.
+    \textbf{By the end of the day Oct.~7 (before midnight), turn in a 3--5 page
+     (double-spaced) write-up about the model}:
+    \begin{itemize}
+      \item Describe the purpose of the model, the important features about its
+       design and structure.
+      \item Discuss whether there are weaknesses in the model design and whether
+       you might have represented the system differently if you were writing a
+       model from scratch.
+      \item Present the output from the model (Behaviorspace or interactively
+      playing with it) and discuss what you learn about the system from that.
+      \item Discuss something that you don't learn from the  model that you
+      would like to study by extending the model.
+    \end{itemize}
+    \item[Extending the Model:] By Oct.~25, turn in an ODD for extending the model
+    to ask new questions and begin to edit the model to implement your new ODD.
+
+    \textbf{By the end of the day Fri.\ Nov. 8, turn in a draft model that
+    runs, together with a description of what you are satisfied with and what
+    problems you are still struggling with.}
+    It is not necessary that the model be perfect. This due date is to get you
+    to check in with me so I can give you feedback on how things are going and
+    make suggestions.
+
+    \item[Running Model Experiments:] Once your model is running and passes your
+    tests, you should use it to explore the research questions in your proposal.
+    You should think about the topics we read about in sections III and IV
+    (``Pattern-Oriented Modeling'' and ``Model Analysis'') in
+    \emph{\MedRailsback}.
+
+    \item[Analyzing and Interpreting Results:] What do you learn from your
+    model? Graphing output or performing statistical analysis with Excel or
+    other tools, consider what you learned. Pay special attention to patterns
+    and emergence. Did the interesting phenomena you observed only occur for
+    specific values of parameters, or did they occur for broad ranges of those
+    parameters?
+    \item[Presentation and Report:] You will make a ten-minute presentation
+    (seven minutes of talking and three minutes for questions) about your
+    model. There will not be time to go into details, so focus on the big
+    question you were addressing, a short description of the approach you
+    took to writing a model to address that question, and what you learned
+    from running the model.
+
+    By the end of the day Friday December 6, turn in a written report about
+    your research project. Your report should follow the model of a research
+    Report in \emph{Science\/} magazine:
+    \begin{description}
+        \item[Title:] Maximum of 90 characters
+        \item[Author:] Your full name. If this is a team project, the full
+        names of all the authors.
+        \item[Abstract] A one-paragraph abstract that explains to a general
+        reader why you did this project and why the results were important.
+        \item[Text] Up to 2000 words (around eight pages, double-spaced), not
+        including the abstract, references, notes, or captions. Up to four
+        figures or tables.
+      \item[Contributions:] If there is more than one author, there should be
+        a short section at the end of the paper, just before the references,
+        which clearly states the contributions each author made. If all
+        authors contributed equally, you may say so. If the work was divided,
+       a statement such as the following should explain each author's
+       contributions:
+       \begin{quote}
+         \textbf{Author contributions:} Both authors designed the research
+         together.
+         E.K.B. wrote the ODD, and programmed the model.
+         J.J.N. ran the model experiments, conducted the statistical analysis
+         of the results, and prepared the figures.
+         Both authors discussed the results and wrote the manuscript together.
+       \end{quote}
+        \item[References:] Citations
+        should use an author-date style, and
+        references can be in any standard bibliographic format.
+        \item[Supplementary Materials] The detailed description of your model
+        (ODD and \NetLogo\ code) should not be part of the paper. You should
+        submit these as a separate file or group of files called ``Supplementary
+        Materials.'' (The ODD can be either a separate document or you can put it
+        in the ``Info'' tab of your model).
+        \setlength{\parindent}{1em}
+
+        Your supplementary materials can also include additional figures, tables,
+        or text that will not fit in the paper.
+
+        The main text (the paper) should stand alone in describing the
+        problem, the general approach you took with your model, what you
+        found, and why it's significant.
+
+        The supplementary materials should include any details that someone would
+        need in order to test and reproduce your results, but which are not
+        crucial for a non-expert to understand the big picture. The supplementary
+        materials should also include your model, any data files you used as
+        input for running your model, and any computer code or spreadsheets
+        you used to analyze your model output. Supplementary materials can also
+        include additional text describing details that did not fit in the
+        main paper.
+    \end{description}
+
+    \sloppy
+    \begin{itemize}
+      \item The main paper should be in a Word or PDF document with the filename
+        \lstinline|<lastname>_<firstname>_final_paper.docx| or
+        \lstinline|<lastname>_<firstname>_final_paper.pdf| (with your own name in
+        place of \lstinline|<lastname>| and \lstinline|<firstname>|).
+      \item Make a ZIP file called \lstinline|supporting_material.zip|,
+        containing your supporting materials (ODD, \NetLogo\ model, etc.) and upload
+        your paper along with the supporting materials to Brightspace.
+
+        There are many free software apps for creating and working with ZIP files,
+        including 7Zip on Windows and Keka on MacOS.
+    \end{itemize}
+\end{description}
+\end{document}
+
+\section{Example Topics}
+Some possible topics include:
+\begin{itemize}
+    \item Does adding lanes to a freeway relieve traffic congestion?
+    \item How would electric vehicles affect the stability of the electricity
+     grid.
+    \item What kinds of community interactions lead to sustainable vs.\
+     unsustainable management of shared resources (water supply, fishing grounds,
+     pasture, etc.)?
+    \item How do different kinds of insurance and disaster relief policies affect
+    vulnerability to natural hazards.
+    \item How does habitat segmentation affect biodiversity and wildlife
+    conservation.
+    \item How does pesticide use affect the vulnerability of forests to insect
+    infestations?
+    \item How does ``monoculture'' agriculture affect the vulnerability of crops
+    to pests?
+    \item Can social networks play an important role in promoting household energy
+    or water conservation?
+    \item How do individual decisions not to vaccinate children against infectious
+    diseases affect risks of epidemics?
+    \item What conditions are necessary for economic markets to operate
+    efficiently?
+    \item Could charging micropayments for sending email solve the problem of
+    SPAM?
+    \item How do economic markets, peer pressure, and government regulation
+    compare as strategies for managing pollution.
+    \item Managing congestion in computer networks.
+    \item Identifying optimal strategies in game theory (advanced topic)
+\end{itemize}
+
+\end{document}
+
