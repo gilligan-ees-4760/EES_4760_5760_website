@@ -1,36 +1,29 @@
 lessons:
 - date: '2024-08-21'
   title: Introduction
-  lecture: /slides/class_01
 - date: '2024-08-26'
   title: The computer modeling cycle
   reading: /reading/reading_02
   assignment: homework_01
-  lecture: /slides/class_02
 - date: '2024-08-28'
   title: Introduction to NetLogo
   reading: /reading/reading_03
   assignment: homework_02
-  lecture: /slides/class_03
 - date: '2024-09-02'
   title: 'Specifying models: The ODD protocol'
   reading: /reading/reading_04
   assignment: homework_03
-  lecture: /slides/class_04
 - date: '2024-09-04'
   title: Your first model
   reading: /reading/reading_05
   assignment: homework_04
-  lecture: /slides/class_05
 - date: '2024-09-09'
   title: Using models for science
   reading: /reading/reading_06
-  lecture: /slides/class_06
 - date: '2024-09-11'
   title: Testing and validating models
   reading: /reading/reading_07
   assignment: homework_05
-  lecture: /slides/class_07
 - date: '2024-09-16'
   title: Choosing Research Projects
   reading: /reading/reading_08
@@ -38,33 +31,27 @@ lessons:
   title: Emergence
   reading: /reading/reading_09
   assignment: homework_06
-  lecture: /slides/class_09
 - date: '2024-09-23'
   title: Observation
   reading: /reading/reading_10
   assignment: project_proposal
-  lecture: /slides/class_10
 - date: '2024-09-25'
   title: Sensing
   reading: /reading/reading_11
-  lecture: /slides/class_11
 - date: '2024-09-27'
   assignment: homework_08
 - date: '2024-09-30'
   title: Adaptive Behavior and Objectives
   reading: /reading/reading_12
   assignment: homework_09
-  lecture: /slides/class_12
 - date: '2024-10-02'
   title: Prediction
   reading: /reading/reading_13
   assignment: homework_10
-  lecture: /slides/class_13
 - date: '2024-10-07'
   title: Interaction
   reading: /reading/reading_14
   assignment: project_analysis
-  lecture: /slides/class_14
 - date: '2024-10-09'
   title: Team Presentations
 - date: '2024-10-14'
@@ -75,49 +62,39 @@ lessons:
   title: Scheduling
   reading: /reading/reading_17
   assignment: team_project_presentation
-  lecture: /slides/class_17
 - date: '2024-10-23'
   title: Stochasticity
   reading: /reading/reading_18
-  lecture: /slides/class_18
 - date: '2024-10-25'
   assignment: team_project_report
 - date: '2024-10-28'
   title: Collectives
   reading: /reading/reading_19
-  lecture: /slides/class_19
 - date: '2024-10-30'
   title: Patterns
   reading: /reading/reading_20
-  lecture: /slides/class_20
 - date: '2024-11-01'
   assignment: project_odd
 - date: '2024-11-04'
   title: Theory Development
   reading: /reading/reading_21
-  lecture: /slides/class_21
 - date: '2024-11-06'
   title: Parameterization and Calibration
   reading: /reading/reading_22
-  lecture: /slides/class_22
 - date: '2024-11-08'
   assignment: project_draft_code
 - date: '2024-11-11'
   title: Parameterization and Calibration 2
   reading: /reading/reading_23
-  lecture: /slides/class_23
 - date: '2024-11-13'
   title: Analyzing ABMs
   reading: /reading/reading_24
-  lecture: /slides/class_24
 - date: '2024-11-18'
   title: Sensitivity and Robustness
   reading: /reading/reading_25
-  lecture: /slides/class_25
 - date: '2024-11-20'
   title: 'Looking Ahead: ABMs Beyond this Course'
   reading: /reading/reading_26
-  lecture: /slides/class_26
 - date: '2024-11-25'
   title: Thanksgiving Break
 - date: '2024-11-27'

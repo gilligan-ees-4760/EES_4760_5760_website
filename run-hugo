@@ -1,2 +1,2 @@
 #! /bin/bash
-hugo --destination public --forceSyncStatic --cleanDestinationDir --ignoreCache --watch server --renderToDisk --disableFastRender --port 8000
+hugo --destination public --forceSyncStatic --cleanDestinationDir --ignoreCache --watch server --renderStaticToDisk --disableFastRender --port 8000

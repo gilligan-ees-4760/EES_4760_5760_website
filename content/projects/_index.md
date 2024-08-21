@@ -6,8 +6,8 @@ date: "2017-04-13T00:00:00"
 
 ## Team Projects
 
-Your team will make a presentation about your project on Tuesday, Oct. 19. 
-Your write-up will be due on to Brighspace by 11:59 pm on Friday, Oct. 22.
+Your team will make a presentation about your project on Wednesday, Oct. 9. 
+Your write-up will be due on to Brighspace by 11:59 pm on Friday, Oct. 18.
 
 * [Project assignment](/assignment/TeamProjectAssignment.pdf)
 
@@ -31,23 +31,8 @@ the PDF assignments had assigned all of the teams to do the same exercises:
   * The Business Investor teams were assigned exercises 10.3 and 10.4 
   * The Telemarketer teams were assigned exercises 13.2, 13.6, and 13.8
   
-I forgot to update this assignment table when I assigned the teams on 
-Brightspace and assigned different exercises there. 
 
-On October 12, I updated this web site to match the table on Brightspace, but 
-if you already started working on the original exercises, you may stick with 
-the original for full credit. 
-I don't want you to suffer for my mistake in not keeping the assignments on 
-this web site synchronized with the assignments on Brightspace.
-
-But if you have not already started on the exercises, I would recommend doing
-the ones assigned here. Especially if you are working on the telemarketer
-model, I have mixed the exercises up so that each team will do a different set
-of exercises, so the presentations will be more diverse.
-
-Regardless, you will get full credit whether your team does the updated 
-assignment given here or the original assignment.
-
+<!--
 | Team # |       Project      |                     Members                 |      Exercises     |
 |-------:|:------------------:|:-------------------------------------------:|:------------------:|
 |   1    |  Business Investor |   Allister Barnes, Davis Kornblum           |   10.3, 10.4, 11.2 |
@@ -60,21 +45,22 @@ assignment given here or the original assignment.
 |   8    |  Telemarketer      |   Natalie Elliott, Ben Gode, Robin Young    |   13.2, 13.4, 13.5 |
 |   9    |  Telemarketer      |   Tanya Iyer, Tatiana Singleton             |   13.2, 13.6, 13.8 |
 |  10    |  Telemarketer      | Joshua McDuffie, Miguel Moravec, Mostafa Farhadian  | 13.2, 13.5, 13.7 |
+--> 
 
 ## Individual Projects
 
 [Project assignment](/assignment/ResearchProjectAssignment.pdf)
 
-* Proposals due Tues. Sept. 28. Post to your course Box folder by the end of 
+* Proposals due Mon. Sept. 23. Post to your course Box folder by the end of 
   the day (i.e., by 11:59 pm).
-* Model analysis due Tues. Oct. 12.
-* We will discuss your project ODD in class on Thurs. Oct. 21
-* ODD for extending model due Fri. Oct. 29.
-* Draft model code due Fri. Nov. 12
-* Presentations Dec. 7--9.
-* Written report due Dec. 10.
+* Model analysis due Mon. Oct. 7.
+* We will discuss your project ODD in class on Wed. Oct. 16
+* ODD for extending model due Fri. Oct. 25.
+* Draft model code due Fri. Nov. 8
+* Presentations Dec. 2--4.
+* Written report due Dec. 6.
 
-
+<!--
 ### Presentation Schedule
 
 | Tuesday Dec. 7      | Thursday Dec. 9     |
@@ -90,5 +76,5 @@ assignment given here or the original assignment.
 | Tatiyanna Singleton | Yasmeen Minniefield |
 | 'Ana Stringer       | Miguel Moravec      |
 | Robin Young         | Precious Ukachukwu  |
-
+-->
 

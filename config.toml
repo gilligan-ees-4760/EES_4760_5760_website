@@ -5,11 +5,15 @@ title = "EES 4760/5760"
 theme = "hugo-syllabus"
 # disqusShortname = ""
 enableRobotsTXT = true
-# googleAnalytics = "UA-101117636-4"
 paginate = 10
 relativeurls = true
 publishDir = "public"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_data$", "\\.gitkeep"]
+
+# [Config]
+#   [Services]
+#     [GoogleAnalytics]
+#       ID = "UA-101117636-4"
 
 [markup]
   defaultMarkdownHandler = "goldmark"
@@ -70,17 +74,6 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
   tag = "tags"
   category = "categories"
   archive = "archives"
-
-[author]
-  name = "Jonathan Gilligan"
-  bio = ""
-  job = "Professor"
-  location = "Vanderbilt University"
-  gravatarEmail = "jonathan.gilligan@gmail.com"
-  # Your profile picture
-#  picture = ""
-  homepage = "https://www.jonathangilligan.org"
-  twitter = "jg_environ"
 
 # Menu Configuration
 [[menu.main]]
@@ -147,6 +140,17 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
   semester = "Fall 2024"
   courseCatalogEntry = " Applications in natural, social, and behavioral sciences and engineering. Designing, programming, and documenting models. Using models for experiments. Examples from environmental science, ecology, economics, urban planning, and medicine. Familiarity with basic statistics and proficiency in algebra are expected. [3] (MNS)"
   siteGitHub = "https://github.com/gilligan-ees-4760/EES_4760_5760_website.git"
+
+  [params.author]
+  name = "Jonathan Gilligan"
+  bio = ""
+  job = "Professor"
+  location = "Vanderbilt University"
+  gravatarEmail = "jonathan.gilligan@gmail.com"
+  # Your profile picture
+  #  picture = ""
+  homepage = "https://www.jonathangilligan.org"
+  twitter = "jg_environ"
 
   [params.fontAwesomePro]
     key = "sha384-POYwD7xcktv3gUeZO5s/9nUbRJG/WOmV6jfEGikMJu77LGYO8Rfs2X7URG822aum"
