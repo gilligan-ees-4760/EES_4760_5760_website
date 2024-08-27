@@ -1273,6 +1273,24 @@ font-weight: bold;
   padding-bottom: 3em;
 }
 
+.reveal .lh-1 div,
+.reveal .lh-1 p,
+.reveal .lh-1 li,
+.reveal .lh-1 ul,
+.reveal .lh-1 ol,
+.reveal .lh-1 blockquote {
+  line-height: 1;
+}
+
+.reveal .lh-p8 div,
+.reveal .lh-p8 p,
+.reveal .lh-p8 li,
+.reveal .lh-p8 ul,
+.reveal .lh-p8 ol,
+.reveal .lh-p8 blockquote {
+  line-height: 0.8;
+}
+
 .reveal .bare div > p,
 .reveal .bare div > img,
 .reveal .bare div > p,
