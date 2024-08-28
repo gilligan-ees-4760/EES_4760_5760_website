@@ -129,18 +129,41 @@ end</code></pre>
 </tr>
 </tbody></table></section><section id="objects" class="slide level2 seventy"><h2 class="seventy">Objects (Nouns)</h2>
 <p>Categories of objects:</p>
-<p>::: {.lh-1} 1. Turtles * Turtles are any kind of agent * Turtles can
-move around * Turtles have properties (<code>turtles-own</code>)
-<code>turtles-own [ age height hunger ]</code> * Your model can have
-more than one “breed” of turtle (e.g., wolves and sheep)
-<code>breed [wolves wolf]      breed [sheeps sheep] ; names must be distinct</code>
-1. Patches * Patches represent the environment in which turtles live *
-Patches are always square and stationary * Like turtles, patches can
-have properties <code>patches-own</code>
-<code>patches-own [ elevation fertility ]</code> 1. {+} Links: Connect
-pairs of turtles 1. {+} Agentsets: groups of agents (turtles, patches,
-links) 1. {+} The Observer: The global context in which the other
-objects exist.</p>
+<div class="lh-1">
+<ol type="1">
+<li>Turtles
+<ul>
+<li><p>Turtles are any kind of agent</p></li>
+<li><p>Turtles can move around</p></li>
+<li>
+<p>Turtles have properties (<code>turtles-own</code>)</p>
+<pre><code>turtles-own [ age height hunger ]</code></pre>
+</li>
+<li>
+<p>Your model can have more than one “breed” of turtle (e.g., wolves
+and sheep)</p>
+<pre><code>breed [wolves wolf]
+breed [sheeps sheep] ; names must be distinct</code></pre>
+</li>
+</ul>
+</li>
+<li>Patches
+<ul>
+<li><p>Patches represent the environment in which turtles live</p></li>
+<li><p>Patches are always square and stationary</p></li>
+<li>
+<p>Like turtles, patches can have properties
+<code>patches-own</code></p>
+<pre><code>patches-own [ elevation fertility ]</code></pre>
+</li>
+</ul>
+</li>
+<li class="fragment">Links: Connect pairs of turtles</li>
+<li class="fragment">Agentsets: groups of agents (turtles, patches, links)</li>
+<li class="fragment">The Observer: The global context in which the other objects
+exist.</li>
+</ol>
+</div>
 </section><section id="why-turtles" class="slide level2"><h2>Why “Turtles”?</h2>
 <div class="columns">
 <div class="column">
@@ -544,7 +567,7 @@ end</code></pre>
 neighboring patch with the most sugar.</p>
 <div class="eightyfive">
 <ul>
-<li class="fragment">In the context of a turtle:
+<li class="fragment">We run <code>move</code> in the context of a turtle:
 <ul>
 <li>For each neighbor of the patch the turtle is on, look up
 <code>sugar</code> in the context of that neighbor
