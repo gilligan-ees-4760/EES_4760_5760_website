@@ -558,7 +558,7 @@ another turtle,</p>
 <li><p>Use the dictionary to look up correct syntax.</p></li>
 </ul></section><section id="to-move" class="slide level2"><h2>Add Movement to Our Model</h2>
 <pre><code>to move
-  if hunger &gt; sugar 
+  if sugar &lt;= 0 or any? turtles-here 
     [
       move-to max-one-of neighbors [ sugar ]
     ]
@@ -664,7 +664,7 @@ set hypotenuse sqrt(a ^ 2 + b ^ 2)</code></pre>
 end
 
 to move
-  if hunger &gt; sugar or any? turtles-here 
+  if sugar &lt;= 0 or any? turtles-here 
   [
     ; Use let to create a new variable "dest"
     let dest max-one-of neighbors [ sugar ]
@@ -734,16 +734,19 @@ as though they were <code>turtles-own</code>
 <code>update-pcolor</code> and <code>update-color</code></p>
 <div class="stretch">
 <pre><code>to update-pcolor
+  ; black for 0, bright yellow for max-sugar
   set pcolor scale-color yellow sugar 0 (2 * max-sugar) 
 end
 
 to update-color
   ifelse hunger &gt; 5
   [
+    ; white for 5 to bright red for 10
     set color scale-color red hunger 15 5
   ]
   [
-    set color scale-color green hunger 5 -5
+    ; bright green for 0, white for 5
+    set color scale-color green hunger -5 5
   ]
 end</code></pre>
 </div>

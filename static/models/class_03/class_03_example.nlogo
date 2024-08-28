@@ -51,7 +51,7 @@ to update-color
     set color scale-color red hunger 15 5
   ]
   [
-    set color scale-color green hunger 5 -5
+    set color scale-color green hunger -5 5
   ]
 end
 
@@ -68,7 +68,7 @@ to eat
 end
 
 to move
-  if hunger > sugar or any? turtles-here
+  if sugar <= 0 or any? turtles-here
   [
     let dest max-one-of neighbors [ sugar ]
     move-to dest
@@ -137,10 +137,10 @@ NIL
 1
 
 BUTTON
-32
-127
-95
-160
+35
+129
+98
+162
 step
 go
 NIL
@@ -528,7 +528,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
