@@ -4,7 +4,7 @@ weight: 19
 date: "2019-10-29"
 due_date: "2021-11-02"
 pubdate: "2019-08-22"
-descr: "Models of wild dogs for collectives (Nov. 2)"
+descr: "Models of wild dogs for collectives (Oct. 28)"
 output: html_document
 ---
 # Wild-dog models for in-class exercises on collectives

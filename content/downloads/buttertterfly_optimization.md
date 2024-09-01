@@ -4,7 +4,7 @@ weight: 7.5
 date: "2019-09-12"
 due_date: "2021-09-16"
 pubdate: "2019-09-13"
-descr: "Culture Dissemination Model with Errors (Sept. 16)"
+descr: "Culture Dissemination Model with Errors (Sept. 11)"
 output: html_document
 ---
 # Updated Butterfly Model

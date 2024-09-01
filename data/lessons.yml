@@ -16,6 +16,7 @@ lessons:
   title: 'Specifying models: The ODD protocol'
   reading: /reading/reading_04
   assignment: homework_03
+  lecture: /slides/class_04
 - date: '2024-09-04'
   title: Your first model
   reading: /reading/reading_05

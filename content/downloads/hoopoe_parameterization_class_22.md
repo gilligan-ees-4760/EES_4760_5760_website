@@ -4,7 +4,7 @@ weight: 22
 date: "2019-11-07"
 due_date: "2021-11-11"
 pubdate: "2019-08-22"
-descr: "Model of Wood Hoopoe breeding for calibration (Nov. 11)"
+descr: "Model of Wood Hoopoe breeding for calibration (Nov. 6)"
 output: html_document
 ---
 # Wood Hoopoe breeding models for in-class exercises on parameterization and calibration

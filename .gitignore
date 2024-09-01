@@ -54,3 +54,5 @@ Corel Auto-Preserve/
 # NetLogo temporary files
 #
 *.tmp.nlogo
+/static/video/
+/static/static/

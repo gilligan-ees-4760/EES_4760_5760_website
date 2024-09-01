@@ -4,7 +4,7 @@ weight: 13
 date: "2019-10-17"
 due_date: "2021-10-26"
 pubdate: "2019-08-22"
-descr: "Models for scheduling (Oct. 26)"
+descr: "Models for scheduling (Oct. 21)"
 output: html_document
 ---
 # Models for in-class exercises on scheduling
