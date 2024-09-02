@@ -200,6 +200,7 @@ $codeBackgroundColor: #C0C0C0;
   margin-left: 1em;
 }
 
+.reveal .leftslide li + p,
 .reveal .leftslide table {
   margin-left: 0;
 }
@@ -329,8 +330,6 @@ font-weight: bold;
   margin-top: -20px;
   margin-bottom: 50px;
 }
-
-
 
 .reveal .slides>section,
 .reveal .slidex>section>section {
