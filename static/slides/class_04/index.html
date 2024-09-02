@@ -187,17 +187,20 @@ costs, rainfall, market price, …</em>
 <ul>
 <li class="fragment">You only need state-variables if they vary
 <ul>
-<li>entities vary, values change over time, etc.</li>
+<li>values are different for different entities, change over time,
+etc.</li>
 </ul>
 </li>
-<li class="fragment">Use the minimum number you need</li>
+<li class="fragment">Use the fewest attributes you need</li>
 </ul>
 </li>
 <li class="fragment">What are the temporal and spatial resolutions and extents of the
 model?
 <ul>
-<li>resolution: how detailed?</li>
-<li>extents: how big?</li>
+<li>
+<strong>Resolution:</strong> how detailed?</li>
+<li>
+<strong>Extents:</strong> how big?</li>
 </ul>
 </li>
 </ul></section><section id="odd-scheduling" class="slide level2"><h2>3. Process Overview and Scheduling</h2>
@@ -220,7 +223,7 @@ model?
 </li>
 </ul>
 </li>
-</ul></section><section id="design-concepts" class="slide level2"><h2>4. Design Concepts</h2>
+</ul></section><section id="design-concepts" class="slide level2 center"><h2 class="center">4. Design Concepts</h2>
 <p>There are <strong>11 design concepts</strong> (see Table 3.1).</p>
 <p>Textbook has one chapter for each.</p>
 </section><section id="design-concept-outline" class="slide level2 eighty"><h2 class="eighty">Outline of Design Concepts</h2>
@@ -238,6 +241,7 @@ indirectly (<em>mimic natural behavior</em>)?</p>
 current conditions. <span style="color:#5555e0;">It’s different from
 <em>persistent change</em> (the way the word is used in
 <em>evolution</em>)</span></p>
+<p><em>Seek shelter when it starts to rain.</em></p>
 </li>
 <li class="fragment"><p><strong>Objectives (Fitness):</strong> Goals of agents? What
 determines survival?<br> Do objectives change as agent
@@ -248,16 +252,18 @@ as they gain experience?</p>
 <p><strong>Note:</strong> This is where <em>persistent change</em>
 happens. <span style="color:#5555e0;">It’s often confused with
 <em>adaptation</em></span></p>
+<p><em>After getting rained on several times, start carrying an umbrella
+when it’s cloudy.</em></p>
 </li>
-<li class="fragment"><p><strong>Prediction:</strong> How do agents predict
-consequences of their decisions?<br> (learning, memory, environmental
-cues, programmed assumptions)</p></li>
 </ol></section><section id="design-concept-outline-2" class="slide level2 eighty"><h2 class="eighty">Outline of Design Concepts (cont.)</h2>
-<ol start="7" type="1">
+<ol start="6" type="1">
 <li>
-<strong>Sensing:</strong> What do agents know or perceive when
-making decisions?<br> (Is sensing process itself explicitly modelled,
-or do they <em>just know</em>?)</li>
+<strong>Prediction:</strong> How do agents predict consequences of
+their decisions?<br> (learning, memory, environmental cues, programmed
+assumptions)</li>
+<li class="fragment"><strong>Sensing:</strong> What do agents know or perceive when
+making decisions?<br> (Is sensing process itself explicitly modeled, or
+do they <em>just know</em>?)</li>
 <li class="fragment"><strong>Interaction:</strong> What forms of interaction among
 agents are there?</li>
 <li class="fragment"><strong>Stochasticity:</strong> Is there randomness in model?
@@ -311,7 +317,7 @@ processes or actions,<br> explain, in detail what
 <li>What are the model parameters?</li>
 <li>How were the submodels designed or chosen?</li>
 <li>How were they tested?</li>
-</ul></section></section><section><section id="butterfly-sec" class="title-slide slide level1 center"><h1 class="center">Example: Virtual Corridors for Conservation
+</ul></section></section><section><section id="butterfly-sec" class="title-slide slide level1 center"><h1 class="center">Example:<br>Virtual Corridors for<br>Conservation
 Management</h1>
 
 </section><section id="butterfly-example" class="slide level2 center"><h2 class="center">Example: Virtual Corridors for Conservation
@@ -416,7 +422,7 @@ corridors</em>
 corridors)<br> emerge from movement rule and topography</li>
 <li>
 <strong>Sensing:</strong> Butterflies can sense elevation in current
-and 9 surrounding cells (patches)</li>
+and 8 surrounding patches</li>
 <li>
 <strong>Interaction:</strong> None</li>
 <li>
@@ -444,7 +450,7 @@ straight uphill,<br> vs. moving to random neighbor cell.</li>
 </section></section><section><section id="next-step-sec" class="title-slide slide level1 center"><h1 class="center">Next Steps</h1>
 
 </section><section id="next-steps" class="slide level2 center"><h2 class="center">Next Steps</h2>
-<p>For Thursday, you will follow the book and write code to implement
+<p>For Wednesday, you will follow the book and write code to implement
 the butterfly model.</p>
 </section></section><section><section id="more-about-agent-based-models" class="title-slide slide level1 center"><h1 class="center">More about Agent-Based Models</h1>
 
@@ -546,9 +552,9 @@ trout habitat selection</h2>
 </li>
 <li>Download the model from Wednesday: <a href="https://ees4760.jgilligan.org/static/model/class_03/class_03_example.nlogo" class="uri">https://ees4760.jgilligan.org/static/model/class_03/class_03_example.nlogo</a>
 or go to the Downloads page of the course web site.</li>
-</ul></section><section id="interacting" class="slide level2 seventy leftslide"><h2 class="seventy leftslide">Interacting with a Model</h2>
+</ul></section><section id="interacting" class="slide level2 leftslide"><h2 class="leftslide">Interacting with a Model</h2>
 <p>On the “interface” tab:</p>
-<div class="ninety" style="text-align=left;">
+<div class="ninety">
 <ul>
 <li class="fragment">
 <p>Right click and add a Slider</p>
@@ -576,17 +582,19 @@ to setup
 </li>
 </ul>
 </div>
-</section><section id="monitoring" class="slide level2 seventy leftslide"><h2 class="seventy leftslide">Monitoring a Model</h2>
+</section><section id="monitoring" class="slide level2 leftslide"><h2 class="leftslide">Monitoring a Model</h2>
 <p>On the “interface” tab:</p>
+<div class="columns">
+<div class="column">
 <div class="ninety" style="text-align=left;">
 <ul>
 <li>Right click and add a Plot
 <ul>
 <li>Name the plot “Hunger”</li>
 <li>Set X max to 10 and Y max to 100</li>
-<li>Type “Hunger” for “X axis label” and “# Turtles” for “Y axis
+<li>Type “Hunger” for “X axis label” and<br>“# Turtles” for “Y axis
 label”</li>
-<li>Click on the pencil icon under “default” pen
+<li>Click on the pencil icon next to<br>“default” pen
 <ul>
 <li>Choose “Bar” for “Mode”</li>
 <li>In “Pen update commands” type
@@ -598,6 +606,11 @@ label”</li>
 </ul>
 </li>
 </ul>
+</div>
+</div>
+<div class="column">
+<p><img data-src="assets/images/plot_dlg_screenshot.png" alt="Screenshot of the plot dialog box"></p>
+</div>
 </div>
 </section><section id="model-play" class="slide level2"><h2>Play with the model</h2>
 <ul>

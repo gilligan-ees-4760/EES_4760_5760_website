@@ -1,4 +1,79 @@
+globals
+[
+  max-sugar
+  ; sugar-growth
+]
 
+turtles-own [ hunger ]
+
+patches-own [ sugar ]
+
+to setup
+  clear-all
+
+  ; set sugar-growth 0.050
+  set max-sugar 100
+
+  ask patches [ set sugar random max-sugar ]
+
+  create-turtles 100 [
+    setxy random-xcor random-ycor
+    set hunger 5
+    update-color
+    ]
+  ask patches [ update-pcolor ]
+  reset-ticks
+end
+
+to go
+  tick
+  ask turtles [
+    if hunger < 10 [ set hunger hunger + 1 ]
+    eat
+    move
+    update-color
+    ]
+  ask patches
+  [
+    if sugar < max-sugar [ set sugar sugar + sugar-growth ]
+    update-pcolor
+   ]
+  if ticks > 2000 [ stop ]
+end
+
+to update-pcolor
+  set pcolor scale-color yellow sugar 0 (2 * max-sugar)
+end
+
+to update-color
+  ifelse hunger > 5
+  [
+    set color scale-color red hunger 15 5
+  ]
+  [
+    set color scale-color green hunger -5 5
+  ]
+end
+
+to eat
+  ifelse hunger > sugar
+  [
+    set hunger hunger - sugar
+    set sugar 0
+  ]
+  [
+    set sugar sugar - hunger
+    set hunger 0
+  ]
+end
+
+to move
+  if sugar <= 0 or any? turtles-here
+  [
+    let dest max-one-of neighbors [ sugar ]
+    move-to dest
+  ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -27,53 +102,126 @@ GRAPHICS-WINDOW
 ticks
 30.0
 
+BUTTON
+34
+43
+97
+76
+NIL
+setup
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+34
+87
+97
+120
+NIL
+go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+35
+129
+98
+162
+step
+go
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+PLOT
+698
+76
+898
+226
+Hunger
+Hunger
+# Turtles
+0.0
+10.0
+0.0
+100.0
+true
+false
+"" ""
+PENS
+"default" 1.0 1 -16777216 false "" "histogram [hunger] of turtles"
+
+SLIDER
+28
+171
+200
+204
+sugar-growth
+sugar-growth
+0
+0.1
+0.05
+0.005
+1
+NIL
+HORIZONTAL
+
 @#$#@#$#@
-# Butterfly Model ODD Description
+## WHAT IS IT?
 
-This file describes the model of Pe'er et al. (2005). The description is taken from Section 3.4 of Railsback and Grimm (2019). The file uses the markup language used by NetLogo's Info tab starting with NetLogo version 5.0.
+(a general understanding of what the model is trying to show or explain)
 
-## 1. Purpose and patterns
+## HOW IT WORKS
 
-The model was designed to explore questions about virtual corridors. Under what conditions do the interactions of butterfly hilltopping behavior and landscape topography lead to the emergence of virtual corridors, that is, relatively narrow paths along which many butterflies move? How does variability in the butterflies' tendency to move uphill affect the emergence of virtual corridors? This model does not represent a specific place or species of butterfly, so only general patterns are used as criteria for its usefulness for answering these questions: that butterflies can reach hilltops, and that their movement has a strong stochastic element representing the effects of factors other than elevation.
+(what rules the agents use to create the overall behavior of the model)
 
-## 2. Entities, State Variables, and Scales
+## HOW TO USE IT
 
-The model has two kinds of entities: butterflies and square patches of land. The patches make up a square grid landscape of 150 &times; 150 patches, and each patch has one state variable: its elevation. Butterflies are characterized only by their location, described as the patch they are on. Therefore, butterfly locations are in discrete units, the x- and y- coordinates of the center of their patch. Patch size and the length of one time step in the simulation are not specified because the model is generic, but when real landscapes are used, a patch corresponds to 25 &times; 25 m<sup>2</sup>. Simulations last for 1000 time steps; the length of one time step is not specified but should be about the time it takes a butterfly to move 25--35 m (the distance from one cell to one of its neighbor cells).
+(how to use the model, including a description of each of the items in the Interface tab)
 
-## 3. Process Overview and Scheduling
+## THINGS TO NOTICE
 
-There is only one process in the model: movement of the butterflies. On each time step, each butterfly moves once. The order in which the butterflies execute this action is unimportant because there are no interactions among the butterflies.
+(suggested things for the user to notice while running the model)
 
-## 4. Design Concepts
+## THINGS TO TRY
 
-The _basic principle_ addressed by this model is the concept of virtual corridors---pathways used by many individuals when there is nothing particularly beneficial about the habitat in them. This concept is addressed by seeing when corridors _emerge_ from two parts of the model: the adaptive movement behavior of butterflies and the landscape they move through. This _adaptive behavior_ is modeled via a simple empirical rule that reproduces the behavior observed in real butterflies: moving uphill. This behavior is based on the understanding (not included in the model) that moving uphill leads to mating, which conveys fitness (success at passing on genes, the presumed ultimate objective of organisms). Because the hilltopping behavior is assumed a priori to be the objective of the butterflies, the concepts of _Objectives_ and _Prediction_ are not explicitly considered. There is no _learning_ in the model.
+(suggested things for the user to try to do (move sliders, switches, etc.) with the model)
 
-_Sensing_ is important in this model: butterflies are assumed able to identify which of the surrounding patches has the highest elevation, but to use no information about elevation at further distances. (The field studies of Pe'er 2003 addressed this question of how far butterflies sense elevation differences.)
+## EXTENDING THE MODEL
 
-The model does not include _interaction_ among butterflies; in field studies, Pe'er (2003) found that real butterflies do interact (they sometimes stop to visit each other on the way uphill) but decided it is not important to include interaction in a model of virtual corridors.
+(suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
 
-_Stochasticity_ is used to represent two sources of variability in movement that are too complex to represent mechanistically. Real butterflies do not always move directly uphill, likely because of (1) limits in the ability of the butterflies to sense the highest area in their neighborhood, and (2) factors other than topography (e.g., flowers that need investigation along the way) that influence movement direction. This variability is represented by assuming butterflies do not move uphill every time step; sometimes they move randomly instead. Whether a butterfly moves directly uphill or randomly at any time step is modeled stochastically, using a parameter _q_ that is the probability of an individual moving directly uphillinstead of randomly.
+## NETLOGO FEATURES
 
-_Collectives_ are not represented in this model.
+(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
 
-To allow _observation_ of the two patterns used to define the model's usefulness, we use graphical display of topography and butterfly locations. Observing virtual corridors requires a specific "corridor width" measure that characterizes the width of butterfly paths from their starting patches to hilltops.
+## RELATED MODELS
 
-## 5. Initialization
-The topography of the landscape (the elevation of each patch) is initialized when the model starts. Two kinds of landscapes are used in different versions of the model: (1) a simple artificial topography, and (2) the topography of a real study site, imported from a file containing elevation values for each patch. The butterflies are initialized by creating five hundred of them and dispersing them throughout the landscape: each butterfly's initial location is set to a patch selected randomly from among all patches.
-
-## 6. Input Data
-The environment is assumed to be constant, so the model has no input data.
-
-## 7. Submodels
-The movement submodel defines exactly how butterflies decide whether to move uphill or randomly. First, to "move uphill" is defined specifically as moving to the neighbor patch that has the highest elevation; if two patches have the same elevation, one is chosen randomly. "Move randomly" is defined as moving to one of the neighboring patches, with equal probability of choosing any patch. "Neighbor patches" are the eight patches surrounding the butterfly's current patch. The decision of whether to move uphill or randomly is controlled by the parameter _q_, which ranges from 0.0 to 1.0 (_q_ is a global variable: all butterflies use the same value). On each time step, each butterfly draws a random number from a uniform distribution between 0.0 and 1.0. If this random number is less than _q_, the butterfly moves uphill; otherwise, the butterfly moves randomly.
+(models in the NetLogo Models Library and elsewhere which are of related interest)
 
 ## CREDITS AND REFERENCES
 
-Pe'er, G., Saltz, D. & Frank, K. 2005. Virtual corridors for conservation management. _Conservation Biology_, 19, 1997--2003.
-
-Pe'er, G. 2003. Spatial and behavioral determinants of butterfly movement patterns in topographically complex landscapes. Ph.D. thesis, Ben-Gurion University of the Negev.
-
-Railsback, S. & Grimm, V. 2018. _Agent-based and individual-based modeling: A practical introduction, Second edition_. Princeton University Press, Princeton, NJ.
+(a reference to the model's URL on the web if it has one, as well as any other necessary credits, citations, and links)
 @#$#@#$#@
 default
 true
