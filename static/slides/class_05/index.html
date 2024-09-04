@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="Jonathan Gilligan">
+<title>Your First Model</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css">
+<style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+<style type="text/css">
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+  </style>
+<!-- theme = solarized_jg --><link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+<!-- Printing and PDF exports --><script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><!--[if lt IE 9]>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
+  <![endif]--><script src="../../lecture_lib/library/header-attrs-2.27.1.9000/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class="center" id="title"><h1 class="title">Your First Model</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based and Individual-Based
+Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #5:
+       Wednesday, September 04
+      2024
+    </h3>
+	<!-- end title slide -->
+</section><section><section id="homework-sec" class="title-slide slide level1 center"><h1 class="center">Homework</h1>
+
+</section><section id="homework" class="slide level2"><h2>Homework:</h2>
+<ul>
+<li class="fragment">In the mushroom hunt, were there always 80 red patches?</li>
+<li class="fragment">Any questions about modified mushroom hunt model?</li>
+<li class="fragment">Let’s talk about ODD exercise.</li>
+</ul></section><section id="model-from-odd" class="slide level2"><h2>Writing a model from an ODD</h2>
+<ul>
+<li class="fragment">Questions about writing a model from Butterfly ODD?</li>
+<li class="fragment">Were there things the ODD was unclear about?</li>
+</ul></section></section><section><section id="butterfly-sec" class="title-slide slide level1 center"><h1 class="center">Butterfly Model</h1>
+
+</section><section id="butterfly-download" class="slide level2"><h2>Download the model</h2>
+<ul>
+<li>Download butterfly model from <a href="https://ees4760.jgilligan.org/models/class_05/butterfly_model_class_5.nlogo">ees4760.jgilligan.org/models/class_05/butterfly_model_class_5.nlogo</a>
+<ul>
+<li>Or go to the “Downloads” page on the class web site <a href="https://ees4760.jgilligan.org">ees4760.jgilligan.org</a>, click on
+“<a href="https://ees4760.jgilligan.org/downloads/butterfly_model/">5.
+Butterfly Models</a>” and download the “<a href="https://ees4760.jgilligan.org/models/class_05/butterfly_model_class_5.nlogoz">Basic
+Butterfly Model</a>”</li>
+</ul>
+</li>
+</ul></section><section id="enhancing" class="slide level2 eighty"><h2 class="eighty">Enhancing the Butterfly model</h2>
+<ul>
+<li class="fragment highlight-current-green">
+<p>Put a slider for <em>q</em></p>
+<ul>
+<li class="fragment">In the “Code” page:
+<ul>
+<li>Remove <em>q</em> from the global variables</li>
+<li>Remove the initialization of <em>q</em> from
+<code>to setup</code>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment highlight-current-green">
+<p>Add patches-own variable to indicate whether it was
+visited.</p>
+<div class="fragment">
+<pre><code>patches-own 
+[ 
+  elevation 
+  visited? ; question mark means it's a true/false variable
+]
+
+to setup
+  ...
+  ask patches [
+  set visited? false
+  ...
+  ]
+  ...
+end</code></pre>
+</div>
+</li>
+<li class="fragment highlight-current-green"><p>Add turtles-own variable to remember the patch where
+it started.</p></li>
+</ul></section><section id="enhancing-2" class="slide level2" data-transition="fade"><h2 data-transition="fade">Enhancing the Butterfly model</h2>
+<ul>
+<li>Put a slider for <em>q</em>
+</li>
+<li>Add patches-own variable to indicate whether it was visited.</li>
+<li>Add turtles-own variable to remember the patch where it
+started.</li>
+<li class="fragment highlight-current-green">Set the number of butterflies to 50.</li>
+<li class="fragment highlight-current-green">Stop butterfly from moving if it’s at the top of a hill.
+<ul>
+<li class="fragment">How can you tell whether it’s on the top?</li>
+</ul>
+</li>
+</ul></section><section id="enhancing-3" class="slide level2" data-transition="fade-in"><h2 data-transition="fade-in">Enhancing the Butterfly model</h2>
+<ul>
+<li>
+<p>Write a reporter for corridor width</p>
+<div class="ptop-1 pbottom-1 fragment" data-fragment-index="1">
+<p><span class="math display">\[ \text{Corridor width} = \frac{\text{#
+patches visited}}{\text{distance from start}} \]</span></p>
+</div>
+<ul>
+<li class="fragment current-green" data-fragment-index="2"><p>Put an <strong>observer</strong> on the
+interface</p></li>
+<li class="fragment current-green" data-fragment-index="3">
+<p>Define a reporter:</p>
+<div class="fragment" data-fragment-index="3">
+<pre><code>to-report corridor-width
+  let wid ... ; calculate corridor width
+  report wid
+end</code></pre>
+</div>
+</li>
+</ul>
+</li>
+</ul></section></section><section><section id="behaviorspace-sec" class="title-slide slide level1 center" data-transition="fade-out" data-state="skip_slide"><h1 class="center" data-transition="fade-out" data-state="skip_slide">Behaviorspace</h1>
+
+</section><section id="behaviorspace" class="slide level2" data-transition="fade-in"><h2 data-transition="fade-in">Running Experiments: BehaviorSpace</h2>
+<ul>
+<li class="fragment">Vary any parameter that has a control on the model’s
+interface</li>
+<li class="fragment">Writes output to <code>.csv</code> spreadsheet file
+<ul>
+<li>Four options:
+<ol type="1">
+<li>Spreadsheet (1 row per variable, each run and step is a column)</li>
+<li>Table (1 row per step, each variable is a column)</li>
+<li>Statistics</li>
+<li>Lists (only useful if you also choose spreadsheet or table)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li class="fragment">Note: Data written in spreadsheet or table might be out of
+order.</li>
+</ul></section><section id="behaviorspace-table-format" class="slide level2"><h2>Behaviorspace Table Format</h2>
+<p><img data-src="assets/images/butterfly-bs-table.png" width="1000" alt="Behaviorspace experiment output in table format"></p>
+</section><section id="behaviorspace-spreadsheet-format" class="slide level2"><h2>Behaviorspace Spreadsheet Format</h2>
+<p><img data-src="assets/images/butterfly-bs-spreadsheet.png" width="1500" alt="Behaviorspace experiment output in spreadsheet format"></p>
+</section><section id="behaviorspace-stats-format" class="slide level2"><h2>Behaviorspace Stats Format</h2>
+<p><img data-src="assets/images/butterfly-bs-stats.png" width="1500" alt="Behaviorspace experiment output in stats format"></p>
+</section><section id="analyzing-behaviorspace" class="slide level2"><h2>Analyzing Behaviorspace Output</h2>
+<ul>
+<li class="fragment">Behaviorspace output format is annoying
+<ul>
+<li class="fragment">Each line is some tick of some run</li>
+<li class="fragment">How to organize, and average over runs?</li>
+<li class="fragment">The new <em>stats</em> output helps with this, tough</li>
+</ul>
+</li>
+<li class="fragment">analyzeBehaviorspace app
+<ul>
+<li class="fragment"><a href="https://ees4760.jgilligan.org/analyze_behaviorspace" class="uri">https://ees4760.jgilligan.org/analyze_behaviorspace</a>
+</li>
+<li class="fragment">Or install on your own computer using R
+<ul>
+<li><p>Instructions at <a href="https://github.com/jonathan-g/analyzeBehaviorspace" class="uri">https://github.com/jonathan-g/analyzeBehaviorspace</a></p></li>
+<li>
+<p>After installing:</p>
+<pre><code>library(analyzeBehaviorspace)
+launch_abs()</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section></section><section><section id="emergence-sec" class="title-slide slide level1 center"><h1 class="center">Emergence</h1>
+
+</section><section id="emergence" class="slide level2" data-transition="fade-in"><h2 data-transition="fade-in">Emergence</h2>
+<ul>
+<li class="fragment">A tricky concept.</li>
+<li class="fragment">Joshua Epstein in <em>Growing Artificial Societies:</em> “stable
+macroscopic patterns arising from the local interaction of agents.”</li>
+<li class="fragment">Epstein ten years later: “I have always been uncomfortable with
+the vagueness and occasional mysticism surrounding this word.”</li>
+<li class="fragment">Epstein now prefers to talk about “<em>Generative</em> Social
+Science”</li>
+</ul></section></section>
+</div>
+  </div>
+  <!--
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.js"></script>
+  <!-- -->
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script><!-- --><script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Display the page number of the current slide
+        showSlideNumber: 'speaker',
+        // Push each slide change to the browser history
+        history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/math/math.js', async: true }
+        ],
+        shift_keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'C' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'B' is pressed
+    	    88: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'X' is pressed
+    	    82: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'R' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'D' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'S',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'H',
+      	      });
+    </script><script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_05">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_05"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_05">https://ees4760.jgilligan.org/slides/class_05</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_05/EES_4760_5760_class_05_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_05/EES_4760_5760_class_05_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script><script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true
+  }
+})
+  </script><script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script><script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }
+
+  Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script><script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    // console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+</body>
+</html>

@@ -11,11 +11,11 @@ output: html_document
 
 ### NetLogo model for in-class exercises.
 
-* [Netlogo model:](/static/models/class_03/class_03_example.nlogo)
+* [Netlogo model:](/models/class_03/class_03_example.nlogo)
   <https://ees4760.jgilligan.org/models/class_03/class_03_example.nlogo>
-* [Partially completed Netlogo model](/static/models/class_03/class_03_partial.nlogo) 
+* [Partially completed Netlogo model](/models/class_03/class_03_partial.nlogo) 
   (from the end of class Wednesday Aug. 28):
   <https://ees4760.jgilligan.org/models/class_03/class_03_partial.nlogo>
-* [Completed Netlogo model](/static/models/class_03/class_03_final.nlogo) 
+* [Completed Netlogo model](/models/class_03/class_03_final.nlogo) 
   (from the end of class Monday Sept. 2):
   <https://ees4760.jgilligan.org/models/class_03/class_03_final.nlogo>
