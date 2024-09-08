@@ -25,6 +25,7 @@ lessons:
 - date: '2024-09-09'
   title: Using models for science
   reading: /reading/reading_06
+  lecture: /slides/class_06
 - date: '2024-09-11'
   title: Testing and validating models
   reading: /reading/reading_07
