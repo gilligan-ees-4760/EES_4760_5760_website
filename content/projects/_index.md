@@ -7,7 +7,7 @@ date: "2017-04-13T00:00:00"
 ## Team Projects
 
 Your team will make a presentation about your project on Wednesday, Oct. 9. 
-Your write-up will be due on to Brighspace by 11:59 pm on Friday, Oct. 18.
+Your write-up will be due on to Brightspace by 11:59 pm on Friday, Oct. 18.
 
 * [Project assignment](/assignment/TeamProjectAssignment.pdf)
 
@@ -32,26 +32,20 @@ the PDF assignments had assigned all of the teams to do the same exercises:
   * The Telemarketer teams were assigned exercises 13.2, 13.6, and 13.8
   
 
-<!--
 | Team # |       Project      |                     Members                 |      Exercises     |
 |-------:|:------------------:|:-------------------------------------------:|:------------------:|
-|   1    |  Business Investor |   Allister Barnes, Davis Kornblum           |   10.3, 10.4, 11.2 |
-|   2    |  Business Investor |   Mairin Boyle, Marisa Kim                  |   10.3, 10.4, 11.2 |
-|   3    |  Business Investor |   Michelle Gordon, Tara Menon               |   10.3, 10.4, 11.2 |
-|   4    |  Business Investor | Sarah Habeck, Clark Kaminsky, Nolan Siegel  |   10.3, 10.4, 11.2 |
-|   5    |  Business Investor |   Yasmeen Minniefield, Precious Ukachukwu   |   10.3, 10.4, 11.2 |
-|   6    |  Telemarketer      |   Madeline Allen, Daniel Gonzalez           |   13.2, 13.3, 13.5 |
-|   7    |  Telemarketer      |   Zachary Bloom, 'Ana Stringer              |   13.2, 13.3, 13.4 |
-|   8    |  Telemarketer      |   Natalie Elliott, Ben Gode, Robin Young    |   13.2, 13.4, 13.5 |
-|   9    |  Telemarketer      |   Tanya Iyer, Tatiana Singleton             |   13.2, 13.6, 13.8 |
-|  10    |  Telemarketer      | Joshua McDuffie, Miguel Moravec, Mostafa Farhadian  | 13.2, 13.5, 13.7 |
---> 
+|   1    |  Business Investor | Xingyi Huang, Xiyu Wang                     |   10.3, 10.4, 11.2 |
+|   2    |  Business Investor | Rayshaun Pettit, Jiaying Yang               |   10.3, 10.4, 11.2 |
+|   4    |  Business Investor | Savi Buluwana, Hannah Wolf                  |   10.3, 10.4, 11.2 |
+|   5    |  Telemarketer      | Ferna Alvarez-Carrascal, Farzana Rahman, Erica Scarpitti | 13.2, 13.3, 13.5 |
+|   6    |  Telemarketer      | Maya Maciel-Seidman, Jeremy Tallon          |   13.2, 13.3, 13.4 |
+|   7    |  Telemarketer      | Andrew Harder, Nadya Paschall, Samuel Yang  |   13.2, 13.3, 13.4 |
 
 ## Individual Projects
 
 [Project assignment](/assignment/ResearchProjectAssignment.pdf)
 
-* Proposals due Mon. Sept. 23. Post to your course Box folder by the end of 
+* Proposals due Mon. Sept. 23. Upload your proposal to Brightspace by the end of 
   the day (i.e., by 11:59 pm).
 * Model analysis due Mon. Oct. 7.
 * We will discuss your project ODD in class on Wed. Oct. 16
