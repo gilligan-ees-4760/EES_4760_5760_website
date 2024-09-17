@@ -16,17 +16,21 @@ lessons:
   title: 'Specifying models: The ODD protocol'
   reading: /reading/reading_04
   assignment: homework_03
+  lecture: /slides/class_04
 - date: '2024-09-04'
   title: Your first model
   reading: /reading/reading_05
   assignment: homework_04
+  lecture: /slides/class_05
 - date: '2024-09-09'
   title: Using models for science
   reading: /reading/reading_06
+  lecture: /slides/class_06
 - date: '2024-09-11'
   title: Testing and validating models
   reading: /reading/reading_07
   assignment: homework_05
+  lecture: /slides/class_07
 - date: '2024-09-16'
   title: Choosing Research Projects
   reading: /reading/reading_08

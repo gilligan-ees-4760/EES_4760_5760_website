@@ -5,7 +5,7 @@ weight: 3
 date: "2019-09-03"
 due_date: "2021-09-07"
 pubdate: "2019-08-22"
-descr: "Documents on ODD protocol (optional supplementary reading for Sept. 7)."
+descr: "Documents on ODD protocol (optional supplementary reading for Sept. 2)."
 output: html_document
 ---
 ## Documents on ODD protocol

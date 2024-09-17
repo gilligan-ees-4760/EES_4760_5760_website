@@ -4,7 +4,7 @@ weight: 12
 date: "2019-10-08"
 due_date: "2021-10-12"
 pubdate: "2019-10-03"
-descr: "Telemarketer models (Oct.12)"
+descr: "Telemarketer models (Oct.7)"
 output: html_document
 ---
 # Telemarketer models for in-class exercises

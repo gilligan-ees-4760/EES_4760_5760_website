@@ -4,10 +4,10 @@ weight: 5
 date: "2019-09-05"
 due_date: "2021-09-09"
 pubdate: "2019-08-22"
-descr: "Writing the Butterfly Model (Sept. 9)"
+descr: "Writing the Butterfly Model (Sept. 4)"
 output: html_document
 ---
-# Butterfly Model for In-Class Exercises on Sept. 9
+# Butterfly Model for In-Class Exercises on Sept. 4
  
 * Download the 
   [Basic Butterfly Model](/models/class_05/butterfly_model_class_5.nlogo)
