@@ -26,12 +26,6 @@ Your write-up will be due on to Brightspace by 11:59 pm on Friday, Oct. 18.
 
 ### Teams:
 
-Originally, when I set the assignments for the team projects, this table and 
-the PDF assignments had assigned all of the teams to do the same exercises:
-  * The Business Investor teams were assigned exercises 10.3 and 10.4 
-  * The Telemarketer teams were assigned exercises 13.2, 13.6, and 13.8
-  
-
 | Team # |       Project      |                     Members                 |      Exercises     |
 |-------:|:------------------:|:-------------------------------------------:|:------------------:|
 |   1    |  Business Investor | Xingyi Huang, Xiyu Wang                     |   10.3, 10.4, 11.2 |
