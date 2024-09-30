@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="Jonathan Gilligan">
+<title>Adaptive Behavior and Objectives</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css">
+<style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+<style type="text/css">
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+  </style>
+<!-- theme = solarized_jg --><link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+<!-- Printing and PDF exports --><script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><!--[if lt IE 9]>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
+  <![endif]--><script src="../../lecture_lib/library/header-attrs-2.27.1.9000/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class="center" id="title"><h1 class="title">Adaptive Behavior<br>and Objectives</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based and Individual-Based
+Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #12:
+       Monday, September 30
+      2024
+    </h3>
+	<!-- end title slide -->
+</section><section><section id="getting-started" class="title-slide slide level1 center"><h1 class="center">Getting Started</h1>
+
+</section><section id="getting-started-1" class="slide level2"><h2>Getting Started</h2>
+<ul>
+<li>Download the modified Business Investor model from the class web
+site, under “Objectives and Adaptations” on the Download page.
+<ul>
+<li>
+<p><a href="/models/class_12/business-investor.nlogo">Modified
+Business Investor Model</a></p>
+<p><a href="https://ees4760.jgilligan.org/models/class_12/business-investor.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_12/business-investor.nlogo</a></p>
+</li>
+</ul>
+</li>
+</ul></section></section><section><section id="announcement-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1 data-transition="fade-out" data-state="skip_slide">Announcements</h1>
+
+</section><section id="announcements" class="slide level2 center" data-transition="fade-in"><h2 class="center" data-transition="fade-in">Announcements</h2>
+<ul>
+<li>Homework assigned for Wednesday, October 2 is
+<strong>optional</strong>.
+<ul>
+<li>From here on, focus on working on your team project and individual
+project.</li>
+</ul>
+</li>
+</ul></section></section><section><section id="sensing-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1 data-transition="fade-out" data-state="skip_slide">Sensing</h1>
+
+</section><section id="sensing" class="slide level2 leftslide" data-transition="fade-in"><h2 class="leftslide" data-transition="fade-in">Sensing</h2>
+<ul>
+<li>Options for sensing:
+<ul>
+<li class="fragment">Omnisicence:
+<code>max-one-of [ expected-utility ] patches</code>
+</li>
+<li class="fragment">Neighbors:
+<code>max-one-of [ expected-utility ] neighbors</code>
+</li>
+<li class="fragment">Limited radius:
+<code>max-one-of [expected-utility ] patches in-radius 5</code>
+</li>
+<li class="fragment">Social network:
+<code>max-one-of [ expected-utility ] my-social-network</code>
+</li>
+</ul>
+</li>
+<li class="fragment">Context:
+<ul>
+<li>NetLogo has <strong>four</strong> types of entities:
+<ol type="1">
+<li>Patches</li>
+<li>Turtles</li>
+<li>Links</li>
+<li>The Observer</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul></section><section id="social-networks-and-links" class="slide level2"><h2>Social Networks and Links</h2>
+<ul>
+<li>Links
+<ul>
+<li>Connect turtles</li>
+<li>Directed (<code>create-link-from</code>,
+<code>create-link-to</code>) or undirected
+(<code>create-link-with</code>)</li>
+<li>Can have properties (color, thickness, etc.)</li>
+</ul>
+</li>
+<li>Using links:
+<ul>
+<li>
+<code>my-links</code>, <code>my-in-links</code>,
+<code>my-out-links</code> report agent-sets of <strong>links</strong>
+connected to a turtle</li>
+<li>
+<code>link-neighbors</code>, <code>out-link-neighbors</code>,
+<code>in-link-neighbors</code> report agent-sets of
+<strong>turtles</strong> connected to a turtle.</li>
+<li>
+<strong>Lots</strong> more you can do with links (read NetLogo
+dictionary)</li>
+</ul>
+</li>
+</ul></section></section><section><section id="adapt-sec" class="title-slide slide level1" data-transition="fade-out" data-state="skip_slide"><h1 data-transition="fade-out" data-state="skip_slide">Adaptation</h1>
+
+</section><section id="adaptation" class="slide level2" data-transition="fade-in"><h2 data-transition="fade-in">Adaptation and Objectives</h2>
+<ul>
+<li>Making decisions:
+<ul>
+<li class="fragment">Perfect rationality:
+<ul>
+<li class="fragment">Pick a goal (objective function)</li>
+<li class="fragment">List possible actions</li>
+<li class="fragment">Calculate how well each will satisfy goal</li>
+<li class="fragment">Choose action that will best accomplish goal</li>
+</ul>
+</li>
+<li class="fragment">Imperfect rationality:
+<ul>
+<li class="fragment">Goal may be unclear or inconsistent</li>
+<li class="fragment">May not list all possible actions</li>
+<li class="fragment">May not calculate results of actions</li>
+<li class="fragment">May not act on best option</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment">Real-life agents may not act rationally</li>
+</ul></section><section id="bounded-rationality" class="slide level2"><h2>Bounded Rationality</h2>
+<ul>
+<li>Perfect rationality and chess …
+<ul>
+<li class="fragment">Evaluating all possible moves may not be possible
+<ul>
+<li class="fragment">Limited time, memory, computing power</li>
+</ul>
+</li>
+<li class="fragment">Cost of rationality
+<ul>
+<li class="fragment">Getting, processing information</li>
+<li class="fragment">It may be more rational to be slightly irrational</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section><section id="satisficing" class="slide level2"><h2>Satisficing</h2>
+<ul>
+<li>Define goal (objective function)</li>
+<li class="fragment">Define criteria for <em>good enough</em> result</li>
+<li class="fragment">Evaluate possible actions until the first one that is <em>good
+enough</em>.
+<ul>
+<li>Do that action.</li>
+</ul>
+</li>
+</ul></section><section id="more-on-objective-functions" class="slide level2 ninety"><h2 class="ninety">More on Objective Functions</h2>
+<ul>
+<li>Decisions under uncertainty
+<ul>
+<li class="fragment">If you are gambling, what would you try to do?
+<ul>
+<li class="fragment">Take a chance to get a very big win?</li>
+<li class="fragment">Try to avoid losing money?</li>
+<li class="fragment">Balance wins and losses finish with the most money on
+average?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment">Behavioral economics
+<ul>
+<li class="fragment">Most economists say rational people will try to get the greatest
+<em>expected</em> wealth</li>
+<li class="fragment">Actual people may be…
+<ul>
+<li class="fragment"><em>risk seeking</em> (take greater chances for big wins)</li>
+<li class="fragment"><em>risk averse</em> (avoid taking chances)</li>
+<li class="fragment"><em>loss averse</em> (focus on changes instead of absolute
+wealth)</li>
+<li class="fragment"><em>regret averse</em> (try to avoid the feeling that you wish
+you’d made a different choice)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment">Different goals may lead to very different behavior
+<ul>
+<li class="fragment">Policy-makers may want to test their policies under different
+assumptions about people’s goals and behavior</li>
+</ul>
+</li>
+</ul></section></section><section><section id="experimenting" class="title-slide slide level1 center"><h1 class="center">Experimenting</h1>
+
+</section><section id="experimenting-1" class="slide level2"><h2>Experimenting</h2>
+<ul>
+<li>Modified Business Investor Model:
+<ul>
+<li>You can vary the profits and risks</li>
+<li>You can vary the sensing:
+<ul>
+<li>Neighboring patches</li>
+<li>Patches in a radius</li>
+<li>Neighbors or patches in-radius of link neighbors</li>
+</ul>
+</li>
+<li>You can vary the objective and adaptation
+<ul>
+<li>Maximize expected utility</li>
+<li>Satisficing</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section></section>
+</div>
+  </div>
+  <!--
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.js"></script>
+  <!-- -->
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script><!-- --><script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Display the page number of the current slide
+        showSlideNumber: 'speaker',
+        // Push each slide change to the browser history
+        history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/math/math.js', async: true }
+        ],
+        shift_keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'C' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'B' is pressed
+    	    88: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'X' is pressed
+    	    82: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'R' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'D' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'S',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'H',
+      	      });
+    </script><script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_12">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_12"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_12">https://ees4760.jgilligan.org/slides/class_12</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_12/EES_4760_5760_class_12_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_12/EES_4760_5760_class_12_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script><script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true
+  }
+})
+  </script><script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script><script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }
+
+  Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script><script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    // console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+</body>
+</html>

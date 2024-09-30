@@ -1,6 +1,6 @@
 ---
 title: "Models for Scheduling"
-weight: 13
+weight: 17
 date: "2019-10-17"
 due_date: "2021-10-26"
 pubdate: "2019-08-22"

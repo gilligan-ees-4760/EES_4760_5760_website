@@ -1,6 +1,6 @@
 ---
 title: "Telemarketer Models"
-weight: 12
+weight: 14
 date: "2019-10-08"
 due_date: "2021-10-12"
 pubdate: "2019-10-03"
