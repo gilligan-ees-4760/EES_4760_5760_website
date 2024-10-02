@@ -22,6 +22,8 @@ pdf_url: /files/homework_asgts/homework_10.pdf
 
 
 
+**Optional:** The following exercises are optional. You can turn them in for extra credit.
+
 * Railsback & Grimm, Ch. 10, Ex. 10.1, 10.2
 * Railsback & Grimm, Ch. 11, Ex. 11.1
 
