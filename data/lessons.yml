@@ -63,13 +63,13 @@ lessons:
 - date: '2024-10-07'
   title: Interaction
   reading: /reading/reading_14
-  assignment: project_analysis
 - date: '2024-10-09'
   title: Team Presentations
 - date: '2024-10-14'
   title: Fall Break
 - date: '2024-10-16'
   title: Research Project ODDs
+  assignment: project_analysis
 - date: '2024-10-21'
   title: Scheduling
   reading: /reading/reading_17
