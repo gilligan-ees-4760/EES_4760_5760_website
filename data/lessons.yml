@@ -65,18 +65,20 @@ lessons:
   reading: /reading/reading_14
 - date: '2024-10-09'
   title: Team Presentations
+  reading: /reading/reading_15
 - date: '2024-10-14'
-  title: Fall Break
-- date: '2024-10-16'
   title: Research Project ODDs
-  assignment: project_analysis
-- date: '2024-10-21'
+  reading: /reading/reading_16
+- date: '2024-10-16'
   title: Scheduling
   reading: /reading/reading_17
-  assignment: team_project_presentation
-- date: '2024-10-23'
+  assignment: project_analysis
+- date: '2024-10-21'
   title: Stochasticity
   reading: /reading/reading_18
+  assignment: team_project_presentation
+- date: '2024-10-23'
+  title: Class Canceled
 - date: '2024-10-25'
   assignment: team_project_report
 - date: '2024-10-28'
