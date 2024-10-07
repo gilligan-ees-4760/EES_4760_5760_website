@@ -27,7 +27,7 @@ The optional reading from _Modeling Social Behavior_ may be interesting. Chapter
 chapter 9 looks into social networks among agents in detail.
 
 Chapter 6 focuses on a class of strategic games, such as the Prisoner's Dilemma, in which the players 
-do better when they cooperate with each other, but the game gives each player has a strong tempation 
+do better when they cooperate with each other, but the game gives each player has a strong temptation 
 to betray their partner. The chapter investigates a rich line of research, which shows that there may 
 be reasons for natural selection to favor cooperation, so people may have evolved to be mostly 
 trustworthy and cooperative. 
@@ -38,5 +38,5 @@ coordination among large numbers of people, where there is no opportunity to dev
 knowledge of your neighbors' character and trustworthiness.
 
 Chapter 9 presents more detail about social networks and the use of NetLogo links. 
-The main reading from Railsback & Grimm covers the basics of links, but this chapter discusses 
+The main reading from _Railsback & Grimm_ covers the basics of links, but this chapter discusses 
 the different kinds of social networks (different topologies) that can form using those links.
