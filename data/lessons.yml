@@ -67,6 +67,7 @@ lessons:
 - date: '2024-10-09'
   title: Team Presentations
   reading: /reading/reading_15
+  assignment: team_project_presentation
 - date: '2024-10-14'
   title: Research Project ODDs
   reading: /reading/reading_16
@@ -79,7 +80,6 @@ lessons:
 - date: '2024-10-21'
   title: Stochasticity
   reading: /reading/reading_18
-  assignment: team_project_presentation
 - date: '2024-10-23'
   title: Class Canceled
 - date: '2024-10-28'
