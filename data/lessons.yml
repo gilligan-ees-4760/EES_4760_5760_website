@@ -74,14 +74,14 @@ lessons:
   title: Scheduling
   reading: /reading/reading_17
   assignment: project_analysis
+- date: '2024-10-18'
+  assignment: team_project_report
 - date: '2024-10-21'
   title: Stochasticity
   reading: /reading/reading_18
   assignment: team_project_presentation
 - date: '2024-10-23'
   title: Class Canceled
-- date: '2024-10-25'
-  assignment: team_project_report
 - date: '2024-10-28'
   title: Collectives
   reading: /reading/reading_19

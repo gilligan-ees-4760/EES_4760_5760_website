@@ -1,13 +1,13 @@
 ---
 title: Team modeling project report
-due_date: '2024-10-25'
+due_date: '2024-10-18'
 assignment_type: Team Project Assignment
 short_assignment_type: Team Project
 assignment_number: 13
 weight: 13
 slug: team_project_report
 pubdate: '2024-07-31'
-date: '2024-10-25'
+date: '2024-10-18'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
