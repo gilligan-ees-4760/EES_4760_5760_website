@@ -5,6 +5,12 @@
   publish = "public/"
   command = "git submodule update --remote && cd themes/hugo-syllabus && git status && cd ../.. && hugo"
 
+[build.environment]
+  HUGO_VERSION = "0.136.2"
+
+[context.production]
+  branch = "main"
+
 [[redirects]]
   from = "https://www.ees4760.jgilligan.org/*"
   to   = "https://ees4760.jgilligan.org/:splat"
