@@ -72,17 +72,17 @@ lessons:
   title: Research Project ODDs
   reading: /reading/reading_16
 - date: '2024-10-16'
-  title: Scheduling
-  reading: /reading/reading_17
+  title: Class Canceled
   assignment: project_analysis
-  lecture: /slides/class_17
 - date: '2024-10-18'
   assignment: team_project_report
 - date: '2024-10-21'
+  title: Scheduling
+  reading: /reading/reading_17
+  lecture: /slides/class_17
+- date: '2024-10-23'
   title: Stochasticity
   reading: /reading/reading_18
-- date: '2024-10-23'
-  title: Class Canceled
 - date: '2024-10-28'
   title: Collectives
   reading: /reading/reading_19
