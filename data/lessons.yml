@@ -83,6 +83,7 @@ lessons:
 - date: '2024-10-23'
   title: Stochasticity
   reading: /reading/reading_18
+  lecture: /slides/class_18
 - date: '2024-10-28'
   title: Collectives
   reading: /reading/reading_19
