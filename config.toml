@@ -5,10 +5,12 @@ title = "EES 4760/5760"
 theme = "hugo-syllabus"
 # disqusShortname = ""
 enableRobotsTXT = true
-paginate = 10
 relativeurls = true
 publishDir = "public"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_data$", "\\.gitkeep"]
+
+[pagination]
+  pagerSize = 10
 
 # [Config]
 #   [Services]
