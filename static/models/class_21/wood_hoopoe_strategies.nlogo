@@ -10,13 +10,16 @@ globals
   group-sizes       ; A list of group sizes by patch, for output
   foray-ages        ; A list of ages at which birds foray
   non-alpha-ages    ; A list of ages at which birds *consider* forays
-  foray-months      ; A list of months at which birds foray
+  foray-months       ; A list of months at which birds foray
+  foray-success     ; Probability of finding a vacancy if foray
+
+  scout-successes   ; Number of successful forays
+  scout-attempts    ; Number of forays
+
   pop-months        ; A list of population by month
-  foray-trials
-  foray-success
-  ; p-scout           ; probability of scouting for random case
-  p-foray-success   ; probability of successful foray.
-  ; time-horizon      ; Time horizon for calculating expected offspring
+
+  t-horizon
+  time-horizon-survival-threshold
 ]
 
 turtles-own
@@ -29,28 +32,36 @@ turtles-own
 
 to setup
 
-  clear-all
+  ca
   reset-ticks
 
   ; Set parameters and globals
   set month 0
-  set year 0
+  set year 1
   set survival-prob 0.98
   set fecundity 2
   set scouting-distance 5
   set scouting-survival 0.8
-  ; set p-scout 0.10
-  set p-foray-success 0.10
-  ; set time-horizon 1
 
-  set group-sizes []     ; An empty list
-  set foray-ages []      ; An empty list
+  set group-sizes []  ; An empty list
+  set foray-ages []  ; An empty list
   set non-alpha-ages []  ; An empty list
-  set foray-months []    ; An empty list
+  set foray-months []  ; An empty list
+  set foray-success 0.1
   set pop-months n-values 12 [ 0 ]
 
-  set foray-trials 0
-  set foray-success 0
+  set scout-successes 0  ; Number of successful forays
+  set scout-attempts 0   ; Number of forays
+
+  set time-horizon-survival-threshold 0.1  ; "Lifetime" is defined as number of years that bird
+                                           ; has this probability of surviving until
+  ifelse automatic-time-horizon?
+  [
+    set t-horizon (ln time-horizon-survival-threshold / ln survival-prob) / 12
+  ]
+  [
+    set t-horizon time-horizon
+  ]
 
   ; Shade the patches
   ask patches
@@ -85,6 +96,13 @@ to setup
 
   ]
 
+  ; Open test output file
+  ; First, delete it instead of appending to it
+
+;  if (file-exists? "HoopoeModel-Test.csv")
+;  [file-delete "HoopoeModel-Test.csv"]
+;  file-open "HoopoeModel-Test.csv"
+
 end
 
 
@@ -94,6 +112,7 @@ to go
 
   if year = 22 and month = 12
   [
+;    file-close
     stop
   ]
 
@@ -105,9 +124,7 @@ to go
 
   ask turtles with [(age-in-months > 12) and (not is-alpha?)] [scout]
 
-  if (month = 12) [
-    ask turtles with [is-female? and is-alpha?] [reproduce]
-    ]
+  if (month = 12) [ask turtles with [is-female? and is-alpha?] [reproduce]]
 
   set pop-months (replace-item (month - 1) pop-months (item (month - 1) pop-months + count turtles))
 
@@ -155,13 +172,24 @@ to scout  ; a turtle procedure
   ; Record age for output
   set non-alpha-ages lput age-in-months non-alpha-ages
 
-  ; First decide whether to scout by calling the scouting decision reporter
-  if not go-scouting? [stop]
+  ; Test output
+;   file-type (word who "," month "," is-alpha? "," is-female? "," age-in-months "," I-should-scout-direct ",")
+;   ask other turtles-here
+;   [file-type (word is-alpha? "," is-female? "," age-in-months ",")]
+;   file-print count turtles-here
+
+  ; First decide whether to scout
+  if (strategy = "random") and (not I-should-scout-random) [stop]
+ ; if (strategy = "always") Scouting will always be done if this trait is chosen
+  if (strategy = "never") [stop]
+  if (strategy = "indirect") and (not I-should-scout-indirect) [stop]
+  if (strategy = "direct") and (not I-should-scout-direct) [stop]
 
   ; Then do it
   ; Record age of forayers for output
   set foray-ages lput age-in-months foray-ages
   set foray-months lput month foray-months
+  set scout-attempts scout-attempts + 1
 
   ; First remember where home is
   let start-x xcor
@@ -172,8 +200,6 @@ to scout  ; a turtle procedure
   if random-bernoulli 0.5 [set step -1]
 
   ; Then go
-  set foray-trials foray-trials + 1
-
   repeat scouting-distance
   [
     setxy (xcor + step) ycor
@@ -189,7 +215,7 @@ to scout  ; a turtle procedure
       become-alpha
       pen-up
       set shape "square"
-      set foray-success foray-success + 1
+      set scout-successes scout-successes + 1
       stop ; End the "repeat" loop
     ]
   ]
@@ -202,95 +228,81 @@ to scout  ; a turtle procedure
 
 end
 
-to-report elders [ include-alphas? ]
-  let elders-here (other turtles-here) with
-  [
-    (is-female? = [is-female?] of myself) and
-    (age-in-months > [age-in-months] of myself)
-  ]
 
-  if not include-alphas?
-  [
-    set elders-here elders-here with [ not is-alpha? ]
-  ]
+;to-report I-should-scout  ; a turtle reporter for the scouting decision; returns a boolean
+;  ; This version assumes the decision is random, with 50% probability
+;  report random-bernoulli 0.5
+;
+;end
 
-  report count elders-here
-end
 
-to-report go-scouting-random?
+to-report I-should-scout-random  ; a turtle reporter, returns a boolean
+  ; This alternative assumes decision is random
   ifelse random-bernoulli p-scout
-  [ report true ]
-  [ report false ]
+  [report true]
+  [report false]
+
 end
 
-to-report go-scouting-always?
-  report true
+
+to-report I-should-scout-indirect  ; a turtle reporter, returns a boolean
+  ; This alternative assumes decision depends on how many
+  ; older non-alphas there are, using a "rule of thumb"
+  ifelse any? (other turtles-here) with
+   [
+     (is-female? = [is-female?] of myself) and
+     (not is-alpha?) and
+     (age-in-months > [age-in-months] of myself)]
+  [report true]
+  [report false]
+
 end
 
-to-report go-scouting-never?
-  report false
-end
 
-to-report go-scouting-direct?
-  ; This alternative assumes decision is taken rationally to maximize probability of reproducing:
-  ; Compare expected lifetime number of offspring if the bird stays and if it forays this month.
-  ; Choose the option that provides the greater expected number of offspring.
+to-report I-should-scout-direct  ; a turtle reporter, returns a boolean
+  ; This alternative assumes decision is determined probabilitistically:
+  ; foray if it provides higher expected lifetime reproductive output
 
-  let num-elders elders true
+  let num-elders count (other turtles-here) with
+   [
+     (is-female? = [is-female?] of myself) and
+     (age-in-months > [age-in-months] of myself)
+   ]
 
-  let p-find-site 0.012                    ; estimated probability of finding a site if foray
+  let months-til-breeding (12 - month) ; number months until next breeding season, can be zero
+  let prob-find-site 0.012     ; estimated probability of finding a site if foray
+  set time-horizon-survival-threshold 0.1  ; "Lifetime" is defined as number of years that bird
+                                           ; has this probability of surviving until
+  set t-horizon (ln time-horizon-survival-threshold / ln survival-prob) / 12
+  if not automatic-time-horizon? [ set t-horizon time-horizon ]
+  ; show time-horizon
   let offspring-if-stay 0
   let offspring-if-scout 0
   let breed-year 0
 
-  while [breed-year <= time-horizon] ; Iterate over lifetime years and
+  while [breed-year <= t-horizon] ; Iterate over lifetime years and
                                      ; calculate expected offspring for each year
   [
     ; First, calculate probable offspring for year if stay and wait for elders to die
-    let months-til-breeding ((breed-year + 1) * 12) - month
-    let p-elders-die (1 - (survival-prob ^ months-til-breeding)) ^ num-elders
-    let p-survive survival-prob ^ months-til-breeding
-    set offspring-if-stay offspring-if-stay + (p-survive * p-elders-die * fecundity)
+    let months-till-breeding ((breed-year + 1) * 12) - month
+    let prob-elders-die (1 - (survival-prob ^ months-till-breeding)) ^ num-elders
+    let prob-I-survive survival-prob ^ months-till-breeding
+    set offspring-if-stay offspring-if-stay + (prob-I-survive * prob-elders-die * fecundity)
 
     ; Second, calculate probable offspring for year if scout this month
-    set p-survive (p-survive * scouting-survival)
-    let p-become-alpha 1 - ((1 - p-foray-success) * (1 - p-elders-die))
-    set offspring-if-scout offspring-if-scout + (p-survive * p-become-alpha * fecundity)
+    set prob-I-survive (prob-I-survive * scouting-survival)
+    let prob-I-become-alpha 1 - ((1 - foray-success) * (1 - prob-elders-die))
+    set offspring-if-scout offspring-if-scout + (prob-I-survive * prob-I-become-alpha * fecundity)
 
     set breed-year breed-year + 1
   ]
 
-  ifelse offspring-if-scout > offspring-if-stay
-  [ report true ]
-  [ report false ]
-end
+  report offspring-if-scout > offspring-if-stay
 
-to-report go-scouting-indirect?
-  ; This alternative approximates the direct decision-making to maximize the probability of reproducing,
-  ; but instead of calculating the exact probability, it estimates it based on the number of subordinate
-  ; elders in the next, and randomly decides whether to go foraying with a probability of
-  ; 1 - 0.5 ^ (# subordinate elders),
-  ; so for no elders, it's 0, for 1 elder, p = 50%, for 2 elders it's 75%, for 3 elders it's 87.5%, etc.
-  ifelse random-bernoulli (1.0 - 0.5 ^ (elders false))
-  [ report true ]
-  [ report false ]
 end
-
-to-report go-scouting?  ; a turtle reporter for the scouting decision; returns a boolean
-  if strategy = "random"
-  [ report go-scouting-random? ]
-  if strategy = "always"
-  [ report go-scouting-always? ]
-  if strategy = "never"
-  [ report go-scouting-never? ]
-  if strategy = "direct"
-  [ report go-scouting-direct? ]
-  if strategy = "indirect"
-  [ report go-scouting-indirect? ]
-end
-
 
 to reproduce  ; a turtle procedure only executed by female alphas
+
   ; Cannot reproduce if there is no male alpha
   if not any? turtles-here with [(not is-female?) and is-alpha?] [stop]
 
@@ -309,22 +321,28 @@ to reproduce  ; a turtle procedure only executed by female alphas
       set color pink
     ]
   ]
+
 end
 
 
 to do-mortality  ; a turtle procedure
+
   if (not random-bernoulli survival-prob) [die]
+
 end
 
 
 to become-alpha  ; turtle procedure done any time a bird becomes alpha
+
   set is-alpha? true
   set size 0.2
   setxy (pxcor - 0.4 + random-float 0.8) (pycor + random-float 0.4)
+
 end
 
 
 to update-output
+
   ; Histogram group sizes, using data only from month 12
   if month = 12
   [
@@ -336,11 +354,6 @@ to update-output
     ]
 
     histogram group-sizes
-
-    set-current-plot "population"
-
-    clear-plot
-    foreach pop-months [ m-pop -> plot (m-pop / year) ]
   ]
 
   set-current-plot "Foray Month Histogram"
@@ -355,32 +368,48 @@ to update-output
   ifelse length foray-ages > 0
   [plot mean foray-ages]
   [plot 0]
+  set-current-plot "population"
+  clear-plot
+  foreach pop-months [ m-pop -> plot (m-pop / year) ]
+
 end
 
 
 to-report random-bernoulli [probability-true]
+
   ; First, do some defensive programming to make sure "probability-true"
   ; has a sensible value
 
   if (probability-true < 0.0 or probability-true > 1.0)
     [
-      type "Warning in random-bernoulli: probability-true equals "
-      print probability-true
+      show (word "Warning in random-bernoulli: probability-true equals " probability-true)
     ]
 
   if-else random-float 1.0 < probability-true
   [report true]
   [report false]
+
 end
 
 to-report fraction-success
-  if foray-trials = 0 [report 0]
-  report foray-success / foray-trials
+  if scout-attempts = 0 [ report 0 ]
+  report scout-successes / scout-attempts
 end
 
 to-report to-end-of-year
   if month = 12 [ report 12 ]
   report 12 - month
+end
+
+to-report elders [ include-alphas? ]
+  let elders-here turtles-here with
+  [
+    is-female? = [is-female?] of myself and
+    age-in-months > [age-in-months] of myself
+  ]
+
+  if not include-alphas? [ set elders-here elders-here with [ not is-alpha? ] ]
+  report count elders-here
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -663,6 +692,28 @@ p-scout
 1
 NIL
 HORIZONTAL
+
+SWITCH
+200
+515
+388
+548
+automatic-time-horizon?
+automatic-time-horizon?
+0
+1
+-1000
+
+MONITOR
+210
+427
+292
+472
+Time horizon
+t-horizon
+1
+1
+11
 
 @#$#@#$#@
 # Woodhoopoe Model
@@ -1014,7 +1065,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

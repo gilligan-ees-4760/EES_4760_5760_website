@@ -43,8 +43,8 @@ Your write-up will be due on to Brightspace by 11:59 pm on Friday, Oct. 18.
   the day (i.e., by 11:59 pm).
 * Model analysis due Wed. Oct. 16
 * We will discuss your project ODD in class on Mon. Oct. 14
-* ODD for extending model due Fri. Oct. 25.
-* Draft model code due Fri. Nov. 8
+* ODD for extending model due Fri. Nov. 1.
+* Draft model code due Fri. Nov. 15
 * Presentations Dec. 2--4.
 * Written report due Dec. 6.
 

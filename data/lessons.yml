@@ -99,14 +99,14 @@ lessons:
 - date: '2024-11-06'
   title: Parameterization and Calibration
   reading: /reading/reading_22
-- date: '2024-11-08'
-  assignment: project_draft_code
 - date: '2024-11-11'
   title: Parameterization and Calibration 2
   reading: /reading/reading_23
 - date: '2024-11-13'
   title: Analyzing ABMs
   reading: /reading/reading_24
+- date: '2024-11-15'
+  assignment: project_draft_code
 - date: '2024-11-18'
   title: Sensitivity and Robustness
   reading: /reading/reading_25
