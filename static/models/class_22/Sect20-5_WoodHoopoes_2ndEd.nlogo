@@ -489,7 +489,7 @@ survival-prob
 survival-prob
 0.9
 1
-0.985
+0.98
 .001
 1
 NIL
@@ -504,7 +504,7 @@ scout-prob
 scout-prob
 0
 1.00
-0.4
+0.3
 .001
 1
 NIL
@@ -867,7 +867,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -889,8 +889,8 @@ NetLogo 6.1.0
     <metric>month</metric>
     <metric>count turtles</metric>
     <metric>count patches with [count (turtles-here with [is-alpha?]) &lt; 2]</metric>
-    <steppedValueSet variable="scout-prob" first="0.01" step="0.01" last="0.4"/>
-    <steppedValueSet variable="survival-prob" first="0.975" step="0.001" last="0.985"/>
+    <steppedValueSet variable="scout-prob" first="0.01" step="0.01" last="0.04"/>
+    <steppedValueSet variable="survival-prob" first="0.975" step="0.001" last="0.981"/>
   </experiment>
 </experiments>
 @#$#@#$#@
