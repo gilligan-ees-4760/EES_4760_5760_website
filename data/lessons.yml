@@ -104,6 +104,7 @@ lessons:
   lecture: /slides/class_22
 - date: '2024-11-11'
   title: Agent-Based Models in Practice
+  reading: /reading/reading_23
   lecture: /slides/class_23
 - date: '2024-11-13'
   title: Analyzing ABMs
