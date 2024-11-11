@@ -103,8 +103,7 @@ lessons:
   reading: /reading/reading_22
   lecture: /slides/class_22
 - date: '2024-11-11'
-  title: Parameterization and Calibration 2
-  reading: /reading/reading_23
+  title: Agent-Based Models in Practice
   lecture: /slides/class_23
 - date: '2024-11-13'
   title: Analyzing ABMs
