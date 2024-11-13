@@ -53,18 +53,18 @@ end
 
 to update-turtles
   ask turtles [
-    ;; in next two lines, we use "neighbors" to test the eight patches
-    ;; surrounding the current patch
+    ; in next two lines, we use "neighbors" to test the eight patches
+    ; surrounding the current patch
     set similar-nearby count (turtles-on neighbors)  with [ color = [ color ] of myself ]
     set other-nearby count (turtles-on neighbors) with [ color != [ color ] of myself ]
     set total-nearby similar-nearby + other-nearby
     set happy? similar-nearby >= (%-similar-wanted * total-nearby / 100)
-    ;; add visualization here
-    ;; ifelse happy? [ set shape "square" ] [ set shape "square-x" ]
-    ;; if visualization = "old" [ set shape "default" ]
-    ;; if visualization = "square-x" [
-    ;;  ifelse happy? [ set shape "square" ] [ set shape "square-x" ]
-    ;; ]
+    ; add visualization here
+    ; ifelse happy? [ set shape "square" ] [ set shape "square-x" ]
+    ; if visualization = "old" [ set shape "default" ]
+    ; if visualization = "square-x" [
+    ;  ifelse happy? [ set shape "square" ] [ set shape "square-x" ]
+    ; ]
 
   ]
 end
@@ -646,7 +646,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

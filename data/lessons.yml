@@ -109,6 +109,7 @@ lessons:
 - date: '2024-11-13'
   title: Analyzing ABMs
   reading: /reading/reading_24
+  lecture: /slides/class_24
 - date: '2024-11-15'
   assignment: project_draft_code
 - date: '2024-11-18'
