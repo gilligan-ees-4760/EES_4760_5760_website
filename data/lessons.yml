@@ -115,6 +115,7 @@ lessons:
 - date: '2024-11-18'
   title: Sensitivity and Robustness
   reading: /reading/reading_25
+  lecture: /slides/class_25
 - date: '2024-11-20'
   title: 'Looking Ahead: ABMs Beyond this Course'
   reading: /reading/reading_26
