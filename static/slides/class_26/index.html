@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="Jonathan Gilligan">
+<title>Wrapping Up: Review and Looking Ahead</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css">
+<style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+<style type="text/css">
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+  </style>
+<!-- theme = solarized_jg --><link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+<!-- Printing and PDF exports --><script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><!--[if lt IE 9]>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
+  <![endif]--><script src="../../lecture_lib/library/header-attrs-2.28.2.9000/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class="center" id="title"><h1 class="title">Wrapping Up: Review and Looking Ahead</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based and Individual-Based
+Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #26:
+       Wednesday, November 20
+      2024
+    </h3>
+	<!-- end title slide -->
+</section><section><section id="final-week" class="title-slide slide level1 center"><h1 class="center">Final Week</h1>
+
+</section><section id="housekeeping" class="slide level2"><h2>Housekeeping</h2>
+<ul>
+<li>Please fill out the survey on Brightspace for which day you would
+prefer to give your project presentation.</li>
+<li>Before class on the day you will give your presentation, please
+upload a copy or your slides to the Brightspace Assignment for the
+presentation.</li>
+<li>By the end of the day on Friday Dec. 6, please upload your final
+paper to Brightspace,</li>
+</ul></section><section id="presentation-contents" class="slide level2 ninety"><h2 class="ninety">Presentations</h2>
+<ul>
+<li>5 minutes each plus 2 minutes for questions (change from original
+assignment)</li>
+<li>Structure:
+<ol>
+<li>Start by describing your research question</li>
+<li>Briefly describe your model</li>
+<li>Describe the experiments you performed:
+<ul>
+<li>What outputs did you observe or measure?</li>
+<li>What parameters did you change?</li>
+<li>What did you see? (e.g., behaviorspace graphs or screenshots of the
+model)</li>
+</ul>
+</li>
+<li>Conclusions</li>
+</ol>
+</li>
+<li>General recommendations:
+<ul>
+<li>5 slides, one minute each.</li>
+<li>As much as you can, use figures (graphs, illustrations, images,
+etc.) instead of text.</li>
+<li>Avoid slides with a lot of text</li>
+</ul>
+</li>
+<li>You can’t say everything you did, so focus on the most interesting
+highlights.</li>
+<li>You can present what you did in depth in your paper.</li>
+</ul></section><section id="final-paper" class="slide level2 eightyfive"><h2 class="eightyfive">Final Paper</h2>
+<ul>
+<li><p>Updated assignment on Brightspace &amp; course web site with
+recommended structure</p></li>
+<li>
+<p>Write this up as though it were a scientific journal paper:</p>
+<ol>
+<li>Abstract (1 paragraph summary of the paper, focusing on
+highlights)</li>
+<li>Introduction
+<ul>
+<li>Research question and why it’s interesting</li>
+</ul>
+</li>
+<li>Methods
+<ul>
+<li>Describe the model you started with and how you changed it to answer
+your research question</li>
+<li>Describe the experiments you ran with the model.</li>
+<li>Describe what outputs you measured</li>
+</ul>
+</li>
+<li>Results
+<ul>
+<li>What did you see (graphs of output, pictures of turtles on patches,
+etc.)</li>
+</ul>
+</li>
+<li>Discussion, conclusions:
+<ul>
+<li>What did you learn from the results of your experiment?</li>
+<li>If you had more time, what would you do next with your model?</li>
+<li>Do you think these results point to possible uses for your
+model?</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul></section></section><section><section id="prediction-market-sec" class="title-slide slide level1 center"><h1 class="center">Agent-Based Models for Policy Design</h1>
+
+</section><section id="elect-predict-marts" class="slide level2"><h2>Election Prediction Markets</h2>
+<p><img data-src="assets/images/wsj-prediction-market-illust.jpg" style="height:800px;"></p>
+</section><section id="prediction-markets-2016" class="slide level2"><h2>2016 Presidential Elections</h2>
+<p><img data-src="assets/images/predict.png" style="height:950px;" alt="Predictit predictions of 2016 presidential primaries"></p>
+</section><section id="markets-and-beliefs" class="slide level2"><h2>2016 Prediction Markets and Beliefs</h2>
+<div class="columns">
+<div class="column" style="width:49%;">
+<p><img data-src="assets/fig/election_2016-1.png"><!-- --></p>
+</div>
+<div class="column" style="width:49%;padding-top:2rem;">
+<ul>
+<li class="fragment">Predictions overestimated Clinton by ~5%</li>
+<li class="fragment">Losers may re-evaluate beliefs</li>
+<li class="fragment">Winners’ beliefs reinforced</li>
+</ul>
+</div>
+</div>
+</section><section id="prediction-markets-2024" class="slide level2"><h2>2024 Prediction Markets</h2>
+<p><img data-src="assets/fig/election-markets-2024-1.png"><!-- --></p>
+</section><section id="climate-change" class="slide level2"><h2>Climate Change and Prediction Markets</h2>
+<ul>
+<li>From 1990–2013, increasing scientific confidence that recent warming
+is mostly caused by human activity.
+<ul>
+<li>From very uncertain in 1990 to 95% certain in 2013.</li>
+</ul>
+</li>
+<li class="fragment"><strong>But</strong>, public’s beliefs did not change much.
+<ul>
+<li class="fragment">Distrust of scientists</li>
+<li class="fragment">People who distrust scientists may trust markets</li>
+</ul>
+</li>
+<li class="fragment">Prediction markets: “Put your money where your mouth is”
+<ul>
+<li class="fragment">Efficient information aggregation.</li>
+<li class="fragment">Do they also change beliefs?</li>
+</ul>
+</li>
+</ul></section><section id="prediction-market-simulation" class="slide level2"><h2>Prediction Market Simulation</h2>
+<ul>
+<li>Research Question:
+<ul>
+<li class="fragment"><em>Might prediction markets be useful for increasing
+convergence of climate beliefs?</em>
+</li>
+<li class="fragment"><em>If so, under what conditions?</em>
+</li>
+</ul>
+</li>
+<li class="fragment">Why simulation?
+<ul>
+<li class="fragment">Real prediction markets focus on near term events.
+<ul>
+<li class="fragment">Difficult to extrapolate to climate case.</li>
+</ul>
+</li>
+<li class="fragment">We can observe traders’ actions, but not their beliefs</li>
+</ul>
+</li>
+<li class="fragment">Simulation modeling informed by climate and economic theory to
+study potential of prediction markets for producing agreement.</li>
+</ul></section><section id="climate-theories" class="slide level2"><h2>Two Alternate Realities</h2>
+<p><img data-src="assets/images/climateplot-1.png" style='"height:950px;' alt="Predictions from two alternate theories of climate change"></p>
+</section><section id="trader-beliefs" class="slide level2"><h2>Trader Beliefs</h2>
+<ul>
+<li>Initialize traders with half believing each cause of climate change.
+<ul>
+<li>CO<sub>2</sub> or Total Solar Irradiance?</li>
+</ul>
+</li>
+<li class="fragment">Traders using correct model may not make accurate predictions
+<ul>
+<li class="fragment"><em>Functional form</em> correct, but must calibrate parameters
+on noisy temperature records.</li>
+</ul>
+</li>
+</ul></section><section id="trader-network" class="slide level2"><h2>Social Network</h2>
+<p><img data-src="assets/images/network.png" style="height:950px;" alt="Social network connecting traders"></p>
+</section><section id="model-scheduling" class="slide level2"><h2>Simulation Model</h2>
+<ol type="1">
+<li>Traders estimate forecasting model.</li>
+<li>Six years of trading</li>
+<li>Payoffs at end of 6 years.</li>
+<li>Decide whether to adopt beliefs of wealthiest neighbor in social
+network.</li>
+<li>Repeat</li>
+</ol></section><section id="trading-sequence" class="slide level2"><h2>Trading Sequence</h2>
+<ul>
+<li>Securities represent temperature ranges.
+<ul>
+<li class="fragment">At maturity, pay $1 if temperature is within range</li>
+</ul>
+</li>
+<li class="fragment">Each year, traders use last year’s <span class="math inline">\(T\)</span> to update personal model
+<ul>
+<li class="fragment">Predict probabilty distribution <span class="math inline">\(p(T)\)</span> for <span class="math inline">\(T\)</span> at maturity date</li>
+<li class="fragment">Assign expected value to temperature securities.</li>
+</ul>
+</li>
+<li class="fragment">Continuous double-auction:
+<ul>
+<li class="fragment">Each trader takes a turn:
+<ul>
+<li class="fragment">Picks a random security in portfolio to sell (willing-to-accept
+price, WTA)</li>
+<li class="fragment">Picks a random security to buy (willing-to-offer price,
+WTO)</li>
+</ul>
+</li>
+<li class="fragment">Trading whenever <span class="math inline">\(\text{one
+trader's WTO} \ge \text{another trader's WTA}\)</span>
+</li>
+</ul>
+</li>
+</ul></section><section id="model-convergence" class="slide level2"><h2>Convergence Over Time</h2>
+<p><img data-src="assets/images/time-1.png" style="height:950px;" alt="Convergence of the traders’ beliefs over time."></p>
+</section><section id="market-parameters" class="slide level2"><h2>Market Parameters</h2>
+<ul>
+<li>Ideology: resistance to changing beliefs</li>
+<li class="fragment"># traders: size of market</li>
+<li class="fragment"># edges per trader: density of social network</li>
+<li class="fragment">Risk tolerance: aggressive WTO, WTA prices, greater risk of not
+finding counterparty.</li>
+<li class="fragment">Segmentation: is social network an echo chamber?</li>
+<li class="fragment">True model: 1 for CO<sub>2</sub>, 0 for solar irradiance.</li>
+</ul></section><section id="sensitivity-analysis-results" class="slide level2"><h2>Sensitivity Analysis Results</h2>
+<p><img data-src="assets/images/sa-1.png" style="height:950px;" alt="Sensitivity analysis"></p>
+</section><section id="conclusions" class="slide level2"><h2>Conclusions</h2>
+<ul>
+<li>It appears that traders in a climate prediction market would
+converge to the correct belief about the cause of climate change.</li>
+<li>Convergence is much faster if social networks effectively link
+people with different beliefs.
+<ul>
+<li>Echo chambers inhibit learning</li>
+<li>In a highly connected network, convergence to correct belief takes
+about 10 years.</li>
+</ul>
+</li>
+<li>Results are not very sensitive to any of the parameters.</li>
+</ul></section><section id="next-steps" class="slide level2"><h2>Next Steps</h2>
+<ul>
+<li>Worked with faculty in Law School &amp; Owen School of Management to
+set up a real prediction market.</li>
+<li class="fragment">We were close to making a deal with a prediction market when the
+US government ordered the company to stop running betting markets in the
+US</li>
+</ul></section></section>
+</div>
+  </div>
+  <!--
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.js"></script>
+  <!-- -->
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script><!-- --><script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Display the page number of the current slide
+        showSlideNumber: 'speaker',
+        // Push each slide change to the browser history
+        history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/math/math.js', async: true }
+        ],
+        shift_keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'C' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'B' is pressed
+    	    88: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'X' is pressed
+    	    82: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'R' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'D' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'S',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'H',
+      	      });
+    </script><script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_26">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_26"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_26">https://ees4760.jgilligan.org/slides/class_26</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_26/EES_4760_5760_class_26_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_26/EES_4760_5760_class_26_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script><script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true
+  }
+})
+  </script><script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script><script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }
+
+  Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script><script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    // console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+</body>
+</html>
