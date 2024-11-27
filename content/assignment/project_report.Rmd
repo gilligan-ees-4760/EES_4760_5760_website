@@ -44,4 +44,4 @@ Your report should have the following structure:
    * Do you think these results point to possible uses for your model?
 #. References
 
-**See the assignment for further details.**
+**See the [assignment](/assignment/ResearchProjectAssignment.pdf) for further details.**
