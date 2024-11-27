@@ -1,13 +1,13 @@
 ---
 title: Research project report
-due_date: '2024-12-04'
+due_date: '2024-12-06'
 assignment_type: Semester Project Assignment
 short_assignment_type: Assignment
-assignment_number: 17
-weight: 17
+assignment_number: 18
+weight: 18
 slug: project_report
 pubdate: '2024-07-31'
-date: '2024-12-04'
+date: '2024-12-06'
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
@@ -27,4 +27,21 @@ pdf_url: /files/homework_asgts/project_report.pdf
 ### Notes on Homework:
 
 
-See the project assignment sheet for details.
+Your report should have the following structure:
+
+#. Abstract (1 paragraph summary of the paper, focusing on highlights)
+#. Introduction
+   * Research question and why it’s interesting
+#. Methods
+   * Describe the model you started with and how you changed it to answer your research question
+   * Describe the experiments you ran with the model.
+   * Describe what outputs you measured
+#. Results
+   * What did you see (graphs of output, pictures of turtles on patches, etc.)
+#. Discussion, conclusions:
+   * What did you learn from the results of your experiment?
+   * If you had more time, what would you do next with your model?
+   * Do you think these results point to possible uses for your model?
+#. References
+
+**See the assignment for further details.**

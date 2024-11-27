@@ -126,8 +126,9 @@ lessons:
   title: Thanksgiving Break
 - date: '2024-12-02'
   title: Presentations
-  assignment: project_presentation
+  assignment: project_presentation_1
 - date: '2024-12-04'
   title: Presentations
-  assignment: project_report
+  assignment: project_presentation_2
 - date: '2024-12-06'
+  assignment: project_report

@@ -48,21 +48,14 @@ Your write-up will be due on to Brightspace by 11:59 pm on Friday, Oct. 18.
 * Presentations Dec. 2--4.
 * Written report due Dec. 6.
 
-<!--
 ### Presentation Schedule
 
 | Monday Dec. 2       | Wednesday Dec. 4    |
 |:-------------------:|:-------------------:|
-| Maddie Allen        | Allister Barnes     |
-| Mostafa Farhadan    | Zachary Bloom       |
-| Ben Gode            | Marin Boyle         |
-| Daniel Gonzalez     | Natalie Elliot      |
-| Sarah Habeck        | Michelle Gordon     |
-| Tanya Iyer          | Marisa Kim          |
-| Clark Kaminsky      | Davis Kornblum      |
-| Nolan Siegel        | Tara Menon          |
-| Tatiyanna Singleton | Yasmeen Minniefield |
-| 'Ana Stringer       | Miguel Moravec      |
-| Robin Young         | Precious Ukachukwu  |
--->
-
+| Ferna Alvarez-Carrascal | Savi Buluwana       |
+| Andrew Harder           | Maya Maciel-Seidman |
+| Xingyu Huang            | Nadya Paschall      |
+| Erica Scarpitti         | Rayshaun Pettit     |
+| Jeremy Tallon           | Farzana Rahman      |
+| Jiaying Yang            | Xiyu Wang           |
+| Samuel Yang            | Hannah Wolf         |

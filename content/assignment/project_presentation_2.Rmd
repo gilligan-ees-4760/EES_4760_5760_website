@@ -1,0 +1,62 @@
+---
+title: Research project presentation
+due_date: '2024-12-04'
+assignment_type: Semester Project Assignment
+short_assignment_type: Presentation
+assignment_number: 17
+weight: 17
+slug: project_presentation_2
+pubdate: '2024-07-31'
+date: '2024-12-04'
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+pdf_url: /files/homework_asgts/project_presentation_2.pdf
+---
+## Homework
+
+### Homework Exercises:
+
+
+
+* You will make a five-minute presentation in class about your model (You can use the full five minutes of talking and there will be an additional two minutes for questions).
+
+### Notes on Homework:
+
+
+There will not be time to go into all the details in your presentation, so focus on:
+
+## Structure:
+
+#. Start by describing your research question
+#. Briefly describe your model
+#. Describe the experiments you performed:
+   * What outputs did you observe or measure?
+   * What parameters did you change?
+   * What did you see? (e.g., behaviorspace graphs or screenshots of the model)
+#. Conclusions
+
+## General recommendations:
+
+* 5 slides, one minute each.
+* As much as you can, use figures (graphs, illustrations, images, etc.) instead of text.
+* Avoid slides with a lot of text
+
+You can’t say everything you did, so focus on the most interesting highlights.
+
+You can describe what you did in greater depth in your paper.
+
+## Schedule of Presentations
+
+| Monday Dec. 2       | Wednesday Dec. 4    |
+|:-------------------:|:-------------------:|
+| Ferna Alvarez-Carrascal | Savi Buluwana       |
+| Andrew Harder           | Maya Maciel-Seidman |
+| Xingyu Huang            | Nadya Paschall      |
+| Erica Scarpitti         | Rayshaun Pettit     |
+| Jeremy Tallon           | Farzana Rahman      |
+| Jiaying Yang            | Xiyu Wang           |
+| Samuel Yang            | Hannah Wolf         |
