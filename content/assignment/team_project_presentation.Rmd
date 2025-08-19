@@ -1,20 +1,24 @@
 ---
 title: Team modeling project presentations
-due_date: '2024-10-09'
+subtitle: '`r params$par_subtitle`'
+due_date: '`r params$par_date`'
 assignment_type: Team Project Assignment
 short_assignment_type: Team Project
 assignment_number: 11
 weight: 11
 slug: team_project_presentation
-pubdate: '2024-07-31'
-date: '2024-10-09'
+pubdate: '2025-07-31'
+date: '`r params$par_date`'
+params:
+  par_date: '2025-10-08'
+  par_subtitle: ~
+pdf_url: /files/homework_asgts/team_project_presentation.pdf
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
   pdf_document:
     toc: yes
     toc_depth: 3
-pdf_url: /files/homework_asgts/team_project_presentation.pdf
 ---
 ## Homework
 

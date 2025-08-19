@@ -37,17 +37,29 @@
 \makeatother
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -100,9 +112,6 @@
 \newcommand{\SLUGULATOR}{\textsc{slugulator}}
 \newcommand{\GEOCARB}{\textsc{geocarb}}
 \newcommand{\MODTRAN}{\textsc{modtran}}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -115,7 +124,7 @@
 \title{Homework Assignments}
 \author{EES 4760/5760: Agent- and Individual-Based Computational
 Modeling}
-\date{Fall, 2024}
+\date{Fall, 2025}
 
 \begin{document}
 \maketitle
@@ -152,9 +161,8 @@ assignments}\label{general-instructions-for-homework-assignments}
     has multiple files, I encourage you to make separate folders for
     each exercise (e.g., \texttt{ex\_4.1} or \texttt{ex\_4\_1} for
     exercise 4.1) and then put all of the folders into a Zip file and
-    upload the Zip file to Brightspace. Then when Ms.~Turk or I unzip
-    it, the files for each exercise will be in a folder for that
-    exercise.
+    upload the Zip file to Brightspace. Then when I unzip it, the files
+    for each exercise will be in a folder for that exercise.
   \end{itemize}
 \item
   When a homework assignment calls for you to write a NetLogo model and
@@ -193,8 +201,6 @@ When I ran the model, this happened ...
     make in Word, you might write the answer on paper, photograph it,
     and upload the photo as something like \texttt{ex\_2\_3.jpg}.
   \end{enumerate}
-
-  For all of these options, it's generally a good idea to use
 \end{itemize}
 
 I encourage you to discuss homework assignments with your classmates.
@@ -241,8 +247,8 @@ on the ``Schedule'' page of the
 \href{https://ees4760.jgilligan.org/schedule}{course web site}:
 \url{https://ees4760.jgilligan.org/schedule}
 
-\section{Mon., Aug.~26: Set up
-NetLogo}\label{mon.-aug.-26-set-up-netlogo}
+\section{Mon., Aug.~25: Set up
+NetLogo}\label{mon.-aug.-25-set-up-netlogo}
 
 \subsection{Homework}\label{homework}
 
@@ -261,8 +267,8 @@ to prepare for next week:
   computer.
 \end{itemize}
 
-\section{Wed., Aug.~28: Introducing
-NetLogo}\label{wed.-aug.-28-introducing-netlogo}
+\section{Wed., Aug.~27: Introducing
+NetLogo}\label{wed.-aug.-27-introducing-netlogo}
 
 \subsection{Homework}\label{homework-1}
 
@@ -298,8 +304,8 @@ Ask a classmate for help, or email me (and attach your \texttt{.nlogo}
 model file), or simply come to class with questions about the problems
 you had getting your model to work.
 
-\section{Mon., Sep.~2: Becoming familiar with
-NetLogo}\label{mon.-sep.-2-becoming-familiar-with-netlogo}
+\section{Mon., Sep.~1: Becoming familiar with
+NetLogo}\label{mon.-sep.-1-becoming-familiar-with-netlogo}
 
 \subsection{Homework}\label{homework-2}
 
@@ -313,13 +319,13 @@ there is nothing to turn in.
 \begin{itemize}
 \tightlist
 \item
-  Everyone should do exercises 1--2 in Chapter 2 of Railsback \& Grimm.
-  This consists of reading and working through tutorials, so there is
-  nothing to turn in.
+  Everyone should do exercises 2.1 and 2.2 in Chapter 2 of Railsback \&
+  Grimm. This consists of reading and working through tutorials, so
+  there is nothing to turn in.
 \end{itemize}
 
-\section{Wed., Sep.~4: Experimenting with
-NetLogo}\label{wed.-sep.-4-experimenting-with-netlogo}
+\section{Wed., Sep.~3: Experimenting with
+NetLogo}\label{wed.-sep.-3-experimenting-with-netlogo}
 
 \subsection{Homework}\label{homework-3}
 
@@ -387,7 +393,7 @@ When I ran the model ...
 
 \begin{itemize}
 \item
-  Railsback \& Grimm, Chapter 2, exercises Exercises 3--4.
+  Railsback \& Grimm, Chapter 2, exercises Exercises 2.3--2.4.
 
   For exercise 4 in chapter 2, you will make seven sequential
   modifications of the basic mushroom hunt model. Each step modifies the
@@ -396,7 +402,7 @@ When I ran the model ...
   \texttt{ex\_2\_4a.nlogo}, \texttt{ex\_2\_4b.nlogo}, \dots,
   \texttt{ex\_2\_4g.nlogo}
 \item
-  Railsback \& Grimm, Chapter 3 exercise 3.
+  Railsback \& Grimm, Chapter 3 exercise 3.3.
 
   Write your answers in any convenient text format (a simple text file,
   a Word document, a \texttt{.pdf} file, or whatever suits you). Call
@@ -413,8 +419,8 @@ document commenting on your difficulty. Come to class prepared to talk
 about how this exercise went and where you felt confused about trying to
 specify your model.
 
-\section{Wed., Sep.~11: Science with models: Butterfly
-mating}\label{wed.-sep.-11-science-with-models-butterfly-mating}
+\section{Wed., Sep.~10: Science with models: Butterfly
+mating}\label{wed.-sep.-10-science-with-models-butterfly-mating}
 
 \subsection{Homework}\label{homework-4}
 
@@ -513,7 +519,7 @@ ask patches
   \begin{itemize}
   \tightlist
   \item
-    Railsback \& Grimm, Ch. 5, exercises 5.5 and 5.8
+    Railsback \& Grimm, Ch. 5, exercise 5.8
   \end{itemize}
 \end{itemize}
 
@@ -599,15 +605,15 @@ When I ran the model ...
     photo.
   \end{enumerate}
 \item
-  \textbf{Graduate Students:} For exercises 5.5 and 5.8, you need to
-  answer questions about your models. Do this in a file that you upload
-  to Brightspace, or write your answers on paper and take a picture and
+  \textbf{Graduate Students:} For exercise 5.8, you need to answer
+  questions about your models. Do this in a file that you upload to
+  Brightspace, or write your answers on paper and take a picture and
   upload it, or edit the ``Info'' page of your model and put the answer
   there.
 \end{itemize}
 
-\section{Wed., Sep.~18: Reproducing a model from its
-ODD}\label{wed.-sep.-18-reproducing-a-model-from-its-odd}
+\section{Wed., Sep.~17: Reproducing a model from its
+ODD}\label{wed.-sep.-17-reproducing-a-model-from-its-odd}
 
 \subsection{Homework}\label{homework-5}
 
@@ -657,39 +663,48 @@ ODD}\label{wed.-sep.-18-reproducing-a-model-from-its-odd}
   \end{itemize}
 \end{itemize}
 
-\section{Mon., Sep.~23: Research project
-proposal}\label{mon.-sep.-23-research-project-proposal}
+\section{Wed., Sep.~24: Testing and debugging
+models}\label{wed.-sep.-24-testing-and-debugging-models}
 
 \subsection{Homework}\label{homework-6}
 
 \subsubsection{Homework Exercises:}\label{homework-exercises-6}
 
 \begin{itemize}
-\tightlist
 \item
-  Turn in a one-to-two page (double-spaced) proposal for your semester
-  research project.
+  \textbf{Everyone:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 6, Ex. 6.2, 6.3
+  \end{itemize}
+\item
+  \textbf{Graduate Students,} also do the following:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Railsback \& Grimm, Ch. 6, Ex. 6.4, 6.5
+  \end{itemize}
 \end{itemize}
 
 \subsubsection{Notes on Homework:}\label{notes-on-homework-4}
 
-This proposal should describe the topic you want to work on, identify a
-published open-source model you want to work with, and and describe how
-you think you might want to extend it.
+You do not need to turn anything in for Exercise 6.2. This is an
+exercise to try for the experience
 
-You should consult the textbook, the Model Library in NetLogo, and the
-list of reading and computational tools and resources I distributed on
-the first day of class (it's also posted on the course web site).
+A hint for exercise 6.3: Patches have integer coordinates (representing
+the center of the patch). How does the turtle determine the angle to
+face during \texttt{setup}? How does it determine the angle to face in
+\texttt{go-back}? Can you think of a different way to record the path so
+the \texttt{go-back} exactly retraces the path it took during
+\texttt{setup}? If you knew the direction the turtle was heading at each
+step during \texttt{setup}, could you use this heading information to
+exactly retrace the path?
 
-If you really want to write your own model instead of working with a
-published one, that is also acceptable, but be aware that it may be a
-lot more work. I recommend that you do this only if you have previous
-experience in programming.
-
-See the semester project assignment for details.
-
-\section{Mon., Sep.~30: Analyzing model
-experiments}\label{mon.-sep.-30-analyzing-model-experiments}
+\section{Mon., Sep.~29: Analyzing model
+experiments}\label{mon.-sep.-29-analyzing-model-experiments}
 
 \subsection{Homework}\label{homework-7}
 
@@ -704,7 +719,7 @@ experiments}\label{mon.-sep.-30-analyzing-model-experiments}
   \item
     Railsback \& Grimm, Ch. 8, Ex. 8.1, 8.2
   \item
-    Railsback \& Grimm, Ch. 9, Ex. 9.1, 9.3, 9.4
+    Railsback \& Grimm, Ch. 9, Ex. 9.3, 9.4
   \end{itemize}
 \item
   \textbf{Graduate Students,} also do the following:
@@ -718,27 +733,48 @@ experiments}\label{mon.-sep.-30-analyzing-model-experiments}
   \end{itemize}
 \end{itemize}
 
-\section{Wed., Oct.~2: Programming agent
-sensing}\label{wed.-oct.-2-programming-agent-sensing}
+\section{Wed., Oct.~1: Programming agent
+sensing}\label{wed.-oct.-1-programming-agent-sensing}
 
 \subsection{Homework}\label{homework-8}
 
 \subsubsection{Homework Exercises:}\label{homework-exercises-8}
 
+\textbf{Optional:} The following exercises are optional. You can turn
+them in for extra credit.
+
 \begin{itemize}
 \tightlist
 \item
-  Railsback \& Grimm, Ch. 10, Ex. 10.1, 10.2
+  Railsback \& Grimm, Ch. 10, Ex. 10.1
 \item
   Railsback \& Grimm, Ch. 11, Ex. 11.1
 \end{itemize}
 
-\section{Mon., Oct.~7: Analysis of a published
-model}\label{mon.-oct.-7-analysis-of-a-published-model}
+\section{Wed., Oct.~8: Team modeling project
+presentations}\label{wed.-oct.-8-team-modeling-project-presentations}
 
 \subsection{Homework}\label{homework-9}
 
 \subsubsection{Homework Exercises:}\label{homework-exercises-9}
+
+\begin{itemize}
+\tightlist
+\item
+  Teams will give a presentation on their projects.
+\end{itemize}
+
+\subsubsection{Notes on Homework:}\label{notes-on-homework-5}
+
+See the team project assignment sheet for details on what I expect for
+the presentation.
+
+\section{Wed., Oct.~15: Analysis of a published
+model}\label{wed.-oct.-15-analysis-of-a-published-model}
+
+\subsection{Homework}\label{homework-10}
+
+\subsubsection{Homework Exercises:}\label{homework-exercises-10}
 
 \begin{itemize}
 \item
@@ -749,30 +785,12 @@ model}\label{mon.-oct.-7-analysis-of-a-published-model}
   Turn in a 3--5 page (double-spaced) write-up about the model.
 \end{itemize}
 
-\subsubsection{Notes on Homework:}\label{notes-on-homework-5}
+\subsubsection{Notes on Homework:}\label{notes-on-homework-6}
 
 See the project assignment sheet for details about this assignment.
 
-\section{Mon., Oct.~21: Team modeling project
-presentations}\label{mon.-oct.-21-team-modeling-project-presentations}
-
-\subsection{Homework}\label{homework-10}
-
-\subsubsection{Homework Exercises:}\label{homework-exercises-10}
-
-\begin{itemize}
-\tightlist
-\item
-  Teams will give a presentation on their projects.
-\end{itemize}
-
-\subsubsection{Notes on Homework:}\label{notes-on-homework-6}
-
-See the team project assignment sheet for details on what I expect for
-the presentation.
-
-\section{Mon., Dec.~2: Research project
-presentations}\label{mon.-dec.-2-research-project-presentations}
+\section{Wed., Oct.~29: Research project
+ODD}\label{wed.-oct.-29-research-project-odd}
 
 \subsection{Homework}\label{homework-11}
 
@@ -781,45 +799,202 @@ presentations}\label{mon.-dec.-2-research-project-presentations}
 \begin{itemize}
 \tightlist
 \item
-  You will make a ten-minute presentation in class about your model
-  (seven minutes of talking and three minutes for questions).
+  Turn in an ODD for extending your chosen model to ask new questions.
 \end{itemize}
 
 \subsubsection{Notes on Homework:}\label{notes-on-homework-7}
 
-There will not be time to go into all the details in your presentation,
-so focus on:
+See the semester research project assignment sheet for details.
 
-\begin{itemize}
-\tightlist
-\item
-  the big question you were addressing,
-\item
-  a short description of the approach you took to answer it using an
-  agent-based model,
-\item
-  what you learned from running the model.
-\end{itemize}
-
-See the project assignment sheet for details.
-
-\section{Wed., Dec.~4: Research project
-report}\label{wed.-dec.-4-research-project-report}
+\section{Wed., Nov.~12: Draft model code for research
+project}\label{wed.-nov.-12-draft-model-code-for-research-project}
 
 \subsection{Homework}\label{homework-12}
 
 \subsubsection{Homework Exercises:}\label{homework-exercises-12}
 
 \begin{itemize}
-\tightlist
 \item
-  Turn in a written report about your research project. Your report
-  should follow the model of a research report for \emph{Science}
-  magazine:
+  Turn in a draft \texttt{.nlogo} file with your modified model. The ODD
+  for your modified model should be included in the ``Info'' section of
+  the model.
+
+  You should \emph{also} turn in a document that describes what you are
+  satisfied with about your draft model and what problems you are
+  struggling with.
 \end{itemize}
 
 \subsubsection{Notes on Homework:}\label{notes-on-homework-8}
 
+The model code you turn in should run, but it does not need to be
+perfect.
+
+The point of this deadline is so that you can check in with me about how
+things are going so I can give you feedback and suggestions.
+
 See the project assignment sheet for details.
+
+\section{Mon., Dec.~1: Research project
+presentations}\label{mon.-dec.-1-research-project-presentations}
+
+\subsection{Homework}\label{homework-13}
+
+\subsubsection{Homework Exercises:}\label{homework-exercises-13}
+
+\begin{itemize}
+\tightlist
+\item
+  You will make a five-minute presentation in class about your model
+  (You can use the full five minutes of talking and there will be an
+  additional two minutes for questions).
+\end{itemize}
+
+\subsubsection{Notes on Homework:}\label{notes-on-homework-9}
+
+There will not be time to go into all the details in your presentation,
+so focus on:
+
+\subsection{Structure:}\label{structure}
+
+\begin{enumerate}
+\tightlist
+\item
+  Start by describing your research question
+\item
+  Briefly describe your model
+\item
+  Describe the experiments you performed:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    What outputs did you observe or measure?
+  \item
+    What parameters did you change?
+  \item
+    What did you see? (e.g., behaviorspace graphs or screenshots of the
+    model)
+  \end{itemize}
+\item
+  Conclusions
+\end{enumerate}
+
+\subsection{General recommendations:}\label{general-recommendations}
+
+\begin{itemize}
+\tightlist
+\item
+  5 slides, one minute each.
+\item
+  As much as you can, use figures (graphs, illustrations, images, etc.)
+  instead of text.
+\item
+  Avoid slides with a lot of text
+\end{itemize}
+
+You can't say everything you did, so focus on the most interesting
+highlights.
+
+You can describe what you did in greater depth in your paper.
+
+\subsection{Schedule of Presentations}\label{schedule-of-presentations}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule\noalign{}
+Monday Dec.~2 & Wednesday Dec.~4 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Ferna Alvarez-Carrascal & Savi Buluwana \\
+Andrew Harder & Maya Maciel-Seidman \\
+Xingyu Huang & Nadya Paschall \\
+Erica Scarpitti & Rayshaun Pettit \\
+Jeremy Tallon & Farzana Rahman \\
+Jiaying Yang & Xiyu Wang \\
+Samuel Yang & Hannah Wolf \\
+\end{longtable}
+
+\section{Wed., Dec.~3: Research project
+presentations}\label{wed.-dec.-3-research-project-presentations}
+
+\subsection{Homework}\label{homework-14}
+
+\subsubsection{Homework Exercises:}\label{homework-exercises-14}
+
+\begin{itemize}
+\tightlist
+\item
+  You will make a five-minute presentation in class about your model
+  (You can use the full five minutes of talking and there will be an
+  additional two minutes for questions).
+\end{itemize}
+
+\subsubsection{Notes on Homework:}\label{notes-on-homework-10}
+
+There will not be time to go into all the details in your presentation,
+so focus on:
+
+\subsection{Structure:}\label{structure-1}
+
+\begin{enumerate}
+\tightlist
+\item
+  Start by describing your research question
+\item
+  Briefly describe your model
+\item
+  Describe the experiments you performed:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    What outputs did you observe or measure?
+  \item
+    What parameters did you change?
+  \item
+    What did you see? (e.g., behaviorspace graphs or screenshots of the
+    model)
+  \end{itemize}
+\item
+  Conclusions
+\end{enumerate}
+
+\subsection{General recommendations:}\label{general-recommendations-1}
+
+\begin{itemize}
+\tightlist
+\item
+  5 slides, one minute each.
+\item
+  As much as you can, use figures (graphs, illustrations, images, etc.)
+  instead of text.
+\item
+  Avoid slides with a lot of text
+\end{itemize}
+
+You can't say everything you did, so focus on the most interesting
+highlights.
+
+You can describe what you did in greater depth in your paper.
+
+\subsection{Schedule of
+Presentations}\label{schedule-of-presentations-1}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule\noalign{}
+Monday Dec.~2 & Wednesday Dec.~4 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Ferna Alvarez-Carrascal & Savi Buluwana \\
+Andrew Harder & Maya Maciel-Seidman \\
+Xingyu Huang & Nadya Paschall \\
+Erica Scarpitti & Rayshaun Pettit \\
+Jeremy Tallon & Farzana Rahman \\
+Jiaying Yang & Xiyu Wang \\
+Samuel Yang & Hannah Wolf \\
+\end{longtable}
 
 \end{document}

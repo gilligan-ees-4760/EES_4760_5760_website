@@ -1,7 +1,7 @@
 ---
 title: "Reading Assignments"
 author: "EES 4760/5760: Agent- and Individual-Based Computational Modeling"
-date: "Fall, 2024"
+date: "Fall, 2025"
 output:
   pdf_document: 
     includes:
@@ -71,7 +71,7 @@ The most up-to-date versions of the reading assignments will be posted on the
 <https://ees4760.jgilligan.org/schedule>
 
 
-```{r define_functions, eval=TRUE, include=FALSE, dependson="initialize"}
+```{r define_functions, eval=TRUE, include=FALSE}
 assemble_schedule <- function(semester) {
   schedule <- semestr:::init_schedule(semester)
   tmp <- semestr:::schedule_strip_finals(schedule, semester)

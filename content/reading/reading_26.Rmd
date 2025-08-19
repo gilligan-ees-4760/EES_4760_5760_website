@@ -1,15 +1,19 @@
 ---
 title: 'Looking Ahead: ABMs Beyond this Course'
-class_date: '2024-11-20'
+subtitle: '`r params$par_subtitle`'
+class_date: '`r params$par_date`'
 class_number: 26
 weight: 26
 slug: reading_26
-pubdate: '2024-07-31'
-date: '2024-11-20'
+pubdate: '2025-07-31'
+date: '`r params$par_date`'
+params:
+  par_date: '2025-11-19'
+  par_subtitle: ~
+pdf_url: /files/reading_asgts/reading_26.pdf
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
-pdf_url: /files/reading_asgts/reading_26.pdf
 ---
 ## Reading:
 

@@ -1,0 +1,189 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{mathptmx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage[version=4]{mhchem}
+% \usepackage{longtable}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+% \usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+% \usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{makecmds}
+
+\newcommand{\COO}{\ce{CO2}}
+\newcommand{\methane}{\ce{CH4}}
+\newcommand{\degC}{^\circ \mathrm{C}}
+\newcommand{\degF}{^\circ \mathrm{F}}
+\newcommand{\water}{\mathrm{H_2O}}
+\newcommand{\carb}{\ce{CO3^2-}}
+\newcommand{\bicarb}{\ce{HCO3-}}
+\newcommand{\carbonic}{\ce{H2CO3}}
+\newcommand{\Hplus}{\ce{H+}}
+\newcommand{\OH}{\ce{OH-}}
+\newcommand{\silica}{\ce{SiO2}}
+\newcommand{\calcite}{\ce{CaCO3}}
+\newcommand{\Caplus}{\ce{Ca^2+}}
+\newcommand{\silicate}{\ce{SiO3^2-}}
+\newcommand{\CaSi}{\ce{CaSiO3}}
+\newcommand{\pH}{p\ce{H}}
+\newcommand{\permil}{\permille}
+
+\newcommand{\NetLogo}{{\sffamily\scshape NetLogo}}
+\newcommand{\NetLogoURL}{\url{https://ccl.northwestern.edu/netlogo/}}
+
+\newcommand{\alintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+      \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\makeenvironment{Shaded}{\begin{snugshade}\small}{\end{snugshade}}
+\makecommand{\AttributeTok}[1]{\textcolor[rgb]{0.42,0.37,0.12}{#1}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Emergence},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Emergence}
+\author{}
+\date{\vspace{-2.5em}Reading for Class \#9: Wednesday, Sep 17, 2025}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\subsection{Reading:}\label{reading}
+
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 8.
+\end{itemize}
+
+\subsubsection{Reading Notes:}\label{reading-notes}
+
+This is a major chapter. Emergence is one of the most important concepts
+in agent-based modeling, so pay close attention to the discussion in
+this chapter and think about how you can measure and assess emergence.
+
+This chapter also introduces a very important tool for doing experiments
+in NetLogo: \textbf{BehaviorSpace}. BehaviorSpace lets you repeatedly
+run a NetLogo model while varying the settings of any of the controls on
+your user interface. Where there is randomness (stochasticity) in the
+model, you can perform many runs at each set of control settings. This
+will let us perform \textbf{sensitivity analysis} to determine whether a
+certain emergent phenomenon we are investigating happens only for values
+of the parameters within a narrow range, or whether it happens over a
+wide range of the parameters. It will let us determine which parameters
+are most important for the phenomenon.
+
+For homework and your modeling projects you will use BehaviorSpace
+extensively. BehaviorSpace outputs large amounts of data to
+\texttt{.csv} files, which you can read into Excel, R, SPSS, or another
+tool where you can do statistical analysis and generate plots such as
+the ones in figures 8.3, 8.5, and 8.6.
+
+The format in which BehaviorSpace saves its data is very annoying to
+deal with in many tools. Indeed, it's almost impossible to do anything
+useful with it in Excel. Because of this, I have written a tool called
+\texttt{analyzeBehaviorspace} that can read the output of a
+BehaviorSpace run and allow you to interactively graph it and
+re-organize the data to make it more useful.
+
+You can either use this tool online in a web browser at
+\url{https://analyze-behaviorspace.jgilligan.org} or install it on your
+own computer. For details, see the description of
+\texttt{analyzeBehaviorspace} on the ``Reading Resources and Computing
+Tools for Research'' handout.
+
+As you read the chapter, be sure to try out the experiments with the
+birth-and-death model and the flocking model. Try reading the output of
+the behaviorspace runs into analyzeBehaviorspace (the web version or a
+local version installed on your computer), or your favorite statistical
+analysis software and try to generate plots similar to figures 8.3, 8.5,
+and 8.6.
+
+If you have time, try to play around with BehaviorSpace using those
+models (varying different parameters) or other models from the NetLogo
+library to explore the ways that changing parameters affects the models'
+behavior.
+
+\end{document}

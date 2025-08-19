@@ -1,0 +1,199 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{mathptmx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage[version=4]{mhchem}
+% \usepackage{longtable}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+% \usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+% \usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{makecmds}
+
+\newcommand{\COO}{\ce{CO2}}
+\newcommand{\methane}{\ce{CH4}}
+\newcommand{\degC}{^\circ \mathrm{C}}
+\newcommand{\degF}{^\circ \mathrm{F}}
+\newcommand{\water}{\mathrm{H_2O}}
+\newcommand{\carb}{\ce{CO3^2-}}
+\newcommand{\bicarb}{\ce{HCO3-}}
+\newcommand{\carbonic}{\ce{H2CO3}}
+\newcommand{\Hplus}{\ce{H+}}
+\newcommand{\OH}{\ce{OH-}}
+\newcommand{\silica}{\ce{SiO2}}
+\newcommand{\calcite}{\ce{CaCO3}}
+\newcommand{\Caplus}{\ce{Ca^2+}}
+\newcommand{\silicate}{\ce{SiO3^2-}}
+\newcommand{\CaSi}{\ce{CaSiO3}}
+\newcommand{\pH}{p\ce{H}}
+\newcommand{\permil}{\permille}
+
+\newcommand{\NetLogo}{{\sffamily\scshape NetLogo}}
+\newcommand{\NetLogoURL}{\url{https://ccl.northwestern.edu/netlogo/}}
+
+\newcommand{\alintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+      \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\makeenvironment{Shaded}{\begin{snugshade}\small}{\end{snugshade}}
+\makecommand{\AttributeTok}[1]{\textcolor[rgb]{0.42,0.37,0.12}{#1}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Specifying models: The ODD protocol},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Specifying models: The ODD protocol}
+\author{}
+\date{\vspace{-2.5em}Reading for Class \#4: Monday, Sep 01, 2025}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\subsection{Reading:}\label{reading}
+
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 3.
+\end{itemize}
+
+\subsubsection{Reading Notes:}\label{reading-notes}
+
+Read carefully through the different design principles. Some of them
+have meanings that are a bit different from what you might infer from
+colloquial use.
+
+For instance:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Adaptation} does not mean a persistent change in a turtle's
+  behavior similar to the biological/Darwinian sense of adaptation in
+  species. Rather, it means the way an agent changes its behavior in
+  response to its \emph{immediate} conditions. Thus, adaptation in the
+  ODD sense might include behaviors such as eating when you are hungry
+  (\emph{eating} is an \textbf{adaptation} to \emph{hunger}), putting on
+  warmer clothing when it's cold out (bundling up is an adaptation to
+  cold), and running away from a predator.
+\item
+  The kind of persistent changes that arise over time from experience
+  fall under the ODD design concept of \textbf{learning}: If there is
+  more food near a river than on hills, turtles may \textbf{learn} to go
+  to rivers when they are hungry.
+\end{itemize}
+
+You can download several useful documents related to the ODD protocol
+from the class web site:
+
+\begin{itemize}
+\tightlist
+\item
+  The journal article, \href{/files/odd/Grimm_2010_ODD_update.pdf}{V.
+  Grimm \emph{et al.} (2010). ``The ODD protocol: A review and first
+  update'' \emph{Ecological Modeling} \textbf{221}, 2760--68.}.
+  \url{https://ees4760.jgilligan.org/files/odd/Grimm_2010_ODD_update.pdf}
+\item
+  A Word document that provides
+  \href{/files/odd/Grimm_2010_odd_template.docx}{a template for writing
+  ODDs}:
+  \url{https://ees4760.jgilligan.org/files/odd/Grimm_2010_odd_template.docx}
+\item
+  Lists of scientific publications using agent-based and
+  individual-based models that either do or don't use the ODD protocol
+  (this appeared as \href{/files/odd/Grimm_2010_appendix_1.pdf}{Appendix
+  1} of the Grimm \emph{et al.} paper):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \url{https://ees4760.jgilligan.org/files/odd/Grimm_2010_appendix_1.pdf},
+  \item
+    \url{https://ees4760.jgilligan.org/files/odd/ch3_ex1_pubs_with_no_ODD.pdf},
+  \item
+    \url{https://ees4760.jgilligan.org/files/odd/ch3_ex2_pubs_with_ODD.pdf}.
+  \end{itemize}
+\end{itemize}
+
+\end{document}

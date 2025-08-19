@@ -1,0 +1,40 @@
+---
+title: 'Specifying models: The ODD protocol'
+subtitle: ''
+class_date: 'Reading for Class #4: Monday, Sep 01, 2025'
+class_number: 4
+weight: 4
+slug: reading_04
+pubdate: '2025-07-31'
+date: 'Reading for Class #4: Monday, Sep 01, 2025'
+params:
+  par_date: '2025-09-01'
+  par_subtitle: ~
+pdf_url: /files/reading_asgts/reading_04.pdf
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Reading:
+
+### Required Reading (everyone):
+
+* Agent-Based and Individual-Based Modeling, Ch. 3.
+
+### Reading Notes:
+
+Read carefully through the different design principles. Some of them have meanings that are a bit different from what you might infer from colloquial use.
+
+For instance:
+
+* **Adaptation** does not mean a persistent change in a turtle's behavior similar to the biological/Darwinian sense of adaptation in species. Rather, it means the way an agent changes its behavior in response to its _immediate_ conditions. Thus, adaptation in the ODD sense might include behaviors such as eating when you are hungry (_eating_ is an **adaptation** to _hunger_), putting on warmer clothing when it's cold out (bundling up is an adaptation to cold), and running away from a predator.
+* The kind of persistent changes that arise over time from experience fall under the ODD design concept of **learning**: If there is more food near a river than on hills, turtles may **learn** to go to rivers when they are hungry. 
+
+You can download several useful documents related to the ODD protocol from the class web site:
+
+* The journal article, [V. Grimm _et al._ (2010). "The ODD protocol: A review and first update" _Ecological Modeling_ **221**, 2760--68.](/files/odd/Grimm_2010_ODD_update.pdf). <https://ees4760.jgilligan.org/files/odd/Grimm_2010_ODD_update.pdf>
+* A Word document that provides [a template for writing ODDs](/files/odd/Grimm_2010_odd_template.docx): <https://ees4760.jgilligan.org/files/odd/Grimm_2010_odd_template.docx>
+* Lists of scientific publications using agent-based and individual-based models that either do or don't use the ODD protocol (this appeared as [Appendix 1](/files/odd/Grimm_2010_appendix_1.pdf) of the Grimm _et al._ paper):
+  * <https://ees4760.jgilligan.org/files/odd/Grimm_2010_appendix_1.pdf>, 
+  * <https://ees4760.jgilligan.org/files/odd/ch3_ex1_pubs_with_no_ODD.pdf>, 
+  * <https://ees4760.jgilligan.org/files/odd/ch3_ex2_pubs_with_ODD.pdf>.

@@ -150,7 +150,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
   backgroundRepeat = "repeat-y"
   shortCourseName = "EES 4760/5760"
   fullCourseName = "EES 4760/5760: Agent- and Individual-Based Computational Modeling"
-  semester = "Fall 2024"
+  semester = "Fall 2025"
   courseCatalogEntry = " Applications in natural, social, and behavioral sciences and engineering. Designing, programming, and documenting models. Using models for experiments. Examples from environmental science, ecology, economics, urban planning, and medicine. Familiarity with basic statistics and proficiency in algebra are expected. [3] (MNS)"
   siteGitHub = "https://github.com/gilligan-ees-4760/EES_4760_5760_website.git"
 
@@ -171,7 +171,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
 
   [params.lectures]
     times = "MW 8:40--9:55"
-    classroom = "SC 2200"
+    classroom = "SC 5722"
 
   [params.prof]
     name = "Jonathan Gilligan"
@@ -181,7 +181,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
     email = "jonathan.gilligan@vanderbilt.edu"
     url = "https://www.jonathangilligan.org"
     office = "SC 5735"
-    officeHours = "M 10:00--11:00, T 11:00--12:00, or by appointment"
+    officeHours = "M 10:00--11:00, W 2:00-3:00, or by appointment"
 
   [params.ta]
     hasTA = false
@@ -192,7 +192,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
     reading = true
 
   [params.ip]
-    copyright = "Copyright 2018--2024, <a href=\"https://www.jonathangilligan.org\" target=\"_blank\">Jonathan Gilligan</a>."
+    copyright = "Copyright 2018--2025, <a href=\"https://www.jonathangilligan.org\" target=\"_blank\">Jonathan Gilligan</a>."
     licenseIcon = "/img/cc-by.svg"
     licenseURL = "https://creativecommons.org/licenses/by/4.0/"
     licenseTitle = "Creative Commons Attribution License"

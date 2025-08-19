@@ -1,134 +1,109 @@
 lessons:
-- date: '2024-08-21'
+- date: '2025-08-20'
   title: Introduction
-  lecture: /slides/class_01
-- date: '2024-08-26'
+- date: '2025-08-25'
   title: The computer modeling cycle
   reading: /reading/reading_02
-  assignment: homework_01
-  lecture: /slides/class_02
-- date: '2024-08-28'
+  assignment: /assignment/homework_01
+- date: '2025-08-27'
   title: Introduction to NetLogo
   reading: /reading/reading_03
-  assignment: homework_02
-  lecture: /slides/class_03
-- date: '2024-09-02'
+  assignment: /assignment/homework_02
+- date: '2025-09-01'
   title: 'Specifying models: The ODD protocol'
   reading: /reading/reading_04
-  assignment: homework_03
-  lecture: /slides/class_04
-- date: '2024-09-04'
+  assignment: /assignment/homework_03
+- date: '2025-09-03'
   title: Your first model
   reading: /reading/reading_05
-  assignment: homework_04
-  lecture: /slides/class_05
-- date: '2024-09-09'
+  assignment: /assignment/homework_04
+- date: '2025-09-08'
   title: Using models for science
   reading: /reading/reading_06
-  lecture: /slides/class_06
-- date: '2024-09-11'
+- date: '2025-09-10'
   title: Testing and validating models
   reading: /reading/reading_07
-  assignment: homework_05
-  lecture: /slides/class_07
-- date: '2024-09-16'
+  assignment: /assignment/homework_05
+- date: '2025-09-15'
   title: Choosing Research Projects
   reading: /reading/reading_08
-- date: '2024-09-18'
+- date: '2025-09-17'
   title: Emergence
   reading: /reading/reading_09
-  assignment: homework_06
-  lecture: /slides/class_09
-- date: '2024-09-23'
+  assignment: /assignment/homework_06
+- date: '2025-09-19'
+  assignment: /assignment/project_proposal
+- date: '2025-09-22'
   title: Observation
   reading: /reading/reading_10
-  assignment: project_proposal
-  lecture: /slides/class_10
-- date: '2024-09-25'
+- date: '2025-09-24'
   title: Sensing
   reading: /reading/reading_11
-  lecture: /slides/class_11
-- date: '2024-09-27'
-  assignment: homework_08
-- date: '2024-09-30'
+  assignment: /assignment/homework_08
+- date: '2025-09-29'
   title: Adaptive Behavior and Objectives
   reading: /reading/reading_12
-  assignment: homework_09
-  lecture: /slides/class_12
-- date: '2024-10-02'
+  assignment: /assignment/homework_09
+- date: '2025-10-01'
   title: Prediction
   reading: /reading/reading_13
-  assignment: homework_10
-  lecture: /slides/class_13
-- date: '2024-10-07'
+  assignment: /assignment/homework_10
+- date: '2025-10-06'
   title: Interaction
   reading: /reading/reading_14
-  lecture: /slides/class_14
-- date: '2024-10-09'
+- date: '2025-10-08'
   title: Team Presentations
   reading: /reading/reading_15
-  assignment: team_project_presentation
-- date: '2024-10-14'
+  assignment: /assignment/team_project_presentation
+- date: '2025-10-13'
+  title: Fall Break
+- date: '2025-10-15'
   title: Research Project ODDs
   reading: /reading/reading_16
-- date: '2024-10-16'
-  title: Class Canceled
-  assignment: project_analysis
-- date: '2024-10-18'
-  assignment: team_project_report
-- date: '2024-10-21'
+  assignment: /assignment/project_analysis
+- date: '2025-10-17'
+  assignment: /assignment/team_project_report
+- date: '2025-10-20'
   title: Scheduling
   reading: /reading/reading_17
-  lecture: /slides/class_17
-- date: '2024-10-23'
+- date: '2025-10-22'
   title: Stochasticity
   reading: /reading/reading_18
-  lecture: /slides/class_18
-- date: '2024-10-28'
+- date: '2025-10-27'
   title: Collectives
   reading: /reading/reading_19
-  lecture: /slides/class_19
-- date: '2024-10-30'
+- date: '2025-10-29'
   title: Patterns
   reading: /reading/reading_20
-  lecture: /slides/class_20
-- date: '2024-11-01'
-  assignment: project_odd
-- date: '2024-11-04'
+  assignment: /assignment/project_odd
+- date: '2025-11-03'
   title: Theory Development
   reading: /reading/reading_21
-  lecture: /slides/class_21
-- date: '2024-11-06'
+- date: '2025-11-05'
   title: Parameterization and Calibration
   reading: /reading/reading_22
-  lecture: /slides/class_22
-- date: '2024-11-11'
+- date: '2025-11-10'
   title: Agent-Based Models in Practice
   reading: /reading/reading_23
-  lecture: /slides/class_23
-- date: '2024-11-13'
+- date: '2025-11-12'
   title: Analyzing ABMs
   reading: /reading/reading_24
-  lecture: /slides/class_24
-- date: '2024-11-15'
-  assignment: project_draft_code
-- date: '2024-11-18'
+  assignment: /assignment/project_draft_code
+- date: '2025-11-17'
   title: Sensitivity and Robustness
   reading: /reading/reading_25
-  lecture: /slides/class_25
-- date: '2024-11-20'
+- date: '2025-11-19'
   title: 'Looking Ahead: ABMs Beyond this Course'
   reading: /reading/reading_26
-  lecture: /slides/class_26
-- date: '2024-11-25'
+- date: '2025-11-24'
   title: Thanksgiving Break
-- date: '2024-11-27'
+- date: '2025-11-26'
   title: Thanksgiving Break
-- date: '2024-12-02'
+- date: '2025-12-01'
   title: Presentations
-  assignment: project_presentation_1
-- date: '2024-12-04'
+  assignment: /assignment/project_presentation_1
+- date: '2025-12-03'
   title: Presentations
-  assignment: project_presentation_2
-- date: '2024-12-06'
-  assignment: project_report
+  assignment: /assignment/project_presentation_2
+- date: '2025-12-06'
+  assignment: /assignment/project_report

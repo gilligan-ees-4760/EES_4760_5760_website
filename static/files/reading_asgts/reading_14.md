@@ -1,0 +1,46 @@
+---
+title: Interaction
+subtitle: ''
+class_date: 'Reading for Class #14: Monday, Oct 06, 2025'
+class_number: 14
+weight: 14
+slug: reading_14
+pubdate: '2025-07-31'
+date: 'Reading for Class #14: Monday, Oct 06, 2025'
+params:
+  par_date: '2025-10-06'
+  par_subtitle: ~
+pdf_url: /files/reading_asgts/reading_14.pdf
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Reading:
+
+### Required Reading (everyone):
+
+* Agent-Based and Individual-Based Modeling, Ch. 13.
+
+### Optional Extra Reading:
+
+* Modeling Social Behavior, Ch. 6--7, 9.
+
+### Reading Notes:
+
+The optional reading from _Modeling Social Behavior_ may be interesting. Chapters 6--7 apply agent-based modeling to game-theory and 
+chapter 9 looks into social networks among agents in detail.
+
+Chapter 6 focuses on a class of strategic games, such as the Prisoner's Dilemma, in which the players 
+do better when they cooperate with each other, but the game gives each player has a strong temptation 
+to betray their partner. The chapter investigates a rich line of research, which shows that there may 
+be reasons for natural selection to favor cooperation, so people may have evolved to be mostly 
+trustworthy and cooperative. 
+
+Chapoter 7 focuses on coordination: The Prisoner's Dilemma game in chapter 6 looked at people who interact
+with a small number of neighbors, whom they can get to know well from experience. This chapter looks at 
+coordination among large numbers of people, where there is no opportunity to develop that kind of deep 
+knowledge of your neighbors' character and trustworthiness.
+
+Chapter 9 presents more detail about social networks and the use of NetLogo links. 
+The main reading from _Railsback & Grimm_ covers the basics of links, but this chapter discusses 
+the different kinds of social networks (different topologies) that can form using those links.

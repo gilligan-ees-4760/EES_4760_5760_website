@@ -1,0 +1,50 @@
+---
+title: Sensing
+subtitle: ''
+class_date: 'Reading for Class #11: Wednesday, Sep 24, 2025'
+class_number: 11
+weight: 11
+slug: reading_11
+pubdate: '2025-07-31'
+date: 'Reading for Class #11: Wednesday, Sep 24, 2025'
+params:
+  par_date: '2025-09-24'
+  par_subtitle: ~
+pdf_url: /files/reading_asgts/reading_11.pdf
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Reading:
+
+### Required Reading (everyone):
+
+* Agent-Based and Individual-Based Modeling, Ch. 10.
+
+### Reading Notes:
+
+In addition to the assigned reading from the textbook, read the ODD for your team project before you come to class. The ODDs are posted on Brightspace and [the class web site](/projects/).
+
+For some of the class period, you and your team will start translating the ODD for your project model into NetLogo code.
+
+Important programming concepts in this chapter include:
+
+Links:
+  ~ Agents interact with their physical environment (patches around them) and with other agents nearby, but they can also interact in social networks, which can be represented by links.
+    
+Variable scope: 
+  ~ Understand the differences between global variables, local variables, patch variables, agent variables, and link variables. Understand how an agent can get the value of a global variable or variables belonging to a certain patch or link or another agent.
+
+Entity detection:
+  ~ Understand different ways to detect which agents or patches meet certain conditions (e.g., within a certain distance, have a certain color, have the largest or smallest values of some variable, etc.).
+
+The agents' interactions, both with their environment and with each other through sensing. Part of the design concepts section of a model's ODD consists of specifying what the agents can sense: They might be able to sense other agents within a certain distance. They might only be able to detect other agents if they are within a certain angle (e.g., the agent might be able to look forward, but might not be able to see behind itself unless it turns around). Agents might be able to detect certain qualities of one another (e.g., I can see how tall you are, but I can't see how much money you have).
+
+Agents can interact both spatially and through networks of links. You can create many kinds of links so that agents can belong to many networks (e.g., family, co-workers, members of a church congregation, etc.).
+
+Sensing involves two steps:
+
+1. Detect which entities your agent (or patch) will sense.
+1. Get the values of the sensed variables from those entities.
+
+Be sure to code the Business Investor model as you read section 10.4. You will also use it in Chapters 11 and 12, and it will form the basis for one of the team projects.

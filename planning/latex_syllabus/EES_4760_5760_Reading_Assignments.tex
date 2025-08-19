@@ -39,15 +39,17 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -100,9 +102,6 @@
 \newcommand{\SLUGULATOR}{\textsc{slugulator}}
 \newcommand{\GEOCARB}{\textsc{geocarb}}
 \newcommand{\MODTRAN}{\textsc{modtran}}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -115,7 +114,7 @@
 \title{Reading Assignments}
 \author{EES 4760/5760: Agent- and Individual-Based Computational
 Modeling}
-\date{Fall, 2024}
+\date{Fall, 2025}
 
 \begin{document}
 \maketitle
@@ -158,14 +157,14 @@ on the ``Schedule'' page of the
 \href{https://ees4760.jgilligan.org/schedule}{course web site}:
 \url{https://ees4760.jgilligan.org/schedule}
 
-\section{Wed., Aug.~21: Introduction}\label{wed.-aug.-21-introduction}
+\section{Wed., Aug.~20: Introduction}\label{wed.-aug.-20-introduction}
 
 \subsection{Reading:}\label{reading}
 
 No new reading for today.
 
-\section{Mon., Aug.~26: The computer modeling
-cycle}\label{mon.-aug.-26-the-computer-modeling-cycle}
+\section{Mon., Aug.~25: The computer modeling
+cycle}\label{mon.-aug.-25-the-computer-modeling-cycle}
 
 \subsection{Reading:}\label{reading-1}
 
@@ -253,8 +252,8 @@ point. Emergence is difficult to put into words, and it's much easier to
 understand from experience. Over the course of the semester, we will
 work together to understand what emergence is and how to study it.
 
-\section{Wed., Aug.~28: Introduction to
-NetLogo}\label{wed.-aug.-28-introduction-to-netlogo}
+\section{Wed., Aug.~27: Introduction to
+NetLogo}\label{wed.-aug.-27-introduction-to-netlogo}
 
 \subsection{Reading:}\label{reading-2}
 
@@ -288,8 +287,8 @@ reading from Railsback \& Grimm, but it may be interesting to read this
 alternate introduction to the NetLogo modeling system and programming
 language.
 
-\section{Mon., Sep.~2: Specifying models: The ODD
-protocol}\label{mon.-sep.-2-specifying-models-the-odd-protocol}
+\section{Mon., Sep.~1: Specifying models: The ODD
+protocol}\label{mon.-sep.-1-specifying-models-the-odd-protocol}
 
 \subsection{Reading:}\label{reading-3}
 
@@ -360,8 +359,8 @@ from the class web site:
   \end{itemize}
 \end{itemize}
 
-\section{Wed., Sep.~4: Your first
-model}\label{wed.-sep.-4-your-first-model}
+\section{Wed., Sep.~3: Your first
+model}\label{wed.-sep.-3-your-first-model}
 
 \subsection{Reading:}\label{reading-4}
 
@@ -379,7 +378,7 @@ model}\label{wed.-sep.-4-your-first-model}
 For the reading, read Chapter 4 in \emph{Agent-Based Modeling} first and
 focus mostly on this chapter.
 
-It is worth noting that the Sugarscape model you read about for Aug.~26
+It is worth noting that the Sugarscape model you read about for Aug.~25
 is very similar to the hilltopping model. Sugarscape was part of a very
 influential research project in the 1990s, in which Joshua Epstein and
 Robert Axtell showed that a very simple model could reproduce complex
@@ -394,8 +393,8 @@ butterfly model}, which is suitable to paste into the ``Info'' tab in
 NetLogo, from the class web site:
 \url{https://ees4760.jgilligan.org/files/models/chapter_04/ButterflyModelODD.txt}
 
-\section{Mon., Sep.~9: Using models for
-science}\label{mon.-sep.-9-using-models-for-science}
+\section{Mon., Sep.~8: Using models for
+science}\label{mon.-sep.-8-using-models-for-science}
 
 \subsection{Reading:}\label{reading-5}
 
@@ -492,8 +491,8 @@ the U.S., but nonetheless, the model can help us identicy potentially
 important obstacles to remedying the segregated housing patterns that
 those policies produced.
 
-\section{Wed., Sep.~11: Testing and validating
-models}\label{wed.-sep.-11-testing-and-validating-models}
+\section{Wed., Sep.~10: Testing and validating
+models}\label{wed.-sep.-10-testing-and-validating-models}
 
 \subsection{Reading:}\label{reading-6}
 
@@ -586,8 +585,8 @@ from the class web site:
   \url{https://ees4760.jgilligan.org/files/models/chapter_06/CultureDissemination_Untested.nlogo}.
 \end{itemize}
 
-\section{Mon., Sep.~16: Choosing Research
-Projects}\label{mon.-sep.-16-choosing-research-projects}
+\section{Mon., Sep.~15: Choosing Research
+Projects}\label{mon.-sep.-15-choosing-research-projects}
 
 \subsection{Reading:}\label{reading-7}
 
@@ -610,7 +609,7 @@ Before class, I want you to read through the research project assignment
 and think about what you might want to do for a research project. We
 will spend class talking about possible research projects.
 
-\section{Wed., Sep.~18: Emergence}\label{wed.-sep.-18-emergence}
+\section{Wed., Sep.~17: Emergence}\label{wed.-sep.-17-emergence}
 
 \subsection{Reading:}\label{reading-8}
 
@@ -671,7 +670,7 @@ models (varying different parameters) or other models from the NetLogo
 library to explore the ways that changing parameters affects the models'
 behavior.
 
-\section{Mon., Sep.~23: Observation}\label{mon.-sep.-23-observation}
+\section{Mon., Sep.~22: Observation}\label{mon.-sep.-22-observation}
 
 \subsection{Reading:}\label{reading-9}
 
@@ -701,7 +700,7 @@ I have posted a
 guide} for NetLogo programming on the class web site at
 \url{https://ees4760.jgilligan.org/files/models/chapter_09/ch9_ex8_netlogo_exercises.pdf}
 
-\section{Wed., Sep.~25: Sensing}\label{wed.-sep.-25-sensing}
+\section{Wed., Sep.~24: Sensing}\label{wed.-sep.-24-sensing}
 
 \subsection{Reading:}\label{reading-10}
 
@@ -772,8 +771,8 @@ Be sure to code the Business Investor model as you read section 10.4.
 You will also use it in Chapters 11 and 12, and it will form the basis
 for one of the team projects.
 
-\section{Mon., Sep.~30: Adaptive Behavior and
-Objectives}\label{mon.-sep.-30-adaptive-behavior-and-objectives}
+\section{Mon., Sep.~29: Adaptive Behavior and
+Objectives}\label{mon.-sep.-29-adaptive-behavior-and-objectives}
 
 \subsection{Reading:}\label{reading-11}
 
@@ -834,7 +833,7 @@ in 1956, refers to making decisions by choosing a ``good-enough'' option
 when it would take too much time and effort to determine which option is
 the absolute best. See section 11.4 for details and an example.
 
-\section{Wed., Oct.~2: Prediction}\label{wed.-oct.-2-prediction}
+\section{Wed., Oct.~1: Prediction}\label{wed.-oct.-1-prediction}
 
 \subsection{Reading:}\label{reading-12}
 
@@ -877,7 +876,7 @@ Before class, everyone should read Chapter 13 and the ODD for the
 telemarketer model and be ready to discuss the model in class. This will
 be a chance for the teams working on the model to ask questions.
 
-\section{Mon., Oct.~7: Interaction}\label{mon.-oct.-7-interaction}
+\section{Mon., Oct.~6: Interaction}\label{mon.-oct.-6-interaction}
 
 \subsection{Reading:}\label{reading-13}
 
@@ -906,7 +905,7 @@ chapter 9 looks into social networks among agents in detail.
 
 Chapter 6 focuses on a class of strategic games, such as the Prisoner's
 Dilemma, in which the players do better when they cooperate with each
-other, but the game gives each player has a strong tempation to betray
+other, but the game gives each player has a strong temptation to betray
 their partner. The chapter investigates a rich line of research, which
 shows that there may be reasons for natural selection to favor
 cooperation, so people may have evolved to be mostly trustworthy and
@@ -920,29 +919,39 @@ opportunity to develop that kind of deep knowledge of your neighbors'
 character and trustworthiness.
 
 Chapter 9 presents more detail about social networks and the use of
-NetLogo links. The main reading from Railsback \& Grimm covers the
-basics of links, but this chapter discusses the different kinds of
+NetLogo links. The main reading from \emph{Railsback \& Grimm} covers
+the basics of links, but this chapter discusses the different kinds of
 social networks (different topologies) that can form using those links.
 
-\section{Wed., Oct.~9: Team
-Presentations}\label{wed.-oct.-9-team-presentations}
+\section{Wed., Oct.~8: Team
+Presentations}\label{wed.-oct.-8-team-presentations}
 
 \subsection{Reading:}\label{reading-14}
 
 No new reading for today.
 
-\section{Mon., Oct.~14: Fall Break}\label{mon.-oct.-14-fall-break}
+\subsubsection{Notes:}\label{notes}
+
+There is no reading for today. You will do your team project
+presentations in class.
+
+\section{Mon., Oct.~13: Fall Break}\label{mon.-oct.-13-fall-break}
 
 Fall Break, no class.
 
-\section{Wed., Oct.~16: Research Project
-ODDs}\label{wed.-oct.-16-research-project-odds}
+\section{Wed., Oct.~15: Research Project
+ODDs}\label{wed.-oct.-15-research-project-odds}
 
 \subsection{Reading:}\label{reading-15}
 
 No new reading for today.
 
-\section{Mon., Oct.~21: Scheduling}\label{mon.-oct.-21-scheduling}
+\subsubsection{Notes:}\label{notes-1}
+
+There is no reading for today. We will spend class discussing your
+individual projects and your work on creating an ODD for your model.
+
+\section{Mon., Oct.~20: Scheduling}\label{mon.-oct.-20-scheduling}
 
 \subsection{Reading:}\label{reading-16}
 
@@ -965,7 +974,7 @@ and Grimm (2008)} and in Chapter 23, which I have posted on the class
 web site:
 \url{https://ees4760.jgilligan.org/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo}
 
-\section{Wed., Oct.~23: Stochasticity}\label{wed.-oct.-23-stochasticity}
+\section{Wed., Oct.~22: Stochasticity}\label{wed.-oct.-22-stochasticity}
 
 \subsection{Reading:}\label{reading-17}
 
@@ -978,7 +987,7 @@ web site:
   Agent-Based and Individual-Based Modeling, Ch. 15.
 \end{itemize}
 
-\section{Mon., Oct.~28: Collectives}\label{mon.-oct.-28-collectives}
+\section{Mon., Oct.~27: Collectives}\label{mon.-oct.-27-collectives}
 
 \subsection{Reading:}\label{reading-18}
 
@@ -991,7 +1000,7 @@ web site:
   Agent-Based and Individual-Based Modeling, Ch. 16.
 \end{itemize}
 
-\section{Wed., Oct.~30: Patterns}\label{wed.-oct.-30-patterns}
+\section{Wed., Oct.~29: Patterns}\label{wed.-oct.-29-patterns}
 
 \subsection{Reading:}\label{reading-19}
 
@@ -1016,8 +1025,8 @@ I have also posted
 published models} in which observed patterns are important:
 \url{https://ees4760.jgilligan.org/files/models/chapter_18/ch18_ex1_models_list.pdf}
 
-\section{Mon., Nov.~4: Theory
-Development}\label{mon.-nov.-4-theory-development}
+\section{Mon., Nov.~3: Theory
+Development}\label{mon.-nov.-3-theory-development}
 
 \subsection{Reading:}\label{reading-20}
 
@@ -1055,8 +1064,8 @@ statistical methods to identify and avoid pitfalls where experiemnts may
 fool researchers into drawing the wrong conclusion (e.g., thinking a
 hypothesis is true, when it's really false).
 
-\section{Wed., Nov.~6: Parameterization and
-Calibration}\label{wed.-nov.-6-parameterization-and-calibration}
+\section{Wed., Nov.~5: Parameterization and
+Calibration}\label{wed.-nov.-5-parameterization-and-calibration}
 
 \subsection{Reading:}\label{reading-21}
 
@@ -1069,10 +1078,17 @@ Calibration}\label{wed.-nov.-6-parameterization-and-calibration}
   Agent-Based and Individual-Based Modeling, Ch. 20.
 \end{itemize}
 
-\section{Mon., Nov.~11: Parameterization and Calibration
-2}\label{mon.-nov.-11-parameterization-and-calibration-2}
+\section{Mon., Nov.~10: Agent-Based Models in
+Practice}\label{mon.-nov.-10-agent-based-models-in-practice}
 
 \subsection{Reading:}\label{reading-22}
+
+No new reading for today.
+
+\section{Wed., Nov.~12: Analyzing
+ABMs}\label{wed.-nov.-12-analyzing-abms}
+
+\subsection{Reading:}\label{reading-23}
 
 \subsubsection{Required Reading
 (everyone):}\label{required-reading-everyone-19}
@@ -1080,30 +1096,16 @@ Calibration}\label{wed.-nov.-6-parameterization-and-calibration}
 \begin{itemize}
 \tightlist
 \item
-  Agent-Based and Individual-Based Modeling, Ch. 20.
-\end{itemize}
-
-\section{Wed., Nov.~13: Analyzing
-ABMs}\label{wed.-nov.-13-analyzing-abms}
-
-\subsection{Reading:}\label{reading-23}
-
-\subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-20}
-
-\begin{itemize}
-\tightlist
-\item
   Agent-Based and Individual-Based Modeling, Ch. 22.
 \end{itemize}
 
-\section{Mon., Nov.~18: Sensitivity and
-Robustness}\label{mon.-nov.-18-sensitivity-and-robustness}
+\section{Mon., Nov.~17: Sensitivity and
+Robustness}\label{mon.-nov.-17-sensitivity-and-robustness}
 
 \subsection{Reading:}\label{reading-24}
 
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-21}
+(everyone):}\label{required-reading-everyone-20}
 
 \begin{itemize}
 \tightlist
@@ -1120,13 +1122,13 @@ of breeding synchrony}, described in
 and Grimm (2008)} and in section 23.4, from the class web site:
 \url{https://ees4760.jgilligan.org/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo}
 
-\section{Wed., Nov.~20: Looking Ahead: ABMs Beyond this
-Course}\label{wed.-nov.-20-looking-ahead-abms-beyond-this-course}
+\section{Wed., Nov.~19: Looking Ahead: ABMs Beyond this
+Course}\label{wed.-nov.-19-looking-ahead-abms-beyond-this-course}
 
 \subsection{Reading:}\label{reading-25}
 
 \subsubsection{Required Reading
-(everyone):}\label{required-reading-everyone-22}
+(everyone):}\label{required-reading-everyone-21}
 
 \begin{itemize}
 \tightlist
@@ -1150,18 +1152,18 @@ world and how to use models wisely by appreciating both what they can do
 and what they can't do, what parts of the real world they capture
 faithfully and which parts they don't.
 
-\section{Mon., Nov.~25--Wed., Nov.~27: Thanksgiving
-Break}\label{mon.-nov.-25wed.-nov.-27-thanksgiving-break}
+\section{Mon., Nov.~24--Wed., Nov.~26: Thanksgiving
+Break}\label{mon.-nov.-24wed.-nov.-26-thanksgiving-break}
 
 Thanksgiving Break, no class.
 
-\section{Mon., Dec.~2: Presentations}\label{mon.-dec.-2-presentations}
+\section{Mon., Dec.~1: Presentations}\label{mon.-dec.-1-presentations}
 
 \subsection{Reading:}\label{reading-26}
 
 No new reading for today.
 
-\section{Wed., Dec.~4: Presentations}\label{wed.-dec.-4-presentations}
+\section{Wed., Dec.~3: Presentations}\label{wed.-dec.-3-presentations}
 
 \subsection{Reading:}\label{reading-27}
 

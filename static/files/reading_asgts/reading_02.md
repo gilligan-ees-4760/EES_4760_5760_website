@@ -1,0 +1,44 @@
+---
+title: The computer modeling cycle
+subtitle: ''
+class_date: 'Reading for Class #2: Monday, Aug 25, 2025'
+class_number: 2
+weight: 2
+slug: reading_02
+pubdate: '2025-07-31'
+date: 'Reading for Class #2: Monday, Aug 25, 2025'
+params:
+  par_date: '2025-08-25'
+  par_subtitle: ~
+pdf_url: /files/reading_asgts/reading_02.pdf
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Reading:
+
+### Required Reading (everyone):
+
+* Agent-Based and Individual-Based Modeling, Ch. 1.
+* Handout: [P. Tyson, "Artificial Societies," Technology Review **100** (3), 15--17 (1997).](/files/reading/Tyson_Artificial_Societies_1997.pdf){target="_blank"}.
+
+### Optional Extra Reading:
+
+* Modeling Social Behavior, Ch. 1.
+
+### Reading Notes:
+
+This reading sets the stage for answering the questions:
+
+1. What is computational modeling and why is it useful in social and natural science research?
+1. What are agent based models? How are they different from other kinds of models? What makes them useful for scientific research?
+
+The reading introduces the idea of a **modeling cycle**. You should understand the different steps in the modeling cycle. You should also think about why Railsback and Grimm describe modeling as a cycle, as opposed to a linear process with a start and stop.  
+
+As to what makes agent-based modeling special, Steven Railsback and Volker Grimm are ecologists and _Agent-Based Modeling_ emphasizes aspects of agent-based modeling that are well suited for studying ecological systems. Others, such as social scientists, emphasize the aspects of agent-based modeling that are well suited for problems in social science. And still others, such as computer scientists, emphasize aspects of automated and autonomous things (ranging from packets of data on a network to swarms of robots or flying drones that need to coordinate their activities and avoid collisions). What all of these approaches have in common are their use of individuals or **agents** (what is an agent?), which inhabit some kind of space or **environment** (this could be physical space or an abstract space, such as a computer network). Agents **interact** with each other and with the environment, and they make **decisions** according to rules.
+
+The article "Artificial Life" gives you a feel for how an early agent-based model called "Sugarscape" was used as part of a very influential research project in the 1990s. Joshua Epstein and Robert Axtell who wrote Sugarscape are highly respected pioneers in agent-based modeling and the Sugarscape model set off a revolution in agent-based modeling by showing that a very simple model could reproduce complex phenomena that are observed in real societies. As you read through this article, think about what the different applications of agent-based models have in common. Do these suggest questions that you might be interested in exploring with agent-based models. Do you have questions, as you read this, about whether computer modeling can really tell you about real societies?
+
+The chapter from _Modeling Social Behavior_ is optional, but strongly recommended for graduate students and for students interested in applications of agent-based modeling to social systems and social science.
+
+Agent-based models are often used to examine **emergent** phenomena. Neither reading describes clearly what _emergence_ means. There is no simple definition, but during the semester we will pay a lot of attention to learning about emergence and trying to understand it. Do not worry if you don't understand emergence at this point. Emergence is difficult to put into words, and it's much easier to understand from experience. Over the course of the semester, we will work together to understand what emergence is and how to study it.

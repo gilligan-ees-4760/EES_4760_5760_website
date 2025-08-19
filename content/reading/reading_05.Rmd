@@ -1,15 +1,19 @@
 ---
 title: Your first model
-class_date: '2024-09-04'
+subtitle: '`r params$par_subtitle`'
+class_date: '`r params$par_date`'
 class_number: 5
 weight: 5
 slug: reading_05
-pubdate: '2024-07-31'
-date: '2024-09-04'
+pubdate: '2025-07-31'
+date: '`r params$par_date`'
+params:
+  par_date: '2025-09-03'
+  par_subtitle: ~
+pdf_url: /files/reading_asgts/reading_05.pdf
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
-pdf_url: /files/reading_asgts/reading_05.pdf
 ---
 ## Reading:
 
@@ -21,6 +25,6 @@ pdf_url: /files/reading_asgts/reading_05.pdf
 
 For the reading, read Chapter 4 in _Agent-Based Modeling_ first and focus mostly on this chapter. 
 
-It is worth noting that the Sugarscape model you read about for Aug. 26 is very similar to the hilltopping model. Sugarscape was part of a very influential research project in the 1990s, in which Joshua Epstein and Robert Axtell showed that a very simple model could reproduce complex biological and economic phenomena that are observed in real societies and ecosystems. You may find it interesting at this point to look back at the "Artificial Societies" article and to play with the Sugarscape model in NetLogo.
+It is worth noting that the Sugarscape model you read about for Aug. 25 is very similar to the hilltopping model. Sugarscape was part of a very influential research project in the 1990s, in which Joshua Epstein and Robert Axtell showed that a very simple model could reproduce complex biological and economic phenomena that are observed in real societies and ecosystems. You may find it interesting at this point to look back at the "Artificial Societies" article and to play with the Sugarscape model in NetLogo.
 
 You can download an [ODD for the butterfly model](/files/models/chapter_04/ButterflyModelODD.txt), which is suitable to paste into the "Info" tab in NetLogo, from the class web site: <https://ees4760.jgilligan.org/files/models/chapter_04/ButterflyModelODD.txt>

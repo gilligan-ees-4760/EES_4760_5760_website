@@ -1,20 +1,24 @@
 ---
 title: Experimenting with NetLogo
-due_date: '2024-09-04'
+subtitle: '`r params$par_subtitle`'
+due_date: '`r params$par_date`'
 assignment_type: Homework
 short_assignment_type: HW
 assignment_number: 4
 weight: 4
 slug: homework_04
-pubdate: '2024-07-31'
-date: '2024-09-04'
+pubdate: '2025-07-31'
+date: '`r params$par_date`'
+params:
+  par_date: '2025-09-03'
+  par_subtitle: ~
+pdf_url: /files/homework_asgts/homework_04.pdf
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
   pdf_document:
     toc: yes
     toc_depth: 3
-pdf_url: /files/homework_asgts/homework_04.pdf
 ---
 ## Homework
 
@@ -48,11 +52,11 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
 
 
-* Railsback & Grimm, Chapter 2, exercises Exercises 3--4.
+* Railsback & Grimm, Chapter 2, exercises Exercises 2.3--2.4.
 
   For exercise 4 in chapter 2, you will make seven sequential modifications of the basic mushroom hunt model. Each step modifies the previous one, so the last model will have all the modifications from the bulleted list in Ex. 2.4. Save each model with a new name, such as `ex_2_4a.nlogo`, `ex_2_4b.nlogo`, \dots, `ex_2_4g.nlogo`
 
-* Railsback & Grimm, Chapter 3 exercise 3.
+* Railsback & Grimm, Chapter 3 exercise 3.3.
 
   Write your answers in any convenient text format (a simple text file, a Word document, a `.pdf` file, or whatever suits you). Call the file `ex_3_3.docx` (or `ex_3_3.pdf`, etc.).
 

@@ -1,15 +1,19 @@
 ---
 title: Prediction
-class_date: '2024-10-02'
+subtitle: '`r params$par_subtitle`'
+class_date: '`r params$par_date`'
 class_number: 13
 weight: 13
 slug: reading_13
-pubdate: '2024-07-31'
-date: '2024-10-02'
+pubdate: '2025-07-31'
+date: '`r params$par_date`'
+params:
+  par_date: '2025-10-01'
+  par_subtitle: ~
+pdf_url: /files/reading_asgts/reading_13.pdf
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
-pdf_url: /files/reading_asgts/reading_13.pdf
 ---
 ## Reading:
 

@@ -1,0 +1,216 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{mathptmx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage[version=4]{mhchem}
+% \usepackage{longtable}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+% \usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+% \usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{makecmds}
+
+\newcommand{\COO}{\ce{CO2}}
+\newcommand{\methane}{\ce{CH4}}
+\newcommand{\degC}{^\circ \mathrm{C}}
+\newcommand{\degF}{^\circ \mathrm{F}}
+\newcommand{\water}{\mathrm{H_2O}}
+\newcommand{\carb}{\ce{CO3^2-}}
+\newcommand{\bicarb}{\ce{HCO3-}}
+\newcommand{\carbonic}{\ce{H2CO3}}
+\newcommand{\Hplus}{\ce{H+}}
+\newcommand{\OH}{\ce{OH-}}
+\newcommand{\silica}{\ce{SiO2}}
+\newcommand{\calcite}{\ce{CaCO3}}
+\newcommand{\Caplus}{\ce{Ca^2+}}
+\newcommand{\silicate}{\ce{SiO3^2-}}
+\newcommand{\CaSi}{\ce{CaSiO3}}
+\newcommand{\pH}{p\ce{H}}
+\newcommand{\permil}{\permille}
+
+\newcommand{\NetLogo}{{\sffamily\scshape NetLogo}}
+\newcommand{\NetLogoURL}{\url{https://ccl.northwestern.edu/netlogo/}}
+
+\newcommand{\alintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+      \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\makeenvironment{Shaded}{\begin{snugshade}\small}{\end{snugshade}}
+\makecommand{\AttributeTok}[1]{\textcolor[rgb]{0.42,0.37,0.12}{#1}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={The computer modeling cycle},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{The computer modeling cycle}
+\author{}
+\date{\vspace{-2.5em}Reading for Class \#2: Monday, Aug 25, 2025}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\subsection{Reading:}\label{reading}
+
+\subsubsection{Required Reading
+(everyone):}\label{required-reading-everyone}
+
+\begin{itemize}
+\tightlist
+\item
+  Agent-Based and Individual-Based Modeling, Ch. 1.
+\item
+  Handout: \href{/files/reading/Tyson_Artificial_Societies_1997.pdf}{P.
+  Tyson, ``Artificial Societies,'' Technology Review \textbf{100} (3),
+  15--17 (1997).}.
+\end{itemize}
+
+\subsubsection{Optional Extra Reading:}\label{optional-extra-reading}
+
+\begin{itemize}
+\tightlist
+\item
+  Modeling Social Behavior, Ch. 1.
+\end{itemize}
+
+\subsubsection{Reading Notes:}\label{reading-notes}
+
+This reading sets the stage for answering the questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What is computational modeling and why is it useful in social and
+  natural science research?
+\item
+  What are agent based models? How are they different from other kinds
+  of models? What makes them useful for scientific research?
+\end{enumerate}
+
+The reading introduces the idea of a \textbf{modeling cycle}. You should
+understand the different steps in the modeling cycle. You should also
+think about why Railsback and Grimm describe modeling as a cycle, as
+opposed to a linear process with a start and stop.
+
+As to what makes agent-based modeling special, Steven Railsback and
+Volker Grimm are ecologists and \emph{Agent-Based Modeling} emphasizes
+aspects of agent-based modeling that are well suited for studying
+ecological systems. Others, such as social scientists, emphasize the
+aspects of agent-based modeling that are well suited for problems in
+social science. And still others, such as computer scientists, emphasize
+aspects of automated and autonomous things (ranging from packets of data
+on a network to swarms of robots or flying drones that need to
+coordinate their activities and avoid collisions). What all of these
+approaches have in common are their use of individuals or
+\textbf{agents} (what is an agent?), which inhabit some kind of space or
+\textbf{environment} (this could be physical space or an abstract space,
+such as a computer network). Agents \textbf{interact} with each other
+and with the environment, and they make \textbf{decisions} according to
+rules.
+
+The article ``Artificial Life'' gives you a feel for how an early
+agent-based model called ``Sugarscape'' was used as part of a very
+influential research project in the 1990s. Joshua Epstein and Robert
+Axtell who wrote Sugarscape are highly respected pioneers in agent-based
+modeling and the Sugarscape model set off a revolution in agent-based
+modeling by showing that a very simple model could reproduce complex
+phenomena that are observed in real societies. As you read through this
+article, think about what the different applications of agent-based
+models have in common. Do these suggest questions that you might be
+interested in exploring with agent-based models. Do you have questions,
+as you read this, about whether computer modeling can really tell you
+about real societies?
+
+The chapter from \emph{Modeling Social Behavior} is optional, but
+strongly recommended for graduate students and for students interested
+in applications of agent-based modeling to social systems and social
+science.
+
+Agent-based models are often used to examine \textbf{emergent}
+phenomena. Neither reading describes clearly what \emph{emergence}
+means. There is no simple definition, but during the semester we will
+pay a lot of attention to learning about emergence and trying to
+understand it. Do not worry if you don't understand emergence at this
+point. Emergence is difficult to put into words, and it's much easier to
+understand from experience. Over the course of the semester, we will
+work together to understand what emergence is and how to study it.
+
+\end{document}

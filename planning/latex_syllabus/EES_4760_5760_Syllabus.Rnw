@@ -708,14 +708,15 @@ assigned material and ask questions if there are things you don't understand.
 \subsection{Computer Software}
 For this class, we will write and execute agent-based models using the \NetLogo\
 modeling system. NetLogo is free software developed at Northwestern University.
-You can download it from \url{https://ccl.northwestern.edu/netlogo/}.
+You can download it from \url{\NetLogoURL}.
 \NetLogo\ is available for Windows, Mac OS X, and Linux.
 I have chosen it for this course because it is free, it runs on all the major
 operating systems, its programming language is very easy to learn; and it allows
 you to easily create a visual representation of your model.
 
-You should download \NetLogo\ version 6.4.0 (the latest version) from
-\url{https://ccl.northwestern.edu/netlogo/download.shtml}
+You should download \NetLogo{} version \NetLogoVersion{}
+(the latest version) from
+\url{\NetLogoURL}
 and install it on your computer.
 
 \NetLogo\ has been used widely both for education and also for research-grade

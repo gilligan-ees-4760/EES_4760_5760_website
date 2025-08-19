@@ -1,20 +1,24 @@
 ---
 title: Research project model analysis
-due_date: '2024-10-16'
+subtitle: '`r params$par_subtitle`'
+due_date: '`r params$par_date`'
 assignment_type: Semester Project Assignment
 short_assignment_type: Assignment
 assignment_number: 12
 weight: 12
 slug: project_analysis
-pubdate: '2024-07-31'
-date: '2024-10-16'
+pubdate: '2025-07-31'
+date: '`r params$par_date`'
+params:
+  par_date: '2025-10-15'
+  par_subtitle: ~
+pdf_url: /files/homework_asgts/project_analysis.pdf
 output:
   blogdown::html_page:
     md_extensions: +tex_math_single_backslash+compact_definition_lists
   pdf_document:
     toc: yes
     toc_depth: 3
-pdf_url: /files/homework_asgts/project_analysis.pdf
 ---
 ## Homework
 

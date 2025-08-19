@@ -1,7 +1,7 @@
 ---
 title: "Homework Assignments"
 author: "EES 4760/5760: Agent- and Individual-Based Computational Modeling"
-date: "Fall, 2024"
+date: "Fall, 2025"
 output:
   pdf_document: 
     includes:
@@ -34,7 +34,7 @@ output:
     multiple files, I encourage you to make separate folders for each
     exercise (e.g., `ex_4.1` or `ex_4_1` for exercise 4.1) 
     and then put all of the folders into a Zip file and upload the
-    Zip file to Brightspace. Then when Ms. Turk or I unzip it, 
+    Zip file to Brightspace. Then when I unzip it, 
     the files for each exercise will be in a folder for that exercise.
 * When a homework assignment calls for you to write a NetLogo
   model and answer questions about that model, you have three options:
@@ -61,8 +61,6 @@ output:
   3. If the answer involves figures (diagrams, etc.) that are hard to make in 
      Word, you might write the answer on paper, photograph it, and upload the
      photo as something like `ex_2_3.jpg`.
-
-  For all of these options, it's generally a good idea to use 
 
 I encourage you to discuss homework assignments with your classmates. 
 Some assignments will explicitly tell you to work in a team with a classmate. 
@@ -108,7 +106,7 @@ The most up-to-date versions of the homework assignments will be posted on the
 <https://ees4760.jgilligan.org/schedule>
 
 
-# Mon., Aug. 26: Set up NetLogo
+# Mon., Aug. 25: Set up NetLogo
 
 ## Homework
 
@@ -124,7 +122,7 @@ The most up-to-date versions of the homework assignments will be posted on the
 
 
 
-# Wed., Aug. 28: Introducing NetLogo
+# Wed., Aug. 27: Introducing NetLogo
 
 ## Homework
 
@@ -150,7 +148,7 @@ If you run into trouble and cannot make your model work, do not worry. Ask a cla
 
 
 
-# Mon., Sep. 2: Becoming familiar with NetLogo
+# Mon., Sep. 1: Becoming familiar with NetLogo
 
 ## Homework
 
@@ -162,11 +160,11 @@ This homework consists of reading and working through tutorials, so there is not
 
 
 
-* Everyone should do exercises 1--2 in Chapter 2 of Railsback & Grimm. This consists of reading and working through tutorials, so there is nothing to turn in.
+* Everyone should do exercises 2.1 and 2.2 in Chapter 2 of Railsback & Grimm. This consists of reading and working through tutorials, so there is nothing to turn in.
 
 
 
-# Wed., Sep. 4: Experimenting with NetLogo
+# Wed., Sep. 3: Experimenting with NetLogo
 
 ## Homework
 
@@ -200,11 +198,11 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
 
 
-* Railsback & Grimm, Chapter 2, exercises Exercises 3--4.
+* Railsback & Grimm, Chapter 2, exercises Exercises 2.3--2.4.
 
   For exercise 4 in chapter 2, you will make seven sequential modifications of the basic mushroom hunt model. Each step modifies the previous one, so the last model will have all the modifications from the bulleted list in Ex. 2.4. Save each model with a new name, such as `ex_2_4a.nlogo`, `ex_2_4b.nlogo`, \dots, `ex_2_4g.nlogo`
 
-* Railsback & Grimm, Chapter 3 exercise 3.
+* Railsback & Grimm, Chapter 3 exercise 3.3.
 
   Write your answers in any convenient text format (a simple text file, a Word document, a `.pdf` file, or whatever suits you). Call the file `ex_3_3.docx` (or `ex_3_3.pdf`, etc.).
 
@@ -219,7 +217,7 @@ you felt confused about trying to specify your model.
 
 
 
-# Wed., Sep. 11: Science with models: Butterfly mating
+# Wed., Sep. 10: Science with models: Butterfly mating
 
 ## Homework
 
@@ -281,7 +279,7 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
 
 
-  * Railsback & Grimm, Ch. 5, exercises 5.5 and 5.8
+  * Railsback & Grimm, Ch. 5, exercise 5.8
 
 ### Notes on Homework:
 
@@ -320,11 +318,11 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
   3. If your answers include diagrams or other kinds of figures or illustrations that are a pain to do in Word, you can hand-write your answers (**legibly!**), take a photo of them, and upload the photo.
 
-* **Graduate Students:** For exercises 5.5 and 5.8, you need to answer questions about your models. Do this in a file that you upload to Brightspace, or write your answers on paper and take a picture and upload it, or edit the "Info" page of your model and put the answer there.
+* **Graduate Students:** For exercise 5.8, you need to answer questions about your models. Do this in a file that you upload to Brightspace, or write your answers on paper and take a picture and upload it, or edit the "Info" page of your model and put the answer there.
 
 
 
-# Wed., Sep. 18: Reproducing a model from its ODD
+# Wed., Sep. 17: Reproducing a model from its ODD
 
 ## Homework
 
@@ -353,38 +351,34 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
 
 
-# Mon., Sep. 23: Research project proposal
+# Wed., Sep. 24: Testing and debugging models
 
 ## Homework
 
 ### Homework Exercises:
 
+* **Everyone:**
 
 
-* Turn in a one-to-two page (double-spaced) proposal for your semester research project.
+
+  * Railsback & Grimm, Ch. 6, Ex. 6.2, 6.3
+
+* **Graduate Students,** also do the following:
+
+
+
+  * Railsback & Grimm, Ch. 6, Ex. 6.4, 6.5
 
 ### Notes on Homework:
 
 
-This proposal should describe the topic you want to work on, 
-identify a published open-source model you want to work with,
-and and describe how you think you might want to extend it.
+You do not need to turn anything in for Exercise 6.2. This is an exercise to try for the experience
 
-You should consult the textbook, the Model Library in NetLogo, 
-and the list of reading and computational tools and
-resources I distributed on the first day of class (it's also posted on the
-course web site).
-
-If you really want to write your own model instead of working with a
-published one, that is also acceptable, but be aware that it may be a lot
-more work. I recommend that you do this only if you have previous experience
-in programming.
-
-See the semester project assignment for details.
+A hint for exercise 6.3:  Patches have integer coordinates (representing the center of the patch). How does the turtle determine the angle to face during `setup`? How does it determine the angle to face in `go-back`? Can you think of a different way to record the path so the `go-back` exactly retraces the path it took during `setup`? If you knew the direction the turtle was heading at each step during `setup`, could you use this heading information to exactly retrace the path?
 
 
 
-# Mon., Sep. 30: Analyzing model experiments
+# Mon., Sep. 29: Analyzing model experiments
 
 ## Homework
 
@@ -395,7 +389,7 @@ See the semester project assignment for details.
 
 
   * Railsback & Grimm, Ch. 8, Ex. 8.1, 8.2
-  * Railsback & Grimm, Ch. 9, Ex. 9.1, 9.3, 9.4
+  * Railsback & Grimm, Ch. 9, Ex. 9.3, 9.4
 
 * **Graduate Students,** also do the following:
 
@@ -406,7 +400,7 @@ See the semester project assignment for details.
 
 
 
-# Wed., Oct. 2: Programming agent sensing
+# Wed., Oct. 1: Programming agent sensing
 
 ## Homework
 
@@ -414,12 +408,31 @@ See the semester project assignment for details.
 
 
 
-* Railsback & Grimm, Ch. 10, Ex. 10.1, 10.2
+**Optional:** The following exercises are optional. You can turn them in for extra credit.
+
+* Railsback & Grimm, Ch. 10, Ex. 10.1
 * Railsback & Grimm, Ch. 11, Ex. 11.1
 
 
 
-# Mon., Oct. 7: Analysis of a published model
+# Wed., Oct. 8: Team modeling project presentations
+
+## Homework
+
+### Homework Exercises:
+
+
+
+* Teams will give a presentation on their projects.
+
+### Notes on Homework:
+
+
+See the team project assignment sheet for details on what I expect for the presentation.
+
+
+
+# Wed., Oct. 15: Analysis of a published model
 
 ## Homework
 
@@ -439,7 +452,7 @@ See the project assignment sheet for details about this assignment.
 
 
 
-# Mon., Oct. 21: Team modeling project presentations
+# Wed., Oct. 29: Research project ODD
 
 ## Homework
 
@@ -447,16 +460,16 @@ See the project assignment sheet for details about this assignment.
 
 
 
-* Teams will give a presentation on their projects.
+* Turn in an ODD for extending your chosen model to ask new questions.
 
 ### Notes on Homework:
 
 
-See the team project assignment sheet for details on what I expect for the presentation.
+See the semester research project assignment sheet for details.
 
 
 
-# Mon., Dec. 2: Research project presentations
+# Wed., Nov. 12: Draft model code for research project
 
 ## Homework
 
@@ -464,22 +477,72 @@ See the team project assignment sheet for details on what I expect for the prese
 
 
 
-* You will make a ten-minute presentation in class about your model (seven minutes of talking and three minutes for questions).
+* Turn in a draft `.nlogo` file with your modified model. The ODD for your modified model should be included in the "Info" section of the model.
+
+  You should _also_ turn in a document that describes what you are satisfied with about your draft model and what problems you are struggling with.
+
+### Notes on Homework:
+
+
+The model code you turn in should run, but it does not need to be perfect. 
+   
+The point of this deadline is so that you can check in with me about how
+things are going so I can give you feedback and suggestions.
+
+See the project assignment sheet for details.
+
+
+
+# Mon., Dec. 1: Research project presentations
+
+## Homework
+
+### Homework Exercises:
+
+
+
+* You will make a five-minute presentation in class about your model (You can use the full five minutes of talking and there will be an additional two minutes for questions).
 
 ### Notes on Homework:
 
 
 There will not be time to go into all the details in your presentation, so focus on:
 
-* the big question you were addressing,
-* a short description of the approach you took to answer it using an agent-based model,
-* what you learned from running the model.
+## Structure:
 
-See the project assignment sheet for details.
+#. Start by describing your research question
+#. Briefly describe your model
+#. Describe the experiments you performed:
+   * What outputs did you observe or measure?
+   * What parameters did you change?
+   * What did you see? (e.g., behaviorspace graphs or screenshots of the model)
+#. Conclusions
+
+## General recommendations:
+
+* 5 slides, one minute each.
+* As much as you can, use figures (graphs, illustrations, images, etc.) instead of text.
+* Avoid slides with a lot of text
+
+You can’t say everything you did, so focus on the most interesting highlights.
+
+You can describe what you did in greater depth in your paper.
+
+## Schedule of Presentations
+
+| Monday Dec. 2       | Wednesday Dec. 4    |
+|:-------------------:|:-------------------:|
+| Ferna Alvarez-Carrascal | Savi Buluwana       |
+| Andrew Harder           | Maya Maciel-Seidman |
+| Xingyu Huang            | Nadya Paschall      |
+| Erica Scarpitti         | Rayshaun Pettit     |
+| Jeremy Tallon           | Farzana Rahman      |
+| Jiaying Yang            | Xiyu Wang           |
+| Samuel Yang            | Hannah Wolf         |
 
 
 
-# Wed., Dec. 4: Research project report
+# Wed., Dec. 3: Research project presentations
 
 ## Homework
 
@@ -487,10 +550,42 @@ See the project assignment sheet for details.
 
 
 
-* Turn in a written report about your research project. Your report should follow the model of a research report for _Science_ magazine:
+* You will make a five-minute presentation in class about your model (You can use the full five minutes of talking and there will be an additional two minutes for questions).
 
 ### Notes on Homework:
 
 
-See the project assignment sheet for details.
+There will not be time to go into all the details in your presentation, so focus on:
+
+## Structure:
+
+#. Start by describing your research question
+#. Briefly describe your model
+#. Describe the experiments you performed:
+   * What outputs did you observe or measure?
+   * What parameters did you change?
+   * What did you see? (e.g., behaviorspace graphs or screenshots of the model)
+#. Conclusions
+
+## General recommendations:
+
+* 5 slides, one minute each.
+* As much as you can, use figures (graphs, illustrations, images, etc.) instead of text.
+* Avoid slides with a lot of text
+
+You can’t say everything you did, so focus on the most interesting highlights.
+
+You can describe what you did in greater depth in your paper.
+
+## Schedule of Presentations
+
+| Monday Dec. 2       | Wednesday Dec. 4    |
+|:-------------------:|:-------------------:|
+| Ferna Alvarez-Carrascal | Savi Buluwana       |
+| Andrew Harder           | Maya Maciel-Seidman |
+| Xingyu Huang            | Nadya Paschall      |
+| Erica Scarpitti         | Rayshaun Pettit     |
+| Jeremy Tallon           | Farzana Rahman      |
+| Jiaying Yang            | Xiyu Wang           |
+| Samuel Yang            | Hannah Wolf         |
 

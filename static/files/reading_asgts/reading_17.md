@@ -1,0 +1,30 @@
+---
+title: Scheduling
+subtitle: ''
+class_date: 'Reading for Class #17: Monday, Oct 20, 2025'
+class_number: 17
+weight: 17
+slug: reading_17
+pubdate: '2025-07-31'
+date: 'Reading for Class #17: Monday, Oct 20, 2025'
+params:
+  par_date: '2025-10-20'
+  par_subtitle: ~
+pdf_url: /files/reading_asgts/reading_17.pdf
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Reading:
+
+### Required Reading (everyone):
+
+* Agent-Based and Individual-Based Modeling, Ch. 14.
+
+### Reading Notes:
+
+A good example of asynchronous updating is the 
+[model of breeding synchrony](/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo), 
+described in [Jovani and Grimm (2008)](/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf) 
+and in Chapter 23, which I have posted on the class web site: 
+<https://ees4760.jgilligan.org/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo>

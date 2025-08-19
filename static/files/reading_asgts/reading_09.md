@@ -1,0 +1,41 @@
+---
+title: Emergence
+subtitle: ''
+class_date: 'Reading for Class #9: Wednesday, Sep 17, 2025'
+class_number: 9
+weight: 9
+slug: reading_09
+pubdate: '2025-07-31'
+date: 'Reading for Class #9: Wednesday, Sep 17, 2025'
+params:
+  par_date: '2025-09-17'
+  par_subtitle: ~
+pdf_url: /files/reading_asgts/reading_09.pdf
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Reading:
+
+### Required Reading (everyone):
+
+* Agent-Based and Individual-Based Modeling, Ch. 8.
+
+### Reading Notes:
+
+This is a major chapter. Emergence is one of the most important concepts in agent-based modeling, so pay close attention to the discussion in this chapter and think about how you can measure and assess emergence.
+
+This chapter also introduces a very important tool for doing experiments in NetLogo: **BehaviorSpace**. BehaviorSpace lets you repeatedly run a NetLogo model while varying the settings of any of the controls on your user interface. Where there is randomness (stochasticity) in the model, you can perform many runs at each set of control settings. This will let us perform **sensitivity analysis** to determine whether a certain emergent phenomenon we are investigating happens only for values of the parameters within a narrow range, or whether it happens over a wide range of the parameters. It will let us determine which parameters are most important for the phenomenon.
+
+For homework and your modeling projects you will use BehaviorSpace extensively. BehaviorSpace outputs large amounts of data to `.csv` files, which you can read into Excel, R, SPSS, or another tool where you can do statistical analysis and generate plots such as the ones in figures 8.3, 8.5, and 8.6. 
+
+The format in which BehaviorSpace saves its data is very annoying to deal with in many tools. Indeed, it's almost impossible to do anything useful with it in Excel. Because of this, I have written a tool called `analyzeBehaviorspace` that can read the output of a BehaviorSpace run and allow you to interactively graph it and re-organize the data to make it more useful. 
+
+
+You can either use this tool online in a web browser at <https://analyze-behaviorspace.jgilligan.org> or install it on your own computer. For details, see the description of 
+`analyzeBehaviorspace` on the "Reading Resources and Computing Tools for Research" handout.
+
+
+As you read the chapter, be sure to try out the experiments with the birth-and-death model and the flocking model. Try reading the output of the behaviorspace runs into analyzeBehaviorspace (the web version or a local version installed on your computer), or your favorite statistical analysis software and try to generate plots similar to figures 8.3, 8.5, and 8.6.
+
+If you have time, try to play around with BehaviorSpace using those models (varying different parameters) or other models from the NetLogo library to explore the ways that changing parameters affects the models' behavior.

@@ -1,0 +1,37 @@
+---
+title: Prediction
+subtitle: ''
+class_date: 'Reading for Class #13: Wednesday, Oct 01, 2025'
+class_number: 13
+weight: 13
+slug: reading_13
+pubdate: '2025-07-31'
+date: 'Reading for Class #13: Wednesday, Oct 01, 2025'
+params:
+  par_date: '2025-10-01'
+  par_subtitle: ~
+pdf_url: /files/reading_asgts/reading_13.pdf
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+compact_definition_lists
+---
+## Reading:
+
+### Required Reading (everyone):
+
+* Agent-Based and Individual-Based Modeling, Ch. 12.
+
+### Reading Notes:
+
+In class, we will discuss the telemarketer model.
+
+For the teams working on the telemarketer model, the steps are:
+
+1. Build the model as described in the ODD.
+1. Do the analyses in section 13.3.2
+1. Next work on two extensions:
+   1. Mergers (section 13.5)
+   1. Customers remember (section 13.6)
+
+Before class, everyone should read Chapter 13 and the ODD for the telemarketer model and be ready to discuss the model in class.
+This will be a chance for the teams working on the model to ask questions.
