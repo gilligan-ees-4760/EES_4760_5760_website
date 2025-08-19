@@ -2,8 +2,8 @@
 title: Research project presentation
 subtitle: '`r params$par_subtitle`'
 due_date: '`r params$par_date`'
-assignment_type: Semester Project Assignment
-short_assignment_type: Presentation
+assignment_type: Project
+short_assignment_type: PRJ
 assignment_number: 17
 weight: 17
 slug: project_presentation_2
@@ -55,12 +55,8 @@ You can describe what you did in greater depth in your paper.
 
 ## Schedule of Presentations
 
-| Monday Dec. 2       | Wednesday Dec. 4    |
-|:-------------------:|:-------------------:|
-| Ferna Alvarez-Carrascal | Savi Buluwana       |
-| Andrew Harder           | Maya Maciel-Seidman |
-| Xingyu Huang            | Nadya Paschall      |
-| Erica Scarpitti         | Rayshaun Pettit     |
-| Jeremy Tallon           | Farzana Rahman      |
-| Jiaying Yang            | Xiyu Wang           |
-| Samuel Yang            | Hannah Wolf         |
+TBA
+
+| Monday Dec. 1         | Wednesday Dec. 3    |
+|:-------------------------:|:-------------------------:|
+|                               |                               |

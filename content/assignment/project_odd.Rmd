@@ -2,8 +2,8 @@
 title: Research project ODD
 subtitle: '`r params$par_subtitle`'
 due_date: '`r params$par_date`'
-assignment_type: Semester Project Assignment
-short_assignment_type: Assignment
+assignment_type: Project
+short_assignment_type: PRJ
 assignment_number: 14
 weight: 14
 slug: project_odd
