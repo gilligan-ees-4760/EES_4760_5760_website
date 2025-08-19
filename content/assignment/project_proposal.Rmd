@@ -3,7 +3,8 @@ title: Research project proposal
 subtitle: '`r params$par_subtitle`'
 due_date: '`r params$par_date`'
 assignment_type: Project
-short_assignment_type: PRJ
+short_assignment_type: ASGT
+med_assignment_type: Indiv. Project
 assignment_number: 7
 weight: 7
 slug: project_proposal

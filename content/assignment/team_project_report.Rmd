@@ -3,7 +3,8 @@ title: Team modeling project report
 subtitle: '`r params$par_subtitle`'
 due_date: '`r params$par_date`'
 assignment_type: Team Project
-short_assignment_type: TEAM
+short_assignment_type: ASGT
+med_assignment_type: Team Project
 assignment_number: 13
 weight: 13
 slug: team_project_report
