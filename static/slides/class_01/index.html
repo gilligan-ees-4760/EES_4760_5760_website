@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="Jonathan Gilligan">
+<title>Introduction to Agent-Based Modeling</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css">
+<style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+<style type="text/css">
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+  </style>
+<!-- theme = solarized_jg --><link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+<!-- Printing and PDF exports --><script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><!--[if lt IE 9]>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
+  <![endif]--><script src="../../lecture_lib/library/header-attrs-2.29.1.9000/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class="center" id="title"><h1 class="title">Introduction to Agent-Based Modeling</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based and Individual-Based
+Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #1:
+       Wednesday, August 20
+      2025
+    </h3>
+	<!-- end title slide -->
+</section><section><section id="who-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1 data-transition="fade-out" data-skip="true">Who Are You?</h1>
+
+</section><section id="who-are-you" class="slide level2"><h2>Who Are You?</h2>
+<ol type="1">
+<li>Who are you? (Name, year, major)</li>
+<li>What is something that made you interested to study computational
+modeling?</li>
+<li>Ask me a question about computational modeling</li>
+<li>Something interesting about yourself</li>
+</ol></section></section><section><section id="overview-of-the-semester" class="title-slide slide level1 center" data-background="#FFF0F0"><h1 class="center" data-background="#FFF0F0">Overview of the
+Semester</h1>
+
+</section><section id="section" class="slide level2" data-background="#FFF0F0"><h2 data-background="#FFF0F0"><!--- dummy for formatting ---></h2>
+<h3 id="textbooks">Textbooks</h3>
+<table>
+<tr style="vertical-align:middle; text-align:center">
+<td>
+<img src="assets/images/Railsback_ABM_Cover.jpg" height="154.285714285714px" alt="_Agent-Based and Individal-Based Modeling_ (2nd Edition)">
+</td>
+<td style="vertical-align:middle;">
+Steven F. Railsback &amp; Volker Grimm, <i><em>Agent-Based and
+Individal-Based Modeling</em> (2<sup>nd</sup> Edition)</i>
+</td>
+</tr>
+<tr style="vertical-align:middle; text-align:center">
+<td>
+<img src="assets/images/smaldino_abm_cover.jpg" height="154.285714285714px" alt="_Modeling Social Behavior_">
+</td>
+<td style="vertical-align:middle;">
+Paul E. Smaldino, <i><em>Modeling Social Behavior</em></i>
+</td>
+</tr>
+</table></section><section id="started" class="slide level2" data-transition="fade-in"><h2 data-transition="fade-in">Getting Started</h2>
+<p>For Monday:</p>
+<ul>
+<li>Download and install NetLogo on your computer.
+<ul>
+<li>URL in syllabus and assignment sheet</li>
+</ul>
+</li>
+</ul></section><section id="course-web-site" class="slide level2 ninety"><h2 class="ninety">Course Web Site</h2>
+<ul>
+<li>
+<a href="https://ees4760.jgilligan.org">ees4760.jgilligan.org</a>
+<ul>
+<li>Syllabus</li>
+<li>All reading and homework assignments for the semester</li>
+<li>Slides from class.</li>
+<li>Files you will need for homework assignments.</li>
+<li>Links to helpful resources.</li>
+</ul>
+</li>
+<li>Slides:
+<ul>
+<li>The title slide has QR code with link to online version.</li>
+<li>PDF versions are also posted to course web site (link on title
+slide)</li>
+<li>Slides have two-dimensional navigation (in a browser, hit “?” for
+help)</li>
+</ul>
+</li>
+</ul></section></section><section><section id="abm-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1 data-transition="fade-out" data-skip="true">Agent-Based
+Modeling</h1>
+
+</section><section id="abm" class="slide level2" data-transition="fade-in"><h2 data-transition="fade-in">Agent-Based Modeling</h2>
+<ul>
+<li>Simulate individuals:
+<ul>
+<li>Autonomous</li>
+<li>Heterogeneous</li>
+<li>Quasi-local</li>
+<li>Bounded rationality</li>
+</ul>
+</li>
+<li>Simulate environment</li>
+<li>Emphasize simplicity, minimal assumptions</li>
+<li>
+<strong>Emergence:</strong> Large-scale phenomena arise from
+small-scale individual interactions
+<ul>
+<li>Interesting when large-scale is not easily predicted from
+small-scale</li>
+</ul>
+</li>
+</ul></section><section id="simple-experiments" class="slide level2 ninety"><h2 class="ninety">Simple Experiments</h2>
+<ul>
+<li>Play with economics
+<ul>
+<li><p>Simple agents trade with each other</p></li>
+<li>
+<p>Confirm 1<sup>st</sup> welfare theorem:</p>
+<p>Trading leads to Pareto equilibrium</p>
+</li>
+<li>
+<p>Find conditions for satisfying theorem:</p>
+<ul>
+<li>Not necessary for traders to be completely rational
+<ul>
+<li>How much rationality do you need?</li>
+</ul>
+</li>
+<li>Equilibration can be slow</li>
+<li>Time-varying preferences can prevent equilibration</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dynamics of agent-based models connect to nonlinear dynamics and
+chaos</li>
+</ul></section><section id="economics-of-cooperation" class="slide level2"><h2>Economics of Cooperation</h2>
+<h3 id="game-theory">Game Theory</h3>
+<ul>
+<li>
+<p>Prisoner’s Dilemma Game:</p>
+<table>
+<thead><tr class="header">
+<th style="text-align: center;">A \ B</th>
+<th style="text-align: center;"><strong>B Cooperates</strong></th>
+<th style="text-align: center;"><strong>B Defects</strong></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>A Cooperates</strong></td>
+<td style="text-align: center;">(3,3)</td>
+<td style="text-align: center;">(0,4)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>A Defects</strong></td>
+<td style="text-align: center;">(4,0)</td>
+<td style="text-align: center;">(1,1)</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Nash Equilibrium:</p>
+<ul>
+<li>No matter what player A does, player B is better off defecting</li>
+<li>No matter what player B does, player A is better off defecting</li>
+<li>
+<strong>End result:</strong> Both players end up worse off than if
+they had both cooperated.</li>
+</ul>
+</li>
+</ul></section><section id="iterated-prisoners-dilemma" class="slide level2"><h2>Iterated Prisoner’s Dilemma</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>R. Axelrod (1981)
+<ul>
+<li>Tournament of algorithms</li>
+</ul>
+</li>
+<li class="fragment" data-fragment-index="1">Winner: “tit-for-tat”</li>
+<li class="fragment" data-fragment-index="2">Evolutionary Game Theory:
+<ul>
+<li class="fragment" data-fragment-index="3">Basic principles of good strategies:
+<ul>
+<li class="fragment" data-fragment-index="4">Be nice</li>
+<li class="fragment" data-fragment-index="5">Be provocable</li>
+<li class="fragment" data-fragment-index="6">Don’t be too envious</li>
+<li class="fragment" data-fragment-index="7">Don’t be too clever</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment" data-fragment-index="8">Nay &amp; Gilligan (2015)
+<ul>
+<li class="fragment" data-fragment-index="8">Real-world strategies involve randomness, unpredictability</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="column">
+<p><img data-src="assets/images/axelrod-cover.jpg" height="800" alt="Cover of Robert Axelrod’s book, The Evolution of Cooperation"></p>
+</div>
+</div>
+</section><section id="modeling-evolution-and-game-theory" class="slide level2"><h2>Modeling Evolution and Game Theory</h2>
+<ol type="1">
+<li>J. Shihui, W. Zhiyi, “An evolutionary game model with reputation
+threshold and reputation score to promote trust in the sharing economy.”
+<em>Sci Rep</em> <strong>15</strong>, 14635 (2025).</li>
+<li>D. Vernon-Bido, A. Collins, “Finding Core Members of Cooperative
+Games Using Agent-Based Modeling.” <em>JASSS</em> <strong>24</strong>, 6
+(2021).</li>
+<li>M. Chica <em>et al.</em>, “An Evolutionary Game Model with
+Punishment and Protection to Promote Trust in the Sharing Economy.”
+<em>Sci Rep</em> <strong>9</strong>, 19789 (2019).</li>
+<li>A. Morris <em>et al.</em>, “Evolution of flexibility and rigidity in
+retaliatory punishment.” <em>PNAS</em> <strong>114</strong>, 10396
+(2017).</li>
+<li>J. J. Jordan <em>et al.</em>, “Third-party punishment as a costly
+signal of trustworthiness.” <em>Nature</em> <strong>530</strong>, 473
+(2016).</li>
+</ol></section></section><section><section id="agent-based-modeling-and-highway-traffic" class="title-slide slide level1 center"><h1 class="center">Agent-Based Modeling and Highway Traffic</h1>
+
+</section><section id="phantom-traffic-jams" class="slide level2"><h2>Phantom Traffic Jams</h2>
+<iframe id="traffic-nlogo-model" title="NetLogo Traffic Model" width="1000" height="800" src="/models/class_01/jg-traffic.html">
+</iframe>
+</section><section id="real-world-application" class="slide level2"><h2>Real World Application</h2>
+<iframe width="1120" height="630" src="https://www.youtube.com/embed/SnROMkdXYJc?si=n8R_Bj808WYs2tut" title="Can Self-Driving Cars Revolutionize Traffic?" frameborder="0" allow="clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+</section></section><section><section id="anasazi-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1 data-transition="fade-out" data-skip="true">Artificial Anasazi</h1>
+
+</section><section id="anasazi-intro" class="slide level2 ninety" data-transition="fade-in"><h2 class="ninety" data-transition="fade-in">Example: Artificial
+Anasazi</h2>
+<h3 id="axtell-dean-epstein-et-al.">Axtell, Dean, Epstein, <em>et
+al.</em>
+</h3>
+<p style="margin-bottom:0;">
+<img data-src="assets/images/long_house_valley.jpg" style="margin-top:0;margin-bottom:0;" height="800" alt="Long House Valley"></p>
+<p style="margin-top:0.5em;">
+Long House Valley (flourished ca. 1800 BCE–1300 CE)
+</p>
+</section><section id="anasazi-modeling-environment" class="slide level2"><h2>Modeling Environment</h2>
+<p><img data-src="assets/images/anasazi_maps.png" width="1800" alt="Artificial Anasazi Simulations"></p>
+</section><section id="anasazi-paleoclimate" class="slide level2" data-background="assets/images/paleoclimate.png" data-background-size="100% 100%"><h2 data-background="assets/images/paleoclimate.png" data-background-size="100% 100%"><!--- ---></h2>
+</section><section id="constructing-anasazi-model" class="slide level2"><h2>Constructing model</h2>
+<ul>
+<li>Paleoclimate:
+<ul>
+<li>Assess different kinds of soil</li>
+<li>Assess tree rings, pollen, etc.</li>
+<li>Reconstruct drought severity index</li>
+</ul>
+</li>
+<li>Society:
+<ul>
+<li>Archaeology gives #, location of households</li>
+</ul>
+</li>
+<li>Make assumptions about:
+<ul>
+<li># people per household,</li>
+<li>Agriculture,</li>
+<li>…</li>
+</ul>
+</li>
+<li>Devise rules for behavior:
+<ul>
+<li>Marriage, reproduction, migration, …</li>
+</ul>
+</li>
+<li>Simulate years 800–1300</li>
+</ul></section><section id="anasazi-initial-results" class="slide level2"><h2>Results</h2>
+<p><img data-src="assets/images/anasazi_output_1.png" height="950" alt="Artificial Ansazi model results"></p>
+</section><section id="anasazi-results-comparison" class="slide level2"><h2>Comparison</h2>
+<div class="noborder">
+<table>
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: center;">Simulated</th>
+<th style="text-align: center;">Historical</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: center;"><img data-src="assets/images/anasazi_simulated.png" width="850" alt="Artificial Ansazi simulation"></td>
+<td style="text-align: center;"><img data-src="assets/images/anasazi_historical.png" width="850" alt="Artificial Ansazi simulation"></td>
+</tr></tbody>
+</table>
+</div>
+</section><section id="anasazi-improvements" class="slide level2 center"><h2 class="center">Improvements</h2>
+<ul>
+<li>Make agents heterogeneous</li>
+<li>Fit parameters to historical data</li>
+</ul></section><section id="anasazi-improved-results" class="slide level2"><h2>Results</h2>
+<p><img data-src="assets/images/anasazi_output_2.png" height="950" alt="Artificial Ansazi improved model results"></p>
+</section></section>
+</div>
+  </div>
+  <!--
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.js"></script>
+  <!-- -->
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script><!-- --><script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Display the page number of the current slide
+        showSlideNumber: 'speaker',
+        // Push each slide change to the browser history
+        history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/math/math.js', async: true }
+        ],
+        shift_keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'C' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'B' is pressed
+    	    88: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'X' is pressed
+    	    82: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'R' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'D' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'S',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'H',
+      	      });
+    </script><script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_01">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_01"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_01">https://ees4760.jgilligan.org/slides/class_01</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_01/EES_4760_5760_class_01_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_01/EES_4760_5760_class_01_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script><script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true
+  }
+})
+  </script><script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script><script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }
+
+  Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script><script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    // console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+</body>
+</html>
