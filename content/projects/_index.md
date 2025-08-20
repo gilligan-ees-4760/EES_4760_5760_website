@@ -26,16 +26,12 @@ Your write-up will be due on to Brightspace on Friday, Oct. 17.
 
 ### Teams:
 
-<!--
+**TBA**
+
 | Team # |       Project      |                     Members                 |      Exercises     |
 |-------:|:------------------:|:-------------------------------------------:|:------------------:|
-|   1    |  Business Investor | Xingyi Huang, Xiyu Wang                     |   10.3, 10.4, 11.2 |
-|   2    |  Business Investor | Rayshaun Pettit, Jiaying Yang               |   10.3, 10.4, 11.2 |
-|   4    |  Business Investor | Savi Buluwana, Hannah Wolf                  |   10.3, 10.4, 11.2 |
-|   5    |  Telemarketer      | Ferna Alvarez-Carrascal, Farzana Rahman, Erica Scarpitti | 13.2, 13.3, 13.5 |
-|   6    |  Telemarketer      | Maya Maciel-Seidman, Jeremy Tallon          |   13.2, 13.3, 13.4 |
-|   7    |  Telemarketer      | Andrew Harder, Nadya Paschall, Samuel Yang  |   13.2, 13.3, 13.4 |
--->
+|   1    |  Business Investor | TBA                                         |  10.3, 10.4, 11.2  |
+|   2    |  Telemarketer      | TBA                                         |  13.2, 13.3, 13.5  |
 
 ## Individual Projects
 
@@ -52,15 +48,8 @@ Your write-up will be due on to Brightspace on Friday, Oct. 17.
 
 ### Presentation Schedule
 
-<!---
+**TBA**
+
 | Monday Dec. 1       | Wednesday Dec. 3    |
 |:-------------------:|:-------------------:|
-| Ferna Alvarez-Carrascal | Savi Buluwana       |
-| Andrew Harder           | Maya Maciel-Seidman |
-| Xingyu Huang            | Nadya Paschall      |
-| Erica Scarpitti         | Rayshaun Pettit     |
-| Jeremy Tallon           | Farzana Rahman      |
-| Jiaying Yang            | Xiyu Wang           |
-| Samuel Yang            | Hannah Wolf         |
---->
-
+|    TBA              |     TBA             |
