@@ -6,6 +6,7 @@ lessons:
   title: The computer modeling cycle
   reading: /reading/reading_02
   assignment: /assignment/homework_01
+  lecture: /slides/class_02
 - date: '2025-08-27'
   title: Introduction to NetLogo
   reading: /reading/reading_03
