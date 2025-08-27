@@ -262,14 +262,14 @@ body {
 }
 
 .reveal a:hover {
-  color: #78b9e6;
+  color: rgb(119.5161290323, 184.6774193548, 230.4838709677);
   text-shadow: none;
   border: none;
 }
 
 .reveal .roll span:after {
   color: #fff;
-  background: #1a6091;
+  background: rgb(26.2782258065, 96.122983871, 145.2217741935);
 }
 
 /*********************************************
@@ -387,7 +387,8 @@ body {
   box-shadow: none;
 }
 
-.reveal .max-listing pre {
+.reveal .max-listing pre,
+.reveal pre.max-listing {
   width: 100%;
 }
 

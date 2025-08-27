@@ -38,8 +38,11 @@ init_git_tokens <- function(keyring = "git_access") {
       return(invisible(NULL))
     }
   }
-  Sys.setenv(GITHUB_PAT = keyring::key_get("GITHUB_PAT", keyring = keyring))
-  Sys.setenv(GITLAB_PAT = keyring::key_get("GITLAB_PAT", username = "jonathan",
+  Sys.setenv(GITHUB_PAT = keyring::key_get("GITHUB_PAT",
+                                           username = "jonathan-g",
+                                           keyring = keyring))
+  Sys.setenv(GITLAB_PAT = keyring::key_get("GITLAB_PAT",
+                                           username = "jonathan",
                                            keyring = keyring))
 }
 
@@ -92,8 +95,12 @@ publish <- function(ssh = NULL, repo = ".") {
   }
 
   cred <- imap(ssh, config_cred, repo = repo)
+  message("Pushing publish main ...")
   git2r::push(".", name = "publish", refspec = "refs/heads/main",
               credentials = cred$publish)
+  message("Done.")
+  message("Pushing origin main")
   git2r::push(".", name = "origin", refspec = "refs/heads/main",
               credentials = cred$origin)
+  message("Done.")
 }

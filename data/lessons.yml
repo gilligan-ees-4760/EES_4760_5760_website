@@ -11,6 +11,7 @@ lessons:
   title: Introduction to NetLogo
   reading: /reading/reading_03
   assignment: /assignment/homework_02
+  lecture: /slides/class_03
 - date: '2025-09-01'
   title: 'Specifying models: The ODD protocol'
   reading: /reading/reading_04
