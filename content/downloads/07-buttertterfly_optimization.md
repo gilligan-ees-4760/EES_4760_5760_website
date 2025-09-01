@@ -1,6 +1,6 @@
 ---
 title: "Optimizing Butterfly Model for Mating"
-weight: 7.2
+weight: 72
 date: "2025-09-10"
 due_date: "2025-09-10"
 pubdate: "2019-09-13"

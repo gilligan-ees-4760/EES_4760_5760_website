@@ -1,6 +1,6 @@
 ---
 title: "Interaction Models"
-weight: 14
+weight: 140
 date: "2025-10-06"
 due_date: "2025-10-06"
 pubdate: "2019-10-03"

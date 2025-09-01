@@ -1,6 +1,6 @@
 ---
 title: "Analyzing and Understanding Models"
-weight: 24
+weight: 240
 date: "2025-11-12"
 due_date: "2025-11-12"
 pubdate: "2019-08-22"

@@ -1,6 +1,6 @@
 ---
 title: "Butterfly Model ODD"
-weight: 4.2
+weight: 42
 date: "2025-09-01"
 due_date: "2025-09-01"
 pubdate: "2019-08-22"

@@ -1,6 +1,6 @@
 ---
 title: "Optional reading for Agent-Based Models in Practice"
-weight: 23
+weight: 230
 date: "2025-11-10"
 due_date: "2025-11-10"
 pubdate: "2019-08-22"

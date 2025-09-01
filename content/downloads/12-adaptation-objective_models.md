@@ -1,6 +1,6 @@
 ---
 title: "Objectives and Adaptations"
-weight: 12
+weight: 120
 date: "2025-09-29"
 due_date: "2025-09-29"
 pubdate: "2019-08-22"

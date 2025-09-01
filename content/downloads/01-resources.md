@@ -1,7 +1,7 @@
 ---
 title: "Resources"
 author: "Jonathan Gilligan"
-weight: 1
+weight: 10
 date: "2019-08-22"
 due_date: "2025-08-20"
 pubdate: "2018-08-22"

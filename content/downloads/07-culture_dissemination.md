@@ -1,6 +1,6 @@
 ---
 title: "Culture Dissemination Model with Errors"
-weight: 7.1
+weight: 71
 date: "2025-09-10"
 due_date: "2025-09-10"
 pubdate: "2019-08-22"

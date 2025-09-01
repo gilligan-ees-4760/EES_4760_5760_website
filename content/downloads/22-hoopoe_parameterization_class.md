@@ -1,6 +1,6 @@
 ---
 title: "Calibration and Parameterization"
-weight: 22.1
+weight: 220
 date: "2025-11-05"
 due_date: "2025-11-05"
 pubdate: "2019-08-22"

@@ -1,6 +1,6 @@
 ---
 title: "Science with Butterfly Models"
-weight: 6
+weight: 60
 date: "2025-09-08"
 due_date: "2025-09-08"
 pubdate: "2019-08-22"

@@ -1,6 +1,6 @@
 ---
 title: "Stochasticity: Stochastic Business Investor"
-weight: 18
+weight: 180
 date: "2025-10-22"
 due_date: "2025-10-22"
 pubdate: "2019-08-22"

@@ -1,6 +1,6 @@
 ---
 title: "Sugarscape Model from Class #3"
-weight: 3.5
+weight: 35
 date: "2025-08-27"
 due_date: "2025-08-27"
 pubdate: "2019-08-22"

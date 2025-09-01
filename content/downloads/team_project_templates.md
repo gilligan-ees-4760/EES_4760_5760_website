@@ -1,6 +1,6 @@
 ---
 title: "Team Project Templates"
-weight: 15
+weight: 150
 date: "2025-09-15"
 due_date: "2025-10-08"
 pubdate: "2018-01-01"

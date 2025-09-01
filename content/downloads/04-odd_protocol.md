@@ -1,7 +1,7 @@
 ---
 title: "ODD Protocol"
 author: "Volker Grimm"
-weight: 4.1
+weight: 40
 date: "2025-09-01"
 due_date: "2025-09-01"
 pubdate: "2019-08-22"

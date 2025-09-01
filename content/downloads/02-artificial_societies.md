@@ -1,7 +1,7 @@
 ---
 title: "Artificial Societies"
 author: "Peter Tyson"
-weight: 2
+weight: 20
 date: "2025-08-25"
 due_date: "2025-08-25"
 pubdate: "2019-08-22"

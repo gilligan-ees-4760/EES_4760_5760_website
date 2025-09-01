@@ -1,6 +1,6 @@
 ---
 title: "Collectives: Wild-Dog Models"
-weight: 19
+weight: 190
 date: "2019-10-29"
 due_date: "2021-11-02"
 pubdate: "2019-08-22"
