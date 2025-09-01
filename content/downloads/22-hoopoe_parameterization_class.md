@@ -1,10 +1,10 @@
 ---
 title: "Calibration and Parameterization"
-weight: 22
-date: "2019-11-07"
-due_date: "2021-11-11"
+weight: 22.1
+date: "2025-11-05"
+due_date: "2025-11-05"
 pubdate: "2019-08-22"
-descr: "Model of Wood Hoopoe breeding for calibration (Nov. 6)"
+descr: "Model of Wood Hoopoe breeding for calibration (Nov. 5)"
 output: html_document
 ---
 # Wood Hoopoe breeding models for in-class exercises on parameterization and calibration

@@ -1,10 +1,10 @@
 ---
 title: "Objectives and Adaptations"
 weight: 12
-date: "2019-09-29"
-due_date: "2021-09-30"
+date: "2025-09-29"
+due_date: "2025-09-29"
 pubdate: "2019-08-22"
-descr: "Modified business-investor model (Sept. 30)"
+descr: "Modified business-investor model (Sept. 29)"
 output: html_document
 ---
 ## Modified business-investor model for testing different objectives and decision strategies

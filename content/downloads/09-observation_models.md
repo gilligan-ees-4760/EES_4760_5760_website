@@ -1,10 +1,10 @@
 ---
 title: "Butterfly Model for Practicing Observations"
 weight: 9
-date: "2019-09-24"
-due_date: "2021-09-28"
+date: "2025-09-22"
+due_date: "2025-09-22"
 pubdate: "2019-08-22"
-descr: "Butterfly Model for Practicing Observations (Sept. 23)"
+descr: "Butterfly Model for Practicing Observations (Sept. 22)"
 output: html_document
 ---
 # Modified butterfly  model for practicing observations

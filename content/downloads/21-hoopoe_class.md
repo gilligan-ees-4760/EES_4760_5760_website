@@ -1,10 +1,10 @@
 ---
 title: "Theory Development: Wood Hoopoe Model"
 weight: 21
-date: "2019-11-05"
-due_date: "2018-11-09"
+date: "2019-11-03"
+due_date: "2025-11-03"
 pubdate: "2019-08-22"
-descr: "Model of Wood Hoopoe breeding for theory development (Nov. 4)"
+descr: "Model of Wood Hoopoe breeding for theory development (Nov. 3)"
 output: html_document
 ---
 # Wood Hoopoe breeding models for in-class exercises on theory development
