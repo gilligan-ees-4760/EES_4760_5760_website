@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="Jonathan Gilligan">
+<title>Designing and Documenting Models: The ODD Protocol</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css">
+<style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+<style type="text/css">
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+  </style>
+<!-- theme = solarized_jg --><link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+<!-- Printing and PDF exports --><script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><!--[if lt IE 9]>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
+  <![endif]--><script src="../../lecture_lib/library/header-attrs-2.29.1.9000/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class="center" id="title"><h1 class="title">Designing and Documenting Models:<br>The ODD
+Protocol</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based and Individual-Based
+Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #4:
+       Monday, September 01
+      2025
+    </h3>
+	<!-- end title slide -->
+</section><section id="getting-started" class="slide level2 center" data-transition="fade-in"><h2 class="center" data-transition="fade-in">Getting Started:</h2>
+<ul>
+<li>Purpose of Today’s Class:
+<ul>
+<li>Learn a structure for designing and documenting a model</li>
+</ul>
+</li>
+<li>Getting started for today:
+<ul>
+<li>Download and save the Butterfly model from <a href="https://ees4760.jgilligan.org/models/class_04/butterfly_odd.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_04/butterfly_odd.nlogo</a>
+<ul>
+<li>Or go to the “Downloads” page at <a href="https://ees4760.jgilligan.org" class="uri">https://ees4760.jgilligan.org</a> and click on item 4:
+“Butterfly Model ODD”</li>
+</ul>
+</li>
+<li>Open NetLogo and load “butterfly_odd.nlogo”</li>
+</ul>
+</li>
+</ul></section><section><section id="designing-documenting-sec" class="title-slide slide level1 center"><h1 class="center">Designing and Documenting Models</h1>
+
+</section><section id="designing-documenting" class="slide level2"><h2>Designing and Documenting Models</h2>
+<p><img data-src="assets/images/odd_paper.png" height="800" alt="ODD publication"></p>
+</section><section id="design" class="slide level2"><h2>Design</h2>
+<ul>
+<li>Don’t start writing code until you know what you’re trying to
+do.</li>
+<li class="fragment">Big picture
+<ul>
+<li>What is the <strong>purpose</strong> of your model?</li>
+<li>What <strong>things</strong> does your model use?</li>
+<li>How do those things <strong>behave</strong>?</li>
+</ul>
+</li>
+<li class="fragment">Design concepts
+<ul>
+<li>How do you represent the <strong>things</strong> in your model?</li>
+<li>How do you implement their <strong>behavior</strong>?</li>
+<li>How will your <strong>things</strong> and <strong>behaviors</strong>
+realize your <strong>purpose</strong>?</li>
+<li>What <strong>data</strong> will you collect from your model?</li>
+<li>How will you <strong>use that data</strong> to achieve your
+<strong>purpose</strong>?</li>
+</ul>
+</li>
+</ul></section><section id="overview-design-concepts-and-details" class="slide level2"><h2>Overview, Design Concepts, and Details</h2>
+<div class="columns">
+<div class="column" style="width:33%;vertical-align:top;margin-top:50px;">
+<p><img data-src="assets/images/elements_of_odd.jpg" style="height:850px;" alt="ODD Diagram"></p>
+</div>
+<div class="column" style="width:15%;vertical-align:top;margin-top:50px;padding-top:100px;">
+<div class="bare" style="padding:0;margin:0;text-align:center;">
+<p>General</p>
+<p><img data-src="assets/images/arrow.png" style="height:625;border:0;box-shadow:none;margin-top:15px;text-align:center;" alt="Arrow"></p>
+<p>Detailed</p>
+</div>
+</div>
+</div>
+</section><section id="odd-perspective" class="slide level2 center"><h2 class="center">ODD in perspective:</h2>
+<ul>
+<li>Write overview and major parts of design concepts <span style="color:#5555e0;"><em>first</em></span>
+</li>
+<li class="fragment">As you write the model code, revisit and revise design
+concepts.</li>
+<li class="fragment">Much of the details will emerge in the course of
+programming.</li>
+<li class="fragment">When you are finished, write a complete ODD. This will be the
+major documentation for your model.</li>
+</ul></section></section><section><section id="odd-outline-sec" class="title-slide slide level1 center"><h1 class="center">ODD Outline</h1>
+
+</section><section id="odd-purpose" class="slide level2"><h2>1. Purpose &amp; Patterns</h2>
+<div style="text-align:left;">
+<p><strong>Questions:</strong></p>
+<ul>
+<li class="fragment">What is the <strong>purpose</strong> of the model?
+<ul>
+<li>What are you trying to do?</li>
+<li class="fragment"><em><strong>Suggestion</strong></em>: What will the <em>key
+figure</em> showing your results look like?</li>
+</ul>
+</li>
+<li class="fragment"><strong>Patterns:</strong> What aspects of the world are we
+modeling?
+<ul>
+<li>How will you judge whether the model is realistic enough for the
+purpose?</li>
+<li>What can you neglect?</li>
+</ul>
+</li>
+</ul>
+</div>
+</section><section id="odd-entities" class="slide level2"><h2>2. Entities, State Variables, Scale</h2>
+<ul>
+<li class="fragment">What kinds of <strong>entities</strong> are in the model?<br><em>Agents, collectives, spatial units, global environment, …</em>
+<ul>
+<li>Turtles, breeds, patches, links, etc.</li>
+</ul>
+</li>
+<li class="fragment">What attributes (state-variables) characterize the
+entities?<br><em>Age, sex, wealth, mood, opinion, soil type, land
+costs, rainfall, market price, …</em>
+<ul>
+<li>
+<code>turtles-own</code>, <code>patches-own</code>, etc.</li>
+<li class="fragment">You only need state-variables if they vary
+<ul>
+<li>values are different for different entities, change over time,
+etc.</li>
+</ul>
+</li>
+<li class="fragment">Use the fewest attributes you need</li>
+</ul>
+</li>
+<li class="fragment">What are the temporal and spatial resolutions and extents of the
+model?
+<ul>
+<li>
+<strong>Resolution:</strong> how detailed?</li>
+<li>
+<strong>Extents:</strong> how big?</li>
+<li>“Model settings” button in NetLogo</li>
+</ul>
+</li>
+</ul></section><section id="odd-scheduling" class="slide level2"><h2>3. Process Overview and Scheduling</h2>
+<ul>
+<li>How do states change?</li>
+<li class="fragment">What entities do what, and in what order?
+<ul>
+<li>Schedule:
+<ol type="1">
+<li class="fragment">Which entities take actions?</li>
+<li class="fragment">What actions do they take?
+<ul>
+<li>Details of actions often go in <strong>submodels</strong>
+<ul>
+<li>e.g., <code>to-go</code> used submodels <code>to-eat</code> &amp;
+<code>to-move</code> in our sugarscape model</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment">In what order do they take them?</li>
+<li class="fragment">Design Concepts</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul></section><section id="design-concepts" class="slide level2 center"><h2 class="center">4. Design Concepts</h2>
+<p>There are <strong>11 design concepts</strong> (see Table 3.1).</p>
+<p>Textbook has one chapter for each.</p>
+</section><section id="design-concept-outline" class="slide level2 eighty"><h2 class="eighty">Outline of Design Concepts</h2>
+<ol type="1">
+<li><p><strong>Basic Principles:</strong> Basis of model in general
+concepts and theories</p></li>
+<li class="fragment"><p><strong>Emergence:</strong> What emerges as the model
+runs?<br> (phenomena not imposed or directly programmed)</p></li>
+<li class="fragment">
+<p><strong>Adaptation</strong> How do agents respond to changes
+in their environment?<br> What decisions do they make, and how do they
+decide?<br> Do they seek objectives directly (<em>deliberately</em>) or
+indirectly (<em>mimic natural behavior</em>)?</p>
+<p><strong>Note:</strong> <em>Adaptation</em> means responding to
+current conditions. <span style="color:#5555e0;">It’s different from
+<em>persistent change</em> (the way the word is used in
+<em>evolution</em>)</span></p>
+<p><em>Seek shelter when it starts to rain.</em></p>
+</li>
+<li class="fragment"><p><strong>Objectives (Fitness):</strong> Goals of agents? What
+determines survival?<br> Do objectives change as agent
+changes?</p></li>
+<li class="fragment">
+<p><strong>Learning:</strong> How do individuals change behavior
+as they gain experience?</p>
+<p><strong>Note:</strong> This is where <em>persistent change</em>
+happens. <span style="color:#5555e0;">It’s often confused with
+<em>adaptation</em></span></p>
+<p><em>After getting rained on several times, start carrying an umbrella
+when it’s cloudy.</em></p>
+</li>
+</ol></section><section id="design-concept-outline-2" class="slide level2 eighty"><h2 class="eighty">Outline of Design Concepts (cont.)</h2>
+<ol start="6" type="1">
+<li>
+<strong>Prediction:</strong> How do agents predict consequences of
+their decisions?<br> (learning, memory, environmental cues, programmed
+assumptions)</li>
+<li class="fragment"><strong>Sensing:</strong> What do agents know or perceive when
+making decisions?<br> (Is sensing process itself explicitly modeled, or
+do they <em>just know</em>?)</li>
+<li class="fragment"><strong>Interaction:</strong> What forms of interaction among
+agents are there?</li>
+<li class="fragment"><strong>Stochasticity:</strong> Is there randomness in model?
+<span style="color:#5555e0;"><em>Randomness must be
+justified!</em></span>
+</li>
+<li class="fragment"><strong>Collectives:</strong> Grouping of individuals (herds,
+families, teams, social networks, …)</li>
+<li class="fragment"><strong>Observation:</strong> How do scientists collect data
+from the model for analysis?</li>
+</ol></section></section><section><section id="details-sec" class="title-slide slide level1 center"><h1 class="center">Details</h1>
+
+</section><section id="odd-initialization" class="slide level2"><h2>5. Initialization</h2>
+<ul>
+<li>What is the initial state of the model world?
+<ul>
+<li>Time <span class="math inline">\(t = 0\)</span> of a simulation
+run</li>
+</ul>
+</li>
+<li>In detail:
+<ul>
+<li>How many entities, of what type, are there initially?</li>
+<li>What are the exact values of their state variables?<br> (Or how
+were they set at random?)</li>
+<li>Is initialization always the same,<br> or does it vary from one
+simulation run to the next?</li>
+<li>Are initial values chosen arbitrarily, or based on data?</li>
+<li>References to those data should be provided.</li>
+</ul>
+</li>
+</ul></section><section id="odd-input-data" class="slide level2"><h2>6. Input data</h2>
+<ul>
+<li>Does the model use input from external sources to represent
+processes that change over time?
+<ul>
+<li>data files, other models, human interaction</li>
+</ul>
+</li>
+<li class="fragment">If so, what data?
+<ul>
+<li>Where did they come from?</li>
+<li>Provide references, citations.</li>
+</ul>
+</li>
+</ul></section><section id="odd-submodels" class="slide level2"><h2>7. Submodels</h2>
+<p>If the <strong>process scheduling</strong> step contains a list of
+processes or actions,<br> explain, in detail what
+<strong>submodels</strong> represent those processes or actions.</p>
+<ul>
+<li>What are the model parameters?</li>
+<li>How were the submodels designed or chosen?</li>
+<li>How were they tested?</li>
+</ul></section></section><section><section id="butterfly-sec" class="title-slide slide level1 center"><h1 class="center">Example:<br>Virtual Corridors for<br>Conservation
+Management</h1>
+
+</section><section id="butterfly-example" class="slide level2 center"><h2 class="center">Example: Virtual Corridors for Conservation
+Management</h2>
+<p><img data-src="assets/images/butterfly_paper.png" height="800" alt="Virtual Corridors Paper"></p>
+<div class="credit">
+<p>Pe’er, G., D. Saltz, &amp; K. Frank, “Virtual corridors for
+conservation management,” <em>Conservation Biology</em>
+<strong>19</strong>, 1997 (2005).</p>
+</div>
+</section><section id="start-netlogo" class="slide level2"><h2>Butterfly Model in NetLogo</h2>
+<p>Open NetLogo and load “butterfly_odd.nlogo”</p>
+<ul>
+<li>Code section is blank, but ODD is filled in on “Info” tab.
+<ul>
+<li>As you read Chapter 4, for Wednesday, the book will guide you to
+fill in the code based on ODD, as you read.
+<ul>
+<li class="fragment">You don’t need to turn this in, but you will use it as the basis
+for homework due Sept. 10.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment">Click on “Edit” (pencil icon) to see what Info tab looks like
+when you edit it.
+<ul>
+<li class="fragment">For details on editing “Info” tab, open <a href="https://ccl.northwestern.edu/netlogo/docs/infotab.html">NetLogo
+User Guide</a> from the NetLogo Help menu and go to <a href="https://ccl.northwestern.edu/netlogo/docs/infotab.html">“Info Tab
+Guide”</a> in the “Reference Section”</li>
+</ul>
+</li>
+</ul></section><section id="butterfly-purpose" class="slide level2"><h2>Purpose</h2>
+<ul>
+<li><p>Ecologists observe that as butterflies move uphill, they
+concentrate into narrow and well-definied <em>virtual corridors</em>
+rather than following any old path to the top of the hill.</p></li>
+<li class="fragment">
+<p>Explore the concept of <em>virtual corridors:</em></p>
+<p>Can concentrations of migrating animals emerge spontaneously from
+movement behavior and topography, instead of being a special
+habitat?</p>
+</li>
+<li class="fragment">
+<p>Specifically, How does the concentration of hill-topping
+butterflies emerge from:</p>
+<ul>
+<li>The way butterflies move uphill</li>
+<li>The topography of the landscape</li>
+</ul>
+</li>
+</ul></section><section id="butterfly-odd-entities" class="slide level2"><h2>Entities, State Variables, and Scales</h2>
+<ul>
+<li>
+<strong>Landscape:</strong>,
+<ul>
+<li>Square grid cells (patches) with one <em>state variable</em>:
+<strong>elevation</strong>.</li>
+</ul>
+</li>
+<li>
+<strong>Butterflies:</strong>
+<ul>
+<li>Have one <em>state variable</em>: <strong>location</strong><br>
+(discrete: which patch they’re in)</li>
+</ul>
+</li>
+</ul></section><section id="butterfly-odd-scale" class="slide level2"><h2>Entities, State Variables, and Scales</h2>
+<ul>
+<li>
+<strong>Spatial Scale:</strong>
+<ul>
+<li>150 × 150 cells (patches)</li>
+<li>Two modes:
+<ul>
+<li>Generic mode: No specific size for a patch</li>
+<li>Mapping mode: Each patch corresponds to 25 × 25 meters in the real
+landscape</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment"><strong>Time Scale:</strong>
+<ul>
+<li>Simulations last 1000 ticks</li>
+<li>Tick length is unspecified (time for a butterfly to move one
+patch).</li>
+</ul>
+</li>
+</ul></section><section id="butterfly-odd-scheduling" class="slide level2"><h2>Process Overview and Scheduling</h2>
+<ul>
+<li>
+<strong>Only one process:</strong> butterfly movement
+<ul>
+<li>On each tick, each butterfly moves once</li>
+<li>The order in which butterflies move is not important because they
+don’t interact</li>
+</ul>
+</li>
+</ul></section><section id="butterfly-odd-design-concepts" class="slide level2"><h2>Design concepts (important ones)</h2>
+<ul>
+<li>
+<strong>Basic Principles:</strong> The concept of <em>virtual
+corridors</em>
+</li>
+<li>
+<strong>Emergence:</strong> results (concentration of butterflies in
+corridors)<br> emerge from movement rule and topography</li>
+<li>
+<strong>Sensing:</strong> Butterflies can sense elevation in current
+and 8 surrounding patches</li>
+<li>
+<strong>Interaction:</strong> None</li>
+<li>
+<strong>Stochasticity:</strong> Used to represent reasons why
+butterflies do not move straight uphill</li>
+<li>
+<strong>Observation:</strong> We need a way to measure of butterfly
+concentration</li>
+</ul></section><section id="butterfly-odd-initialization" class="slide level2"><h2>Initialization</h2>
+<ul>
+<li>
+<p><strong>Landscape:</strong> cell elevations set to a flat
+landscape with four hills</p>
+<p><img data-src="assets/images/hill_plan.png" width="600" alt="Butterfly landscape plan"><img data-src="assets/images/hill_elevation.png" width="600" alt="Butterfly landscape elevation"></p>
+</li>
+<li><p><strong>Butterflies:</strong> 500 are created and placed in one
+patch</p></li>
+</ul></section><section id="butterfly-odd-submodel-movement" class="slide level2"><h2>Submodel: Butterfly movement</h2>
+<ul>
+<li>Global parameter <em>q</em> is probability that butterfly moves
+straight uphill,<br> vs. moving to random neighbor cell.</li>
+</ul>
+<p><img data-src="assets/images/butterfly_patches.png" height="700" alt="Butterfly patch movement"></p>
+</section></section><section><section id="next-step-sec" class="title-slide slide level1 center"><h1 class="center">Next Steps</h1>
+
+</section><section id="next-steps" class="slide level2 center"><h2 class="center">Next Steps</h2>
+<p>For Wednesday, you will follow the book and write code to implement
+the butterfly model.</p>
+</section></section><section><section id="catching-up" class="title-slide slide level1 center"><h1 class="center">Catching up</h1>
+
+</section><section id="catching-up-from-wednesday" class="slide level2"><h2>Catching up from Wednesday</h2>
+<ul>
+<li>Download the example model: Go to Downloads page, “Sugarscape model
+from class #3”, and
+<ul>
+<li>download “Netlogo model from class”,</li>
+<li>or download directly from <a href="https://ees4760.jgilligan.org/models/class_03/class_03_example.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_03/class_03_example.nlogo</a>
+</li>
+</ul>
+</li>
+</ul></section><section id="with" class="slide level2"><h2>Working with agentsets (<code>with</code>)</h2>
+<ul>
+<li><p><code>turtles</code> is an agentset of all turtles.</p></li>
+<li>
+<p>“<code>with</code>” is one of many primitives that create a
+subset of an agentset:</p>
+<p><code>ask turtles with [color = blue] [move]</code></p>
+</li>
+<li class="fragment">
+<p>Similar keywords for subsetting:</p>
+<ul>
+<li>
+<code>with-min</code>, <code>with-max</code> (one or more
+turtles)</li>
+<li>
+<code>n-of</code>, <code>max-n-of</code>, <code>min-n-of</code>
+(exactly <em>n</em> turtles)</li>
+<li>
+<code>one-of</code>, <code>max-one-of</code>,
+<code>min-one-of</code> (exactly one turtle)</li>
+</ul>
+</li>
+<li class="fragment"><p>Use the dictionary to look up correct syntax.</p></li>
+<li class="fragment">
+<p>Click “setup” and then try this:</p>
+<pre><code>ask patches [ set pcolor black ]
+ask patches with-max [sugar] [ set pcolor cyan ]
+ask max-n-of 5 patches [sugar] [ set pcolor pink ]
+</code></pre>
+</li>
+</ul></section><section id="of" class="slide level2"><h2>Working with agentsets (<code>of</code>)</h2>
+<ul>
+<li>
+<p>“<code>of</code>” provides a <em>list</em> of the values of an
+<code>-own</code> variable</p>
+<p><code>set happiness min [happiness] of turtles-on neighbors</code></p>
+<ul>
+<li class="fragment">In a patch context, <code>neighbors</code> makes an agentset of
+the neighboring patches.</li>
+<li class="fragment"><code>turtles-on</code> makes an agentset of all the turtles on
+<code>neighbors</code>
+</li>
+<li class="fragment"><code>[ happiness ]</code> gets the <code>turtles-own</code>
+variable <code>happiness</code> in the context of each turtle in
+<code>turtles-on neighbors</code>
+</li>
+</ul>
+</li>
+<li class="fragment">
+<p>More generally, “<code>of</code>” is a primitive for getting
+a value from <em>another</em> agent or agentset: if <code>friend</code>
+is another turtle,</p>
+<div>
+<p><code>set happiness [happiness] of friend</code></p>
+</div>
+</li>
+<li class="fragment"><p>Use the dictionary to look up correct syntax.</p></li>
+</ul></section><section id="to-move" class="slide level2"><h2>Movement in our Model</h2>
+<pre><code>to move
+  if sugar &lt;= 0 or any? other turtles-here
+  [
+    move-to max-one-of neighbors [ sugar ]
+  ]
+end</code></pre>
+<p>If there isn’t any sugar, or if there’s another turtle on the patch,
+it moves to the neighboring patch with the most sugar.</p>
+<div class="eightyfive">
+<ul>
+<li class="fragment">We run <code>move</code> in the context of a turtle:
+<ul>
+<li>For each neighbor of the patch the turtle is on, look up
+<code>sugar</code> in the context of that neighbor
+<ul>
+<li>The brackets <code>[</code> … <code>]</code> signal the change of
+context.</li>
+</ul>
+</li>
+<li>Find the neighbors with the maximum <code>sugar</code>, and pick one
+of them at random</li>
+<li>In the context of the original turtle, move to that neighboring
+patch</li>
+</ul>
+</li>
+</ul>
+</div>
+</section><section id="set-vs-equals" class="slide level2"><h2>Working with variables (<code>=</code>, <code>set</code>)</h2>
+<ul>
+<li>Two fundamental kinds of operations:
+<ul>
+<li>Changing the value of a variable:
+<ul>
+<li>Assignment operations (<code>set</code>)</li>
+</ul>
+</li>
+<li>Checking to see whether a value satisfies some condition:
+<ul>
+<li>Conditional operations (<code>=</code>, also <code>&gt;</code>,
+<code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>,
+<code>!=</code>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section><section id="compare-or-assign" class="slide level2"><h2>Equals or no equals?</h2>
+<div class="columns eighty" style="width:100%;">
+<div class="column" style="width:50%;vertical-align:top;text-align:left;">
+<p>Assignment statements</p>
+<ul>
+<li>Wrong:</li>
+</ul>
+<pre><code>happiness = ([happiness] of a-neighbor-turtle)</code></pre>
+<ul>
+<li>Right:</li>
+</ul>
+<pre><code>set happiness ([happiness] of a-neighbor-turtle)</code></pre>
+</div>
+<div class="column" style="width:50%;vertical-align:top;text-align:left;">
+<div class="fragment">
+<p>Conditional statements (Logical: yes or no)</p>
+<pre><code>if happiness = 3
+  [stop]
+    
+if happiness &lt;= 3
+  [stop]
+    
+if happiness != 5 or ticks &gt; 17
+  [stop]</code></pre>
+</div>
+</div>
+</div>
+</section><section id="set-vs-let" class="slide level2"><h2>Working with variables: <code>set</code> vs. <code>let</code>
+</h2>
+<ul>
+<li><p>Global variables (known to all procedures)</p></li>
+<li><p>Local variables (known only to one procedure)</p></li>
+<li>
+<p>Use <code>let</code> to <em>create</em> and <em>set the
+value</em> of a new local variable:</p>
+<pre><code>let mean-neighbor-size mean [size] of turtles-on neighbors</code></pre>
+</li>
+<li>
+<p>Use <code>set</code> to change the value of an existing variable
+(global, local, patches-own, turtles-own, etc.)</p>
+<pre><code>set wealth wealth * 1.1
+
+set hypotenuse sqrt(a ^ 2 + b ^ 2)</code></pre>
+</li>
+</ul></section><section id="to-eat" class="slide level2"><h2>Variables in Our Model</h2>
+<p>Examine the <code>to eat</code> and <code>to move</code> procedures
+on the code tab, and edit <code>to-move</code></p>
+<div class="eightyfive">
+<pre><code>to eat
+  ifelse hunger &gt; sugar 
+  [
+    ; Use set to change an existing variable "hunger"
+    set hunger hunger - sugar
+    set sugar 0
+  ]
+  [
+    set sugar sugar - hunger
+    set hunger 0
+  ]
+end
+
+to move
+  if sugar &lt;= 0 or any? other turtles-here 
+  [
+    ; Use let to create a new variable "dest"
+    let dest max-one-of neighbors [ sugar ]
+    move-to dest
+  ]
+end</code></pre>
+</div>
+</section><section id="assigning-agent-variables" class="slide level2"><h2>Working with variables: Giving a value to another agent</h2>
+<ul>
+<li>How does one patch (or turtle) give the value of one of its
+variables to other patches?
+<ul>
+<li>
+<p>There are two ways to do this.</p>
+<pre><code>let my-color pcolor
+ask neighbors [set pcolor my-color]</code></pre>
+<p>or</p>
+<pre><code>ask neighbors [set pcolor [pcolor] of myself]</code></pre>
+</li>
+</ul>
+</li>
+<li class="fragment">Turtles implicitly access <code>patches-own</code> variables
+(e.g., <code>pcolor</code>, <code>sugar</code>) of the patch they’re on
+as though they were <code>turtles-own</code>
+</li>
+<li class="fragment">Converse is not true: Patches don’t automatically see
+<code>turtles-own</code>
+</li>
+<li class="fragment">Why?
+<ul>
+<li class="fragment">A turtle can only be on one patch at a time,</li>
+<li class="fragment">But a patch may have multiple turtles.</li>
+</ul>
+</li>
+</ul></section><section id="branching" class="slide level2"><h2>Code branching (conditional statements)</h2>
+<pre><code>if (logical condition)
+  [
+    ; Do this if condition is true
+  ]</code></pre>
+<p>or</p>
+<pre><code>ifelse (logical condition)
+  [
+    ; Do this if condition is true ...
+  ]
+  [  ;else
+    ; Do this if condition is false
+  ]</code></pre>
+</section><section id="stochasticity" class="slide level2"><h2>Working with stochasticity (randomness)</h2>
+<ul>
+<li>
+<p>Uniform distribution of random integers less than
+<code>x</code></p>
+<pre><code>random x</code></pre>
+<ul>
+<li>
+<code>random 5</code> would return 0, 1, 2, 3, or 4</li>
+</ul>
+</li>
+<li>
+<p>Uniform distribution of floating-point numbers less than
+<code>x</code></p>
+<pre><code>random-float x</code></pre>
+<ul>
+<li>
+<code>random-float 5</code> would return a number between 0 and
+4.9999…. The number could be very close to 5.</li>
+</ul>
+</li>
+<li>
+<p>Select one patch at random and turn it green</p>
+<pre><code>ask one-of patches [set pcolor green]</code></pre>
+</li>
+<li>
+<p>Select one agent at random and turn it right 5 degrees:</p>
+<pre><code>ask one-of turtles [right 5]</code></pre>
+</li>
+</ul></section><section id="graphics" class="slide level2"><h2>Working with graphics</h2>
+<div class="bare">
+<p><img data-src="assets/images/color_palette.png" height="850" alt="color palette"></p>
+<div class="eighty">
+<ul>
+<li>0, 10, 20, …, 130 are all black</li>
+<li>0.9, 9.9, 19.9, 29.9, …, 139.9 are all white</li>
+</ul>
+</div>
+</div>
+</section><section id="adding-color-to-model" class="slide level2 eightyfive"><h2 class="eightyfive">Coloring Patches and Turtles</h2>
+<p>Examine the procedures <code>update-pcolor</code> and
+<code>update-color</code></p>
+<div class="stretch bare">
+<pre><code>to update-pcolor
+  ; black for 0, bright yellow for max-sugar
+  set pcolor scale-color yellow sugar 0 (2 * max-sugar) 
+end
+
+to update-color
+  ifelse hunger &gt; 5
+  [
+    ; white for 5 to bright red for 10
+    set color scale-color red hunger 15 5
+  ]
+  [
+    ; bright green for 0, white for 5
+    set color scale-color green hunger -5 5
+  ]
+end</code></pre>
+</div>
+<div class="bare">
+<ul>
+<li>
+<code>scale-color color value range1 range2</code> sets the
+lightness of the color.
+<ul>
+<li>Higher values = lighter, lower = darker.</li>
+</ul>
+</li>
+<li>If <code>range1 &gt; range2</code>, light and dark are reversed
+(<code>scale-color red hunger 15 5</code>).</li>
+</ul>
+</div>
+</section><section id="running-class-model" class="slide level2"><h2>Running Our Model</h2>
+<ul>
+<li>Press “Check” and make sure there are no syntax errors</li>
+<li>Go to “Interface” tab</li>
+<li>Click on “setup”</li>
+<li>Click on “go”</li>
+<li>You can download a copy of the model from <a href="https://ees4760.jgilligan.org/models/class_03/class_03_example.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_03/class_03_example.nlogo</a>
+</li>
+</ul></section><section id="interacting" class="slide level2 leftslide ninety"><h2 class="leftslide ninety">Interacting with a Model</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>
+<p>On Wednesday, we set a value for the global variable
+<code>sugar-growth</code>:</p>
+<div class="ninety">
+<pre><code>globals
+[
+  max-sugar
+  sugar-growth
+]</code></pre>
+<p>and</p>
+<pre><code>to setup
+  clear-all
+
+  set sugar-growth 0.050
+  set max-sugar 100
+  ...
+end</code></pre>
+</div>
+</li>
+</ul>
+</div>
+<div class="column">
+<ul>
+<li>
+<p>In the model you downloaded, I replaced this with a slider on the
+interface:</p>
+<div class="ninety">
+<ul>
+<li>
+<p>Added a Slider</p>
+<ul>
+<li>Type “sugar-growth” into “Global Variable”</li>
+<li>Set minimum to 0, increment to 0.005, maximum to 0.1, and value to
+0.050</li>
+</ul>
+</li>
+<li>
+<p>In the code tab, commented out or deleted the definition and
+initialization of <code>sugar-growth</code></p>
+<div class="ninety">
+<pre><code>globals
+[
+  max-sugar
+  ; sugar-growth
+]
+...
+to setup
+  clear-all
+  ; set sugar-growth 0.050
+  ...
+end</code></pre>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section><section id="monitoring" class="slide level2 leftslide"><h2 class="leftslide">Monitoring a Model</h2>
+<p>On the “interface” tab:</p>
+<div class="columns">
+<div class="column">
+<div class="ninety" style="text-align=left;">
+<ul>
+<li>Added a Plot
+<ul>
+<li>Name the plot “Hunger”</li>
+<li>Set X max to 10 and Y max to 100</li>
+<li>Type “Hunger” for “X axis label” and<br>“# Turtles” for “Y axis
+label”</li>
+<li>Click on the pencil icon next to<br>“default” pen
+<ul>
+<li>Choose “Bar” for “Mode”</li>
+<li>In “Pen update commands” type
+<code>histogram [hunger] of turtles</code>
+</li>
+</ul>
+</li>
+<li>Press “OK”</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="column">
+<p><img data-src="assets/images/plot_dlg_screenshot.png" alt="Screenshot of the plot dialog box"></p>
+</div>
+</div>
+</section><section id="model-play" class="slide level2"><h2>Play with the model</h2>
+<ul>
+<li>Do interesting things happen for different values of
+<code>sugar-growth</code>?</li>
+<li>It might be fun to comment out the line in <code>to go</code> that
+stops the model after 2000 ticks</li>
+</ul>
+<pre><code>  ; if ticks &gt; 2000 [ stop ]</code></pre>
+</section><section id="more-sophisticated-sugarscape-model" class="slide level2"><h2>More sophisticated Sugarscape model</h2>
+<ul>
+<li>Download from <a href="https://ees4760.jgilligan.org/models/class_03/fancy-sugarscape.nlogo" class="uri">https://ees4760.jgilligan.org/models/class_03/fancy-sugarscape.nlogo</a>
+<ul>
+<li>You will also need to download <a href="https://ees4760.jgilligan.org/models/class_03/sugar-map.txt" class="uri">https://ees4760.jgilligan.org/models/class_03/sugar-map.txt</a>
+</li>
+<li>This is similar to the research model used by Axtell and Epstein to
+study theoretical economics.</li>
+</ul>
+</li>
+</ul></section></section><section><section id="more-about-agent-based-models" class="title-slide slide level1 center"><h1 class="center">More about Agent-Based Models</h1>
+
+</section><section id="ABMs" class="slide level2"><h2>Agent-based models</h2>
+<ul>
+<li>Agents/Individuals are discrete, unique, and autonomous entities.
+<ul>
+<li>Discrete entities: Important at low densities</li>
+<li>Unique: Individuals, even of same age and species, can be
+<strong>different</strong>
+</li>
+<li>Individuals have a <strong>life history</strong>
+</li>
+</ul>
+</li>
+<li class="fragment">Interactions among individuals are usually
+<strong>local</strong>, not global</li>
+<li class="fragment">Individuals make decisions, which can be
+<strong>adaptive</strong>
+</li>
+<li class="fragment">Ecology or society <strong>emerges</strong> from individual
+behavior (bottom-up)</li>
+</ul></section><section id="realistic-starling-flocking" class="slide level2"><h2>Example: flocks of starlings</h2>
+<ul>
+<li>Thousands of individuals
+<ul>
+<li>unique and different</li>
+<li>interact locally</li>
+<li>show adaptive behavior</li>
+</ul>
+</li>
+</ul>
+<p><img data-src="assets/images/starlings.png" height="600" alt="Starlings"></p>
+</section><section id="starling-murmuration" class="slide level2"><h2>Starling murmuration</h2>
+<video width="960" height="720" controls><source src="/static/video/islands-rivers-murmuration-2.mp4" type="video/mp4"><p>Your browser does not support the video tag.<br> You can play the
+video at
+<a href="https://vimeo.com/31158841">https://vimeo.com/31158841</a>
+</p></source></video><div class="credit">
+<p>By Liberty Smith &amp; Sophie Windsor Clive, Islands and Rivers, <a href="https://vimeo.com/31158841" class="uri">https://vimeo.com/31158841</a></p>
+</div>
+</section><section id="starling-movie" class="slide level2"><h2>Flock of thousands of starlings</h2>
+<video width="960" height="720" controls><source src="/static/video/MovieS6.mp4" type="video/mp4"><p>Your browser does not support the video tag.<br> You can play the
+video at
+<a href="https://ees4760.jgilligan.org/static/video//MovieS6.mp4">https://ees4760.jgilligan.org/static/video//MovieS6.mp4</a>
+</p></source></video></section><section id="starling-model" class="slide level2"><h2>Simulated flock of thousands of starlings</h2>
+<video width="960" height="720" controls><source src="/static/video/MovieS1.mp4" type="video/mp4"><p>Your browser does not support the video tag.<br> You can play the
+video at
+<a href="https://ees4760.jgilligan.org/static/video//MovieS1.mp4">https://ees4760.jgilligan.org/static/video//MovieS1.mp4</a>
+</p></source></video></section><section id="starling-model-2" class="slide level2"><h2>Simulated flock of thousands of starlings</h2>
+<video width="960" height="720" controls><source src="/static/video/MovieS2.mp4" type="video/mp4"><p>Your browser does not support the video tag.<br> You can play the
+video at
+<a href="https://ees4760.jgilligan.org/static/video//MovieS2.mp4">https://ees4760.jgilligan.org/static/video//MovieS2.mp4</a>
+</p></source></video></section></section>
+</div>
+  </div>
+  <!--
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.js"></script>
+  <!-- -->
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script><!-- --><script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Display the page number of the current slide
+        showSlideNumber: 'speaker',
+        // Push each slide change to the browser history
+        history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/math/math.js', async: true }
+        ],
+        shift_keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'C' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'B' is pressed
+    	    88: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'X' is pressed
+    	    82: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'R' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'D' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'S',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'H',
+      	      });
+    </script><script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_04">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_04"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_04">https://ees4760.jgilligan.org/slides/class_04</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_04/EES_4760_5760_class_04_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_04/EES_4760_5760_class_04_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script><script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true
+  }
+})
+  </script><script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script><script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }
+
+  Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script><script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    // console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+</body>
+</html>

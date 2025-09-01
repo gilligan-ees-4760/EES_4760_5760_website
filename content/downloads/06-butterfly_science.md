@@ -1,13 +1,13 @@
 ---
 title: "Science with Butterfly Models"
 weight: 6
-date: "2019-09-10"
-due_date: "2021-09-14"
+date: "2025-09-08"
+due_date: "2025-09-08"
 pubdate: "2019-08-22"
-descr: "Doing Science with the Butterfly Model (In-class exercises for Sept. 9)"
+descr: "Doing Science with the Butterfly Model (In-class exercises for Sept. 8)"
 output: html_document
 ---
-# Butterfly Model for In-Class Exercises on Sept. 9
+# Butterfly Model for In-Class Exercises on Sept. 8
  
 * A [single ZIP file](/models/class_06/class_06.zip) with all the files
   <https://ees4760.jgilligan.org/models/class_06/class_06.zip>

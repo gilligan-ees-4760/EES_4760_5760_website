@@ -3,7 +3,7 @@ title: "Resources"
 author: "Jonathan Gilligan"
 weight: 1
 date: "2019-08-22"
-due_date: "2018-08-22"
+due_date: "2025-08-20"
 pubdate: "2018-08-22"
 descr: "Further Reading and Computing Tools and Resources"
 download_link: "/files/reading/EES_4760_5760_Resources.pdf"

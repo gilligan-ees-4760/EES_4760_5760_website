@@ -1,10 +1,10 @@
 ---
 title: "Optimizing Butterfly Model for Mating"
-weight: 7.5
-date: "2019-09-12"
-due_date: "2021-09-16"
+weight: 7.2
+date: "2025-09-10"
+due_date: "2025-09-10"
 pubdate: "2019-09-13"
-descr: "Optimizing Butterfly Model for Mating (Sept. 11)"
+descr: "Optimizing Butterfly Model for Mating (Sept. 10)"
 output: html_document
 ---
 # Updated Butterfly Model

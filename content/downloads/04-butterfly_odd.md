@@ -1,18 +1,17 @@
 ---
 title: "Butterfly Model ODD"
-weight: 4
-date: "2019-09-05"
-due_date: "2021-09-07"
+weight: 4.2
+date: "2025-09-01"
+due_date: "2025-09-01"
 pubdate: "2019-08-22"
-descr: "Butterfly model with ODD (in-class exercises on Sept. 2)."
+descr: "Butterfly model with ODD (in-class exercises on Sept. 1)."
 output: html_document
 ---
 ## Butterfly Model ODD and Scientific Paper
 
 ### NetLogo model for in-class exercises.
 
-* [Netlogo model with Butterfly model ODD on the info page](/models/class_04/butterfly_odd.nlogo).
-  I have updated this to work correctly with NetLogo version 6.4.0.
+* [Netlogo model with Butterfly model ODD on the info page](/models/class_04/butterfly_odd.nlogo),
   <https://ees4760.jgilligan.org/models/class_04/butterfly_odd.nlogo>
 
 ### Optional supplementary reading.

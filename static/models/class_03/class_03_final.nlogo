@@ -68,7 +68,7 @@ to eat
 end
 
 to move
-  if sugar <= 0 or any? turtles-here
+  if sugar <= 0 or any? other turtles-here
   [
     let dest max-one-of neighbors [ sugar ]
     move-to dest
