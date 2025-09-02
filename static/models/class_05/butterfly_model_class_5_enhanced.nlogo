@@ -12,7 +12,6 @@ turtles-own [
   ]
 
 to setup
-
   ca
 
   ; Assign an elevation to patches and color them by it
@@ -23,17 +22,15 @@ to setup
     set elevation 200 + (100 * (sin (pxcor * 3.8) +
       sin (pycor * 3.8)))
     set pcolor scale-color green elevation 0 400
-
     set visited? false
   ]    ; end of "ask patches"
 
-  ;  Create just 1 butterfly for now
-  crt 50
+  crt 500
    [
      set size 2
      set color red
      ; Set initial location of butterflies
-     setxy 85 95
+     setxy (71 + random 5 - 2) (71 + random 5 - 2)
       set visited? true
       set finished? false
       set origin patch-here
@@ -536,7 +533,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

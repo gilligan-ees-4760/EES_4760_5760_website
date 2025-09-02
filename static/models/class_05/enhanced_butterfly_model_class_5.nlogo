@@ -1,96 +1,108 @@
 globals [
-  ; q ; q is the probability that butterfly moves
-      ; directly to the highest surrounding patch
+  ; q  ; q is the probability that a butterfly moves
+       ; directly to the highest surrounding patch
 ]
-
-patches-own
-[
+patches-own [
   elevation
   visited?
-]
-turtles-own
-[
-  origin ; in class, we called this "start-patch".
-         ; it's the patch where the turtle was first created
-  at-top? ; is the turtle at the highest point
-]
+  ]
+turtles-own [
+  origin
+  finished?
+  ]
 
 to setup
   ca
 
   ; Assign an elevation to patches and color them by it
-  ask patches  [
+  ask patches
+  [
     ; Elevation is a sine function of X, Y coordinates
     ; with maximum elevation of 400 when sin is 1.0
     set elevation 200 + (100 * (sin (pxcor * 3.8) +
       sin (pycor * 3.8)))
     set pcolor scale-color green elevation 0 400
-    set visited? false ; we have to initialize the patches-own
-                       ; variable, or we will get errors later on
-                       ; when we ask which patches have been visited
-  ]; end of "ask patches"
+    set visited? false
+  ]    ; end of "ask patches"
 
-  ; Create butterflies
   crt 500
-  [
-    set size 2
-    ; Set initial location to random patch
-    ; setxy random-pxcor random-pycor
-    setxy (71 + random 5 - 2.5) (71 + random 5 - 2.5)
-    set visited? true     ; this patch has now been visited
-    set at-top? false     ; set the turtles-own variable "at-top?"
-    set origin patch-here ; set the turtles-own variable "origin"
-    pen-down
-  ]
+   [
+     set size 2
+     set color red
+     ; Set initial location of butterflies
+     setxy (71 + random 5 - 2) (71 + random 5 - 2)
+      set visited? true
+      set finished? false
+      set origin patch-here
+     pen-down
+   ]
 
-  ; Initialize the "q" parameter
-  ; set q 0.4
+   ; Initialize the "q" parameter
+   ; don't initialize here if we're using a slider
+   ; set q 0.4
 
-  reset-ticks
-end  ; of setup procedure
+   reset-ticks
 
-to go  ; This is the master schedule
-  ; only the turtles who are not at the top of a hill
-  ; should move.
-  ask turtles with [not at-top?] [move]
+end           ; of setup procedure
+
+to go  ;  This is the master schedule
+
+  ask turtles with [ not finished? ]
+  [move]
+
   tick
-  if ticks >= 1000 or all? turtles [at-top?]  [stop]
+
+  ; stop when all the butterflies are at the summit, or
+  ; 1000 ticks, whichever comes first
+  if (ticks >= 1000) or all? turtles [ finished? ] [stop]
+
 end
 
-to move ; The butterfly move procedure, in turtle context
-        ; Decide whether to move to the highest
-        ; surrounding patch with probability q
-  ifelse random-float 1.0 < q
-  [uphill elevation] ; Move deterministically uphill
-  [move-to one-of neighbors] ; Or move randomly
-  set visited? true
-  ; A turtle is at the top of a hill if its patch is the
-  ; highest one within a radius of 3.
-  if elevation >= max [elevation] of patches in-radius 3
-  [ set at-top? true]
-end; of move procedure
+to move  ; The butterfly move procedure, in turtle context
+         ; Decide whether to the highest
+         ; surrounding patch with probability q
+  ifelse at-top?
+  [ set finished? true ]
+  [
+    ifelse random-float 1 < q
+	  [ uphill elevation ]            ; Move uphill
+	  [ move-to one-of neighbors ]    ; Otherwise move randomly
+	set visited? true
+  ]
+end ; of move procedure
 
-to-report distance-moved
-  report distance origin
+to-report at-top?
+  report elevation >= max [ elevation ] of neighbors
 end
 
+;  Corridor width is the number of patches visited by butterflies
+;  divided by the average distance a butterfly is from its initial position
+;
+;  If a butterfly moves in a straight line, the number of patches visited
+;  equals the distance from its initial patch, so corridor-width = 1
+;  The more a butterfly wanders off a straight line, the more patches
+;  it will visit, so the wider the corridor will be.
+;
 to-report corridor-width
-  ; In class I defined corridor width as the number of patches
-  ; visited divided by the sum of distance-moved, but the
-  ; textbook uses the average distance-moved, so I have changed
-  ; the model to use this instead.
-  let wid (count patches with [visited?]) / (mean [distance-moved] of turtles)
-  report wid
+  let pcount count patches with [visited?]
+  let dist mean [distance origin] of turtles
+  ifelse dist = 0
+  [report 1]
+  [report pcount / dist]
+end
+
+to-report pct-finished
+  report 100 * (count turtles with [ finished? ]) / (count turtles)
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
 211
 10
-669
-469
+519
+319
 -1
 -1
-3.0
+2.0
 1
 10
 1
@@ -145,39 +157,39 @@ NIL
 1
 
 SLIDER
-19
-110
-192
-143
+20
+109
+193
+142
 q
 q
 0
 1
-0.4
-0.1
+0.53
+0.01
 1
 NIL
 HORIZONTAL
 
 MONITOR
-25
-171
-119
-216
-Corridor Width
-corridor-width
-2
+39
+162
+141
+207
+Percent finished
+word pct-finished \"%\"
+0
 1
 11
 
 MONITOR
-25
-234
-85
-279
-% at top
-100 * (count turtles with [at-top?]) / count turtles
-1
+38
+224
+128
+269
+NIL
+corridor-width
+2
 1
 11
 
@@ -521,7 +533,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -530,6 +542,7 @@ NetLogo 6.2.0
     <setup>setup</setup>
     <go>go</go>
     <metric>corridor-width</metric>
+    <metric>pct-finished</metric>
     <steppedValueSet variable="q" first="0" step="0.1" last="1"/>
   </experiment>
   <experiment name="vary-q-final-only" repetitions="20" runMetricsEveryStep="false">
