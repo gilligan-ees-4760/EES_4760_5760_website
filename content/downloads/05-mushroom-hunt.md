@@ -10,4 +10,4 @@ output: html_document
 # Mushroom Hunt Model (from Chapter 2)
  
 * Download the 
-  [Basic Mushroom-Hunt Model](/models/class_05/basic_mushroom_hunt.nlogo)
+  [Basic Mushroom-Hunt Model](/models/class_04/basic_mushroom_hunt.nlogo)
