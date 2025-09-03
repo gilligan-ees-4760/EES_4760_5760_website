@@ -86,9 +86,10 @@ end
 to-report corridor-width
   let pcount count patches with [visited?]
   let dist mean [distance origin] of turtles
-  ifelse dist = 0
-  [report 1]
-  [report pcount / dist]
+  ; ifelse dist = 0
+  ; [report 1]
+  ; [report pcount / dist]
+  report pcount / dist
 end
 
 to-report pct-finished
