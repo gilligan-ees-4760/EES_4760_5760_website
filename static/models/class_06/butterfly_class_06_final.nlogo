@@ -1,7 +1,7 @@
 globals [
-  ;q
-  ]        ; q is the probability that a butterfly moves
-                     ; directly to the highest surrounding patch
+  ;q   ; q is the probability that a butterfly moves
+       ; directly to the highest surrounding patch
+  ]
 patches-own [
   elevation
   visited?
@@ -15,6 +15,7 @@ to setup
 
   ca
 
+  ; Round q to the nearest step of 0.01.
   set q precision q 2
 
   let x0 74
@@ -47,9 +48,17 @@ to setup
      ; Set initial location of butterflies
      ; setxy x0 + random 10 - 5 y0 + random 10 - 5
      ; setxy x0 y0
-     setxy random-pxcor random-pycor
+     ifelse concentrate-turtles
+     [
+       setxy x0 + random 10 - 5 y0 + random 10 - 5
+     ]
+     [
+       setxy random-pxcor random-pycor
+     ]
      set start-patch patch-here
      set finished? false
+     set visited? true
+     set pcolor yellow
      pen-down
    ]
    reset-ticks
@@ -61,20 +70,31 @@ to go  ;  This is the master schedule
   ; we would select which plot to update by adding a line
   ;
   ; set-current-plot "corridor width" ; use the title of the plot to specify which one to use.
-  ; plot corridor-width
+  plot corridor-width
+
+  if (count patches with [visited?]) != (count patches with [pcolor = yellow])
+    [ print "# visited patches does not match # yellow patches." ]
+
   tick
   ; stop when all the butterflies are at the summit, or
   ; 1000 ticks, whichever comes first
-  if ticks >= 1000 or all? turtles [finished?] [stop]
+  if ticks >= 1000 or all? turtles [finished?]
+  [
+    stop
+  ]
 end ; of go
 
 to move  ; The butterfly move procedure, in turtle context
          ; Decide whether to the highest
          ; surrounding patch with probability q
   ifelse random-float 1 < q
-    [ uphill elevation ]            ; Move uphill
+    [
+      let current-elevation elevation
+      uphill elevation
+    ]                               ; Move uphill
     [ move-to one-of neighbors ]    ; Otherwise move randomly
   set visited? true
+  set pcolor yellow
 end ; of move procedure
 
 to build-hills
@@ -116,9 +136,9 @@ to-report corridor-width
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-220
+265
 10
-678
+723
 469
 -1
 -1
@@ -162,7 +182,7 @@ NIL
 BUTTON
 15
 60
-79
+85
 94
 NIL
 go
@@ -178,9 +198,9 @@ NIL
 
 SLIDER
 15
-105
+140
 187
-138
+173
 q
 q
 0
@@ -193,9 +213,9 @@ HORIZONTAL
 
 MONITOR
 15
-150
+185
 109
-195
+230
 Corridor Width
 corridor-width
 2
@@ -209,17 +229,17 @@ SWITCH
 53
 real-terrain
 real-terrain
-0
+1
 1
 -1000
 
 BUTTON
-920
-420
-1002
-453
-save plot
-export-plot \"corridor width\" (word \"corridor-output-for-q-\" (precision q 2) \".csv\")
+15
+100
+85
+133
+step
+go
 NIL
 1
 T
@@ -232,26 +252,9 @@ NIL
 
 BUTTON
 15
-210
-112
-243
-Increment q
-set q q + 0.1\nset q precision q 2\nif q > 1 [ set q 1 ]
-NIL
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
-
-BUTTON
-15
-255
+280
 107
-288
+313
 Erase trails
 clear-drawing
 NIL
@@ -264,23 +267,51 @@ NIL
 NIL
 1
 
+BUTTON
+15
+240
+117
+273
+Increqment q
+set q q + 0.1\nset q precision q 2\nif q > 1 [ set q 1 ]
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+SWITCH
+95
+60
+257
+93
+concentrate-turtles
+concentrate-turtles
+1
+1
+-1000
+
 PLOT
-695
+730
 10
-1165
-200
-Elevation
+1350
+420
+corridor width
 Ticks
-Mean elevation
+Corridor width
 0.0
 1000.0
 0.0
-10.0
+1.0
 true
 false
-"" "set-current-plot \"Elevation\"\nset-current-plot-pen \"elevation-pen\"\nplot mean [ elevation ] of turtles\ntype ticks\ntype \": \"\nprint mean [elevation] of turtles"
+"" ""
 PENS
-"elevation-pen" 1.0 0 -16777216 true "" ""
+"default" 1.0 0 -16777216 true "" ""
 
 @#$#@#$#@
 # Butterfly Model ODD Description
@@ -622,7 +653,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -632,16 +663,6 @@ NetLogo 6.2.0
     <go>go</go>
     <metric>corridor-width</metric>
     <steppedValueSet variable="q" first="0" step="0.1" last="1"/>
-  </experiment>
-  <experiment name="terrrain-experiment" repetitions="20" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <metric>corridor-width</metric>
-    <steppedValueSet variable="q" first="0" step="0.2" last="1"/>
-    <enumeratedValueSet variable="real-terrain">
-      <value value="false"/>
-      <value value="true"/>
-    </enumeratedValueSet>
   </experiment>
 </experiments>
 @#$#@#$#@

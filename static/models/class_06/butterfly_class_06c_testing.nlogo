@@ -1,13 +1,13 @@
 globals [
-  ;q
-  ]        ; q is the probability that a butterfly moves
-                     ; directly to the highest surrounding patch
+  ;q   ; q is the probability that a butterfly moves
+       ; directly to the highest surrounding patch
+  ]
 patches-own [
   elevation
   visited?
   ]
 turtles-own [
-  initial-patch
+  start-patch
   finished?
   ]
 
@@ -15,7 +15,8 @@ to setup
 
   ca
 
-    set q precision q 2
+  ; Round q to the nearest step of 0.01.
+  set q precision q 2
 
   let x0 74
   let y0 74
@@ -47,11 +48,17 @@ to setup
      ; Set initial location of butterflies
      ; setxy x0 + random 10 - 5 y0 + random 10 - 5
      ; setxy x0 y0
-     setxy random-pxcor random-pycor
-     set initial-patch patch-here
+     ifelse concentrate-turtles
+     [
+       setxy x0 + random 10 - 5 y0 + random 10 - 5
+     ]
+     [
+       setxy random-pxcor random-pycor
+     ]
+     set start-patch patch-here
      set finished? false
      set visited? true
-     ; set pcolor yellow
+     set pcolor yellow
      pen-down
    ]
    reset-ticks
@@ -60,13 +67,15 @@ end           ; of setup procedure
 to go  ;  This is the master schedule
   ask turtles with [not finished?] [move]
   if (count patches with [visited?]) != (count patches with [pcolor = yellow])
-  [ print "# visited patches does not match # yellow patches." ]
+    [ print "# visited patches does not match # yellow patches." ]
 
   tick
   ; stop when all the butterflies are at the summit, or
   ; 1000 ticks, whichever comes first
   if ticks >= 1000 or all? turtles [finished?]
-  [ stop ]
+  [
+    stop
+  ]
 end ; of go
 
 to move  ; The butterfly move procedure, in turtle context
@@ -78,8 +87,6 @@ to move  ; The butterfly move procedure, in turtle context
       move-to max-one-of neighbors [elevation]
       ; move-to max-one-of (patch-set [ self neighbors ]) [elevation]
       ; uphill elevation
-      if elevation < current-elevation
-      [ show "Turtle is moving downhill." ]
     ]            ; Move uphill
     [ move-to one-of neighbors ]    ; Otherwise move randomly
   set visited? true
@@ -118,16 +125,16 @@ end
 ;
 to-report corridor-width
   let pcount count patches with [visited?]
-  let dist mean [distance initial-patch] of turtles
+  let dist mean [distance start-patch] of turtles
   ifelse dist = 0
   [report 1]
   [report pcount / dist]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-220
+265
 10
-678
+723
 469
 -1
 -1
@@ -171,7 +178,7 @@ NIL
 BUTTON
 15
 60
-79
+85
 94
 NIL
 go
@@ -187,9 +194,9 @@ NIL
 
 SLIDER
 15
-105
+140
 187
-138
+173
 q
 q
 0
@@ -202,9 +209,9 @@ HORIZONTAL
 
 MONITOR
 15
-150
+185
 109
-195
+230
 Corridor Width
 corridor-width
 2
@@ -223,10 +230,10 @@ real-terrain
 -1000
 
 BUTTON
-90
-60
-153
-93
+15
+100
+85
+133
 step
 go
 NIL
@@ -241,9 +248,9 @@ NIL
 
 BUTTON
 15
-240
+280
 107
-273
+313
 Erase trails
 clear-drawing
 NIL
@@ -258,10 +265,10 @@ NIL
 
 BUTTON
 15
-200
-112
-233
-Increment q
+240
+117
+273
+Increqment q
 set q q + 0.1\nset q precision q 2\nif q > 1 [ set q 1 ]
 NIL
 1
@@ -272,6 +279,17 @@ NIL
 NIL
 NIL
 1
+
+SWITCH
+95
+60
+257
+93
+concentrate-turtles
+concentrate-turtles
+1
+1
+-1000
 
 @#$#@#$#@
 # Butterfly Model ODD Description
@@ -613,7 +631,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

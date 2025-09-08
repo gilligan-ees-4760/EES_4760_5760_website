@@ -57,6 +57,7 @@ to setup
      ]
      set start-patch patch-here
      set finished? false
+     set visited? true
      pen-down
    ]
    reset-ticks
@@ -262,23 +263,6 @@ BUTTON
 233
 Increment q
 set q q + 0.1\nset q precision q 2\nif q > 1 [ set q 1 ]
-NIL
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
-
-BUTTON
-10
-245
-127
-278
-Erace trails
-clear-drawing
 NIL
 1
 T
@@ -640,7 +624,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
