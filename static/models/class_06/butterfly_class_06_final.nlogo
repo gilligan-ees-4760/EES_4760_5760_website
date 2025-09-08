@@ -313,6 +313,23 @@ false
 PENS
 "default" 1.0 0 -16777216 true "" ""
 
+BUTTON
+1000
+435
+1082
+468
+save plot
+export-plot \"corridor width\" (word \"corridor-output-for-q-\" (precision q 2) \".csv\")
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
 @#$#@#$#@
 # Butterfly Model ODD Description
 
