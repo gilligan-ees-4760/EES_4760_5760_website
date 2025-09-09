@@ -24,6 +24,7 @@ to setup
 
   ; set test-output-on? false
 
+  set a-site-changed? false
   set time-since-last-change 0
 
   ask patches
@@ -73,6 +74,7 @@ to go
 
   tick
 
+  set a-site-changed? false
   ask one-of patches [ interact ]
 
   ifelse a-site-changed?
@@ -91,7 +93,6 @@ to interact  ; a patch procedure
   ; Create a string to hold one line of test output
   let a-test-output-string " "
 
-  set a-site-changed? false
   let the-neighbor one-of neighbors4
 
   let prob-interact similarity-with the-neighbor
@@ -350,7 +351,7 @@ Similarity histogram
 Similarity with neighbor
 Number of site borders
 0.0
-1.21
+1.0
 0.0
 10.0
 true
