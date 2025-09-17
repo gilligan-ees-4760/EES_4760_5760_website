@@ -26,12 +26,14 @@ Your write-up will be due on to Brightspace on Friday, Oct. 17.
 
 ### Teams:
 
-**TBA**
-
 | Team # |       Project      |                     Members                 |      Exercises     |
 |-------:|:------------------:|:-------------------------------------------:|:------------------:|
-|   1    |  Business Investor | TBA                                         |  10.3, 10.4, 11.2  |
-|   2    |  Telemarketer      | TBA                                         |  13.2, 13.3, 13.5  |
+|   1    |  Telemarketer      | George Albu, Cora Jackson                   |  13.2, 13.3, 13.4  |
+|   2    |  Telemarketer      | Ava Brooks, Mona Gerges                     |  13.2, 13.3, 13.4  |
+|   3    |  Business Investor | Nguyen Ha, Samir Cancel Matos               |  10.3, 10.4, 11.2  |
+|   4    |  Business Investor | Sarah Markley, Eloise Shehan                |  10.3, 10.4, 11.2  |
+|   5    |  Telemarketer      | Arisa Okamoto, Adele Shen, Zihan Sun        |  13.2, 13.3, 13.5  |
+|   6    |  Business Investor | Ari Sussman, Alexis Wan                     |  10.3, 10.4, 11.2  |
 
 ## Individual Projects
 

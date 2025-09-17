@@ -50,36 +50,4 @@ _Adaptive behavior._ The adaptive behavior of investor agents is repositioning: 
 
 _Objective._ (In economics, the term utility is used for the objective that agents seek.) Investors rate business alternatives by a utility measure that represents their expected future wealth at the end of a time horizon (_T_, a number of future years; we use 5) if they buy and operate the business. This expected future wealth is a function of the investor's current wealth and the profit and failure risk offered by the patch:  
 
-_U_ = (_W_ + _TP_) (1 – _F_)<sup>_T_</sup>
-
-where _U_ is the expected utility for the patch, _W_ is the investor's current wealth, and _P_ and _F_ are defined above. The term (_W_ + _TP_) estimates investor wealth at the end of the time horizon if no failures occur. The term (1 – _F_)<sup>_T_</sup> is the probability of not having a failure over the time horizon; it reduces utility more as failure risk increases. (Economists might expect to use a utility measure such as present value that includes a discount rate to reduce the value of future profit. We ignore discounting to keep this model simple.)  
-
-_Prediction._ The utility measure estimates utility over a time horizon by using the explicit prediction that _P_ and _F_ will remain constant over the time horizon. This assumption is accurate here because the patches' _P_ and _F_ values are static.  
-
-_Sensing._ The investor agents are assumed to know the profit and risk at their own patch and the adjacent neighbor patches, without error. 
-
-_Interaction._ The investors interact with each other only indirectly via competition for patches; an investor cannot take over a business (move into a patch) that is already occupied by another investor. Investors execute their repositioning action in randomized order, so there is no hierarchy in this competition: investors with higher wealth have no advantage over others in competing for locations.  
-
-_Stochasticity._ The initial state of the model is stochastic: the values of _P_ and _F_ of each patch, and initial investor locations, are set randomly. _Stochasticity_ is thus used to simulate an investment environment where alternatives are highly variable and risk is not correlated with profit. The values of _P_ are drawn from an exponential distribution, which produces many patches with low profits and a few patches with high profits (we will learn more about this and other random number distributions in chapter 15). The random exponential distribution of _P_ makes the results of this model especially variable, even among model runs with the same parameter values. Whether each investor fails each year is also stochastic, a simple way to represent risk. The investor reposition action uses stochasticity only in the very unlikely event that more than one potential destination patch offers the same highest utility; when there is such a tie, the agent randomly chooses one of the tied patches to move to.  
-
-_Observation._ The View shows the location of each agent on the investment landscape. Having the investors put their pen down lets us observe how many patches each has used. Graphs show the mean profit and risk experienced by investors, and mean investor wealth over time. The standard deviation in wealth among investors is also graphed as a simple and appropriate measure of how evenly wealth is distributed among investors.  
-
-_Learning_ and _collectives_ are not represented. 
-
-## DETAILS
-
-### INITIALIZATION
-
-The value of _P_ for each patch is drawn from a random exponential distribution with a mean of 5000. The value of _F_ for each patch is drawn randomly from a uniform real number distribution with a minimum of 0.01 and a maximum of 0.1.  
-
-Twenty-five investor agents are initialized and put in random patches, but investors cannot be placed in a patch already occupied by another investor. Their wealth state variable _W_ is initialized to zero. 
-
-### INPUT DATA
-
-No time-series inputs are used.
-
-### SUBMODELS
-
-_Investor repositioning._ An investor identifies all the businesses that it could invest in: any of the neighboring eight (or fewer if on the edge of the space) patches that are unoccupied, plus its current patch. The investor then determines which of these alternatives provides the highest value of the utility function, and moves (or stays) there. 
-
-_Accounting._ This action is fully described above ("Process overview and scheduling").
+_U_ = (_W_ + _TP_) (1 b

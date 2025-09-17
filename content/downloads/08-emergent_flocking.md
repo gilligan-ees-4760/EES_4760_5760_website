@@ -11,3 +11,5 @@ output: html_document
 
 * [Modified flocking model](/models/class_09/modified_flocking.nlogo)
   <https://ees4760.jgilligan.org/models/class_09/modified_flocking.nlogo>
+* [Results from example behaviorspace experiments](/models/class_09/experiment-results.zip)
+  <https://ees4760.jgilligan.org/models/class_09/experiment-results.zip>
