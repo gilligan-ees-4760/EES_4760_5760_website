@@ -44,6 +44,7 @@ lessons:
 - date: '2025-09-22'
   title: Observation
   reading: /reading/reading_10
+  lecture: /slides/class_10
 - date: '2025-09-24'
   title: Sensing
   reading: /reading/reading_11

@@ -73,7 +73,7 @@ to move  ; The butterfly move procedure, in turtle context
          ; surrounding patch with probability q
   ifelse random-float 1 < q
     [
-      move-to max-one-of neighbors [elevation] ; Move uphill
+      uphill elevation ; Move uphill
       set color red
     ]
     [
@@ -791,7 +791,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

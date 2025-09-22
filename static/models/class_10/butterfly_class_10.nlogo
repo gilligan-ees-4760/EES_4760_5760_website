@@ -70,7 +70,7 @@ to move  ; The butterfly move procedure, in turtle context
          ; surrounding patch with probability q
   ifelse random-float 1 < q
     [
-      move-to max-one-of neighbors [elevation] ; Move uphill
+      uphill elevation ; Move uphill
     ]
     [
       move-to one-of neighbors ; Otherwise move randomly
