@@ -106,7 +106,7 @@ BUTTON
 140
 129
 Best patch
-ask [best-patch] of turtle 0 \n[ set pcolor (orange + 3) ]
+ask [best-patch] of turtle 0 \n[ set pcolor (violet + 3) ]
 NIL
 1
 T
@@ -115,6 +115,16 @@ NIL
 NIL
 NIL
 NIL
+1
+
+TEXTBOX
+18
+150
+189
+187
+ask [best-patch] of turtle 0 \n[ set pcolor (violet + 3) ]
+14
+0.0
 1
 
 @#$#@#$#@
