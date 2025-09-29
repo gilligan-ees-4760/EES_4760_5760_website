@@ -12,3 +12,6 @@ output: html_document
 * [Modified Business Investor Model](/models/class_12/business-investor.nlogo)
 
   <https://ees4760.jgilligan.org/models/class_12/business-investor.nlogo>
+* [Behaviorspace Experiment Results](/models/class_12/business-investor-experiments.zip)
+
+  <https://ees4760.jgilligan.org/models/class_12/business-investor-experiments.zip>

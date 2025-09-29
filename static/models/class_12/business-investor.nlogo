@@ -634,7 +634,7 @@ CHOOSER
 vision-mode
 vision-mode
 "neighbors" "radius" "links" "links + radius"
-0
+2
 
 SLIDER
 9
@@ -674,7 +674,7 @@ CHOOSER
 color-patches-by
 color-patches-by
 "profit" "risk" "expected utility" "black"
-0
+2
 
 CHOOSER
 155
@@ -684,7 +684,7 @@ CHOOSER
 color-turtles-by
 color-turtles-by
 "red" "yellow" "wealth"
-1
+2
 
 SWITCH
 299
@@ -693,7 +693,7 @@ SWITCH
 472
 show-links?
 show-links?
-1
+0
 1
 -1000
 
@@ -1101,20 +1101,20 @@ NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="Number-of-Links" repetitions="10" sequentialRunOrder="false" runMetricsEveryStep="true">
+  <experiment name="Number-of-Links" repetitions="50" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
     <metric>mean [wealth] of turtles</metric>
     <metric>standard-deviation [wealth] of turtles</metric>
-    <enumeratedValueSet variable="use-links?">
-      <value value="true"/>
-    </enumeratedValueSet>
     <steppedValueSet variable="number-of-links" first="0" step="1" last="10"/>
     <enumeratedValueSet variable="profit-multiplier">
       <value value="1"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="risk-multiplier">
       <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="vision-mode">
+      <value value="&quot;links&quot;"/>
     </enumeratedValueSet>
   </experiment>
   <experiment name="vary risk" repetitions="50" runMetricsEveryStep="true">
@@ -1194,6 +1194,54 @@ NetLogo 6.4.0
     </enumeratedValueSet>
     <enumeratedValueSet variable="max-ticks">
       <value value="50"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="vision-mode" repetitions="50" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <metric>mean [profit] of turtles</metric>
+    <metric>mean [annual-risk] of turtles</metric>
+    <metric>mean [wealth] of turtles</metric>
+    <metric>standard-deviation [wealth] of turtles</metric>
+    <enumeratedValueSet variable="vision-mode">
+      <value value="&quot;neighbors&quot;"/>
+      <value value="&quot;radius&quot;"/>
+      <value value="&quot;links&quot;"/>
+      <value value="&quot;links + radius&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="sense-radius" first="1" step="1" last="10"/>
+    <enumeratedValueSet variable="risk-min">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="risk-max">
+      <value value="0.1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="max-ticks">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="min-profit">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-investors">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="profit-multiplier">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-links">
+      <value value="2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="risk-multiplier">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="income-threshold">
+      <value value="5000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="objective">
+      <value value="&quot;Optimize&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="show-links?">
+      <value value="false"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>
