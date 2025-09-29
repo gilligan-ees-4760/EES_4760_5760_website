@@ -159,8 +159,7 @@ end
 to-report best-patch-satisfice
   if current-utility < income-threshold
   [
-    let potential-destinations other target-patches with
-      [ (utility-for myself > [current-utility] of myself) ]
+    let potential-destinations other target-patches
     if any? potential-destinations
       [ report one-of potential-destinations ]
   ]
@@ -634,7 +633,7 @@ CHOOSER
 vision-mode
 vision-mode
 "neighbors" "radius" "links" "links + radius"
-2
+0
 
 SLIDER
 9
@@ -693,7 +692,7 @@ SWITCH
 472
 show-links?
 show-links?
-0
+1
 1
 -1000
 
@@ -1115,6 +1114,9 @@ NetLogo 6.4.0
     </enumeratedValueSet>
     <enumeratedValueSet variable="vision-mode">
       <value value="&quot;links&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="objective">
+      <value value="&quot;Optimize&quot;"/>
     </enumeratedValueSet>
   </experiment>
   <experiment name="vary risk" repetitions="50" runMetricsEveryStep="true">
