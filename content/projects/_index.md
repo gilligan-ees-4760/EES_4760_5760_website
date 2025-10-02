@@ -4,12 +4,56 @@ draft: false
 date: "2017-04-13T00:00:00"
 ---
 
-## Team Projects
+* [Team Projects](#team-projects)
+* [Individual Projects](#individual-projects)
+
+## Team Projects {#team-projects}
 
 Your team will make a presentation about your project on Wednesday, Oct. 8. 
 Your write-up will be due on to Brightspace on Friday, Oct. 17.
 
 * [Project assignment](/assignment/TeamProjectAssignment.pdf)
+
+### In-Class Presentations:
+
+> For class on Wednesday October 9, you and your partner will give a 
+> short presentation for the class in which you describe the problem, 
+> discuss any interesting obstacles of problems you encountered in 
+> coding the model and how you fixed them (or why you couldn???t fix 
+> them), 
+> and what you discovered from running the model and doing one of the 
+> assigned exercises (see the below for which exercise your group will
+> present).
+> One partner should present about coding and testing
+> the model and the other should present about what you learned from 
+> the model
+
+* Your in-class presentation should be 6--7 minutes long, and there will
+  be a short time for questions, for a total of 10 minutes.
+* For your in-class presentation you should present the answer to one 
+  exercise (see the table below), and for your written report, you 
+  should include answers to all three of the exercises your team was 
+  assigned.
+
+### Written Report
+
+> By the end of the day (before midnight) on Friday October 17, 
+> upload a written report to Brightspace on the procedures, results, 
+> and interpretation of the textbook exercises associated with this
+> project. The report should be a minimum of two pages, double-spaced, 
+> in PDF or Microsoft Word format. 
+> This is a team project, so you and your partner should work together 
+> to write a single report. Any member of the team can upload the 
+> report to Brightspace on behalf of the whole team.
+> Be sure to give your report a title and include the names of all the 
+> authors (team members).
+> 
+> In addition to the report, you should also upload a ZIP file 
+> containing your model or models (NetLogo files) and any other files 
+> your model requires.
+
+See the [full project assignment](/assignment/TeamProjectAssignment.pdf) 
+for more details. 
 
 ### ODDs:
 
@@ -26,16 +70,16 @@ Your write-up will be due on to Brightspace on Friday, Oct. 17.
 
 ### Teams:
 
-| Team # |       Project      |                     Members                 |      Exercises     |
-|-------:|:------------------:|:-------------------------------------------:|:------------------:|
-|   1    |  Telemarketer      | George Albu, Cora Jackson                   |  13.2, 13.3, 13.4  |
-|   2    |  Telemarketer      | Ava Brooks, Mona Gerges                     |  13.2, 13.3, 13.4  |
-|   3    |  Business Investor | Nguyen Ha, Samir Cancel Matos               |  10.3, 10.4, 11.2  |
-|   4    |  Business Investor | Sarah Markley, Eloise Shehan                |  10.3, 10.4, 11.2  |
-|   5    |  Telemarketer      | Arisa Okamoto, Adele Shen, Zihan Sun        |  13.2, 13.3, 13.5  |
-|   6    |  Business Investor | Ari Sussman, Alexis Wan                     |  10.3, 10.4, 11.2  |
+| Team # |       Project      |                     Members                 |      Exercises     | Presentation Exercise |
+|-------:|:------------------:|:-------------------------------------------:|:------------------:|:---------------------:|
+|   1    |  Telemarketer      | George Albu, Cora Jackson                   |  13.2, 13.3, 13.4  | 13.3                  |
+|   2    |  Telemarketer      | Ava Brooks, Mona Gerges                     |  13.2, 13.3, 13.4  | 13.4                  |
+|   3    |  Business Investor | Nguyen Ha, Samir Cancel Matos               |  10.3, 10.4, 11.2  | 10.4                  |
+|   4    |  Business Investor | Sarah Markley, Eloise Shehan                |  10.3, 10.4, 11.2  | 10.3                  |
+|   5    |  Telemarketer      | Arisa Okamoto, Adele Shen, Zihan Sun        |  13.2, 13.3, 13.5  | 13.5                  |
+|   6    |  Business Investor | Ari Sussman, Alexis Wan                     |  10.3, 10.4, 11.2  | 11.2                  |
 
-## Individual Projects
+## Individual Projects {#individual-projects}
 
 [Project assignment](/assignment/ResearchProjectAssignment.pdf)
 
