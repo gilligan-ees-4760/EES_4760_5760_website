@@ -635,7 +635,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.2
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -665,6 +665,27 @@ NetLogo 6.2.2
       <value value="0"/>
       <value value="1"/>
     </enumeratedValueSet>
+  </experiment>
+  <experiment name="vary-randomization" repetitions="20" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="200"/>
+    <metric>coop-freq</metric>
+    <enumeratedValueSet variable="payoff-benefit">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="num-iterations" first="1" step="1" last="4"/>
+    <enumeratedValueSet variable="init-coop-freq">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="payoff-cost">
+      <value value="0.2"/>
+      <value value="0.4"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="TFT?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="randomization-prob" first="0" step="0.005" last="0.1"/>
   </experiment>
 </experiments>
 @#$#@#$#@
