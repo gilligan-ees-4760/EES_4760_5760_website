@@ -2,22 +2,15 @@ globals [
   untriggered-color
   triggered-color
   dead-color
-  ball-color
 ]
 patches-own [trigger-time] ; The non-integer time at which trap triggers
 
-turtles-own [
-  dest-patch
-  speed
-]
-
 to setup
-  clear-all
 
+  clear-all
   set untriggered-color green - 2
   set triggered-color yellow
   set dead-color black
-  set ball-color cyan
 
   ask patches
    [
@@ -35,33 +28,16 @@ to pop
     set pcolor triggered-color   ; Show the snap
      wait 0.05        ; So we can see things happen on the View
     set pcolor dead-color ; Black means the trap has triggered
-    let origin self
 
     ; Send 2 balls in air, determine where and when they land
     ask n-of 2 patches in-radius 5
     [
-      let turtle-speed 1 / (0.001 + random-float 0.199)
-      sprout 1 [
-        set dest-patch patch-here
-        set speed turtle-speed
-        move-to origin
-        face dest-patch
-        set shape "circle"
-        set size 0.5
-        set color ball-color
-      ]
       if trigger-time < 0 ; Patch only triggers if it has not already
       [
         ; Set the time when the ball will land on and trigger trap
-        set trigger-time ticks + (distance origin / turtle-speed)
+        set trigger-time ticks + (random-float 0.2 * distance myself)
       ]
     ]
-end
-
-to move [ delta-t ]
-  let dist delta-t * speed
-  if (distance dest-patch < dist) [ die ]
-  fd dist
 end
 
 to start
@@ -71,31 +47,16 @@ to start
 
   ; Now keep stepping time forward to next time a trap is triggered,
   ; as long as there are any balls in the air
-  while [any? turtles ]
-    [
+  while [any? patches with [trigger-time > ticks] ]
 
+    [
       ; Find the triggered trap that has next trigger time
       let next-patch-to-trigger min-one-of patches with [trigger-time > ticks] [trigger-time]
-      let time-til-next-trigger 0
-      let idle-ticks 1
-      if next-patch-to-trigger != nobody
-      [
-        let delta-t [trigger-time] of next-patch-to-trigger - ticks
-        set idle-ticks floor(delta-t)
-        set time-til-next-trigger delta-t mod 1
-       ]
-
-      repeat idle-ticks
-      [
-        ask turtles [ move 1 ]
-        tick
-      ]
-      ask turtles [ move time-til-next-trigger ]
+      let time-til-next-trigger [trigger-time] of next-patch-to-trigger - ticks
 
       ; Move time forward to where next trap triggers and trigger it
       tick-advance time-til-next-trigger
-      if next-patch-to-trigger != nobody
-      [ ask next-patch-to-trigger [pop] ]
+      ask next-patch-to-trigger [pop]
 
       ; Update the plot using *plotxy* which lets us use non-integer x value
       set-current-plot "Balls in air"
@@ -202,13 +163,13 @@ true
 false
 "" ""
 PENS
-"default" 1.0 0 -1184463 true "" ""
+"default" 1.0 0 -14333415 true "" ""
 
 MONITOR
 312
-382
+379
 369
-427
+424
 NIL
 ticks
 3
@@ -507,7 +468,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

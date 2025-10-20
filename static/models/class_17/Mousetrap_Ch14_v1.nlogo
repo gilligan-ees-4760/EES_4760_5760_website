@@ -44,27 +44,34 @@ to start
 
   ; Set off one trap to start the action
   ask one-of patches [pop]
+  ; Update the plot using *plotxy* which lets us use non-integer x value
+  set-current-plot "Balls in air"
+  plotxy ticks count patches with [trigger-time > ticks]
+
+  set-current-plot "Untriggered traps"
+  plotxy ticks count patches with [pcolor = untriggered-color]
 
   ; Now keep stepping time forward to next time a trap is triggered,
   ; as long as there are any balls in the air
   while [any? patches with [trigger-time > ticks] ]
 
+  [
+    tick
+
+    foreach (sort-on [trigger-time] patches with [ trigger-time <= ticks and pcolor = untriggered-color ])
     [
-      ; Find the triggered trap that has next trigger time
-      let next-patch-to-trigger min-one-of patches with [trigger-time > ticks] [trigger-time]
-      let time-til-next-trigger [trigger-time] of next-patch-to-trigger - ticks
-
-      ; Move time forward to where next trap triggers and trigger it
-      tick-advance time-til-next-trigger
-      ask next-patch-to-trigger [pop]
-
-      ; Update the plot using *plotxy* which lets us use non-integer x value
-      set-current-plot "Balls in air"
-      plotxy ticks count patches with [trigger-time > ticks]
-
-      set-current-plot "Untriggered traps"
-      plotxy ticks count patches with [pcolor = untriggered-color]
+      x -> ask x
+      [
+      pop
+      ]
     ]
+    ; Update the plot using *plotxy* which lets us use non-integer x value
+    set-current-plot "Balls in air"
+    plotxy ticks count patches with [trigger-time > ticks]
+
+    set-current-plot "Untriggered traps"
+    plotxy ticks count patches with [pcolor = untriggered-color]
+  ]
 
 end
 @#$#@#$#@
