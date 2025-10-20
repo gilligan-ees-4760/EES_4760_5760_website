@@ -79,6 +79,7 @@ lessons:
 - date: '2025-10-20'
   title: Scheduling
   reading: /reading/reading_17
+  lecture: /slides/class_17
 - date: '2025-10-22'
   title: Stochasticity
   reading: /reading/reading_18
