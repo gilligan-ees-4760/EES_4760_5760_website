@@ -37,7 +37,7 @@
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script><!--[if lt IE 9]>
   <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
-  <![endif]--><script src="../../lecture_lib/library/header-attrs-2.29.2.9000/header-attrs.js"></script>
+  <![endif]--><script src="../../lecture_lib/library/header-attrs-2.30.1.9000/header-attrs.js"></script>
 </head>
 <body>
   <div class="reveal">
@@ -82,7 +82,7 @@ ask turtles [ if random-float 1.0 &lt; mortality-prob [die] ]</code></pre>
 <li class="fragment">
 <p>But calculating it in our model would be too complex, slow,
 etc.</p>
-<pre><code>ifelse random-float 1.0 &gt; prob-rain
+<pre><code>ifelse random-float 1.0 &lt; prob-rain
 [ set rains-today true]
 [ set rains-today false]</code></pre>
 </li>
