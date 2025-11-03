@@ -11,11 +11,13 @@ globals
   foray-ages        ; A list of ages at which birds foray
   non-alpha-ages    ; A list of ages at which birds *consider* forays
   foray-months      ; A list of months at which birds foray
-  pop-months        ; A list of population by month
-  foray-trials
-  foray-success
+
+  scout-successes   ; Number of successful forays
+  scout-attempts    ; Number of forays
+
   p-scout           ; probability of scouting for random case
-  p-foray-success   ; probability of successful foray.
+
+  pop-months        ; A list of population by month
 ]
 
 turtles-own
@@ -33,13 +35,12 @@ to setup
 
   ; Set parameters and globals
   set month 0
-  set year 0
+  set year 1
   set survival-prob 0.98
   set fecundity 2
   set scouting-distance 5
   set scouting-survival 0.8
   set p-scout 0.10
-  set p-foray-success 0.10
 
   set group-sizes []     ; An empty list
   set foray-ages []      ; An empty list
@@ -47,8 +48,9 @@ to setup
   set foray-months []    ; An empty list
   set pop-months n-values 12 [ 0 ]
 
-  set foray-trials 0
-  set foray-success 0
+  set scout-successes 0  ; Number of successful forays
+  set scout-attempts 0   ; Number of forays
+
 
   ; Shade the patches
   ask patches
@@ -170,7 +172,7 @@ to scout  ; a turtle procedure
   if random-bernoulli 0.5 [set step -1]
 
   ; Then go
-  set foray-trials foray-trials + 1
+  set scout-attempts scout-attempts + 1
 
   repeat scouting-distance
   [
@@ -187,7 +189,7 @@ to scout  ; a turtle procedure
       become-alpha
       pen-up
       set shape "square"
-      set foray-success foray-success + 1
+      set scout-successes scout-successes + 1
       stop ; End the "repeat" loop
     ]
   ]
@@ -320,8 +322,8 @@ to-report random-bernoulli [probability-true]
 end
 
 to-report fraction-success
-  if foray-trials = 0 [report 0]
-  report foray-success / foray-trials
+  if scout-attempts = 0 [ report 0 ]
+  report scout-successes / scout-attempts
 end
 
 to-report to-end-of-year
@@ -920,7 +922,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

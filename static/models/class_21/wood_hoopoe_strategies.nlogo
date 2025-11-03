@@ -11,10 +11,10 @@ globals
   foray-ages        ; A list of ages at which birds foray
   non-alpha-ages    ; A list of ages at which birds *consider* forays
   foray-months       ; A list of months at which birds foray
-  foray-success     ; Probability of finding a vacancy if foray
 
   scout-successes   ; Number of successful forays
   scout-attempts    ; Number of forays
+  p-foray-success     ; Probability of finding a vacancy if foray
 
   pop-months        ; A list of population by month
 
@@ -32,7 +32,7 @@ turtles-own
 
 to setup
 
-  ca
+  clear-all
   reset-ticks
 
   ; Set parameters and globals
@@ -42,12 +42,12 @@ to setup
   set fecundity 2
   set scouting-distance 5
   set scouting-survival 0.8
+  set p-foray-success 0.10
 
   set group-sizes []  ; An empty list
   set foray-ages []  ; An empty list
   set non-alpha-ages []  ; An empty list
   set foray-months []  ; An empty list
-  set foray-success 0.1
   set pop-months n-values 12 [ 0 ]
 
   set scout-successes 0  ; Number of successful forays
@@ -189,7 +189,6 @@ to scout  ; a turtle procedure
   ; Record age of forayers for output
   set foray-ages lput age-in-months foray-ages
   set foray-months lput month foray-months
-  set scout-attempts scout-attempts + 1
 
   ; First remember where home is
   let start-x xcor
@@ -200,6 +199,8 @@ to scout  ; a turtle procedure
   if random-bernoulli 0.5 [set step -1]
 
   ; Then go
+  set scout-attempts scout-attempts + 1
+
   repeat scouting-distance
   [
     setxy (xcor + step) ycor
@@ -291,7 +292,7 @@ to-report I-should-scout-direct  ; a turtle reporter, returns a boolean
 
     ; Second, calculate probable offspring for year if scout this month
     set prob-I-survive (prob-I-survive * scouting-survival)
-    let prob-I-become-alpha 1 - ((1 - foray-success) * (1 - prob-elders-die))
+    let prob-I-become-alpha 1 - ((1 - p-foray-success) * (1 - prob-elders-die))
     set offspring-if-scout offspring-if-scout + (prob-I-survive * prob-I-become-alpha * fecundity)
 
     set breed-year breed-year + 1
@@ -700,7 +701,7 @@ SWITCH
 548
 automatic-time-horizon?
 automatic-time-horizon?
-0
+1
 1
 -1000
 

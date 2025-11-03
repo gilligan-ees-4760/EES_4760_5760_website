@@ -96,6 +96,7 @@ lessons:
 - date: '2025-11-03'
   title: Theory Development
   reading: /reading/reading_21
+  lecture: /slides/class_21
 - date: '2025-11-05'
   title: Parameterization and Calibration
   reading: /reading/reading_22
