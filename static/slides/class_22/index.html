@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="Jonathan Gilligan">
+<title>Parameterization and Calibration</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css">
+<style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+<style type="text/css">
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+  </style>
+<!-- theme = solarized_jg --><link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+<!-- Printing and PDF exports --><script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><!--[if lt IE 9]>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
+  <![endif]--><script src="../../lecture_lib/library/header-attrs-2.30.1.9000/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class="center" id="title"><h1 class="title">Parameterization and Calibration</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based and Individual-Based
+Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #22:
+       Wednesday, November 5
+      2025
+    </h3>
+	<!-- end title slide -->
+</section><section id="download-new-wood-hoopoe-model" class="slide level2"><h2>Download new Wood Hoopoe model</h2>
+<ul>
+<li>
+<a href="/models/class_22/class_22_models.zip">class_22_models.zip</a> from
+the downloads page</li>
+<li>or <a href="https://ees4760.jgilligan.org/models/class_22/Sect20-5_WoodHoopoes_2ndEd.nlogo" class="eighty">https://ees4760.jgilligan.org/models/class_22/Sect20-5_WoodHoopoes_2ndEd.nlogo</a>
+</li>
+</ul></section><section><section id="vocab-sec" class="title-slide slide level1" data-skip="true"><h1 data-skip="true">Vocabulary:</h1>
+
+</section><section id="vocab" class="slide level2"><h2>Vocabulary:</h2>
+<ul>
+<li>
+<strong>Parameterization:</strong>
+<ul>
+<li class="fragment">For many modelers, this means choosing values for parameters.
+<ul>
+<li>More parameters = more uncertainty (bad)</li>
+<li>Value parsimony</li>
+</ul>
+</li>
+<li class="fragment">For ABMs, it’s different:
+<ul>
+<li>Many submodels
+<ul>
+<li>Parameterize and test submodels separately</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment"><strong>Calibration</strong>
+<ul>
+<li>A special kind of parameterization</li>
+<li>Adjust a few important parameters to reproduce patterns observed in
+real system</li>
+</ul>
+</li>
+</ul></section><section id="theory-development" class="slide level2"><h2>Theory-Development vs. Parameterization/Calibration</h2>
+<ul>
+<li>
+<strong>Theory Development:</strong>
+<ul>
+<li>Develop different submodels for agent behavior &amp;
+decision-making</li>
+<li>Identify the submodels that best reproduce a range of observed
+patterns</li>
+</ul>
+</li>
+<li>
+<strong>Parameterization and Calibration:</strong>
+<ul>
+<li>With a given submodel,
+<ul>
+<li>Decide which parameters to vary and which to leave fixed</li>
+<li>Choose values for the fixed parameters</li>
+<li>Find the values for the variable parameters that best reproduce
+observed patterns</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section></section><section><section id="testing-calibrating-sec" class="title-slide slide level1" data-skip="true"><h1 data-skip="true">Testing and Calibrating</h1>
+
+</section><section id="testing-calibrating" class="slide level2"><h2>Testing and Calibrating</h2>
+<ul>
+<li>Test program: Has it been implemented correctly?</li>
+<li class="fragment">Test submodels: Are they doing what you think they are
+doing?</li>
+<li class="fragment"><strong>Verification:</strong> Is the model doing what it’s
+supposed to do?
+<ul>
+<li>Reproduce patterns, data, observations.</li>
+</ul>
+</li>
+<li class="fragment">Understanding: What’s going on? Why?</li>
+<li class="fragment"><strong>Validation:</strong> Can we find new (independent,
+secondary) patterns in the model that we can test against new
+observations?</li>
+</ul></section><section id="theoretical-models" class="slide level2 center"><h2 class="center">Theoretical Models</h2>
+<ul>
+<li>No data to calibrate from</li>
+<li class="fragment">“Guesstimate” parameter values from what you do know.</li>
+<li class="fragment">Perform sensitivity analysis to see how important it is to “get
+parameters right”</li>
+</ul></section></section><section><section id="challenge-sec" class="title-slide slide level1" data-skip="true"><h1 data-skip="true">Challenge</h1>
+
+</section><section id="challenge" class="slide level2"><h2>Challenge</h2>
+<ul>
+<li>Model and system are complex
+<ul>
+<li>We don’t know exactly what model is “supposed to do”</li>
+</ul>
+</li>
+<li class="fragment">Any pattern in the output could be a <em>bug</em> or a
+<em>feature</em>
+</li>
+<li class="fragment">Brute-force analysis does not work (you can’t try every possible
+value of each parameter)</li>
+<li class="fragment"><strong>We need a plan!</strong>
+</li>
+</ul></section></section><section><section id="master-sec" class="title-slide slide level1" data-skip="true"><h1 data-skip="true">Master Plan for Analysis</h1>
+
+</section><section id="master-plan" class="slide level2"><h2>Master plan for analysis</h2>
+<h3 class="center" id="controlled-experiments">Controlled Simulation
+Experiments</h3>
+<ul>
+<li>Controlled = simplify
+<ul>
+<li>If I kill all individuals, population should be 0</li>
+<li>If I double mortality rate, population should decrease</li>
+</ul>
+</li>
+</ul></section><section id="first-experiments" class="slide level2"><h2>First experiments</h2>
+<ul>
+<li>Explain your model to others</li>
+<li>Ask others to look at your model and code</li>
+<li class="fragment">Graphical, numerical output of entities and state variables
+<ul>
+<li>Monitors, graphs, print output, save output to a file</li>
+<li>Use NetLogo inspect feature (right click on a patch or turtle)</li>
+<li class="fragment">A step button to execute one step at a time
+<ul>
+<li>See what happens</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section><section id="testing-submodels" class="slide level2 center"><h2 class="center">Test submodels separately</h2>
+<ul>
+<li>Create a separate testing model</li>
+<li>Make a controlled environment for your submodel</li>
+<li>For research: Document your testing, keep notes and files</li>
+</ul></section></section><section><section id="pattern-sec" class="title-slide slide level1" data-skip="true"><h1 data-skip="true">Patterns</h1>
+
+</section><section id="patterns" class="slide level2"><h2>Patterns</h2>
+<ul>
+<li>Low-level debugging (one line of code at a time) is too slow</li>
+<li class="fragment">To speed things up, focus on <strong>patterns</strong>
+</li>
+<li class="fragment">Analysis means:
+<ul>
+<li>Tuning parameters,</li>
+<li>Turning submodels on and off</li>
+<li>Observe how patterns change.</li>
+</ul>
+</li>
+<li class="fragment">Examples:
+<ul>
+<li class="fragment">Population after 48 days</li>
+<li class="fragment">Total biomass</li>
+<li class="fragment">Variance of turtle size</li>
+<li class="fragment">Spatial patterns: are turtles bunched up or spread out?</li>
+<li class="fragment">etc.</li>
+</ul>
+</li>
+</ul></section><section id="kinds-of-calibration" class="slide level2"><h2>Categorical vs. Best Fit</h2>
+<ul>
+<li>Best-fit: Numerical data, minimize difference.
+<ul>
+<li>Best when many real world systems always have same values.</li>
+</ul>
+</li>
+<li class="fragment">Categorical:
+<ul>
+<li>True/False, or ranges of values</li>
+<li>Best when real-world system has a lot of variation but there are
+<em>distinct patterns</em>
+</li>
+</ul>
+</li>
+</ul></section><section id="dont-panic" class="slide level2"><h2>Don’t panic!</h2>
+<ul>
+<li>Finding good patterns to use is <strong>hard</strong>.</li>
+<li class="fragment">You might need to test many patterns</li>
+<li class="fragment">You will need multiple patterns</li>
+<li class="fragment">It is hard work, but it can be fun</li>
+<li class="fragment">Just as with real experiments, it is important to think
+creatively.</li>
+</ul></section></section><section><section id="woodhoopoe-sec" class="title-slide slide level1" data-skip="true"><h1 data-skip="true">Example: Woodhoopoe Model</h1>
+
+</section><section id="woodhoopoe" class="slide level2"><h2>Example: Woodhoopoe Model</h2>
+<ul>
+<li class="fragment">Use “random scouting” submodel</li>
+<li class="fragment">Parameters:
+<ul>
+<li>Survival probability (mortality)</li>
+<li>Scouting probability (<em>can’t be directly measured in real
+world</em>)</li>
+</ul>
+</li>
+<li class="fragment">Calibration Criteria
+<ul>
+<li>Variation in real groups, so <em>we’re not trying to reproduce a
+specific value</em>.
+<ul>
+<li>Categorical calibration</li>
+</ul>
+</li>
+<li class="fragment">Three patterns from field observations:
+<ol>
+<li>
+<strong>Abundance:</strong> Total population in range 115–135 (25
+patches)</li>
+<li>
+<strong>Variation:</strong> Standard deviation of population from
+one year to next in range 10–15</li>
+<li>
+<strong>Vacancy:</strong> On average, 15–30% of patches missing one
+or both alphas.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://ees4760.jgilligan.org/models/class_22/Sect20-5_WoodHoopoes_2ndEd.nlogo" class="eighty">https://ees4760.jgilligan.org/models/class_22/Sect20-5_WoodHoopoes_2ndEd.nlogo</a></p>
+</section><section id="behaviorspace-experiment" class="slide level2"><h2>Behaviorspace Experiment</h2>
+<ul>
+<li>Monitor
+<ul>
+<li>
+<code>count turtles</code> and</li>
+<li><code>count patches with [(count turtles-here with [is-alpha?]) &lt; 2]</code></li>
+</ul>
+</li>
+<li>Run for 22 years (264 ticks)</li>
+<li>Vary <code>scout.prob</code> from 0.0–0.5 by 0.05</li>
+<li>Vary <code>survival.prob</code> from 0.95–1.00 by 0.005</li>
+<li class="fragment">121 combinations</li>
+<li class="fragment">Analyze behaviorspace output file:
+<ul>
+<li>Throw away first two years (warm-up)</li>
+<li>Look at month 11 (November, just before breeding)</li>
+</ul>
+</li>
+</ul></section><section class="slide level2"><p><img data-src="assets/fig/plot_cat_calibration-1.png"><!-- --></p>
+</section><section id="interpreting-results" class="slide level2"><h2>Interpreting results</h2>
+<p><img data-src="assets/fig/small_plot_cat_calibration-1.png"><!-- --></p>
+<ul>
+<li class="fragment">A few combinations reproduce all three patterns.</li>
+<li class="fragment">Abundance pattern only for <code>survival.prob</code> =
+0.975–0.985</li>
+<li class="fragment">Vacancy pattern only for <code>survival.prob</code> =
+0.975–0.990</li>
+</ul></section><section class="slide level2"><p><img data-src="assets/fig/plot_nominal_calibration-1.png"><!-- --></p>
+</section><section id="next-steps" class="slide level2"><h2>Next steps</h2>
+<p><img data-src="assets/fig/small_plot_detailed_calibration-1.png"><!-- --></p>
+<ul>
+<li class="fragment">Explore region near <code>survival.prob</code> ∼
+0.975–0.985<br>and <code>scout.prob</code> ∼ 0.01–0.40</li>
+<li class="fragment">Try changing scouting submodel.</li>
+</ul></section><section id="detailed-calibration" class="slide level2"><h2>Detailed Calibration</h2>
+<p><img data-src="assets/fig/plot_detailed_calibration-1.png"><!-- --></p>
+</section><section id="satisfying-all-three-criteria" class="slide level2"><h2>Satisfying All Three Criteria</h2>
+<p><img data-src="assets/fig/plot_detailed_calibration_2-1.png"><!-- --></p>
+</section></section>
+</div>
+  </div>
+  <!--
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.js"></script>
+  <!-- -->
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script><!-- --><script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Display the page number of the current slide
+        showSlideNumber: 'speaker',
+        // Push each slide change to the browser history
+        history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/math/math.js', async: true }
+        ],
+        shift_keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'C' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'B' is pressed
+    	    88: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'X' is pressed
+    	    82: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'R' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'D' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'S',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'H',
+      	      });
+    </script><script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_22">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_22"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_22">https://ees4760.jgilligan.org/slides/class_22</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_22/EES_4760_5760_class_22_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_22/EES_4760_5760_class_22_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script><script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true
+  }
+})
+  </script><script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script><script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }
+
+  Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script><script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    // console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+</body>
+</html>
