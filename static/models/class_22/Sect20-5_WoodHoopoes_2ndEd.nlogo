@@ -504,7 +504,7 @@ scout-prob
 scout-prob
 0
 1.00
-0.3
+0.2
 .001
 1
 NIL
@@ -889,8 +889,18 @@ NetLogo 6.4.0
     <metric>month</metric>
     <metric>count turtles</metric>
     <metric>count patches with [count (turtles-here with [is-alpha?]) &lt; 2]</metric>
-    <steppedValueSet variable="scout-prob" first="0.01" step="0.01" last="0.04"/>
+    <steppedValueSet variable="scout-prob" first="0.025" step="0.025" last="0.4"/>
     <steppedValueSet variable="survival-prob" first="0.975" step="0.001" last="0.981"/>
+  </experiment>
+  <experiment name="Calibration-3" repetitions="100" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <metric>year</metric>
+    <metric>month</metric>
+    <metric>count turtles</metric>
+    <metric>count patches with [count (turtles-here with [is-alpha?]) &lt; 2]</metric>
+    <steppedValueSet variable="scout-prob" first="0.005" step="0.005" last="0.1"/>
+    <steppedValueSet variable="survival-prob" first="0.976" step="5.0E-4" last="0.98"/>
   </experiment>
 </experiments>
 @#$#@#$#@

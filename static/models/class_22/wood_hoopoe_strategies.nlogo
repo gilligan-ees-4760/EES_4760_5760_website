@@ -262,11 +262,13 @@ to-report p-scout
       let ratio p-vacant * scouting-survival * (p-survive m) / pa
       ; let ratio p-vacant * scouting-survival / pa
       set ratio ln(ratio)
-      let z exp(a-log + b-log * ratio)
-      report z / (1 + z)
+      let z-log a-log + b-log * ratio
+      if z-log > 100 [ report 1.0 ]
+      let z exp(z-log)
+      report z / (z + 1)
     ]
   ]
-  stop
+  error (word "Unknown strategy \"" strategy "\"")
 end
 
 to-report I-should-scout  ; a turtle reporter for the scouting decision; returns a boolean
@@ -381,7 +383,7 @@ to-report age-diff
 end
 
 to-report group-dist-1
-  ifelse ((length filter [? = 2] group-sizes) > (0.5 * length group-sizes)) [ report 1] [ report 0]
+  ifelse ((length filter [ ?1 -> ?1 = 2 ] group-sizes) > (0.5 * length group-sizes)) [ report 1] [ report 0]
 end
 
 to-report group-dist-2
@@ -389,11 +391,11 @@ to-report group-dist-2
 end
 
 to-report group-dist-3
-  ifelse (length filter [? < 2] group-sizes) > (length filter [? > 2] group-sizes) [ report 1 ] [ report 0 ]
+  ifelse (length filter [ ?1 -> ?1 < 2 ] group-sizes) > (length filter [ ?1 -> ?1 > 2 ] group-sizes) [ report 1 ] [ report 0 ]
 end
 
 to-report foray-timing
-  ifelse (length filter [? >= 4 and ? <= 10] foray-months) > (length foray-months) [ report 1] [report 0]
+  ifelse (length filter [ ?1 -> ?1 >= 4 and ?1 <= 10 ] foray-months) > (length foray-months) [ report 1] [report 0]
 end
 
 to-report performance
@@ -405,12 +407,12 @@ to optimize
   set best-pv 0
   set best-perf 0
   let perf 0
-  let x2-vals n-values 50 [ 0.01 + ? * 0.01 ]
-  let pv-vals n-values 50 [ 0.01 + ? * 0.01 ]
-  foreach x2-vals [
-    set x2 ?
-    foreach pv-vals [
-      set p-vacant ?
+  let x2-vals n-values 50 [ ?1 -> 0.01 + ?1 * 0.01 ]
+  let pv-vals n-values 50 [ ?1 -> 0.01 + ?1 * 0.01 ]
+  foreach x2-vals [ ?1 ->
+    set x2 ?1
+    foreach pv-vals [ ??1 ->
+      set p-vacant ??1
       type (word "x2 = " (precision x2 2) ", p-vacant = " (precision p-vacant 2) ", ")
       set perf 0
       repeat 10 [
@@ -436,10 +438,10 @@ end
 GRAPHICS-WINDOW
 14
 10
-774
-71
-12
-0
+772
+49
+-1
+-1
 30.0
 1
 10
@@ -454,8 +456,8 @@ GRAPHICS-WINDOW
 12
 0
 0
-0
-0
+1
+1
 1
 ticks
 30.0
@@ -693,7 +695,7 @@ x1
 x1
 -5
 5
-0
+0.0
 0.1
 1
 NIL
@@ -708,7 +710,7 @@ x2
 x2
 0
 2
-0.34
+0.03
 0.02
 1
 NIL
@@ -723,7 +725,7 @@ p-vacant
 p-vacant
 0
 1
-0.12
+0.31
 0.01
 1
 NIL
@@ -1081,9 +1083,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -1119,7 +1120,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 0
 @#$#@#$#@
