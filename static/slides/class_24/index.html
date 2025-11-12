@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<!-- JG Reveal.js Template --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="Jonathan Gilligan">
+<title>Analyzing and Understanding ABMs</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/reveal.js-3.8.0/css/reveal.min.css">
+<style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}  </style>
+<style type="text/css">
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+  </style>
+<!-- theme = solarized_jg --><link rel="stylesheet" href="../../lecture_lib/library/assets/css/theme/solarized_jg.css" id="theme">
+<!-- Printing and PDF exports --><script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../../lecture_lib/library/reveal.js-3.8.0/css/print/pdf.css' : '../../lecture_lib/library/reveal.js-3.8.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script><!--[if lt IE 9]>
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/lib/js/html5shiv.js"></script>
+  <![endif]--><script src="../../lecture_lib/library/header-attrs-2.30.1.9000/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+            <!-- start title slide -->
+<section class="center" id="title"><h1 class="title">Analyzing and Understanding ABMs</h1>
+    <h3 class="author">EES 4760/5760</h3>
+        <h3 class="author">Agent-Based and Individual-Based
+Computational Modeling</h3>
+    <h3 class="author">Jonathan Gilligan</h3>
+    <h3 class="date">
+      Class #24:
+       Wednesday, November 12
+      2025
+    </h3>
+	<!-- end title slide -->
+</section><section><section id="organization" class="title-slide slide level1 center"><h1 class="center">Organization</h1>
+
+</section><section id="downloads" class="slide level2"><h2>Downloads</h2>
+<ul>
+<li>NetLogo version of Schelling’s segregation model:
+<ul>
+<li>Download page (<a href="https://www.ees4760.jgilligan.org/downloads/24-segregation_analysis_class/">23.
+Analyzing and Understanding Models</a>) or</li>
+<li><a href="https://ees4760.jgilligan.org/models/class_24/class_24_models.zip" class="eighty">https://ees4760.jgilligan.org/models/class_24/class_24_models.zip</a></li>
+<li><a href="https://ees4760.jgilligan.org/models/class_24/segregation.nlogo" class="eighty">https://ees4760.jgilligan.org/models/class_24/segregation.nlogo</a></li>
+</ul>
+</li>
+</ul></section></section><section><section id="schelling-sec" class="title-slide slide level1 center" data-skip="true"><h1 class="center" data-skip="true">Schelling Model</h1>
+
+</section><section id="segregation-background" class="slide level2 eighty" data-transition="fade-out"><h2 class="eighty" data-transition="fade-out">Background on Racial
+Segregation in US Housing</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Possible causes of racial segregation:
+<ol type="1">
+<li>
+<em>Organized action:</em> Starting in the early 20th century,
+federal, state, &amp; local laws &amp; regulations enforced segregation
+<ul>
+<li class="fragment" data-fragment-index="1">Neighborhoods were designated “white”, “black”, etc. and only
+people of a certain race were allowed to buy property there</li>
+<li class="fragment" data-fragment-index="2">Banks were forbidden to make loans to people of the “wrong”
+race.
+<ul>
+<li>The Home-Owners’ Loan Corporation (HOLC), maintained maps that were
+used to discrimninate.</li>
+</ul>
+</li>
+<li class="fragment" data-fragment-index="3">Private property developers, landlords, and homeowners’
+associations used contract law to enforce discrimination.
+<ul>
+<li>“Covenants” attached to the deed, prohibiting the owner from selling
+to anyone of a different race.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="column" style="width:22%;">
+<p><img data-src="assets/images/color-of-law-cover.jpg" style="width:100.0%" alt="Cover of The Color of Law by Richard Rothstein"></p>
+</div>
+<div class="column fragment" data-fragment-index="2" style="width:22%;">
+<p><img data-src="assets/images/Brooklyn,_New_York_HOLC_Redlining_Map.jpg" style="width:100.0%" alt="HOLC red-lining map of Brooklyn NY"></p>
+<div class="credit">
+<p>HOLC red-lining map of Brooklyn NY, 1938. Public Domain</p>
+</div>
+</div>
+</div>
+</section><section id="segregation-background-2" class="slide level2 eighty" data-transition="fade-in"><h2 class="eighty" data-transition="fade-in">Background on Racial
+Segregation in US Housing</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Possible causes of racial segregation:
+<ol type="1">
+<li>
+<em>Organized action:</em> Starting in the early 20th century,
+federal, state, &amp; local laws &amp; regulations enforced
+segregation</li>
+<li class="fragment"><em>Socioeconomic filters:</em> After Black families are denied
+opportunities to accumulate wealth through homeownership, lack of money
+can exclude them from better housing, even after segregation laws are
+repealed.</li>
+<li class="fragment"><em>Individual preference:</em> Even when there is equal
+opportunity to buy homes, people often want to live near other people
+like themselves (<em>homophily</em>), so segregation patterns can be
+hard to break.</li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="column" style="width:22%;">
+<p><img data-src="assets/images/color-of-law-cover.jpg" style="width:100.0%" alt="Cover of The Color of Law by Richard Rothstein"></p>
+</div>
+<div class="column" style="width:22%;">
+<p><img data-src="assets/images/Brooklyn,_New_York_HOLC_Redlining_Map.jpg" style="width:100.0%" alt="HOLC red-lining map of Brooklyn NY"></p>
+<div class="credit">
+<p>HOLC red-lining map of Brooklyn NY, 1938. Public Domain</p>
+</div>
+</div>
+</div>
+</section><section id="schelling" class="slide level2 eighty"><h2 class="eighty">Schelling Model of Housing Segregation</h2>
+<ul>
+<li>
+<p>Maybe the first Agent-Based Model.</p>
+<ul>
+<li>
+<a href="/files/reading/schelling_1971_segregation.pdf" target="_blank">T.C. Schelling, “Dynamic Models of Segregation”,
+<em>Journal of Mathematical Sociology</em> <strong>1</strong>, 143–186
+(1971)</a>,</li>
+<li>
+<a href="https://www.amazon.com/Micromotives-Macrobehavior-Thomas-C-Schelling-ebook/dp/B002MB968C" target="_blank"><em>Micromotives and Macrobehavior</em></a> (WW Norton,
+1978).</li>
+</ul>
+</li>
+<li><p>No computers. Schelling worked the model on graph paper with
+pennies and dimes representing the two kinds of agents.</p></li>
+<li class="fragment">
+<p>Schelling new about the three causes and thought
+<em>organized action</em> and <em>socioeconomic filters</em> were the
+most important causes of segregation …</p>
+<ul>
+<li class="fragment">but he thought it was important to study the role of individual
+preference as an obstacle to integration, even after the other causes
+were eliminated.</li>
+</ul>
+</li>
+</ul></section><section id="model-overview" class="slide level2"><h2>Model Overview</h2>
+<ul>
+<li class="fragment">Turtles represent households.
+<ul>
+<li>Two colors of turtles: red and blue</li>
+<li>Turtles have one state-variable: <code>happy?</code> (true or
+false)</li>
+</ul>
+</li>
+<li class="fragment">There is a global variable <code>%-similar-wanted</code> and a
+turtle is <code>happy?</code> if at least this fraction of its neighbors
+have the same color as its own.</li>
+<li class="fragment">At each tick, unhappy turtles move to a random empty patch.</li>
+<li class="fragment">When all turtles are <code>happy?</code>, the model stops.</li>
+</ul></section></section><section><section id="experiment-sec" class="title-slide slide level1 center" data-skip="true"><h1 class="center" data-skip="true">Experiments</h1>
+
+</section><section id="experiment" class="slide level2"><h2>Experiments</h2>
+<p>Vary <code>%-similar-wanted</code> and the <code>density</code> of
+turtles on the patches.</p>
+</section><section id="suggestions" class="slide level2"><h2>Suggestions:</h2>
+<ul>
+<li>Try extreme values of parameters:
+<ul>
+<li>Set <code>density</code> and <code>%-similar-wanted</code> to
+different combinations near maximum, minimum, and in the middle.</li>
+<li>What do you see?</li>
+</ul>
+</li>
+</ul></section><section id="extreme-values" class="slide level2"><h2>Extreme Values</h2>
+<ul>
+<li class="fragment">Set <code>density</code> to 75% and set
+<code>%-similar-wanted</code> to 95%</li>
+<li class="fragment">Press <code>setup</code> and then press <code>go</code>
+<ul>
+<li>What happens?</li>
+</ul>
+</li>
+<li class="fragment">Now, with <code>go</code> still pushed, slowly reduce
+<code>%-similar-wanted</code>.
+<ul>
+<li>Now what happens?</li>
+</ul>
+</li>
+</ul></section><section id="systematic-experiment" class="slide level2"><h2>Systematic experiment:</h2>
+<ul>
+<li>Using Behaviorspace, create a new experiment to vary
+<code>%-similar-wanted</code>
+<ul>
+<li class="fragment">Set <code>time limit</code> to 1000</li>
+<li class="fragment">Set <code>density</code> to 75</li>
+<li class="fragment">Measure <code>percent-similar</code>
+</li>
+</ul>
+</li>
+<li class="fragment">What do you see?</li>
+<li class="fragment">Try adjusting both <code>%-similar-wanted</code> and
+<code>density</code>
+</li>
+</ul></section><section id="visualizing-structures" class="slide level2"><h2>Visualizing Structures</h2>
+<ul>
+<li>
+<p>Add the following to the procedure
+<code>to update-turtles</code>, after <code>set happy?</code></p>
+<pre><code>ifelse happy? [ set shape "square" ] [ set shape "square-x" ]</code></pre>
+</li>
+<li class="fragment">
+<p>Repeat the exercise of:</p>
+<ul>
+<li>set <code>density</code> = 75% and <code>%-similar-wanted</code> =
+95%,</li>
+<li>press <code>setup</code> and <code>go</code>
+</li>
+<li>gradually reduce <code>%-similar-wanted</code>
+</li>
+</ul>
+</li>
+<li class="fragment"><p>Is it easier to see the emerging patterns now?</p></li>
+</ul></section></section><section><section id="heuristic-sec" class="title-slide slide level1 center" data-skip="true"><h1 class="center" data-skip="true">Heuristics</h1>
+
+</section><section id="heuristics" class="slide level2"><h2>Another Heuristic</h2>
+<ul>
+<li>When you’re at an interesting value for one parameter
+<ul>
+<li>(e.g., <code>%-similar-wanted</code> = 75%),</li>
+<li>vary other paremters (<code>density</code>).</li>
+<li class="fragment">Set <code>density</code> to 75% and
+<code>%-similar-wanted</code> to 75%.
+<ul>
+<li>Vary <code>density</code>
+</li>
+</ul>
+</li>
+<li class="fragment">Set <code>density</code> to 96% and
+<code>%-similar-wanted</code> to 75%.
+<ul>
+<li>Vary <code>%-similar-wanted</code>
+</li>
+<li class="fragment">Set <code>%-similar-wanted</code> to 70%.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section><section id="other-heuristics" class="slide level2 eightyfive"><h2 class="eightyfive">Other heuristics:</h2>
+<ul>
+<li class="fragment">Use several <em>currencies</em> to evaluate models
+<ul>
+<li class="fragment">Statistical analysis of spatial patterns and time-series</li>
+<li class="fragment">Analyze agent properties:
+<ul>
+<li>Are they unimodal or multimodal
+<ul>
+<li>(e.g., are turtles divided into distinct groups of rich/poor,
+healthy/sick, etc.,</li>
+<li>or distributed continuously around one dominant value of state
+variables?)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="fragment">Stability: Does system return quickly to steady state after it’s
+disturbed?</li>
+</ul>
+</li>
+<li class="fragment">Simplify models:
+<ul>
+<li class="fragment">Make all patches the same</li>
+<li class="fragment">Make all turtles the same</li>
+<li class="fragment">Reduce places where you use stochasticity</li>
+<li class="fragment">Use fewer turtles and patches</li>
+</ul>
+</li>
+<li class="fragment">Explore unrealistic scenarios</li>
+<li class="fragment">See book for heuristics for statistical analysis of model
+output…</li>
+</ul></section></section>
+</div>
+  </div>
+  <!--
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.js"></script>
+  <!-- -->
+  <script src="../../lecture_lib/library/reveal.js-3.8.0/js/reveal.min.js"></script><!-- --><script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+        // Display the page number of the current slide
+        showSlideNumber: 'speaker',
+        // Push each slide change to the browser history
+        history: true,
+        //  Enable hashing slide content to URL
+        hash: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Don't separate fragments in PDF rendering
+        pdfSeparateFragments: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+      
+        // Optional reveal.js plugins
+        dependencies: [
+                    { src: '../../lecture_lib/library/assets/plugin/chalkboard/chalkboard.js', async: true },
+                                        { src: '../../lecture_lib/library/assets/plugin/reveal-skip-fragments/skip-fragments.js', async: true },
+                    { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/notes/notes.js', async: true },
+          { src: '../../lecture_lib/library/reveal.js-3.8.0/plugin/math/math.js', async: true }
+        ],
+        shift_keyboard: {
+    	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'C' is pressed
+    	    66: function() { RevealChalkboard.toggleChalkboard() },	  // toggle chalkboard when 'B' is pressed
+    	    88: function() { RevealChalkboard.clear() },	            // clear chalkboard when 'X' is pressed
+    	    82: function() { RevealChalkboard.reset() },	            // reset chalkboard data on current slide when 'R' is pressed
+    	    68: function() { RevealChalkboard.download() },	          // downlad recorded chalkboard drawing when 'D' is pressed
+        },
+              	// Shortcut for showing all fragments
+      	skipFragmentsShowShortcut: 'S',
+
+      	// Shortcut for hiding all fragments
+      	skipFragmentsHideShortcut: 'H',
+      	      });
+    </script><script>
+  	function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+
+		// Find all nodes matching the description
+		var nodes = container.querySelectorAll( '.' + classname );
+
+		// Check all matches to find one which is a direct child of
+		// the specified container
+		for( var i = 0; i < nodes.length; i++ ) {
+			var testNode = nodes[i];
+			if( testNode.parentNode === container ) {
+				return testNode;
+			}
+		}
+
+		// If no node was found, create it now
+		var node = document.createElement( tagname );
+		node.className = classname;
+		if( typeof innerHTML === 'string' ) {
+			node.innerHTML = innerHTML;
+		}
+		container.appendChild( node );
+
+		return node;
+
+	}
+
+  var dom_wrapper = document.querySelector('.reveal');
+  createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+  '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+  '<div style="font-size:30%;width:100%;">' + '\n' +
+      '<a href="https://ees4760.jgilligan.org/slides/class_24">' +
+  	'<img src="qrcode.png" alt="https://ees4760.jgilligan.org/slides/class_24"/>' +
+  	'</a>' + '\n' +
+	  '</div>' + '\n' +
+  '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+    '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+        'Live web page: <a href="https://ees4760.jgilligan.org/slides/class_24">https://ees4760.jgilligan.org/slides/class_24</a>' + '\n' +
+              '<br/>' + '\n' +
+        'PDF: <a href="https://ees4760.jgilligan.org/slides/class_24/EES_4760_5760_class_24_slides.pdf" target="_blank">https://ees4760.jgilligan.org/slides/class_24/EES_4760_5760_class_24_slides.pdf</a>' + '\n' +
+          	'</span>' + '\n' +
+  	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+  	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+  	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+  	'</span>' + '\n' +
+	'</div>' + '\n' +
+  '</div>' + '\n'
+  );
+</script><script>
+var MathJax = { jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {extensions: ["color.js", "mhchem.js"]
+                  },
+                "HTML-CSS" : {scale: 100 }};
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["SVG"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+	  VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+	  VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+	  VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+	});
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true
+  }
+})
+  </script><script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script><script>
+  var qrbox = document.querySelector("#qrbox");
+  var advance_fragment = 0;
+
+	function isPrintingPDF() {
+	  let printing = ( /print-pdf/gi ).test( window.location.search );
+	  console.log("printing test: " + printing);
+	  return printing;
+	}
+
+
+  if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+      ! Reveal.isFirstSlide() || isPrintingPDF()) {
+    console.log("Initializing");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }
+
+  Reveal.addEventListener('overviewshown', function() {
+      console.log("Overview shown");
+    console.log("Hiding QR box");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+  }, false);
+
+  Reveal.addEventListener('overviewhidden', function() {
+    if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Overview hidden");
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    console.log("Slide changed...");
+    if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+        ! qrbox.hasAttribute('qr-box-hide') &&
+        ! isPrintingPDF()) {
+      console.log("Showing QR box");
+      qrbox.style.visibility="visible";
+      qrbox.style.display="block";
+    } else {
+      console.log("Hiding QR box");
+      qrbox.style.visibility="hidden";
+      qrbox.style.display="none";
+    }
+  }, false);
+
+  Reveal.addEventListener('pdf-ready', function() {
+    console.log("hiding qrbox for printing");
+    qrbox.style.visibility="hidden";
+    qrbox.style.display="none";
+    qrbox.setAttribute('qr-box-hide', 'true');
+  });
+
+  </script><script>
+  Reveal.addEventListener('slidechanged', function() {
+    while (advance_fragment > 0) {
+      // console.log('advancing fragment');
+      Reveal.nextFragment();
+      advance_fragment--;
+    }
+  }, false);
+
+  Reveal.addEventListener('slidechanged', function() {
+    if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+      // console.log("going to next slide...");
+      Reveal.next();
+    }
+  }, false);
+
+  Reveal.addEventListener('skip_slide', function() {
+    Reveal.next();
+  }, false);
+
+  Reveal.addEventListener('advance_fragment', function() {
+    // console.log("setting advance fragment");
+    advance_fragment++;
+    }, false);
+  </script>
+</body>
+</html>

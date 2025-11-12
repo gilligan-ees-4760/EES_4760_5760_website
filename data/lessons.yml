@@ -109,6 +109,7 @@ lessons:
   title: Analyzing ABMs
   reading: /reading/reading_24
   assignment: /assignment/project_draft_code
+  lecture: /slides/class_24
 - date: '2025-11-17'
   title: Sensitivity and Robustness
   reading: /reading/reading_25
