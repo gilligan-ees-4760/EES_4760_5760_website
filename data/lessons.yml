@@ -113,6 +113,7 @@ lessons:
 - date: '2025-11-17'
   title: Sensitivity and Robustness
   reading: /reading/reading_25
+  lecture: /slides/class_25
 - date: '2025-11-19'
   title: 'Looking Ahead: ABMs Beyond this Course'
   reading: /reading/reading_26
