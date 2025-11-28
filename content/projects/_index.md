@@ -94,8 +94,21 @@ for more details.
 
 ### Presentation Schedule
 
-**TBA**
+| Monday Dec. 1              | Wednesday Dec. 3           |
+|:--------------------------:|:--------------------------:|
+|    Ava Brooks              |     George Albu            |
+|    Samir Cancel Matos      |     Mona Gerges            |
+|    Cora Jackson            |     Sarah Markley          |
+|    Arisa Okamoto           |     Eloise Shehan          |
+|    Adele Shen              |     Zihan Sun              |
+|    Ari Sussman             |     Alexis Wan             |
 
-| Monday Dec. 1       | Wednesday Dec. 3    |
-|:-------------------:|:-------------------:|
-|    TBA              |     TBA             |
+Before class on the day you're going to present, please upload your
+presentation file (Powerpoint, PDF, etc.) to the 
+"Individual Project Presentation" assignment on 
+Brightspace.
+
+By Dec. 5 (before midnight), upload your final report to the 
+"Individual Project Report" assignment on Brightspace.
+If you need extra time to complete this, ask me and I will grant
+extensions within reason.
