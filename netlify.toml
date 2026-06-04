@@ -12,47 +12,47 @@
   branch = "main"
 
 [[redirects]]
-  from = "https://www.ees4760.jgilligan.org/*"
-  to   = "https://ees4760.jgilligan.org/:splat"
+  from = "https://www.ees4760.jmgilligan.org/*"
+  to   = "https://ees4760.jmgilligan.org/:splat"
   force = true
   status = 301
 
 [[redirects]]
-  from = "http://www.ees4760.jgilligan.org/*"
-  to   = "https://ees4760.jgilligan.org/:splat"
+  from = "http://www.ees4760.jmgilligan.org/*"
+  to   = "https://ees4760.jmgilligan.org/:splat"
   force = true
   status = 301
 
 [[redirects]]
   from = "https://ees4760.netlify.com/*"
-  to   = "https://ees4760.jgilligan.org/:splat"
+  to   = "https://ees4760.jmgilligan.org/:splat"
   force = true
   status = 301
 
 [[redirects]]
   from = "http://ees4760.netlify.com/*"
-  to   = "https://ees4760.jgilligan.org/:splat"
+  to   = "https://ees4760.jmgilligan.org/:splat"
   force = true
   status = 301
 
 [[redirects]]
   from = "/static/*"
-  to = "https://static.jgilligan.org/ees4760/:splat"
+  to = "https://static.jmgilligan.org/ees4760/:splat"
   status = 200
 
 [[redirects]]
   from = "/analyze_behaviorspace/*"
-  to = "https://shiny.jgilligan.org/ees-4760/analyze-behaviorspace/:splat"
+  to = "https://shiny.jmgilligan.org/ees-4760/analyze-behaviorspace/:splat"
   status = 302
 
 [[redirects]]
   from = "/analyze-behaviorspace/*"
-  to = "https://shiny.jgilligan.org/ees-4760/analyze-behaviorspace/:splat"
+  to = "https://shiny.jmgilligan.org/ees-4760/analyze-behaviorspace/:splat"
   status = 302
 
 [[redirects]]
   from = "/contour/*"
-  to = "https://shiny.jgilligan.org/ees-4760/contour/:splat"
+  to = "https://shiny.jmgilligan.org/ees-4760/contour/:splat"
   status = 302
 
 [[redirects]]

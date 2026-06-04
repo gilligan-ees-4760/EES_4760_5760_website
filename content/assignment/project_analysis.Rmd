@@ -16,7 +16,7 @@ params:
 pdf_url: /files/homework_asgts/project_analysis.pdf
 output:
   blogdown::html_page:
-    md_extensions: +tex_math_single_backslash+compact_definition_lists
+    md_extensions: +tex_math_single_backslash+definition_lists
   pdf_document:
     toc: yes
     toc_depth: 3

@@ -27,4 +27,4 @@ A good example of asynchronous updating is the
 [model of breeding synchrony](/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo), 
 described in [Jovani and Grimm (2008)](/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf) 
 and in Chapter 23, which I have posted on the class web site: 
-<https://ees4760.jgilligan.org/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo>
+<https://ees4760.jmgilligan.org/files/models/chapter_23/Ch_23_4_breeding_synchrony.nlogo>

@@ -74,5 +74,5 @@ and a
 [NetLogo model](/files/models/chapter_06/CultureDissemination_Untested.nlogo) 
 that implements the ODD, but with many errors, can be downloaded from the class web site: 
 
-* <https://ees4760.jgilligan.org/files/models/chapter_06/axelrod_culture_dissemination_1997.pdf>, 
-* and <https://ees4760.jgilligan.org/files/models/chapter_06/CultureDissemination_Untested.nlogo>.
+* <https://ees4760.jmgilligan.org/files/models/chapter_06/axelrod_culture_dissemination_1997.pdf>, 
+* and <https://ees4760.jmgilligan.org/files/models/chapter_06/CultureDissemination_Untested.nlogo>.

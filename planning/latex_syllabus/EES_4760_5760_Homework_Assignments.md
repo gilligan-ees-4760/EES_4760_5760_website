@@ -102,8 +102,8 @@ schedule.
 
 The most up-to-date versions of the homework assignments will be posted on the
 "Schedule" page of the 
-[course web site](https://ees4760.jgilligan.org/schedule): 
-<https://ees4760.jgilligan.org/schedule>
+[course web site](https://ees4760.jmgilligan.org/schedule): 
+<https://ees4760.jmgilligan.org/schedule>
 
 
 # Mon., Aug. 25: Set up NetLogo
@@ -339,7 +339,7 @@ Some problems in this homework set call for you to write a NetLogo model and als
 
 
 * **Graduate Students:** You can download the journal article for this exercise, [R. Jovani & V. Grimm. (2008) "Breeding synchrony in colonial birds: From local stress to global harmony", _Proc. Royal Soc. London B_ **275**, 1567--63](/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf) from the class web site,
-  <https://ees4760.jgilligan.org/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf>.
+  <https://ees4760.jmgilligan.org/files/models/chapter_05/Jovani_Grimm_2008_Breeding.pdf>.
 
   You don't have to reproduce all of the figures in the paper. Focus on reproducing the information in Figure 2 (make a figure of colony synchrony versus NR and some other figures showing histograms of breeding dates for NR = 0.00, 0.08, 0.20, and 1.00 and comparing them to the histograms in Fig. 2.
 

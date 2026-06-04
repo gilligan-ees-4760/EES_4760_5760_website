@@ -145,7 +145,7 @@ tools that you may find useful or interesting if your want to learn more.
 ## Class Web Site
 
 In addition to Brightspace, I have set up a server at 
-<https://ees4760.jgilligan.org>, 
+<https://ees4760.jmgilligan.org>, 
 where I post the web versions of class slides and interactive web-based 
 applications to that can be useful for working with data output from agent-based 
 modeling experiments.

@@ -65,7 +65,7 @@ config_cred <- function(val, lbl, repo) {
     } else if (str_starts(url, fixed("git@gitlab.com"))) {
       key_path <- file.path(home_dir, ".ssh", "gitlab.com",
                             "id_ed25519_gl_com")
-    } else if (str_starts(url, fixed("git@gitlab.jgilligan.org"))) {
+    } else if (str_starts(url, fixed("git@gitlab.jmgilligan.org"))) {
       key_path <- file.path(home_dir, ".ssh", "jg_gitlab", "id_ed25519")
     }
     if (! is.null(key_path)) {
@@ -85,7 +85,7 @@ config_cred <- function(val, lbl, repo) {
   } else {
     if (str_starts(url, fixed("https://github.com"))) {
       token = "GITHUB_PAT"
-    } else if (str_starts(url, fixed("https://gitlab.jgilligan.org"))) {
+    } else if (str_starts(url, fixed("https://gitlab.jmgilligan.org"))) {
       token = "GITLAB_PAT"
     }
     structure(list(token = Sys.getenv(token)),

@@ -32,4 +32,4 @@ Simulation_ **12**, 1](https://jasss.soc.surrey.ac.uk/12/2/1.html)
 is available online at <https://jasss.soc.surrey.ac.uk/12/2/1.html>.
 
 I have posted a [refresher guide](/files/models/chapter_09/ch9_ex8_netlogo_exercises.pdf) 
-for NetLogo programming on the class web site at <https://ees4760.jgilligan.org/files/models/chapter_09/ch9_ex8_netlogo_exercises.pdf>
+for NetLogo programming on the class web site at <https://ees4760.jmgilligan.org/files/models/chapter_09/ch9_ex8_netlogo_exercises.pdf>

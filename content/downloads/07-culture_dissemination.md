@@ -11,7 +11,7 @@ output: html_document
  
 * [Paper describing model of culture dissemination](/files/models/chapter_06/axelrod_culture_dissemination_1997.pdf) 
   from Chapter 6:<br/>
-  <https://ees4760.jgilligan.org/files/models/chapter_06/axelrod_culture_dissemination_1997.pdf>
+  <https://ees4760.jmgilligan.org/files/models/chapter_06/axelrod_culture_dissemination_1997.pdf>
 * A [version of the culture dissemination model](/models/class_07/CultureDissemination_Untested.nlogo)
   with errors:<br/>
-  <https://ees4760.jgilligan.org/models/class_07/CultureDissemination_Untested.nlogo>
+  <https://ees4760.jmgilligan.org/models/class_07/CultureDissemination_Untested.nlogo>

@@ -32,7 +32,7 @@ For homework and your modeling projects you will use BehaviorSpace extensively. 
 The format in which BehaviorSpace saves its data is very annoying to deal with in many tools. Indeed, it's almost impossible to do anything useful with it in Excel. Because of this, I have written a tool called `analyzeBehaviorspace` that can read the output of a BehaviorSpace run and allow you to interactively graph it and re-organize the data to make it more useful. 
 
 
-You can either use this tool online in a web browser at <https://analyze-behaviorspace.jgilligan.org> or install it on your own computer. For details, see the description of 
+You can either use this tool online in a web browser at <https://analyze-behaviorspace.jmgilligan.org> or install it on your own computer. For details, see the description of 
 `analyzeBehaviorspace` on the "Reading Resources and Computing Tools for Research" handout.
 
 

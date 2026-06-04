@@ -128,8 +128,8 @@ schedule.
 
 The most up-to-date versions of the homework assignments will be posted on the
 "Schedule" page of the 
-[course web site](https://ees4760.jgilligan.org/schedule): 
-<https://ees4760.jgilligan.org/schedule>
+[course web site](https://ees4760.jmgilligan.org/schedule): 
+<https://ees4760.jmgilligan.org/schedule>
 
 ```{r define_functions, eval=TRUE, include=FALSE, dependson="initialize"}
 assemble_schedule <- function(semester) {

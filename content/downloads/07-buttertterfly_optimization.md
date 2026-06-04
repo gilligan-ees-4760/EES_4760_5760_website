@@ -11,12 +11,12 @@ output: html_document
 
 * [Butterfly model](/models/class_07/butterfly_class_7.nlogo) 
   for optimizing _q_ to maximize mating
-  <https://ees4760.jgilligan.org/models/class_07/butterfly_class_7.nlogo>
+  <https://ees4760.jmgilligan.org/models/class_07/butterfly_class_7.nlogo>
 * [Elevation data](/models/class_07/ElevationData.txt) for Butterfly model
-  <https://ees4760.jgilligan.org/models/class_07/ElevationData.txt>
+  <https://ees4760.jmgilligan.org/models/class_07/ElevationData.txt>
 * [BehaviorSpace output](/models/class_07/butterfly_class_7%20optimize-mating-table.csv)
   for optimizing mating for butterflies starting at the edge of the world:
-  <https://ees4760.jgilligan.org/models/class_07/butterfly_class_7%20optimize-mating-table.csv>
+  <https://ees4760.jmgilligan.org/models/class_07/butterfly_class_7%20optimize-mating-table.csv>
 * [BehaviorSpace output](/models/class_07/butterfly_class_7%20optimize-mating-big-table.csv)
   for optimizing mating for butterflies starting at different locations:
-  <https://ees4760.jgilligan.org/models/class_07/butterfly_class_7%20optimize-mating-big-table.csv>
+  <https://ees4760.jmgilligan.org/models/class_07/butterfly_class_7%20optimize-mating-big-table.csv>

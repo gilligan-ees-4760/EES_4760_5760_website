@@ -23,6 +23,6 @@ output:
 
 ### Reading Notes:
 
-You can download [the ODD for the BEFORE beech forest model](/files/models/chapter_18/ch18_before_ODD.pdf), which is described in section 18.3, from the class web site: <https://ees4760.jgilligan.org/files/models/chapter_18/ch18_before_ODD.pdf>.
+You can download [the ODD for the BEFORE beech forest model](/files/models/chapter_18/ch18_before_ODD.pdf), which is described in section 18.3, from the class web site: <https://ees4760.jmgilligan.org/files/models/chapter_18/ch18_before_ODD.pdf>.
 
-I have also posted [a list of published models](/files/models/chapter_18/ch18_ex1_models_list.pdf) in which observed patterns are important: <https://ees4760.jgilligan.org/files/models/chapter_18/ch18_ex1_models_list.pdf>
+I have also posted [a list of published models](/files/models/chapter_18/ch18_ex1_models_list.pdf) in which observed patterns are important: <https://ees4760.jmgilligan.org/files/models/chapter_18/ch18_ex1_models_list.pdf>

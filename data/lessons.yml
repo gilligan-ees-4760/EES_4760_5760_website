@@ -40,6 +40,7 @@ lessons:
   assignment: /assignment/homework_06
   lecture: /slides/class_09
 - date: '2025-09-19'
+  title: 'Indiv. Project: Research project proposal'
   assignment: /assignment/project_proposal
 - date: '2025-09-22'
   title: Observation
@@ -75,6 +76,7 @@ lessons:
   reading: /reading/reading_16
   assignment: /assignment/project_analysis
 - date: '2025-10-17'
+  title: 'Team Project: Team modeling project report'
   assignment: /assignment/team_project_report
 - date: '2025-10-20'
   title: Scheduling
@@ -129,4 +131,5 @@ lessons:
   title: Presentations
   assignment: /assignment/project_presentation_2
 - date: '2025-12-06'
+  title: 'Indiv. Project: Research project report'
   assignment: /assignment/project_report

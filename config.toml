@@ -1,4 +1,4 @@
-baseurl = "https://www.ees4760.jgilligan.org"
+baseurl = "https://www.ees4760.jmgilligan.org"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = "EES 4760/5760"
@@ -140,7 +140,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
   url = "https://github.com/gilligan-ees-4760"
 
 [params]
-  profname = "Jonathan Gilligan"
+  profname = "J. Magnolia Gilligan"
   dateFormat = "January 2, 2006"
   background = "img/course_banner_cropped.jpg"
   math = "true"
@@ -155,15 +155,15 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
   siteGitHub = "https://github.com/gilligan-ees-4760/EES_4760_5760_website.git"
 
   [params.author]
-  name = "Jonathan Gilligan"
+  name = "J. Magnolia Gilligan"
   bio = ""
   job = "Professor"
   location = "Vanderbilt University"
-  gravatarEmail = "jonathan.gilligan@gmail.com"
+  gravatarEmail = "magnolia@jmgilligan.org"
   # Your profile picture
   #  picture = ""
-  homepage = "https://www.jonathangilligan.org"
-  twitter = "jg_environ"
+  homepage = "https://www.magnoliagilligan.org"
+  bluesky = "jmgilligan.org"
 
   [params.fontAwesomePro]
     key = "sha384-POYwD7xcktv3gUeZO5s/9nUbRJG/WOmV6jfEGikMJu77LGYO8Rfs2X7URG822aum"
@@ -174,12 +174,12 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
     classroom = "SC 5722"
 
   [params.prof]
-    name = "Jonathan Gilligan"
+    name = "J. Magnolia Gilligan"
     lastname = "Gilligan"
     pronouns = "they/them/theirs"
     title = "Prof."
-    email = "jonathan.gilligan@vanderbilt.edu"
-    url = "https://www.jonathangilligan.org"
+    email = "j.magnolia.gilligan@vanderbilt.edu"
+    url = "https://www.magnoliagilligan.org"
     office = "SC 5735"
     officeHours = "M 10:00--11:00, W 2:00-3:00, or by appointment"
 
@@ -192,7 +192,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
     reading = true
 
   [params.ip]
-    copyright = "Copyright 2018--2025, <a href=\"https://www.jonathangilligan.org\" target=\"_blank\">Jonathan Gilligan</a>."
+    copyright = "Copyright 2018--2025, <a href=\"https://www.magnoliagilligan.org\" target=\"_blank\">J. Magnolia Gilligan</a>."
     licenseIcon = "/img/cc-by.svg"
     licenseURL = "https://creativecommons.org/licenses/by/4.0/"
     licenseTitle = "Creative Commons Attribution License"
