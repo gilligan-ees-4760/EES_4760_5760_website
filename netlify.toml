@@ -6,7 +6,7 @@
   command = "git submodule update --remote && cd themes/hugo-syllabus && git status && cd ../.. && hugo"
 
 [build.environment]
-  HUGO_VERSION = "0.136.2"
+  HUGO_VERSION = "0.156.0"
 
 [context.production]
   branch = "main"
