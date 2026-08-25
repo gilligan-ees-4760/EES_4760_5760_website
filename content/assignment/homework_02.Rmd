@@ -8,10 +8,10 @@ med_assignment_type: Homework
 assignment_number: 2
 weight: 2
 slug: homework_02
-pubdate: '2025-07-31'
+pubdate: '2026-07-31'
 date: '`r params$par_date`'
 params:
-  par_date: '2025-08-27'
+  par_date: '2026-09-02'
   par_subtitle: ~
 pdf_url: /files/homework_asgts/homework_02.pdf
 output:

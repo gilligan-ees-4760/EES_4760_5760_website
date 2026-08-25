@@ -5,10 +5,10 @@ class_date: '`r params$par_date`'
 class_number: 23
 weight: 23
 slug: reading_23
-pubdate: '2025-07-31'
+pubdate: '2026-07-31'
 date: '`r params$par_date`'
 params:
-  par_date: '2025-11-10'
+  par_date: '2026-11-17'
   par_subtitle: ~
 pdf_url: /files/reading_asgts/reading_23.pdf
 output:

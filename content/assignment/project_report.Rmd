@@ -8,10 +8,10 @@ med_assignment_type: Indiv. Project
 assignment_number: 18
 weight: 18
 slug: project_report
-pubdate: '2025-07-31'
+pubdate: '2026-07-31'
 date: '`r params$par_date`'
 params:
-  par_date: '2025-12-06'
+  par_date: '2026-12-19'
   par_subtitle: ~
 pdf_url: /files/homework_asgts/project_report.pdf
 output:

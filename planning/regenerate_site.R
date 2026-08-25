@@ -1,7 +1,6 @@
 library(rprojroot)
 library(tidyverse)
-pacman::p_load_gh("jonathan-g/blogdownDigest")
-# pacman::p_load_gh("jonathan-g/semestr")
+library(blogdownDigest)
 library(semestr)
 
 regenerate_site <- function(root = NULL, force = FALSE) {
@@ -42,10 +41,10 @@ init_git_tokens <- function(keyring = "git_access") {
     }
   }
   Sys.setenv(GITHUB_PAT = keyring::key_get("GITHUB_PAT",
-                                           username = "jonathan-g",
+                                           username = "j-magnolia",
                                            keyring = keyring))
   Sys.setenv(GITLAB_PAT = keyring::key_get("GITLAB_PAT",
-                                           username = "jonathan",
+                                           username = "maggie",
                                            keyring = keyring))
 }
 
@@ -66,7 +65,7 @@ config_cred <- function(val, lbl, repo) {
       key_path <- file.path(home_dir, ".ssh", "gitlab.com",
                             "id_ed25519_gl_com")
     } else if (str_starts(url, fixed("git@gitlab.jmgilligan.org"))) {
-      key_path <- file.path(home_dir, ".ssh", "jg_gitlab", "id_ed25519")
+      key_path <- file.path(home_dir, ".ssh", "jmg-gitlab", "id_ed25519")
     }
     if (! is.null(key_path)) {
       # message("key_path = ", key_path)
@@ -76,7 +75,7 @@ config_cred <- function(val, lbl, repo) {
         privatekey = normalizePath(key_path, mustWork = TRUE),
         passphrase = keyring::key_get("SSH_KEY_PASSWORD",
                                       keyring = "git_access",
-                                      username = "jonathan"),
+                                      username = "maggie"),
         class = "cred_ssh_key")
       )
     } else {
