@@ -41,7 +41,7 @@ By default, NetLogo only allows you to read in data in simple text files. Howeve
 data from other common file formats, including `.csv` and ArcGIS shapefiles and raster (grid) files.
 
 If you want to read in data from csv files, you may want to 
-look at the documentation for the \texttt{csv} extension to NetLogo. To use it, you just put the line `includes [csv]` as the first line of your
+look at the documentation for the `csv` extension to NetLogo. To use it, you just put the line `includes [csv]` as the first line of your
 model, and then  use functions from the extension, such as `let data csv:from-file "myfile.csv"`.
 
 To read in date from ArcGIS files, look at the documentation for the `GIS` extension. You would put the line `extensions [ gis ]` as the

@@ -28,7 +28,7 @@ output:
 ### Reading Notes:
 
 
-There is an implementation of the [wood hoopoe model](/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo), suitable for Exercise 2, on the class web site: <https://ees4760.jmgilligan.org/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogo>
+There is an implementation of the [wood hoopoe model](/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogox), suitable for Exercise 2, on the class web site: <https://ees4760.jmgilligan.org/files/models/chapter_19/ch19_ex2_wood_hoopoes.nlogox>
 
 
 The optional chapter from _Modeling Social Behavior_ discusses other approaches to using agent-based models to do science. 

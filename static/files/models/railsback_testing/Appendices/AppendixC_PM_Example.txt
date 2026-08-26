@@ -1,0 +1,146 @@
+; This text file contains example NetLogo code implementing a "procedure monitor" (PM) for
+; a procedure that calculates respiration for a simulated trout.
+
+; The example code includes:
+;  - where the PM output is updated in the go procedure
+;  - the PM code added to the respiration procedure
+;  - the procedures implementing the PM: PM-setup, PM-add, PM-save-row, and PM-write-output
+
+to go
+  ; The main model schedule
+
+  ; (Only Procedure Monitor code is shown here)
+
+  ; *** PM
+  ; Update Procedure Monitor output, at end of go
+  if PM-on? [PM-write-output]
+
+end
+
+to-report respiration-for [ a-fish a-cell a-swim-speed ]
+  ; An observer/cell/turtle/patch procedure to calculate total respiration (J/d) for a fish
+  ; Some equation terms are updated in update-habitat and update-trout
+
+  ; *** PM
+  ; Code to monitor variables affecting respiration
+  PM-add (list
+    ticks
+    ([trout-species] of a-fish)
+    ([who] of a-fish)
+    ([trout-weight] of a-fish)
+    ([trout-length] of a-fish)
+    ([[reach-temperature] of patches-reach] of a-cell)
+    a-swim-speed
+    )
+
+  ; Standard respiration
+  let resp-temp-term [reach-resp-temp-term] of ([patches-reach] of a-cell)
+  let resp-standard ([trout-resp-std-wt-term] of a-fish) *
+   (item ([trout-spp-index] of a-fish) resp-temp-term)
+
+  ; Activity respiration depends on square of ratio of swimming speed to max swim speed
+  ; If this ratio is large (> ~25) then "exp" becomes too large to calculate so instead
+  ; report an arbitrary large number.
+  let the-swim-speed-ratio a-swim-speed / (max-swim-speed-for a-fish a-cell)
+  if the-swim-speed-ratio > 20 [ report 999999 ]
+  let resp-activity-func exp ((item ([trout-spp-index] of a-fish) trout-resp-D) * (the-swim-speed-ratio ^ 2))
+
+  ; *** PM
+  ; Code to monitor respiration results
+  PM-add resp-standard
+  PM-add resp-activity-func
+  PM-save-row
+
+  report resp-standard * resp-activity-func
+
+end
+
+; *** PM
+to PM-setup
+  ; Procedure Monitor setup procedure, called from PM-write-output
+  ; Skip everything if PM output is not turned on
+  if PM-on?
+  [
+    ; First, set the output file's name. An existing file with the same name will be erased.
+    ; The file name is a global variable and should end in ".csv"
+    set PM-output-file-name "Respiration-PM-output.csv"
+
+    ; Second, create the output file, deleting previous versions
+    if file-exists? PM-output-file-name [file-delete PM-output-file-name]
+    file-open PM-output-file-name
+
+    ; Third, write header information to the top of the output file
+    ; First, the date and time
+    file-print "NetLogo Procedure Monitor output file"
+    file-print csv:to-row (list "Created:" date-and-time)
+
+    ; Then provide labels for columns, which identify the variables in the order they are added to output
+    ; via "PM-add" statements
+    file-print csv:to-row (list
+      "Tick"
+      "Species"
+      "Who"
+      "Weight"
+      "Length"
+      "Temperature"
+      "Swim-speed"
+      "Standard-respiration"
+      "Activity-resp-function"
+      )
+
+    ; Then close the file
+    file-close
+  ]
+
+end
+
+; *** PM
+to PM-add [a-value]
+  ; Procedure Monitor procedure to add one value (which could be a list of values)
+  ; to an output row.
+  ; The output row is in the global variable PM-row, a list
+  ; Skip everything if PM is not turned on
+  if PM-on?
+  [
+    if not is-list? PM-row [ set PM-row (list) ] ; Initialize the row list if it has not been
+    set PM-row (sentence PM-row a-value)
+  ]
+
+end
+
+; *** PM
+to PM-save-row
+  ; Procedure Monitor procedure to add a complete row to the PM output queue
+  ; and then clear the row list
+  ; The output queue is the global variable PM-output, a list
+  ; Skip everything if PM is not turned on
+  if PM-on?
+  [
+    if not is-list? PM-output [ set PM-output (list) ] ; Initialize the output list if has not been
+    set PM-output lput PM-row PM-output
+    set PM-row (list)
+  ]
+
+end
+
+; *** PM
+to PM-write-output
+  ; Procedure Monitor procedure that writes the current output queue to the output file
+  ; This procedure is called from go once per tick
+  ; Skip everything if the output queue is empty
+
+  if not empty? PM-output
+  [
+    ; First, initialize the output file if this is the first time it is written to
+    if not is-string? PM-output-file-name [ PM-setup ]
+
+    ; Open the output file, write rows to it, and close it
+    file-open PM-output-file-name
+    foreach PM-output [ the-row -> file-print csv:to-row the-row ] ; Write each row to the file
+    file-close
+
+    ; Then clear the output list
+    set PM-output (list)
+  ]
+
+end

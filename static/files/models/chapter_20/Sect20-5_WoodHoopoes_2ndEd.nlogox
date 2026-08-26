@@ -1,0 +1,1144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model version="NetLogo 7.0.4" snapToGrid="false">
+  <code><![CDATA[globals
+[
+  month
+  year
+;  survival-prob     ; Probability of a bird surviving one month MOVED TO SLIDER
+  fecundity         ; Number of offspring of either sex
+  scouting-distance ; Distance over which birds scout
+  scouting-survival ; Probability of surviving a scouting trip
+
+  group-sizes       ; A list of group sizes by patch, for output
+  foray-ages        ; A list of ages at which birds foray
+  non-alpha-ages    ; A list of ages at which birds *consider* forays
+  foray-months       ; A list of months at which birds foray
+]
+
+turtles-own
+[
+  is-alpha?
+  is-female?
+  age-in-months
+]
+
+
+to setup
+
+  clear-all
+  reset-ticks
+
+  ; Set parameters and globals
+  set month 0
+  set year 1
+;  set survival-prob 0.99  MOVED TO SLIDER
+  set fecundity 2
+  set scouting-distance 5
+  set scouting-survival 0.8
+
+  set group-sizes []  ; An empty list
+  set foray-ages []  ; An empty list
+  set non-alpha-ages []  ; An empty list
+  set foray-months []  ; An empty list
+
+  ; Shade the patches
+  ask patches
+  [
+    ifelse (remainder pxcor 2) = 0.0
+    [ set pcolor 8]
+    [ set pcolor 9]
+  ]
+
+  ; Create birds
+  ask patches
+  [
+    sprout 4
+    [
+      set is-alpha? false
+      set is-female? false
+      set color blue
+      set shape "circle"
+      set size 0.1
+      setxy (pxcor - 0.4 + random-float 0.8) (pycor - random-float 0.4)
+      set age-in-months 1 + random 24
+    ]
+
+    ask n-of 2 turtles-here
+    [
+      set is-female? true
+      set color pink
+    ]
+
+    ask max-one-of (turtles-here with [is-female?]) [age-in-months] [become-alpha]
+
+    ask max-one-of (turtles-here with [not is-female?]) [age-in-months] [become-alpha]
+
+  ]
+
+  ; Open test output file
+  ; First, delete it instead of appending to it
+
+;  if (file-exists? "HoopoeModel-Test.csv")
+;  [carefully [file-delete "HoopoeModel-Test.csv"]
+;    [print error-message]]
+;  file-open "HoopoeModel-Test.csv"
+
+end
+
+
+to go
+
+  tick
+
+  if year = 22 and month = 12
+  [
+    file-close
+    stop
+  ]
+
+  update-date-and-ages
+
+  if month = 1 [clear-drawing] ; Remove move traces each year
+
+  ask patches [promote-alphas]
+
+  ask turtles with [(age-in-months > 12) and (not is-alpha?)] [scout]
+
+  if (month = 12) [ask turtles with [is-female? and is-alpha?] [reproduce]]
+
+  ask turtles [do-mortality]
+
+  if year > 2 [update-output]
+
+end
+
+
+to update-date-and-ages
+
+  set month month + 1
+  if month > 12
+  [
+    set month 1
+    set year year + 1
+  ]
+
+  ask turtles [set age-in-months age-in-months + 1]
+
+end
+
+
+to promote-alphas  ; a patch procedure
+
+  let adult-females turtles-here with [is-female? and age-in-months > 12]
+  let adult-males turtles-here with [(not is-female?) and age-in-months > 12]
+
+  if (any? adult-females) and (not any? adult-females with [is-alpha?])
+  [
+    ask max-one-of adult-females [age-in-months] [become-alpha]
+  ]
+
+  if (any? adult-males) and (not any? adult-males with [is-alpha?])
+  [
+    ask max-one-of adult-males [age-in-months] [become-alpha]
+  ]
+
+end
+
+
+to scout  ; a turtle procedure
+
+  ; Record age for output
+  set non-alpha-ages lput age-in-months non-alpha-ages
+
+  ; Test output
+ ;  file-type (word who "," month "," is-alpha? "," is-female? "," age-in-months "," I-should-scout-direct ",")
+ ;  ask other turtles-here
+ ;  [file-type (word is-alpha? "," is-female? "," age-in-months ",")]
+ ;  file-print count turtles-here
+
+  ; First decide whether to scout
+  if not I-should-scout [stop]
+
+  ; Then do it
+  ; Record age of forayers for output
+  set foray-ages lput age-in-months foray-ages
+  set foray-months lput month foray-months
+
+
+  ; First remember where home is
+  let start-x xcor
+  let start-y ycor
+
+  ; Choose positive or negative X direction
+  let step 1
+  if random-bernoulli 0.5 [set step -1]
+
+  ; Then go
+  repeat scouting-distance
+  [
+    setxy (xcor + step) ycor
+    if not any? (other turtles-here) with [(is-female? = [is-female?] of myself) and is-alpha?]
+    [
+      ; Go back and draw a line to here
+      let new-x xcor
+      let new-y ycor
+      setxy start-x start-y
+      pen-down
+      setxy new-x new-y
+
+      become-alpha
+      pen-up
+      set shape "square"
+      stop ; End the "repeat" loop
+    ]
+  ]
+
+  ; Go home if did not become alpha
+  if not is-alpha? [setxy start-x start-y]
+
+  ; Incur mortality
+  if (not random-bernoulli scouting-survival) [die]
+
+end
+
+
+to-report I-should-scout  ; a turtle reporter, returns a boolean
+  ; This trait assumes the decision depends on whethere there are any
+  ; older non-alphas, using a "rule of thumb". See "Submodels" on the Info tab.
+  ifelse any? (other turtles-here) with
+   [
+     (is-female? = [is-female?] of myself) and
+     (not is-alpha?) and
+     (age-in-months > [age-in-months] of myself)
+   ]
+  [report random-bernoulli scout-prob] ; There are older siblings of same sex
+  [report false] ; There are no older siblings of same sex
+
+end
+
+
+to reproduce  ; a turtle procedure only executed by female alphas
+
+  ; Cannot reproduce if there is no male alpha
+  if not any? turtles-here with [(not is-female?) and is-alpha?] [stop]
+
+  hatch fecundity
+  [
+    set age-in-months 0
+    set is-alpha? false
+    set is-female? false
+    set color blue
+    set shape "circle"
+    set size 0.1
+    setxy (pxcor - 0.4 + random-float 0.8) (pycor - random-float 0.4)
+    if random-bernoulli 0.5
+    [
+      set is-female? true
+      set color pink
+    ]
+  ]
+
+end
+
+
+to do-mortality  ; a turtle procedure
+
+  if (not random-bernoulli survival-prob) [die]
+
+end
+
+
+to become-alpha  ; turtle procedure done any time a bird becomes alpha
+
+  set is-alpha? true
+  set size 0.2
+  setxy (pxcor - 0.4 + random-float 0.8) (pycor + random-float 0.4)
+
+end
+
+
+to update-output
+
+  ; Histogram group sizes, using data only from month 12 and years 3 and higher
+  if month = 12 and year > 2
+  [
+    set-current-plot "Group Size Histogram"
+    ask patches  ; Put current group sizes on a permanent list of all values
+                 ; to make this a cumulative histogram over the whole run
+    [
+      set group-sizes lput (count turtles-here with [age-in-months > 12]) group-sizes
+    ]
+
+    histogram group-sizes
+  ]
+
+  set-current-plot "Foray Month Histogram"
+  histogram foray-months
+
+  set-current-plot "Ages"
+  set-current-plot-pen "Non-alphas"
+  ifelse length non-alpha-ages > 0
+  [plot mean non-alpha-ages]
+  [plot 0]
+  set-current-plot-pen "Forayers"
+  ifelse length foray-ages > 0
+  [plot mean foray-ages]
+  [plot 0]
+
+end
+
+
+to-report random-bernoulli [probability-true]
+
+  ; First, do some defensive programming to make sure "probability-true"
+  ; has a sensible value
+
+  if (probability-true < 0.0 or probability-true > 1.0)
+    [
+      type "Warning in random-bernoulli: probability-true equals "
+      print probability-true
+    ]
+
+  if-else random-float 1.0 < probability-true
+  [report true]
+  [report false]
+
+end]]></code>
+  <widgets>
+    <view x="14" wrappingAllowedX="true" y="10" frameRate="30.0" minPycor="0" height="34" showTickCounter="true" patchSize="30.0" fontSize="10" wrappingAllowedY="false" width="754" tickCounterLabel="ticks" maxPycor="0" updateMode="0" maxPxcor="12" minPxcor="-12"></view>
+    <button x="16" y="99" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="63">setup</button>
+    <monitor x="15" precision="0" y="151" height="60" fontSize="11" width="100" display="Year">year</monitor>
+    <monitor x="120" precision="0" y="150" height="60" fontSize="11" width="100" display="Month">month</monitor>
+    <button x="89" y="99" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="63" display="Step">go</button>
+    <monitor x="15" precision="17" y="216" height="60" fontSize="11" width="100">count turtles</monitor>
+    <button x="158" y="99" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="63">go</button>
+    <plot x="14" autoPlotX="true" yMax="10.0" autoPlotY="true" yAxis="Number of groups" y="288" xMin="0.0" height="181" legend="false" xMax="10.0" yMin="0.0" width="257" xAxis="Number of birds" display="Group Size Histogram">
+      <setup></setup>
+      <update></update>
+      <pen interval="1.0" mode="1" display="default" color="-16777216" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+    </plot>
+    <plot x="287" autoPlotX="true" yMax="10.0" autoPlotY="true" yAxis="Mean age (mo.)" y="282" xMin="0.0" height="191" legend="true" xMax="200.0" yMin="0.0" width="254" xAxis="Tick" display="Ages">
+      <setup></setup>
+      <update></update>
+      <pen interval="1.0" mode="0" display="Non-alphas" color="-16777216" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Forayers" color="-2674135" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+    </plot>
+    <plot x="378" autoPlotX="true" yMax="10.0" autoPlotY="true" yAxis="Number forays" y="92" xMin="0.0" height="175" legend="false" xMax="13.0" yMin="0.0" width="230" xAxis="Month" display="Foray Month Histogram">
+      <setup></setup>
+      <update></update>
+      <pen interval="1.0" mode="1" display="default" color="-16777216" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+    </plot>
+    <monitor x="226" precision="0" y="143" height="60" fontSize="11" width="100" display="Vacancies">(count patches * 2) - count turtles with [is-alpha?]</monitor>
+    <slider x="643" step=".001" y="95" max="1" width="172" display="survival-prob" height="50" min="0.9" direction="Horizontal" default="0.98" variable="survival-prob"></slider>
+    <slider x="642" step=".001" y="150" max="1.00" width="172" display="scout-prob" height="50" min="0" direction="Horizontal" default="0.3" variable="scout-prob"></slider>
+  </widgets>
+  <info><![CDATA[# Woodhoopoe Model
+This is the simplified Woodhoopoe model from Section 19.4.3 of _Agent-based and Individual-based Modeling: A Practical Introduction_. The key adaptive trait of scouting for vacant territories is the simple version described in Section 20.5 for an exercise in model calibration. 
+
+This version is compatible only with the book's 2nd edition.
+
+## 1. Purpose and patterns
+The purpose of the model is to illustrate how the dynamics of a population of group-living woodhoopoes, and the dynamics of its social groups, depend on the trait individuals use to decide when to leave their group. The model provides a laboratory for developing theory for the woodhoopoes’ scouting foray trait.
+
+For the calibration exercise, three patterns are used as calibration criteria. The “mean abundance” criterion is that the long-term mean number of woodhoopoes (including sub-adults) is in the range of 115 to 135. The “variation” criterion is that the standard deviation from year to among years in the annual number of birds is in the range of 10 to 15 birds. The “vacancy” criterion is that the average percentage of territories that lack one or both alphas is in the range of 15–30%. All the criteria are assumed to be from data collected in November (month 11) of each year of the field study (just before breeding). 
+
+## 2. Entities, state variables, and scales
+The model entities are territories and birds. A territory represents both a collective—a social group of birds—and the space occupied by the group (territories can also be empty, though). Territories are represented as a one-dimensional row of 25 NetLogo patches, “wrapped” so that the two ends of the row are considered adjacent. The only state variables of territories are a coordinate for their position in the row and a list of the birds in them. Birds have state variables for their sex, age (in months), and whether they are alpha. The time step is one month. Simulations run for 22 years, with results from the initial two “warm-up” years ignored.
+
+## 3. Process overview and scheduling
+The following actions are executed in the given order once per time step. The order in which the birds and territories execute an action is always randomized and state variables are updated immediately, after each action. 
+
+  1.    Date and ages are updated. The current year and month are advanced by one month, and the age of all birds is increased by one month.
+
+  2.    Territories fill vacant alpha positions. If a territory lacks an alpha but has a subordinate adult (age > 12 months) of the right sex, the oldest subordinate becomes the new alpha. 
+
+  3.    Birds undertake scouting forays. Subordinate adults decide whether to scout for a new territory with a vacant alpha position, using the scouting decision submodel described below. Birds that do scout choose randomly (with equal probability) between the two directions they can look (left or right along the row of territories). Scouting birds can explore up to five territories in their chosen direction. Of those five territories, the bird occupies the one that is closest to its starting territory and has no alpha of its sex. If no such territory exists, the bird stays at its starting territory. All birds that scout (including those that find and occupy a new territory) are then subjected to predation mortality, a stochastic event with the probability of survival 0.8.
+
+  4.    Alpha females reproduce. In the 12th month of every year, alpha females that have an alpha male in their territory produce two offspring. The offspring have their age set to zero months and their sex chosen randomly with equal probability of male and female.
+
+  5.    Birds experience mortality. All birds are subject to stochastic mortality with a monthly survival probability of 0.98.
+
+  6.    Output is produced. 
+
+## 4. Design concepts
+This discussion of design concepts may help you design alternative theories for the scouting trait.
+
+_Basic principles_: This model explores the “stay-or-leave” question: when should a subordinate individual leave a group that provides safety and group success but restricts opportunities for individual success? In ecology we can assume real individuals have traits for this decision that evolved because they provide “fitness”: success at reproducing. The trait we use in an ABM could explicitly consider fitness (e.g., select the behavior providing the highest expected probability of reproducing) but could instead just be a simple rule or “heuristic” that usually, but not always, increases fitness.
+
+_Emergence_: The results we are interested in for theory testing are the three patterns described at the end of Section 19.4.2: a successful theory will cause the model to reproduce these patterns. All the patterns emerge from the trait for scouting. The group size distribution pattern may also depend strongly on other model processes such as the reproduction and survival rates. 
+
+_Adaptation_: The only adaptive decision the woodhoopoes make is whether to undertake a scouting foray. You can consider several alternative traits for this decision that vary in how explicitly they represent the individuals’ objective of obtaining alpha status to reproduce. You should start with “null” traits in which the decision is random or always the same. You could consider an indirectly-objective-seeking trait such as a simple rule-of-thumb (e.g., “scout whenever age > X”), and a trait that explicitly represents the factors that affect an individual’s chance of meeting its objective.
+
+_Objectives_: The subordinate birds have a clear objective: to become an alpha so they can reproduce. We also know, in this model, what processes affect the likelihood of reaching that objective. If the individual stays at its home territory, all the older birds of its sex must die for the individual to succeed to alpha. If the individual scouts, to succeed it must find a vacant alpha position and it must survive the predation risk of scouting.
+
+_Learning_: The decision trait could change with the individual’s experience. For example, birds could learn things on unsuccessful scouting forays that they use in subsequent decisions. (If you try learning at all, we suggest you start with simpler traits without learning.)
+
+_Prediction_: The decision objective is to attain alpha status, but attain it by when? If you design a decision trait that compares the relative probability of becoming alpha for leaving vs. for staying, the trait must specify a time horizon over which that probability applies. Evaluating these probabilities would require some kind of prediction over the time horizon.
+
+_Sensing_: We assume that birds know nothing about other territories and can sense whether an alpha position is open in another territory only by scouting there. However, it is reasonable to assume that a bird can sense the age and status of the others in its own group.
+
+_Collectives_: The social groups are collectives: their state affects the individual birds, and the behavior of individuals determines the state of the collectives. Because the model’s “territory” entities represent the social groups as well as their space, the model treats behaviors of the social groups (promoting alphas) as territory traits.
+
+_Observation_: In addition to visual displays to observe individual behavior, the model’s software must produce outputs that allow you to test how well it reproduces the three characteristic patterns identified in Section 19.4.2. Hence, it must output the group size distribution illustrated in Figure 19 2, the mean age (over all months of the entire simulation) of subordinate adult birds that do vs. do not make scouting forays, and the total number of forays made by month.
+
+To reduce the effects of initial conditions on simulation experiment results, the first two simulated years are excluded from the observations used for model analysis.
+
+## 5. Initialization
+Simulations start at January (month 1). Every territory starts with two male and two female birds, with ages chosen randomly from a uniform distribution of 1 to 24 months. The oldest of each sex becomes alpha. 
+
+## 6. Input
+The model does not use any external input.
+
+## 7. Submodels
+### Scouting decision
+This submodel is executed by individual subordinate adult woodhoopoes to decide whether to search for a new territory where they would become an alpha individual. The decision has two simple steps:
+
+  1. If there are no older subordinate adults of the same sex in the current territory, then do not scout.
+
+  2. Otherwise, decide whether to scout via a random Bernoulli trial with probability of scouting equal to the parameter _scouting-prob_.]]></info>
+  <turtleShapes>
+    <shape name="default" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="5"></point>
+        <point x="40" y="250"></point>
+        <point x="150" y="205"></point>
+        <point x="260" y="250"></point>
+      </polygon>
+    </shape>
+    <shape name="airplane" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="0"></point>
+        <point x="135" y="15"></point>
+        <point x="120" y="60"></point>
+        <point x="120" y="105"></point>
+        <point x="15" y="165"></point>
+        <point x="15" y="195"></point>
+        <point x="120" y="180"></point>
+        <point x="135" y="240"></point>
+        <point x="105" y="270"></point>
+        <point x="120" y="285"></point>
+        <point x="150" y="270"></point>
+        <point x="180" y="285"></point>
+        <point x="210" y="270"></point>
+        <point x="165" y="240"></point>
+        <point x="180" y="180"></point>
+        <point x="285" y="195"></point>
+        <point x="285" y="165"></point>
+        <point x="180" y="105"></point>
+        <point x="180" y="60"></point>
+        <point x="165" y="15"></point>
+      </polygon>
+    </shape>
+    <shape name="arrow" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="0"></point>
+        <point x="0" y="150"></point>
+        <point x="105" y="150"></point>
+        <point x="105" y="293"></point>
+        <point x="195" y="293"></point>
+        <point x="195" y="150"></point>
+        <point x="300" y="150"></point>
+      </polygon>
+    </shape>
+    <shape name="box" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="285"></point>
+        <point x="285" y="225"></point>
+        <point x="285" y="75"></point>
+        <point x="150" y="135"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="135"></point>
+        <point x="15" y="75"></point>
+        <point x="150" y="15"></point>
+        <point x="285" y="75"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="15" y="75"></point>
+        <point x="15" y="225"></point>
+        <point x="150" y="285"></point>
+        <point x="150" y="135"></point>
+      </polygon>
+      <line endX="150" startY="285" marked="false" color="255" endY="135" startX="150"></line>
+      <line endX="15" startY="135" marked="false" color="255" endY="75" startX="150"></line>
+      <line endX="285" startY="135" marked="false" color="255" endY="75" startX="150"></line>
+    </shape>
+    <shape name="bug" rotatable="true" editableColorIndex="0">
+      <circle x="96" y="182" marked="true" color="-1920102913" diameter="108" filled="true"></circle>
+      <circle x="110" y="127" marked="true" color="-1920102913" diameter="80" filled="true"></circle>
+      <circle x="110" y="75" marked="true" color="-1920102913" diameter="80" filled="true"></circle>
+      <line endX="80" startY="100" marked="true" color="-1920102913" endY="30" startX="150"></line>
+      <line endX="220" startY="100" marked="true" color="-1920102913" endY="30" startX="150"></line>
+    </shape>
+    <shape name="butterfly" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="165"></point>
+        <point x="209" y="199"></point>
+        <point x="225" y="225"></point>
+        <point x="225" y="255"></point>
+        <point x="195" y="270"></point>
+        <point x="165" y="255"></point>
+        <point x="150" y="240"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="165"></point>
+        <point x="89" y="198"></point>
+        <point x="75" y="225"></point>
+        <point x="75" y="255"></point>
+        <point x="105" y="270"></point>
+        <point x="135" y="255"></point>
+        <point x="150" y="240"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="139" y="148"></point>
+        <point x="100" y="105"></point>
+        <point x="55" y="90"></point>
+        <point x="25" y="90"></point>
+        <point x="10" y="105"></point>
+        <point x="10" y="135"></point>
+        <point x="25" y="180"></point>
+        <point x="40" y="195"></point>
+        <point x="85" y="194"></point>
+        <point x="139" y="163"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="162" y="150"></point>
+        <point x="200" y="105"></point>
+        <point x="245" y="90"></point>
+        <point x="275" y="90"></point>
+        <point x="290" y="105"></point>
+        <point x="290" y="135"></point>
+        <point x="275" y="180"></point>
+        <point x="260" y="195"></point>
+        <point x="215" y="195"></point>
+        <point x="162" y="165"></point>
+      </polygon>
+      <polygon color="255" filled="true" marked="false">
+        <point x="150" y="255"></point>
+        <point x="135" y="225"></point>
+        <point x="120" y="150"></point>
+        <point x="135" y="120"></point>
+        <point x="150" y="105"></point>
+        <point x="165" y="120"></point>
+        <point x="180" y="150"></point>
+        <point x="165" y="225"></point>
+      </polygon>
+      <circle x="135" y="90" marked="false" color="255" diameter="30" filled="true"></circle>
+      <line endX="195" startY="105" marked="false" color="255" endY="60" startX="150"></line>
+      <line endX="105" startY="105" marked="false" color="255" endY="60" startX="150"></line>
+    </shape>
+    <shape name="car" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="300" y="180"></point>
+        <point x="279" y="164"></point>
+        <point x="261" y="144"></point>
+        <point x="240" y="135"></point>
+        <point x="226" y="132"></point>
+        <point x="213" y="106"></point>
+        <point x="203" y="84"></point>
+        <point x="185" y="63"></point>
+        <point x="159" y="50"></point>
+        <point x="135" y="50"></point>
+        <point x="75" y="60"></point>
+        <point x="0" y="150"></point>
+        <point x="0" y="165"></point>
+        <point x="0" y="225"></point>
+        <point x="300" y="225"></point>
+        <point x="300" y="180"></point>
+      </polygon>
+      <circle x="180" y="180" marked="false" color="255" diameter="90" filled="true"></circle>
+      <circle x="30" y="180" marked="false" color="255" diameter="90" filled="true"></circle>
+      <polygon color="255" filled="true" marked="false">
+        <point x="162" y="80"></point>
+        <point x="132" y="78"></point>
+        <point x="134" y="135"></point>
+        <point x="209" y="135"></point>
+        <point x="194" y="105"></point>
+        <point x="189" y="96"></point>
+        <point x="180" y="89"></point>
+      </polygon>
+      <circle x="47" y="195" marked="true" color="-1920102913" diameter="58" filled="true"></circle>
+      <circle x="195" y="195" marked="true" color="-1920102913" diameter="58" filled="true"></circle>
+    </shape>
+    <shape name="circle" rotatable="false" editableColorIndex="0">
+      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
+    </shape>
+    <shape name="circle 2" rotatable="false" editableColorIndex="0">
+      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
+      <circle x="30" y="30" marked="false" color="255" diameter="240" filled="true"></circle>
+    </shape>
+    <shape name="cow" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="200" y="193"></point>
+        <point x="197" y="249"></point>
+        <point x="179" y="249"></point>
+        <point x="177" y="196"></point>
+        <point x="166" y="187"></point>
+        <point x="140" y="189"></point>
+        <point x="93" y="191"></point>
+        <point x="78" y="179"></point>
+        <point x="72" y="211"></point>
+        <point x="49" y="209"></point>
+        <point x="48" y="181"></point>
+        <point x="37" y="149"></point>
+        <point x="25" y="120"></point>
+        <point x="25" y="89"></point>
+        <point x="45" y="72"></point>
+        <point x="103" y="84"></point>
+        <point x="179" y="75"></point>
+        <point x="198" y="76"></point>
+        <point x="252" y="64"></point>
+        <point x="272" y="81"></point>
+        <point x="293" y="103"></point>
+        <point x="285" y="121"></point>
+        <point x="255" y="121"></point>
+        <point x="242" y="118"></point>
+        <point x="224" y="167"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="73" y="210"></point>
+        <point x="86" y="251"></point>
+        <point x="62" y="249"></point>
+        <point x="48" y="208"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="25" y="114"></point>
+        <point x="16" y="195"></point>
+        <point x="9" y="204"></point>
+        <point x="23" y="213"></point>
+        <point x="25" y="200"></point>
+        <point x="39" y="123"></point>
+      </polygon>
+    </shape>
+    <shape name="cylinder" rotatable="false" editableColorIndex="0">
+      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
+    </shape>
+    <shape name="dot" rotatable="false" editableColorIndex="0">
+      <circle x="90" y="90" marked="true" color="-1920102913" diameter="120" filled="true"></circle>
+    </shape>
+    <shape name="face happy" rotatable="false" editableColorIndex="0">
+      <circle x="8" y="8" marked="true" color="-1920102913" diameter="285" filled="true"></circle>
+      <circle x="60" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <circle x="180" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <polygon color="255" filled="true" marked="false">
+        <point x="150" y="255"></point>
+        <point x="90" y="239"></point>
+        <point x="62" y="213"></point>
+        <point x="47" y="191"></point>
+        <point x="67" y="179"></point>
+        <point x="90" y="203"></point>
+        <point x="109" y="218"></point>
+        <point x="150" y="225"></point>
+        <point x="192" y="218"></point>
+        <point x="210" y="203"></point>
+        <point x="227" y="181"></point>
+        <point x="251" y="194"></point>
+        <point x="236" y="217"></point>
+        <point x="212" y="240"></point>
+      </polygon>
+    </shape>
+    <shape name="face neutral" rotatable="false" editableColorIndex="0">
+      <circle x="8" y="7" marked="true" color="-1920102913" diameter="285" filled="true"></circle>
+      <circle x="60" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <circle x="180" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <rectangle endX="240" startY="195" marked="false" color="255" endY="225" startX="60" filled="true"></rectangle>
+    </shape>
+    <shape name="face sad" rotatable="false" editableColorIndex="0">
+      <circle x="8" y="8" marked="true" color="-1920102913" diameter="285" filled="true"></circle>
+      <circle x="60" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <circle x="180" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <polygon color="255" filled="true" marked="false">
+        <point x="150" y="168"></point>
+        <point x="90" y="184"></point>
+        <point x="62" y="210"></point>
+        <point x="47" y="232"></point>
+        <point x="67" y="244"></point>
+        <point x="90" y="220"></point>
+        <point x="109" y="205"></point>
+        <point x="150" y="198"></point>
+        <point x="192" y="205"></point>
+        <point x="210" y="220"></point>
+        <point x="227" y="242"></point>
+        <point x="251" y="229"></point>
+        <point x="236" y="206"></point>
+        <point x="212" y="183"></point>
+      </polygon>
+    </shape>
+    <shape name="fish" rotatable="false" editableColorIndex="0">
+      <polygon color="-1" filled="true" marked="false">
+        <point x="44" y="131"></point>
+        <point x="21" y="87"></point>
+        <point x="15" y="86"></point>
+        <point x="0" y="120"></point>
+        <point x="15" y="150"></point>
+        <point x="0" y="180"></point>
+        <point x="13" y="214"></point>
+        <point x="20" y="212"></point>
+        <point x="45" y="166"></point>
+      </polygon>
+      <polygon color="-1" filled="true" marked="false">
+        <point x="135" y="195"></point>
+        <point x="119" y="235"></point>
+        <point x="95" y="218"></point>
+        <point x="76" y="210"></point>
+        <point x="46" y="204"></point>
+        <point x="60" y="165"></point>
+      </polygon>
+      <polygon color="-1" filled="true" marked="false">
+        <point x="75" y="45"></point>
+        <point x="83" y="77"></point>
+        <point x="71" y="103"></point>
+        <point x="86" y="114"></point>
+        <point x="166" y="78"></point>
+        <point x="135" y="60"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="30" y="136"></point>
+        <point x="151" y="77"></point>
+        <point x="226" y="81"></point>
+        <point x="280" y="119"></point>
+        <point x="292" y="146"></point>
+        <point x="292" y="160"></point>
+        <point x="287" y="170"></point>
+        <point x="270" y="195"></point>
+        <point x="195" y="210"></point>
+        <point x="151" y="212"></point>
+        <point x="30" y="166"></point>
+      </polygon>
+      <circle x="215" y="106" marked="false" color="255" diameter="30" filled="true"></circle>
+    </shape>
+    <shape name="flag" rotatable="false" editableColorIndex="0">
+      <rectangle endX="75" startY="15" marked="true" color="-1920102913" endY="300" startX="60" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="90" y="150"></point>
+        <point x="270" y="90"></point>
+        <point x="90" y="30"></point>
+      </polygon>
+      <line endX="90" startY="135" marked="true" color="-1920102913" endY="135" startX="75"></line>
+      <line endX="90" startY="45" marked="true" color="-1920102913" endY="45" startX="75"></line>
+    </shape>
+    <shape name="flower" rotatable="false" editableColorIndex="0">
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="135" y="120"></point>
+        <point x="165" y="165"></point>
+        <point x="180" y="210"></point>
+        <point x="180" y="240"></point>
+        <point x="150" y="300"></point>
+        <point x="165" y="300"></point>
+        <point x="195" y="240"></point>
+        <point x="195" y="195"></point>
+        <point x="165" y="135"></point>
+      </polygon>
+      <circle x="85" y="132" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="130" y="147" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="192" y="85" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="85" y="40" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="177" y="40" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="177" y="132" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="70" y="85" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="130" y="25" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="96" y="51" marked="true" color="-1920102913" diameter="108" filled="true"></circle>
+      <circle x="113" y="68" marked="false" color="255" diameter="74" filled="true"></circle>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="189" y="233"></point>
+        <point x="219" y="188"></point>
+        <point x="249" y="173"></point>
+        <point x="279" y="188"></point>
+        <point x="234" y="218"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="180" y="255"></point>
+        <point x="150" y="210"></point>
+        <point x="105" y="210"></point>
+        <point x="75" y="240"></point>
+        <point x="135" y="240"></point>
+      </polygon>
+    </shape>
+    <shape name="house" rotatable="false" editableColorIndex="0">
+      <rectangle endX="255" startY="120" marked="true" color="-1920102913" endY="285" startX="45" filled="true"></rectangle>
+      <rectangle endX="180" startY="210" marked="false" color="255" endY="285" startX="120" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="15" y="120"></point>
+        <point x="150" y="15"></point>
+        <point x="285" y="120"></point>
+      </polygon>
+      <line endX="270" startY="120" marked="false" color="255" endY="120" startX="30"></line>
+    </shape>
+    <shape name="leaf" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="210"></point>
+        <point x="135" y="195"></point>
+        <point x="120" y="210"></point>
+        <point x="60" y="210"></point>
+        <point x="30" y="195"></point>
+        <point x="60" y="180"></point>
+        <point x="60" y="165"></point>
+        <point x="15" y="135"></point>
+        <point x="30" y="120"></point>
+        <point x="15" y="105"></point>
+        <point x="40" y="104"></point>
+        <point x="45" y="90"></point>
+        <point x="60" y="90"></point>
+        <point x="90" y="105"></point>
+        <point x="105" y="120"></point>
+        <point x="120" y="120"></point>
+        <point x="105" y="60"></point>
+        <point x="120" y="60"></point>
+        <point x="135" y="30"></point>
+        <point x="150" y="15"></point>
+        <point x="165" y="30"></point>
+        <point x="180" y="60"></point>
+        <point x="195" y="60"></point>
+        <point x="180" y="120"></point>
+        <point x="195" y="120"></point>
+        <point x="210" y="105"></point>
+        <point x="240" y="90"></point>
+        <point x="255" y="90"></point>
+        <point x="263" y="104"></point>
+        <point x="285" y="105"></point>
+        <point x="270" y="120"></point>
+        <point x="285" y="135"></point>
+        <point x="240" y="165"></point>
+        <point x="240" y="180"></point>
+        <point x="270" y="195"></point>
+        <point x="240" y="210"></point>
+        <point x="180" y="210"></point>
+        <point x="165" y="195"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="195"></point>
+        <point x="135" y="240"></point>
+        <point x="120" y="255"></point>
+        <point x="105" y="255"></point>
+        <point x="105" y="285"></point>
+        <point x="135" y="285"></point>
+        <point x="165" y="240"></point>
+        <point x="165" y="195"></point>
+      </polygon>
+    </shape>
+    <shape name="line" rotatable="true" editableColorIndex="0">
+      <line endX="150" startY="0" marked="true" color="-1920102913" endY="300" startX="150"></line>
+    </shape>
+    <shape name="line half" rotatable="true" editableColorIndex="0">
+      <line endX="150" startY="0" marked="true" color="-1920102913" endY="150" startX="150"></line>
+    </shape>
+    <shape name="pentagon" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="15"></point>
+        <point x="15" y="120"></point>
+        <point x="60" y="285"></point>
+        <point x="240" y="285"></point>
+        <point x="285" y="120"></point>
+      </polygon>
+    </shape>
+    <shape name="person" rotatable="false" editableColorIndex="0">
+      <circle x="110" y="5" marked="true" color="-1920102913" diameter="80" filled="true"></circle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="105" y="90"></point>
+        <point x="120" y="195"></point>
+        <point x="90" y="285"></point>
+        <point x="105" y="300"></point>
+        <point x="135" y="300"></point>
+        <point x="150" y="225"></point>
+        <point x="165" y="300"></point>
+        <point x="195" y="300"></point>
+        <point x="210" y="285"></point>
+        <point x="180" y="195"></point>
+        <point x="195" y="90"></point>
+      </polygon>
+      <rectangle endX="172" startY="79" marked="true" color="-1920102913" endY="94" startX="127" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="195" y="90"></point>
+        <point x="240" y="150"></point>
+        <point x="225" y="180"></point>
+        <point x="165" y="105"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="105" y="90"></point>
+        <point x="60" y="150"></point>
+        <point x="75" y="180"></point>
+        <point x="135" y="105"></point>
+      </polygon>
+    </shape>
+    <shape name="plant" rotatable="false" editableColorIndex="0">
+      <rectangle endX="165" startY="90" marked="true" color="-1920102913" endY="300" startX="135" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="255"></point>
+        <point x="90" y="210"></point>
+        <point x="45" y="195"></point>
+        <point x="75" y="255"></point>
+        <point x="135" y="285"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="165" y="255"></point>
+        <point x="210" y="210"></point>
+        <point x="255" y="195"></point>
+        <point x="225" y="255"></point>
+        <point x="165" y="285"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="180"></point>
+        <point x="90" y="135"></point>
+        <point x="45" y="120"></point>
+        <point x="75" y="180"></point>
+        <point x="135" y="210"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="165" y="180"></point>
+        <point x="165" y="210"></point>
+        <point x="225" y="180"></point>
+        <point x="255" y="120"></point>
+        <point x="210" y="135"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="105"></point>
+        <point x="90" y="60"></point>
+        <point x="45" y="45"></point>
+        <point x="75" y="105"></point>
+        <point x="135" y="135"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="165" y="105"></point>
+        <point x="165" y="135"></point>
+        <point x="225" y="105"></point>
+        <point x="255" y="45"></point>
+        <point x="210" y="60"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="90"></point>
+        <point x="120" y="45"></point>
+        <point x="150" y="15"></point>
+        <point x="180" y="45"></point>
+        <point x="165" y="90"></point>
+      </polygon>
+    </shape>
+    <shape name="sheep" rotatable="false" editableColorIndex="0">
+      <rectangle endX="180" startY="225" marked="true" color="-1920102913" endY="285" startX="151" filled="true"></rectangle>
+      <rectangle endX="75" startY="225" marked="true" color="-1920102913" endY="285" startX="47" filled="true"></rectangle>
+      <rectangle endX="210" startY="75" marked="true" color="-1920102913" endY="225" startX="15" filled="true"></rectangle>
+      <circle x="135" y="75" marked="true" color="-1920102913" diameter="150" filled="true"></circle>
+      <circle x="165" y="76" marked="false" color="255" diameter="116" filled="true"></circle>
+    </shape>
+    <shape name="square" rotatable="false" editableColorIndex="0">
+      <rectangle endX="270" startY="30" marked="true" color="-1920102913" endY="270" startX="30" filled="true"></rectangle>
+    </shape>
+    <shape name="square 2" rotatable="false" editableColorIndex="0">
+      <rectangle endX="270" startY="30" marked="true" color="-1920102913" endY="270" startX="30" filled="true"></rectangle>
+      <rectangle endX="240" startY="60" marked="false" color="255" endY="240" startX="60" filled="true"></rectangle>
+    </shape>
+    <shape name="star" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="151" y="1"></point>
+        <point x="185" y="108"></point>
+        <point x="298" y="108"></point>
+        <point x="207" y="175"></point>
+        <point x="242" y="282"></point>
+        <point x="151" y="216"></point>
+        <point x="59" y="282"></point>
+        <point x="94" y="175"></point>
+        <point x="3" y="108"></point>
+        <point x="116" y="108"></point>
+      </polygon>
+    </shape>
+    <shape name="target" rotatable="false" editableColorIndex="0">
+      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
+      <circle x="30" y="30" marked="false" color="255" diameter="240" filled="true"></circle>
+      <circle x="60" y="60" marked="true" color="-1920102913" diameter="180" filled="true"></circle>
+      <circle x="90" y="90" marked="false" color="255" diameter="120" filled="true"></circle>
+      <circle x="120" y="120" marked="true" color="-1920102913" diameter="60" filled="true"></circle>
+    </shape>
+    <shape name="tree" rotatable="false" editableColorIndex="0">
+      <circle x="118" y="3" marked="true" color="-1920102913" diameter="94" filled="true"></circle>
+      <rectangle endX="180" startY="195" marked="false" color="-1653716737" endY="300" startX="120" filled="true"></rectangle>
+      <circle x="65" y="21" marked="true" color="-1920102913" diameter="108" filled="true"></circle>
+      <circle x="116" y="41" marked="true" color="-1920102913" diameter="127" filled="true"></circle>
+      <circle x="45" y="90" marked="true" color="-1920102913" diameter="120" filled="true"></circle>
+      <circle x="104" y="74" marked="true" color="-1920102913" diameter="152" filled="true"></circle>
+    </shape>
+    <shape name="triangle" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="30"></point>
+        <point x="15" y="255"></point>
+        <point x="285" y="255"></point>
+      </polygon>
+    </shape>
+    <shape name="triangle 2" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="30"></point>
+        <point x="15" y="255"></point>
+        <point x="285" y="255"></point>
+      </polygon>
+      <polygon color="255" filled="true" marked="false">
+        <point x="151" y="99"></point>
+        <point x="225" y="223"></point>
+        <point x="75" y="224"></point>
+      </polygon>
+    </shape>
+    <shape name="truck" rotatable="false" editableColorIndex="0">
+      <rectangle endX="195" startY="45" marked="true" color="-1920102913" endY="187" startX="4" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="296" y="193"></point>
+        <point x="296" y="150"></point>
+        <point x="259" y="134"></point>
+        <point x="244" y="104"></point>
+        <point x="208" y="104"></point>
+        <point x="207" y="194"></point>
+      </polygon>
+      <rectangle endX="195" startY="60" marked="false" color="-1" endY="105" startX="195" filled="true"></rectangle>
+      <polygon color="255" filled="true" marked="false">
+        <point x="238" y="112"></point>
+        <point x="252" y="141"></point>
+        <point x="219" y="141"></point>
+        <point x="218" y="112"></point>
+      </polygon>
+      <circle x="234" y="174" marked="false" color="255" diameter="42" filled="true"></circle>
+      <rectangle endX="214" startY="185" marked="true" color="-1920102913" endY="194" startX="181" filled="true"></rectangle>
+      <circle x="144" y="174" marked="false" color="255" diameter="42" filled="true"></circle>
+      <circle x="24" y="174" marked="false" color="255" diameter="42" filled="true"></circle>
+      <circle x="24" y="174" marked="true" color="-1920102913" diameter="42" filled="false"></circle>
+      <circle x="144" y="174" marked="true" color="-1920102913" diameter="42" filled="false"></circle>
+      <circle x="234" y="174" marked="true" color="-1920102913" diameter="42" filled="false"></circle>
+    </shape>
+    <shape name="turtle" rotatable="true" editableColorIndex="0">
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="215" y="204"></point>
+        <point x="240" y="233"></point>
+        <point x="246" y="254"></point>
+        <point x="228" y="266"></point>
+        <point x="215" y="252"></point>
+        <point x="193" y="210"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="195" y="90"></point>
+        <point x="225" y="75"></point>
+        <point x="245" y="75"></point>
+        <point x="260" y="89"></point>
+        <point x="269" y="108"></point>
+        <point x="261" y="124"></point>
+        <point x="240" y="105"></point>
+        <point x="225" y="105"></point>
+        <point x="210" y="105"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="105" y="90"></point>
+        <point x="75" y="75"></point>
+        <point x="55" y="75"></point>
+        <point x="40" y="89"></point>
+        <point x="31" y="108"></point>
+        <point x="39" y="124"></point>
+        <point x="60" y="105"></point>
+        <point x="75" y="105"></point>
+        <point x="90" y="105"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="132" y="85"></point>
+        <point x="134" y="64"></point>
+        <point x="107" y="51"></point>
+        <point x="108" y="17"></point>
+        <point x="150" y="2"></point>
+        <point x="192" y="18"></point>
+        <point x="192" y="52"></point>
+        <point x="169" y="65"></point>
+        <point x="172" y="87"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="85" y="204"></point>
+        <point x="60" y="233"></point>
+        <point x="54" y="254"></point>
+        <point x="72" y="266"></point>
+        <point x="85" y="252"></point>
+        <point x="107" y="210"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="119" y="75"></point>
+        <point x="179" y="75"></point>
+        <point x="209" y="101"></point>
+        <point x="224" y="135"></point>
+        <point x="220" y="225"></point>
+        <point x="175" y="261"></point>
+        <point x="128" y="261"></point>
+        <point x="81" y="224"></point>
+        <point x="74" y="135"></point>
+        <point x="88" y="99"></point>
+      </polygon>
+    </shape>
+    <shape name="wheel" rotatable="false" editableColorIndex="0">
+      <circle x="3" y="3" marked="true" color="-1920102913" diameter="294" filled="true"></circle>
+      <circle x="30" y="30" marked="false" color="255" diameter="240" filled="true"></circle>
+      <line endX="150" startY="285" marked="true" color="-1920102913" endY="15" startX="150"></line>
+      <line endX="285" startY="150" marked="true" color="-1920102913" endY="150" startX="15"></line>
+      <circle x="120" y="120" marked="true" color="-1920102913" diameter="60" filled="true"></circle>
+      <line endX="79" startY="40" marked="true" color="-1920102913" endY="269" startX="216"></line>
+      <line endX="269" startY="84" marked="true" color="-1920102913" endY="221" startX="40"></line>
+      <line endX="269" startY="216" marked="true" color="-1920102913" endY="79" startX="40"></line>
+      <line endX="221" startY="40" marked="true" color="-1920102913" endY="269" startX="84"></line>
+    </shape>
+    <shape name="x" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="270" y="75"></point>
+        <point x="225" y="30"></point>
+        <point x="30" y="225"></point>
+        <point x="75" y="270"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="30" y="75"></point>
+        <point x="75" y="30"></point>
+        <point x="270" y="225"></point>
+        <point x="225" y="270"></point>
+      </polygon>
+    </shape>
+  </turtleShapes>
+  <linkShapes>
+    <shape name="default" curviness="0.0">
+      <lines>
+        <line x="-0.2" visible="false">
+          <dash value="0.0"></dash>
+          <dash value="1.0"></dash>
+        </line>
+        <line x="0.0" visible="true">
+          <dash value="1.0"></dash>
+          <dash value="0.0"></dash>
+        </line>
+        <line x="0.2" visible="false">
+          <dash value="0.0"></dash>
+          <dash value="1.0"></dash>
+        </line>
+      </lines>
+      <indicator>
+        <shape name="link direction" rotatable="true" editableColorIndex="0">
+          <line endX="90" startY="150" marked="true" color="-1920102913" endY="180" startX="150"></line>
+          <line endX="210" startY="150" marked="true" color="-1920102913" endY="180" startX="150"></line>
+        </shape>
+      </indicator>
+    </shape>
+  </linkShapes>
+  <previewCommands>setup repeat 75 [ go ]</previewCommands>
+  <experiments>
+    <experiment name="Calibration" repetitions="1" sequentialRunOrder="true" runMetricsEveryStep="true">
+      <setup>setup</setup>
+      <go>go</go>
+      <metrics>
+        <metric>year</metric>
+        <metric>month</metric>
+        <metric>count turtles</metric>
+        <metric><![CDATA[count patches with [count (turtles-here with [is-alpha?]) < 2]]]></metric>
+      </metrics>
+      <constants>
+        <steppedValueSet variable="scout-prob" first="0" step="0.05" last="0.5"></steppedValueSet>
+        <steppedValueSet variable="survival-prob" first="0.95" step="0.005" last="1"></steppedValueSet>
+      </constants>
+    </experiment>
+  </experiments>
+</model>

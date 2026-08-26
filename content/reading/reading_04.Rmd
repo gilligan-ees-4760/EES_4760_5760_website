@@ -27,7 +27,8 @@ Read carefully through the different design principles. Some of them have meanin
 
 For instance:
 
-* **Adaptation** does not mean a persistent change in a turtle's behavior similar to the biological/Darwinian sense of adaptation in species. Rather, it means the way an agent changes its behavior in response to its _immediate_ conditions. Thus, adaptation in the ODD sense might include behaviors such as eating when you are hungry (_eating_ is an **adaptation** to _hunger_), putting on warmer clothing when it's cold out (bundling up is an adaptation to cold), and running away from a predator.
+* **Adaptation** does not mean a persistent change in a turtle's behavior similar to the biological/Darwinian sense of adaptation in species. Rather, it means the way an agent changes its behavior in response to its _immediate_ conditions. 
+   Thus, adaptation in the ODD sense might include behaviors such as eating when you are hungry (_eating_ is an **adaptation** to _hunger_), putting on warmer clothing when it's cold out (bundling up is an adaptation to cold), and running away from a predator.
 * The kind of persistent changes that arise over time from experience fall under the ODD design concept of **learning**: If there is more food near a river than on hills, turtles may **learn** to go to rivers when they are hungry. 
 
 You can download several useful documents related to the ODD protocol from the class web site:

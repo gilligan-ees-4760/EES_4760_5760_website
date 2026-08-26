@@ -31,5 +31,5 @@ output:
 
 
 
-* Download NetLogo version 6.4.0 from <https://ccl.northwestern.edu/netlogo/> and install it on your computer.
+* Download NetLogo version 7.0 or higher from https://netlogo.org/ and install it on your computer.
 

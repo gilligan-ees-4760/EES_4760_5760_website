@@ -28,7 +28,7 @@ output:
 
 
 * As you read along with Section 2.3, follow along on your computer and build the _Mushroom Hunt_ model by typing in the code shown in the textbook. The whole program is shown on pages 27--29.
-  **Save your model as `mushroom_hunt.nlogo`**.
+  **Save your model as `mushroom_hunt.nlogox`**.
 
   This exercise may seem very simple, but it is the first step toward learning how to program NetLogo and it will be an important first step toward writing your own models.
 
@@ -39,6 +39,10 @@ output:
 ### Notes on Homework:
 
 
-I recommend getting together with a classmate and working together on this assignment. Since the assignment consists of typing code in and running it, do not worry about your work being identical to your partner's. However, I strongly recommend that you type everything in yourself because you will not learn if you just copy someone else's code or download the code from a source on the web.
+This, and future homework assignments will be due on Brightspace on the due-date before midnight (if it's assigned for Wednesday, then before Wednesday turns to Thursday, Nashville time). 
+I am not super-strict about this and will not penalize you if you upload your assignment a little bit after the deadline ("a little bit" means minutes, not hours or days).
 
-If you run into trouble and cannot make your model work, do not worry. Ask a classmate for help, or email me (and attach your `.nlogo` model file), or simply come to class with questions about the problems you had getting your model to work.
+I recommend getting together with a classmate and working together on this assignment. Since the assignment consists of typing code in and running it, do not worry about your work being identical to your partner's. 
+However, I strongly recommend that you type everything in yourself because you will not learn if you just copy someone else's code or download the code from a source on the web.
+
+If you run into trouble and cannot make your model work, do not worry. Ask a classmate for help, or email me (and attach your `.nlogox` model file), or simply come to class with questions about the problems you had getting your model to work.

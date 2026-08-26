@@ -19,6 +19,10 @@ output:
 
 ### Required Reading (everyone):
 
+* Handout: [S.F. Railsback, J. Bliven, V. Grimm, & J. Kelter, "Testing NetLogo model code," _Ecological Modelling_, **520**, 111669 (2026). doi: `10.1016/j.ecolmodel.2026.111669`](/files/reading/Railsback_2026_Testing_NetLogo.pdf){target="_blank"}.
+
+### Optional Extra Reading:
+
 * Agent-Based and Individual-Based Modeling, Ch. 6.
 
 ### Reading Notes:
@@ -66,13 +70,30 @@ those errors a priority in your programming process.
       increasingly requiring that any research funded by their grants must make 
       its code and data available to other researchers and the public.
 
+#### Chapter 6
+
+This chapter in the textbook has been superseded by the new article "Testing NetLogo code". Look briefly over this chapter, but focus on the other article.
+
 **The Cultural Dissemination Model**
 
+Section 6.5 describes a model derived from a famous anthropology paper, 
+R. Axelrod, "The Dissemination of Culture: A Model with Local Convergence and Global Polarization," _J. Conflict Resolution_, **41**, 203--206 (1997).
 The 
-[paper describing the culture dissemination model](/files/models/chapter_06/axelrod_culture_dissemination_1997.pdf)
+[paper](/files/models/chapter_06/axelrod_culture_dissemination_1997.pdf)
 and a 
-[NetLogo model](/files/models/chapter_06/CultureDissemination_Untested.nlogo) 
+[NetLogo model](/files/models/chapter_06/CultureDissemination_Untested.nlogox) 
 that implements the ODD, but with many errors, can be downloaded from the class web site: 
 
-* <https://ees4760.jmgilligan.org/files/models/chapter_06/axelrod_culture_dissemination_1997.pdf>, 
-* and <https://ees4760.jmgilligan.org/files/models/chapter_06/CultureDissemination_Untested.nlogo>.
+* [https://ees4760.jmgilligan.org/files/models/chapter_06/axelrod_culture_dissemination_1997.pdf](/files/models/chapter_06/axelrod_culture_dissemination_1997.pdf), 
+* and [https://ees4760.jmgilligan.org/files/models/chapter_06/CultureDissemination_Untested.nlogox](/files/models/chapter_06/CultureDissemination_Untested.nlogox).
+
+#### Testing NetLogo Article
+
+This article describes the problem that very few researchers apply modern methods of software testing to their agent-based models,
+and proposes a systematic approach to testing models. The paper begins with a taxonomy of different kinds of errors that are 
+commonly found in agent-based models. Then it presents a number of methods for testing models and finding errors.
+
+* You can download [software tools](/files/models/railsback_testing/Appendices.zip) described in this paper 
+   to help you test your NetLogo models, from the class web site at [https://ees4760.jmgilligan.org/files/models/railsback_testing/Appendices.zip](/files/models/railsback_testing/Appendices.zip).
+* In class, we will work applying these methods to [several example models](/files/models/railsback_testing/class-code.zip), 
+   which you can also download at [https://ees4760.jmgilligan.org/files/models/railsback_testing/class-code.zip](/files/models/railsback_testing/class-code.zip)
