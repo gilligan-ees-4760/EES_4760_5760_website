@@ -9,4 +9,4 @@ output: html_document
 ---
 # Demonstration model for links
 
-* [Link demo model](/models/class_11/link_demo.nlogo)
+* [Link demo model](/models/class_11/link_demo.nlogox)

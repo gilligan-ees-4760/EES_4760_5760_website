@@ -11,6 +11,6 @@ output: html_document
 
 * [class_21_models.zip](/models/class_21/class_21_models.zip), which contains:
   * Wood Hoopoe model: 
-    * NetLogo model: [wood_hoopoe_class_21.nlogo](/models/class_21/wood_hoopoe_class_21.nlogo)
+    * NetLogo model: [wood_hoopoe_class_21.nlogox](/models/class_21/wood_hoopoe_class_21.nlogox)
     * ODD:  [wood_hoopoe_odd.pdf](/models/class_21/wood_hoopoe_odd.pdf)
-    * NetLogo model with alternate strategies: [wood_hoopoe_strategies.nlogo](/models/class_21/wood_hoopoe_strategies.nlogo)
+    * NetLogo model with alternate strategies: [wood_hoopoe_strategies.nlogox](/models/class_21/wood_hoopoe_strategies.nlogox)

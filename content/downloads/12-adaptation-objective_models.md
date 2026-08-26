@@ -9,9 +9,9 @@ output: html_document
 ---
 ## Modified business-investor model for testing different objectives and decision strategies
 
-* [Modified Business Investor Model](/models/class_12/business-investor.nlogo)
+* [Modified Business Investor Model](/models/class_12/business-investor.nlogox)
 
-  <https://ees4760.jmgilligan.org/models/class_12/business-investor.nlogo>
+  <https://ees4760.jmgilligan.org/models/class_12/business-investor.nlogox>
 * [Behaviorspace Experiment Results](/models/class_12/business-investor-experiments.zip)
 
   <https://ees4760.jmgilligan.org/models/class_12/business-investor-experiments.zip>

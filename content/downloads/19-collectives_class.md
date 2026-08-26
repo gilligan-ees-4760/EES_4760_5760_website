@@ -11,7 +11,7 @@ output: html_document
 
 * [class_19_models.zip](/models/class_19/class_19_models.zip), which contains:
   * Wild-dog model: 
-    * NetLogo model: [wild_dogs.nlogo](/models/class_19/wild_dogs.nlogo)
+    * NetLogo model: [wild_dogs.nlogox](/models/class_19/wild_dogs.nlogox)
     * ODD:  [wild_dog_odd.pdf](/models/class_19/wild_dog_odd.pdf)
   * Behaviorspace output:
     * Varying initialization (number and size of packs at beginning): 

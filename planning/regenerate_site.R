@@ -49,27 +49,28 @@ init_git_tokens <- function(keyring = "git_access") {
 }
 
 config_cred <- function(val, lbl, repo) {
+  url <- gert::git_remote_info(lbl, repo)$url
+  retval <- NULL
+  message("config_cred: url = ", url)
   if(val) {
     if (.Platform$OS.type == "windows") {
       home_dir <- Sys.getenv("USERPROFILE")
     } else {
       home_dir <- path.expand("~")
     }
-    url <- gert::git_remote_info(lbl, repo)$url
     key_path <- NULL
-    # message("url = ", url)
-    if (str_starts(url, fixed("git@github.com"))) {
+    if (str_starts(url, "(git@github\\.com|github[_-]com):")) {
       key_path <- file.path(home_dir, ".ssh", "github.com",
                             "id_ed25519_gh")
-    } else if (str_starts(url, fixed("git@gitlab.com"))) {
+    } else if (str_starts(url, "(git@gitlab\\.com|gitlab[_-]com):")) {
       key_path <- file.path(home_dir, ".ssh", "gitlab.com",
                             "id_ed25519_gl_com")
-    } else if (str_starts(url, fixed("git@gitlab.jmgilligan.org"))) {
+    } else if (str_starts(url, "(git@gitlab.jmgilligan.org|jm?g[_-]gitlab):")) {
       key_path <- file.path(home_dir, ".ssh", "jmg-gitlab", "id_ed25519")
     }
     if (! is.null(key_path)) {
-      # message("key_path = ", key_path)
-      structure(list(
+      message("key_path = ", key_path)
+      retval <- structure(list(
         publickey = normalizePath(str_c(key_path, ".pub"),
                                   mustWork = TRUE),
         privatekey = normalizePath(key_path, mustWork = TRUE),
@@ -87,9 +88,15 @@ config_cred <- function(val, lbl, repo) {
     } else if (str_starts(url, fixed("https://gitlab.jmgilligan.org"))) {
       token = "GITLAB_PAT"
     }
-    structure(list(token = Sys.getenv(token)),
-              class = "cred_token")
+    message("  token = ", token)
+    retval <- structure(list(token = Sys.getenv(token)),
+                        class = "cred_token")
   }
+
+ # message("return: class = ", str_c(class(retval), collapse = ", "),
+ #          ";  value = ", retval)
+
+  retval
 }
 
 process_cred <- function(cred) {
@@ -102,6 +109,7 @@ process_cred <- function(cred) {
 }
 
 get_cred <- function(val, lbl, repo) {
+  // message("get_cred: val = ", val, ", lbl = ", lbl, ", repo = ", repo)
   process_cred(config_cred(val, lbl, repo))
 }
 
@@ -110,7 +118,7 @@ publish <- function(ssh = NULL, repo = ".") {
 
   if (is.null(ssh)) {
     remotes <- c("origin", "publish")
-    pattern <- "^git@([a-zA-Z][a-zA-Z0-9_\\-.]+):"
+    pattern <- "^(git@([a-zA-Z][a-zA-Z0-9_\\-.]+)|[a-zA-Z0-9_-]+):[^/]"
     ssh <- map_lgl(remotes,
                    ~str_detect(gert::git_remote_info(.x, repo)$url,
                                pattern)) %>%

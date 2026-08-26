@@ -10,4 +10,4 @@ output: html_document
 # Schelling Segregation Model for In-Class Analysis Exercise
 
 * [class_24_models.zip](/models/class_24/class_24_models.zip), which contains:
-  * Schelling segregation model: [segregation.nlogo](/models/class_24/segregation.nlogo)
+  * Schelling segregation model: [segregation.nlogox](/models/class_24/segregation.nlogox)

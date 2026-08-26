@@ -14,14 +14,14 @@ output: html_document
   
 ### Or individual files
 
-* A [butterfly model](/models/class_06/butterfly_class_06a.nlogo) 
+* A [butterfly model](/models/class_06/butterfly_class_06a.nlogox) 
   from Chapter 5:<br/>
-  <https://ees4760.jmgilligan.org/models/class_06/butterfly_class_06a.nlogo>
-* A [version of the butterfly model](/models/class_06/butterfly_class_06b.nlogo) 
+  <https://ees4760.jmgilligan.org/models/class_06/butterfly_class_06a.nlogox>
+* A [version of the butterfly model](/models/class_06/butterfly_class_06b.nlogox) 
   with modifications:<br/>
-  <https://ees4760.jmgilligan.org/models/class_06/butterfly_class_06b.nlogo>
+  <https://ees4760.jmgilligan.org/models/class_06/butterfly_class_06b.nlogox>
 * Versions of the butterfly model with code for testing:<br/>
-  * <https://ees4760.jmgilligan.org/models/class_06/butterfly_class_06c.nlogo>
-  * <https://ees4760.jmgilligan.org/models/class_06/butterfly_class_06c_testing.nlogo> 
+  * <https://ees4760.jmgilligan.org/models/class_06/butterfly_class_06c.nlogox>
+  * <https://ees4760.jmgilligan.org/models/class_06/butterfly_class_06c_testing.nlogox> 
 * A [digital elevation map](/models/class_06/ElevationData.txt) of real hills<br/>
   <https://ees4760.jmgilligan.org/models/class_06/ElevationData.txt>

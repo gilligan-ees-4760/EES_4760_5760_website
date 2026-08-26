@@ -9,9 +9,9 @@ output: html_document
 ---
 # Updated Butterfly Model
 
-* [Butterfly model](/models/class_07/butterfly_class_7.nlogo) 
+* [Butterfly model](/models/class_07/butterfly_class_7.nlogox) 
   for optimizing _q_ to maximize mating
-  <https://ees4760.jmgilligan.org/models/class_07/butterfly_class_7.nlogo>
+  <https://ees4760.jmgilligan.org/models/class_07/butterfly_class_7.nlogox>
 * [Elevation data](/models/class_07/ElevationData.txt) for Butterfly model
   <https://ees4760.jmgilligan.org/models/class_07/ElevationData.txt>
 * [BehaviorSpace output](/models/class_07/butterfly_class_7%20optimize-mating-table.csv)

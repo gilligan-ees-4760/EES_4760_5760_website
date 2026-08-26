@@ -154,14 +154,14 @@ modeling experiments.
 
 For this class, we will write and execute agent-based models using the NetLogo 
 modeling system. NetLogo is free software developed at Northwestern University. 
-You can download it from {{% NETLOGO_URL %}}.
+You can download it from {{% NETLOGO_LINK %}}.
 NetLogo is available for Windows, Mac OS X, and Linux.
 I have chosen it for this course because it is free, it runs on all the major 
 operating systems, its programming language is very easy to learn; and it 
 allows you to easily create a visual representation of your model.
 
 You should download {{% NETLOGO %}} version {{% NETLOGO_VERSION %}} from 
-{{% NETLOGO_DOWNLOAD_URL %}}
+{{% NETLOGO_DOWNLOAD_LINK %}}
 and install it on your computer.
 
 {{% NETLOGO %}} has been used widely both for education and also for 

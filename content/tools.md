@@ -8,14 +8,14 @@ title: Tools
 
 ### Get Started!
 
-1. [Install {{<NETLOGO>}}](https://ccl.northwestern.edu/netlogo/download.shtml)
-2. [Read the {{<NETLOGO>}} User Manual](https://ccl.northwestern.edu/netlogo/docs/)
-3. [Explore tutorials at OpenABM](https://www.comses.net/resources/education/)
+1. [Install {{<NETLOGO>}}]({{<NETLOGO_URL>}})
+2. [Read the {{<NETLOGO>}} User Manual]({{<NETLOGO_DOCS_URL>}})
+3. [Explore tutorials at OpenABM](https://www.comses.net/education/)
 
 ### Explore Published Models
 
 1. [The OpenABM Library](https://www.comses.net/codebases/)
-2. [{{<NETLOGO>}} User Community Models](https://ccl.northwestern.edu/netlogo/models/community/)
+2. [{{<NETLOGO>}} User Community Resources](https://www.netlogo.org/resources/)
 3. [{{<NETLOGO>}} Modeling Commons](https://modelingcommons.org/)
 
 ## Analyze Behaviorspace Tool

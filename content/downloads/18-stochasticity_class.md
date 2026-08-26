@@ -11,4 +11,4 @@ output: html_document
 
 * [class_18_models.zip](/models/class_18/class_18_models.zip), which contains:
   * Stochastic Business-Investor model: 
-    * NetLogo model: [business_investor_class_18.nlogo](/models/class_18/business_investor_class_18.nlogo)
+    * NetLogo model: [business_investor_class_18.nlogox](/models/class_18/business_investor_class_18.nlogox)

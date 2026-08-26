@@ -5,7 +5,7 @@ weight: 20
 date: "2025-08-25"
 due_date: "2025-08-25"
 pubdate: "2019-08-22"
-download_link: "/files/reading/Tyson_Artificial_Societies_1997.pdf"
+download_link: "/files/reading/Tyson_1997_Artificial_Societies.pdf"
 descr: "Reading for Aug. 25."
 output: html_document
 ---

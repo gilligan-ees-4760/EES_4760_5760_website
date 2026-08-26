@@ -10,11 +10,11 @@ output: html_document
 # Butterfly Model for In-Class Exercises on Sept. 3
  
 * Download the 
-  [Basic Butterfly Model](/models/class_05/butterfly_model_class_5.nlogo)
+  [Basic Butterfly Model](/models/class_05/butterfly_model_class_5.nlogox)
 
 
 * Download the 
-  [Enhanced Butterfly Model](/models/class_05/enhanced_butterfly_model_class_5.nlogo)
+  [Enhanced Butterfly Model](/models/class_05/enhanced_butterfly_model_class_5.nlogox)
   that we wrote in class.
   
   I have made a few changes to the enhanced model that are different from what
