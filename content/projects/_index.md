@@ -16,7 +16,7 @@ Your write-up will be due on to Brightspace on Friday, Oct. 17.
 
 ### In-Class Presentations:
 
-> For class on Wednesday October 9, you and your partner will give a 
+> For class on Thursday, October 15, you and your partner will give a 
 > short presentation for the class in which you describe the problem, 
 > discuss any interesting obstacles of problems you encountered in 
 > coding the model and how you fixed them (or why you couldn???t fix 
@@ -37,7 +37,7 @@ Your write-up will be due on to Brightspace on Friday, Oct. 17.
 
 ### Written Report
 
-> By the end of the day (before midnight) on Friday October 17, 
+> By the end of the day (before midnight) on Monday, October 26, 
 > upload a written report to Brightspace on the procedures, results, 
 > and interpretation of the textbook exercises associated with this
 > project. The report should be a minimum of two pages, double-spaced, 
@@ -68,6 +68,7 @@ for more details.
   * [Text file](/files/odd/telemarketer_odd.md) that you can paste into the 
     "info" tab in your NetLogo model.
 
+<!--
 ### Teams:
 
 | Team # |       Project      |                     Members                 |      Exercises     | Presentation Exercise |
@@ -78,20 +79,22 @@ for more details.
 |   4    |  Business Investor | Sarah Markley, Eloise Shehan                |  10.3, 10.4, 11.2  | 10.3                  |
 |   5    |  Telemarketer      | Arisa Okamoto, Adele Shen, Zihan Sun        |  13.2, 13.3, 13.5  | 13.5                  |
 |   6    |  Business Investor | Ari Sussman, Alexis Wan                     |  10.3, 10.4, 11.2  | 11.2                  |
+<!-- -->
 
 ## Individual Projects {#individual-projects}
 
 [Project assignment](/assignment/ResearchProjectAssignment.pdf)
 
-* Proposals due Fri. Sept. 19. Upload your proposal to Brightspace by the end of 
+* Proposals due Fri. Sept. 25. Upload your proposal to Brightspace by the end of 
   the day (before midnight).
-* Model analysis due Wed. Oct. 15
-* We will discuss your project ODD in class on Wed. Oct. 15
-* ODD for extending model due Wed. Oct. 29.
-* Draft model code due Wed. Nov. 12
-* Presentations Dec. 1--3.
-* Written report due Dec. 5.
+* Model analysis due Wed. Oct. 21
+* We will discuss your project ODD in class on Tues. Oct. 20
+* ODD for extending model due Wed. Nov. 4.
+* Draft model code due Wed. Nov. 18
+<!-- * Presentations Dec. 1--3. -->
+* Written report due Dec. 19.
 
+<!-- 
 ### Presentation Schedule
 
 | Monday Dec. 1              | Wednesday Dec. 3           |
@@ -108,7 +111,9 @@ presentation file (Powerpoint, PDF, etc.) to the
 "Individual Project Presentation" assignment on 
 Brightspace.
 
-By Dec. 5 (before midnight), upload your final report to the 
+By Dec. 19 (before midnight), upload your final report to the 
 "Individual Project Report" assignment on Brightspace.
 If you need extra time to complete this, ask me and I will grant
 extensions within reason.
+
+<!-- -->

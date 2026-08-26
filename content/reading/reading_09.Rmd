@@ -37,7 +37,7 @@ The format in which BehaviorSpace saves its data is very annoying to deal with i
 called `analyzeBehaviorspace` that can read the output of a BehaviorSpace run and allow you to interactively graph it and re-organize the data to make it more useful. 
 
 
-You can either use this tool online in a web browser at <https://analyze-behaviorspace.jgilligan.org> or install it on your own computer. For details, see the description of 
+You can either use this tool online in a web browser at <https://ees4760.jmgilligan.org/analyze_behaviorspace/> or install it on your own computer. For details, see the description of 
 `analyzeBehaviorspace` on the "Reading Resources and Computing Tools for Research" handout.
 
 
