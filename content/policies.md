@@ -55,6 +55,69 @@ This course, like all courses at Vanderbilt, is conducted under the Honor Code.
 : The research project assignment will contain details about how the honor code 
   applies to the research project.
 
+### Use of Artificial Intelligence:
+
+We are still in the early days of understanding how new generative AI
+tools affect learning and research. Especially, there is disagreement
+about how to manage the use of AI tools for generating computer code
+in the context of learning and homework assignments.
+
+In conversations with experienced researchers I respect, I see a lot 
+of disagreement about how useful generative AI tools will be for 
+writing code for scientific computational models. Moreover, the use of
+generative AI within agent-based models to drive agent behavior is a
+new and exciting field of research.
+
+Three important concerns related to this course are:
+
+1. Research suggests that using generative AI tools for writing,
+   including writing code actively hurts learning outcomes and 
+   critical thinking. Be careful that you do not use AI tools as 
+   shortcuts that will harm your ability to learn the material and 
+   gain proficiency at computational scientific modeling.
+
+   Many employers, especially in the tech and financial sectors, are
+   now reporting that they are changing their hiring practices because
+   so many prospective employees who relied on generative AI tools in
+   their education cannot do the work, and relying too much on AI
+   tools in your studies may harm your career prospects after you
+   graduate.
+   
+2. Some experienced scientific model developers report that while
+   generative AI tools are very effective for writing routine code,
+   they are not trustworthy for scientific computing. Scientific code
+   produced by AI tools often contains subtle errors that are 
+   difficult to identify and correct, and the effort of closely
+   reading the code to find errors can be greater than the effort of
+   writing the code by hand.
+   
+3. There is a growing body of research which finds that using
+   generative AI tools in writing can subtly change a person's
+   thinking and political or moral values, without the writer being
+   aware of it. Using AI tools can measurably shift a person's 
+   political and moral thinking to bring it in line with the hidden
+   biases of the material the AI tool was trained on.
+
+This research is in early stages, and it's worth taking it with a grain
+of salt, but it does raise important concerns to keep in mind when using
+AI tools.
+
+Because of the great uncertainty and the lack of established best
+practices, I do not maintain a formal policy of regulating the use of
+AI tools in your work.
+
+However, **I do require that you disclose any use of AI tools.**
+If you use
+AI tools in your homework or your class projects,
+**you must say what tools you used and how you used them.**
+If you also include comments about
+your experience (were they helpful or not? did you encounter problems
+usint them? etc.), that can be helpful to your reflections on your
+learning and my understanding of how AI tools may best be used in a
+course like this.
+
+### Summary
+
 If you ever have questions about how the Honor Code applies to your work
 in this course, please ask me.
 **Uncertainty about the Honor Code does not excuse a violation.**

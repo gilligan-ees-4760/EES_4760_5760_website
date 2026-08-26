@@ -8,7 +8,7 @@ slug: reading_24
 pubdate: '2026-07-31'
 date: '`r params$par_date`'
 params:
-  par_date: '2026-11-26'
+  par_date: '2026-11-19'
   par_subtitle: ~
 pdf_url: /files/reading_asgts/reading_24.pdf
 output:

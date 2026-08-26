@@ -16,17 +16,17 @@ Your write-up will be due on to Brightspace on Friday, Oct. 17.
 
 ### In-Class Presentations:
 
-> For class on Thursday, October 15, you and your partner will give a 
-> short presentation for the class in which you describe the problem, 
-> discuss any interesting obstacles of problems you encountered in 
-> coding the model and how you fixed them (or why you couldn???t fix 
-> them), 
-> and what you discovered from running the model and doing one of the 
-> assigned exercises (see the below for which exercise your group will
-> present).
-> One partner should present about coding and testing
-> the model and the other should present about what you learned from 
-> the model
+For class on Thursday, October 15, you and your partner will give a 
+short presentation for the class in which you describe the problem, 
+discuss any interesting obstacles of problems you encountered in 
+coding the model and how you fixed them (or why you couldn't fix 
+them), 
+and what you discovered from running the model and doing one of the 
+assigned exercises (see the below for which exercise your group will
+present).
+One partner should present about coding and testing
+the model and the other should present about what you learned from 
+the model
 
 * Your in-class presentation should be 6--7 minutes long, and there will
   be a short time for questions, for a total of 10 minutes.
@@ -37,20 +37,20 @@ Your write-up will be due on to Brightspace on Friday, Oct. 17.
 
 ### Written Report
 
-> By the end of the day (before midnight) on Monday, October 26, 
-> upload a written report to Brightspace on the procedures, results, 
-> and interpretation of the textbook exercises associated with this
-> project. The report should be a minimum of two pages, double-spaced, 
-> in PDF or Microsoft Word format. 
-> This is a team project, so you and your partner should work together 
-> to write a single report. Any member of the team can upload the 
-> report to Brightspace on behalf of the whole team.
-> Be sure to give your report a title and include the names of all the 
-> authors (team members).
-> 
-> In addition to the report, you should also upload a ZIP file 
-> containing your model or models (NetLogo files) and any other files 
-> your model requires.
+By the end of the day (before midnight) on Wednesday, October 28, 
+upload a written report to Brightspace on the procedures, results, 
+and interpretation of the textbook exercises associated with this
+project. The report should be a minimum of two pages, double-spaced, 
+in PDF or Microsoft Word format. 
+This is a team project, so you and your partner should work together 
+to write a single report. Any member of the team can upload the 
+report to Brightspace on behalf of the whole team.
+Be sure to give your report a title and include the names of all the 
+authors (team members).
+
+In addition to the report, you should also upload a ZIP file 
+containing your model or models (NetLogo files) and any other files 
+your model requires.
 
 See the [full project assignment](/assignment/TeamProjectAssignment.pdf) 
 for more details. 

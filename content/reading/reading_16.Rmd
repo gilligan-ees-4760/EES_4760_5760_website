@@ -1,5 +1,5 @@
 ---
-title: Research Project ODDs
+title: Discussing Research Projects
 subtitle: '`r params$par_subtitle`'
 class_date: '`r params$par_date`'
 class_number: 16
