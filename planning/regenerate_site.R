@@ -109,7 +109,7 @@ process_cred <- function(cred) {
 }
 
 get_cred <- function(val, lbl, repo) {
-  // message("get_cred: val = ", val, ", lbl = ", lbl, ", repo = ", repo)
+  # message("get_cred: val = ", val, ", lbl = ", lbl, ", repo = ", repo)
   process_cred(config_cred(val, lbl, repo))
 }
 
