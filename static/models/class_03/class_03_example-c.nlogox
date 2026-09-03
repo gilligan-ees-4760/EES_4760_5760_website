@@ -44,6 +44,8 @@ to go
     if sugar > max-sugar [ set sugar max-sugar ]
     update-pcolor
   ]
+  
+  if ticks > 2000 [ stop ]
 end
 
 to eat

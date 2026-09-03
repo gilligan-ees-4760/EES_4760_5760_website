@@ -13,6 +13,7 @@ lessons:
 - date: '2026-09-03'
   title: Introduction to NetLogo
   reading: /reading/reading_03
+  lecture: /slides/class_03
 - date: '2026-09-07'
   title: 'Homework: Becoming familiar with NetLogo'
   assignment: /assignment/homework_03
