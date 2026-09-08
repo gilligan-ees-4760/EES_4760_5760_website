@@ -4,7 +4,7 @@ weight: 71
 date: "2025-09-10"
 due_date: "2025-09-10"
 pubdate: "2019-08-22"
-descr: "Culture Dissemination Model with Errors (Sept. 10)"
+descr: "Culture Dissemination Model with Errors (Sept. 17)"
 output: html_document
 ---
 # Fixing Errors in Models

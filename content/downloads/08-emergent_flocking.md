@@ -4,7 +4,7 @@ weight: 80
 date: "2025-09-17"
 due_date: "2025-09-17"
 pubdate: "2019-08-22"
-descr: "Flocking model for studying emergence (Sept. 17)"
+descr: "Flocking model for studying emergence (Sept. 24)"
 output: html_document
 ---
 # Modified flocking model for stuying emergence

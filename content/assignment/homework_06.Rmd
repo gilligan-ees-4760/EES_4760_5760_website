@@ -29,7 +29,7 @@ output:
 
 
 
-  * Graduate students should do Railsback & Grimm, Ex. 5.11
+  * Graduate students should do Railsback & Grimm, Ex. 5.11. Undergraduates may do this as optional extra credit.
 
 ### Notes on Homework:
 

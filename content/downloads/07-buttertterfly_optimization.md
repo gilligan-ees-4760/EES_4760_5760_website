@@ -4,7 +4,7 @@ weight: 72
 date: "2025-09-10"
 due_date: "2025-09-10"
 pubdate: "2019-09-13"
-descr: "Optimizing Butterfly Model for Mating (Sept. 10)"
+descr: "Optimizing Butterfly Model for Mating (Sept. 17)"
 output: html_document
 ---
 # Updated Butterfly Model

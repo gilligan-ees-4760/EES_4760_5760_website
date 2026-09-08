@@ -1,10 +1,10 @@
 ---
-title: "Sugarscape Model from Class #3"
+title: "Extended Sugarscape Model from Class #4"
 weight: 35
 date: "2025-08-27"
 due_date: "2025-08-27"
 pubdate: "2019-08-22"
-descr: "Sugarscape Model (in-class exercises on Sept. 3)."
+descr: "Sugarscape Model (in-class exercises on Sept. 8)."
 output: html_document
 ---
 ## Sugarscape Model

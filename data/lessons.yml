@@ -20,6 +20,7 @@ lessons:
 - date: '2026-09-08'
   title: 'Specifying models: The ODD protocol'
   reading: /reading/reading_04
+  lecture: /slides/class_04
 - date: '2026-09-09'
   title: 'Homework: Experimenting with NetLogo'
   assignment: /assignment/homework_04
