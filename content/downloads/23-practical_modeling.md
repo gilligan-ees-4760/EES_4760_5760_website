@@ -1,10 +1,10 @@
 ---
 title: "Optional reading for Agent-Based Models in Practice"
 weight: 230
-date: "2025-11-10"
-due_date: "2025-11-10"
+date: "2026-11-17"
+due_date: "2026-11-17"
 pubdate: "2019-08-22"
-descr: 'Optional reading for "Agent-Based Models in Practice" (Nov. 10)'
+descr: 'Optional reading for "Agent-Based Models in Practice" (Nov. 17)'
 output: html_document
 ---
 # Optional supplementary reading

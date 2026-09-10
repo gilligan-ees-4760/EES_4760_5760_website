@@ -1,10 +1,10 @@
 ---
 title: "Link Demonstration Model"
 weight: 110
-date: "2025-09-24"
-due_date: "2025-09-24"
+date: "2026-10-01"
+due_date: "2026-10-01"
 pubdate: "2018-01-01"
-descr: "Link demonstration model (for Sept. 24 class)"
+descr: "Link demonstration model (for Oct. 1 class)"
 output: html_document
 ---
 # Demonstration model for links

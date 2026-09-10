@@ -1,10 +1,10 @@
 ---
 title: "Stochasticity: Stochastic Business Investor"
 weight: 180
-date: "2025-10-22"
-due_date: "2025-10-22"
+date: "2026-10-29"
+due_date: "2026-10-29"
 pubdate: "2019-08-22"
-descr: "Stochastic business investor model (Oct. 22)"
+descr: "Stochastic business investor model (Oct. 29)"
 output: html_document
 ---
 # Stochastic business-investor model for in-class exercise

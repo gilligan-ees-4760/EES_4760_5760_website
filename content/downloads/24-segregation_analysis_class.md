@@ -1,10 +1,10 @@
 ---
 title: "Analyzing and Understanding Models"
 weight: 240
-date: "2025-11-12"
-due_date: "2025-11-12"
+date: "2026-11-19"
+due_date: "2026-11-19"
 pubdate: "2019-08-22"
-descr: "Model analysis with Schelling segregation model (Nov. 12)"
+descr: "Model analysis with Schelling segregation model (Nov. 19)"
 output: html_document
 ---
 # Schelling Segregation Model for In-Class Analysis Exercise

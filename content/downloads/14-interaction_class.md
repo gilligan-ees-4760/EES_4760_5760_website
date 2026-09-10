@@ -1,10 +1,10 @@
 ---
 title: "Interaction Models"
 weight: 140
-date: "2025-10-06"
-due_date: "2025-10-06"
+date: "2026-10-13"
+due_date: "2026-10-13"
 pubdate: "2019-10-03"
-descr: "Interaction models (Oct.6)"
+descr: "Interaction models (Oct. 13)"
 output: html_document
 ---
 # Telemarketer and Prisoner's Dilemma models for in-class exercises about 
