@@ -2,9 +2,9 @@
 title: "Artificial Societies"
 author: "Peter Tyson"
 weight: 20
-date: "2025-08-25"
-due_date: "2025-08-25"
-pubdate: "2019-08-22"
+date: "2026-09-01"
+due_date: "2026-09-01"
+pubdate: "2019-09-01"
 download_link: "/files/reading/Tyson_1997_Artificial_Societies.pdf"
 descr: "Reading for Sept. 1."
 output: html_document

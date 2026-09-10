@@ -2,8 +2,8 @@
 title: "ODD Protocol"
 author: "Volker Grimm"
 weight: 40
-date: "2025-09-01"
-due_date: "2025-09-01"
+date: "2026-09-08"
+due_date: "2026-09-08"
 pubdate: "2019-08-22"
 descr: "Documents on ODD protocol (optional supplementary reading for Sept. 8)."
 output: html_document

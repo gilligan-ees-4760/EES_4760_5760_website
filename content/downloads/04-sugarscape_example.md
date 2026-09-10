@@ -1,8 +1,8 @@
 ---
 title: "Extended Sugarscape Model from Class #4"
 weight: 35
-date: "2025-08-27"
-due_date: "2025-08-27"
+date: "2026-09-08"
+due_date: "2026-09-08"
 pubdate: "2019-08-22"
 descr: "Sugarscape Model (in-class exercises on Sept. 8)."
 output: html_document

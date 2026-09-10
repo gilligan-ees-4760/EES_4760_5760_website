@@ -1,13 +1,13 @@
 ---
 title: "Butterfly Models"
 weight: 52
-date: "2025-09-03"
-due_date: "2025-09-03"
+date: "2025-09-10"
+due_date: "2025-09-10"
 pubdate: "2019-08-22"
-descr: "Writing the Butterfly Model (Sept. 3)"
+descr: "Writing the Butterfly Model (Sept. 10)"
 output: html_document
 ---
-# Butterfly Model for In-Class Exercises on Sept. 3
+# Butterfly Model for In-Class Exercises on Sept. 10
  
 * Download the 
   [Basic Butterfly Model](/models/class_05/butterfly_model_class_5.nlogox)

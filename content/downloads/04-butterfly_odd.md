@@ -1,8 +1,8 @@
 ---
 title: "Butterfly Model ODD"
 weight: 42
-date: "2025-09-01"
-due_date: "2025-09-01"
+date: "2026-09-08"
+due_date: "2026-09-08"
 pubdate: "2019-08-22"
 descr: "Butterfly model with ODD (in-class exercises on Sept. 8)."
 output: html_document

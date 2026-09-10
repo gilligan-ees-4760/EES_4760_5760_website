@@ -1,8 +1,8 @@
 ---
 title: "Flocking Model for Studying Emergence"
 weight: 80
-date: "2025-09-17"
-due_date: "2025-09-17"
+date: "2026-09-24"
+due_date: "2026-09-24"
 pubdate: "2019-08-22"
 descr: "Flocking model for studying emergence (Sept. 24)"
 output: html_document

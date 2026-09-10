@@ -1,8 +1,8 @@
 ---
 title: "Mushroom Hunt Model"
 weight: 51
-date: "2025-09-03"
-due_date: "2025-09-03"
+date: "2026-09-10"
+due_date: "2026-09-10"
 pubdate: "2019-08-22"
 descr: "Mushroom Hunt Model (Chapter 2)"
 output: html_document

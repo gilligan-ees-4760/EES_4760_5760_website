@@ -1,8 +1,8 @@
 ---
 title: "Science with Butterfly Models"
 weight: 60
-date: "2025-09-08"
-due_date: "2025-09-08"
+date: "2026-09-15"
+due_date: "2026-09-15"
 pubdate: "2019-08-22"
 descr: "Doing Science with the Butterfly Model (In-class exercises for Sept. 15)"
 output: html_document
