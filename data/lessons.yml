@@ -123,17 +123,17 @@ lessons:
 - date: '2026-11-26'
   title: Thanksgiving Break
 - date: '2026-12-01'
-  title: Sensitivity and Robustness
-  reading: /reading/reading_25
+  title: Presentations
   assignment: /assignment/project_presentation_1
 - date: '2026-12-03'
-  title: 'Looking Ahead: ABMs Beyond this Course'
-  reading: /reading/reading_26
+  title: Presentations
   assignment: /assignment/project_presentation_2
 - date: '2026-12-08'
-  title: Presentations
+  title: Sensitivity and Robustness
+  reading: /reading/reading_27
 - date: '2026-12-10'
-  title: Presentations
+  title: 'Looking Ahead: ABMs Beyond this Course'
+  reading: /reading/reading_28
 - date: '2026-12-19'
   title: 'Indiv. Project: Research project report'
   assignment: /assignment/project_report

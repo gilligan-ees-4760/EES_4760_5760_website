@@ -1,0 +1,30 @@
+---
+title: 'Looking Ahead: ABMs Beyond this Course'
+subtitle: '`r params$par_subtitle`'
+class_date: '`r params$par_date`'
+class_number: 28
+weight: 28
+slug: reading_28
+pubdate: '2026-07-31'
+date: '`r params$par_date`'
+params:
+  par_date: '2026-12-10'
+  par_subtitle: ~
+pdf_url: /files/reading_asgts/reading_28.pdf
+output:
+  blogdown::html_page:
+    md_extensions: +tex_math_single_backslash+definition_lists
+---
+## Reading:
+
+### Required Reading (everyone):
+
+* Agent-Based and Individual-Based Modeling, Ch. 24.
+
+### Optional Extra Reading:
+
+* Modeling Social Behavior, Ch. 10--11.
+
+### Reading Notes:
+
+The optional reading from _Modeling Social Behavior_ provides perspectives on the relationship between simulation models and the real world and how to use models wisely by appreciating both what they can do and what they can't do, what parts of the real world they capture faithfully and which parts they don't.

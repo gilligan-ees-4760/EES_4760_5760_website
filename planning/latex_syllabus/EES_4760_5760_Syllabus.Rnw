@@ -495,6 +495,7 @@ format_class_entry <- function(class_no) {
 
 \title{Syllabus\\
 \ShortCourseNumber: \LongCourseName}
+\date{Fall 2026\\ Updated Sept. 12, 2026}
 
 \fancyhead[L]{\bfseries\scshape \ShortCourseNumber\ Syllabus}
 

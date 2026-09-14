@@ -9,8 +9,8 @@ date: "2017-04-13T00:00:00"
 
 ## Team Projects {#team-projects}
 
-Your team will make a presentation about your project on Wednesday, Oct. 8. 
-Your write-up will be due on to Brightspace on Friday, Oct. 17.
+Your team will make a presentation about your project on Thursday, Oct. 15. 
+Your write-up will be due on to Brightspace on Wednesday Oct. 28.
 
 * [Project assignment](/assignment/TeamProjectAssignment.pdf)
 
@@ -91,7 +91,7 @@ for more details.
 * We will discuss your project ODD in class on Tues. Oct. 20
 * ODD for extending model due Wed. Nov. 4.
 * Draft model code due Wed. Nov. 18
-<!-- * Presentations Dec. 1--3. -->
+* Presentations Dec. 1--3.
 * Written report due Dec. 19.
 
 <!-- 
