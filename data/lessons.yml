@@ -31,6 +31,7 @@ lessons:
 - date: '2026-09-15'
   title: Using models for science
   reading: /reading/reading_06
+  lecture: /slides/class_06
 - date: '2026-09-16'
   title: 'Homework: Science with models: Butterfly mating'
   assignment: /assignment/homework_05

@@ -17,8 +17,8 @@ output: html_document
 * A [butterfly model](/models/class_06/butterfly_class_06a.nlogox) 
   from Chapter 5:<br/>
   <https://ees4760.jmgilligan.org/models/class_06/butterfly_class_06a.nlogox>
-* A [version of the butterfly model](/models/class_06/butterfly_class_06b.nlogox) 
-  with modifications:<br/>
+* A version of the butterfly model
+  [with modifications](/models/class_06/butterfly_class_06b.nlogox):<br/>
   <https://ees4760.jmgilligan.org/models/class_06/butterfly_class_06b.nlogox>
 * Versions of the butterfly model with code for testing:<br/>
   * <https://ees4760.jmgilligan.org/models/class_06/butterfly_class_06c.nlogox>
