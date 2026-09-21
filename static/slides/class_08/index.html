@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!-- JMG Reveal.js 6 local template for EES 4760 --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="J. Magnolia Gilligan">
+<title>Choosing Research Projects</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/dist/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/dist/reveal.css">
+<style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+    div.qrbox div.qrimage {
+      font-size:30%;
+      width:100%;
+      vertical-align:top;
+    }
+    div.qrbox div.qrimage a.qrimage {
+      font-size: 0px;
+      line-height: 0px;
+    }
+    div.qrbox div.qrimage img {
+      height: 200px;
+      margin-bottom: 10px;
+    }  </style>
+<!-- local theme = solarized-jmg --><link rel="stylesheet" href="../../lecture_lib/library/dist/theme/solarized-jmg.css" id="theme">
+<script src="../../lecture_lib/library/header-attrs-2.32/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+<section id="title-slide" class="center"><h1 class="title">Choosing Research Projects</h1>
+    <p class="author">EES 4760/5760</p>
+        <p class="author">Agent-Based and Individual-Based Computational
+Modeling</p>
+  <p class="author">J. Magnolia Gilligan</p>
+	<!-- end title slide -->
+</section><section><section id="getting-started" class="title-slide slide level1 center"><h1 class="center">Getting Started</h1>
+
+</section><section id="announcement" class="slide level2"><h2>Announcement</h2>
+<ul>
+<li>I will be traveling on Oct. 6–8 and will have to miss class
+<ul>
+<li>Discuss options for making up the missed classes.</li>
+</ul>
+</li>
+</ul></section></section><section><section id="choosing-research-projects" class="title-slide slide level1 center"><h1 class="center">Choosing Research Projects</h1>
+
+</section><section id="individual-project" class="slide level2"><h2>Individual Semester Project</h2>
+<div class="columns">
+<div class="column bare mtop-1" style="width:40%;">
+<ul>
+<li>Pick a published model to work with
+<ul>
+<li>Recommendations:
+<ul>
+<li>
+<a href="https://www.comses.net/codebases/">CoMSES OpenABM</a>
+library</li>
+<li>NetLogo “model library”</li>
+<li>NetLogo “<a href="https://www.modelingcommons.org/">modeling
+commons</a>”</li>
+<li>The <em>Modeling Social Behavior</em> textbook</li>
+</ul>
+</li>
+<li>Or another place</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="column bare mtop-1" style="width:59%;overflow:visible;">
+<ul>
+<li class="fragment" data-fragment-index="1">Today: Discuss choosing a project model.</li>
+<li class="fragment" data-fragment-index="2">Friday, Sept. 25: One-page description of model and thoughts
+for extending it</li>
+<li class="fragment" data-fragment-index="3">Wed., Oct. 21: Analysis of published model.
+<ul>
+<li>Short write-up of how model works and what you saw running it</li>
+</ul>
+</li>
+<li class="fragment" data-fragment-index="4">Wed., Nov. 4: ODD for extending model</li>
+<li class="fragment" data-fragment-index="5">Wed., Nov. 18: Draft of extended model</li>
+<li class="fragment" data-fragment-index="6">Tue–Thur. Dec. 1–3: In-class presentations</li>
+<li class="fragment" data-fragment-index="6">Sat. Dec. 19: Report (around 10 pages)</li>
+</ul>
+</div>
+</div>
+</section></section>
+</div>
+  </div>
+
+  <script src="../../lecture_lib/library/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../../lecture_lib/library/dist/plugin/notes.js"></script><script src="../../lecture_lib/library/dist/plugin/zoom.js"></script><script src="../../lecture_lib/library/dist/plugin/math.js"></script><script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'speaker',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags whether to create separate pages for each fragment
+        // when printing to PDF
+        pdfSeparateFragments: false,
+
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: false,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: false,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'default',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+        mathjax4: {
+            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js',
+            loader: {
+              load: [
+                '[tex]/ams', '[tex]/mhchem'
+                ],
+              },
+            output: {
+                            font: 'mathjax-dejavu',
+                          },
+            chtml: {
+              matchFontHeight: true,
+              adaptiveCSS: true,
+            },
+            svg: {
+              fontCache: 'global',
+            },
+            tex: {
+              inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)'],
+              ],
+              displayMath: [
+                ['$$', '$$'],
+                ['\\[', '\\]'],
+              ],
+              packages: {
+                '[+]': ['ams', 'mhchem'],
+              },
+                          },
+            options: {
+              skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            },
+        },
+        // reveal.js plugins
+        plugins: [
+          RevealMath.MathJax4,
+          RevealNotes,
+          RevealZoom
+          ]
+      });
+    </script><script>
+    function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+      // Find all nodes matching the description
+      var nodes = container.querySelectorAll( '.' + classname );
+
+      // Check all matches to find one which is a direct child of
+      // the specified container
+      for( var i = 0; i < nodes.length; i++ ) {
+      	var testNode = nodes[i];
+      	if( testNode.parentNode === container ) {
+      		return testNode;
+      	}
+      }
+
+      // If no node was found, create it now
+      var node = document.createElement( tagname );
+      node.className = classname;
+      if( typeof innerHTML === 'string' ) {
+      	node.innerHTML = innerHTML;
+      }
+      container.appendChild( node );
+
+      return node;
+    }
+
+    var dom_wrapper = document.querySelector('.reveal');
+
+    createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+      '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+      '<div class="qrimage">' + '\n' +
+          '<a class="qrimage" href="https://ees4760.jmgilligan.org/slides/class_08">' +
+      	'<img src="qrcode.png" alt="https://ees4760.jmgilligan.org/slides/class_08"/>' +
+      	'</a>' + '\n' +
+    	  '</div>' + '\n' +
+      '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+        '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+            'Live web page: <a href="https://ees4760.jmgilligan.org/slides/class_08">https://ees4760.jmgilligan.org/slides/class_08</a>' + '\n' +
+                  '<br/>' + '\n' +
+            'PDF: <a href="https://ees4760.jmgilligan.org/slides/class_08/EES_4760_5760_class_08_slides.pdf" target="_blank">https://ees4760.jmgilligan.org/slides/class_08/EES_4760_5760_class_08_slides.pdf</a>' + '\n' +
+              	'</span>' + '\n' +
+      	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+      	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+      	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+      	'</span>' + '\n' +
+    	'</div>' + '\n' +
+      '</div>' + '\n'
+      );
+
+    var qrbox = document.querySelector("#qrbox");
+    var advance_fragment = 0;
+
+    if (qrbox != null) {
+      function isPrintingPDF() {
+        let printing = ( /print-pdf/gi ).test( window.location.search );
+        console.log("printing test: " + printing);
+        return printing;
+      }
+
+      if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+          ! Reveal.isFirstSlide() || isPrintingPDF()) {
+        console.log("Initializing");
+        console.log("Hiding QR box");
+        qrbox.style.visibility="hidden";
+        qrbox.style.display="none";
+      }
+
+      Reveal.addEventListener('overviewshown', function() {
+        console.log("Overview shown");
+        console.log("Hiding QR box");
+        qrbox.style.visibility="hidden";
+        qrbox.style.display="none";
+      }, false);
+
+      Reveal.addEventListener('overviewhidden', function() {
+        if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+            ! isPrintingPDF()) {
+          console.log("Overview hidden");
+          console.log("Showing QR box");
+          qrbox.style.visibility="visible";
+          qrbox.style.display="block";
+        }
+      }, false);
+
+      Reveal.addEventListener('slidechanged', function() {
+        console.log("Slide changed...");
+        if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+            ! qrbox.hasAttribute('qr-box-hide') &&
+            ! isPrintingPDF()) {
+          console.log("Showing QR box");
+          qrbox.style.visibility="visible";
+          qrbox.style.display="block";
+        } else {
+          console.log("Hiding QR box");
+          qrbox.style.visibility="hidden";
+          qrbox.style.display="none";
+        }
+      }, false);
+
+      Reveal.addEventListener('pdf-ready', function() {
+        console.log("hiding qrbox for printing");
+        qrbox.style.visibility="hidden";
+        qrbox.style.display="none";
+        qrbox.setAttribute('qr-box-hide', 'true');
+      });
+    }
+
+    Reveal.addEventListener('slidechanged', function() {
+      while (advance_fragment > 0) {
+        // console.log('advancing fragment');
+        Reveal.nextFragment();
+        advance_fragment--;
+      }
+    }, false);
+
+    Reveal.addEventListener('slidechanged', function() {
+      if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+        // console.log("going to next slide...");
+        Reveal.next();
+      }
+    }, false);
+
+    Reveal.addEventListener('skip_slide', function() {
+      Reveal.next();
+    }, false);
+
+    Reveal.addEventListener('advance_fragment', function() {
+      // console.log("setting advance fragment");
+      advance_fragment++;
+      }, false);  </script>
+</body>
+</html>
