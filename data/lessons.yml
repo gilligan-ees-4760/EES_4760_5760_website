@@ -42,6 +42,7 @@ lessons:
 - date: '2026-09-22'
   title: Choosing Research Projects
   reading: /reading/reading_08
+  lecture: /slides/class_08
 - date: '2026-09-23'
   title: 'Homework: Reproducing a model from its ODD'
   assignment: /assignment/homework_06

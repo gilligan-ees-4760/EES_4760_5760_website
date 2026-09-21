@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="pandoc">
 <meta name="author" content="J. Magnolia Gilligan">
+<meta name="dcterms.date" content="Thursday, August 27">
 <title>Introduction to Agent-Based Modeling</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -44,9 +45,22 @@
      left: 2.5%;
      bottom: 1rem;
      display: block;
+    }
+    div.qrbox div.qrimage {
+      font-size:30%;
+      width:100%;
+      vertical-align:top;
+    }
+    div.qrbox div.qrimage a.qrimage {
+      font-size: 0px;
+      line-height: 0px;
+    }
+    div.qrbox div.qrimage img {
+      height: 200px;
+      margin-bottom: 10px;
     }  </style>
 <!-- local theme = solarized-jmg --><link rel="stylesheet" href="../../lecture_lib/library/dist/theme/solarized-jmg.css" id="theme">
-<script src="../../lecture_lib/library/header-attrs-2.31.1.9000/header-attrs.js"></script>
+<script src="../../lecture_lib/library/header-attrs-2.32/header-attrs.js"></script>
 </head>
 <body>
   <div class="reveal">
@@ -56,6 +70,11 @@
         <p class="author">Agent-Based and Individual-Based Computational
 Modeling</p>
   <p class="author">J. Magnolia Gilligan</p>
+  <p class="date">
+      Class #1:
+       Thursday, August 27,
+      2026
+  </p>
 	<!-- end title slide -->
 </section><section><section id="who-sec" class="title-slide slide level1" data-transition="fade-out" data-skip="true"><h1 data-transition="fade-out" data-skip="true">Who Are You?</h1>
 
@@ -414,6 +433,11 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
         // so that reloading brings you to the same fragment position
         fragmentInURL: true,
 
+        // Flags whether to create separate pages for each fragment
+        // when printing to PDF
+        pdfSeparateFragments: false,
+
+
         // Flags if the presentation is running in an embedded mode,
         // i.e. contained within a limited portion of the screen
         embedded: false,
@@ -429,7 +453,7 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
         showNotes: false,
 
         // Global override for autoplaying embedded media (null/true/false)
-        autoPlayMedia: null,
+        autoPlayMedia: false,
 
         // Global override for preloading lazy-loaded iframes (null/true/false)
         preloadIframes: null,
@@ -437,7 +461,7 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
         // Number of milliseconds between automatically proceeding to the
         // next slide, disabled when set to 0, this value can be overwritten
         // by using a data-autoslide attribute on your slides
-        autoSlide: 0,
+        autoSlide: false,
 
         // Stop auto-sliding after user input
         autoSlideStoppable: true,
@@ -492,7 +516,7 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
             mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js',
             loader: {
               load: [
-                '[tex]/mhchem'
+                '[tex]/ams', '[tex]/mhchem'
                 ],
               },
             output: {
@@ -515,7 +539,7 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
                 ['\\[', '\\]'],
               ],
               packages: {
-                '[+]': ['mhchem'],
+                '[+]': ['ams', 'mhchem'],
               },
                           },
             options: {
@@ -558,8 +582,8 @@ Long House Valley (flourished ca. 1800 BCE–1300 CE)
 
     createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
       '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
-      '<div style="font-size:30%;width:100%;">' + '\n' +
-          '<a href="https://ees4760.jmgilligan.org/slides/class_01">' +
+      '<div class="qrimage">' + '\n' +
+          '<a class="qrimage" href="https://ees4760.jmgilligan.org/slides/class_01">' +
       	'<img src="qrcode.png" alt="https://ees4760.jmgilligan.org/slides/class_01"/>' +
       	'</a>' + '\n' +
     	  '</div>' + '\n' +
