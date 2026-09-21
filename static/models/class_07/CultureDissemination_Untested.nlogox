@@ -291,7 +291,7 @@ This version has not been tested for software errors.
 
 Following is an ODD description developed from Axelrod (1997).
 
-This ODD description and the NetLogo program were prepared by S. Railsback and are copyrighted 2019 by Steven Railsback and Volker Grimm as part of the instructional materials for _Agent-Based and Individual-Based Modeling 2nd edition_; see http://www.railsback-grimm-abm-book.com.
+This ODD description and the NetLogo program were prepared by S. Railsback, 2017, and are copyrighted 2017 by Steven Railsback and Volker Grimm as part of the instructional materials for _Agent-Based and Individual-Based Modeling_; see http://www.railsback-grimm-abm-book.com.
 
 ## 1. Purpose and patterns
 
@@ -303,7 +303,7 @@ The model is abstract and not designed to explain any specific patterns observed
 
 The entities in this model are agents that “can be thought of as homogeneous villages”. The villages are represented by sites (patches) on a grid.
 
-The sites have state variables for each of five cultural “features” (characteristics). Each of these five cultural feature variables has a value that is an integer between 0 and 9. A site’s culture is defined as its set of values for the five feature variables, concatenated together as a five-digit string, e.g., 93209. 
+The sites have state variables for each of five cultural “features” (characteristics). Each of these five feature variables has a value that is an integer between 0 and 9. A site’s culture is defined as its set of values for the five feature variables, concatenated together as a five-digit string, e.g., 93209. 
 
 The grid of sites is 10 × 10 patches in extent, with the space not wrapped. The distance between sites is not stated, and in fact it is not clear that the grid represents geographic space. Time is represented only by the number of “ticks” (times that the schedule is executed); each tick does not represent a specific amount of time. Model runs continue until the system is stable, defined as executing 1000 consecutive ticks with no change in site state variables. Reaching this stable end can take more than 80,000 ticks.
 
