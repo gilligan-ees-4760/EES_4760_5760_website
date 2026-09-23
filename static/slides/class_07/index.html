@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="pandoc">
 <meta name="author" content="J. Magnolia Gilligan">
+<meta name="dcterms.date" content="Thursday, September 17">
 <title>Model Verification Testing NetLogo Code</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -44,6 +45,19 @@
      left: 2.5%;
      bottom: 1rem;
      display: block;
+    }
+    div.qrbox div.qrimage {
+      font-size:30%;
+      width:100%;
+      vertical-align:top;
+    }
+    div.qrbox div.qrimage a.qrimage {
+      font-size: 0px;
+      line-height: 0px;
+    }
+    div.qrbox div.qrimage img {
+      height: 200px;
+      margin-bottom: 10px;
     }  </style>
 <!-- local theme = solarized-jmg --><link rel="stylesheet" href="../../lecture_lib/library/dist/theme/solarized-jmg.css" id="theme">
 <script src="../../lecture_lib/library/header-attrs-2.32/header-attrs.js"></script>
@@ -56,6 +70,11 @@
         <p class="author">Agent-Based and Individual-Based Computational
 Modeling</p>
   <p class="author">J. Magnolia Gilligan</p>
+  <p class="date">
+      Class #7:
+       Thursday, September 17,
+      2026
+  </p>
 	<!-- end title slide -->
 </section><section><section id="getting-started" class="title-slide slide level1 center"><h1 class="center">Getting Started</h1>
 
@@ -193,8 +212,9 @@ etc.)</li>
 <li>Turning schematics into equations &amp; code is ambiguous</li>
 </ul>
 </li>
-<li>Muelder &amp; Filatova (2018):</li>
-<li class="fragment">Agent-based model of household solar energy adoption
+<li class="fragment" data-fragment-index="1">Muelder &amp; Filatova (2018):
+<ul>
+<li>Agent-based model of household solar energy adoption
 <ul>
 <li>3 different implementations of the theory of planned behavior</li>
 <li>Wildly different results:
@@ -205,7 +225,9 @@ etc.)</li>
 </li>
 </ul>
 </li>
-<li class="fragment">Testing isn’t only about finding errors:
+</ul>
+</li>
+<li class="fragment" data-fragment-index="2">Testing isn’t only about finding errors:
 <ul>
 <li>It’s also about understanding your modeling choices</li>
 </ul>
@@ -213,7 +235,7 @@ etc.)</li>
 </ul>
 </div>
 <div class="column" style="width:39%;">
-<div class="bare">
+<div class="bare fragment" data-fragment-index="1">
 <p><img data-src="assets/images/muelder-filatova-title.png"></p>
 <div class="credit">
 <p>H, Muelder, &amp; T. Filatova, J. Artificial Societies &amp; Social
@@ -274,10 +296,10 @@ DOI: <a href="https://doi.org/10.1016/0749-5978(91)90020-t">10.1016/0749-5978(91
 
 let partner one-of other turtles
 
-let prospects other [turtles in-radius 5] 
+let prospects other [turtles in-radius 5]
   of partner
 
-let prospects [other turtles in-radius 3] 
+let prospects [other turtles in-radius 3]
   of partner</code></pre>
 </div>
 </div>
@@ -302,14 +324,14 @@ let prospects [other turtles in-radius 3]
 </ul>
 <div class="max-listing">
 <pre><code>ask turtles [
-  set xcor random-normal 0  
+  set xcor random-normal 0
       (world-width / 3)
 ]
 
 ask turtles [
-  set xcor random-normal 0 
+  set xcor random-normal 0
       (world-width / 3)
-  set ycor random-normal 0 
+  set ycor random-normal 0
       (world-width / 3)
 ]
 </code></pre>
@@ -475,7 +497,7 @@ show 1 / 0</code></pre>
 <li>
 <p>Watch out for random-normal, which can sometimes produce much
 larger or smaller values than you expect</p>
-<pre><code>show min (n-values 1E5 
+<pre><code>show min (n-values 1E5
   [ -&gt; random-normal 10 2.5 ])</code></pre>
 </li>
 </ul>
@@ -686,12 +708,12 @@ to setup
   ca
 </code></pre>
 <pre class="highlight-code bare"><code>  set PM-on? True
-  PM-setup "PM-output.csv" (list 
-    "turtle" "xcor" "ycor" "elevation" 
-    "q" "random" 
-    "nbor-x" "nbor-y" "nbor-elevation" 
+  PM-setup "PM-output.csv" (list
+    "turtle" "xcor" "ycor" "elevation"
+    "q" "random"
+    "nbor-x" "nbor-y" "nbor-elevation"
     "uphill?" "moved?"
-    "final-xcor" "final-ycor" 
+    "final-xcor" "final-ycor"
     "final-elevation")</code></pre>
 <pre class="bare"><code>...
 end</code></pre>
@@ -704,15 +726,15 @@ end</code></pre>
 <pre class="bare mtop-1"><code>to go  ;  This is the master schedule
 
   ask turtles with [not finished?] [move]
-    
+
   tick
 
-  ;; At end of tick, 
+  ;; At end of tick,
   ;; write procedure monitor output to file.</code></pre>
 <pre class="bare highlight-code"><code>  PM-write-output</code></pre>
 <pre class="bare"><code>  ; stop when all the butterflies are at the summit, or
   ; 1000 ticks, whichever comes first
-  if ticks &gt;= 1000 or all? turtles [finished?] 
+  if ticks &gt;= 1000 or all? turtles [finished?]
   [
     stop
   ]
@@ -720,23 +742,23 @@ end ; of go
 </code></pre>
 </div>
 <div class="column max-listing">
-<pre class="bare mtop-1"><code>to move 
+<pre class="bare mtop-1"><code>to move
   let rand random-float 1.0
   let old-patch patch-here
 </code></pre>
 <pre class="bare highlight-code"><code>  PM-add (list who xcor ycor elevation q rand)
-  PM-add [ (list pxcor pycor elevation) ] of 
+  PM-add [ (list pxcor pycor elevation) ] of
          max-one-of neighbors [elevation]</code></pre>
 <pre class="bare"><code>  let uphill? false
   ifelse random-float 1 &lt; q
-    [ 
+    [
       set uphill? true
-      uphill elevation 
+      uphill elevation
     ] ; Move uphill
-    [ 
-      move-to one-of neighbors 
+    [
+      move-to one-of neighbors
     ] ; Otherwise move randomly</code></pre>
-<pre class="bare highlight-code"><code>  PM-add (list uphill? (old-patch != patch-here) 
+<pre class="bare highlight-code"><code>  PM-add (list uphill? (old-patch != patch-here)
                xcor ycor elevation)</code></pre>
 <pre class="bare"><code>  set visited? true
   if color-visited? [ set pcolor yellow ]</code></pre>
@@ -931,20 +953,20 @@ Testing butterfly movement: tick 78
 
 All tests (55325) passed. Congratulations.
 Testing butterfly movement: tick 79
-  **FAILS** Test that butterfly 115 moved, 
-    test #1: did not expect (patch 118 118) 
+  **FAILS** Test that butterfly 115 moved,
+    test #1: did not expect (patch 118 118)
     but got it.
-  **FAILS** Test that butterfly 115 moved to highest neighbor, 
-    test #1: expected (patch 119 118) and got 
+  **FAILS** Test that butterfly 115 moved to highest neighbor,
+    test #1: expected (patch 119 118) and got
     (patch 118 118) instead.
 
 Tests finished with errors: 2/56033 tests failed!
 Testing butterfly movement: tick 80
-  **FAILS** Test that butterfly 227 moved, 
-    test #1: did not expect (patch 118 118) 
+  **FAILS** Test that butterfly 227 moved,
+    test #1: did not expect (patch 118 118)
     but got it.
-  **FAILS** Test that butterfly 227 moved to highest neighbor, 
-    test #1: expected (patch 118 119) and 
+  **FAILS** Test that butterfly 227 moved to highest neighbor,
+    test #1: expected (patch 118 119) and
     got (patch 118 118) instead.
 
 Tests finished with errors: 4/56730 tests failed!</code></pre>
@@ -966,19 +988,19 @@ it doesn’t move to the highest neighbor</li>
 </ul>
 </div>
 <div class="column">
-<pre><code>to move 
+<pre><code>to move
   let rand random-float 1
   let old-patch patch-here
-  
+
   let uphill? false
-  
+
   ifelse random-float 1.0 &lt; q
-    [ 
+    [
       set uphill? true
-      uphill elevation 
+      uphill elevation
   ] ; Move uphill
-  [ 
-    move-to one-of neighbors 
+  [
+    move-to one-of neighbors
   ] ; Otherwise move randomly
  ...
 end</code></pre>
@@ -1247,8 +1269,8 @@ Chapter 6 are great learning opportunities.</li>
 
     createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
       '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
-      '<div style="font-size:30%;width:100%;">' + '\n' +
-          '<a href="https://ees4760.jmgilligan.org/slides/class_07">' +
+      '<div class="qrimage">' + '\n' +
+          '<a class="qrimage" href="https://ees4760.jmgilligan.org/slides/class_07">' +
       	'<img src="qrcode.png" alt="https://ees4760.jmgilligan.org/slides/class_07"/>' +
       	'</a>' + '\n' +
     	  '</div>' + '\n' +

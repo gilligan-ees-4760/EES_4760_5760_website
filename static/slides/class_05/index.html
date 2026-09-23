@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="pandoc">
 <meta name="author" content="J. Magnolia Gilligan">
+<meta name="dcterms.date" content="Thursday, September 10">
 <title>Your First Model</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -44,6 +45,19 @@
      left: 2.5%;
      bottom: 1rem;
      display: block;
+    }
+    div.qrbox div.qrimage {
+      font-size:30%;
+      width:100%;
+      vertical-align:top;
+    }
+    div.qrbox div.qrimage a.qrimage {
+      font-size: 0px;
+      line-height: 0px;
+    }
+    div.qrbox div.qrimage img {
+      height: 200px;
+      margin-bottom: 10px;
     }  </style>
 <!-- local theme = solarized-jmg --><link rel="stylesheet" href="../../lecture_lib/library/dist/theme/solarized-jmg.css" id="theme">
 <script src="../../lecture_lib/library/header-attrs-2.32/header-attrs.js"></script>
@@ -56,6 +70,11 @@
         <p class="author">Agent-Based and Individual-Based Computational
 Modeling</p>
   <p class="author">J. Magnolia Gilligan</p>
+  <p class="date">
+      Class #5:
+       Thursday, September 10,
+      2026
+  </p>
 	<!-- end title slide -->
 </section><section><section id="homework-sec" class="title-slide slide level1 center"><h1 class="center">Homework</h1>
 
@@ -579,8 +598,8 @@ Ecology</em>, <strong>21</strong>, 1349. DOI: <a href="https://doi.org/10.1093/b
 
     createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
       '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
-      '<div style="font-size:30%;width:100%;">' + '\n' +
-          '<a href="https://ees4760.jmgilligan.org/slides/class_05">' +
+      '<div class="qrimage">' + '\n' +
+          '<a class="qrimage" href="https://ees4760.jmgilligan.org/slides/class_05">' +
       	'<img src="qrcode.png" alt="https://ees4760.jmgilligan.org/slides/class_05"/>' +
       	'</a>' + '\n' +
     	  '</div>' + '\n' +
