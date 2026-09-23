@@ -68,6 +68,16 @@ for more details.
   * [Text file](/files/odd/telemarketer_odd.md) that you can paste into the 
     "info" tab in your NetLogo model.
 
+### Teams:
+
+| Team # |       Project      |                     Members                 |
+|-------:|:------------------:|:-------------------------------------------:|
+|   1    | Business Investor  | Rhett Adam, Alysia Shang                    |
+|   2    |  Telemarketer      | Aliya Eissa, Blanche Stora                  |
+|   3    | Business Investor  | Thomas Doherty, Amelia Tejada               |
+|   5    |  Telemarketer      | Sawsan Ahmed, Yi He, Yidi Wang              |
+
+
 <!--
 ### Teams:
 
