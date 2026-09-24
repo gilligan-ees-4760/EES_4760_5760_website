@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<!-- JMG Reveal.js 6 local template for EES 4760 --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="J. Magnolia Gilligan">
+<meta name="dcterms.date" content="Thursday, September 24">
+<title>Emergence</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/dist/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/dist/reveal.css">
+<style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+    div.qrbox div.qrimage {
+      font-size:30%;
+      width:100%;
+      vertical-align:top;
+    }
+    div.qrbox div.qrimage a.qrimage {
+      font-size: 0px;
+      line-height: 0px;
+    }
+    div.qrbox div.qrimage img {
+      height: 200px;
+      margin-bottom: 10px;
+    }  </style>
+<!-- local theme = solarized-jmg --><link rel="stylesheet" href="../../lecture_lib/library/dist/theme/solarized-jmg.css" id="theme">
+<script src="../../lecture_lib/library/header-attrs-2.32/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+<section id="title-slide" class="center"><h1 class="title">Emergence</h1>
+    <p class="author">EES 4760/5760</p>
+        <p class="author">Agent-Based and Individual-Based Computational
+Modeling</p>
+  <p class="author">J. Magnolia Gilligan</p>
+  <p class="date">
+      Class #9:
+       Thursday, September 24,
+      2026
+  </p>
+	<!-- end title slide -->
+</section><section><section id="team-project-sec" class="title-slide slide level1 center" data-skip="true"><h1 class="center" data-skip="true">Team Projects</h1>
+
+</section><section id="team-projects" class="slide level2"><h2>Team Projects</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Team Project assignments are posted in the course web site, on the
+“Projects” page.</li>
+<li>For next Wednesday (Sept. 30): In addition to the assigned reading,
+read the ODD of the model you will work on for your team project. You
+will spend some time in class working with your partner(s) to start
+turning the ODD into a working NetLogo model.</li>
+</ul>
+</div>
+<div class="column">
+<table>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 27%">
+<col style="width: 61%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: right;">Team #</th>
+<th style="text-align: center;">Project</th>
+<th style="text-align: center;">Members</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">Business Investor</td>
+<td style="text-align: center;">Rhett Adam, Alysia Shang</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">Telemarketer</td>
+<td style="text-align: center;">Aliya Eissa, Blanche Stora</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">Business Investor</td>
+<td style="text-align: center;">Thomas Doherty, Amelia Tejada</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: center;">Telemarketer</td>
+<td style="text-align: center;">Sawsan Ahmed, Yi He, Yidi Wang</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section></section><section><section id="emergence-sec" class="title-slide slide level1 center" data-skip="true"><h1 class="center" data-skip="true">Emergence</h1>
+
+</section><section id="emergence" class="slide level2"><h2>Emergence</h2>
+<ul>
+<li><p>Download and open the “modified flocking model” from<br><a href="https://ees4760.jmgilligan.org/models/class_09/modified_flocking.nlogo" class="uri">https://ees4760.jmgilligan.org/models/class_09/modified_flocking.nlogo</a></p></li>
+<li><p>It’s easiest if you right-click on the link and choose “Save As”
+and save the model in a folder on your computer.</p></li>
+</ul></section></section><section><section id="flocking-model-sec" class="title-slide slide level1 center" data-skip="true"><h1 class="center" data-skip="true">Flocking Model</h1>
+
+</section><section id="flocking-model" class="slide level2"><h2>Flocking Model</h2>
+<ul>
+<li>Play with the model.
+<ul>
+<li>Adjust the parameters and see how they change the flocking
+behavior</li>
+</ul>
+</li>
+</ul></section></section><section><section id="boids-algorithm-sec" class="title-slide slide level1 center"><h1 class="center">“Boids” Algorithm</h1>
+
+</section><section id="boids-algorithm" class="slide level2"><h2>“Boids” Algorithm</h2>
+<ul>
+<li>Invented by Craig Reynolds in 1987
+<ul>
+<li>Reynolds, C. (1987). “Flocks, herds and schools: A distributed
+behavioral model”. <em>Proc. 14th annual conference on Computer graphics
+and interactive techniques</em>, 25???34. doi:<a href="https://doi.org/10.1145/37401.37406">10.1145/37401.37406</a>
+</li>
+<li>Used to generate flocks of bats and swarms of penguins for
+<em>Batman Returns</em> (1992)</li>
+</ul>
+</li>
+</ul></section><section id="batman-bat-flock" class="slide level2"><h2>Batman Returns: Bat Flock</h2>
+<video width="1344" height="756" controls><source src="/static/video/batman-returns-flock-of-bats-clip.mp4" type="video/mp4">
+Your browser does not support the video tag.<br> You can play the video
+at
+<a href="https://ees4760.jmgilligan.org/static/video/batman-returns-flock-of-bats-clip.mp4">https://ees4760.jmgilligan.org/static/video/batman-returns-flock-of-bats-clip.mp4</a>
+</source></video></section><section id="batman-penguin-army" class="slide level2"><h2>Batman Returns: Penguin Army</h2>
+<video width="1344" height="756" controls><source src="/static/video/batman-returns-penguins-clip.mp4" type="video/mp4">
+Your browser does not support the video tag.<br> You can play the video
+at
+<a href="https://ees4760.jmgilligan.org/static/video/batman-returns-penguins-clip.mp4">https://ees4760.jmgilligan.org/static/video/batman-returns-penguins-clip.mp4</a>
+</source></video></section></section><section><section id="flocking-odd-sec" class="title-slide slide level1 center"><h1 class="center">Flocking Model ODD</h1>
+
+</section><section id="flocking-overview" class="slide level2"><h2>Overview</h2>
+<ul>
+<li>Entities:
+<ul>
+<li>Birds: state-variables <code>flockmates</code>,
+<code>nearest-neighbor</code>
+</li>
+</ul>
+</li>
+<li>Process:
+<ul>
+<li>Each bird identifies its <code>flockmates</code>
+</li>
+<li>Each bird adjusts its direction</li>
+<li>Each bird moves forward one patch</li>
+</ul>
+</li>
+</ul></section><section id="flocking-design-concepts" class="slide level2"><h2>Design Concepts</h2>
+<ul>
+<li>
+<strong>Emergence:</strong>
+<ul>
+<li>Large flocks emerge from each bird acting independently, looking
+only at nearby birds.</li>
+</ul>
+</li>
+<li class="fragment"><strong>Adaptation:</strong>
+<ul>
+<li>If the <code>nearest-neighbor</code> is too close, the bird
+<code>separates</code> by turning away from it.</li>
+<li>Otherwise, the bird:
+<ol type="1">
+<li>
+<code>aligns</code>: turns toward its <code>flockmates</code>
+</li>
+<li>
+<code>coheres</code>: turns slightly toward the direction the rest
+of its <code>flockmates</code> are flying.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li class="fragment"><strong>Sensing:</strong>
+<ul>
+<li>The bird can only see a certain distance (<code>vision</code>)</li>
+</ul>
+</li>
+<li class="fragment"><strong>Interaction:</strong>
+<ul>
+<li>Each bird interacts with its <code>flockmates</code>
+</li>
+</ul>
+</li>
+</ul></section><section id="flocking-submodels" class="slide level2 ninety"><h2 class="ninety">Submodels</h2>
+<ul>
+<li>
+<code>find-flockmates</code>:
+<ul>
+<li>
+<code>flockmates</code> are all birds within <code>vision</code>
+distance (“<code>vision range</code>” flock type)</li>
+<li>Alternate interactions:
+<ul>
+<li>
+<code>flockmates</code> are the 6 nearest birds, regardless of
+distance (“<code>six closest</code>”)</li>
+<li>
+<code>flockmates</code> is the one nearest bird, regardless of
+distance (“<code>closest</code>”)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<code>separate</code>: Turn away from <code>nearest-neighbor</code>
+by up to <code>max-separate-turn</code> degrees</li>
+<li>
+<code>align</code>: Turn toward center of <code>flockmates</code> by
+up to <code>max-align-turn</code> degrees</li>
+<li>
+<code>cohere</code>: Turn toward average direction
+<code>flockmates</code> are flying, by up to
+<code>max-cohere-turn</code> degrees</li>
+</ul></section><section id="flocking-observations" class="slide level2"><h2>Observations:</h2>
+<div class="leftlist">
+<ul>
+<li>
+<p>How to measure flock formation?</p>
+<div class="fragment">
+<pre><code>count turtles with [any? flockmates]
+mean [count flockmates] of turtles
+mean [min [distance myself] of other turtles] of turtles
+standard-deviation [heading] of turtles</code></pre>
+</div>
+</li>
+</ul>
+</div>
+</section><section id="selecting-turtles" class="slide level2 ninety"><h2 class="ninety">Digression: Selecting Turtles</h2>
+<ul>
+<li>Selection primitives:
+<ul>
+<li>Selecting agent-sets
+<ul>
+<li>
+<code>n-of</code>, <code>min-n-of</code>, <code>max-n-of</code>,
+<code>other</code>,</li>
+<li>
+<code>turtles-on</code>, <code>turtles-at</code>,
+<code>turtles-here</code>, <code>at-points</code>
+</li>
+<li>
+<code>in-radius</code>, <code>in-cone</code>,</li>
+<li>
+<code>with</code>, <code>with-min</code>, <code>with-max</code>
+</li>
+</ul>
+</li>
+<li>Selecting individual turtles
+<ul>
+<li>
+<code>one-of</code>, <code>min-one-of</code>,
+<code>max-one-of</code>
+</li>
+<li>(may return <code>nobody</code>)</li>
+</ul>
+</li>
+<li>Look at <code>Agentset</code> category in NetLogo dictionary</li>
+</ul>
+</li>
+<li>Be careful:
+<ul>
+<li>Some primitives expect agent-sets</li>
+<li>Others expect individual turtles or patches.</li>
+</ul>
+</li>
+</ul></section><section id="selection-practice" class="slide level2 eighty"><h2 class="eighty">Practice Selecting Turtles</h2>
+<ul>
+<li>
+<p>Turn 5 random turtles red:</p>
+<div class="fragment">
+<pre><code>ask n-of 5 turtles [ set color red ]</code></pre>
+</div>
+</li>
+<li>
+<p>Now for each of those turtles:</p>
+<ul>
+<li>Select all the turtles within a radius of 5
+<ul>
+<li>and turn them green</li>
+</ul>
+</li>
+</ul>
+<div class="fragment">
+<pre><code>ask n-of 5 turtles with [color = red] [
+  ask other turtles in-radius 5 [ 
+    set color green 
+    ] 
+  ]</code></pre>
+</div>
+</li>
+<li>
+<p>Now ask each green turtle to calculate the distance to the
+closest red turtle</p>
+<div class="fragment">
+<pre><code>ask turtles with [color = green] [
+  show min [distance myself] of turtles with [color = red]
+  ]</code></pre>
+</div>
+</li>
+<li>
+<p>Now get the average over all the green turtles of the distance to
+the closest red turtle</p>
+<div class="fragment">
+<pre><code>show mean [
+  min [distance myself] of turtles with [color = red]
+  ] of turtles with [color = green]</code></pre>
+</div>
+</li>
+</ul></section></section><section><section id="experiment-sec" class="title-slide slide level1 center"><h1 class="center">Experiments</h1>
+
+</section><section id="experiment" class="slide level2 eightyfive" data-transition="fade-out"><h2 class="eightyfive" data-transition="fade-out">Experiments</h2>
+<ul>
+<li>Open the Behaviorspace experiment called “<strong>Baseline</strong>”
+<ul>
+<li>
+<p>Measures of flocking:</p>
+<div class="fragment">
+<pre><code>count turtles with [any? flockmates]
+mean [count flockmates] of turtles
+mean [min [distance myself] of other turtles] of turtles
+standard-deviation [heading] of turtles</code></pre>
+</div>
+</li>
+<li class="fragment"><p>Change one parameter (<code>vision</code>,
+<code>max-cohere-turn</code>, or <code>max-align-turn</code>) and see
+how it affects flocking.</p></li>
+</ul>
+</li>
+</ul></section><section id="experiments-bs-fig" class="slide level2" data-transition="fade"><h2 data-transition="fade">Experiments</h2>
+<p><img data-src="assets/images/behavior_space.png" style="height:950px;" alt="Beahvioarspace configuration"></p>
+</section><section id="experiment-more" class="slide level2 eighty" data-transition="fade"><h2 class="eighty" data-transition="fade">Experiments</h2>
+<ul>
+<li>Open the Behaviorspace experiment called “<strong>Baseline</strong>”
+<ul>
+<li>
+<p>Measures of flocking:</p>
+<pre><code>count turtles with [any? flockmates]
+mean [count flockmates] of turtles
+mean [min [distance myself] of other turtles] of turtles
+standard-deviation [heading] of turtles</code></pre>
+</li>
+<li><p>Change one parameter (<code>vision</code>,
+<code>max-cohere-turn</code>, or <code>max-align-turn</code>) and see
+how it affects flocking.</p></li>
+<li><p>Run the experiment: remember to turn off <code>Update view</code>
+and <code>Update plots and monitors</code></p></li>
+</ul>
+</li>
+<li class="fragment" data-fragment-index="2">Next, duplicate “<strong>Baseline</strong>” and call it
+“<strong>Flock Type</strong>”
+<ul>
+<li>vary that parameter while also varying the
+<code>flock-type</code>
+</li>
+</ul>
+</li>
+<li class="fragment" data-fragment-index="3">Next, duplicate “<strong>Baseline</strong>” and call it
+“<strong>Multiple</strong>”
+<ul>
+<li>vary more than one parameter (e.g., <code>vision</code> and
+<code>max-cohere-turn</code> or <code>max-align-turn</code>)</li>
+</ul>
+</li>
+<li class="fragment" data-fragment-index="1">Use the <code>analyze_behaviorspace</code> app at<br><a href="https://ees4760.jmgilligan.org/analyze_behaviorspace" target="_blank">https://ees4760.jmgilligan.org/analyze_behaviorspace</a>
+to graph the output from your BehaviorSpace experiments.</li>
+</ul></section><section id="example-results" class="slide level2"><h2>Example Results</h2>
+<ul>
+<li>Download results from example experiments from <a href="https://ees4760.jmgilligan.org/models/class_09/experiment-results.zip" class="uri">https://ees4760.jmgilligan.org/models/class_09/experiment-results.zip</a>
+</li>
+</ul></section></section>
+</div>
+  </div>
+
+  <script src="../../lecture_lib/library/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../../lecture_lib/library/dist/plugin/notes.js"></script><script src="../../lecture_lib/library/dist/plugin/zoom.js"></script><script src="../../lecture_lib/library/dist/plugin/math.js"></script><script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'speaker',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags whether to create separate pages for each fragment
+        // when printing to PDF
+        pdfSeparateFragments: false,
+
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: false,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: false,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'default',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+        mathjax4: {
+            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js',
+            loader: {
+              load: [
+                '[tex]/ams', '[tex]/mhchem'
+                ],
+              },
+            output: {
+                            font: 'mathjax-dejavu',
+                          },
+            chtml: {
+              matchFontHeight: true,
+              adaptiveCSS: true,
+            },
+            svg: {
+              fontCache: 'global',
+            },
+            tex: {
+              inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)'],
+              ],
+              displayMath: [
+                ['$$', '$$'],
+                ['\\[', '\\]'],
+              ],
+              packages: {
+                '[+]': ['ams', 'mhchem'],
+              },
+                          },
+            options: {
+              skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            },
+        },
+        // reveal.js plugins
+        plugins: [
+          RevealMath.MathJax4,
+          RevealNotes,
+          RevealZoom
+          ]
+      });
+    </script><script>
+    function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+      // Find all nodes matching the description
+      var nodes = container.querySelectorAll( '.' + classname );
+
+      // Check all matches to find one which is a direct child of
+      // the specified container
+      for( var i = 0; i < nodes.length; i++ ) {
+      	var testNode = nodes[i];
+      	if( testNode.parentNode === container ) {
+      		return testNode;
+      	}
+      }
+
+      // If no node was found, create it now
+      var node = document.createElement( tagname );
+      node.className = classname;
+      if( typeof innerHTML === 'string' ) {
+      	node.innerHTML = innerHTML;
+      }
+      container.appendChild( node );
+
+      return node;
+    }
+
+    var dom_wrapper = document.querySelector('.reveal');
+
+    createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+      '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+      '<div class="qrimage">' + '\n' +
+          '<a class="qrimage" href="https://ees4760.jmgilligan.org/slides/class_09">' +
+      	'<img src="qrcode.png" alt="https://ees4760.jmgilligan.org/slides/class_09"/>' +
+      	'</a>' + '\n' +
+    	  '</div>' + '\n' +
+      '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+        '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+            'Live web page: <a href="https://ees4760.jmgilligan.org/slides/class_09">https://ees4760.jmgilligan.org/slides/class_09</a>' + '\n' +
+                  '<br/>' + '\n' +
+            'PDF: <a href="https://ees4760.jmgilligan.org/slides/class_09/EES_4760_5760_class_09_slides.pdf" target="_blank">https://ees4760.jmgilligan.org/slides/class_09/EES_4760_5760_class_09_slides.pdf</a>' + '\n' +
+              	'</span>' + '\n' +
+      	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+      	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+      	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+      	'</span>' + '\n' +
+    	'</div>' + '\n' +
+      '</div>' + '\n'
+      );
+
+    var qrbox = document.querySelector("#qrbox");
+    var advance_fragment = 0;
+
+    if (qrbox != null) {
+      function isPrintingPDF() {
+        let printing = ( /print-pdf/gi ).test( window.location.search );
+        console.log("printing test: " + printing);
+        return printing;
+      }
+
+      if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+          ! Reveal.isFirstSlide() || isPrintingPDF()) {
+        console.log("Initializing");
+        console.log("Hiding QR box");
+        qrbox.style.visibility="hidden";
+        qrbox.style.display="none";
+      }
+
+      Reveal.addEventListener('overviewshown', function() {
+        console.log("Overview shown");
+        console.log("Hiding QR box");
+        qrbox.style.visibility="hidden";
+        qrbox.style.display="none";
+      }, false);
+
+      Reveal.addEventListener('overviewhidden', function() {
+        if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+            ! isPrintingPDF()) {
+          console.log("Overview hidden");
+          console.log("Showing QR box");
+          qrbox.style.visibility="visible";
+          qrbox.style.display="block";
+        }
+      }, false);
+
+      Reveal.addEventListener('slidechanged', function() {
+        console.log("Slide changed...");
+        if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+            ! qrbox.hasAttribute('qr-box-hide') &&
+            ! isPrintingPDF()) {
+          console.log("Showing QR box");
+          qrbox.style.visibility="visible";
+          qrbox.style.display="block";
+        } else {
+          console.log("Hiding QR box");
+          qrbox.style.visibility="hidden";
+          qrbox.style.display="none";
+        }
+      }, false);
+
+      Reveal.addEventListener('pdf-ready', function() {
+        console.log("hiding qrbox for printing");
+        qrbox.style.visibility="hidden";
+        qrbox.style.display="none";
+        qrbox.setAttribute('qr-box-hide', 'true');
+      });
+    }
+
+    Reveal.addEventListener('slidechanged', function() {
+      while (advance_fragment > 0) {
+        // console.log('advancing fragment');
+        Reveal.nextFragment();
+        advance_fragment--;
+      }
+    }, false);
+
+    Reveal.addEventListener('slidechanged', function() {
+      if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+        // console.log("going to next slide...");
+        Reveal.next();
+      }
+    }, false);
+
+    Reveal.addEventListener('skip_slide', function() {
+      Reveal.next();
+    }, false);
+
+    Reveal.addEventListener('advance_fragment', function() {
+      // console.log("setting advance fragment");
+      advance_fragment++;
+      }, false);  </script>
+</body>
+</html>
