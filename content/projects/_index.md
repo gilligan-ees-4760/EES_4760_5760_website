@@ -75,7 +75,7 @@ for more details.
 |   1    | Business Investor  | Rhett Adam, Alysia Shang                    |
 |   2    |  Telemarketer      | Aliya Eissa, Blanche Stora                  |
 |   3    | Business Investor  | Thomas Doherty, Amelia Tejada               |
-|   5    |  Telemarketer      | Sawsan Ahmed, Yi He, Yidi Wang              |
+|   4    |  Telemarketer      | Sawsan Ahmed, Yi He, Yidi Wang              |
 
 
 <!--
