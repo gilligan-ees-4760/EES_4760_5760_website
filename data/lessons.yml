@@ -56,6 +56,7 @@ lessons:
 - date: '2026-09-29'
   title: Observation
   reading: /reading/reading_10
+  lecture: /slides/class_10
 - date: '2026-09-30'
   title: 'Homework: Testing and debugging'
   assignment: /assignment/homework_08
