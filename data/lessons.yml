@@ -64,16 +64,18 @@ lessons:
   title: Sensing
   reading: /reading/reading_11
 - date: '2026-10-05'
-  title: 'Homework: Analyzing model experiments'
+  title: Adaptive Behavior and Objectives (Makeup)
+  reading: /reading/reading_12
   assignment: /assignment/homework_09
 - date: '2026-10-06'
-  title: Adaptive Behavior and Objectives
-  reading: /reading/reading_12
+  title: Adaptive Behavior and Objectives (Canceled)
 - date: '2026-10-07'
   title: 'Homework: Programming agent sensing'
   assignment: /assignment/homework_10
 - date: '2026-10-08'
-  title: Prediction
+  title: Prediction (Canceled)
+- date: '2026-10-12'
+  title: Prediction (Makeup)
   reading: /reading/reading_13
 - date: '2026-10-13'
   title: Interaction

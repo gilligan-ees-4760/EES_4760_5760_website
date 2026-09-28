@@ -1,5 +1,5 @@
 ---
-title: Adaptive Behavior and Objectives
+title: Adaptive Behavior and Objectives (Makeup)
 subtitle: '`r params$par_subtitle`'
 class_date: '`r params$par_date`'
 class_number: 12
@@ -8,7 +8,7 @@ slug: reading_12
 pubdate: '2026-07-31'
 date: '`r params$par_date`'
 params:
-  par_date: '2026-10-06'
+  par_date: '2026-10-05'
   par_subtitle: ~
 pdf_url: /files/reading_asgts/reading_12.pdf
 output:

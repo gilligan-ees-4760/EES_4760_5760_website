@@ -1,5 +1,5 @@
 ---
-title: Prediction
+title: Prediction (Makeup)
 subtitle: '`r params$par_subtitle`'
 class_date: '`r params$par_date`'
 class_number: 13
@@ -8,7 +8,7 @@ slug: reading_13
 pubdate: '2026-07-31'
 date: '`r params$par_date`'
 params:
-  par_date: '2026-10-08'
+  par_date: '2026-10-12'
   par_subtitle: ~
 pdf_url: /files/reading_asgts/reading_13.pdf
 output:
