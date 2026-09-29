@@ -161,19 +161,26 @@ NetLogo.</p>
 </li>
 </ul></section><section id="obs-view-2" class="slide level2 leftslide"><h2 class="leftslide">Observations in the View</h2>
 <div class="columns">
-<div class="column">
+<div class="column bare">
 <ul>
+<li>
+<p>Edit <code>crt</code> in <code>setup</code>:</p>
+<div class="max-listing">
+<pre><code>set label-color pink</code></pre>
+</div>
+</li>
 <li>
 <p>Edit <code>update-display</code>:</p>
 <div class="max-listing">
 <pre><code>to update-display
   color-patches
   ifelse show-butterflies?
-  [ ask turtles [show-turtle]]
-  [ ask turtles [hide-turtle]]
-  ifelse show-labels? 
-  [ ask turtles [ set label elevation ] ]
-  [ ask turtles [ set label "" ] ]
+  [ask turtles [show-turtle]]
+  [ask turtles [hide-turtle]]
+  ifelse show-labels?
+  [ask turtles [set label 
+                    precision elevation 1 ]]
+  [ask turtles [set label ""]]
 end</code></pre>
 </div>
 </li>
@@ -183,11 +190,12 @@ end</code></pre>
 </div>
 <div class="column">
 <ul>
-<li class="fragment">When you set <code>label</code> to a variable:
+<li class="fragment">When you set <code>label</code> or <code>plabel</code> to a
+variable:
 <ul>
 <li>It gets the current value of the variable.</li>
 <li>It won’t update automatically.</li>
-<li>So you have to update it by setting it to the new value
+<li>You have to set it to the new value
 <ul>
 <li>e.g., Update <code>label</code> in <code>update-display</code>, and
 call <code>update-display</code> every tick</li>

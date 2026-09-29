@@ -149,7 +149,7 @@ end]]></code>
     <button x="135" y="397" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="97" display="Erase paths">clear-drawing</button>
     <switch x="20" y="298" height="40" on="true" variable="show-butterflies?" width="147" display="show-butterflies?"></switch>
     <button x="20" y="397" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="112" display="Update Display">update-display</button>
-    <switch x="155" y="298" height="40" on="false" variable="show-labels?" width="122" display="show-labels?"></switch>
+    <switch x="169" y="298" height="40" on="false" variable="show-labels?" width="122" display="show-labels?"></switch>
     <switch x="20" y="345" height="40" on="true" variable="draw-paths?" width="122" display="draw-paths?"></switch>
   </widgets>
   <info><![CDATA[# Butterfly Model ODD Description

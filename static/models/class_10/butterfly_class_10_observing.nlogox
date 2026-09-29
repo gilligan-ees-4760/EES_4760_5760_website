@@ -38,6 +38,7 @@ to setup
   ]
   ask patches
   [
+    set plabel-color pink
     set visited? false
   ]    ; end of "ask patches"
 
@@ -46,6 +47,7 @@ to setup
    [
      set size 2
      set color red
+     set label-color pink
      ; Set initial location of butterflies
      setxy x0 + random 10 - 5 y0 + random 10 - 5
      set initial-patch patch-here
@@ -135,7 +137,8 @@ to update-display
   [ ask turtles [show-turtle]]
   [ ask turtles [hide-turtle]]
   ifelse show-labels?
-  [ ask turtles with [chosen?] [set label elevation] ]
+  [ ask turtles with [chosen?] [set label 
+                                    precision elevation 1] ]
   [ ask turtles with [chosen?] [set label ""] ]
 end
 
@@ -156,7 +159,8 @@ to-report corridor-width
 end
 
 to-report fraction-crowded
-  let crowd-count sum [count turtles-here] of patches with [count turtles-here >= 4]
+  let crowd-count sum [count turtles-here] of 
+      patches with [count turtles in-radius 1.5 >= 8]
   report crowd-count / num-butterflies
 end]]></code>
   <widgets>
@@ -176,7 +180,6 @@ end]]></code>
     <switch x="20" y="298" height="40" on="true" variable="show-butterflies?" width="147" display="show-butterflies?"></switch>
     <monitor x="126" precision="2" y="454" height="60" fontSize="11" width="100" display="mean elevation">mean [elevation] of turtles</monitor>
     <button x="20" y="392" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="112" display="Update Display">update-display</button>
-    <switch x="155" y="298" height="40" on="false" variable="show-labels?" width="122" display="show-labels?"></switch>
     <monitor x="20" precision="2" y="529" height="60" fontSize="11" width="100" display="Mean turtles">mean [count turtles-here] of patches with [any? turtles-here]</monitor>
     <monitor x="133" precision="2" y="529" height="60" fontSize="11" width="107" display="Fraction crowded">fraction-crowded</monitor>
     <plot x="784" autoPlotX="true" yMax="10.0" autoPlotY="true" yAxis="count" y="10" xMin="1.0" height="175" legend="false" xMax="20.0" yMin="0.0" width="230" xAxis="Turtles per patch" display="Patch density">
@@ -204,6 +207,7 @@ end]]></code>
       </pen>
     </plot>
     <switch x="20" y="345" height="40" on="true" variable="draw-paths?" width="122" display="draw-paths?"></switch>
+    <switch x="170" y="298" height="40" on="false" variable="show-labels?" width="122" display="show-labels?"></switch>
   </widgets>
   <info><![CDATA[# Butterfly Model ODD Description
 
