@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <meta name="generator" content="pandoc">
 <meta name="author" content="J. Magnolia Gilligan">
-<meta name="dcterms.date" content="Tuesday, September 29">
 <title>Observation</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -70,13 +69,19 @@
         <p class="author">Agent-Based and Individual-Based Computational
 Modeling</p>
   <p class="author">J. Magnolia Gilligan</p>
-  <p class="date">
-      Class #10:
-       Tuesday, September 29,
-      2026
-  </p>
 	<!-- end title slide -->
-</section><section><section id="obs-sec" class="title-slide slide level1 center"><h1 class="center">Observation</h1>
+</section><section><section id="announcements" class="title-slide slide level1 center"><h1 class="center">Announcements</h1>
+
+</section><section id="announcements-1" class="slide level2"><h2>Announcements</h2>
+<ul>
+<li>Classes canceled Tues Oct. 6 and Thurs. Oct. 8</li>
+<li>Makeup classes:
+<ul>
+<li>Monday Oct. 5, 4:15–5:30, SC 5737 (Jewell Conference Room)</li>
+<li>Monday Oct. 12, 4:15–5:30, SC 5737 (Jewell Conference Room)</li>
+</ul>
+</li>
+</ul></section></section><section><section id="obs-sec" class="title-slide slide level1 center"><h1 class="center">Observation</h1>
 
 </section><section id="obs" class="slide level2 leftslide"><h2 class="leftslide">Observation</h2>
 <p>The <strong>observation</strong> design concept is about what you
@@ -258,7 +263,8 @@ end</code></pre>
 <li>
 <p>Write a new reporter:</p>
 <pre><code>to-report fraction-crowded
-  let crowd-count sum [count turtles-here] of patches with [count turtles-here &gt;= 4]            
+  let crowd-count sum [count turtles in-radius 1.5] of patches with 
+    [count turtles in-radius 1.5 &gt;= 4]            
   report crowd-count / num-butterflies
 end</code></pre>
 </li>
