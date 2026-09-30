@@ -269,8 +269,8 @@ end</code></pre>
 <li>
 <p>Write a new reporter:</p>
 <pre><code>to-report fraction-crowded
-  let crowd-count sum [count turtles in-radius 1.5] of patches with 
-    [count turtles in-radius 1.5 &gt;= 4]            
+  let crowd-count sum [count turtles-here] of patches with
+    [count other turtles-on (patch-set self neighbors) &gt;= 8]
   report crowd-count / num-butterflies
 end</code></pre>
 </li>
@@ -286,8 +286,8 @@ end</code></pre>
 <pre><code>mean [count turtles-here] of patches with [any? turtles-here]</code></pre>
 </li>
 <li>
-<p><strong>Fraction crowded</strong> gets reporter</p>
-<pre><code>fraction-crowded</code></pre>
+<p><strong>Percent crowded</strong> gets reporter</p>
+<pre><code>100 * fraction-crowded</code></pre>
 </li>
 </ul>
 </li>

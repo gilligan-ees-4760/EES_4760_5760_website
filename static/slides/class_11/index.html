@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<!-- JMG Reveal.js 6 local template for EES 4760 --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="J. Magnolia Gilligan">
+<meta name="dcterms.date" content="Thursday, October  1">
+<title>Sensing</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/dist/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/dist/reveal.css">
+<style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+    div.qrbox div.qrimage {
+      font-size:30%;
+      width:100%;
+      vertical-align:top;
+    }
+    div.qrbox div.qrimage a.qrimage {
+      font-size: 0px;
+      line-height: 0px;
+    }
+    div.qrbox div.qrimage img {
+      height: 200px;
+      margin-bottom: 10px;
+    }  </style>
+<!-- local theme = solarized-jmg --><link rel="stylesheet" href="../../lecture_lib/library/dist/theme/solarized-jmg.css" id="theme">
+<script src="../../lecture_lib/library/header-attrs-2.32/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+<section id="title-slide" class="center"><h1 class="title">Sensing</h1>
+    <p class="author">EES 4760/5760</p>
+        <p class="author">Agent-Based and Individual-Based Computational
+Modeling</p>
+  <p class="author">J. Magnolia Gilligan</p>
+  <p class="date">
+      Class #11:
+       Thursday, October 1,
+      2026
+  </p>
+	<!-- end title slide -->
+</section><section><section id="intro-sec" class="title-slide slide level1 center"><h1 class="center">Getting Started</h1>
+
+</section><section id="intro" class="slide level2"><h2>Getting Started</h2>
+<p>Log in to a computer and download the following:</p>
+<ul>
+<li>Link demo model from the download page or <a href="https://ees4760.jmgiligan.org/models/class_11/link_demo.nlogox" class="uri">https://ees4760.jmgiligan.org/models/class_11/link_demo.nlogox</a>
+</li>
+<li>Team project templates from the download page <a href="https://ees4760.jmgiligan.org/downloads/team_project_templates/" class="uri">https://ees4760.jmgiligan.org/downloads/team_project_templates/</a>
+</li>
+</ul>
+<!--
+# Review of Homework 6.3 {#hw-sec data-skip="true"}
+
+## Review of Homework 6.3 {#hw_6_3}
+
+:::::: {.columns}
+::: {.column style="width:44%;"}
+```
+turtles-own [ path ]
+
+to setup
+  clear-all
+  create-turtles 1
+  [ 
+    set color red
+    pen-down
+    set path (list patch-here)
+    repeat 100 
+    [
+      rt (random 91 - 45)
+      fd 1
+      set path fput patch-here path
+    ]
+  ]
+end
+```
+:::
+::: {.column style="width:54%;"}
+```
+to go-back
+  ask turtles 
+  [
+    set color blue
+    foreach path
+    [
+      a-patch -> set heading towards a-patch
+      fd 1
+    ]
+  ]
+end
+```
+:::
+::::::
+
+* Can you see what's wrong here?
+
+
+## Review of Homework 6.3 {#hw_6_3-2}
+
+:::::: {.columns}
+::: {.column .leftslide .mright-3 style="width:38%;"}
+* Original model movement:
+
+  ```
+  repeat 100 
+  [
+    rt (random 91 - 45)
+    fd 1
+    set path fput patch-here path
+  ]
+  ```
+:::
+::: {.column .leftslide .mleft-3 style="width:48%;"}
+* Original `go-back` movement:
+
+  ```
+  foreach path
+  [
+    a-patch -> set heading towards a-patch
+    fd 1
+  ]
+  ```
+
+* {+} Improved `go-back` movement:
+
+  ```
+  foreach but-first path
+  [
+    a-patch -> set heading towards a-patch
+    fd 1
+  ]
+  ```
+:::
+::::::
+
+## Better model {#hw_6_3_fixed .leftslide}
+
+* Remember the turtle's heading, not the patch it was on.
+
+* `setup` movement
+
+```
+repeat 100 
+[
+  rt (random 91 - 45)
+  fd 1
+  set path fput heading path
+]
+```
+
+* Working `go-back`
+
+```
+foreach path
+[
+  a-heading -> set heading (a-heading + 180)
+  fd 1
+]
+```
+--></section></section><section><section id="sensing-points-sec" class="title-slide slide level1 center"><h1 class="center">Sensing: Important Points</h1>
+
+</section><section id="variable-scope" class="slide level2"><h2>Variable scope</h2>
+<div class="columns eighty topalign ptop-1">
+<div class="column topalign">
+<ul>
+<li>Global variables (<code>globals []</code>)
+<ul>
+<li>Same value throughout model</li>
+</ul>
+</li>
+<li>Agent variables (<code>turtles-own []</code>)
+<ul>
+<li><p>Each agent has its own value</p></li>
+<li>
+<p>For specialized breeds, <code>&lt;breeds&gt;-own []</code>:</p>
+<pre><code>breed [ butterflies butterfly ]
+butterflies-own [
+  starting-patch
+]
+
+to setup
+  clear-all
+  create-butterflies 10 [
+    move-to one-of patches with [
+      not any? butterflies-here
+      ]
+    set shape "butterfly"
+    set starting-patch patch-here
+  ]
+  reset-ticks
+end</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="column topalign">
+<ul>
+<li class="fragment">Patch variables (<code>patches-own []</code>)
+<ul>
+<li>Each patch has its own value</li>
+</ul>
+</li>
+<li class="fragment">Link variables (<code>links-own []</code>)
+<ul>
+<li>Each link has its own value</li>
+</ul>
+</li>
+<li class="fragment">Local variables (<code>let</code>)
+<ul>
+<li>Only exists within submodel, reporter, or square brackets
+<code>[]</code>
+</li>
+</ul>
+<pre><code>to reproduce
+  ; num-offspring only exists inside to reproduce
+  let num-offspring 1 
+  if random-float 1.0 &lt; prob-twins
+  [ set num-offspring 2 ]
+
+  hatch num-offspring [
+    ; friends only exists inside [ ... ]
+    let friends n-of 3 turtles in-radius 10
+    set happiness mean [happiness] of friends
+  ]
+end</code></pre>
+</li>
+</ul>
+</div>
+</div>
+</section></section><section><section id="link-sec" class="title-slide slide level1 center"><h1 class="center">Links and Networking</h1>
+
+</section><section id="links" class="slide level2"><h2>Links and Networking</h2>
+<ul>
+<li>Links allow you to connect turtles
+<ul>
+<li>Friendships</li>
+<li>Family relationships</li>
+<li>Business relationships</li>
+<li>…</li>
+</ul>
+</li>
+<li>Two kinds of links:
+<ul>
+<li>Undirected:
+<ul>
+<li>
+<code>create-link-with</code> <em>turtle</em>
+</li>
+<li>
+<code>create-links-with</code> <em>turtleset</em>
+</li>
+</ul>
+</li>
+<li>Directed:
+<ul>
+<li>
+<code>create-link-to</code> <em>turtle</em> and
+<code>create-link-from</code> <em>turtle</em>
+</li>
+<li>
+<code>create-links-to</code> <em>turtleset</em> and
+<code>create-links-from</code> <em>turtleset</em>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section><section id="link-types" class="slide level2"><h2>Directed vs. Undirected Links:</h2>
+<ul>
+<li>For any pair of turtles:
+<ul>
+<li><p>There can only be one kind of link between them
+(<em>directed</em> or <em>undirected</em>)</p></li>
+<li>
+<p>If there is a <em>directed</em> link between them, there can be
+links in both directions:</p>
+<pre><code>let partner one-of other turtles
+create-link-to parther
+create-link-from partner</code></pre>
+</li>
+<li><p>A turtle can have <em>directed</em> links to or from some turtles
+and <em>undirected</em> links with other turtles</p></li>
+<li>
+<p>But <strong>the same pair of turtles can’t mix <em>directed</em>
+and <em>undirected</em> links</strong></p>
+<pre><code>let partner one-of other turtles
+create-link-to parther
+create-link-with partner ; this causes an error!</code></pre>
+</li>
+</ul>
+</li>
+</ul></section><section id="working-with-links" class="slide level2"><h2>Working with Links</h2>
+<ul>
+<li>
+<strong>Links:</strong>
+<ul>
+<li>
+<p><code>my-out-links</code>: <em>Directed links pointing away</em>
+<strong>and</strong> <em>undirected links</em></p>
+<pre><code>  ask my-out-links [ set color pink ] ; link turns pink</code></pre>
+</li>
+<li>
+<p><code>my-in-links</code>: <em>Directed links pointing to</em>
+<strong>and</strong> <em>undirected links</em></p>
+<pre><code>  ask my-in-links [ set size 2 ] ; makes link thicker</code></pre>
+</li>
+<li>
+<p><code>my-links</code>: All links (<em>directed</em>
+<strong>and</strong> <em>undirected</em>)</p>
+<pre><code>  ask my-links [ set thickness 2 ] ; size is thickness of line
+  set link-avg mean [link-length] of my-links</code></pre>
+</li>
+</ul>
+</li>
+</ul></section><section id="working-with-link-neighbors" class="slide level2"><h2>Working with Link Neighbors</h2>
+<ul>
+<li>
+<strong>Turtles at the other end of links:</strong>
+<ul>
+<li>
+<p><code>link-neighbors</code>: Turtles at the other end of
+<em>directed links</em> <strong>or</strong> <em>undirected</em> links
+with myself</p>
+<pre><code>ask link-neighbors [ set color blue ] ; turtle turns blue</code></pre>
+</li>
+<li>
+<p><code>in-link-neighbors</code>: Turtles at the other end of
+<em>directed</em> links pointing <em>to</em> myself <strong>or</strong>
+<em>undirected</em> links <em>with</em> myself</p>
+<pre><code>; receive payment from neighbors on in-bound links
+set wealth wealth + 5 * count in-link-neighbors with [wealth &gt;= 5]
+ask in-link-neighbors with [wealth &gt;= 5]
+[ set wealth wealth - 5 ]</code></pre>
+</li>
+<li><p><code>out-link-neighbors</code>: Turtles at the other end of
+<em>directed</em> links pointing <em>from</em> myself
+<strong>or</strong> <em>undirected</em> links <em>with</em>
+myself</p></li>
+</ul>
+</li>
+</ul></section><section id="tying" class="slide level2"><h2>Tying Turtles Together</h2>
+<ul>
+<li>Tying causes turtles to mirror each other’s actions
+<ul>
+<li>
+<p>Tying undirected links:</p>
+<pre><code>ask one-of links with [is-undirected-link?] [ tie ]</code></pre>
+<p>If either turtle turns or moves, the other will do the same turn or
+move.</p>
+</li>
+<li>
+<p>Tying directed links:</p>
+<pre><code>ask one-of links with [is-out-link?] [ tie ]</code></pre>
+<p>If this turtle turns or moves, the one at the other end of the
+<strong>out link</strong> will do the same turn or move.</p>
+<p>If the other turtle turns or moves, it does not affect this
+turtle.</p>
+</li>
+</ul>
+</li>
+</ul></section><section id="fancy-links" class="slide level2"><h2>Getting Fancy with Links</h2>
+<ul>
+<li>
+<p>Find the best patch next to any turtle within two links on the
+network</p>
+<pre><code>  let connections out-link-neighbors ; link neighbors
+  set connections other (turtle-set connections 
+                              ([out-link-neighbors] of connections)
+                  ) ; add neighbors of neighbors, but not self
+  let target max-one-of patch-set [neighbors] of connections [ quality ]</code></pre>
+</li>
+<li class="fragment">
+<p>Break down:</p>
+<ul>
+<li>Turtle context</li>
+<li>Set <code>connections</code> to the turtle’s out link neighbors</li>
+<li class="fragment">Next:
+<ul>
+<li>Find <code>[out-link-neighbors] of connections</code> and combine
+this with the original <code>connections</code>
+</li>
+<li>Neighbors and neighbors of neighbors</li>
+</ul>
+</li>
+<li class="fragment">Finally look at the neighboring patches of all the
+<code>connections</code> turtles, and select the one with the greatest
+<code>quality</code>
+</li>
+</ul>
+</li>
+</ul></section></section><section><section id="link-model-sec" class="title-slide slide level1 center"><h1 class="center">Model with Links</h1>
+
+</section><section id="link-model" class="slide level2"><h2>Model with Links</h2>
+<div class="columns eighty">
+<div class="column topalign">
+<pre><code>patches-own [ quality ]
+
+to setup
+  ca
+  initialize-patches
+  initialize-turtles
+  initialize-links
+  reset-ticks
+end
+
+to initialize-patches
+  ask patches [ 
+    set quality random-float 100 
+    set pcolor scale-color green quality 0 300
+  ]
+end
+
+to initialize-turtles
+  create-turtles 50 [
+    move-to one-of patches with 
+      [not any? turtles-here]
+    set color red
+    set size 0.75
+  ]
+  ask turtle 0 [
+    set color pink
+    set size 1.5
+    ]
+end</code></pre>
+</div>
+<div class="column topalign">
+<pre><code>to initialize-links
+  ask turtle 0 [
+    create-links-to n-of 3 other turtles [
+      set thickness 0.2
+      set color orange
+    ]
+    ask out-link-neighbors [ 
+      set color yellow
+      create-links-to n-of 3 turtles with 
+          [not any? my-links]
+      [
+        set thickness 0.1
+        set color (orange + 3)
+      ]
+      ask out-link-neighbors [ set color blue + 3 ]
+    ]    
+  ]
+end
+
+to-report best-patch
+  let subjects out-link-neighbors
+  set subjects other 
+    (turtle-set subjects 
+      ([out-link-neighbors] of subjects))
+  report max-one-of 
+      (patch-set [neighbors] of subjects) [ quality ]
+end</code></pre>
+</div>
+</div>
+</section></section><section id="team-sec" class="title-slide slide level1 center"><h1 class="center">Team Projects</h1>
+
+</section><section><section id="investor-sec" class="title-slide slide level1 center"><h1 class="center">Business Investor Model</h1>
+
+</section><section id="investor" class="slide level2"><h2>Business Investor Model</h2>
+<div class="columns ninetyfive">
+<div class="column topalign">
+<ul>
+<li>
+<strong>Entities:</strong>
+<ul>
+<li>Investors (turtles)
+<ul>
+<li>Each investor invests in one patch</li>
+<li>Only one investor per patch</li>
+</ul>
+</li>
+<li>Businesses (patches)</li>
+</ul>
+</li>
+<li>
+<strong>State Variables:</strong>
+<ul>
+<li>
+<strong>Global:</strong>
+<ul>
+<li>
+<em>T</em> = time horizon for investments<br>(5 ticks)</li>
+</ul>
+</li>
+<li>
+<strong>Investors</strong>:
+<ul>
+<li>
+<em>W</em> = wealth</li>
+</ul>
+</li>
+<li>
+<strong>Businesses</strong>:
+<ul>
+<li>
+<em>P</em> = profit per tick</li>
+<li>
+<em>F</em> = probability of failure<br> (investor loses all
+wealth)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="column topalign">
+<ul>
+<li>
+<strong>Objective</strong>: Maximize wealth over time</li>
+<li>
+<strong>Adaptation</strong>: Move to best vacant patch they can
+see</li>
+<li>
+<strong>Sensing</strong>:
+<ul>
+<li>Submodel for calculating value of patch</li>
+<li>Limited range of vision for sensing patches</li>
+</ul>
+</li>
+<li>Value submodel
+<ul>
+<li>
+<em>U</em> = expected value (utility) of patch <span class="math display">\[U = (W + T P) \times (1 - F)^T\]</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</section></section><section><section id="telemarketer-sec" class="title-slide slide level1 center"><h1 class="center">Telemarketer Model</h1>
+
+</section><section id="telemarketer" class="slide level2"><h2>Telemarketer Model</h2>
+<div class="columns eightyfive">
+<div class="column topalign">
+<ul>
+<li>
+<strong>Entities:</strong>
+<ul>
+<li>Telemarketing companies (turtles)</li>
+<li>Consumer households (patches)</li>
+</ul>
+</li>
+<li>
+<strong>State Variables:</strong>
+<ul>
+<li>
+<strong>Telemarketers:</strong>
+<ul>
+<li>Size (# employees, telephones, etc.)</li>
+<li>Bank balance</li>
+</ul>
+</li>
+<li>
+<strong>Households:</strong>
+<ul>
+<li>Have they been called already this tick?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="column topalign">
+<ul>
+<li>
+<strong>Process Overview:</strong>
+<ol type="1">
+<li>Patches reset “have I been called?”</li>
+<li>Telemarketers make sales calls
+<ul>
+<li>Call customers within some radius of self</li>
+<li>Bigger firms have larger radius</li>
+<li>Customer buys a product from first telemarketer that calls them,
+then rejects subsequent calls.</li>
+</ul>
+</li>
+<li>Telemarketers do weekly accounting:
+<ul>
+<li>Income from successful sales</li>
+<li>Cost of payroll, phone bills, etc.</li>
+<li>If bank balance &lt; 0, go bankrupt</li>
+<li>If bank balance is large enough, spend money to grow</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Later we will explore large firms acquiring smaller ones.</li>
+</ul>
+</div>
+</div>
+</section></section><section><section id="team-project-sec" class="title-slide slide level1 center"><h1 class="center">Start Team Project</h1>
+
+</section><section id="start-team-project" class="slide level2"><h2>Start Team Project</h2>
+<ul>
+<li>Download project template if you haven’t already.</li>
+<li>Work with your partner to start writing code from the ODD</li>
+</ul></section></section>
+</div>
+  </div>
+
+  <script src="../../lecture_lib/library/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../../lecture_lib/library/dist/plugin/notes.js"></script><script src="../../lecture_lib/library/dist/plugin/zoom.js"></script><script src="../../lecture_lib/library/dist/plugin/math.js"></script><script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'speaker',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags whether to create separate pages for each fragment
+        // when printing to PDF
+        pdfSeparateFragments: false,
+
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: false,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: false,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'default',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+        mathjax4: {
+            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js',
+            loader: {
+              load: [
+                '[tex]/ams', '[tex]/mhchem'
+                ],
+              },
+            output: {
+                            font: 'mathjax-dejavu',
+                          },
+            chtml: {
+              matchFontHeight: true,
+              adaptiveCSS: true,
+            },
+            svg: {
+              fontCache: 'global',
+            },
+            tex: {
+              inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)'],
+              ],
+              displayMath: [
+                ['$$', '$$'],
+                ['\\[', '\\]'],
+              ],
+              packages: {
+                '[+]': ['ams', 'mhchem'],
+              },
+                          },
+            options: {
+              skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            },
+        },
+        // reveal.js plugins
+        plugins: [
+          RevealMath.MathJax4,
+          RevealNotes,
+          RevealZoom
+          ]
+      });
+    </script><script>
+    function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+      // Find all nodes matching the description
+      var nodes = container.querySelectorAll( '.' + classname );
+
+      // Check all matches to find one which is a direct child of
+      // the specified container
+      for( var i = 0; i < nodes.length; i++ ) {
+      	var testNode = nodes[i];
+      	if( testNode.parentNode === container ) {
+      		return testNode;
+      	}
+      }
+
+      // If no node was found, create it now
+      var node = document.createElement( tagname );
+      node.className = classname;
+      if( typeof innerHTML === 'string' ) {
+      	node.innerHTML = innerHTML;
+      }
+      container.appendChild( node );
+
+      return node;
+    }
+
+    var dom_wrapper = document.querySelector('.reveal');
+
+    createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+      '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+      '<div class="qrimage">' + '\n' +
+          '<a class="qrimage" href="https://ees4760.jmgilligan.org/slides/class_11">' +
+      	'<img src="qrcode.png" alt="https://ees4760.jmgilligan.org/slides/class_11"/>' +
+      	'</a>' + '\n' +
+    	  '</div>' + '\n' +
+      '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+        '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+            'Live web page: <a href="https://ees4760.jmgilligan.org/slides/class_11">https://ees4760.jmgilligan.org/slides/class_11</a>' + '\n' +
+                  '<br/>' + '\n' +
+            'PDF: <a href="https://ees4760.jmgilligan.org/slides/class_11/EES_4760_5760_class_11_slides.pdf" target="_blank">https://ees4760.jmgilligan.org/slides/class_11/EES_4760_5760_class_11_slides.pdf</a>' + '\n' +
+              	'</span>' + '\n' +
+      	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+      	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+      	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+      	'</span>' + '\n' +
+    	'</div>' + '\n' +
+      '</div>' + '\n'
+      );
+
+    var qrbox = document.querySelector("#qrbox");
+    var advance_fragment = 0;
+
+    if (qrbox != null) {
+      function isPrintingPDF() {
+        let printing = ( /print-pdf/gi ).test( window.location.search );
+        console.log("printing test: " + printing);
+        return printing;
+      }
+
+      if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+          ! Reveal.isFirstSlide() || isPrintingPDF()) {
+        console.log("Initializing");
+        console.log("Hiding QR box");
+        qrbox.style.visibility="hidden";
+        qrbox.style.display="none";
+      }
+
+      Reveal.addEventListener('overviewshown', function() {
+        console.log("Overview shown");
+        console.log("Hiding QR box");
+        qrbox.style.visibility="hidden";
+        qrbox.style.display="none";
+      }, false);
+
+      Reveal.addEventListener('overviewhidden', function() {
+        if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+            ! isPrintingPDF()) {
+          console.log("Overview hidden");
+          console.log("Showing QR box");
+          qrbox.style.visibility="visible";
+          qrbox.style.display="block";
+        }
+      }, false);
+
+      Reveal.addEventListener('slidechanged', function() {
+        console.log("Slide changed...");
+        if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+            ! qrbox.hasAttribute('qr-box-hide') &&
+            ! isPrintingPDF()) {
+          console.log("Showing QR box");
+          qrbox.style.visibility="visible";
+          qrbox.style.display="block";
+        } else {
+          console.log("Hiding QR box");
+          qrbox.style.visibility="hidden";
+          qrbox.style.display="none";
+        }
+      }, false);
+
+      Reveal.addEventListener('pdf-ready', function() {
+        console.log("hiding qrbox for printing");
+        qrbox.style.visibility="hidden";
+        qrbox.style.display="none";
+        qrbox.setAttribute('qr-box-hide', 'true');
+      });
+    }
+
+    Reveal.addEventListener('slidechanged', function() {
+      while (advance_fragment > 0) {
+        // console.log('advancing fragment');
+        Reveal.nextFragment();
+        advance_fragment--;
+      }
+    }, false);
+
+    Reveal.addEventListener('slidechanged', function() {
+      if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+        // console.log("going to next slide...");
+        Reveal.next();
+      }
+    }, false);
+
+    Reveal.addEventListener('skip_slide', function() {
+      Reveal.next();
+    }, false);
+
+    Reveal.addEventListener('advance_fragment', function() {
+      // console.log("setting advance fragment");
+      advance_fragment++;
+      }, false);  </script>
+</body>
+</html>
