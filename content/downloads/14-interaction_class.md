@@ -1,6 +1,7 @@
 ---
 title: "Interaction Models"
 weight: 140
+draft: true
 date: "2026-10-13"
 due_date: "2026-10-13"
 pubdate: "2019-10-03"
