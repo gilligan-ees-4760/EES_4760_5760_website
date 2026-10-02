@@ -70,12 +70,12 @@ for more details.
 
 ### Teams:
 
-| Team # |       Project      |                     Members                 |
-|-------:|:------------------:|:-------------------------------------------:|
-|   1    | Business Investor  | Rhett Adam, Alysia Shang                    |
-|   2    |  Telemarketer      | Aliya Eissa, Blanche Stora                  |
-|   3    | Business Investor  | Thomas Doherty, Amelia Tejada               |
-|   4    |  Telemarketer      | Sawsan Ahmed, Yi He, Yidi Wang              |
+| Team # |       Project      |                     Members                 |      Exercises           | Presentation Exercise |
+|-------:|:------------------:|:-------------------------------------------:|:------------------------:|:---------------------:|
+|   1    | Business Investor  | Rhett Adam, Alysia Shang                    | 10.3, 10.4, 11.4         | 11.4                  |
+|   2    |  Telemarketer      | Aliya Eissa, Blanche Stora                  | 13.2, 13.3, 14.1         | 13.3                  |
+|   3    | Business Investor  | Thomas Doherty, Amelia Tejada               | 10.3, 11.2, 11.3         | 11.3                  |
+|   4    |  Telemarketer      | Sawsan Ahmed, Yi He, Yidi Wang              | 13.2, 13.4, 13.5, 14.8   | 14.8                  |
 
 
 <!--
