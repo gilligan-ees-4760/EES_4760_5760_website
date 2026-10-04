@@ -1,260 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
 <model version="NetLogo 7.0.4" snapToGrid="true">
-  <code><![CDATA[globals [
-  ;q
-  ]        ; q is the probability that a butterfly moves
-                     ; directly to the highest surrounding patch
-patches-own [
-  elevation
-  visited?
-  ]
-turtles-own [
-  initial-patch
-  finished?
-  chosen?
-  ]
+  <code><![CDATA[turtles-own [
+  visible-neighbors      ;; what birds can I see nearby?
+  closest-neighbor       ;; who's the closest bird I can see?
+  speed                  ;; what speed am I flying at?
+  happy?                 ;; am I content with my current place?
+]
+
+;;
+;; Setup Procedures
+;;
 
 to setup
-
-  ca
-
-  set q precision q 2
-  set num-butterflies max list num-butterflies 1
-
-  let x0 74
-  let y0 74
-
-  ; Assign an elevation to patches and color them by it
-  ifelse (real-terrain)
-  [
-    input-elevation
-    set x0 110
-    set y0 135
+  clear-all
+  create-turtles number-of-birds [
+    setxy random-xcor random-ycor
+    set speed base-speed
+    set size 1.5 ; easier to see
+    set happy? false
+    recolor
   ]
-  [
-    build-hills
-    set x0 85
-    set y0 95
+  reset-ticks
+end
+
+;;
+;; Runtime Procedures
+;;
+
+to go
+  ask turtles [
+    set speed base-speed
+    set visible-neighbors (other turtles in-cone vision-distance vision-cone)
+    ifelse any? visible-neighbors
+      [ adjust ]
+      [ set happy? true ]
+    recolor
+    fd speed  ; fly forward!
   ]
-  ask patches
-  [
-    set plabel-color pink
-    set visited? false
-  ]    ; end of "ask patches"
-
-  ;  Create just 1 butterfly for now
-  crt num-butterflies
-   [
-     set size 2
-     set color red
-     set label-color pink
-     ; Set initial location of butterflies
-     setxy x0 + random 10 - 5 y0 + random 10 - 5
-     set initial-patch patch-here
-     set finished? false
-     set chosen? false
-     pen-down
-   ]
-   ask one-of turtles [set chosen? true]
-   update-display
-   reset-ticks
-end           ; of setup procedure
-
-to go  ;  This is the master schedule
-  ifelse draw-paths?
-  [ask turtles [pen-down]]
-  [ask turtles [pen-up]]
-  ask turtles with [not finished?] [move]
-  update-display
   tick
-  ; stop when all the butterflies are at the summit, or
-  ; 1000 ticks, whichever comes first
-  if ticks >= 1000 or all? turtles [finished?] = 0 [stop]
-end ; of go
+end
 
-to move  ; The butterfly move procedure, in turtle context
-         ; Decide whether to the highest
-         ; surrounding patch with probability q
-  ifelse random-float 1 < q
-    [
-      uphill elevation ; Move uphill
-      set color red
-    ]
-    [
-      move-to one-of neighbors ; Otherwise move randomly
-      set color blue
-      ]
-  set visited? true
-  ; ask turtles with [ chosen? ] [ set label precision elevation 0 ]
-end ; of move procedure
+to adjust ;; turtle procedure
+  set closest-neighbor min-one-of visible-neighbors [distance myself]
+  let closest-distance distance closest-neighbor
+  ;; if I am too far away from the nearest bird I can see, then try to get near them
+  if closest-distance > updraft-distance [
+    turn-towards (towards closest-neighbor)
+    ;; speed up to catch up
+    set speed base-speed * (1 + speed-change-factor)
+    set happy? false
+    stop
+  ]
 
-to build-hills
-  ask patches
-  [
-    ; Patch elevation decreases linearly with distance from the center
-    ; of hills. Hills are at (30, 30) and (120, 100). The first hill is
-    ; 100 units high. The second hill is 50 units high.
+  ;; if my view is obstructed, move sideways randomly
+  if any? visible-neighbors in-cone vision-distance obstruction-cone [
+    turn-at-most (random-float (max-turn * 2) - max-turn)
+    ;; speed up to get out of the way
+    set speed base-speed * (1 + speed-change-factor)
+    set happy? false
+    stop
+  ]
 
-    let elev1 100 - distancexy 30 30
-    let elev2 50 - distancexy 120 100
+  ;; if i am too close to the nearest bird slow down
+  if closest-distance < too-close [
+    set happy? false
+    ;; speed down to let the bird in front of me move away
+    set speed base-speed * (1 - speed-change-factor)
+    stop
+  ]
 
-    ifelse elev1 > elev2
-    [set elevation elev1]
-    [set elevation elev2]
+  ;; if all three conditions are filled, adjust
+  ;; to the speed and heading of my neighbor and take it easy
+  set speed [speed] of closest-neighbor
+  turn-towards [heading] of closest-neighbor
+  set happy? true
+end
+
+to recolor ;; turtle procedure
+  ifelse show-unhappy? [
+    ifelse happy?
+      [ set color white ]
+      [ set color red ]
+  ][
+    ;; This changes the bird's color some shade of yellow --
+    ;; note that the color is based on WHO number, not RANDOM, so birds
+    ;; won't change color if the SHOW-UNHAPPY? switch is flicked on and off
+    set color yellow - 2 + (who mod 7)
   ]
 end
 
-to input-elevation
-  file-open "ElevationData.txt"
-  while [not file-at-end?]
-  [
-    let next-x file-read
-    let next-y file-read
-    let next-elevation file-read
-    ask patch next-x next-y [set elevation next-elevation]
+;;
+;; TURTLE UTILITY PROCEDURES, for turning gradually towards a new heading
+;;
+
+to turn-towards [new-heading]  ;; turtle procedure
+  turn-at-most (subtract-headings new-heading heading)
+end
+
+to turn-at-most [turn]  ;; turtle procedure
+  ifelse abs turn > max-turn [
+    ifelse turn >= 0
+      [ rt max-turn ]
+      [ lt max-turn ]
+  ] [
+    rt turn
   ]
-  file-close
 end
 
-to color-patches
-  ifelse patch-coloring = "elevation"
-  [
-    let max-elevation max [elevation] of patches
-    let min-elevation min [elevation] of patches
-    ask patches [ set pcolor scale-color green elevation min-elevation max-elevation]
-  ]
-  [
-    let max-turtles max [count turtles-here] of patches
-    let min-turtles 0
-    ask patches [ set pcolor scale-color cyan (count turtles-here) min-turtles max-turtles]
-  ]
 
-end
-
-to update-display
-  color-patches
-  ifelse show-butterflies?
-  [ ask turtles [show-turtle]]
-  [ ask turtles [hide-turtle]]
-  ifelse show-labels?
-  [ ask turtles with [chosen?] [set label 
-                                    precision elevation 1] ]
-  [ ask turtles with [chosen?] [set label ""] ]
-end
-
-;  Corridor width is the number of patches visited by butterflies
-;  divided by the average distance a butterfly is from its initial position
-;
-;  If a butterfly moves in a straight line, the number of patches visited
-;  equals the distance from its initial patch, so corridor-width = 1
-;  The more a butterfly wanders off a straight line, the more patches
-;  it will visit, so the wider the corridor will be.
-;
-to-report corridor-width
-  let pcount count patches with [visited?]
-  let dist mean [distance initial-patch] of turtles
-  ifelse dist = 0
-  [report 1]
-  [report pcount / dist]
-end
-
-to-report fraction-crowded
-  let crowd-count sum [count turtles-here] of patches with 
-    [count other turtles-on (patch-set self neighbors) >= 8]
-  report crowd-count / num-butterflies
-end]]></code>
+; Copyright 2009 Uri Wilensky.
+; See Info tab for full copyright and license.]]></code>
   <widgets>
-    <view x="304" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="0" height="454" showTickCounter="true" patchSize="3.0" fontSize="10" wrappingAllowedY="false" width="454" tickCounterLabel="ticks" maxPycor="149" updateMode="1" maxPxcor="149" minPxcor="0"></view>
-    <button x="15" y="20" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="71">setup</button>
-    <button x="15" y="67" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="64">go</button>
-    <slider x="20" step="0.01" y="119" max="1" width="172" display="q" height="50" min="0" direction="Horizontal" default="0.4" variable="q"></slider>
-    <monitor x="20" precision="2" y="454" height="60" fontSize="11" width="100" display="Corridor Width">corridor-width</monitor>
-    <switch x="95" y="20" height="40" on="true" variable="real-terrain" width="110" display="real-terrain"></switch>
-    <button x="95" y="67" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="63" display="step">go</button>
-    <slider x="20" step="5" y="176" max="50" width="172" display="num-butterflies" height="50" min="0" direction="Horizontal" default="50.0" variable="num-butterflies"></slider>
-    <chooser x="20" y="233" height="60" variable="patch-coloring" current="0" width="138" display="patch-coloring">
-      <choice type="string" value="elevation"></choice>
-      <choice type="string" value="turtles"></choice>
-    </chooser>
-    <button x="135" y="392" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="97" display="Erase paths">clear-drawing</button>
-    <switch x="20" y="298" height="40" on="true" variable="show-butterflies?" width="147" display="show-butterflies?"></switch>
-    <monitor x="126" precision="2" y="454" height="60" fontSize="11" width="100" display="mean elevation">mean [elevation] of turtles</monitor>
-    <button x="20" y="392" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="112" display="Update Display">update-display</button>
-    <monitor x="20" precision="2" y="529" height="60" fontSize="11" width="100" display="Mean turtles">mean [count turtles-here] of patches with [any? turtles-here]</monitor>
-    <monitor x="126" precision="1" y="529" height="60" units="%" fontSize="11" width="120" display="Percent crowded">100 * fraction-crowded</monitor>
-    <plot x="784" autoPlotX="true" yMax="10.0" autoPlotY="true" yAxis="count" y="10" xMin="1.0" height="175" legend="false" xMax="20.0" yMin="0.0" width="230" xAxis="Turtles per patch" display="Patch density">
-      <setup></setup>
-      <update></update>
-      <pen interval="1.0" mode="1" display="default" color="-16777216" legend="true">
-        <setup></setup>
-        <update>histogram [count turtles-here] of patches</update>
-      </pen>
-    </plot>
-    <plot x="784" autoPlotX="true" yMax="100.0" autoPlotY="true" yAxis="Percent" y="200" xMin="0.0" height="175" legend="false" xMax="10.0" yMin="0.0" width="230" xAxis="Tick" display="Fraction crowded">
-      <setup></setup>
-      <update></update>
-      <pen interval="1.0" mode="0" display="default" color="-16777216" legend="true">
-        <setup></setup>
-        <update>plot 100 * fraction-crowded</update>
-      </pen>
-    </plot>
-    <plot x="784" autoPlotX="true" yMax="500.0" autoPlotY="true" yAxis="Elevation" y="380" xMin="0.0" height="175" legend="false" xMax="10.0" yMin="500.0" width="230" xAxis="tick" display="Mean elevation">
-      <setup></setup>
-      <update></update>
-      <pen interval="1.0" mode="0" display="default" color="-16777216" legend="true">
-        <setup></setup>
-        <update>plot mean [elevation] of turtles</update>
-      </pen>
-    </plot>
-    <switch x="20" y="345" height="40" on="true" variable="draw-paths?" width="122" display="draw-paths?"></switch>
-    <switch x="170" y="298" height="40" on="false" variable="show-labels?" width="122" display="show-labels?"></switch>
+    <view x="200" wrappingAllowedX="true" y="10" frameRate="45.0" minPycor="-35" height="501" showTickCounter="true" patchSize="7.0" fontSize="10" wrappingAllowedY="true" width="501" tickCounterLabel="ticks" maxPycor="35" updateMode="0" maxPxcor="35" minPxcor="-35"></view>
+    <slider x="10" step="1" y="134" max="20" width="180" display="vision-distance" height="50" min="0" direction="Horizontal" default="10.0" variable="vision-distance"></slider>
+    <slider x="10" step="1" y="429" max="50" width="180" display="updraft-distance" height="50" min="1" direction="Horizontal" default="4.0" variable="updraft-distance"></slider>
+    <slider x="10" step="1" y="238" max="vision-cone" width="180" display="obstruction-cone" height="50" min="0" direction="Horizontal" default="45.0" variable="obstruction-cone" units="deg"></slider>
+    <button x="100" y="67" height="35" disableUntilTicks="true" forever="true" kind="Observer" width="85">go</button>
+    <button x="10" y="67" height="35" disableUntilTicks="false" forever="false" kind="Observer" width="85">setup</button>
+    <slider x="10" step=".01" y="325" max="2" width="180" display="base-speed" height="50" min="0" direction="Horizontal" default="0.2" variable="base-speed"></slider>
+    <slider x="10" step="1" y="186" max="270" width="180" display="vision-cone" height="50" min="0" direction="Horizontal" default="120.0" variable="vision-cone" units="deg"></slider>
+    <slider x="10" step=".1" y="481" max="updraft-distance - .1" width="180" display="too-close" height="50" min=".5" direction="Horizontal" default="1.6" variable="too-close"></slider>
+    <slider x="10" step="1" y="533" max="30" width="180" display="max-turn" height="50" min="1" direction="Horizontal" default="4.0" variable="max-turn" units="deg"></slider>
+    <switch x="10" y="615" height="40" on="false" variable="show-unhappy?" width="180" display="show-unhappy?"></switch>
+    <slider x="10" step="1" y="10" max="100" width="175" display="number-of-birds" height="50" min="0" direction="Horizontal" default="40.0" variable="number-of-birds"></slider>
+    <note x="40" y="114" backgroundDark="0" fontSize="13" width="135" markdown="false" height="18" textColorDark="-1" textColorLight="-16777216" backgroundLight="0">Vision Parameters</note>
+    <note x="40" y="305" backgroundDark="0" fontSize="13" width="130" markdown="false" height="18" textColorDark="-1" textColorLight="-16777216" backgroundLight="0">Motion Parameters</note>
+    <note x="55" y="595" backgroundDark="0" fontSize="13" width="125" markdown="false" height="18" textColorDark="-1" textColorLight="-16777216" backgroundLight="0">Visualization</note>
+    <slider x="10" step=".05" y="377" max="1" width="180" display="speed-change-factor" height="50" min="0" direction="Horizontal" default="0.15" variable="speed-change-factor"></slider>
   </widgets>
-  <info><![CDATA[# Butterfly Model ODD Description
+  <info><![CDATA[## WHAT IS IT?
 
-This file describes the model of Pe'er et al. (2005). The description is taken from Section 3.4 of Railsback and Grimm (2019). The file uses the markup language used by NetLogo's Info tab starting with NetLogo version 5.0.
+This is an adaptation of the Flocking model to produce V-like formations in artificial flocks.  Not all birds produce V-like formations when they flock, but they are often observed in large birds traveling together distances (e.g. migrating Canada geese).  This model demonstrates simple rules that cause V-formations to occur.
 
-## 1. Purpose and patterns
+## HOW IT WORKS
 
-The model was designed to explore questions about virtual corridors. Under what conditions do the interactions of butterfly hilltopping behavior and landscape topography lead to the emergence of virtual corridors, that is, relatively narrow paths along which many butterflies move? How does variability in the butterflies' tendency to move uphill affect the emergence of virtual corridors? This model does not represent a specific place or species of butterfly, so only general patterns are used as criteria for its usefulness for answering these questions: that butterflies can reach hilltops, and that their movement has a strong stochastic element representing the effects of factors other than elevation.
+Each bird starts out with a random position and heading in the world. If the bird cannot see any other birds in its limited vision range, it will continue to fly straight at its normal base speed.  If it can see another bird, it follows four basic rules, given by this order of precedence.
 
-## 2. Entities, State Variables, and Scales
+1. If it is too far away (that is, further than the distance for getting an updraft benefit) from the nearest visible bird, it will turn toward that bird and speed up to get near it.
+2. Once it is near enough to another bird, it will move randomly to one side or another until its view is no longer obstructed.
+3. If it gets too close to another bird, it will slow down.
+4. Once the three conditions above are met (the bird has an unobstructed view and is sufficiently close but not too close to another bird), the bird will set both its speed and its heading that of its closest visible neighbor.
 
-The model has two kinds of entities: butterflies and square patches of land. The patches make up a square grid landscape of 150 &times; 150 patches, and each patch has one state variable: its elevation. Butterflies are characterized only by their location, described as the patch they are on. Therefore, butterfly locations are in discrete units, the x- and y- coordinates of the center of their patch. Patch size and the length of one time step in the simulation are not specified because the model is generic, but when real landscapes are used, a patch corresponds to 25 &times; 25 m<sup>2</sup>. Simulations last for 1000 time steps; the length of one time step is not specified but should be about the time it takes a butterfly to move 25--35 m (the distance from one cell to one of its neighbor cells).
+## HOW TO USE IT
 
-## 3. Process Overview and Scheduling
+NUMBER-OF-BIRDS sets the number of birds in the world.
+Use SETUP to populate the world with birds, and GO to run the model.
 
-There is only one process in the model: movement of the butterflies. On each time step, each butterfly moves once. The order in which the butterflies execute this action is unimportant because there are no interactions among the butterflies.
+Vision Parameters:
+VISION-DISTANCE and VISION-CONE defines the radius and angle span, respectively, of the area within which a bird can see another bird. A VISION-CONE of 120 means that the bird can see up to 60 degrees to its right and 60 degrees to its left. OBSTRUCTION-CONE defines the angle span for which a bird considers its vision to be obstructed by another bird.
 
-## 4. Design Concepts
+Motion Parameters:
+BASE-SPEED defines the speed that birds will fly if they are not speeding up to catch another bird that they see, or slowing down to avoid colliding with a bird.
+SPEED-CHANGE-FACTOR is the factor by which birds increase or decrease their speed, given as a fraction of their base speed.  A BASE-SPEED of 1 with a SPEED-CHANGE-FACTOR of 0.25 means that birds will travel at speeds of 0.75 (slow speed), 1.0 (normal speed), or 1.25 (fast speed).
+UPDRAFT-DISTANCE defines how near to another bird one must be to take advantage of its upwash.
+TOO-CLOSE defines how close one bird can be to another bird before slowing down to avoid collision.
+MAX-TURN sets the maximum number of degrees that a bird can turn during a single tick.
 
-The _basic principle_ addressed by this model is the concept of virtual corridors---pathways used by many individuals when there is nothing particularly beneficial about the habitat in them. This concept is addressed by seeing when corridors _emerge_ from two parts of the model: the adaptive movement behavior of butterflies and the landscape they move through. This _adaptive behavior_ is modeled via a simple empirical rule that reproduces the behavior observed in real butterflies: moving uphill. This behavior is based on the understanding (not included in the model) that moving uphill leads to mating, which conveys fitness (success at passing on genes, the presumed ultimate objective of organisms). Because the hilltopping behavior is assumed a priori to be the objective of the butterflies, the concepts of _Objectives_ and _Prediction_ are not explicitly considered. There is no _learning_ in the model.
+Visualization Parameters:
+If SHOW-UNHAPPY? is switched ON, birds that have not satisfied the conditions outlined in the HOW IT WORKS section are colored red, and all the birds that have are colored white. If SHOW-UNHAPPY? is OFF, birds are colored varying shades of yellow.
 
-_Sensing_ is important in this model: butterflies are assumed able to identify which of the surrounding patches has the highest elevation, but to use no information about elevation at further distances. (The field studies of Pe'er 2003 addressed this question of how far butterflies sense elevation differences.)
+## THINGS TO NOTICE
 
-The model does not include _interaction_ among butterflies; in field studies, Pe'er (2003) found that real butterflies do interact (they sometimes stop to visit each other on the way uphill) but decided it is not important to include interaction in a model of virtual corridors.
+After forming a vee-flock for a while, birds tend to drift apart from one another.
 
-_Stochasticity_ is used to represent two sources of variability in movement that are too complex to represent mechanistically. Real butterflies do not always move directly uphill, likely because of (1) limits in the ability of the butterflies to sense the highest area in their neighborhood, and (2) factors other than topography (e.g., flowers that need investigation along the way) that influence movement direction. This variability is represented by assuming butterflies do not move uphill every time step; sometimes they move randomly instead. Whether a butterfly moves directly uphill or randomly at any time step is modeled stochastically, using a parameter _q_ that is the probability of an individual moving directly uphillinstead of randomly.
+Birds following these rules may form flock formations other than a balanced V. These include asymmetrical (unbalanced) V shapes, echelons (diagonal lines), or inverted V shapes.  In fact, imperfect formations such as these are more commonly observed than balanced vees in nature too.
 
-_Collectives_ are not represented in this model.
+## THINGS TO TRY
 
-To allow _observation_ of the two patterns used to define the model's usefulness, we use graphical display of topography and butterfly locations. Observing virtual corridors requires a specific "corridor width" measure that characterizes the width of butterfly paths from their starting patches to hilltops.
+Play with the sliders to see if you can get tighter flocks, looser flocks, fewer flocks, more flocks, more or less splitting and joining of flocks, more or less rearranging of birds within flocks, etc.
 
-## 5. Initialization
-The topography of the landscape (the elevation of each patch) is initialized when the model starts. Two kinds of landscapes are used in different versions of the model: (1) a simple artificial topography, and (2) the topography of a real study site, imported from a file containing elevation values for each patch. The butterflies are initialized by creating five hundred of them and dispersing them throughout the landscape: each butterfly's initial location is set to a patch selected randomly from among all patches.
+Does having lots of birds make it more or less likely to form good V shapes?
 
-## 6. Input Data
-The environment is assumed to be constant, so the model has no input data.
+Can you set parameters such that running the model for a long time produces a single static flock?  Or will the birds never settle down to a fixed formation?
 
-## 7. Submodels
-The movement submodel defines exactly how butterflies decide whether to move uphill or randomly. First, to "move uphill" is defined specifically as moving to the neighbor patch that has the highest elevation; if two patches have the same elevation, one is chosen randomly. "Move randomly" is defined as moving to one of the neighboring patches, with equal probability of choosing any patch. "Neighbor patches" are the eight patches surrounding the butterfly's current patch. The decision of whether to move uphill or randomly is controlled by the parameter _q_, which ranges from 0.0 to 1.0 (_q_ is a global variable: all butterflies use the same value). On each time step, each butterfly draws a random number from a uniform distribution between 0.0 and 1.0. If this random number is less than _q_, the butterfly moves uphill; otherwise, the butterfly moves randomly.
+## EXTENDING THE MODEL
+
+What would happen if you put walls around the edges of the world that the birds can't fly through?
+
+What would happen if you gave birds limited energy levels, so that flying fast would make them expend more energy and eventually become exhausted.  Flying slowly, or within another bird's updraft, could allow them to recoup some energy.
+
+Try making a 3D version of this model.  What additional considerations have to be taken into account in three dimensions?
+
+## NETLOGO FEATURES
+
+Birds use `in-cone` to find neighbors and determine whether their view is obstructed.
+
+The `subtract-headings` primitive is also useful, for turning gradually (only partway) toward some new heading.
+
+## RELATED MODELS
+
+Flocking
 
 ## CREDITS AND REFERENCES
 
-Pe'er, G., Saltz, D. & Frank, K. 2005. Virtual corridors for conservation management. _Conservation Biology_, 19, 1997--2003.
+This model is loosely based on rules introduced in the paper:
+Nathan, A. & Barbosa, V. C. (2008). V-like formations in flocks of artificial birds. Artificial Life, 14(2), pp. 179-188. (available at https://arxiv.org/pdf/cs/0611032.pdf)
 
-Pe'er, G. 2003. Spatial and behavioral determinants of butterfly movement patterns in topographically complex landscapes. Ph.D. thesis, Ben-Gurion University of the Negev.
+## HOW TO CITE
 
-Railsback, S. & Grimm, V. 2018. _Agent-based and individual-based modeling: A practical introduction, Second edition_. Princeton University Press, Princeton, NJ.]]></info>
+If you mention this model or the NetLogo software in a publication, we ask that you include the citations below.
+
+For the model itself:
+
+* Wilkerson-Jerde, M., Stonedahl, F. and Wilensky, U. (2009).  NetLogo Flocking Vee Formations model.  http://ccl.northwestern.edu/netlogo/models/FlockingVeeFormations.  Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
+
+Please cite the NetLogo software as:
+
+* Wilensky, U. (1999). NetLogo. http://ccl.northwestern.edu/netlogo/. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
+
+## COPYRIGHT AND LICENSE
+
+Copyright 2009 Uri Wilensky.
+
+![CC BY-NC-SA 3.0](http://ccl.northwestern.edu/images/creativecommons/byncsa.png)
+
+This model is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License.  To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
+
+NetLogo itself is free software for non-commercial use under the terms of the GNU General Public License ([see full license information here](https://ccl.northwestern.edu/netlogo/docs/copyright.html)).
+
+To inquire about commercial licenses for either NetLogo or specific models from the models library, please contact netlogo-commercial-admin@ccl.northwestern.edu.
+
+<!-- 2009 Cite: Wilkerson-Jerde, M., Stonedahl, F. -->]]></info>
   <turtleShapes>
     <shape name="default" rotatable="true" editableColorIndex="0">
       <polygon color="-1920102913" filled="true" marked="true">
@@ -771,13 +737,6 @@ Railsback, S. & Grimm, V. 2018. _Agent-based and individual-based modeling: A pr
         <point x="165" y="90"></point>
       </polygon>
     </shape>
-    <shape name="sheep" rotatable="false" editableColorIndex="0">
-      <rectangle endX="180" startY="225" marked="true" color="-1920102913" endY="285" startX="151" filled="true"></rectangle>
-      <rectangle endX="75" startY="225" marked="true" color="-1920102913" endY="285" startX="47" filled="true"></rectangle>
-      <rectangle endX="210" startY="75" marked="true" color="-1920102913" endY="225" startX="15" filled="true"></rectangle>
-      <circle x="135" y="75" marked="true" color="-1920102913" diameter="150" filled="true"></circle>
-      <circle x="165" y="76" marked="false" color="255" diameter="116" filled="true"></circle>
-    </shape>
     <shape name="square" rotatable="false" editableColorIndex="0">
       <rectangle endX="270" startY="30" marked="true" color="-1920102913" endY="270" startX="30" filled="true"></rectangle>
     </shape>
@@ -971,55 +930,6 @@ Railsback, S. & Grimm, V. 2018. _Agent-based and individual-based modeling: A pr
       </indicator>
     </shape>
   </linkShapes>
-  <previewCommands>setup repeat 75 [ go ]</previewCommands>
-  <experiments>
-    <experiment name="vary-q-all-steps" repetitions="20" sequentialRunOrder="true" runMetricsEveryStep="true">
-      <setup>setup</setup>
-      <go>go</go>
-      <metrics>
-        <metric>corridor-width</metric>
-      </metrics>
-      <constants>
-        <steppedValueSet variable="q" first="0" step="0.1" last="1"></steppedValueSet>
-      </constants>
-    </experiment>
-    <experiment name="vary-q-final-only" repetitions="20" sequentialRunOrder="true" runMetricsEveryStep="false">
-      <setup>setup</setup>
-      <go>go</go>
-      <metrics>
-        <metric>corridor-width</metric>
-      </metrics>
-      <constants>
-        <steppedValueSet variable="q" first="0" step="0.1" last="1"></steppedValueSet>
-      </constants>
-    </experiment>
-    <experiment name="experiment" repetitions="10" sequentialRunOrder="true" runMetricsEveryStep="true" timeLimit="300">
-      <setup>setup</setup>
-      <go>go</go>
-      <metrics>
-        <metric>corridor-width</metric>
-        <metric>mean [elevation] of turtles</metric>
-        <metric>mean [count turtles-here] of patches with [any? turtles-here]</metric>
-        <metric>fraction-crowded</metric>
-      </metrics>
-      <constants>
-        <enumeratedValueSet variable="patch-coloring">
-          <value value="&quot;elevation&quot;"></value>
-        </enumeratedValueSet>
-        <enumeratedValueSet variable="show-labels?">
-          <value value="false"></value>
-        </enumeratedValueSet>
-        <enumeratedValueSet variable="real-terrain">
-          <value value="true"></value>
-        </enumeratedValueSet>
-        <enumeratedValueSet variable="show-butterflies?">
-          <value value="true"></value>
-        </enumeratedValueSet>
-        <enumeratedValueSet variable="num-butterflies">
-          <value value="50"></value>
-        </enumeratedValueSet>
-        <steppedValueSet variable="q" first="0.1" step="0.1" last="1"></steppedValueSet>
-      </constants>
-    </experiment>
-  </experiments>
+  <previewCommands>setup
+repeat 1000 [ go ]</previewCommands>
 </model>
