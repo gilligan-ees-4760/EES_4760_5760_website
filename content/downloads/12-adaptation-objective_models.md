@@ -1,6 +1,7 @@
 ---
 title: "Objectives and Adaptations"
 weight: 120
+draft: true
 date: "2026-10-06"
 due_date: "2026-10-06"
 pubdate: "2019-08-22"
