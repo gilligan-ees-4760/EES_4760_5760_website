@@ -1,4 +1,3 @@
-baseurl = "https://www.ees4760.jmgilligan.org"
 locale = "en-us"
 defaultContentLanguage = "en-us"
 title = "EES 4760/5760"
@@ -203,3 +202,6 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "_scripts$", "_
 
 [security]
   allowContent = ['text/html', 'text/markdown', 'text/pandoc']
+[mediaTypes]
+  [mediaTypes.'application/x-netlogo']
+    suffixes = ['nlogo', 'nlogox']
