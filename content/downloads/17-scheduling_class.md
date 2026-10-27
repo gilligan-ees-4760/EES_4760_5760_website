@@ -19,7 +19,6 @@ output: html_document
       * Continuous events, tracking balls in air
 
 <!--    
--->
   * Breeding Synchrony:
     * [Ch_23_4_breeding_synchrony.nlogox](/models/class_23/Ch_23_4_breeding_synchrony.nlogox)
 <!--
