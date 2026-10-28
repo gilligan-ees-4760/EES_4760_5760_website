@@ -106,6 +106,7 @@ lessons:
 - date: '2026-10-29'
   title: Stochasticity
   reading: /reading/reading_18
+  lecture: /slides/class_18
 - date: '2026-11-03'
   title: Collectives
   reading: /reading/reading_19
