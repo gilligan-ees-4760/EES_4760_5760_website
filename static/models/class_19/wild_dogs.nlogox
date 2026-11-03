@@ -1,0 +1,2037 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model version="NetLogo 7.0.4" snapToGrid="true">
+  <code><![CDATA[breed [ dogs dog ]
+breed [ packs pack ]
+breed [ disperser-groups disperser-group ]
+
+globals
+[
+  ; carrying-capacity  ; integer
+  p-half-cc ; probability of breeding when population is half the carrying capacity
+  p-full-cc ; probability of breeding when population is the full carrying capacity
+
+  p-male-initial
+  max-age-initial
+
+  mean-litter-size
+  p-male-pup
+
+  ;
+  ; Mortality rates (floating point, probabilities: range = 0 to 1)
+  ;
+  mortality-pup
+  mortality-yearling
+  mortality-subordinate
+  mortality-alpha
+
+  p-dg-merge              ; probablity of 2 compatible disperser-groups to merge
+
+
+  ;  From p. 216
+  ;  z(x) = exp (a + bx)
+  ;  P(x) = z(x) / (1 + z(x))
+  ;
+  a-logistic              ; coefficients for logistic function
+  b-logistic
+
+  ; years-to-simulate
+
+  ;
+  ; The following variables are used to report statistics about the dog packs
+  ;
+  births-this-year
+  deaths-this-year
+  dispersals-this-year
+  pack-deaths-this-year
+  dg-deaths-this-year
+
+  mergers-this-year
+  same-sex-meetings-this-year
+  same-birth-pack-meetings-this-year
+  compatible-unconsummated-meetings-this-year
+
+  pup-deaths-this-year
+  yearling-deaths-this-year
+  subordinate-deaths-this-year
+  alpha-deaths-this-year
+  disperser-deaths-this-year
+
+  pupicides-this-year ; deaths of pup-only packs
+  pupless-this-year
+  mixed-deaths-this-year
+
+  litters-this-year
+
+  mean-pack-size-this-year
+  median-pack-size-this-year
+  mean-dg-size-this-year
+  median-dg-size-this-year
+
+  trace-file-is-open?
+  record-debugging-traces?
+
+  extinct?
+  time-to-extinction
+  p-extinction
+]
+
+dogs-own
+[
+  age ; years
+  sex ; text: "M" or "F"
+  status ; text: "pup", "yearling", "subordinate", "alpha", or "disperser"
+  birth-pack ; ID of pack the dog was born in. Used by dispersers to prevent incest.
+]
+
+packs-own
+[
+  pups-at-start
+  pack-members
+]
+
+disperser-groups-own
+[
+  sex
+  birth-pack
+  group-members
+]
+
+;
+;  MAIN INTERFACE PROCEDURES
+;
+
+to setup
+  ca
+  ; For debugging. We can record
+  ; debugging information to the trace file.
+  set trace-file-is-open? false
+  set record-debugging-traces? false
+
+  initialize-trace-file
+  initialize-globals
+
+  create-packs num-initial-packs
+  [
+    initialize-pack-at-beginning
+  ]
+
+  reset-ticks
+end
+
+to go
+  if ticks >= years-to-simulate or not any? dogs
+  [
+    if ticks < years-to-simulate
+    [
+      set time-to-extinction ticks
+      set extinct? true
+    ]
+    cleanup
+    stop
+  ]
+
+  step
+
+end
+
+to step
+  tick
+
+  ask packs [
+    set pups-at-start any? pack-members with [ status = "pup" ]
+  ]
+
+  set births-this-year 0
+  set deaths-this-year 0
+  set dispersals-this-year 0
+  set pack-deaths-this-year  0
+  set dg-deaths-this-year 0
+
+  set mergers-this-year 0
+  set same-sex-meetings-this-year 0
+  set same-birth-pack-meetings-this-year 0
+  set compatible-unconsummated-meetings-this-year 0
+
+  set pup-deaths-this-year 0
+  set yearling-deaths-this-year 0
+  set subordinate-deaths-this-year 0
+  set alpha-deaths-this-year 0
+  set disperser-deaths-this-year 0
+
+  set pupicides-this-year 0
+  set pupless-this-year 0
+  set mixed-deaths-this-year 0
+
+  set litters-this-year 0
+
+  set mean-pack-size-this-year 0
+  set median-pack-size-this-year 0
+  set mean-dg-size-this-year 0
+  set median-dg-size-this-year 0
+
+  age-dogs
+
+  reproduce
+  disperse-packs
+  terminate-dogs
+  terminate-packs-and-groups
+  form-packs
+
+
+  update-appearances
+  update-output
+end
+
+;
+;  ANNUAL PROCESSING FUNCTIONS
+;
+;
+
+to age-dogs ; called in global context
+  ask dogs
+  [
+    set age 1 + age
+    update-status
+  ]
+  ask packs
+  [
+    check-and-update-alphas
+  ]
+end
+
+to reproduce ; called in global context
+  ask packs
+  [
+    if will-reproduce?
+    [ produce-litter ]
+  ]
+end
+
+to disperse-packs ; called in global context
+  ask packs [ disperse ]
+end
+
+to terminate-dogs ; called in global context
+  ask dogs [ check-mortality-and-die ]
+end
+
+to terminate-packs-and-groups ; called in global context
+  ask packs [ terminate-pack-if-empty ]
+  ask disperser-groups [ terminate-dg-if-empty ]
+end
+
+to form-packs ; called in global context
+  ask disperser-groups
+  [
+    meet-and-greet
+  ]
+end
+
+to update-output
+  set-current-plot "Dog populations"
+  set-current-plot-pen "pups"
+  plot count dogs with [ status = "pup"]
+  set-current-plot-pen "yearlings"
+  plot count dogs with [ status = "yearling"]
+  set-current-plot-pen "subordinates"
+  plot count dogs with [ status = "subordinate"]
+  set-current-plot-pen "alphas"
+  plot count dogs with [ status = "alpha"]
+  set-current-plot-pen "dispersers"
+  plot count dogs with [ status = "disperser"]
+  set-current-plot-pen "total"
+  plot count dogs
+
+  set-current-plot "Packs"
+  set-current-plot-pen "packs"
+  plot count packs
+  set-current-plot-pen "dgs"
+  plot count disperser-groups
+
+
+  ifelse any? packs
+  [
+    set mean-pack-size-this-year mean [ count pack-members ] of packs
+    set median-pack-size-this-year median [ count pack-members ] of packs
+  ]
+  [
+    set mean-pack-size-this-year 0
+    set median-pack-size-this-year 0
+  ]
+
+  set-current-plot "Average pack size"
+  set-current-plot-pen "pack size"
+  plot mean-pack-size-this-year
+  set-current-plot-pen "pack median"
+  plot median-pack-size-this-year
+
+  ifelse any? disperser-groups
+  [
+    set mean-dg-size-this-year mean [ count group-members ] of disperser-groups
+    set median-dg-size-this-year median [ count group-members ] of disperser-groups
+  ]
+  [
+    set mean-dg-size-this-year 0
+    set median-dg-size-this-year 0
+  ]
+
+  set-current-plot-pen "dg size"
+  plot mean-dg-size-this-year
+
+
+  set-current-plot "Births and deaths"
+  set-current-plot-pen "births"
+  plot births-this-year
+  set-current-plot-pen "deaths"
+  plot deaths-this-year
+  set-current-plot-pen "pack deaths"
+  plot pack-deaths-this-year
+  set-current-plot-pen "dg deaths"
+  plot dg-deaths-this-year
+  set-current-plot-pen "mergers"
+  plot mergers-this-year
+  set-current-plot-pen "dispersals"
+  plot dispersals-this-year
+end
+
+to update-appearances
+  ask packs
+  [
+    update-pack-appearance
+  ]
+  ask disperser-groups
+  [
+    update-dg-appearance
+  ]
+end
+
+;
+;  INITIALIZATION FUNCTIONS
+;
+;
+
+to initialize-trace-file
+  if record-debugging-traces?
+  [
+    let trace-file-name "trace-file.csv."
+
+  if (is-boolean? trace-file-is-open? and trace-file-is-open?)
+     or (is-number? trace-file-is-open? and trace-file-is-open? != 0)
+     [
+       file-close
+       set trace-file-is-open? false
+     ]
+
+  if file-exists? trace-file-name
+  [ file-delete trace-file-name ]
+
+  file-open trace-file-name
+  set trace-file-is-open? true
+  ]
+end
+
+to initialize-globals ; observer context
+  let half-cc 0.5 * carrying-capacity
+  let full-cc carrying-capacity
+  set p-half-cc 0.5
+  set p-full-cc 0.1
+
+  set p-male-initial 0.50
+  set max-age-initial 6
+
+  set mean-litter-size 7.9
+  set p-male-pup 0.55
+
+  set mortality-pup 0.12
+  set mortality-yearling 0.25
+  set mortality-subordinate mortality-adult
+  set mortality-alpha mortality-adult
+
+  set p-dg-merge 0.64
+
+  ; extinct? tells us whether all the dogs
+  ; in the reserve have died
+  set extinct? false
+  set time-to-extinction -1
+
+  let d ln(p-half-cc / (1 - p-half-cc))
+  let c ln(p-full-cc / (1 - p-full-cc))
+  set b-logistic (d - c) / (half-cc - full-cc)
+  set a-logistic d - (b-logistic * half-cc)
+
+;  print (word "a = " a-logistic)
+;  print (word "b = " b-logistic)
+;  print (word "c = " c)
+;  print (word "d = " d)
+
+end
+
+to initialize-pack-at-beginning ; pack context
+  let num-dogs 1 + random-poisson (mean-initial-pack-size - 1)
+
+  hatch-dogs num-dogs
+  [
+    initialize-dog myself max-age-initial p-male-initial
+  ]
+
+  set pack-members dogs with [birth-pack = myself]
+
+  check-and-update-alphas
+
+  initialize-pack-appearance
+end
+
+to initialize-pack-from-disperser-groups [ group1 group2 ]; pack context
+  set pack-members (turtle-set [ group-members ] of group1 [ group-members ] of group2)
+
+  ask pack-members
+  [
+    set status "subordinate"
+  ]
+
+
+  check-and-update-alphas
+end
+
+to initialize-dog [ initial-pack max-age p-male] ; dog-context
+  set age random (max-age + 1)
+  set size 1
+  set color gray
+  hide-turtle
+
+  ifelse random-binomial? p-male
+  [ set sex "M" ]
+  [ set sex "F" ]
+
+  set birth-pack initial-pack
+  update-status
+end
+
+
+;
+; DOG FUNCTIONS
+;
+
+to update-status ; dog context
+  ifelse age < 1
+  [
+    set status "pup"
+  ]
+  [
+    ifelse age <= 2
+    [
+      set status "yearling"
+    ]
+    [
+      if not member? status (list "alpha" "disperser")
+      [
+        set status "subordinate"
+      ]
+    ]
+  ]
+end
+
+to check-mortality-and-die
+  let p-mortality -1
+  if status = "pup" [ set p-mortality mortality-pup ]
+  if status = "yearling" [ set p-mortality mortality-yearling ]
+  if status = "subordinate" [ set p-mortality mortality-subordinate ]
+  if status = "alpha" [ set p-mortality mortality-alpha ]
+  if status = "disperser" [ set p-mortality mortality-disperser ]
+
+  if random-binomial? p-mortality
+  [
+    set deaths-this-year deaths-this-year + 1
+    if status = "pup" [ set pup-deaths-this-year pup-deaths-this-year + 1 ]
+    if status = "yearling" [ set yearling-deaths-this-year yearling-deaths-this-year + 1 ]
+    if status = "subordinate" [ set subordinate-deaths-this-year subordinate-deaths-this-year + 1 ]
+    if status = "alpha" [ set alpha-deaths-this-year alpha-deaths-this-year + 1 ]
+    if status = "disperser" [ set disperser-deaths-this-year disperser-deaths-this-year  + 1 ]
+    die
+  ]
+end
+
+;
+; PACK FUNCTIONS
+;
+
+to check-and-update-alphas ; pack context
+  check-and-update-alpha-of-sex "M"
+  check-and-update-alpha-of-sex "F"
+end
+
+to check-and-update-alpha-of-sex [ alpha-sex ] ; pack context
+  if not any? pack-members with [ status = "alpha" and sex = alpha-sex ]
+  [
+    let candidates pack-members with [ status = "subordinate" and sex = alpha-sex]
+    if any? candidates
+    [
+      let new-alpha one-of candidates
+      ask new-alpha [set status "alpha"]
+    ]
+  ]
+end
+
+to-report will-reproduce?
+  let alphas pack-members with [status = "alpha"]
+  if any? alphas with [sex = "M"] and any? alphas with [sex = "F"]
+  [
+    report random-binomial? (logistic count dogs)
+  ]
+  report false
+end
+
+to produce-litter ; pack context
+  set litters-this-year litters-this-year + 1
+  let old-size count pack-members
+  let litter-size random-poisson mean-litter-size
+  set births-this-year births-this-year + litter-size
+  let litter turtle-set nobody
+  hatch-dogs litter-size
+  [
+    initialize-dog myself 0 p-male-pup
+    set litter (turtle-set litter self)
+  ]
+  set pack-members (turtle-set pack-members litter)
+end
+
+to initialize-pack-appearance
+  set shape "circle"
+  let max-rad max [size] of turtles
+  let target-patch one-of patches with [ not any? turtles in-radius (2.0 * max-rad) ]
+  if target-patch = nobody
+  [
+  set target-patch one-of patches with [ not any? turtles in-radius max-rad ]
+  ]
+  if target-patch = nobody
+  [
+    set target-patch max-one-of patches [min [distance myself] of turtles]
+  ]
+  move-to target-patch
+
+  update-pack-appearance
+end
+
+to update-pack-appearance
+  set shape "circle"
+  set size 0.25 * count pack-members
+  let alphas pack-members with [ status = "alpha"]
+  ifelse count alphas = 2
+  [ set color yellow ]
+  [
+    ifelse any? alphas with [sex = "M"]
+    [ set color blue ]
+    [
+      ifelse any? alphas
+      [ set color green ]
+      [ set color brown ]
+    ]
+  ]
+end
+
+to disperse
+  foreach (list "M" "F")
+  [ ?1 ->
+    if will-disperse? ?1
+    [
+      make-disperser-group ?1
+      set dispersals-this-year dispersals-this-year + 1
+    ]
+  ]
+end
+
+to make-disperser-group [ dg-sex ]
+  let old-pack-size count pack-members
+  let dispersers pack-members with [ status = "subordinate" and sex = dg-sex ]
+  set pack-members pack-members with [ not member? self dispersers ]
+  hatch-disperser-groups 1
+  [
+    initialize-disperser-group dispersers
+    initialize-dg-appearance
+    create-link-from myself
+  ]
+end
+
+to-report will-disperse? [ dg-sex ]
+  let candidates pack-members with [ sex = dg-sex and status = "subordinate" ]
+  if any? candidates
+  [
+    if count candidates = 1
+    [
+      report random-binomial? 0.5
+    ]
+    report true
+  ]
+  report false
+end
+
+to terminate-pack-if-empty
+  if any? pack-members with [ status != "pup" ]
+  [ stop ]
+  ifelse any? pack-members with [ status = "pup"]
+  [
+    set pupicides-this-year pupicides-this-year + 1
+  ]
+  [
+    ifelse pups-at-start
+    [
+      set mixed-deaths-this-year mixed-deaths-this-year + 1
+    ]
+    [
+      set pupless-this-year pupless-this-year + 1
+    ]
+  ]
+  ask pack-members with [ status = "pup" ] [ die ]
+
+  set pack-deaths-this-year pack-deaths-this-year + 1
+  die
+
+end
+
+;
+; DISPERSER-GROUP FUNCTIONS
+;
+
+to initialize-disperser-group [ members ]
+  set sex [ sex] of one-of members
+  set birth-pack [ birth-pack ] of one-of members
+
+  set group-members members
+  ask group-members
+  [
+    set status "disperser"
+  ]
+end
+
+to initialize-dg-appearance
+  set shape "square"
+  let max-rad max [size] of turtles
+  if not is-turtle? self [ stop ]
+  let candidates patches with [ not any? turtles in-radius (2.0 * max-rad)]
+  ifelse any? candidates
+  [
+    move-to min-one-of candidates [distance myself]
+  ]
+  [
+    move-to one-of patches with [not any? turtles-here]
+  ]
+  update-dg-appearance
+end
+
+to update-dg-appearance
+  set shape "square"
+  set size dg-size
+  ifelse sex = "M"
+  [ set color blue + 2 ]
+  [ set color green + 2 ]
+end
+
+to-report dg-size
+  report 0.25 * count group-members
+end
+
+to terminate-dg-if-empty
+  if not any? group-members with [ status != "pup" ]
+  [
+    set dg-deaths-this-year dg-deaths-this-year + 1
+    die
+  ]
+end
+
+to meet-and-greet ; disperser-group context
+  let n-encounters random-poisson mean-meeting-rate
+  foreach n-values n-encounters [ ?1 -> ?1 ]
+  [
+     if any? other disperser-groups
+     [
+      let partner one-of other disperser-groups
+      if dgs-are-compatible? partner
+      [
+        ifelse random-binomial? p-dg-merge
+        [
+          hatch-packs 1
+          [
+            initialize-pack-from-disperser-groups myself partner
+            initialize-pack-appearance
+          ]
+;        set dg-deaths-this-year dg-deaths-this-year + 2
+        set mergers-this-year mergers-this-year + 1
+        ask partner [ die ]
+        die
+        stop
+        ]
+        [
+          set compatible-unconsummated-meetings-this-year compatible-unconsummated-meetings-this-year + 1
+        ]
+      ]
+    ]
+  ]
+end
+
+to-report dgs-are-compatible? [ partner ]
+  if sex = [ sex ] of partner
+  [
+    set same-sex-meetings-this-year same-sex-meetings-this-year + 1
+    report false
+  ]
+  let compatible? true
+  ask group-members [
+    if any? ([group-members] of partner) with [ birth-pack = [ birth-pack ] of myself ]
+    [
+      set same-birth-pack-meetings-this-year same-birth-pack-meetings-this-year + 1
+      set compatible? false
+    ]
+  ]
+  report compatible?
+end
+;
+; NUMERICAL FUNCTIONS
+;
+;
+
+to-report logistic [x]
+  let z exp(a-logistic + b-logistic * x)
+  report z / (1 + z) ; note that this is the complement of the function on p. 216 of the book.
+end
+
+to-report random-binomial? [p]
+  report random-float 1.0 < p
+end
+
+;
+;  CLEANUP AND HOUSEKEEPING
+;
+to cleanup
+  cleanup-trace-file
+;  resume-all-tests
+end
+
+to cleanup-trace-file
+  if trace-file-is-open?
+  [
+    file-close
+    set trace-file-is-open? false
+  ]
+end
+
+to test-logistic-plot
+  set-current-plot "logistic"
+  let xvalues n-values 100 [ ?1 -> ?1 * 2.0 * carrying-capacity / 100. ]
+  foreach xvalues [ ?1 -> plot logistic ?1 ]
+end
+
+to-report p-extinct
+  ifelse extinct?
+  [ report 1 ]
+  [ report 2]
+end
+
+to get-p-extinct [ n-runs ]
+  let n-extinct 0
+  let tte 0
+  repeat n-runs
+  [
+    setup
+    while [ticks < years-to-simulate and not extinct?] [ go ]
+    if extinct? [ set n-extinct n-extinct + 1 ]
+    set tte tte + ticks
+  ]
+  set time-to-extinction tte / n-runs
+  set p-extinction n-extinct / n-runs
+end]]></code>
+  <widgets>
+    <view x="5" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-16" height="433" showTickCounter="true" patchSize="13.0" fontSize="10" wrappingAllowedY="false" width="433" tickCounterLabel="ticks" maxPycor="16" updateMode="1" maxPxcor="16" minPxcor="-16"></view>
+    <plot x="104" autoPlotX="true" yMax="1.0" autoPlotY="true" yAxis="f(x)" y="1129" xMin="0.0" height="438" legend="false" xMax="1.0" yMin="0.0" width="671" xAxis="x" display="logistic">
+      <setup></setup>
+      <update></update>
+      <pen interval="1.0" mode="0" display="original" color="-2674135" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="extra-crispy" color="-7500403" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+    </plot>
+    <slider x="450" step="10" y="104" max="500" width="181" display="years-to-simulate" height="50" min="20" direction="Horizontal" default="100.0" variable="years-to-simulate" units="years"></slider>
+    <slider x="450" step="10" y="161" max="100" width="172" display="carrying-capacity" height="50" min="10" direction="Horizontal" default="60.0" variable="carrying-capacity"></slider>
+    <slider x="450" step="0.01" y="216" max="4" width="172" display="mean-meeting-rate" height="50" min="0" direction="Horizontal" default="1.0" variable="mean-meeting-rate"></slider>
+    <slider x="450" step="0.01" y="271" max="1" width="172" display="mortality-disperser" height="50" min="0" direction="Horizontal" default="0.44" variable="mortality-disperser"></slider>
+    <slider x="450" step="0.05" y="326" max="1" width="172" display="mortality-adult" height="50" min="0" direction="Horizontal" default="0.2" variable="mortality-adult"></slider>
+    <slider x="450" step="1" y="383" max="20" width="172" display="num-initial-packs" height="50" min="1" direction="Horizontal" default="10.0" variable="num-initial-packs"></slider>
+    <button x="450" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="63">setup</button>
+    <button x="450" y="57" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="63">go</button>
+    <button x="520" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="122" display="Restore Defaults">set years-to-simulate 100
+set carrying-capacity 60
+set mean-meeting-rate 1.0
+set mortality-disperser 0.44
+set mortality-adult 0.20
+set num-initial-packs 10
+set mean-initial-pack-size 5</button>
+    <button x="520" y="57" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="63">step</button>
+    <monitor x="450" precision="0" y="507" height="60" fontSize="11" width="100" display="pop">count dogs</monitor>
+    <monitor x="450" precision="0" y="572" height="60" fontSize="11" width="100">litters-this-year</monitor>
+    <slider x="450" step="1" y="440" max="10" width="172" display="mean-initial-pack-size" height="50" min="1" direction="Horizontal" default="5.0" variable="mean-initial-pack-size"></slider>
+    <monitor x="554" precision="0" y="507" height="60" fontSize="11" width="100">extinct?</monitor>
+    <monitor x="554" precision="0" y="572" height="60" fontSize="11" width="112" display="mergers">mergers-this-year</monitor>
+    <plot x="1240" autoPlotX="true" yMax="10.0" autoPlotY="true" y="376" xMin="0.0" height="283" legend="true" xMax="10.0" yMin="0.0" width="445" display="Average pack size">
+      <setup></setup>
+      <update></update>
+      <pen interval="1.0" mode="0" display="pack size" color="-13345367" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="dg size" color="-10899396" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="pack median" color="-5298144" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+    </plot>
+    <plot x="1240" autoPlotX="true" yMax="10.0" autoPlotY="true" y="15" xMin="0.0" height="352" legend="true" xMax="10.0" yMin="0.0" width="445" display="Births and Deaths">
+      <setup></setup>
+      <update></update>
+      <pen interval="1.0" mode="0" display="births" color="-10899396" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="deaths" color="-8053223" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="pack deaths" color="-2674135" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="dg deaths" color="-955883" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="mergers" color="-13345367" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="dispersals" color="-5825686" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+    </plot>
+    <plot x="675" autoPlotX="true" yMax="10.0" autoPlotY="true" y="375" xMin="0.0" height="275" legend="true" xMax="10.0" yMin="0.0" width="555" display="Packs">
+      <setup></setup>
+      <update></update>
+      <pen interval="1.0" mode="0" display="packs" color="-14070903" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="dgs" color="-15040220" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+    </plot>
+    <plot x="675" autoPlotX="true" yMax="10.0" autoPlotY="true" y="15" xMin="0.0" height="350" legend="true" xMax="10.0" yMin="0.0" width="555" display="Dog populations">
+      <setup></setup>
+      <update></update>
+      <pen interval="1.0" mode="0" display="pups" color="-13403783" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="yearlings" color="-15040220" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="subordinates" color="-13345367" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="alphas" color="-2674135" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="dispersers" color="-5825686" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="total" color="-16777216" legend="true">
+        <setup></setup>
+        <update></update>
+      </pen>
+    </plot>
+    <note x="195" y="449" backgroundDark="0" fontSize="11" width="165" markdown="false" height="70" textColorDark="-1" textColorLight="-16777216" backgroundLight="0">square = disperser group
+  blue = male
+  green = female</note>
+    <note x="35" y="449" backgroundDark="0" fontSize="11" width="155" markdown="false" height="100" textColorDark="-1" textColorLight="-16777216" backgroundLight="0">circle = pack
+  yellow = two alphas
+  green = female alpha only
+  blue = male alpha only
+  brown = no alphas</note>
+  </widgets>
+  <info><![CDATA[# Wild Dog Model ODD
+
+## Purpose
+
+The purpose of the model is to evaluate how the persistence of a wild dog population
+depends on
+
+1. the reserve's carrying capacity,
+1. the ability of dispersing dogs to find each other,
+1. and the mortality risk of dispersing dogs.
+
+Measures of "persistence" include
+
+* the average number of years (over a number of replicate simulations) until the population is extinct,
+* and the percentage of simulations in which the population survives for at least 100 years.
+
+For evaluating the usefulness of the original model for this purpose, Gusset _et al._ (2009) defined five patterns observed in the real wild dog population of Hluhluwe-iMfolozi Park in South Africa. The patterns relevant to this version of the model are:
+
+1. the range (mean and standard deviation) of the pack size, year by year.
+2. the sex ratio of males to females
+3. the proportion of the population that are pups
+4. the proportion of disperser groups that fail to form new packs
+
+The model's purposes as a NetLogo exercise are to demonstrate the use of breeds to represent collectives and to illustrate stochastic modeling techniques.
+
+## Entities, State Variables, and Scales
+
+The model includes three kinds of agent: **dogs**, **dog packs**, and **disperser groups**.
+
+### Dogs
+
+Dogs have state variables for:
+
+* **age** in years,
+* **sex**,
+* **the pack they were born in**.
+  **NOTE:** In the book, the ODD says, "the pack or disperser group they belong to," but when two disperser groups meet, this state variable is used to ensure that the dogs were not born into the same pack, so at that point, this has to indicate the birth pack, not the disperser group. Thus, I interpret this as meaning that this variable refers only to the last pack, not disperser group, the dog belongs to.
+* and **social status**.
+
+    The social status of a dog can be
+
+    a. **pup:** meaning its age is less than one;
+    b. **yearling:** with age between 1 and 2;
+    c. **subordinate:** meaning age is greater than 2 but the dog is not an alpha;
+    d. **alpha:** the dominant individual of its sex in a pack; and
+    e. **disperser:** meaning the dog currently belongs to a disperser group, not a pack.
+
+### Dog packs
+
+Dog packs have one state variable:
+* an agentset of the dogs that belong to the pack.
+
+### Disperser groups
+
+Disperser groups have state variables for
+* sex (all members are of the same sex)
+* and an agentset of member dogs.
+
+### Scales
+
+The time step is one year. The model is nonspatial: locations of packs and dogs are not represented. However, its parameters reflect the size and resources of one nature reserve. The key parameter that characterizes the scale of the wildlife reserve is the *carrying capacity*, which is 60 dogs.
+
+## Process Overview and Scheduling
+
+The following actions are executed once per time step, in this given order (details are found in the Submodels section):
+
+1. *Age and social status update*: (submodel)
+2. *Reproduction*: (submodel)
+3. **Dispersal:** (submodel) Subordinate dogs can leave their packs in hopes of establishing a new pack. These "dispersers" form disperser groups, which comprise one or more subordinates of the same sex that came from the same pack.
+4. **Dog mortality:** (submodel) Mortality is scheduled before pack formation because mortality of dispersers is high. Whether or not each dog dies is determined stochastically.
+5. **Mortality of collectives:** (submodel)
+6. **Pack formation:** (submodel) Disperser groups may meet other disperser groups, and if they meet a disperser group of the opposite sex and from a different pack, the groups may or may not join to form a new pack.
+
+## Design Concepts
+
+### Emergence
+
+Population and pack dynamics emerge from the the behavior of individuals, but individual behavior was entirely imposed by probabilistic empirical rules.
+
+### Adaptation
+
+There is no adaptation. Individual behavior is driven entirely by stochastic rules.
+
+### Objectives
+
+Individuals do not seek objectives.
+
+### Learning
+
+There is no learning
+
+### Prediction
+
+There is no prediction
+
+### Sensing
+
+When one disperser groups meets another, it sense whether the other pack has is of the opposite sex, and whether it was born in the same pack.
+
+### Interaction
+
+Three types of interaction were modeled:
+    1. Within each pack, dispersing individuals of the same sex formed a disperser group.
+    2. Disperser groups could meet and form new packs
+    3. Dominant (alpha) individuals suppressed reproduction by subordinate pack members.
+
+### Stochasticity
+
+All demographic and behavioral parameters in the model were interpreted as probabilities, using a Bernoulli trial to include demographic stochasticity, and were drawn from empirical probability distributions to include environmental stochasticity.
+
+### Collectives
+
+Individuals were grouped into packs and disperser groups that represented independent entities, with some processes being explicitly related to these collectives (e.g., reproduction or formation of new packs).
+
+### Observation
+
+For model analysis, the time to extinction was recorded.
+
+## Initialization
+
+* Parameters for the model:
+  * Carrying capacity = 60
+* The model is initialized with:
+  * 10 packs and no disperser groups.
+  * The number of dogs in each initial pack is drawn from a Poisson distribution with mean of 5 (the Poisson distribution is convenient even though its assumptions are not met in this application).
+    * The sex of each dog is set randomly with equal probabilities for male and female.
+    * The age of individuals is drawn from a uniform integer distribution between 0 and 6.
+    * Social status is set according to age.
+    * The alpha male and female of each pack are selected randomly from among its subordinates; if there are no subordinates of a sex, then the pack has no alpha of that sex.
+
+## Input Data
+
+The model does not use any input data.
+
+## Submodels
+
+### Age and update social status:
+* The age of all dogs is incremented.
+* Their social status variable is updated according to the new age:
+    * Age < 1: "pup"
+    * Age = 1--2 (inclusive): "yearling
+    * Age > 2 and in-pack: "subordinate" or "alpha"
+    * Age > 2 and not in-pack: "disperser"
+* Each pack updates its alpha males and females. If any pack is missing one or both alphas, and if it has subordinates of the appropriate sex, a subordinate of that sex is randomly selected and its social status variable set to "alpha."
+* For testing: **At the end of this step, check that the pack is consistent with these rules:**
+    * All dogs' social status is consistent with age and pack membership.
+    * Each pack has exactly one alpha male or else it has no subordinate males.
+    * Each pack has exactly one alpha female or else it has no subordinate females.
+
+### Reproduction
+Packs determine how many pups they produce, using these rules:
+
+* If the pack does not include both an alpha female and alpha male, no pups are produced.
+* Otherwise, the probability of a pack producing pups depends on the total number of dogs in the reserve, _N_ (not counting any pups already born in the current time step).
+* The probability of reproducing is modeled as a logistic function _P(N)_ such that
+    _P(N)_ = 0.5 when _N_ = half the carrying capacity and _P(N)_ = 0.1 when _N_ = the carrying capacity. See the logistic function submodel, below, for details.
+    * Determine whether pack breeds, based on this probability.
+    * If the pack reproduces, the number of pups is drawn from a Poisson distribution that has a mean birth rate (pups per pack per year) of 7.9.
+          * Assign sex of new-born pups randomly with _P_(male) = 0.55
+          * Set age of new-born pups to zero.
+
+### Dispersal
+
+Subordinate dogs can leave their packs in hopes of establishing a new pack. These "dispersers" form disperser groups, which comprise one or more subordinates of the same sex that came from the same pack.
+
+Each pack follows these rules to produce disperser groups:
+
+* If a pack has no subordinates, then no disperser group is created.
+* If a pack has only one subordinate of its sex, it has a probability of 0.5 of forming a one-member disperser group.
+* If a pack has two or more subordinates of the same sex, the subordinates *always* form a disperser group.
+* Dogs that join a disperser group no longer belong to their original pack, and their social status variable is set to "disperser." However, dogs that join disperser groups still keep the pack identifier of the pack they were born into. This is used if it meets another disperser group.
+
+### Dog mortality
+
+Whether or not each dog dies is determined stochastically using the following probabilities of dying:
+
+* _P_(death) = 0.44 for dispersers,
+* _P_(death) = 0.25 for yearlings,
+* _P_(death) = 0.20 for subordinates and alphas,
+* and _P_(death) = 0.12 for pups.
+
+### Mortality of collectives
+
+* If any pack or dispersal group has no members, it is removed from the model.
+* If any pack contains only pups, the pups die and the pack is removed.
+
+### Pack formation
+
+Disperser groups may meet other disperser groups, and if they meet a disperser group of the opposite sex and from a different pack, the groups may or may not join to form a new pack. This process is modeled by having each disperser group execute the following steps. The order in which disperser groups execute this action is randomly shuffled each time step:
+
+* Determine how many time the pack disperser group meets another disperser group. The number of meetings (variable num-groups-met) is modeled as a Poisson process with the rate of meeting (the average number of times per year that a disperser group meets another disperser group) equal to the number of other disperser groups times a parameter controlling how often groups meet.
+* num-groups-met = Poisson(_x_ * number of other disperser groups)
+* The meeting rate parameter _x_ can potentially have any value of 0.0 or higher (it can be greater than 1) but is given a value of 1.0.
+* The following steps are repeated up to num-groups-met times, stopping if the disperser group selects another to join:
+  1. Randomly select one other disperser group. It is possible to select the same other group more than once.
+  2. If the other group is of the same sex, or originated from the same pack, then do nothing more.
+  3. If the other group is of the opposite sex and a different pack, then there is a probability of 0.64 that the two groups join into a new pack.
+    * If they do not join, nothing else happens.
+    * If two disperser groups do join, a new pack is created immediately:
+    * All the dogs in the two groups become its members.
+    * The alpha male and female are chosen randomly.
+    * All other members are given a social status of "subordinate."
+    * The two disperser groups are no longer available to merge with remaining groups.
+
+### Logistic function
+
+The logistic function _P(N)_ should be 0.5 when _N_ = 0.5 carrying capacity and 0.1 when _N_ = carrying capacity. One way to program this function is with the following  intermediate variables:
+
+* _X_<sub>1</sub> = carrying-capacity / 2
+* _X_<sub>2</sub> = carrying-capacity
+* _P_<sub>1</sub> = 0.5
+* _P_<sub>2</sub> = 0.1
+* _D_ = ln(_P_<sub>1</sub> / (1 - _P_<sub>1</sub>))
+* _C_ = ln(_P_<sub>2</sub> / (1 - _P_<sub>2</sub>))
+* _B_ = (_D_ - _C_) / (_X_<sub>1</sub> - _X_<sub>2</sub>)
+* _A_ = _D_ - (_B_ * _X_<sub>1</sub>)
+
+Now we can write the logistic function:
+
+* _z_(_x_) = exp(_A_ + (_B x_))
+* _P_(_x_) = _z_(_x_) / (1 + _z_(_x_))
+
+We only need to calculate the intermediate variables _A_, _B_, _C_, and _D_ once, during the initialization.]]></info>
+  <turtleShapes>
+    <shape name="default" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="5"></point>
+        <point x="40" y="250"></point>
+        <point x="150" y="205"></point>
+        <point x="260" y="250"></point>
+      </polygon>
+    </shape>
+    <shape name="airplane" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="0"></point>
+        <point x="135" y="15"></point>
+        <point x="120" y="60"></point>
+        <point x="120" y="105"></point>
+        <point x="15" y="165"></point>
+        <point x="15" y="195"></point>
+        <point x="120" y="180"></point>
+        <point x="135" y="240"></point>
+        <point x="105" y="270"></point>
+        <point x="120" y="285"></point>
+        <point x="150" y="270"></point>
+        <point x="180" y="285"></point>
+        <point x="210" y="270"></point>
+        <point x="165" y="240"></point>
+        <point x="180" y="180"></point>
+        <point x="285" y="195"></point>
+        <point x="285" y="165"></point>
+        <point x="180" y="105"></point>
+        <point x="180" y="60"></point>
+        <point x="165" y="15"></point>
+      </polygon>
+    </shape>
+    <shape name="arrow" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="0"></point>
+        <point x="0" y="150"></point>
+        <point x="105" y="150"></point>
+        <point x="105" y="293"></point>
+        <point x="195" y="293"></point>
+        <point x="195" y="150"></point>
+        <point x="300" y="150"></point>
+      </polygon>
+    </shape>
+    <shape name="box" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="285"></point>
+        <point x="285" y="225"></point>
+        <point x="285" y="75"></point>
+        <point x="150" y="135"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="135"></point>
+        <point x="15" y="75"></point>
+        <point x="150" y="15"></point>
+        <point x="285" y="75"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="15" y="75"></point>
+        <point x="15" y="225"></point>
+        <point x="150" y="285"></point>
+        <point x="150" y="135"></point>
+      </polygon>
+      <line endX="150" startY="285" marked="false" color="255" endY="135" startX="150"></line>
+      <line endX="15" startY="135" marked="false" color="255" endY="75" startX="150"></line>
+      <line endX="285" startY="135" marked="false" color="255" endY="75" startX="150"></line>
+    </shape>
+    <shape name="bug" rotatable="true" editableColorIndex="0">
+      <circle x="96" y="182" marked="true" color="-1920102913" diameter="108" filled="true"></circle>
+      <circle x="110" y="127" marked="true" color="-1920102913" diameter="80" filled="true"></circle>
+      <circle x="110" y="75" marked="true" color="-1920102913" diameter="80" filled="true"></circle>
+      <line endX="80" startY="100" marked="true" color="-1920102913" endY="30" startX="150"></line>
+      <line endX="220" startY="100" marked="true" color="-1920102913" endY="30" startX="150"></line>
+    </shape>
+    <shape name="butterfly" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="165"></point>
+        <point x="209" y="199"></point>
+        <point x="225" y="225"></point>
+        <point x="225" y="255"></point>
+        <point x="195" y="270"></point>
+        <point x="165" y="255"></point>
+        <point x="150" y="240"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="165"></point>
+        <point x="89" y="198"></point>
+        <point x="75" y="225"></point>
+        <point x="75" y="255"></point>
+        <point x="105" y="270"></point>
+        <point x="135" y="255"></point>
+        <point x="150" y="240"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="139" y="148"></point>
+        <point x="100" y="105"></point>
+        <point x="55" y="90"></point>
+        <point x="25" y="90"></point>
+        <point x="10" y="105"></point>
+        <point x="10" y="135"></point>
+        <point x="25" y="180"></point>
+        <point x="40" y="195"></point>
+        <point x="85" y="194"></point>
+        <point x="139" y="163"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="162" y="150"></point>
+        <point x="200" y="105"></point>
+        <point x="245" y="90"></point>
+        <point x="275" y="90"></point>
+        <point x="290" y="105"></point>
+        <point x="290" y="135"></point>
+        <point x="275" y="180"></point>
+        <point x="260" y="195"></point>
+        <point x="215" y="195"></point>
+        <point x="162" y="165"></point>
+      </polygon>
+      <polygon color="255" filled="true" marked="false">
+        <point x="150" y="255"></point>
+        <point x="135" y="225"></point>
+        <point x="120" y="150"></point>
+        <point x="135" y="120"></point>
+        <point x="150" y="105"></point>
+        <point x="165" y="120"></point>
+        <point x="180" y="150"></point>
+        <point x="165" y="225"></point>
+      </polygon>
+      <circle x="135" y="90" marked="false" color="255" diameter="30" filled="true"></circle>
+      <line endX="195" startY="105" marked="false" color="255" endY="60" startX="150"></line>
+      <line endX="105" startY="105" marked="false" color="255" endY="60" startX="150"></line>
+    </shape>
+    <shape name="car" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="300" y="180"></point>
+        <point x="279" y="164"></point>
+        <point x="261" y="144"></point>
+        <point x="240" y="135"></point>
+        <point x="226" y="132"></point>
+        <point x="213" y="106"></point>
+        <point x="203" y="84"></point>
+        <point x="185" y="63"></point>
+        <point x="159" y="50"></point>
+        <point x="135" y="50"></point>
+        <point x="75" y="60"></point>
+        <point x="0" y="150"></point>
+        <point x="0" y="165"></point>
+        <point x="0" y="225"></point>
+        <point x="300" y="225"></point>
+        <point x="300" y="180"></point>
+      </polygon>
+      <circle x="180" y="180" marked="false" color="255" diameter="90" filled="true"></circle>
+      <circle x="30" y="180" marked="false" color="255" diameter="90" filled="true"></circle>
+      <polygon color="255" filled="true" marked="false">
+        <point x="162" y="80"></point>
+        <point x="132" y="78"></point>
+        <point x="134" y="135"></point>
+        <point x="209" y="135"></point>
+        <point x="194" y="105"></point>
+        <point x="189" y="96"></point>
+        <point x="180" y="89"></point>
+      </polygon>
+      <circle x="47" y="195" marked="true" color="-1920102913" diameter="58" filled="true"></circle>
+      <circle x="195" y="195" marked="true" color="-1920102913" diameter="58" filled="true"></circle>
+    </shape>
+    <shape name="circle" rotatable="false" editableColorIndex="0">
+      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
+    </shape>
+    <shape name="circle 2" rotatable="false" editableColorIndex="0">
+      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
+      <circle x="30" y="30" marked="false" color="255" diameter="240" filled="true"></circle>
+    </shape>
+    <shape name="cow" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="200" y="193"></point>
+        <point x="197" y="249"></point>
+        <point x="179" y="249"></point>
+        <point x="177" y="196"></point>
+        <point x="166" y="187"></point>
+        <point x="140" y="189"></point>
+        <point x="93" y="191"></point>
+        <point x="78" y="179"></point>
+        <point x="72" y="211"></point>
+        <point x="49" y="209"></point>
+        <point x="48" y="181"></point>
+        <point x="37" y="149"></point>
+        <point x="25" y="120"></point>
+        <point x="25" y="89"></point>
+        <point x="45" y="72"></point>
+        <point x="103" y="84"></point>
+        <point x="179" y="75"></point>
+        <point x="198" y="76"></point>
+        <point x="252" y="64"></point>
+        <point x="272" y="81"></point>
+        <point x="293" y="103"></point>
+        <point x="285" y="121"></point>
+        <point x="255" y="121"></point>
+        <point x="242" y="118"></point>
+        <point x="224" y="167"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="73" y="210"></point>
+        <point x="86" y="251"></point>
+        <point x="62" y="249"></point>
+        <point x="48" y="208"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="25" y="114"></point>
+        <point x="16" y="195"></point>
+        <point x="9" y="204"></point>
+        <point x="23" y="213"></point>
+        <point x="25" y="200"></point>
+        <point x="39" y="123"></point>
+      </polygon>
+    </shape>
+    <shape name="cylinder" rotatable="false" editableColorIndex="0">
+      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
+    </shape>
+    <shape name="dot" rotatable="false" editableColorIndex="0">
+      <circle x="90" y="90" marked="true" color="-1920102913" diameter="120" filled="true"></circle>
+    </shape>
+    <shape name="face happy" rotatable="false" editableColorIndex="0">
+      <circle x="8" y="8" marked="true" color="-1920102913" diameter="285" filled="true"></circle>
+      <circle x="60" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <circle x="180" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <polygon color="255" filled="true" marked="false">
+        <point x="150" y="255"></point>
+        <point x="90" y="239"></point>
+        <point x="62" y="213"></point>
+        <point x="47" y="191"></point>
+        <point x="67" y="179"></point>
+        <point x="90" y="203"></point>
+        <point x="109" y="218"></point>
+        <point x="150" y="225"></point>
+        <point x="192" y="218"></point>
+        <point x="210" y="203"></point>
+        <point x="227" y="181"></point>
+        <point x="251" y="194"></point>
+        <point x="236" y="217"></point>
+        <point x="212" y="240"></point>
+      </polygon>
+    </shape>
+    <shape name="face neutral" rotatable="false" editableColorIndex="0">
+      <circle x="8" y="7" marked="true" color="-1920102913" diameter="285" filled="true"></circle>
+      <circle x="60" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <circle x="180" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <rectangle endX="240" startY="195" marked="false" color="255" endY="225" startX="60" filled="true"></rectangle>
+    </shape>
+    <shape name="face sad" rotatable="false" editableColorIndex="0">
+      <circle x="8" y="8" marked="true" color="-1920102913" diameter="285" filled="true"></circle>
+      <circle x="60" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <circle x="180" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <polygon color="255" filled="true" marked="false">
+        <point x="150" y="168"></point>
+        <point x="90" y="184"></point>
+        <point x="62" y="210"></point>
+        <point x="47" y="232"></point>
+        <point x="67" y="244"></point>
+        <point x="90" y="220"></point>
+        <point x="109" y="205"></point>
+        <point x="150" y="198"></point>
+        <point x="192" y="205"></point>
+        <point x="210" y="220"></point>
+        <point x="227" y="242"></point>
+        <point x="251" y="229"></point>
+        <point x="236" y="206"></point>
+        <point x="212" y="183"></point>
+      </polygon>
+    </shape>
+    <shape name="fish" rotatable="false" editableColorIndex="0">
+      <polygon color="-1" filled="true" marked="false">
+        <point x="44" y="131"></point>
+        <point x="21" y="87"></point>
+        <point x="15" y="86"></point>
+        <point x="0" y="120"></point>
+        <point x="15" y="150"></point>
+        <point x="0" y="180"></point>
+        <point x="13" y="214"></point>
+        <point x="20" y="212"></point>
+        <point x="45" y="166"></point>
+      </polygon>
+      <polygon color="-1" filled="true" marked="false">
+        <point x="135" y="195"></point>
+        <point x="119" y="235"></point>
+        <point x="95" y="218"></point>
+        <point x="76" y="210"></point>
+        <point x="46" y="204"></point>
+        <point x="60" y="165"></point>
+      </polygon>
+      <polygon color="-1" filled="true" marked="false">
+        <point x="75" y="45"></point>
+        <point x="83" y="77"></point>
+        <point x="71" y="103"></point>
+        <point x="86" y="114"></point>
+        <point x="166" y="78"></point>
+        <point x="135" y="60"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="30" y="136"></point>
+        <point x="151" y="77"></point>
+        <point x="226" y="81"></point>
+        <point x="280" y="119"></point>
+        <point x="292" y="146"></point>
+        <point x="292" y="160"></point>
+        <point x="287" y="170"></point>
+        <point x="270" y="195"></point>
+        <point x="195" y="210"></point>
+        <point x="151" y="212"></point>
+        <point x="30" y="166"></point>
+      </polygon>
+      <circle x="215" y="106" marked="false" color="255" diameter="30" filled="true"></circle>
+    </shape>
+    <shape name="flag" rotatable="false" editableColorIndex="0">
+      <rectangle endX="75" startY="15" marked="true" color="-1920102913" endY="300" startX="60" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="90" y="150"></point>
+        <point x="270" y="90"></point>
+        <point x="90" y="30"></point>
+      </polygon>
+      <line endX="90" startY="135" marked="true" color="-1920102913" endY="135" startX="75"></line>
+      <line endX="90" startY="45" marked="true" color="-1920102913" endY="45" startX="75"></line>
+    </shape>
+    <shape name="flower" rotatable="false" editableColorIndex="0">
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="135" y="120"></point>
+        <point x="165" y="165"></point>
+        <point x="180" y="210"></point>
+        <point x="180" y="240"></point>
+        <point x="150" y="300"></point>
+        <point x="165" y="300"></point>
+        <point x="195" y="240"></point>
+        <point x="195" y="195"></point>
+        <point x="165" y="135"></point>
+      </polygon>
+      <circle x="85" y="132" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="130" y="147" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="192" y="85" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="85" y="40" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="177" y="40" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="177" y="132" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="70" y="85" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="130" y="25" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="96" y="51" marked="true" color="-1920102913" diameter="108" filled="true"></circle>
+      <circle x="113" y="68" marked="false" color="255" diameter="74" filled="true"></circle>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="189" y="233"></point>
+        <point x="219" y="188"></point>
+        <point x="249" y="173"></point>
+        <point x="279" y="188"></point>
+        <point x="234" y="218"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="180" y="255"></point>
+        <point x="150" y="210"></point>
+        <point x="105" y="210"></point>
+        <point x="75" y="240"></point>
+        <point x="135" y="240"></point>
+      </polygon>
+    </shape>
+    <shape name="house" rotatable="false" editableColorIndex="0">
+      <rectangle endX="255" startY="120" marked="true" color="-1920102913" endY="285" startX="45" filled="true"></rectangle>
+      <rectangle endX="180" startY="210" marked="false" color="255" endY="285" startX="120" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="15" y="120"></point>
+        <point x="150" y="15"></point>
+        <point x="285" y="120"></point>
+      </polygon>
+      <line endX="270" startY="120" marked="false" color="255" endY="120" startX="30"></line>
+    </shape>
+    <shape name="leaf" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="210"></point>
+        <point x="135" y="195"></point>
+        <point x="120" y="210"></point>
+        <point x="60" y="210"></point>
+        <point x="30" y="195"></point>
+        <point x="60" y="180"></point>
+        <point x="60" y="165"></point>
+        <point x="15" y="135"></point>
+        <point x="30" y="120"></point>
+        <point x="15" y="105"></point>
+        <point x="40" y="104"></point>
+        <point x="45" y="90"></point>
+        <point x="60" y="90"></point>
+        <point x="90" y="105"></point>
+        <point x="105" y="120"></point>
+        <point x="120" y="120"></point>
+        <point x="105" y="60"></point>
+        <point x="120" y="60"></point>
+        <point x="135" y="30"></point>
+        <point x="150" y="15"></point>
+        <point x="165" y="30"></point>
+        <point x="180" y="60"></point>
+        <point x="195" y="60"></point>
+        <point x="180" y="120"></point>
+        <point x="195" y="120"></point>
+        <point x="210" y="105"></point>
+        <point x="240" y="90"></point>
+        <point x="255" y="90"></point>
+        <point x="263" y="104"></point>
+        <point x="285" y="105"></point>
+        <point x="270" y="120"></point>
+        <point x="285" y="135"></point>
+        <point x="240" y="165"></point>
+        <point x="240" y="180"></point>
+        <point x="270" y="195"></point>
+        <point x="240" y="210"></point>
+        <point x="180" y="210"></point>
+        <point x="165" y="195"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="195"></point>
+        <point x="135" y="240"></point>
+        <point x="120" y="255"></point>
+        <point x="105" y="255"></point>
+        <point x="105" y="285"></point>
+        <point x="135" y="285"></point>
+        <point x="165" y="240"></point>
+        <point x="165" y="195"></point>
+      </polygon>
+    </shape>
+    <shape name="line" rotatable="true" editableColorIndex="0">
+      <line endX="150" startY="0" marked="true" color="-1920102913" endY="300" startX="150"></line>
+    </shape>
+    <shape name="line half" rotatable="true" editableColorIndex="0">
+      <line endX="150" startY="0" marked="true" color="-1920102913" endY="150" startX="150"></line>
+    </shape>
+    <shape name="pentagon" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="15"></point>
+        <point x="15" y="120"></point>
+        <point x="60" y="285"></point>
+        <point x="240" y="285"></point>
+        <point x="285" y="120"></point>
+      </polygon>
+    </shape>
+    <shape name="person" rotatable="false" editableColorIndex="0">
+      <circle x="110" y="5" marked="true" color="-1920102913" diameter="80" filled="true"></circle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="105" y="90"></point>
+        <point x="120" y="195"></point>
+        <point x="90" y="285"></point>
+        <point x="105" y="300"></point>
+        <point x="135" y="300"></point>
+        <point x="150" y="225"></point>
+        <point x="165" y="300"></point>
+        <point x="195" y="300"></point>
+        <point x="210" y="285"></point>
+        <point x="180" y="195"></point>
+        <point x="195" y="90"></point>
+      </polygon>
+      <rectangle endX="172" startY="79" marked="true" color="-1920102913" endY="94" startX="127" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="195" y="90"></point>
+        <point x="240" y="150"></point>
+        <point x="225" y="180"></point>
+        <point x="165" y="105"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="105" y="90"></point>
+        <point x="60" y="150"></point>
+        <point x="75" y="180"></point>
+        <point x="135" y="105"></point>
+      </polygon>
+    </shape>
+    <shape name="plant" rotatable="false" editableColorIndex="0">
+      <rectangle endX="165" startY="90" marked="true" color="-1920102913" endY="300" startX="135" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="255"></point>
+        <point x="90" y="210"></point>
+        <point x="45" y="195"></point>
+        <point x="75" y="255"></point>
+        <point x="135" y="285"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="165" y="255"></point>
+        <point x="210" y="210"></point>
+        <point x="255" y="195"></point>
+        <point x="225" y="255"></point>
+        <point x="165" y="285"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="180"></point>
+        <point x="90" y="135"></point>
+        <point x="45" y="120"></point>
+        <point x="75" y="180"></point>
+        <point x="135" y="210"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="165" y="180"></point>
+        <point x="165" y="210"></point>
+        <point x="225" y="180"></point>
+        <point x="255" y="120"></point>
+        <point x="210" y="135"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="105"></point>
+        <point x="90" y="60"></point>
+        <point x="45" y="45"></point>
+        <point x="75" y="105"></point>
+        <point x="135" y="135"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="165" y="105"></point>
+        <point x="165" y="135"></point>
+        <point x="225" y="105"></point>
+        <point x="255" y="45"></point>
+        <point x="210" y="60"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="90"></point>
+        <point x="120" y="45"></point>
+        <point x="150" y="15"></point>
+        <point x="180" y="45"></point>
+        <point x="165" y="90"></point>
+      </polygon>
+    </shape>
+    <shape name="sheep" rotatable="false" editableColorIndex="15">
+      <circle x="203" y="65" marked="true" color="-1" diameter="88" filled="true"></circle>
+      <circle x="70" y="65" marked="true" color="-1" diameter="162" filled="true"></circle>
+      <circle x="150" y="105" marked="true" color="-1" diameter="120" filled="true"></circle>
+      <polygon color="-1920102913" filled="true" marked="false">
+        <point x="218" y="120"></point>
+        <point x="240" y="165"></point>
+        <point x="255" y="165"></point>
+        <point x="278" y="120"></point>
+      </polygon>
+      <circle x="214" y="72" marked="false" color="-1920102913" diameter="67" filled="true"></circle>
+      <rectangle endX="179" startY="223" marked="true" color="-1" endY="298" startX="164" filled="true"></rectangle>
+      <polygon color="-1" filled="true" marked="true">
+        <point x="45" y="285"></point>
+        <point x="30" y="285"></point>
+        <point x="30" y="240"></point>
+        <point x="15" y="195"></point>
+        <point x="45" y="210"></point>
+      </polygon>
+      <circle x="3" y="83" marked="true" color="-1" diameter="150" filled="true"></circle>
+      <rectangle endX="80" startY="221" marked="true" color="-1" endY="296" startX="65" filled="true"></rectangle>
+      <polygon color="-1" filled="true" marked="true">
+        <point x="195" y="285"></point>
+        <point x="210" y="285"></point>
+        <point x="210" y="240"></point>
+        <point x="240" y="210"></point>
+        <point x="195" y="210"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="false">
+        <point x="276" y="85"></point>
+        <point x="285" y="105"></point>
+        <point x="302" y="99"></point>
+        <point x="294" y="83"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="false">
+        <point x="219" y="85"></point>
+        <point x="210" y="105"></point>
+        <point x="193" y="99"></point>
+        <point x="201" y="83"></point>
+      </polygon>
+    </shape>
+    <shape name="square" rotatable="false" editableColorIndex="0">
+      <rectangle endX="270" startY="30" marked="true" color="-1920102913" endY="270" startX="30" filled="true"></rectangle>
+    </shape>
+    <shape name="square 2" rotatable="false" editableColorIndex="0">
+      <rectangle endX="270" startY="30" marked="true" color="-1920102913" endY="270" startX="30" filled="true"></rectangle>
+      <rectangle endX="240" startY="60" marked="false" color="255" endY="240" startX="60" filled="true"></rectangle>
+    </shape>
+    <shape name="star" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="151" y="1"></point>
+        <point x="185" y="108"></point>
+        <point x="298" y="108"></point>
+        <point x="207" y="175"></point>
+        <point x="242" y="282"></point>
+        <point x="151" y="216"></point>
+        <point x="59" y="282"></point>
+        <point x="94" y="175"></point>
+        <point x="3" y="108"></point>
+        <point x="116" y="108"></point>
+      </polygon>
+    </shape>
+    <shape name="target" rotatable="false" editableColorIndex="0">
+      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
+      <circle x="30" y="30" marked="false" color="255" diameter="240" filled="true"></circle>
+      <circle x="60" y="60" marked="true" color="-1920102913" diameter="180" filled="true"></circle>
+      <circle x="90" y="90" marked="false" color="255" diameter="120" filled="true"></circle>
+      <circle x="120" y="120" marked="true" color="-1920102913" diameter="60" filled="true"></circle>
+    </shape>
+    <shape name="tree" rotatable="false" editableColorIndex="0">
+      <circle x="118" y="3" marked="true" color="-1920102913" diameter="94" filled="true"></circle>
+      <rectangle endX="180" startY="195" marked="false" color="-1653716737" endY="300" startX="120" filled="true"></rectangle>
+      <circle x="65" y="21" marked="true" color="-1920102913" diameter="108" filled="true"></circle>
+      <circle x="116" y="41" marked="true" color="-1920102913" diameter="127" filled="true"></circle>
+      <circle x="45" y="90" marked="true" color="-1920102913" diameter="120" filled="true"></circle>
+      <circle x="104" y="74" marked="true" color="-1920102913" diameter="152" filled="true"></circle>
+    </shape>
+    <shape name="triangle" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="30"></point>
+        <point x="15" y="255"></point>
+        <point x="285" y="255"></point>
+      </polygon>
+    </shape>
+    <shape name="triangle 2" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="30"></point>
+        <point x="15" y="255"></point>
+        <point x="285" y="255"></point>
+      </polygon>
+      <polygon color="255" filled="true" marked="false">
+        <point x="151" y="99"></point>
+        <point x="225" y="223"></point>
+        <point x="75" y="224"></point>
+      </polygon>
+    </shape>
+    <shape name="truck" rotatable="false" editableColorIndex="0">
+      <rectangle endX="195" startY="45" marked="true" color="-1920102913" endY="187" startX="4" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="296" y="193"></point>
+        <point x="296" y="150"></point>
+        <point x="259" y="134"></point>
+        <point x="244" y="104"></point>
+        <point x="208" y="104"></point>
+        <point x="207" y="194"></point>
+      </polygon>
+      <rectangle endX="195" startY="60" marked="false" color="-1" endY="105" startX="195" filled="true"></rectangle>
+      <polygon color="255" filled="true" marked="false">
+        <point x="238" y="112"></point>
+        <point x="252" y="141"></point>
+        <point x="219" y="141"></point>
+        <point x="218" y="112"></point>
+      </polygon>
+      <circle x="234" y="174" marked="false" color="255" diameter="42" filled="true"></circle>
+      <rectangle endX="214" startY="185" marked="true" color="-1920102913" endY="194" startX="181" filled="true"></rectangle>
+      <circle x="144" y="174" marked="false" color="255" diameter="42" filled="true"></circle>
+      <circle x="24" y="174" marked="false" color="255" diameter="42" filled="true"></circle>
+      <circle x="24" y="174" marked="true" color="-1920102913" diameter="42" filled="false"></circle>
+      <circle x="144" y="174" marked="true" color="-1920102913" diameter="42" filled="false"></circle>
+      <circle x="234" y="174" marked="true" color="-1920102913" diameter="42" filled="false"></circle>
+    </shape>
+    <shape name="turtle" rotatable="true" editableColorIndex="0">
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="215" y="204"></point>
+        <point x="240" y="233"></point>
+        <point x="246" y="254"></point>
+        <point x="228" y="266"></point>
+        <point x="215" y="252"></point>
+        <point x="193" y="210"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="195" y="90"></point>
+        <point x="225" y="75"></point>
+        <point x="245" y="75"></point>
+        <point x="260" y="89"></point>
+        <point x="269" y="108"></point>
+        <point x="261" y="124"></point>
+        <point x="240" y="105"></point>
+        <point x="225" y="105"></point>
+        <point x="210" y="105"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="105" y="90"></point>
+        <point x="75" y="75"></point>
+        <point x="55" y="75"></point>
+        <point x="40" y="89"></point>
+        <point x="31" y="108"></point>
+        <point x="39" y="124"></point>
+        <point x="60" y="105"></point>
+        <point x="75" y="105"></point>
+        <point x="90" y="105"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="132" y="85"></point>
+        <point x="134" y="64"></point>
+        <point x="107" y="51"></point>
+        <point x="108" y="17"></point>
+        <point x="150" y="2"></point>
+        <point x="192" y="18"></point>
+        <point x="192" y="52"></point>
+        <point x="169" y="65"></point>
+        <point x="172" y="87"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="85" y="204"></point>
+        <point x="60" y="233"></point>
+        <point x="54" y="254"></point>
+        <point x="72" y="266"></point>
+        <point x="85" y="252"></point>
+        <point x="107" y="210"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="119" y="75"></point>
+        <point x="179" y="75"></point>
+        <point x="209" y="101"></point>
+        <point x="224" y="135"></point>
+        <point x="220" y="225"></point>
+        <point x="175" y="261"></point>
+        <point x="128" y="261"></point>
+        <point x="81" y="224"></point>
+        <point x="74" y="135"></point>
+        <point x="88" y="99"></point>
+      </polygon>
+    </shape>
+    <shape name="wheel" rotatable="false" editableColorIndex="0">
+      <circle x="3" y="3" marked="true" color="-1920102913" diameter="294" filled="true"></circle>
+      <circle x="30" y="30" marked="false" color="255" diameter="240" filled="true"></circle>
+      <line endX="150" startY="285" marked="true" color="-1920102913" endY="15" startX="150"></line>
+      <line endX="285" startY="150" marked="true" color="-1920102913" endY="150" startX="15"></line>
+      <circle x="120" y="120" marked="true" color="-1920102913" diameter="60" filled="true"></circle>
+      <line endX="79" startY="40" marked="true" color="-1920102913" endY="269" startX="216"></line>
+      <line endX="269" startY="84" marked="true" color="-1920102913" endY="221" startX="40"></line>
+      <line endX="269" startY="216" marked="true" color="-1920102913" endY="79" startX="40"></line>
+      <line endX="221" startY="40" marked="true" color="-1920102913" endY="269" startX="84"></line>
+    </shape>
+    <shape name="wolf" rotatable="false" editableColorIndex="0">
+      <polygon color="255" filled="true" marked="false">
+        <point x="253" y="133"></point>
+        <point x="245" y="131"></point>
+        <point x="245" y="133"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="2" y="194"></point>
+        <point x="13" y="197"></point>
+        <point x="30" y="191"></point>
+        <point x="38" y="193"></point>
+        <point x="38" y="205"></point>
+        <point x="20" y="226"></point>
+        <point x="20" y="257"></point>
+        <point x="27" y="265"></point>
+        <point x="38" y="266"></point>
+        <point x="40" y="260"></point>
+        <point x="31" y="253"></point>
+        <point x="31" y="230"></point>
+        <point x="60" y="206"></point>
+        <point x="68" y="198"></point>
+        <point x="75" y="209"></point>
+        <point x="66" y="228"></point>
+        <point x="65" y="243"></point>
+        <point x="82" y="261"></point>
+        <point x="84" y="268"></point>
+        <point x="100" y="267"></point>
+        <point x="103" y="261"></point>
+        <point x="77" y="239"></point>
+        <point x="79" y="231"></point>
+        <point x="100" y="207"></point>
+        <point x="98" y="196"></point>
+        <point x="119" y="201"></point>
+        <point x="143" y="202"></point>
+        <point x="160" y="195"></point>
+        <point x="166" y="210"></point>
+        <point x="172" y="213"></point>
+        <point x="173" y="238"></point>
+        <point x="167" y="251"></point>
+        <point x="160" y="248"></point>
+        <point x="154" y="265"></point>
+        <point x="169" y="264"></point>
+        <point x="178" y="247"></point>
+        <point x="186" y="240"></point>
+        <point x="198" y="260"></point>
+        <point x="200" y="271"></point>
+        <point x="217" y="271"></point>
+        <point x="219" y="262"></point>
+        <point x="207" y="258"></point>
+        <point x="195" y="230"></point>
+        <point x="192" y="198"></point>
+        <point x="210" y="184"></point>
+        <point x="227" y="164"></point>
+        <point x="242" y="144"></point>
+        <point x="259" y="145"></point>
+        <point x="284" y="151"></point>
+        <point x="277" y="141"></point>
+        <point x="293" y="140"></point>
+        <point x="299" y="134"></point>
+        <point x="297" y="127"></point>
+        <point x="273" y="119"></point>
+        <point x="270" y="105"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="-1" y="195"></point>
+        <point x="14" y="180"></point>
+        <point x="36" y="166"></point>
+        <point x="40" y="153"></point>
+        <point x="53" y="140"></point>
+        <point x="82" y="131"></point>
+        <point x="134" y="133"></point>
+        <point x="159" y="126"></point>
+        <point x="188" y="115"></point>
+        <point x="227" y="108"></point>
+        <point x="236" y="102"></point>
+        <point x="238" y="98"></point>
+        <point x="268" y="86"></point>
+        <point x="269" y="92"></point>
+        <point x="281" y="87"></point>
+        <point x="269" y="103"></point>
+        <point x="269" y="113"></point>
+      </polygon>
+    </shape>
+    <shape name="x" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="270" y="75"></point>
+        <point x="225" y="30"></point>
+        <point x="30" y="225"></point>
+        <point x="75" y="270"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="30" y="75"></point>
+        <point x="75" y="30"></point>
+        <point x="270" y="225"></point>
+        <point x="225" y="270"></point>
+      </polygon>
+    </shape>
+  </turtleShapes>
+  <linkShapes>
+    <shape name="default" curviness="0.0">
+      <lines>
+        <line x="-0.2" visible="false">
+          <dash value="0.0"></dash>
+          <dash value="1.0"></dash>
+        </line>
+        <line x="0.0" visible="true">
+          <dash value="1.0"></dash>
+          <dash value="0.0"></dash>
+        </line>
+        <line x="0.2" visible="false">
+          <dash value="0.0"></dash>
+          <dash value="1.0"></dash>
+        </line>
+      </lines>
+      <indicator>
+        <shape name="link direction" rotatable="true" editableColorIndex="0">
+          <line endX="90" startY="150" marked="true" color="-1920102913" endY="180" startX="150"></line>
+          <line endX="210" startY="150" marked="true" color="-1920102913" endY="180" startX="150"></line>
+        </shape>
+      </indicator>
+    </shape>
+  </linkShapes>
+  <previewCommands>setup repeat 75 [ go ]</previewCommands>
+  <experiments>
+    <experiment name="vary_initialization" repetitions="100" sequentialRunOrder="true" runMetricsEveryStep="false" timeLimit="100">
+      <setup>setup</setup>
+      <go>go</go>
+      <exitCondition>extinct?</exitCondition>
+      <metrics>
+        <metric>ticks</metric>
+        <metric>extinct?</metric>
+      </metrics>
+      <constants>
+        <steppedValueSet variable="num-initial-packs" first="2" step="2" last="10"></steppedValueSet>
+        <enumeratedValueSet variable="mean-meeting-rate">
+          <value value="1"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="mortality-adult">
+          <value value="0.2"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="mortality-disperser">
+          <value value="0.44"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="years-to-simulate">
+          <value value="100"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="carrying-capacity">
+          <value value="60"></value>
+        </enumeratedValueSet>
+        <steppedValueSet variable="mean-initial-pack-size" first="2" step="2" last="10"></steppedValueSet>
+      </constants>
+    </experiment>
+    <experiment name="vary_meeting_disp_mortality" repetitions="100" sequentialRunOrder="true" runMetricsEveryStep="false" timeLimit="100">
+      <setup>setup</setup>
+      <go>go</go>
+      <exitCondition>extinct?</exitCondition>
+      <metrics>
+        <metric>ticks</metric>
+        <metric>extinct?</metric>
+      </metrics>
+      <constants>
+        <enumeratedValueSet variable="num-initial-packs">
+          <value value="10"></value>
+        </enumeratedValueSet>
+        <steppedValueSet variable="mean-meeting-rate" first="0" step="0.5" last="4"></steppedValueSet>
+        <enumeratedValueSet variable="mortality-adult">
+          <value value="0.2"></value>
+        </enumeratedValueSet>
+        <steppedValueSet variable="mortality-disperser" first="0.2" step="0.05" last="0.6"></steppedValueSet>
+        <enumeratedValueSet variable="years-to-simulate">
+          <value value="100"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="carrying-capacity">
+          <value value="60"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="mean-initial-pack-size">
+          <value value="5"></value>
+        </enumeratedValueSet>
+      </constants>
+    </experiment>
+    <experiment name="vary_initialization_pe" repetitions="20" sequentialRunOrder="true" runMetricsEveryStep="false" timeLimit="1">
+      <go>get-p-extinct 100</go>
+      <metrics>
+        <metric>p-extinction</metric>
+        <metric>time-to-extinction</metric>
+      </metrics>
+      <constants>
+        <steppedValueSet variable="num-initial-packs" first="2" step="2" last="10"></steppedValueSet>
+        <enumeratedValueSet variable="mean-meeting-rate">
+          <value value="1"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="mortality-adult">
+          <value value="0.2"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="mortality-disperser">
+          <value value="0.44"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="years-to-simulate">
+          <value value="100"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="carrying-capacity">
+          <value value="60"></value>
+        </enumeratedValueSet>
+        <steppedValueSet variable="mean-initial-pack-size" first="2" step="2" last="10"></steppedValueSet>
+      </constants>
+    </experiment>
+    <experiment name="vary_meeting_disp_mortality_pe" repetitions="20" sequentialRunOrder="true" runMetricsEveryStep="false" timeLimit="1">
+      <go>get-p-extinct 100</go>
+      <metrics>
+        <metric>p-extinction</metric>
+        <metric>time-to-extinction</metric>
+      </metrics>
+      <constants>
+        <enumeratedValueSet variable="num-initial-packs">
+          <value value="10"></value>
+        </enumeratedValueSet>
+        <steppedValueSet variable="mean-meeting-rate" first="0" step="0.5" last="4"></steppedValueSet>
+        <enumeratedValueSet variable="mortality-adult">
+          <value value="0.2"></value>
+        </enumeratedValueSet>
+        <steppedValueSet variable="mortality-disperser" first="0.2" step="0.05" last="0.6"></steppedValueSet>
+        <enumeratedValueSet variable="years-to-simulate">
+          <value value="100"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="carrying-capacity">
+          <value value="60"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="mean-initial-pack-size">
+          <value value="5"></value>
+        </enumeratedValueSet>
+      </constants>
+    </experiment>
+  </experiments>
+</model>
