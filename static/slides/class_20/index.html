@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<!-- JMG Reveal.js 6 local template for EES 4760 --><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="J. Magnolia Gilligan">
+<title>Pattern-Oriented Modeling</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="../../lecture_lib/library/dist/reset.css">
+<link rel="stylesheet" href="../../lecture_lib/library/dist/reveal.css">
+<style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    div.qrbox,
+    aside.qrbox {
+     text-align: left;
+     vertical-align: bottom;
+     width: 95%;
+     position: fixed;
+     left: 2.5%;
+     bottom: 1rem;
+     display: block;
+    }
+    div.qrbox div.qrimage {
+      font-size:30%;
+      width:100%;
+      vertical-align:top;
+    }
+    div.qrbox div.qrimage a.qrimage {
+      font-size: 0px;
+      line-height: 0px;
+    }
+    div.qrbox div.qrimage img {
+      height: 200px;
+      margin-bottom: 10px;
+    }  </style>
+<!-- local theme = solarized-jmg --><link rel="stylesheet" href="../../lecture_lib/library/dist/theme/solarized-jmg.css" id="theme">
+<script src="../../lecture_lib/library/header-attrs-2.32/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+<section id="title-slide" class="center"><h1 class="title">Pattern-Oriented Modeling</h1>
+    <p class="author">EES 4760/5760</p>
+        <p class="author">Agent-Based and Individual-Based Computational
+Modeling</p>
+  <p class="author">J. Magnolia Gilligan</p>
+	<!-- end title slide -->
+</section><section><section id="pattern-sec" class="title-slide slide level1 center"><h1 class="center">Pattern-Oriented Modeling</h1>
+
+</section><section id="pattern" class="slide level2"><h2>Pattern-Oriented Modeling</h2>
+<p><img data-src="assets/images/pattern_title.png" height="800" alt="pattern"></p>
+</section><section id="modeling-cycle" class="slide level2" data-transition="fade-out"><h2 data-transition="fade-out">The Modeling Cycle</h2>
+<p><img data-src="assets/images/new-modeling-cycle-wide.png" height="800" alt="The Modeling Cycle"></p>
+</section><section id="modeling-cycle-2" class="slide level2" data-transition="fade-in"><h2 data-transition="fade-in">The Modeling Cycle</h2>
+<p><img data-src="assets/images/new-modeling-cycle-highlight.png" height="800" alt="The Modeling Cycle"></p>
+</section></section><section><section id="validation-sec" class="title-slide slide level1 center"><h1 class="center">Validation and Verification</h1>
+
+</section><section id="modeling-goals" class="slide level2 center"><h2 class="center">Goals of Modeling</h2>
+<ul>
+<li>Goals:
+<ul>
+<li>Models are “sufficiently good” representations of real
+counterparts</li>
+<li class="fragment">Learn about real world:
+<ul>
+<li class="fragment">Capture essential elements of real system’s <em>internal
+organization</em>
+</li>
+<li class="fragment">Capture <em>generative mechanisms</em> that produce structure
+and behavior of real systems</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section><section id="validation" class="slide level2 center"><h2 class="center">Problem: Validation and Verification</h2>
+<ul>
+<li>
+<strong>Version 1:</strong>
+<ul>
+<li>The model <em>mimics the real world well enough for its stated
+purpose</em>
+</li>
+</ul>
+</li>
+<li class="fragment"><strong>Version 2</strong>
+<ul>
+<li>We can place confidence in <em>inferences about real system based on
+model results</em>
+</li>
+</ul>
+</li>
+</ul>
+<div class="credit">
+<p>E.J. Rykiel “Testing ecological models: The meaning of validation”
+Ecological Modeling <strong>90</strong>, 229 (1996)</p>
+</div>
+</section><section id="starling-flocks" class="slide level2 center"><h2 class="center">Starling Flocks</h2>
+<p><img data-src="assets/images/behecoarq149f04_ht.jpeg" height="800" alt="starling flocks"></p>
+<div class="credit">
+<p>H. Hildenbrandt <em>et al.</em>, “Self-organized aerial displays of
+thousands of starlings: a model,” Behav. Ecol. <strong>21</strong>,
+1349–1359 (2010).</p>
+</div>
+</section><section id="starling-validation" class="slide level2 center"><h2 class="center">Validation of Starling Model</h2>
+<p><img data-src="assets/images/behecoarq149f07_ht.jpeg" height="800" alt="starling validation"></p>
+<div class="credit">
+<p>H. Hildenbrandt <em>et al.</em>, “Self-organized aerial displays of
+thousands of starlings: a model,” Behav. Ecol. <strong>21</strong>,
+1349–1359 (2010).</p>
+</div>
+</section><section id="fundamental-problem" class="slide level2 center"><h2 class="center">Fundamental Problem</h2>
+<ul>
+<li>Our model might reproduce the <em>right pattern</em> for the
+<em>wrong reasons</em>
+</li>
+<li class="fragment">How can we be sure to capture the <em>real generative
+mechanisms</em>?</li>
+<li class="fragment">How can we design models so that we can <em>optimize</em> model
+complexity?</li>
+</ul></section><section id="medawar-zone" class="slide level2 center"><h2 class="center">The Medawar Zone</h2>
+<div class="columns">
+<div class="column" style="width:49%;vertical-align:top;padding-top:1em;">
+<h4 id="medawar-solving"><strong>P. Medawar (1967):</strong></h4>
+<p>Optimal level of difficulty for a good research problem:</p>
+<ul>
+<li class="fragment">Not difficult enough:
+<ul>
+<li class="fragment">Result is trivial, uninteresting.</li>
+</ul>
+</li>
+<li class="fragment">Too difficult:
+<ul>
+<li class="fragment">Unlikely to solve it</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="column" style="width:49%;vertical-align:top;">
+<p><img data-src="assets/images/medawar_zone.png" height="800" alt="Medawar Zone"></p>
+</div>
+</div>
+<div class="credit">
+<p>P. Medawar, <em>The Art of the Soluble</em> (Oxford, 1967)</p>
+</div>
+</section><section id="rich-models" class="slide level2 center"><h2 class="center">Mechanistically Rich Models</h2>
+<ul>
+<li>If model structure is too simple it will not capture essential
+mechanisms
+<ul>
+<li class="fragment">There will be too few ways to test the model</li>
+</ul>
+</li>
+<li class="fragment">Complexity of model is not bad <em>per se</em> and can increase
+the payoff</li>
+</ul>
+<div class="credit">
+<p>D.L. De Angelis and W.M. Mooij, “In Praise of Mechanistically Rich
+Models,” in C.D. Canham, J.J. Cole, and W.K. Lauenroth (eds.),
+<em>Models in Ecosystem Science</em> (Princeton, 2003)</p>
+</div>
+</section></section><section><section id="spatial-pattern-sec" class="title-slide slide level1 center"><h1 class="center">Spatial Patterns in Ecology</h1>
+
+</section><section id="spatial-pattern" class="slide level2" data-transition="fade-out"><h2 data-transition="fade-out">Spatial Patterns in Ecology</h2>
+<p><img data-src="assets/images/empetrumnigrumlivedeadwaveforestmistakenpoint.jpg" height="800" alt="Wave Forest in Newfoundland"></p>
+<div class="credit">
+<p>Wave forest of <em>Empetrum nigrum</em> (Crowberry), Mistaken Point
+Ecological Reserve, Newfoundland. Photo: John Maunder.</p>
+<p><a href="http://www.digitalnaturalhistory.com/images/empetrumnigrumlivedeadwaveforestmistakenpoint.jpg" class="uri">http://www.digitalnaturalhistory.com/images/empetrumnigrumlivedeadwaveforestmistakenpoint.jpg</a></p>
+</div>
+</section><section id="spatial-pattern-2" class="slide level2"><h2>Spatial Patterns in Ecology</h2>
+<p><img data-src="assets/images/albatross.png" height="800" alt="Albatross Trajectory"></p>
+<div class="credit">
+<p>M. Antolos, S.A. Shaffer, H. Weimerskirch, Y. Tremblay, and D.P.
+Costa, “Foraging Behavior and Energetics of Albatrosses in Contrasting
+Breeding Environments,” Front. Mar. Sci. <strong>4</strong>, 414 (2017).
+doi: <a href="https://doi.org/10.3389/fmars.2017.00414">10.3389/fmars.2017.00414</a></p>
+</div>
+</section><section id="what-scientists-do-with-patterns" class="slide level2"><h2>What Scientists do with Patterns</h2>
+<div class="columns">
+<div class="column" style="width:49%;vertical-align:top;">
+<p><img data-src="assets/images/lemon.jpg" height="800" alt="Lemon"></p>
+</div>
+<div class="column" style="width:49%;vertical-align:top;padding-top:1em;">
+<ul>
+<li>
+<strong>Pattern:</strong> Something beyond random variation</li>
+<li class="fragment">Pattern contains information about internal organization</li>
+<li class="fragment">Develop models that reproduce observed pattern</li>
+<li class="fragment">Inference: Real system’s internal mechanisms are like
+model’s</li>
+<li class="fragment"><strong><em>Squeeze</em></strong> the pattern!</li>
+</ul>
+</div>
+</div>
+</section><section id="complex-systems" class="slide level2 center"><h2 class="center">Complex Systems</h2>
+<ul>
+<li>A single pattern may not contain enough information</li>
+<li class="fragment">Tendency to focus on <em>single</em> patterns observed at
+<em>one level</em> of observation:
+<ul>
+<li class="fragment">Individual Behaviors</li>
+<li class="fragment">Population dynamics</li>
+<li class="fragment">Community composition</li>
+</ul>
+</li>
+</ul></section><section id="monoscope" class="slide level2 center"><h2 class="center">Monoscopic View</h2>
+<p><img data-src="assets/images/monoscope.png" height="600" alt="Monoscope"></p>
+<p>Most approaches (and modelers) are not making the best use of
+available information (lemons)</p>
+</section><section id="multiscope" class="slide level2 center"><h2 class="center">We Need a Multiscope</h2>
+<p><img data-src="assets/images/multiscope.jpg" height="800" alt="Multiscope"></p>
+</section><section id="multiscope-explained" class="slide level2"><h2>Multiscope View</h2>
+<ul>
+<li>Consider multiple patterns
+<ul>
+<li>Observed at different scales, levels of organization</li>
+</ul>
+</li>
+<li class="fragment">Get model to reproduce multiple patterns simultaneously</li>
+<li class="fragment">Use each pattern as a <em>filter</em> to reject faulty submodels
+or parameterizations</li>
+<li class="fragment">Multiple (3 or more) <em>weak</em> patterns may constrain model
+better than single <em>strong</em> pattern</li>
+<li class="fragment"><strong><em>Pattern-Oriented Modeling</em></strong>
+</li>
+</ul></section><section id="pattern-oriented" class="slide level2"><h2>Pattern-Oriented Modeling</h2>
+<p><img data-src="assets/images/pattern_modeling.png" style="border:0;" height="900" alt="Pattern-oriented modeling"></p>
+</section><section id="three-elements" class="slide level2"><h2>Three Elements of Pattern-Oriented Modeling</h2>
+<ol>
+<li class="fragment"><strong>Design:</strong> Choose state variables that allow
+real-world patterns to emerge in models.</li>
+<li class="fragment"><strong>Selection:</strong> Use multiple patterns to compare
+&amp; reject submodels</li>
+<li class="fragment"><strong>Parameterization:</strong> Use multiple patterns to
+constrain entire sets of unknown parameters (<em>inverse
+modeling</em>)</li>
+</ol></section><section id="theory-cycle" class="slide level2"><h2>From Theories to Models and Back Again</h2>
+<p><img data-src="assets/images/pattern_development_cycle.png" height="900" alt="Theory Development Cycle"></p>
+</section></section><section><section id="vulture-sec" class="title-slide slide level1 center"><h1 class="center">Example: Vultures and Carcasses</h1>
+
+</section><section id="vulture-feeding" class="slide level2"><h2>Vultures Feeding at a Carcass</h2>
+<p><img data-src="assets/images/vultures.jpg" height="800" alt="Vultures feeding on carrion"></p>
+</section><section id="vulture-roles" class="slide level2"><h2>Modeling Vulture Feeding: Roles</h2>
+<table>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 87%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: center;">Role</th>
+<th style="text-align: left;">Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Searcher</td>
+<td style="text-align: left;">A vulture without personal or social
+information about carcass location</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Finder</td>
+<td style="text-align: left;">A vulture that has seen either the
+carcass, feeders on a carcass, or finders sinking in vertical flight to
+a carcass</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Follower</td>
+<td style="text-align: left;">A vulture that is following other vultures
+(either finders or other followers)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Feeder</td>
+<td style="text-align: left;">A finder that has already arrived at a
+carcass</td>
+</tr>
+</tbody>
+</table></section><section id="vulture-params" class="slide level2"><h2>Modeling Vulture Feeding Behavior: Variables</h2>
+<p>Variables</p>
+<table>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 74%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: center;">Variable</th>
+<th style="text-align: left;">Meaning</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+<em>D</em><sub>car</sub>
+</td>
+<td style="text-align: left;">Distance to nearest carcass</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+<em>D</em><sub>find-sear</sub>
+</td>
+<td style="text-align: left;">Distance to a finder that’s landing to
+feed</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+<em>D</em><sub>foll/find-sear</sub>
+</td>
+<td style="text-align: left;">Distance to the nearest follower or
+finder</td>
+</tr>
+</tbody>
+</table>
+<p>Fixed Parameters</p>
+<table>
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: center;">Parameter</th>
+<th style="text-align: left;">Meaning</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+<em>D</em><sub>unocc</sub>
+</td>
+<td style="text-align: left;">Farthest distance for vulture to see an
+unoccupied carcass</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+<em>D</em><sub>occ</sub>
+</td>
+<td style="text-align: left;">Farthest distance for vulture to see an
+occupied carcass, <em>D</em><sub>occ</sub> &gt;
+<em>D</em><sub>unocc</sub>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+<em>D</em><sub>foll</sub>
+</td>
+<td style="text-align: left;">Farthest distance for vulture to see a
+finder or follower flying toward a carcass, <em>D</em><sub>foll</sub>
+&gt; <em>D</em><sub>occ</sub>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+<em>D</em><sub>land</sub>
+</td>
+<td style="text-align: left;">Farthest distance for vulture to see a
+finder/follower landing on a carcass, <em>D</em><sub>land</sub> =
+<em>D</em><sub>foll</sub>
+</td>
+</tr>
+</tbody>
+</table></section><section id="vulture-model" class="slide level2"><h2>Modeling Vulture Feeding Behavior: Submodels</h2>
+<p><img data-src="assets/images/vulture_model.png" height="900" alt="Model of Vulture Feeding"></p>
+<div class="credit">
+<p>A. Cortes-Avizanda <em>et al.</em>, “Bird sky networks: How do avian
+scavengers use social information to find carrion?” Ecology
+<strong>95</strong>, 1799–1808 (2014)</p>
+</div>
+</section><section id="vulture-interactions" class="slide level2"><h2>Interactions among Vultures</h2>
+<p><img data-src="assets/images/vulture_schematics.jpg" width="1800" alt="Possible Interactions"></p>
+</section><section id="vulture-patterns-1" class="slide level2"><h2>Patterns of Feeding</h2>
+<p><img data-src="assets/images/vulture_results_1.png" height="900" alt="Clusters of Feeders"></p>
+</section><section id="vulture-patterns-2" class="slide level2"><h2>Model Comparisons</h2>
+<p><img data-src="assets/images/vulture_results_2.png" height="900" alt="Comparing Models"></p>
+</section></section><section><section id="deb-sec" class="title-slide slide level1 center"><h1 class="center">Impacts of Pesticides on Aquatic Ecosystems</h1>
+
+</section><section id="deb-model" class="slide level2"><h2>Dynamic Energy Budget Model</h2>
+<ul>
+<li>
+<em>Daphnia</em> (water flea) population dynamics observed in
+laboratory</li>
+<li class="fragment">Previous models focused on details of each species</li>
+<li class="fragment">Dynamic Energy Budget is generic:
+<ul>
+<li>Calibrate with known species, apply to new (unknown) species</li>
+</ul>
+</li>
+</ul></section><section id="deb-schematic" class="slide level2"><h2>Individual Metabolic Energy Balance</h2>
+<p><img data-src="assets/images/deb_schematic.png" height="900" alt="DEB model"></p>
+</section><section id="deb-netlogo" class="slide level2"><h2>Dynamic Energy Balance Model in NetLogo</h2>
+<p><img data-src="assets/images/deb_program.png" alt="DEB Population Model"></p>
+<div class="credit">
+<p>B.T. Martin <em>et al.</em>, “Predicting Population Dynamics from the
+Properties of Individuals:<br>A Cross-Level Test of Dynamic Energy
+Budget Theory”, Am. Naturalist <strong>181</strong>, 506–519 (2013)</p>
+</div>
+</section><section id="deb-testing" class="slide level2"><h2>Testing the Model</h2>
+<p><img data-src="assets/images/deb_results_1.jpg" height="900" alt="DEB Model Results"></p>
+</section><section id="deb-environment" class="slide level2"><h2>Different Environmental Conditions</h2>
+<p>Model reproduces population density and body size distribution at
+multiple levels of food supply and toxicant exposure</p>
+<p><img data-src="assets/images/deb_results_3.png" height="800" alt="DEB model results"></p>
+</section><section id="deb-pop-cycles" class="slide level2"><h2>Dynamical Patterns: Population Cycles</h2>
+<ul>
+<li>Experiments find that predator-prey population cycles can occur
+between <em>Daphnia</em> (predator) and algae (prey).</li>
+<li>These can have small amplitude (SA) or large amplitude (LA)</li>
+<li class="fragment" data-fragment-index="1">A pattern is that when the population is the relation of
+amplitude to the duration of the juvenile stage of <em>Daphnia</em>
+development
+<ul>
+<li class="fragment" data-fragment-index="2">In SA oscillations, juvenile stage lasts longer than
+average.</li>
+<li class="fragment" data-fragment-index="2">In LA oscillations, the juvenile stage is shorter than
+average.</li>
+</ul>
+</li>
+</ul></section><section id="deb-sim-cycles" class="slide level2"><h2>Simulations of Population Cycles</h2>
+<p><img data-src="assets/images/deb_results_4.png" height="900" alt="DEB Population Cycles"></p>
+</section><section id="research-framework" class="slide level2"><h2>How Model Fits into Research</h2>
+<p><img data-src="assets/images/modeling_framework.png" height="900" alt="Research Framework"></p>
+</section></section><section><section id="pom-process" class="title-slide slide level1 center"><h1 class="center">Pattern-Oriented Process</h1>
+
+</section><section id="ibm-ecology" class="slide level2"><h2>Individual-Based Ecology</h2>
+<p><img data-src="assets/images/ibm_ecology.jpg" height="900" alt="IBM-Ecology"></p>
+</section><section id="pom-phase-1" class="slide level2 center"><h2 class="center">Phase-1: Conceptualization</h2>
+<ul>
+<li>Define research question(s)
+<ul>
+<li class="fragment">Determine whether agent-based/individual-based modeling is the
+right conceptual framework</li>
+</ul>
+</li>
+<li class="fragment">Identify link between research question and behavioral
+mechanisms</li>
+<li class="fragment">Identify key parameters and processes to represent environment
+and behavior of the agents (biological species, human actors, etc.)</li>
+</ul></section><section id="pom-phase-2" class="slide level2 center"><h2 class="center">Phase-2: Implementation</h2>
+<ul>
+<li>Start with proof-of-concept:</li>
+<li class="fragment">Program initial model
+<ul>
+<li>Simple, general model</li>
+<li class="fragment">Ideally, starting model should contain little or no code or
+submodels specific to a single situation</li>
+</ul>
+</li>
+<li class="fragment">Test whether model can produce predictions that are <em>accurate
+enough</em> to answer research question</li>
+<li class="fragment">Run sensitivity analysis of model to determine <em>key
+parameters and processes</em> and relationship between model complexity
+and predictive power</li>
+</ul></section><section id="pom-phase-3" class="slide level2 center"><h2 class="center">Phase-3: Diversification</h2>
+<ul>
+<li>Simplify model as much as possible by removing unnecessary
+parameters and processes</li>
+<li class="fragment">Minimize number of parameters (e.g., global variables) that need
+to be measured in each new system
+<ul>
+<li class="fragment">Derive as many of these as you can from research literature or
+general relationships</li>
+</ul>
+</li>
+<li class="fragment">Parameterize and test simplified model for a wide range of
+systems to determine limits of approach</li>
+<li class="fragment">Perform <em>meta-analysis</em> of model runs specific to
+different sites, or situations</li>
+<li class="fragment">Use model to test more general theories: gain broadly applicable
+insights.</li>
+</ul></section></section>
+</div>
+  </div>
+
+  <script src="../../lecture_lib/library/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../../lecture_lib/library/dist/plugin/notes.js"></script><script src="../../lecture_lib/library/dist/plugin/zoom.js"></script><script src="../../lecture_lib/library/dist/plugin/math.js"></script><script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'speaker',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags whether to create separate pages for each fragment
+        // when printing to PDF
+        pdfSeparateFragments: false,
+
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: false,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: false,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'default',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+        mathjax4: {
+            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js',
+            loader: {
+              load: [
+                '[tex]/ams', '[tex]/mhchem'
+                ],
+              },
+            output: {
+                            font: 'mathjax-dejavu',
+                          },
+            chtml: {
+              matchFontHeight: true,
+              adaptiveCSS: true,
+            },
+            svg: {
+              fontCache: 'global',
+            },
+            tex: {
+              inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)'],
+              ],
+              displayMath: [
+                ['$$', '$$'],
+                ['\\[', '\\]'],
+              ],
+              packages: {
+                '[+]': ['ams', 'mhchem'],
+              },
+                          },
+            options: {
+              skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            },
+        },
+        // reveal.js plugins
+        plugins: [
+          RevealMath.MathJax4,
+          RevealNotes,
+          RevealZoom
+          ]
+      });
+    </script><script>
+    function createSingletonNodejg( container, tagname, classname, innerHTML ) {
+      // Find all nodes matching the description
+      var nodes = container.querySelectorAll( '.' + classname );
+
+      // Check all matches to find one which is a direct child of
+      // the specified container
+      for( var i = 0; i < nodes.length; i++ ) {
+      	var testNode = nodes[i];
+      	if( testNode.parentNode === container ) {
+      		return testNode;
+      	}
+      }
+
+      // If no node was found, create it now
+      var node = document.createElement( tagname );
+      node.className = classname;
+      if( typeof innerHTML === 'string' ) {
+      	node.innerHTML = innerHTML;
+      }
+      container.appendChild( node );
+
+      return node;
+    }
+
+    var dom_wrapper = document.querySelector('.reveal');
+
+    createSingletonNodejg(dom_wrapper, 'div', 'qrbox',
+      '<div class="qrbox" id="qrbox" style="font-size:90%;">' + '\n' +
+      '<div class="qrimage">' + '\n' +
+          '<a class="qrimage" href="https://ees4760.jmgilligan.org/slides/class_20">' +
+      	'<img src="qrcode.png" alt="https://ees4760.jmgilligan.org/slides/class_20"/>' +
+      	'</a>' + '\n' +
+    	  '</div>' + '\n' +
+      '<div style="font-size:30%;width:100%;vertical-align:top;">' + '\n' +
+        '<span style="display:inline-block;text-align:left;margin-left:0">' + '\n' +
+            'Live web page: <a href="https://ees4760.jmgilligan.org/slides/class_20">https://ees4760.jmgilligan.org/slides/class_20</a>' + '\n' +
+                  '<br/>' + '\n' +
+            'PDF: <a href="https://ees4760.jmgilligan.org/slides/class_20/EES_4760_5760_class_20_slides.pdf" target="_blank">https://ees4760.jmgilligan.org/slides/class_20/EES_4760_5760_class_20_slides.pdf</a>' + '\n' +
+              	'</span>' + '\n' +
+      	'<span style="display:inline-block;text-align:right;vertical-align:top;position:absolute;right:0;bottom:0;">' + '\n' +
+      	  'Navigate slides: next: N or &lt;space&gt;; previous: P or &lt;backspace&gt;<br/>' + '\n' +
+      	  'Also: up, down, left, right arrows; overview: o; help: ?' + '\n' +
+      	'</span>' + '\n' +
+    	'</div>' + '\n' +
+      '</div>' + '\n'
+      );
+
+    var qrbox = document.querySelector("#qrbox");
+    var advance_fragment = 0;
+
+    if (qrbox != null) {
+      function isPrintingPDF() {
+        let printing = ( /print-pdf/gi ).test( window.location.search );
+        console.log("printing test: " + printing);
+        return printing;
+      }
+
+      if ( qrbox.hasAttribute('qr-box-hide') || Reveal.isOverview() ||
+          ! Reveal.isFirstSlide() || isPrintingPDF()) {
+        console.log("Initializing");
+        console.log("Hiding QR box");
+        qrbox.style.visibility="hidden";
+        qrbox.style.display="none";
+      }
+
+      Reveal.addEventListener('overviewshown', function() {
+        console.log("Overview shown");
+        console.log("Hiding QR box");
+        qrbox.style.visibility="hidden";
+        qrbox.style.display="none";
+      }, false);
+
+      Reveal.addEventListener('overviewhidden', function() {
+        if (Reveal.isFirstSlide() && ! qrbox.hasAttribute('qr-box-hide') &&
+            ! isPrintingPDF()) {
+          console.log("Overview hidden");
+          console.log("Showing QR box");
+          qrbox.style.visibility="visible";
+          qrbox.style.display="block";
+        }
+      }, false);
+
+      Reveal.addEventListener('slidechanged', function() {
+        console.log("Slide changed...");
+        if (Reveal.isFirstSlide() && ! Reveal.isOverview() &&
+            ! qrbox.hasAttribute('qr-box-hide') &&
+            ! isPrintingPDF()) {
+          console.log("Showing QR box");
+          qrbox.style.visibility="visible";
+          qrbox.style.display="block";
+        } else {
+          console.log("Hiding QR box");
+          qrbox.style.visibility="hidden";
+          qrbox.style.display="none";
+        }
+      }, false);
+
+      Reveal.addEventListener('pdf-ready', function() {
+        console.log("hiding qrbox for printing");
+        qrbox.style.visibility="hidden";
+        qrbox.style.display="none";
+        qrbox.setAttribute('qr-box-hide', 'true');
+      });
+    }
+
+    Reveal.addEventListener('slidechanged', function() {
+      while (advance_fragment > 0) {
+        // console.log('advancing fragment');
+        Reveal.nextFragment();
+        advance_fragment--;
+      }
+    }, false);
+
+    Reveal.addEventListener('slidechanged', function() {
+      if ( Reveal.getCurrentSlide().hasAttribute('data-skip')) {
+        // console.log("going to next slide...");
+        Reveal.next();
+      }
+    }, false);
+
+    Reveal.addEventListener('skip_slide', function() {
+      Reveal.next();
+    }, false);
+
+    Reveal.addEventListener('advance_fragment', function() {
+      // console.log("setting advance fragment");
+      advance_fragment++;
+      }, false);  </script>
+</body>
+</html>
