@@ -19,6 +19,7 @@
 /lectures/semester/
 /lectures/old_semester/
 /lectures/old-semester/
+/lectures/*-semester/
 #
 # Hugo working files
 #
