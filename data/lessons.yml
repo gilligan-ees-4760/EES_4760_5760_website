@@ -125,6 +125,7 @@ lessons:
 - date: '2026-11-12'
   title: Parameterization and Calibration
   reading: /reading/reading_22
+  lecture: /slides/class_22
 - date: '2026-11-17'
   title: Agent-Based Models in Practice
   reading: /reading/reading_23
