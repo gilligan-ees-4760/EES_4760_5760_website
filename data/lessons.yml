@@ -129,6 +129,7 @@ lessons:
 - date: '2026-11-17'
   title: Agent-Based Models in Practice
   reading: /reading/reading_23
+  lecture: /slides/class_23
 - date: '2026-11-18'
   title: 'Indiv. Project: Draft model code for research project'
   assignment: /assignment/project_draft_code
