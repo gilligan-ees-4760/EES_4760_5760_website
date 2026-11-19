@@ -1,5 +1,5 @@
 ---
-title: 'Looking Ahead: ABMs Beyond this Course'
+title: 'Looking Ahead: ABMs Beyond this Course (CANCELED)'
 subtitle: '`r params$par_subtitle`'
 class_date: '`r params$par_date`'
 class_number: 28
@@ -26,5 +26,7 @@ output:
 * Modeling Social Behavior, Ch. 10--11.
 
 ### Reading Notes:
+
+**Class for today is canceled. This reading is optional.**
 
 The optional reading from _Modeling Social Behavior_ provides perspectives on the relationship between simulation models and the real world and how to use models wisely by appreciating both what they can do and what they can't do, what parts of the real world they capture faithfully and which parts they don't.

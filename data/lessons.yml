@@ -136,6 +136,7 @@ lessons:
 - date: '2026-11-19'
   title: Analyzing ABMs
   reading: /reading/reading_24
+  lecture: /slides/class_24
 - date: '2026-11-24'
   title: Thanksgiving Break
 - date: '2026-11-26'
@@ -147,10 +148,10 @@ lessons:
   title: Presentations
   assignment: /assignment/project_presentation_2
 - date: '2026-12-08'
-  title: Sensitivity and Robustness
+  title: Sensitivity and Robustness (CANCELED)
   reading: /reading/reading_27
 - date: '2026-12-10'
-  title: 'Looking Ahead: ABMs Beyond this Course'
+  title: 'Looking Ahead: ABMs Beyond this Course (CANCELED)'
   reading: /reading/reading_28
 - date: '2026-12-19'
   title: 'Indiv. Project: Research project report'
